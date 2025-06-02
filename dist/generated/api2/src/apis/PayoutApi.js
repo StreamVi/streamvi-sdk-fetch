@@ -50,8 +50,8 @@ class PayoutApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling payoutCreateV1().');
         }
-        if (requestParameters['payoutCreateRequestBodyDto'] == null) {
-            throw new runtime.RequiredError('payoutCreateRequestBodyDto', 'Required parameter "payoutCreateRequestBodyDto" was null or undefined when calling payoutCreateV1().');
+        if (requestParameters['PayoutCreateRequestBodyDto'] == null) {
+            throw new runtime.RequiredError('PayoutCreateRequestBodyDto', 'Required parameter "PayoutCreateRequestBodyDto" was null or undefined when calling payoutCreateV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -70,7 +70,7 @@ class PayoutApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PayoutCreateRequestBodyDtoToJSON)(requestParameters['payoutCreateRequestBodyDto']),
+            body: (0, index_1.PayoutCreateRequestBodyDtoToJSON)(requestParameters['PayoutCreateRequestBodyDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -88,8 +88,8 @@ class PayoutApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling payoutPrepareV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling payoutPrepareV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling payoutPrepareV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -101,8 +101,8 @@ class PayoutApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -126,9 +126,9 @@ exports.PayoutApi = PayoutApi;
  * @export
  */
 exports.PayoutCreateV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -142,9 +142,9 @@ exports.PayoutCreateV1VEnum = {
  * @export
  */
 exports.PayoutPrepareV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

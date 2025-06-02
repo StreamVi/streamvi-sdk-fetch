@@ -19,10 +19,10 @@ const PlanRestreamDiscountResponse_1 = require("./PlanRestreamDiscountResponse")
  * @export
  */
 exports.PlanRestreamResponseTypeEnum = {
-    Free: 'free',
-    PaidFix: 'paid_fix',
-    PaidFlex: 'paid_flex',
-    Custom: 'custom'
+    free: 'free',
+    paid_fix: 'paid_fix',
+    paid_flex: 'paid_flex',
+    custom: 'custom'
 };
 /**
  * @export
@@ -31,7 +31,7 @@ exports.PlanRestreamResponseResolutionEnum = {
     _720p: '720p',
     _1080p: '1080p',
     _2K: '2K',
-    Uw: 'UW',
+    UW: 'UW',
     _4K: '4K',
     _8K: '8K'
 };
@@ -46,47 +46,47 @@ exports.PlanRestreamResponseFpsEnum = {
  * Check if a given object implements the PlanRestreamResponse interface.
  */
 function instanceOfPlanRestreamResponse(value) {
-    if (!('planRestreamId' in value) || value['planRestreamId'] === undefined)
+    if (!('plan_restream_id' in value) || value['plan_restream_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('active' in value) || value['active'] === undefined)
         return false;
-    if (!('countChannelMin' in value) || value['countChannelMin'] === undefined)
+    if (!('count_channel_min' in value) || value['count_channel_min'] === undefined)
         return false;
-    if (!('countChannelMax' in value) || value['countChannelMax'] === undefined)
+    if (!('count_channel_max' in value) || value['count_channel_max'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('priceRub' in value) || value['priceRub'] === undefined)
+    if (!('price_rub' in value) || value['price_rub'] === undefined)
         return false;
-    if (!('priceUsd' in value) || value['priceUsd'] === undefined)
+    if (!('price_usd' in value) || value['price_usd'] === undefined)
         return false;
-    if (!('bitrateMax' in value) || value['bitrateMax'] === undefined)
+    if (!('bitrate_max' in value) || value['bitrate_max'] === undefined)
         return false;
-    if (!('bitrateMin' in value) || value['bitrateMin'] === undefined)
+    if (!('bitrate_min' in value) || value['bitrate_min'] === undefined)
         return false;
     if (!('resolution' in value) || value['resolution'] === undefined)
         return false;
     if (!('fps' in value) || value['fps'] === undefined)
         return false;
-    if (!('createProjects' in value) || value['createProjects'] === undefined)
+    if (!('create_projects' in value) || value['create_projects'] === undefined)
         return false;
     if (!('chat' in value) || value['chat'] === undefined)
         return false;
     if (!('video' in value) || value['video'] === undefined)
         return false;
-    if (!('videoStorage' in value) || value['videoStorage'] === undefined)
+    if (!('video_storage' in value) || value['video_storage'] === undefined)
         return false;
-    if (!('changeSubject' in value) || value['changeSubject'] === undefined)
+    if (!('change_subject' in value) || value['change_subject'] === undefined)
         return false;
-    if (!('backgroundChat' in value) || value['backgroundChat'] === undefined)
+    if (!('background_chat' in value) || value['background_chat'] === undefined)
         return false;
-    if (!('dedicatedServer' in value) || value['dedicatedServer'] === undefined)
+    if (!('dedicated_server' in value) || value['dedicated_server'] === undefined)
         return false;
-    if (!('personalManager' in value) || value['personalManager'] === undefined)
+    if (!('personal_manager' in value) || value['personal_manager'] === undefined)
         return false;
-    if (!('pullLinkLimit' in value) || value['pullLinkLimit'] === undefined)
+    if (!('pull_link_limit' in value) || value['pull_link_limit'] === undefined)
         return false;
     if (!('index' in value) || value['index'] === undefined)
         return false;
@@ -104,27 +104,27 @@ function PlanRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planRestreamId': json['plan_restream_id'],
+        'plan_restream_id': json['plan_restream_id'],
         'title': json['title'],
         'active': json['active'],
-        'countChannelMin': json['count_channel_min'],
-        'countChannelMax': json['count_channel_max'],
+        'count_channel_min': json['count_channel_min'],
+        'count_channel_max': json['count_channel_max'],
         'type': json['type'],
-        'priceRub': json['price_rub'],
-        'priceUsd': json['price_usd'],
-        'bitrateMax': json['bitrate_max'],
-        'bitrateMin': json['bitrate_min'],
+        'price_rub': json['price_rub'],
+        'price_usd': json['price_usd'],
+        'bitrate_max': json['bitrate_max'],
+        'bitrate_min': json['bitrate_min'],
         'resolution': json['resolution'],
         'fps': json['fps'],
-        'createProjects': json['create_projects'],
+        'create_projects': json['create_projects'],
         'chat': json['chat'],
         'video': json['video'],
-        'videoStorage': json['video_storage'],
-        'changeSubject': json['change_subject'],
-        'backgroundChat': json['background_chat'],
-        'dedicatedServer': json['dedicated_server'],
-        'personalManager': json['personal_manager'],
-        'pullLinkLimit': json['pull_link_limit'],
+        'video_storage': json['video_storage'],
+        'change_subject': json['change_subject'],
+        'background_chat': json['background_chat'],
+        'dedicated_server': json['dedicated_server'],
+        'personal_manager': json['personal_manager'],
+        'pull_link_limit': json['pull_link_limit'],
         'index': json['index'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseFromJSON)(json['discount']),
     };
@@ -139,27 +139,27 @@ function PlanRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'plan_restream_id': value['planRestreamId'],
+        'plan_restream_id': value['plan_restream_id'],
         'title': value['title'],
         'active': value['active'],
-        'count_channel_min': value['countChannelMin'],
-        'count_channel_max': value['countChannelMax'],
+        'count_channel_min': value['count_channel_min'],
+        'count_channel_max': value['count_channel_max'],
         'type': value['type'],
-        'price_rub': value['priceRub'],
-        'price_usd': value['priceUsd'],
-        'bitrate_max': value['bitrateMax'],
-        'bitrate_min': value['bitrateMin'],
+        'price_rub': value['price_rub'],
+        'price_usd': value['price_usd'],
+        'bitrate_max': value['bitrate_max'],
+        'bitrate_min': value['bitrate_min'],
         'resolution': value['resolution'],
         'fps': value['fps'],
-        'create_projects': value['createProjects'],
+        'create_projects': value['create_projects'],
         'chat': value['chat'],
         'video': value['video'],
-        'video_storage': value['videoStorage'],
-        'change_subject': value['changeSubject'],
-        'background_chat': value['backgroundChat'],
-        'dedicated_server': value['dedicatedServer'],
-        'personal_manager': value['personalManager'],
-        'pull_link_limit': value['pullLinkLimit'],
+        'video_storage': value['video_storage'],
+        'change_subject': value['change_subject'],
+        'background_chat': value['background_chat'],
+        'dedicated_server': value['dedicated_server'],
+        'personal_manager': value['personal_manager'],
+        'pull_link_limit': value['pull_link_limit'],
         'index': value['index'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseToJSON)(value['discount']),
     };

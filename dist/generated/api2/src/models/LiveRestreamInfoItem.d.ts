@@ -26,19 +26,19 @@ export interface LiveRestreamInfoItem {
      * @type {number}
      * @memberof LiveRestreamInfoItem
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Channel name
      * @type {string}
      * @memberof LiveRestreamInfoItem
      */
-    channelName: string;
+    channel_name: string;
     /**
      * Channel type
      * @type {string}
      * @memberof LiveRestreamInfoItem
      */
-    channelType: string;
+    channel_type: string;
     /**
      * Stream url
      * @type {string}

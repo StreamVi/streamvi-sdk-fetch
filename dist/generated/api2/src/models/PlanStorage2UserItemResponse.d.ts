@@ -20,13 +20,13 @@ export interface PlanStorage2UserItemResponse {
      * @type {number}
      * @memberof PlanStorage2UserItemResponse
      */
-    planStorage2userId: number;
+    plan_storage2user_id: number;
     /**
      * Plan storage id
      * @type {number}
      * @memberof PlanStorage2UserItemResponse
      */
-    planStorageId: number;
+    plan_storage_id: number;
     /**
      * Size
      * @type {number}
@@ -38,19 +38,19 @@ export interface PlanStorage2UserItemResponse {
      * @type {Date}
      * @memberof PlanStorage2UserItemResponse
      */
-    dateStart: Date;
+    date_start: Date;
     /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanStorage2UserItemResponse
      */
-    dateEnd: Date;
+    date_end: Date;
     /**
      * Date create tariff
      * @type {Date}
      * @memberof PlanStorage2UserItemResponse
      */
-    dateCreate: Date;
+    date_create: Date;
     /**
      * Period
      * @type {string}
@@ -62,7 +62,7 @@ export interface PlanStorage2UserItemResponse {
      * @type {string}
      * @memberof PlanStorage2UserItemResponse
      */
-    periodUuid: string;
+    period_uuid: string;
     /**
      * Status
      * @type {string}
@@ -80,14 +80,14 @@ export interface PlanStorage2UserItemResponse {
      * @type {string}
      * @memberof PlanStorage2UserItemResponse
      */
-    moneyFlowUuid: string;
+    money_flow_uuid: string;
 }
 /**
  * @export
  */
 export declare const PlanStorage2UserItemResponsePeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanStorage2UserItemResponsePeriodEnum = typeof PlanStorage2UserItemResponsePeriodEnum[keyof typeof PlanStorage2UserItemResponsePeriodEnum];
 /**

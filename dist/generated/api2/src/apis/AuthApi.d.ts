@@ -13,18 +13,18 @@ import * as runtime from '../runtime';
 import type { CodeAppAuthResponse, RefreshAuthResponse, SiteAuthExchangeRequest, SiteLogoutAuthRequest, SiteRefreshAuthBodyRequest, SuccessResponse } from '../models/index';
 export interface AuthAuthTelegramV1Request {
     language: AuthAuthTelegramV1LanguageEnum;
-    authDate: number;
+    auth_date: number;
     id: number;
-    firstName: string;
+    first_name: string;
     hash: string;
     app: AuthAuthTelegramV1AppEnum;
     v?: AuthAuthTelegramV1VEnum;
-    lastName?: string;
+    last_name?: string;
     username?: string;
-    photoUrl?: string;
-    languageCode?: string;
-    isPremium?: boolean;
-    addedToAttachmentMenu?: boolean;
+    photo_url?: string;
+    language_code?: string;
+    is_premium?: boolean;
+    added_to_attachment_menu?: boolean;
     refId?: string;
     redirect?: string;
     country?: string;
@@ -58,11 +58,11 @@ export interface AuthConnectV1Request {
 }
 export interface AuthDisconnectV1Request {
     language: AuthDisconnectV1LanguageEnum;
-    socialId: number;
+    social_id: number;
     v?: AuthDisconnectV1VEnum;
 }
 export interface AuthExchangeV1Request {
-    siteAuthExchangeRequest: SiteAuthExchangeRequest;
+    SiteAuthExchangeRequest: SiteAuthExchangeRequest;
 }
 export interface AuthGetAuthUrlV1Request {
     language: AuthGetAuthUrlV1LanguageEnum;
@@ -81,11 +81,11 @@ export interface AuthGuestV1Request {
     refId: string;
 }
 export interface AuthLogoutV1Request {
-    siteLogoutAuthRequest: SiteLogoutAuthRequest;
+    SiteLogoutAuthRequest: SiteLogoutAuthRequest;
 }
 export interface AuthRefreshAccessV1Request {
-    userAgent: string;
-    siteRefreshAuthBodyRequest: SiteRefreshAuthBodyRequest;
+    User_Agent: string;
+    SiteRefreshAuthBodyRequest: SiteRefreshAuthBodyRequest;
 }
 /**
  * AuthApi - interface
@@ -98,18 +98,18 @@ export interface AuthApiInterface {
      *
      * @summary Auth telegram
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} authDate Time auth
+     * @param {number} auth_date Time auth
      * @param {number} id Telegram userId
-     * @param {string} firstName First name
+     * @param {string} first_name First name
      * @param {string} hash Hash
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} app App oauth
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {string} [lastName] Last name
+     * @param {string} [last_name] Last name
      * @param {string} [username] Nickname
-     * @param {string} [photoUrl] Photo
-     * @param {string} [languageCode] IETF language tag of the user\&#39;s language
-     * @param {boolean} [isPremium] True, if this user is a Telegram Premium user
-     * @param {boolean} [addedToAttachmentMenu] True, if this user added the bot to the attachment menu
+     * @param {string} [photo_url] Photo
+     * @param {string} [language_code] IETF language tag of the user\&#39;s language
+     * @param {boolean} [is_premium] True, if this user is a Telegram Premium user
+     * @param {boolean} [added_to_attachment_menu] True, if this user added the bot to the attachment menu
      * @param {string} [refId] Referal id
      * @param {string} [redirect] Redirect url
      * @param {string} [country] Country code
@@ -225,7 +225,7 @@ export interface AuthApiInterface {
      *
      * @summary Disconnected social account
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} socialId Social id
+     * @param {number} social_id Social id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -239,7 +239,7 @@ export interface AuthApiInterface {
     /**
      *
      * @summary Code exchange
-     * @param {SiteAuthExchangeRequest} siteAuthExchangeRequest
+     * @param {SiteAuthExchangeRequest} SiteAuthExchangeRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -298,7 +298,7 @@ export interface AuthApiInterface {
     /**
      *
      * @summary Logout
-     * @param {SiteLogoutAuthRequest} siteLogoutAuthRequest
+     * @param {SiteLogoutAuthRequest} SiteLogoutAuthRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -311,8 +311,8 @@ export interface AuthApiInterface {
     /**
      *
      * @summary Update access token
-     * @param {string} userAgent
-     * @param {SiteRefreshAuthBodyRequest} siteRefreshAuthBodyRequest
+     * @param {string} User_Agent
+     * @param {SiteRefreshAuthBodyRequest} SiteRefreshAuthBodyRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -452,19 +452,19 @@ export declare class AuthApi extends runtime.BaseAPI implements AuthApiInterface
  * @export
  */
 export declare const AuthAuthTelegramV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthAuthTelegramV1LanguageEnum = typeof AuthAuthTelegramV1LanguageEnum[keyof typeof AuthAuthTelegramV1LanguageEnum];
 /**
  * @export
  */
 export declare const AuthAuthTelegramV1AppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type AuthAuthTelegramV1AppEnum = typeof AuthAuthTelegramV1AppEnum[keyof typeof AuthAuthTelegramV1AppEnum];
 /**
@@ -480,19 +480,19 @@ export type AuthAuthTelegramV1VEnum = typeof AuthAuthTelegramV1VEnum[keyof typeo
  * @export
  */
 export declare const AuthCodeV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthCodeV1LanguageEnum = typeof AuthCodeV1LanguageEnum[keyof typeof AuthCodeV1LanguageEnum];
 /**
  * @export
  */
 export declare const AuthCodeV1AppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type AuthCodeV1AppEnum = typeof AuthCodeV1AppEnum[keyof typeof AuthCodeV1AppEnum];
 /**
@@ -508,9 +508,9 @@ export type AuthCodeV1VEnum = typeof AuthCodeV1VEnum[keyof typeof AuthCodeV1VEnu
  * @export
  */
 export declare const AuthConnectResultV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthConnectResultV1LanguageEnum = typeof AuthConnectResultV1LanguageEnum[keyof typeof AuthConnectResultV1LanguageEnum];
 /**
@@ -526,9 +526,9 @@ export type AuthConnectResultV1VEnum = typeof AuthConnectResultV1VEnum[keyof typ
  * @export
  */
 export declare const AuthConnectTelegramV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthConnectTelegramV1LanguageEnum = typeof AuthConnectTelegramV1LanguageEnum[keyof typeof AuthConnectTelegramV1LanguageEnum];
 /**
@@ -544,19 +544,19 @@ export type AuthConnectTelegramV1VEnum = typeof AuthConnectTelegramV1VEnum[keyof
  * @export
  */
 export declare const AuthConnectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthConnectV1LanguageEnum = typeof AuthConnectV1LanguageEnum[keyof typeof AuthConnectV1LanguageEnum];
 /**
  * @export
  */
 export declare const AuthConnectV1ProviderEnum: {
-    readonly Google: "google";
-    readonly Vk: "vk";
-    readonly VkId: "vk-id";
-    readonly Telegram: "telegram";
+    readonly google: "google";
+    readonly vk: "vk";
+    readonly vk_id: "vk-id";
+    readonly telegram: "telegram";
 };
 export type AuthConnectV1ProviderEnum = typeof AuthConnectV1ProviderEnum[keyof typeof AuthConnectV1ProviderEnum];
 /**
@@ -572,19 +572,19 @@ export type AuthConnectV1VEnum = typeof AuthConnectV1VEnum[keyof typeof AuthConn
  * @export
  */
 export declare const AuthConnectV1AppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type AuthConnectV1AppEnum = typeof AuthConnectV1AppEnum[keyof typeof AuthConnectV1AppEnum];
 /**
  * @export
  */
 export declare const AuthDisconnectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthDisconnectV1LanguageEnum = typeof AuthDisconnectV1LanguageEnum[keyof typeof AuthDisconnectV1LanguageEnum];
 /**
@@ -600,19 +600,19 @@ export type AuthDisconnectV1VEnum = typeof AuthDisconnectV1VEnum[keyof typeof Au
  * @export
  */
 export declare const AuthGetAuthUrlV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthGetAuthUrlV1LanguageEnum = typeof AuthGetAuthUrlV1LanguageEnum[keyof typeof AuthGetAuthUrlV1LanguageEnum];
 /**
  * @export
  */
 export declare const AuthGetAuthUrlV1ProviderEnum: {
-    readonly Google: "google";
-    readonly Vk: "vk";
-    readonly VkId: "vk-id";
-    readonly Telegram: "telegram";
+    readonly google: "google";
+    readonly vk: "vk";
+    readonly vk_id: "vk-id";
+    readonly telegram: "telegram";
 };
 export type AuthGetAuthUrlV1ProviderEnum = typeof AuthGetAuthUrlV1ProviderEnum[keyof typeof AuthGetAuthUrlV1ProviderEnum];
 /**
@@ -628,19 +628,19 @@ export type AuthGetAuthUrlV1VEnum = typeof AuthGetAuthUrlV1VEnum[keyof typeof Au
  * @export
  */
 export declare const AuthGetAuthUrlV1AppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type AuthGetAuthUrlV1AppEnum = typeof AuthGetAuthUrlV1AppEnum[keyof typeof AuthGetAuthUrlV1AppEnum];
 /**
  * @export
  */
 export declare const AuthGetProfileV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AuthGetProfileV1LanguageEnum = typeof AuthGetProfileV1LanguageEnum[keyof typeof AuthGetProfileV1LanguageEnum];
 /**

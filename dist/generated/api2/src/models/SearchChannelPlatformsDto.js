@@ -24,7 +24,7 @@ function instanceOfSearchChannelPlatformsDto(value) {
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('editName' in value) || value['editName'] === undefined)
+    if (!('edit_name' in value) || value['edit_name'] === undefined)
         return false;
     return true;
 }
@@ -41,7 +41,7 @@ function SearchChannelPlatformsDtoFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
         'type': json['type'],
         'title': json['title'],
-        'editName': json['edit_name'],
+        'edit_name': json['edit_name'],
     };
 }
 exports.SearchChannelPlatformsDtoFromJSONTyped = SearchChannelPlatformsDtoFromJSONTyped;
@@ -57,7 +57,7 @@ function SearchChannelPlatformsDtoToJSONTyped(value, ignoreDiscriminator = false
         'id': value['id'],
         'type': value['type'],
         'title': value['title'],
-        'edit_name': value['editName'],
+        'edit_name': value['edit_name'],
     };
 }
 exports.SearchChannelPlatformsDtoToJSONTyped = SearchChannelPlatformsDtoToJSONTyped;

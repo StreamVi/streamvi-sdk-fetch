@@ -19,9 +19,9 @@ const LiveRestreamCentrifugeItemV2_1 = require("./LiveRestreamCentrifugeItemV2")
  * Check if a given object implements the SiteLiveRestreamCentrifugeResponse interface.
  */
 function instanceOfSiteLiveRestreamCentrifugeResponse(value) {
-    if (!('updateUrlChannel' in value) || value['updateUrlChannel'] === undefined)
+    if (!('update_url_channel' in value) || value['update_url_channel'] === undefined)
         return false;
-    if (!('updateStatsChannel' in value) || value['updateStatsChannel'] === undefined)
+    if (!('update_stats_channel' in value) || value['update_stats_channel'] === undefined)
         return false;
     return true;
 }
@@ -35,8 +35,8 @@ function SiteLiveRestreamCentrifugeResponseFromJSONTyped(json, ignoreDiscriminat
         return json;
     }
     return {
-        'updateUrlChannel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2FromJSON)(json['update_url_channel']),
-        'updateStatsChannel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2FromJSON)(json['update_stats_channel']),
+        'update_url_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2FromJSON)(json['update_url_channel']),
+        'update_stats_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2FromJSON)(json['update_stats_channel']),
     };
 }
 exports.SiteLiveRestreamCentrifugeResponseFromJSONTyped = SiteLiveRestreamCentrifugeResponseFromJSONTyped;
@@ -49,8 +49,8 @@ function SiteLiveRestreamCentrifugeResponseToJSONTyped(value, ignoreDiscriminato
         return value;
     }
     return {
-        'update_url_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2ToJSON)(value['updateUrlChannel']),
-        'update_stats_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2ToJSON)(value['updateStatsChannel']),
+        'update_url_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2ToJSON)(value['update_url_channel']),
+        'update_stats_channel': (0, LiveRestreamCentrifugeItemV2_1.LiveRestreamCentrifugeItemV2ToJSON)(value['update_stats_channel']),
     };
 }
 exports.SiteLiveRestreamCentrifugeResponseToJSONTyped = SiteLiveRestreamCentrifugeResponseToJSONTyped;

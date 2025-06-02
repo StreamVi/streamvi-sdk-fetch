@@ -19,8 +19,8 @@ const ChannelCategoryInfoDto_1 = require("./ChannelCategoryInfoDto");
  * @export
  */
 exports.ChannelTwitchInfoDtoLangEnum = {
-    Ru: 'ru',
-    En: 'en'
+    ru: 'ru',
+    en: 'en'
 };
 /**
  * Check if a given object implements the ChannelTwitchInfoDto interface.

@@ -19,11 +19,11 @@ const TCountryChartData_1 = require("./TCountryChartData");
  * @export
  */
 exports.RtmpServerGraphResponseTypeEnum = {
-    Performance: 'performance',
-    Network: 'network',
-    Cpu: 'cpu',
-    Ram: 'ram',
-    DeliveredPackages: 'deliveredPackages'
+    performance: 'performance',
+    network: 'network',
+    cpu: 'cpu',
+    ram: 'ram',
+    deliveredPackages: 'deliveredPackages'
 };
 /**
  * Check if a given object implements the RtmpServerGraphResponse interface.

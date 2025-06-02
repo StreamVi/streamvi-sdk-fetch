@@ -49,11 +49,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling analyticsTsStreamBitrateV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling analyticsTsStreamBitrateV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling analyticsTsStreamBitrateV1().');
         }
-        if (requestParameters['streamId'] == null) {
-            throw new runtime.RequiredError('streamId', 'Required parameter "streamId" was null or undefined when calling analyticsTsStreamBitrateV1().');
+        if (requestParameters['stream_id'] == null) {
+            throw new runtime.RequiredError('stream_id', 'Required parameter "stream_id" was null or undefined when calling analyticsTsStreamBitrateV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -65,11 +65,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['streamId'] != null) {
-            queryParameters['stream_id'] = requestParameters['streamId'];
+        if (requestParameters['stream_id'] != null) {
+            queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -94,11 +94,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling analyticsTsStreamEventsV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling analyticsTsStreamEventsV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling analyticsTsStreamEventsV1().');
         }
-        if (requestParameters['streamId'] == null) {
-            throw new runtime.RequiredError('streamId', 'Required parameter "streamId" was null or undefined when calling analyticsTsStreamEventsV1().');
+        if (requestParameters['stream_id'] == null) {
+            throw new runtime.RequiredError('stream_id', 'Required parameter "stream_id" was null or undefined when calling analyticsTsStreamEventsV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -110,11 +110,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['streamId'] != null) {
-            queryParameters['stream_id'] = requestParameters['streamId'];
+        if (requestParameters['stream_id'] != null) {
+            queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -139,11 +139,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling analyticsTsStreamViewersV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling analyticsTsStreamViewersV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling analyticsTsStreamViewersV1().');
         }
-        if (requestParameters['streamId'] == null) {
-            throw new runtime.RequiredError('streamId', 'Required parameter "streamId" was null or undefined when calling analyticsTsStreamViewersV1().');
+        if (requestParameters['stream_id'] == null) {
+            throw new runtime.RequiredError('stream_id', 'Required parameter "stream_id" was null or undefined when calling analyticsTsStreamViewersV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -155,11 +155,11 @@ class AnalyticsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['streamId'] != null) {
-            queryParameters['stream_id'] = requestParameters['streamId'];
+        if (requestParameters['stream_id'] != null) {
+            queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -183,9 +183,9 @@ exports.AnalyticsApi = AnalyticsApi;
  * @export
  */
 exports.AnalyticsTsStreamBitrateV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -199,9 +199,9 @@ exports.AnalyticsTsStreamBitrateV1VEnum = {
  * @export
  */
 exports.AnalyticsTsStreamEventsV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -215,9 +215,9 @@ exports.AnalyticsTsStreamEventsV1VEnum = {
  * @export
  */
 exports.AnalyticsTsStreamViewersV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

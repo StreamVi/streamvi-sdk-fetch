@@ -56,18 +56,18 @@ export interface PullKeyItemResponse {
  * @export
  */
 export declare const PullKeyItemResponseTransportEnum: {
-    readonly Rtmp: "rtmp";
-    readonly Srt: "srt";
-    readonly Hls: "hls";
+    readonly rtmp: "rtmp";
+    readonly srt: "srt";
+    readonly hls: "hls";
 };
 export type PullKeyItemResponseTransportEnum = typeof PullKeyItemResponseTransportEnum[keyof typeof PullKeyItemResponseTransportEnum];
 /**
  * @export
  */
 export declare const PullKeyItemResponseStatusEnum: {
-    readonly Active: "active";
-    readonly Inactive: "inactive";
-    readonly Error: "error";
+    readonly active: "active";
+    readonly inactive: "inactive";
+    readonly error: "error";
 };
 export type PullKeyItemResponseStatusEnum = typeof PullKeyItemResponseStatusEnum[keyof typeof PullKeyItemResponseStatusEnum];
 /**

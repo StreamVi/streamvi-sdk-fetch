@@ -32,13 +32,13 @@ export interface PayoutCreateRequestBodyDto {
      * @type {number}
      * @memberof PayoutCreateRequestBodyDto
      */
-    payoutSystemAccountId: number;
+    payout_system_account_id: number;
     /**
      * Project id
      * @type {number}
      * @memberof PayoutCreateRequestBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Amount
      * @type {number}
@@ -50,7 +50,7 @@ export interface PayoutCreateRequestBodyDto {
      * @type {string}
      * @memberof PayoutCreateRequestBodyDto
      */
-    walletValue: string;
+    wallet_value: string;
 }
 /**
  * @export
@@ -65,9 +65,9 @@ export type PayoutCreateRequestBodyDtoVEnum = typeof PayoutCreateRequestBodyDtoV
  * @export
  */
 export declare const PayoutCreateRequestBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PayoutCreateRequestBodyDtoLanguageEnum = typeof PayoutCreateRequestBodyDtoLanguageEnum[keyof typeof PayoutCreateRequestBodyDtoLanguageEnum];
 /**

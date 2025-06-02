@@ -85,9 +85,9 @@ exports.ReleaseApi = ReleaseApi;
  * @export
  */
 exports.ReleaseAppCabinetV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -101,5 +101,5 @@ exports.ReleaseAppCabinetV1VEnum = {
  * @export
  */
 exports.ReleaseAppCabinetV1AppEnum = {
-    Cabinet: 'cabinet'
+    cabinet: 'cabinet'
 };

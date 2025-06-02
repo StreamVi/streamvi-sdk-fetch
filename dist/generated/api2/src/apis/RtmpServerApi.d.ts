@@ -23,7 +23,7 @@ export interface RtmpServerGraphV1Request {
 }
 export interface RtmpServerListV1Request {
     language: RtmpServerListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     interval: RtmpServerListV1IntervalEnum;
     v?: RtmpServerListV1VEnum;
 }
@@ -73,7 +73,7 @@ export interface RtmpServerApiInterface {
      *
      * @summary List rtmp servers
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -162,9 +162,9 @@ export declare class RtmpServerApi extends runtime.BaseAPI implements RtmpServer
  * @export
  */
 export declare const MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = typeof MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum[keyof typeof MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum];
 /**
@@ -180,9 +180,9 @@ export type MethodRtmpServerListLocationsUnauthorizedV1VEnum = typeof MethodRtmp
  * @export
  */
 export declare const RtmpServerGraphV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type RtmpServerGraphV1LanguageEnum = typeof RtmpServerGraphV1LanguageEnum[keyof typeof RtmpServerGraphV1LanguageEnum];
 /**
@@ -200,11 +200,11 @@ export type RtmpServerGraphV1IntervalEnum = typeof RtmpServerGraphV1IntervalEnum
  * @export
  */
 export declare const RtmpServerGraphV1TypeEnum: {
-    readonly Performance: "performance";
-    readonly Network: "network";
-    readonly Cpu: "cpu";
-    readonly Ram: "ram";
-    readonly DeliveredPackages: "deliveredPackages";
+    readonly performance: "performance";
+    readonly network: "network";
+    readonly cpu: "cpu";
+    readonly ram: "ram";
+    readonly deliveredPackages: "deliveredPackages";
 };
 export type RtmpServerGraphV1TypeEnum = typeof RtmpServerGraphV1TypeEnum[keyof typeof RtmpServerGraphV1TypeEnum];
 /**
@@ -220,9 +220,9 @@ export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof 
  * @export
  */
 export declare const RtmpServerListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type RtmpServerListV1LanguageEnum = typeof RtmpServerListV1LanguageEnum[keyof typeof RtmpServerListV1LanguageEnum];
 /**
@@ -249,9 +249,9 @@ export type RtmpServerListV1VEnum = typeof RtmpServerListV1VEnum[keyof typeof Rt
  * @export
  */
 export declare const RtmpServerStateV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type RtmpServerStateV1LanguageEnum = typeof RtmpServerStateV1LanguageEnum[keyof typeof RtmpServerStateV1LanguageEnum];
 /**

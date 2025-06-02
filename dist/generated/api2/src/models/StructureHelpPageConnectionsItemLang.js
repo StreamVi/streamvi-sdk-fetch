@@ -18,17 +18,17 @@ exports.StructureHelpPageConnectionsItemLangToJSONTyped = exports.StructureHelpP
  * @export
  */
 exports.StructureHelpPageConnectionsItemLangLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.StructureHelpPageConnectionsItemLangLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the StructureHelpPageConnectionsItemLang interface.
@@ -36,7 +36,7 @@ exports.StructureHelpPageConnectionsItemLangLanguageIsoEnum = {
 function instanceOfStructureHelpPageConnectionsItemLang(value) {
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('value' in value) || value['value'] === undefined)
         return false;
@@ -53,7 +53,7 @@ function StructureHelpPageConnectionsItemLangFromJSONTyped(json, ignoreDiscrimin
     }
     return {
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'value': json['value'],
     };
 }
@@ -68,7 +68,7 @@ function StructureHelpPageConnectionsItemLangToJSONTyped(value, ignoreDiscrimina
     }
     return {
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'value': value['value'],
     };
 }

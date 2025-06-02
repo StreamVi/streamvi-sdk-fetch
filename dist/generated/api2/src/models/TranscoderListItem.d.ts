@@ -99,16 +99,16 @@ export interface TranscoderListItem {
  * @export
  */
 export declare const TranscoderListItemStatusEnum: {
-    readonly Active: "active";
-    readonly Inactive: "inactive";
+    readonly active: "active";
+    readonly inactive: "inactive";
 };
 export type TranscoderListItemStatusEnum = typeof TranscoderListItemStatusEnum[keyof typeof TranscoderListItemStatusEnum];
 /**
  * @export
  */
 export declare const TranscoderListItemVideoCodecEnum: {
-    readonly H264: "h264";
-    readonly Hevc: "hevc";
+    readonly h264: "h264";
+    readonly hevc: "hevc";
 };
 export type TranscoderListItemVideoCodecEnum = typeof TranscoderListItemVideoCodecEnum[keyof typeof TranscoderListItemVideoCodecEnum];
 /**

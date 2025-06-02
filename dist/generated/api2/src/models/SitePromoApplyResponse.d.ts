@@ -26,8 +26,8 @@ export interface SitePromoApplyResponse {
  * @export
  */
 export declare const SitePromoApplyResponseResultEnum: {
-    readonly TopUp: "top_up";
-    readonly Tariff: "tariff";
+    readonly top_up: "top_up";
+    readonly tariff: "tariff";
 };
 export type SitePromoApplyResponseResultEnum = typeof SitePromoApplyResponseResultEnum[keyof typeof SitePromoApplyResponseResultEnum];
 /**

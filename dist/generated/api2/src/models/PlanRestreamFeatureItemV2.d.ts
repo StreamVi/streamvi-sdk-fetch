@@ -51,9 +51,9 @@ export interface PlanRestreamFeatureItemV2 {
  * @export
  */
 export declare const PlanRestreamFeatureItemV2TypeEnum: {
-    readonly String: "string";
-    readonly Number: "number";
-    readonly Boolean: "boolean";
+    readonly string: "string";
+    readonly number: "number";
+    readonly boolean: "boolean";
 };
 export type PlanRestreamFeatureItemV2TypeEnum = typeof PlanRestreamFeatureItemV2TypeEnum[keyof typeof PlanRestreamFeatureItemV2TypeEnum];
 /**

@@ -20,7 +20,7 @@ const MethodProjectLiveStatusInfo_1 = require("./MethodProjectLiveStatusInfo");
  * Check if a given object implements the MethodProjectLiveStatusResponse interface.
  */
 function instanceOfMethodProjectLiveStatusResponse(value) {
-    if (!('liveGroupsCount' in value) || value['liveGroupsCount'] === undefined)
+    if (!('live_groups_count' in value) || value['live_groups_count'] === undefined)
         return false;
     return true;
 }
@@ -34,14 +34,14 @@ function MethodProjectLiveStatusResponseFromJSONTyped(json, ignoreDiscriminator)
         return json;
     }
     return {
-        'liveGroupsCount': json['live_groups_count'],
-        'streamId': json['stream_id'] == null ? undefined : json['stream_id'],
+        'live_groups_count': json['live_groups_count'],
+        'stream_id': json['stream_id'] == null ? undefined : json['stream_id'],
         'url': json['url'] == null ? undefined : json['url'],
         'app': json['app'] == null ? undefined : json['app'],
         'date': json['date'] == null ? undefined : json['date'],
         'status': json['status'] == null ? undefined : json['status'],
         'resolution': json['resolution'] == null ? undefined : json['resolution'],
-        'broadcastId': json['broadcast_id'] == null ? undefined : json['broadcast_id'],
+        'broadcast_id': json['broadcast_id'] == null ? undefined : json['broadcast_id'],
         'action': json['action'] == null ? undefined : json['action'],
         'info': json['info'] == null ? undefined : (0, MethodProjectLiveStatusInfo_1.MethodProjectLiveStatusInfoFromJSON)(json['info']),
         'video': json['video'] == null ? undefined : (0, MethodProjectLiveStatusVideo_1.MethodProjectLiveStatusVideoFromJSON)(json['video']),
@@ -57,14 +57,14 @@ function MethodProjectLiveStatusResponseToJSONTyped(value, ignoreDiscriminator =
         return value;
     }
     return {
-        'live_groups_count': value['liveGroupsCount'],
-        'stream_id': value['streamId'],
+        'live_groups_count': value['live_groups_count'],
+        'stream_id': value['stream_id'],
         'url': value['url'],
         'app': value['app'],
         'date': value['date'],
         'status': value['status'],
         'resolution': value['resolution'],
-        'broadcast_id': value['broadcastId'],
+        'broadcast_id': value['broadcast_id'],
         'action': value['action'],
         'info': (0, MethodProjectLiveStatusInfo_1.MethodProjectLiveStatusInfoToJSON)(value['info']),
         'video': (0, MethodProjectLiveStatusVideo_1.MethodProjectLiveStatusVideoToJSON)(value['video']),

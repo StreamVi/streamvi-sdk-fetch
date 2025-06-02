@@ -20,7 +20,7 @@ export interface PlanTranscoding2UserItemResponse {
      * @type {number}
      * @memberof PlanTranscoding2UserItemResponse
      */
-    planTranscoding2userId: number;
+    plan_transcoding2user_id: number;
     /**
      * Count flows
      * @type {number}
@@ -32,19 +32,19 @@ export interface PlanTranscoding2UserItemResponse {
      * @type {Date}
      * @memberof PlanTranscoding2UserItemResponse
      */
-    dateStart: Date;
+    date_start: Date;
     /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanTranscoding2UserItemResponse
      */
-    dateEnd: Date;
+    date_end: Date;
     /**
      * Date create tariff
      * @type {Date}
      * @memberof PlanTranscoding2UserItemResponse
      */
-    dateCreate: Date;
+    date_create: Date;
     /**
      * Period
      * @type {string}
@@ -56,7 +56,7 @@ export interface PlanTranscoding2UserItemResponse {
      * @type {string}
      * @memberof PlanTranscoding2UserItemResponse
      */
-    periodUuid: string;
+    period_uuid: string;
     /**
      * Status
      * @type {string}
@@ -74,8 +74,8 @@ export interface PlanTranscoding2UserItemResponse {
  * @export
  */
 export declare const PlanTranscoding2UserItemResponsePeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanTranscoding2UserItemResponsePeriodEnum = typeof PlanTranscoding2UserItemResponsePeriodEnum[keyof typeof PlanTranscoding2UserItemResponsePeriodEnum];
 /**

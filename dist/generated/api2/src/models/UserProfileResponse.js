@@ -25,16 +25,16 @@ exports.UserProfileResponseIdEnum = {
  * @export
  */
 exports.UserProfileResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * @export
  */
 exports.UserProfileResponseLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the UserProfileResponse interface.
@@ -60,7 +60,7 @@ function instanceOfUserProfileResponse(value) {
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('countrieId' in value) || value['countrieId'] === undefined)
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined)
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
@@ -90,7 +90,7 @@ function UserProfileResponseFromJSONTyped(json, ignoreDiscriminator) {
         'referralsIncome': json['referralsIncome'],
         'scope': json['scope'],
         'currency': json['currency'],
-        'countrieId': json['countrie_id'],
+        'countrie_id': json['countrie_id'],
         'language': json['language'],
         'balance': json['balance'],
         'lastProjectId': json['lastProjectId'],
@@ -116,7 +116,7 @@ function UserProfileResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'referralsIncome': value['referralsIncome'],
         'scope': value['scope'],
         'currency': value['currency'],
-        'countrie_id': value['countrieId'],
+        'countrie_id': value['countrie_id'],
         'language': value['language'],
         'balance': value['balance'],
         'lastProjectId': value['lastProjectId'],

@@ -18,9 +18,9 @@ exports.MethodBroadcastRestreamItemResponseToJSONTyped = exports.MethodBroadcast
  * Check if a given object implements the MethodBroadcastRestreamItemResponse interface.
  */
 function instanceOfMethodBroadcastRestreamItemResponse(value) {
-    if (!('restreamId' in value) || value['restreamId'] === undefined)
+    if (!('restream_id' in value) || value['restream_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
@@ -42,8 +42,8 @@ function MethodBroadcastRestreamItemResponseFromJSONTyped(json, ignoreDiscrimina
         return json;
     }
     return {
-        'restreamId': json['restream_id'],
-        'channelId': json['channel_id'],
+        'restream_id': json['restream_id'],
+        'channel_id': json['channel_id'],
         'name': json['name'],
         'image': json['image'],
         'platform': json['platform'],
@@ -60,8 +60,8 @@ function MethodBroadcastRestreamItemResponseToJSONTyped(value, ignoreDiscriminat
         return value;
     }
     return {
-        'restream_id': value['restreamId'],
-        'channel_id': value['channelId'],
+        'restream_id': value['restream_id'],
+        'channel_id': value['channel_id'],
         'name': value['name'],
         'image': value['image'],
         'platform': value['platform'],

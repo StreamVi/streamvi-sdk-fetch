@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsTwitchRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -50,13 +50,13 @@ export interface SiteUpdateOptionsTwitchRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    categoryId: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    categoryName: string;
+    category_name: string;
     /**
      *
      * @type {string}
@@ -89,17 +89,17 @@ export type SiteUpdateOptionsTwitchRequestVEnum = typeof SiteUpdateOptionsTwitch
  * @export
  */
 export declare const SiteUpdateOptionsTwitchRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsTwitchRequestLanguageEnum = typeof SiteUpdateOptionsTwitchRequestLanguageEnum[keyof typeof SiteUpdateOptionsTwitchRequestLanguageEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsTwitchRequestLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
+    readonly ru: "ru";
+    readonly en: "en";
 };
 export type SiteUpdateOptionsTwitchRequestLangEnum = typeof SiteUpdateOptionsTwitchRequestLangEnum[keyof typeof SiteUpdateOptionsTwitchRequestLangEnum];
 /**

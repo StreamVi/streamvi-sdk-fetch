@@ -13,20 +13,20 @@ import * as runtime from '../runtime';
 import type { PlanStorageCheckResponse, PlanStorageDiscountResponse, PlanStorageForProject, PlanStorageResponseDto, SuccessResponse } from '../models/index';
 export interface PlanStorageBuyV1Request {
     language: PlanStorageBuyV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     period: PlanStorageBuyV1PeriodEnum;
-    planStorageId: number;
+    plan_storage_id: number;
     v?: PlanStorageBuyV1VEnum;
     size?: number;
 }
 export interface PlanStorageCancelV1Request {
     language: PlanStorageCancelV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanStorageCancelV1VEnum;
 }
 export interface PlanStorageCheckV1Request {
     language: PlanStorageCheckV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanStorageCheckV1VEnum;
 }
 export interface PlanStorageGetDiscountV1Request {
@@ -39,7 +39,7 @@ export interface PlanStorageListV1Request {
 }
 export interface PlanStorageTariffV1Request {
     language: PlanStorageTariffV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanStorageTariffV1VEnum;
 }
 /**
@@ -53,9 +53,9 @@ export interface PlanStorageApiInterface {
      *
      * @summary Buy storage tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
-     * @param {number} planStorageId Storage plan id
+     * @param {number} plan_storage_id Storage plan id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [size] Size
      * @param {*} [options] Override http request option.
@@ -71,7 +71,7 @@ export interface PlanStorageApiInterface {
      *
      * @summary Remove next tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -86,7 +86,7 @@ export interface PlanStorageApiInterface {
      *
      * @summary Check storage tariff before buy
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -129,7 +129,7 @@ export interface PlanStorageApiInterface {
      *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -198,17 +198,17 @@ export declare class PlanStorageApi extends runtime.BaseAPI implements PlanStora
  * @export
  */
 export declare const PlanStorageBuyV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageBuyV1LanguageEnum = typeof PlanStorageBuyV1LanguageEnum[keyof typeof PlanStorageBuyV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlanStorageBuyV1PeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanStorageBuyV1PeriodEnum = typeof PlanStorageBuyV1PeriodEnum[keyof typeof PlanStorageBuyV1PeriodEnum];
 /**
@@ -224,9 +224,9 @@ export type PlanStorageBuyV1VEnum = typeof PlanStorageBuyV1VEnum[keyof typeof Pl
  * @export
  */
 export declare const PlanStorageCancelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageCancelV1LanguageEnum = typeof PlanStorageCancelV1LanguageEnum[keyof typeof PlanStorageCancelV1LanguageEnum];
 /**
@@ -242,9 +242,9 @@ export type PlanStorageCancelV1VEnum = typeof PlanStorageCancelV1VEnum[keyof typ
  * @export
  */
 export declare const PlanStorageCheckV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageCheckV1LanguageEnum = typeof PlanStorageCheckV1LanguageEnum[keyof typeof PlanStorageCheckV1LanguageEnum];
 /**
@@ -260,9 +260,9 @@ export type PlanStorageCheckV1VEnum = typeof PlanStorageCheckV1VEnum[keyof typeo
  * @export
  */
 export declare const PlanStorageGetDiscountV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageGetDiscountV1LanguageEnum = typeof PlanStorageGetDiscountV1LanguageEnum[keyof typeof PlanStorageGetDiscountV1LanguageEnum];
 /**
@@ -278,9 +278,9 @@ export type PlanStorageGetDiscountV1VEnum = typeof PlanStorageGetDiscountV1VEnum
  * @export
  */
 export declare const PlanStorageListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageListV1LanguageEnum = typeof PlanStorageListV1LanguageEnum[keyof typeof PlanStorageListV1LanguageEnum];
 /**
@@ -296,9 +296,9 @@ export type PlanStorageListV1VEnum = typeof PlanStorageListV1VEnum[keyof typeof 
  * @export
  */
 export declare const PlanStorageTariffV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanStorageTariffV1LanguageEnum = typeof PlanStorageTariffV1LanguageEnum[keyof typeof PlanStorageTariffV1LanguageEnum];
 /**

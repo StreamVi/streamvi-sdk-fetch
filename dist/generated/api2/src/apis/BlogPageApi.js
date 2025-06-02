@@ -130,9 +130,9 @@ exports.BlogPageApi = BlogPageApi;
  * @export
  */
 exports.BlogPageGetV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -146,9 +146,9 @@ exports.BlogPageGetV1VEnum = {
  * @export
  */
 exports.BlogPageListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

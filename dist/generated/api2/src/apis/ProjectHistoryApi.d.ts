@@ -13,14 +13,14 @@ import * as runtime from '../runtime';
 import type { PaginatedResponseOfProjectHistoryResponse } from '../models/index';
 export interface ProjectHistoryListV1Request {
     language: ProjectHistoryListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: ProjectHistoryListV1VEnum;
     limit?: number;
     offset?: number;
-    dateFrom?: Date;
-    dateTo?: Date;
+    date_from?: Date;
+    date_to?: Date;
     action?: ProjectHistoryListV1ActionEnum;
-    groupId?: number;
+    group_id?: number;
 }
 /**
  * ProjectHistoryApi - interface
@@ -33,14 +33,14 @@ export interface ProjectHistoryApiInterface {
      *
      * @summary Get project history of actions
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
-     * @param {Date} [dateFrom] Date from
-     * @param {Date} [dateTo] Date to
+     * @param {Date} [date_from] Date from
+     * @param {Date} [date_to] Date to
      * @param {'project_channel_invite_add' | 'project_channel_invite_del' | 'project_channel_invite_accept' | 'project_channel_invite_decline' | 'user_project_invite_add' | 'user_project_invite_del' | 'user_project_invite_accept' | 'user_project_invite_decline' | 'user_project_add' | 'user_project_del' | 'user_project_change' | 'project_channel_add' | 'project_channel_del' | 'project_channel_change'} [action] Action
-     * @param {number} [groupId] Group id
+     * @param {number} [group_id] Group id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectHistoryApiInterface
@@ -68,9 +68,9 @@ export declare class ProjectHistoryApi extends runtime.BaseAPI implements Projec
  * @export
  */
 export declare const ProjectHistoryListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectHistoryListV1LanguageEnum = typeof ProjectHistoryListV1LanguageEnum[keyof typeof ProjectHistoryListV1LanguageEnum];
 /**
@@ -86,20 +86,20 @@ export type ProjectHistoryListV1VEnum = typeof ProjectHistoryListV1VEnum[keyof t
  * @export
  */
 export declare const ProjectHistoryListV1ActionEnum: {
-    readonly ProjectChannelInviteAdd: "project_channel_invite_add";
-    readonly ProjectChannelInviteDel: "project_channel_invite_del";
-    readonly ProjectChannelInviteAccept: "project_channel_invite_accept";
-    readonly ProjectChannelInviteDecline: "project_channel_invite_decline";
-    readonly UserProjectInviteAdd: "user_project_invite_add";
-    readonly UserProjectInviteDel: "user_project_invite_del";
-    readonly UserProjectInviteAccept: "user_project_invite_accept";
-    readonly UserProjectInviteDecline: "user_project_invite_decline";
-    readonly UserProjectAdd: "user_project_add";
-    readonly UserProjectDel: "user_project_del";
-    readonly UserProjectChange: "user_project_change";
-    readonly ProjectChannelAdd: "project_channel_add";
-    readonly ProjectChannelDel: "project_channel_del";
-    readonly ProjectChannelChange: "project_channel_change";
+    readonly project_channel_invite_add: "project_channel_invite_add";
+    readonly project_channel_invite_del: "project_channel_invite_del";
+    readonly project_channel_invite_accept: "project_channel_invite_accept";
+    readonly project_channel_invite_decline: "project_channel_invite_decline";
+    readonly user_project_invite_add: "user_project_invite_add";
+    readonly user_project_invite_del: "user_project_invite_del";
+    readonly user_project_invite_accept: "user_project_invite_accept";
+    readonly user_project_invite_decline: "user_project_invite_decline";
+    readonly user_project_add: "user_project_add";
+    readonly user_project_del: "user_project_del";
+    readonly user_project_change: "user_project_change";
+    readonly project_channel_add: "project_channel_add";
+    readonly project_channel_del: "project_channel_del";
+    readonly project_channel_change: "project_channel_change";
 };
 export type ProjectHistoryListV1ActionEnum = typeof ProjectHistoryListV1ActionEnum[keyof typeof ProjectHistoryListV1ActionEnum];
 //# sourceMappingURL=ProjectHistoryApi.d.ts.map

@@ -18,9 +18,9 @@ exports.MethodProjectLiveStatusVideoToJSONTyped = exports.MethodProjectLiveStatu
  * Check if a given object implements the MethodProjectLiveStatusVideo interface.
  */
 function instanceOfMethodProjectLiveStatusVideo(value) {
-    if (!('taskId' in value) || value['taskId'] === undefined)
+    if (!('task_id' in value) || value['task_id'] === undefined)
         return false;
-    if (!('videoId' in value) || value['videoId'] === undefined)
+    if (!('video_id' in value) || value['video_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
@@ -38,8 +38,8 @@ function MethodProjectLiveStatusVideoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'taskId': json['task_id'],
-        'videoId': json['video_id'],
+        'task_id': json['task_id'],
+        'video_id': json['video_id'],
         'name': json['name'],
         'duration': json['duration'],
     };
@@ -54,8 +54,8 @@ function MethodProjectLiveStatusVideoToJSONTyped(value, ignoreDiscriminator = fa
         return value;
     }
     return {
-        'task_id': value['taskId'],
-        'video_id': value['videoId'],
+        'task_id': value['task_id'],
+        'video_id': value['video_id'],
         'name': value['name'],
         'duration': value['duration'],
     };

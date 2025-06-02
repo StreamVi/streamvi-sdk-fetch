@@ -60,8 +60,8 @@ class UserApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -89,11 +89,11 @@ class UserApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userUpdateProfileV1().');
         }
-        if (requestParameters['firstName'] == null) {
-            throw new runtime.RequiredError('firstName', 'Required parameter "firstName" was null or undefined when calling userUpdateProfileV1().');
+        if (requestParameters['first_name'] == null) {
+            throw new runtime.RequiredError('first_name', 'Required parameter "first_name" was null or undefined when calling userUpdateProfileV1().');
         }
-        if (requestParameters['lastName'] == null) {
-            throw new runtime.RequiredError('lastName', 'Required parameter "lastName" was null or undefined when calling userUpdateProfileV1().');
+        if (requestParameters['last_name'] == null) {
+            throw new runtime.RequiredError('last_name', 'Required parameter "last_name" was null or undefined when calling userUpdateProfileV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -121,11 +121,11 @@ class UserApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             formParams.append('language', requestParameters['language']);
         }
-        if (requestParameters['firstName'] != null) {
-            formParams.append('first_name', requestParameters['firstName']);
+        if (requestParameters['first_name'] != null) {
+            formParams.append('first_name', requestParameters['first_name']);
         }
-        if (requestParameters['lastName'] != null) {
-            formParams.append('last_name', requestParameters['lastName']);
+        if (requestParameters['last_name'] != null) {
+            formParams.append('last_name', requestParameters['last_name']);
         }
         if (requestParameters['avatar'] != null) {
             formParams.append('avatar', requestParameters['avatar']);
@@ -152,9 +152,9 @@ exports.UserApi = UserApi;
  * @export
  */
 exports.UserGetProfileV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -176,7 +176,7 @@ exports.UserUpdateProfileV1VEnum = {
  * @export
  */
 exports.UserUpdateProfileV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };

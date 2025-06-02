@@ -26,19 +26,19 @@ export interface ProjectChannelResponse {
      * @type {number}
      * @memberof ProjectChannelResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof ProjectChannelResponse
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Owner id
      * @type {number}
      * @memberof ProjectChannelResponse
      */
-    ownerId: number;
+    owner_id: number;
     /**
      * usageType
      * @type {number}

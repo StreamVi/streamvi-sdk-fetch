@@ -27,13 +27,13 @@ export interface NotifyHistorySiteResponse {
      * @type {number}
      * @memberof NotifyHistorySiteResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * Date create
      * @type {Date}
      * @memberof NotifyHistorySiteResponse
      */
-    dateCreate: Date;
+    date_create: Date;
     /**
      * Actions
      * @type {object}
@@ -57,7 +57,7 @@ export interface NotifyHistorySiteResponse {
      * @type {boolean}
      * @memberof NotifyHistorySiteResponse
      */
-    statusRead: boolean;
+    status_read: boolean;
     /**
      * Category of user notify
      * @type {string}
@@ -69,17 +69,17 @@ export interface NotifyHistorySiteResponse {
  * @export
  */
 export declare const NotifyHistorySiteResponseChannelEnum: {
-    readonly Telegram: "telegram";
-    readonly Cabinet: "cabinet";
-    readonly Mobile: "mobile";
+    readonly telegram: "telegram";
+    readonly cabinet: "cabinet";
+    readonly mobile: "mobile";
 };
 export type NotifyHistorySiteResponseChannelEnum = typeof NotifyHistorySiteResponseChannelEnum[keyof typeof NotifyHistorySiteResponseChannelEnum];
 /**
  * @export
  */
 export declare const NotifyHistorySiteResponseCategoryEnum: {
-    readonly Important: "important";
-    readonly Stream: "stream";
+    readonly important: "important";
+    readonly stream: "stream";
 };
 export type NotifyHistorySiteResponseCategoryEnum = typeof NotifyHistorySiteResponseCategoryEnum[keyof typeof NotifyHistorySiteResponseCategoryEnum];
 /**

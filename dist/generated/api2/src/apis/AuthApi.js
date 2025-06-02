@@ -50,14 +50,14 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling authAuthTelegramV1().');
         }
-        if (requestParameters['authDate'] == null) {
-            throw new runtime.RequiredError('authDate', 'Required parameter "authDate" was null or undefined when calling authAuthTelegramV1().');
+        if (requestParameters['auth_date'] == null) {
+            throw new runtime.RequiredError('auth_date', 'Required parameter "auth_date" was null or undefined when calling authAuthTelegramV1().');
         }
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling authAuthTelegramV1().');
         }
-        if (requestParameters['firstName'] == null) {
-            throw new runtime.RequiredError('firstName', 'Required parameter "firstName" was null or undefined when calling authAuthTelegramV1().');
+        if (requestParameters['first_name'] == null) {
+            throw new runtime.RequiredError('first_name', 'Required parameter "first_name" was null or undefined when calling authAuthTelegramV1().');
         }
         if (requestParameters['hash'] == null) {
             throw new runtime.RequiredError('hash', 'Required parameter "hash" was null or undefined when calling authAuthTelegramV1().');
@@ -75,32 +75,32 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['authDate'] != null) {
-            queryParameters['auth_date'] = requestParameters['authDate'];
+        if (requestParameters['auth_date'] != null) {
+            queryParameters['auth_date'] = requestParameters['auth_date'];
         }
         if (requestParameters['id'] != null) {
             queryParameters['id'] = requestParameters['id'];
         }
-        if (requestParameters['firstName'] != null) {
-            queryParameters['first_name'] = requestParameters['firstName'];
+        if (requestParameters['first_name'] != null) {
+            queryParameters['first_name'] = requestParameters['first_name'];
         }
-        if (requestParameters['lastName'] != null) {
-            queryParameters['last_name'] = requestParameters['lastName'];
+        if (requestParameters['last_name'] != null) {
+            queryParameters['last_name'] = requestParameters['last_name'];
         }
         if (requestParameters['username'] != null) {
             queryParameters['username'] = requestParameters['username'];
         }
-        if (requestParameters['photoUrl'] != null) {
-            queryParameters['photo_url'] = requestParameters['photoUrl'];
+        if (requestParameters['photo_url'] != null) {
+            queryParameters['photo_url'] = requestParameters['photo_url'];
         }
-        if (requestParameters['languageCode'] != null) {
-            queryParameters['language_code'] = requestParameters['languageCode'];
+        if (requestParameters['language_code'] != null) {
+            queryParameters['language_code'] = requestParameters['language_code'];
         }
-        if (requestParameters['isPremium'] != null) {
-            queryParameters['is_premium'] = requestParameters['isPremium'];
+        if (requestParameters['is_premium'] != null) {
+            queryParameters['is_premium'] = requestParameters['is_premium'];
         }
-        if (requestParameters['addedToAttachmentMenu'] != null) {
-            queryParameters['added_to_attachment_menu'] = requestParameters['addedToAttachmentMenu'];
+        if (requestParameters['added_to_attachment_menu'] != null) {
+            queryParameters['added_to_attachment_menu'] = requestParameters['added_to_attachment_menu'];
         }
         if (requestParameters['hash'] != null) {
             queryParameters['hash'] = requestParameters['hash'];
@@ -365,8 +365,8 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling authDisconnectV1().');
         }
-        if (requestParameters['socialId'] == null) {
-            throw new runtime.RequiredError('socialId', 'Required parameter "socialId" was null or undefined when calling authDisconnectV1().');
+        if (requestParameters['social_id'] == null) {
+            throw new runtime.RequiredError('social_id', 'Required parameter "social_id" was null or undefined when calling authDisconnectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -378,8 +378,8 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['socialId'] != null) {
-            queryParameters['social_id'] = requestParameters['socialId'];
+        if (requestParameters['social_id'] != null) {
+            queryParameters['social_id'] = requestParameters['social_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -401,8 +401,8 @@ class AuthApi extends runtime.BaseAPI {
      * Code exchange
      */
     async authExchangeV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteAuthExchangeRequest'] == null) {
-            throw new runtime.RequiredError('siteAuthExchangeRequest', 'Required parameter "siteAuthExchangeRequest" was null or undefined when calling authExchangeV1().');
+        if (requestParameters['SiteAuthExchangeRequest'] == null) {
+            throw new runtime.RequiredError('SiteAuthExchangeRequest', 'Required parameter "SiteAuthExchangeRequest" was null or undefined when calling authExchangeV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -412,7 +412,7 @@ class AuthApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteAuthExchangeRequestToJSON)(requestParameters['siteAuthExchangeRequest']),
+            body: (0, index_1.SiteAuthExchangeRequestToJSON)(requestParameters['SiteAuthExchangeRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RefreshAuthResponseFromJSON)(jsonValue));
     }
@@ -535,8 +535,8 @@ class AuthApi extends runtime.BaseAPI {
      * Logout
      */
     async authLogoutV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteLogoutAuthRequest'] == null) {
-            throw new runtime.RequiredError('siteLogoutAuthRequest', 'Required parameter "siteLogoutAuthRequest" was null or undefined when calling authLogoutV1().');
+        if (requestParameters['SiteLogoutAuthRequest'] == null) {
+            throw new runtime.RequiredError('SiteLogoutAuthRequest', 'Required parameter "SiteLogoutAuthRequest" was null or undefined when calling authLogoutV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -546,7 +546,7 @@ class AuthApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteLogoutAuthRequestToJSON)(requestParameters['siteLogoutAuthRequest']),
+            body: (0, index_1.SiteLogoutAuthRequestToJSON)(requestParameters['SiteLogoutAuthRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -561,24 +561,24 @@ class AuthApi extends runtime.BaseAPI {
      * Update access token
      */
     async authRefreshAccessV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['userAgent'] == null) {
-            throw new runtime.RequiredError('userAgent', 'Required parameter "userAgent" was null or undefined when calling authRefreshAccessV1().');
+        if (requestParameters['User_Agent'] == null) {
+            throw new runtime.RequiredError('User_Agent', 'Required parameter "User_Agent" was null or undefined when calling authRefreshAccessV1().');
         }
-        if (requestParameters['siteRefreshAuthBodyRequest'] == null) {
-            throw new runtime.RequiredError('siteRefreshAuthBodyRequest', 'Required parameter "siteRefreshAuthBodyRequest" was null or undefined when calling authRefreshAccessV1().');
+        if (requestParameters['SiteRefreshAuthBodyRequest'] == null) {
+            throw new runtime.RequiredError('SiteRefreshAuthBodyRequest', 'Required parameter "SiteRefreshAuthBodyRequest" was null or undefined when calling authRefreshAccessV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
-        if (requestParameters['userAgent'] != null) {
-            headerParameters['User-Agent'] = String(requestParameters['userAgent']);
+        if (requestParameters['User_Agent'] != null) {
+            headerParameters['User-Agent'] = String(requestParameters['User_Agent']);
         }
         const response = await this.request({
             path: `/method/auth/refresh-access`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteRefreshAuthBodyRequestToJSON)(requestParameters['siteRefreshAuthBodyRequest']),
+            body: (0, index_1.SiteRefreshAuthBodyRequestToJSON)(requestParameters['SiteRefreshAuthBodyRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RefreshAuthResponseFromJSON)(jsonValue));
     }
@@ -595,18 +595,18 @@ exports.AuthApi = AuthApi;
  * @export
  */
 exports.AuthAuthTelegramV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.AuthAuthTelegramV1AppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * @export
@@ -620,18 +620,18 @@ exports.AuthAuthTelegramV1VEnum = {
  * @export
  */
 exports.AuthCodeV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.AuthCodeV1AppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * @export
@@ -645,9 +645,9 @@ exports.AuthCodeV1VEnum = {
  * @export
  */
 exports.AuthConnectResultV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -661,9 +661,9 @@ exports.AuthConnectResultV1VEnum = {
  * @export
  */
 exports.AuthConnectTelegramV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -677,18 +677,18 @@ exports.AuthConnectTelegramV1VEnum = {
  * @export
  */
 exports.AuthConnectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.AuthConnectV1ProviderEnum = {
-    Google: 'google',
-    Vk: 'vk',
-    VkId: 'vk-id',
-    Telegram: 'telegram'
+    google: 'google',
+    vk: 'vk',
+    vk_id: 'vk-id',
+    telegram: 'telegram'
 };
 /**
  * @export
@@ -702,18 +702,18 @@ exports.AuthConnectV1VEnum = {
  * @export
  */
 exports.AuthConnectV1AppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * @export
  */
 exports.AuthDisconnectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -727,18 +727,18 @@ exports.AuthDisconnectV1VEnum = {
  * @export
  */
 exports.AuthGetAuthUrlV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.AuthGetAuthUrlV1ProviderEnum = {
-    Google: 'google',
-    Vk: 'vk',
-    VkId: 'vk-id',
-    Telegram: 'telegram'
+    google: 'google',
+    vk: 'vk',
+    vk_id: 'vk-id',
+    telegram: 'telegram'
 };
 /**
  * @export
@@ -752,18 +752,18 @@ exports.AuthGetAuthUrlV1VEnum = {
  * @export
  */
 exports.AuthGetAuthUrlV1AppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * @export
  */
 exports.AuthGetProfileV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

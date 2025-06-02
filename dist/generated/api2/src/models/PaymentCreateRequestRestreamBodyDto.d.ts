@@ -32,7 +32,7 @@ export interface PaymentCreateRequestRestreamBodyDto {
      * @type {number}
      * @memberof PaymentCreateRequestRestreamBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Code
      * @type {string}
@@ -50,25 +50,25 @@ export interface PaymentCreateRequestRestreamBodyDto {
      * @type {string}
      * @memberof PaymentCreateRequestRestreamBodyDto
      */
-    planPeriod: PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum;
+    plan_period: PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum;
     /**
      * Restream plan id
      * @type {number}
      * @memberof PaymentCreateRequestRestreamBodyDto
      */
-    planRestreamId: number;
+    plan_restream_id: number;
     /**
      * Channels count
      * @type {number}
      * @memberof PaymentCreateRequestRestreamBodyDto
      */
-    planRestreamCountChannel: number;
+    plan_restream_count_channel: number;
     /**
      * Bitrate
      * @type {number}
      * @memberof PaymentCreateRequestRestreamBodyDto
      */
-    planRestreamBitrate: number;
+    plan_restream_bitrate: number;
 }
 /**
  * @export
@@ -83,27 +83,27 @@ export type PaymentCreateRequestRestreamBodyDtoVEnum = typeof PaymentCreateReque
  * @export
  */
 export declare const PaymentCreateRequestRestreamBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentCreateRequestRestreamBodyDtoLanguageEnum = typeof PaymentCreateRequestRestreamBodyDtoLanguageEnum[keyof typeof PaymentCreateRequestRestreamBodyDtoLanguageEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestRestreamBodyDtoTypeEnum: {
-    readonly Restream: "restream";
-    readonly Transcoding: "transcoding";
-    readonly Storage: "storage";
-    readonly Topup: "topup";
+    readonly restream: "restream";
+    readonly transcoding: "transcoding";
+    readonly storage: "storage";
+    readonly topup: "topup";
 };
 export type PaymentCreateRequestRestreamBodyDtoTypeEnum = typeof PaymentCreateRequestRestreamBodyDtoTypeEnum[keyof typeof PaymentCreateRequestRestreamBodyDtoTypeEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum = typeof PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum[keyof typeof PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum];
 /**

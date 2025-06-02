@@ -31,15 +31,15 @@ exports.StructureHelpPageConnectionsItemFinalStatusEnum = {
  * Check if a given object implements the StructureHelpPageConnectionsItemFinal interface.
  */
 function instanceOfStructureHelpPageConnectionsItemFinal(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('_id' in value) || value['_id'] === undefined)
         return false;
-    if (!('notionId' in value) || value['notionId'] === undefined)
+    if (!('notion_id' in value) || value['notion_id'] === undefined)
         return false;
-    if (!('notionParentId' in value) || value['notionParentId'] === undefined)
+    if (!('notion_parent_id' in value) || value['notion_parent_id'] === undefined)
         return false;
     if (!('url' in value) || value['url'] === undefined)
         return false;
-    if (!('urlInherit' in value) || value['urlInherit'] === undefined)
+    if (!('url_inherit' in value) || value['url_inherit'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -61,11 +61,11 @@ function StructureHelpPageConnectionsItemFinalFromJSONTyped(json, ignoreDiscrimi
         return json;
     }
     return {
-        'id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
-        'notionId': json['notion_id'],
-        'notionParentId': json['notion_parent_id'],
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        'notion_id': json['notion_id'],
+        'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
-        'urlInherit': json['url_inherit'],
+        'url_inherit': json['url_inherit'],
         'status': json['status'],
         'title': (json['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangFromJSON)),
         'icon': json['icon'],
@@ -82,11 +82,11 @@ function StructureHelpPageConnectionsItemFinalToJSONTyped(value, ignoreDiscrimin
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['id']),
-        'notion_id': value['notionId'],
-        'notion_parent_id': value['notionParentId'],
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        'notion_id': value['notion_id'],
+        'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],
-        'url_inherit': value['urlInherit'],
+        'url_inherit': value['url_inherit'],
         'status': value['status'],
         'title': (value['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangToJSON)),
         'icon': value['icon'],

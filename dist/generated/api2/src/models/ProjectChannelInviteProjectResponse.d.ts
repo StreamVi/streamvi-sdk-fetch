@@ -20,7 +20,7 @@ export interface ProjectChannelInviteProjectResponse {
      * @type {number}
      * @memberof ProjectChannelInviteProjectResponse
      */
-    userId: number;
+    user_id: number;
     /**
      * First name
      * @type {string}
@@ -38,13 +38,13 @@ export interface ProjectChannelInviteProjectResponse {
      * @type {string}
      * @memberof ProjectChannelInviteProjectResponse
      */
-    photo50: string;
+    photo_50: string;
     /**
      * Unique symbol id of user
      * @type {string}
      * @memberof ProjectChannelInviteProjectResponse
      */
-    refId: string;
+    ref_id: string;
 }
 /**
  * Check if a given object implements the ProjectChannelInviteProjectResponse interface.

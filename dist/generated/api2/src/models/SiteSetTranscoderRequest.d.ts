@@ -32,19 +32,19 @@ export interface SiteSetTranscoderRequest {
      * @type {number}
      * @memberof SiteSetTranscoderRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteSetTranscoderRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Transcoder id
      * @type {number}
      * @memberof SiteSetTranscoderRequest
      */
-    transcoderId?: number;
+    transcoder_id?: number;
 }
 /**
  * @export
@@ -59,9 +59,9 @@ export type SiteSetTranscoderRequestVEnum = typeof SiteSetTranscoderRequestVEnum
  * @export
  */
 export declare const SiteSetTranscoderRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteSetTranscoderRequestLanguageEnum = typeof SiteSetTranscoderRequestLanguageEnum[keyof typeof SiteSetTranscoderRequestLanguageEnum];
 /**

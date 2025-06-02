@@ -44,14 +44,14 @@ export interface SearchChannelPlatformDto {
      * @type {number}
      * @memberof SearchChannelPlatformDto
      */
-    editName: number;
+    edit_name: number;
 }
 /**
  * @export
  */
 export declare const SearchChannelPlatformDtoExtensionEnum: {
-    readonly Png: "png";
-    readonly Svg: "svg";
+    readonly png: "png";
+    readonly svg: "svg";
 };
 export type SearchChannelPlatformDtoExtensionEnum = typeof SearchChannelPlatformDtoExtensionEnum[keyof typeof SearchChannelPlatformDtoExtensionEnum];
 /**

@@ -50,8 +50,8 @@ class ReferralsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling referralsTotalInfoV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling referralsTotalInfoV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling referralsTotalInfoV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class ReferralsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -88,9 +88,9 @@ exports.ReferralsApi = ReferralsApi;
  * @export
  */
 exports.ReferralsTotalInfoV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsVkVideoLiveRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -50,13 +50,13 @@ export interface SiteUpdateOptionsVkVideoLiveRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
-    categoryId: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
-    categoryName: string;
+    category_name: string;
 }
 /**
  * @export
@@ -71,9 +71,9 @@ export type SiteUpdateOptionsVkVideoLiveRequestVEnum = typeof SiteUpdateOptionsV
  * @export
  */
 export declare const SiteUpdateOptionsVkVideoLiveRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum[keyof typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum];
 /**

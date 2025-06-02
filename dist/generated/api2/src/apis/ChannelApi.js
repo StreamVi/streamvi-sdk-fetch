@@ -50,8 +50,8 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelShortChannelListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelShortChannelListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelShortChannelListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -89,8 +89,8 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodSearchV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling methodSearchV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling methodSearchV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -102,8 +102,8 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['type'] != null) {
             queryParameters['type'] = requestParameters['type'];
@@ -143,8 +143,8 @@ class ChannelApi extends runtime.BaseAPI {
      * Get live status
      */
     async methodSetStatusV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['methodSetStatusChannelRequest'] == null) {
-            throw new runtime.RequiredError('methodSetStatusChannelRequest', 'Required parameter "methodSetStatusChannelRequest" was null or undefined when calling methodSetStatusV1().');
+        if (requestParameters['MethodSetStatusChannelRequest'] == null) {
+            throw new runtime.RequiredError('MethodSetStatusChannelRequest', 'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -157,7 +157,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.MethodSetStatusChannelRequestToJSON)(requestParameters['methodSetStatusChannelRequest']),
+            body: (0, index_1.MethodSetStatusChannelRequestToJSON)(requestParameters['MethodSetStatusChannelRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -174,9 +174,9 @@ exports.ChannelApi = ChannelApi;
  * @export
  */
 exports.ChannelShortChannelListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -190,9 +190,9 @@ exports.ChannelShortChannelListV1VEnum = {
  * @export
  */
 exports.MethodSearchV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -206,8 +206,8 @@ exports.MethodSearchV1VEnum = {
  * @export
  */
 exports.MethodSearchV1TypeEnum = {
-    All: 'all',
-    My: 'my',
-    Available: 'available',
-    Active: 'active'
+    all: 'all',
+    my: 'my',
+    available: 'available',
+    active: 'active'
 };

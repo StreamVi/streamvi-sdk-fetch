@@ -114,9 +114,9 @@ export declare class HelpPageApi extends runtime.BaseAPI implements HelpPageApiI
  * @export
  */
 export declare const HelpPageGetV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type HelpPageGetV1LanguageEnum = typeof HelpPageGetV1LanguageEnum[keyof typeof HelpPageGetV1LanguageEnum];
 /**
@@ -132,9 +132,9 @@ export type HelpPageGetV1VEnum = typeof HelpPageGetV1VEnum[keyof typeof HelpPage
  * @export
  */
 export declare const HelpPageListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type HelpPageListV1LanguageEnum = typeof HelpPageListV1LanguageEnum[keyof typeof HelpPageListV1LanguageEnum];
 /**
@@ -150,9 +150,9 @@ export type HelpPageListV1VEnum = typeof HelpPageListV1VEnum[keyof typeof HelpPa
  * @export
  */
 export declare const HelpPageStructureV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type HelpPageStructureV1LanguageEnum = typeof HelpPageStructureV1LanguageEnum[keyof typeof HelpPageStructureV1LanguageEnum];
 /**

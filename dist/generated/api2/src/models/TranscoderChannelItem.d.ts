@@ -20,7 +20,7 @@ export interface TranscoderChannelItem {
      * @type {number}
      * @memberof TranscoderChannelItem
      */
-    groupId: number;
+    group_id: number;
     /**
      *
      * @type {string}
@@ -44,7 +44,7 @@ export interface TranscoderChannelItem {
      * @type {string}
      * @memberof TranscoderChannelItem
      */
-    photoDefault: string;
+    photo_default: string;
     /**
      *
      * @type {number}
@@ -62,7 +62,7 @@ export interface TranscoderChannelItem {
      * @type {number}
      * @memberof TranscoderChannelItem
      */
-    userId: number;
+    user_id: number;
     /**
      *
      * @type {number}

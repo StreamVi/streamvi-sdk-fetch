@@ -26,9 +26,9 @@ exports.PaySettingBodyDtoVEnum = {
  * @export
  */
 exports.PaySettingBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the PaySettingBodyDto interface.
@@ -38,11 +38,11 @@ function instanceOfPaySettingBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('countrieId' in value) || value['countrieId'] === undefined)
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined)
         return false;
-    if (!('paySystemId' in value) || value['paySystemId'] === undefined)
+    if (!('pay_system_id' in value) || value['pay_system_id'] === undefined)
         return false;
     if (!('email' in value) || value['email'] === undefined)
         return false;
@@ -60,10 +60,10 @@ function PaySettingBodyDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'countrieId': json['countrie_id'],
-        'organizationId': json['organization_id'] == null ? undefined : json['organization_id'],
-        'paySystemId': json['pay_system_id'],
+        'project_id': json['project_id'],
+        'countrie_id': json['countrie_id'],
+        'organization_id': json['organization_id'] == null ? undefined : json['organization_id'],
+        'pay_system_id': json['pay_system_id'],
         'email': json['email'],
         'description': json['description'] == null ? undefined : json['description'],
     };
@@ -80,10 +80,10 @@ function PaySettingBodyDtoToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'countrie_id': value['countrieId'],
-        'organization_id': value['organizationId'],
-        'pay_system_id': value['paySystemId'],
+        'project_id': value['project_id'],
+        'countrie_id': value['countrie_id'],
+        'organization_id': value['organization_id'],
+        'pay_system_id': value['pay_system_id'],
         'email': value['email'],
         'description': value['description'],
     };

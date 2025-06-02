@@ -30,55 +30,55 @@ exports.BlogPageSiteResponseStatusEnum = {
  * @export
  */
 exports.BlogPageSiteResponseLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.BlogPageSiteResponseLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.BlogPageSiteResponseAltLanguagesEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the BlogPageSiteResponse interface.
  */
 function instanceOfBlogPageSiteResponse(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('_id' in value) || value['_id'] === undefined)
         return false;
     if (!('url' in value) || value['url'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
-    if (!('dateUpdate' in value) || value['dateUpdate'] === undefined)
+    if (!('date_update' in value) || value['date_update'] === undefined)
         return false;
-    if (!('datePublish' in value) || value['datePublish'] === undefined)
+    if (!('date_publish' in value) || value['date_publish'] === undefined)
         return false;
     if (!('tags' in value) || value['tags'] === undefined)
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('image' in value) || value['image'] === undefined)
         return false;
-    if (!('shortText' in value) || value['shortText'] === undefined)
+    if (!('short_text' in value) || value['short_text'] === undefined)
         return false;
     if (!('text' in value) || value['text'] === undefined)
         return false;
-    if (!('altLanguages' in value) || value['altLanguages'] === undefined)
+    if (!('alt_languages' in value) || value['alt_languages'] === undefined)
         return false;
     return true;
 }
@@ -92,19 +92,19 @@ function BlogPageSiteResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
         'url': json['url'],
         'status': json['status'],
-        'dateUpdate': (new Date(json['date_update'])),
-        'datePublish': (new Date(json['date_publish'])),
+        'date_update': (new Date(json['date_update'])),
+        'date_publish': (new Date(json['date_publish'])),
         'tags': json['tags'],
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'title': json['title'],
         'image': json['image'],
-        'shortText': json['short_text'],
+        'short_text': json['short_text'],
         'text': json['text'],
-        'altLanguages': json['alt_languages'],
+        'alt_languages': json['alt_languages'],
     };
 }
 exports.BlogPageSiteResponseFromJSONTyped = BlogPageSiteResponseFromJSONTyped;
@@ -117,19 +117,19 @@ function BlogPageSiteResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
         'url': value['url'],
         'status': value['status'],
-        'date_update': ((value['dateUpdate']).toISOString()),
-        'date_publish': ((value['datePublish']).toISOString()),
+        'date_update': ((value['date_update']).toISOString()),
+        'date_publish': ((value['date_publish']).toISOString()),
         'tags': value['tags'],
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'title': value['title'],
         'image': value['image'],
-        'short_text': value['shortText'],
+        'short_text': value['short_text'],
         'text': value['text'],
-        'alt_languages': value['altLanguages'],
+        'alt_languages': value['alt_languages'],
     };
 }
 exports.BlogPageSiteResponseToJSONTyped = BlogPageSiteResponseToJSONTyped;

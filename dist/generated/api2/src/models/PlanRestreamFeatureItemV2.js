@@ -19,9 +19,9 @@ const PlanRestreamFeatureItemV2Value_1 = require("./PlanRestreamFeatureItemV2Val
  * @export
  */
 exports.PlanRestreamFeatureItemV2TypeEnum = {
-    String: 'string',
-    Number: 'number',
-    Boolean: 'boolean'
+    string: 'string',
+    number: 'number',
+    boolean: 'boolean'
 };
 /**
  * Check if a given object implements the PlanRestreamFeatureItemV2 interface.

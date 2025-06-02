@@ -18,13 +18,13 @@ exports.GetShortChannelItemToJSONTyped = exports.GetShortChannelItemToJSON = exp
  * Check if a given object implements the GetShortChannelItem interface.
  */
 function instanceOfGetShortChannelItem(value) {
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
-    if (!('photoDefault' in value) || value['photoDefault'] === undefined)
+    if (!('photo_default' in value) || value['photo_default'] === undefined)
         return false;
     return true;
 }
@@ -38,10 +38,10 @@ function GetShortChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'channelId': json['channel_id'],
+        'channel_id': json['channel_id'],
         'type': json['type'],
         'name': json['name'],
-        'photoDefault': json['photo_default'],
+        'photo_default': json['photo_default'],
     };
 }
 exports.GetShortChannelItemFromJSONTyped = GetShortChannelItemFromJSONTyped;
@@ -54,10 +54,10 @@ function GetShortChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'channel_id': value['channelId'],
+        'channel_id': value['channel_id'],
         'type': value['type'],
         'name': value['name'],
-        'photo_default': value['photoDefault'],
+        'photo_default': value['photo_default'],
     };
 }
 exports.GetShortChannelItemToJSONTyped = GetShortChannelItemToJSONTyped;

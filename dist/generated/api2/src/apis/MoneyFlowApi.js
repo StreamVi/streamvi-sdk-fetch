@@ -50,8 +50,8 @@ class MoneyFlowApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling moneyFlowListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling moneyFlowListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling moneyFlowListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class MoneyFlowApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
@@ -72,17 +72,17 @@ class MoneyFlowApi extends runtime.BaseAPI {
         if (requestParameters['offset'] != null) {
             queryParameters['offset'] = requestParameters['offset'];
         }
-        if (requestParameters['dateFrom'] != null) {
-            queryParameters['date_from'] = requestParameters['dateFrom'].toISOString();
+        if (requestParameters['date_from'] != null) {
+            queryParameters['date_from'] = requestParameters['date_from'].toISOString();
         }
-        if (requestParameters['dateTo'] != null) {
-            queryParameters['date_to'] = requestParameters['dateTo'].toISOString();
+        if (requestParameters['date_to'] != null) {
+            queryParameters['date_to'] = requestParameters['date_to'].toISOString();
         }
         if (requestParameters['type'] != null) {
             queryParameters['type'] = requestParameters['type'];
         }
-        if (requestParameters['balanceType'] != null) {
-            queryParameters['balance_type'] = requestParameters['balanceType'];
+        if (requestParameters['balance_type'] != null) {
+            queryParameters['balance_type'] = requestParameters['balance_type'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -106,9 +106,9 @@ exports.MoneyFlowApi = MoneyFlowApi;
  * @export
  */
 exports.MoneyFlowListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

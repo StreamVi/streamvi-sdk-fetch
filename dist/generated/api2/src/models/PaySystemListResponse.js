@@ -18,20 +18,20 @@ exports.PaySystemListResponseToJSONTyped = exports.PaySystemListResponseToJSON =
  * @export
  */
 exports.PaySystemListResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the PaySystemListResponse interface.
  */
 function instanceOfPaySystemListResponse(value) {
-    if (!('paySystemId' in value) || value['paySystemId'] === undefined)
+    if (!('pay_system_id' in value) || value['pay_system_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
-    if (!('minAmount' in value) || value['minAmount'] === undefined)
+    if (!('min_amount' in value) || value['min_amount'] === undefined)
         return false;
-    if (!('maxAmount' in value) || value['maxAmount'] === undefined)
+    if (!('max_amount' in value) || value['max_amount'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
@@ -55,10 +55,10 @@ function PaySystemListResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'paySystemId': json['pay_system_id'],
+        'pay_system_id': json['pay_system_id'],
         'name': json['name'],
-        'minAmount': json['min_amount'],
-        'maxAmount': json['max_amount'],
+        'min_amount': json['min_amount'],
+        'max_amount': json['max_amount'],
         'currency': json['currency'],
         'annual': json['annual'],
         'topup': json['topup'],
@@ -76,10 +76,10 @@ function PaySystemListResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'pay_system_id': value['paySystemId'],
+        'pay_system_id': value['pay_system_id'],
         'name': value['name'],
-        'min_amount': value['minAmount'],
-        'max_amount': value['maxAmount'],
+        'min_amount': value['min_amount'],
+        'max_amount': value['max_amount'],
         'currency': value['currency'],
         'annual': value['annual'],
         'topup': value['topup'],

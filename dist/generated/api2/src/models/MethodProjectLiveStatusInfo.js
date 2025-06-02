@@ -19,13 +19,13 @@ const MethodProjectLiveStatusInfoRestreamData_1 = require("./MethodProjectLiveSt
  * Check if a given object implements the MethodProjectLiveStatusInfo interface.
  */
 function instanceOfMethodProjectLiveStatusInfo(value) {
-    if (!('connectId' in value) || value['connectId'] === undefined)
+    if (!('connect_id' in value) || value['connect_id'] === undefined)
         return false;
-    if (!('connectIdV2' in value) || value['connectIdV2'] === undefined)
+    if (!('connect_id_v2' in value) || value['connect_id_v2'] === undefined)
         return false;
     if (!('fps' in value) || value['fps'] === undefined)
         return false;
-    if (!('keyFrame' in value) || value['keyFrame'] === undefined)
+    if (!('key_frame' in value) || value['key_frame'] === undefined)
         return false;
     if (!('count' in value) || value['count'] === undefined)
         return false;
@@ -35,7 +35,7 @@ function instanceOfMethodProjectLiveStatusInfo(value) {
         return false;
     if (!('bitrate' in value) || value['bitrate'] === undefined)
         return false;
-    if (!('fullBitrate' in value) || value['fullBitrate'] === undefined)
+    if (!('full_bitrate' in value) || value['full_bitrate'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -53,16 +53,16 @@ function MethodProjectLiveStatusInfoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'restreamData': json['restream_data'] == null ? undefined : (json['restream_data'].map(MethodProjectLiveStatusInfoRestreamData_1.MethodProjectLiveStatusInfoRestreamDataFromJSON)),
-        'connectId': json['connect_id'],
-        'connectIdV2': json['connect_id_v2'],
+        'restream_data': json['restream_data'] == null ? undefined : (json['restream_data'].map(MethodProjectLiveStatusInfoRestreamData_1.MethodProjectLiveStatusInfoRestreamDataFromJSON)),
+        'connect_id': json['connect_id'],
+        'connect_id_v2': json['connect_id_v2'],
         'fps': json['fps'],
-        'keyFrame': json['key_frame'],
+        'key_frame': json['key_frame'],
         'count': json['count'],
         'speed': json['speed'],
         'quality': json['quality'],
         'bitrate': json['bitrate'],
-        'fullBitrate': json['full_bitrate'],
+        'full_bitrate': json['full_bitrate'],
         'status': json['status'],
         'restrims': json['restrims'],
     };
@@ -77,16 +77,16 @@ function MethodProjectLiveStatusInfoToJSONTyped(value, ignoreDiscriminator = fal
         return value;
     }
     return {
-        'restream_data': value['restreamData'] == null ? undefined : (value['restreamData'].map(MethodProjectLiveStatusInfoRestreamData_1.MethodProjectLiveStatusInfoRestreamDataToJSON)),
-        'connect_id': value['connectId'],
-        'connect_id_v2': value['connectIdV2'],
+        'restream_data': value['restream_data'] == null ? undefined : (value['restream_data'].map(MethodProjectLiveStatusInfoRestreamData_1.MethodProjectLiveStatusInfoRestreamDataToJSON)),
+        'connect_id': value['connect_id'],
+        'connect_id_v2': value['connect_id_v2'],
         'fps': value['fps'],
-        'key_frame': value['keyFrame'],
+        'key_frame': value['key_frame'],
         'count': value['count'],
         'speed': value['speed'],
         'quality': value['quality'],
         'bitrate': value['bitrate'],
-        'full_bitrate': value['fullBitrate'],
+        'full_bitrate': value['full_bitrate'],
         'status': value['status'],
         'restrims': value['restrims'],
     };

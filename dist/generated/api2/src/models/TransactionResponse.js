@@ -20,7 +20,9 @@ exports.TransactionResponseToJSONTyped = exports.TransactionResponseToJSON = exp
 function instanceOfTransactionResponse(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
+        return false;
+    if (!('payout_id' in value) || value['payout_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
@@ -30,7 +32,7 @@ function instanceOfTransactionResponse(value) {
         return false;
     if (!('code' in value) || value['code'] === undefined)
         return false;
-    if (!('referralId' in value) || value['referralId'] === undefined)
+    if (!('referral_id' in value) || value['referral_id'] === undefined)
         return false;
     if (!('date' in value) || value['date'] === undefined)
         return false;
@@ -51,12 +53,13 @@ function TransactionResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'userId': json['user_id'],
+        'user_id': json['user_id'],
+        'payout_id': json['payout_id'],
         'type': json['type'],
         'sum': json['sum'],
         'description': json['description'],
         'code': json['code'],
-        'referralId': json['referral_id'],
+        'referral_id': json['referral_id'],
         'date': (new Date(json['date'])),
         'paymentId': json['paymentId'],
         'payoutId': json['payoutId'],
@@ -73,12 +76,13 @@ function TransactionResponseToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'user_id': value['userId'],
+        'user_id': value['user_id'],
+        'payout_id': value['payout_id'],
         'type': value['type'],
         'sum': value['sum'],
         'description': value['description'],
         'code': value['code'],
-        'referral_id': value['referralId'],
+        'referral_id': value['referral_id'],
         'date': ((value['date']).toISOString()),
         'paymentId': value['paymentId'],
         'payoutId': value['payoutId'],

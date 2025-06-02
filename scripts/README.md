@@ -76,7 +76,7 @@ await api.getSettingV3({
 1. **Контроллеры**: все уникальные префиксы `*Controller*`
 2. **Методы с версиями**: паттерн `*V\d+` (V1, V2, V3, и т.д.)
 3. **Интерфейсы запросов**: `readonly v: Type`
-4. **Сигнатуры функций**: в AxiosParamCreator и ApiFp
+4. **Сигнатуры функций**: в API функциях
 5. **Проверки параметров**: `assertParamExists(..., 'v', v)`
 
 ### Статистика обработки
@@ -128,7 +128,7 @@ await api.checkCountryV1({
 ## Совместимость
 
 - ✅ TypeScript/JavaScript
-- ✅ Axios HTTP клиент
+- ✅ Fetch API HTTP клиент
 - ✅ OpenAPI Generator 7.x
 - ✅ Windows/Linux/macOS
 - ✅ Node.js 16+

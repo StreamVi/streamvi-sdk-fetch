@@ -19,13 +19,13 @@ const ProjectChannelInviteChannelLinkResponse_1 = require("./ProjectChannelInvit
  * Check if a given object implements the ProjectChannelInviteLinkResponse interface.
  */
 function instanceOfProjectChannelInviteLinkResponse(value) {
-    if (!('projectChannelInviteId' in value) || value['projectChannelInviteId'] === undefined)
+    if (!('project_channel_invite_id' in value) || value['project_channel_invite_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
-    if (!('toProjectId' in value) || value['toProjectId'] === undefined)
+    if (!('to_project_id' in value) || value['to_project_id'] === undefined)
         return false;
-    if (!('accessType' in value) || value['accessType'] === undefined)
+    if (!('access_type' in value) || value['access_type'] === undefined)
         return false;
     if (!('date' in value) || value['date'] === undefined)
         return false;
@@ -35,7 +35,7 @@ function instanceOfProjectChannelInviteLinkResponse(value) {
         return false;
     if (!('reject' in value) || value['reject'] === undefined)
         return false;
-    if (!('fromUserId' in value) || value['fromUserId'] === undefined)
+    if (!('from_user_id' in value) || value['from_user_id'] === undefined)
         return false;
     return true;
 }
@@ -49,16 +49,16 @@ function ProjectChannelInviteLinkResponseFromJSONTyped(json, ignoreDiscriminator
         return json;
     }
     return {
-        'projectChannelInviteId': json['project_channel_invite_id'],
-        'channelId': json['channel_id'],
-        'toProjectId': json['to_project_id'],
-        'accessType': json['access_type'],
+        'project_channel_invite_id': json['project_channel_invite_id'],
+        'channel_id': json['channel_id'],
+        'to_project_id': json['to_project_id'],
+        'access_type': json['access_type'],
         'date': (new Date(json['date'])),
         'secret': json['secret'],
         'email': json['email'],
         'reject': json['reject'],
-        'fromUserId': json['from_user_id'],
-        'channel': json['channel_'] == null ? undefined : (0, ProjectChannelInviteChannelLinkResponse_1.ProjectChannelInviteChannelLinkResponseFromJSON)(json['channel_']),
+        'from_user_id': json['from_user_id'],
+        'channel_': json['channel_'] == null ? undefined : (0, ProjectChannelInviteChannelLinkResponse_1.ProjectChannelInviteChannelLinkResponseFromJSON)(json['channel_']),
     };
 }
 exports.ProjectChannelInviteLinkResponseFromJSONTyped = ProjectChannelInviteLinkResponseFromJSONTyped;
@@ -71,16 +71,16 @@ function ProjectChannelInviteLinkResponseToJSONTyped(value, ignoreDiscriminator 
         return value;
     }
     return {
-        'project_channel_invite_id': value['projectChannelInviteId'],
-        'channel_id': value['channelId'],
-        'to_project_id': value['toProjectId'],
-        'access_type': value['accessType'],
+        'project_channel_invite_id': value['project_channel_invite_id'],
+        'channel_id': value['channel_id'],
+        'to_project_id': value['to_project_id'],
+        'access_type': value['access_type'],
         'date': ((value['date']).toISOString()),
         'secret': value['secret'],
         'email': value['email'],
         'reject': value['reject'],
-        'from_user_id': value['fromUserId'],
-        'channel_': (0, ProjectChannelInviteChannelLinkResponse_1.ProjectChannelInviteChannelLinkResponseToJSON)(value['channel']),
+        'from_user_id': value['from_user_id'],
+        'channel_': (0, ProjectChannelInviteChannelLinkResponse_1.ProjectChannelInviteChannelLinkResponseToJSON)(value['channel_']),
     };
 }
 exports.ProjectChannelInviteLinkResponseToJSONTyped = ProjectChannelInviteLinkResponseToJSONTyped;

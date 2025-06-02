@@ -18,32 +18,32 @@ exports.PlanStorage2UserItemResponseToJSONTyped = exports.PlanStorage2UserItemRe
  * @export
  */
 exports.PlanStorage2UserItemResponsePeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PlanStorage2UserItemResponse interface.
  */
 function instanceOfPlanStorage2UserItemResponse(value) {
-    if (!('planStorage2userId' in value) || value['planStorage2userId'] === undefined)
+    if (!('plan_storage2user_id' in value) || value['plan_storage2user_id'] === undefined)
         return false;
-    if (!('planStorageId' in value) || value['planStorageId'] === undefined)
+    if (!('plan_storage_id' in value) || value['plan_storage_id'] === undefined)
         return false;
     if (!('size' in value) || value['size'] === undefined)
         return false;
-    if (!('dateStart' in value) || value['dateStart'] === undefined)
+    if (!('date_start' in value) || value['date_start'] === undefined)
         return false;
-    if (!('dateEnd' in value) || value['dateEnd'] === undefined)
+    if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
-    if (!('dateCreate' in value) || value['dateCreate'] === undefined)
+    if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
     if (!('period' in value) || value['period'] === undefined)
         return false;
-    if (!('periodUuid' in value) || value['periodUuid'] === undefined)
+    if (!('period_uuid' in value) || value['period_uuid'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
-    if (!('moneyFlowUuid' in value) || value['moneyFlowUuid'] === undefined)
+    if (!('money_flow_uuid' in value) || value['money_flow_uuid'] === undefined)
         return false;
     return true;
 }
@@ -57,17 +57,17 @@ function PlanStorage2UserItemResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planStorage2userId': json['plan_storage2user_id'],
-        'planStorageId': json['plan_storage_id'],
+        'plan_storage2user_id': json['plan_storage2user_id'],
+        'plan_storage_id': json['plan_storage_id'],
         'size': json['size'],
-        'dateStart': (new Date(json['date_start'])),
-        'dateEnd': (new Date(json['date_end'])),
-        'dateCreate': (new Date(json['date_create'])),
+        'date_start': (new Date(json['date_start'])),
+        'date_end': (new Date(json['date_end'])),
+        'date_create': (new Date(json['date_create'])),
         'period': json['period'],
-        'periodUuid': json['period_uuid'],
+        'period_uuid': json['period_uuid'],
         'status': json['status'],
         'prolongation': json['prolongation'] == null ? undefined : json['prolongation'],
-        'moneyFlowUuid': json['money_flow_uuid'],
+        'money_flow_uuid': json['money_flow_uuid'],
     };
 }
 exports.PlanStorage2UserItemResponseFromJSONTyped = PlanStorage2UserItemResponseFromJSONTyped;
@@ -80,17 +80,17 @@ function PlanStorage2UserItemResponseToJSONTyped(value, ignoreDiscriminator = fa
         return value;
     }
     return {
-        'plan_storage2user_id': value['planStorage2userId'],
-        'plan_storage_id': value['planStorageId'],
+        'plan_storage2user_id': value['plan_storage2user_id'],
+        'plan_storage_id': value['plan_storage_id'],
         'size': value['size'],
-        'date_start': ((value['dateStart']).toISOString()),
-        'date_end': ((value['dateEnd']).toISOString()),
-        'date_create': ((value['dateCreate']).toISOString()),
+        'date_start': ((value['date_start']).toISOString()),
+        'date_end': ((value['date_end']).toISOString()),
+        'date_create': ((value['date_create']).toISOString()),
         'period': value['period'],
-        'period_uuid': value['periodUuid'],
+        'period_uuid': value['period_uuid'],
         'status': value['status'],
         'prolongation': value['prolongation'],
-        'money_flow_uuid': value['moneyFlowUuid'],
+        'money_flow_uuid': value['money_flow_uuid'],
     };
 }
 exports.PlanStorage2UserItemResponseToJSONTyped = PlanStorage2UserItemResponseToJSONTyped;

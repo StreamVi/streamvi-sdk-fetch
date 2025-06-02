@@ -50,11 +50,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteAcceptForProjectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteAcceptForProjectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteAcceptForProjectV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteAcceptForProjectV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteAcceptForProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -66,11 +66,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -95,11 +95,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
         }
         if (requestParameters['secret'] == null) {
             throw new runtime.RequiredError('secret', 'Required parameter "secret" was null or undefined when calling projectChannelInviteAcceptForSecretV1().');
@@ -114,11 +114,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         if (requestParameters['secret'] != null) {
             queryParameters['secret'] = requestParameters['secret'];
@@ -146,17 +146,17 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteAddByEmailV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteAddByEmailV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteAddByEmailV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteAddByEmailV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteAddByEmailV1().');
         }
         if (requestParameters['email'] == null) {
             throw new runtime.RequiredError('email', 'Required parameter "email" was null or undefined when calling projectChannelInviteAddByEmailV1().');
         }
-        if (requestParameters['accessType'] == null) {
-            throw new runtime.RequiredError('accessType', 'Required parameter "accessType" was null or undefined when calling projectChannelInviteAddByEmailV1().');
+        if (requestParameters['access_type'] == null) {
+            throw new runtime.RequiredError('access_type', 'Required parameter "access_type" was null or undefined when calling projectChannelInviteAddByEmailV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -168,17 +168,17 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         if (requestParameters['email'] != null) {
             queryParameters['email'] = requestParameters['email'];
         }
-        if (requestParameters['accessType'] != null) {
-            queryParameters['access_type'] = requestParameters['accessType'];
+        if (requestParameters['access_type'] != null) {
+            queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -203,17 +203,17 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteAddByIdV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteAddByIdV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteAddByIdV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteAddByIdV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteAddByIdV1().');
         }
-        if (requestParameters['accessType'] == null) {
-            throw new runtime.RequiredError('accessType', 'Required parameter "accessType" was null or undefined when calling projectChannelInviteAddByIdV1().');
+        if (requestParameters['access_type'] == null) {
+            throw new runtime.RequiredError('access_type', 'Required parameter "access_type" was null or undefined when calling projectChannelInviteAddByIdV1().');
         }
-        if (requestParameters['toProjectExternalId'] == null) {
-            throw new runtime.RequiredError('toProjectExternalId', 'Required parameter "toProjectExternalId" was null or undefined when calling projectChannelInviteAddByIdV1().');
+        if (requestParameters['to_project_external_id'] == null) {
+            throw new runtime.RequiredError('to_project_external_id', 'Required parameter "to_project_external_id" was null or undefined when calling projectChannelInviteAddByIdV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -225,17 +225,17 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
-        if (requestParameters['accessType'] != null) {
-            queryParameters['access_type'] = requestParameters['accessType'];
+        if (requestParameters['access_type'] != null) {
+            queryParameters['access_type'] = requestParameters['access_type'];
         }
-        if (requestParameters['toProjectExternalId'] != null) {
-            queryParameters['to_project_external_id'] = requestParameters['toProjectExternalId'];
+        if (requestParameters['to_project_external_id'] != null) {
+            queryParameters['to_project_external_id'] = requestParameters['to_project_external_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -260,11 +260,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteDeclineForProjectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteDeclineForProjectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteDeclineForProjectV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteDeclineForProjectV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteDeclineForProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -276,11 +276,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -305,11 +305,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
         }
         if (requestParameters['secret'] == null) {
             throw new runtime.RequiredError('secret', 'Required parameter "secret" was null or undefined when calling projectChannelInviteDeclineForSecretV1().');
@@ -324,11 +324,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         if (requestParameters['secret'] != null) {
             queryParameters['secret'] = requestParameters['secret'];
@@ -395,11 +395,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteGetForProjectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteGetForProjectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteGetForProjectV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteGetForProjectV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteGetForProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -411,11 +411,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -440,8 +440,8 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteGetForSecretV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteGetForSecretV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteGetForSecretV1().');
         }
         if (requestParameters['secret'] == null) {
             throw new runtime.RequiredError('secret', 'Required parameter "secret" was null or undefined when calling projectChannelInviteGetForSecretV1().');
@@ -456,8 +456,8 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         if (requestParameters['secret'] != null) {
             queryParameters['secret'] = requestParameters['secret'];
@@ -524,11 +524,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelInviteListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelInviteListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelInviteListV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelInviteListV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelInviteListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -540,11 +540,11 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -568,9 +568,9 @@ exports.ProjectChannelInviteApi = ProjectChannelInviteApi;
  * @export
  */
 exports.ProjectChannelInviteAcceptForProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -584,9 +584,9 @@ exports.ProjectChannelInviteAcceptForProjectV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteAcceptForSecretV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -600,9 +600,9 @@ exports.ProjectChannelInviteAcceptForSecretV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteAddByEmailV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -625,9 +625,9 @@ exports.ProjectChannelInviteAddByEmailV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteAddByIdV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -650,9 +650,9 @@ exports.ProjectChannelInviteAddByIdV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteDeclineForProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -666,9 +666,9 @@ exports.ProjectChannelInviteDeclineForProjectV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteDeclineForSecretV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -682,9 +682,9 @@ exports.ProjectChannelInviteDeclineForSecretV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteDelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -698,9 +698,9 @@ exports.ProjectChannelInviteDelV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetForProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -714,9 +714,9 @@ exports.ProjectChannelInviteGetForProjectV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetForSecretV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -730,9 +730,9 @@ exports.ProjectChannelInviteGetForSecretV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -746,9 +746,9 @@ exports.ProjectChannelInviteGetV1VEnum = {
  * @export
  */
 exports.ProjectChannelInviteListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

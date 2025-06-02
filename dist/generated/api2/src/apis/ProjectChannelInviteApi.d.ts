@@ -13,43 +13,43 @@ import * as runtime from '../runtime';
 import type { ListOfProjectChannelInviteResponse, ProjectChannelInviteLinkResponse, ProjectChannelInviteResponse, SuccessResponse } from '../models/index';
 export interface ProjectChannelInviteAcceptForProjectV1Request {
     language: ProjectChannelInviteAcceptForProjectV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ProjectChannelInviteAcceptForProjectV1VEnum;
 }
 export interface ProjectChannelInviteAcceptForSecretV1Request {
     language: ProjectChannelInviteAcceptForSecretV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     secret: string;
     v?: ProjectChannelInviteAcceptForSecretV1VEnum;
 }
 export interface ProjectChannelInviteAddByEmailV1Request {
     language: ProjectChannelInviteAddByEmailV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     email: string;
-    accessType: ProjectChannelInviteAddByEmailV1AccessTypeEnum;
+    access_type: ProjectChannelInviteAddByEmailV1AccessTypeEnum;
     v?: ProjectChannelInviteAddByEmailV1VEnum;
 }
 export interface ProjectChannelInviteAddByIdV1Request {
     language: ProjectChannelInviteAddByIdV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    accessType: ProjectChannelInviteAddByIdV1AccessTypeEnum;
-    toProjectExternalId: string;
+    project_id: number;
+    channel_id: number;
+    access_type: ProjectChannelInviteAddByIdV1AccessTypeEnum;
+    to_project_external_id: string;
     v?: ProjectChannelInviteAddByIdV1VEnum;
 }
 export interface ProjectChannelInviteDeclineForProjectV1Request {
     language: ProjectChannelInviteDeclineForProjectV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ProjectChannelInviteDeclineForProjectV1VEnum;
 }
 export interface ProjectChannelInviteDeclineForSecretV1Request {
     language: ProjectChannelInviteDeclineForSecretV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     secret: string;
     v?: ProjectChannelInviteDeclineForSecretV1VEnum;
 }
@@ -60,13 +60,13 @@ export interface ProjectChannelInviteDelV1Request {
 }
 export interface ProjectChannelInviteGetForProjectV1Request {
     language: ProjectChannelInviteGetForProjectV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ProjectChannelInviteGetForProjectV1VEnum;
 }
 export interface ProjectChannelInviteGetForSecretV1Request {
     language: ProjectChannelInviteGetForSecretV1LanguageEnum;
-    channelId: number;
+    channel_id: number;
     secret: string;
     v?: ProjectChannelInviteGetForSecretV1VEnum;
 }
@@ -77,8 +77,8 @@ export interface ProjectChannelInviteGetV1Request {
 }
 export interface ProjectChannelInviteListV1Request {
     language: ProjectChannelInviteListV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ProjectChannelInviteListV1VEnum;
 }
 /**
@@ -92,8 +92,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Accept channel invitation for selected project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId The project to which you want to add a channel
-     * @param {number} channelId Channel id
+     * @param {number} project_id The project to which you want to add a channel
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -108,8 +108,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Accept channel invitation using a secret link
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId The project to which you want to add a channel
-     * @param {number} channelId Channel id
+     * @param {number} project_id The project to which you want to add a channel
+     * @param {number} channel_id Channel id
      * @param {string} secret Secret
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -125,10 +125,10 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Add channel invite item for another user by email
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {string} email Email
-     * @param {0 | 1 | 1 | 2} accessType Access type
+     * @param {0 | 1 | 1 | 2} access_type Access type
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -143,10 +143,10 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Add channel invite item for another user by id
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {0 | 1 | 1 | 2} accessType Access type
-     * @param {string} toProjectExternalId Project for get access by external id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {0 | 1 | 1 | 2} access_type Access type
+     * @param {string} to_project_external_id Project for get access by external id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -161,8 +161,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Decline channel invitation for selected project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Channel id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Channel id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -177,8 +177,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Decline channel invitation using a secret link
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId The project to which you want to add a channel
-     * @param {number} channelId Channel id
+     * @param {number} project_id The project to which you want to add a channel
+     * @param {number} channel_id Channel id
      * @param {string} secret Secret
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -209,8 +209,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Get invitation for channel
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Current project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Current project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -225,7 +225,7 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary Get channel invitation using a secret link
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} channelId Channel id
+     * @param {number} channel_id Channel id
      * @param {string} secret Secret
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -256,8 +256,8 @@ export interface ProjectChannelInviteApiInterface {
      *
      * @summary List of invites for channel in project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -366,9 +366,9 @@ export declare class ProjectChannelInviteApi extends runtime.BaseAPI implements 
  * @export
  */
 export declare const ProjectChannelInviteAcceptForProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteAcceptForProjectV1LanguageEnum = typeof ProjectChannelInviteAcceptForProjectV1LanguageEnum[keyof typeof ProjectChannelInviteAcceptForProjectV1LanguageEnum];
 /**
@@ -384,9 +384,9 @@ export type ProjectChannelInviteAcceptForProjectV1VEnum = typeof ProjectChannelI
  * @export
  */
 export declare const ProjectChannelInviteAcceptForSecretV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteAcceptForSecretV1LanguageEnum = typeof ProjectChannelInviteAcceptForSecretV1LanguageEnum[keyof typeof ProjectChannelInviteAcceptForSecretV1LanguageEnum];
 /**
@@ -402,9 +402,9 @@ export type ProjectChannelInviteAcceptForSecretV1VEnum = typeof ProjectChannelIn
  * @export
  */
 export declare const ProjectChannelInviteAddByEmailV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteAddByEmailV1LanguageEnum = typeof ProjectChannelInviteAddByEmailV1LanguageEnum[keyof typeof ProjectChannelInviteAddByEmailV1LanguageEnum];
 /**
@@ -430,9 +430,9 @@ export type ProjectChannelInviteAddByEmailV1VEnum = typeof ProjectChannelInviteA
  * @export
  */
 export declare const ProjectChannelInviteAddByIdV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteAddByIdV1LanguageEnum = typeof ProjectChannelInviteAddByIdV1LanguageEnum[keyof typeof ProjectChannelInviteAddByIdV1LanguageEnum];
 /**
@@ -458,9 +458,9 @@ export type ProjectChannelInviteAddByIdV1VEnum = typeof ProjectChannelInviteAddB
  * @export
  */
 export declare const ProjectChannelInviteDeclineForProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteDeclineForProjectV1LanguageEnum = typeof ProjectChannelInviteDeclineForProjectV1LanguageEnum[keyof typeof ProjectChannelInviteDeclineForProjectV1LanguageEnum];
 /**
@@ -476,9 +476,9 @@ export type ProjectChannelInviteDeclineForProjectV1VEnum = typeof ProjectChannel
  * @export
  */
 export declare const ProjectChannelInviteDeclineForSecretV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteDeclineForSecretV1LanguageEnum = typeof ProjectChannelInviteDeclineForSecretV1LanguageEnum[keyof typeof ProjectChannelInviteDeclineForSecretV1LanguageEnum];
 /**
@@ -494,9 +494,9 @@ export type ProjectChannelInviteDeclineForSecretV1VEnum = typeof ProjectChannelI
  * @export
  */
 export declare const ProjectChannelInviteDelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteDelV1LanguageEnum = typeof ProjectChannelInviteDelV1LanguageEnum[keyof typeof ProjectChannelInviteDelV1LanguageEnum];
 /**
@@ -512,9 +512,9 @@ export type ProjectChannelInviteDelV1VEnum = typeof ProjectChannelInviteDelV1VEn
  * @export
  */
 export declare const ProjectChannelInviteGetForProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteGetForProjectV1LanguageEnum = typeof ProjectChannelInviteGetForProjectV1LanguageEnum[keyof typeof ProjectChannelInviteGetForProjectV1LanguageEnum];
 /**
@@ -530,9 +530,9 @@ export type ProjectChannelInviteGetForProjectV1VEnum = typeof ProjectChannelInvi
  * @export
  */
 export declare const ProjectChannelInviteGetForSecretV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteGetForSecretV1LanguageEnum = typeof ProjectChannelInviteGetForSecretV1LanguageEnum[keyof typeof ProjectChannelInviteGetForSecretV1LanguageEnum];
 /**
@@ -548,9 +548,9 @@ export type ProjectChannelInviteGetForSecretV1VEnum = typeof ProjectChannelInvit
  * @export
  */
 export declare const ProjectChannelInviteGetV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteGetV1LanguageEnum = typeof ProjectChannelInviteGetV1LanguageEnum[keyof typeof ProjectChannelInviteGetV1LanguageEnum];
 /**
@@ -566,9 +566,9 @@ export type ProjectChannelInviteGetV1VEnum = typeof ProjectChannelInviteGetV1VEn
  * @export
  */
 export declare const ProjectChannelInviteListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelInviteListV1LanguageEnum = typeof ProjectChannelInviteListV1LanguageEnum[keyof typeof ProjectChannelInviteListV1LanguageEnum];
 /**

@@ -13,30 +13,30 @@ import * as runtime from '../runtime';
 import type { ListOfProjectChannelResponse, SuccessResponse } from '../models/index';
 export interface ProjectChannelChangeAccessV1Request {
     language: ProjectChannelChangeAccessV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    toProjectId: number;
-    accessType: ProjectChannelChangeAccessV1AccessTypeEnum;
+    project_id: number;
+    channel_id: number;
+    to_project_id: number;
+    access_type: ProjectChannelChangeAccessV1AccessTypeEnum;
     v?: ProjectChannelChangeAccessV1VEnum;
 }
 export interface ProjectChannelDelV1Request {
     language: ProjectChannelDelV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    targetProjectId: number;
+    project_id: number;
+    channel_id: number;
+    target_project_id: number;
     v?: ProjectChannelDelV1VEnum;
 }
 export interface ProjectChannelListV1Request {
     language: ProjectChannelListV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ProjectChannelListV1VEnum;
 }
 export interface ProjectChannelTransferOwnerV1Request {
     language: ProjectChannelTransferOwnerV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    toProjectId: number;
+    project_id: number;
+    channel_id: number;
+    to_project_id: number;
     v?: ProjectChannelTransferOwnerV1VEnum;
 }
 /**
@@ -50,10 +50,10 @@ export interface ProjectChannelApiInterface {
      *
      * @summary Change access for project in channel
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {number} toProjectId Target project id
-     * @param {0 | 1 | 1 | 2} accessType Access type
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {number} to_project_id Target project id
+     * @param {0 | 1 | 1 | 2} access_type Access type
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -68,9 +68,9 @@ export interface ProjectChannelApiInterface {
      *
      * @summary Remove access for project in channel
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {number} targetProjectId Target project id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {number} target_project_id Target project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -85,8 +85,8 @@ export interface ProjectChannelApiInterface {
      *
      * @summary Project channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -101,9 +101,9 @@ export interface ProjectChannelApiInterface {
      *
      * @summary Transfer owner for project in channel
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {number} toProjectId Target project id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {number} to_project_id Target project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -156,9 +156,9 @@ export declare class ProjectChannelApi extends runtime.BaseAPI implements Projec
  * @export
  */
 export declare const ProjectChannelChangeAccessV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelChangeAccessV1LanguageEnum = typeof ProjectChannelChangeAccessV1LanguageEnum[keyof typeof ProjectChannelChangeAccessV1LanguageEnum];
 /**
@@ -184,9 +184,9 @@ export type ProjectChannelChangeAccessV1VEnum = typeof ProjectChannelChangeAcces
  * @export
  */
 export declare const ProjectChannelDelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelDelV1LanguageEnum = typeof ProjectChannelDelV1LanguageEnum[keyof typeof ProjectChannelDelV1LanguageEnum];
 /**
@@ -202,9 +202,9 @@ export type ProjectChannelDelV1VEnum = typeof ProjectChannelDelV1VEnum[keyof typ
  * @export
  */
 export declare const ProjectChannelListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelListV1LanguageEnum = typeof ProjectChannelListV1LanguageEnum[keyof typeof ProjectChannelListV1LanguageEnum];
 /**
@@ -220,9 +220,9 @@ export type ProjectChannelListV1VEnum = typeof ProjectChannelListV1VEnum[keyof t
  * @export
  */
 export declare const ProjectChannelTransferOwnerV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectChannelTransferOwnerV1LanguageEnum = typeof ProjectChannelTransferOwnerV1LanguageEnum[keyof typeof ProjectChannelTransferOwnerV1LanguageEnum];
 /**

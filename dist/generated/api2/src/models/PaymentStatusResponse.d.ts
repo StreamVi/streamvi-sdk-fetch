@@ -20,7 +20,7 @@ export interface PaymentStatusResponse {
      * @type {number}
      * @memberof PaymentStatusResponse
      */
-    paymentId: number;
+    payment_id: number;
     /**
      * Amount
      * @type {number}
@@ -38,7 +38,7 @@ export interface PaymentStatusResponse {
      * @type {string}
      * @memberof PaymentStatusResponse
      */
-    planPeriod: PaymentStatusResponsePlanPeriodEnum;
+    plan_period: PaymentStatusResponsePlanPeriodEnum;
     /**
      * Status
      * @type {string}
@@ -62,16 +62,16 @@ export interface PaymentStatusResponse {
  * @export
  */
 export declare const PaymentStatusResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PaymentStatusResponseCurrencyEnum = typeof PaymentStatusResponseCurrencyEnum[keyof typeof PaymentStatusResponseCurrencyEnum];
 /**
  * @export
  */
 export declare const PaymentStatusResponsePlanPeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PaymentStatusResponsePlanPeriodEnum = typeof PaymentStatusResponsePlanPeriodEnum[keyof typeof PaymentStatusResponsePlanPeriodEnum];
 /**

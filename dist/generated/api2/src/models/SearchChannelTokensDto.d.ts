@@ -26,10 +26,10 @@ export interface SearchChannelTokensDto {
  * @export
  */
 export declare const SearchChannelTokensDtoStatusEnum: {
-    readonly Unused: "unused";
-    readonly Invalid: "invalid";
-    readonly Deprecated: "deprecated";
-    readonly Valid: "valid";
+    readonly unused: "unused";
+    readonly invalid: "invalid";
+    readonly deprecated: "deprecated";
+    readonly valid: "valid";
 };
 export type SearchChannelTokensDtoStatusEnum = typeof SearchChannelTokensDtoStatusEnum[keyof typeof SearchChannelTokensDtoStatusEnum];
 /**

@@ -26,19 +26,19 @@ export interface PlanRestreamBeforeItem {
      * @type {number}
      * @memberof PlanRestreamBeforeItem
      */
-    channelMax?: number;
+    channel_max?: number;
     /**
      * Max bitrate
      * @type {number}
      * @memberof PlanRestreamBeforeItem
      */
-    bitrateMax?: number;
+    bitrate_max?: number;
     /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanRestreamBeforeItem
      */
-    dateEnd: Date;
+    date_end: Date;
 }
 /**
  * Check if a given object implements the PlanRestreamBeforeItem interface.

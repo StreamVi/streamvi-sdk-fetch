@@ -18,8 +18,8 @@ exports.AmountItemToJSONTyped = exports.AmountItemToJSON = exports.AmountItemFro
  * @export
  */
 exports.AmountItemCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the AmountItem interface.

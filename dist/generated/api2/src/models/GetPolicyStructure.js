@@ -18,11 +18,11 @@ exports.GetPolicyStructureToJSONTyped = exports.GetPolicyStructureToJSON = expor
  * @export
  */
 exports.GetPolicyStructureResultsEnum = {
-    Refund: 'refund',
-    TermsOfUse: 'terms-of-use',
-    UsingCookie: 'using-cookie',
-    AcceptableUse: 'acceptable-use',
-    PrivacyNotice: 'privacy-notice'
+    refund: 'refund',
+    terms_of_use: 'terms-of-use',
+    using_cookie: 'using-cookie',
+    acceptable_use: 'acceptable-use',
+    privacy_notice: 'privacy-notice'
 };
 /**
  * Check if a given object implements the GetPolicyStructure interface.

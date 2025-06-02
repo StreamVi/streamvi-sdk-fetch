@@ -33,29 +33,29 @@ export interface BalanceForPayResponse {
      * @type {Array<string>}
      * @memberof BalanceForPayResponse
      */
-    balancesAllow: Array<BalanceForPayResponseBalancesAllowEnum>;
+    balances_allow: Array<BalanceForPayResponseBalancesAllowEnum>;
     /**
      * Balances values
      * @type {MoneyFlowBalanceTypeValuesResponse}
      * @memberof BalanceForPayResponse
      */
-    balancesValues: MoneyFlowBalanceTypeValuesResponse;
+    balances_values: MoneyFlowBalanceTypeValuesResponse;
 }
 /**
  * @export
  */
 export declare const BalanceForPayResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type BalanceForPayResponseCurrencyEnum = typeof BalanceForPayResponseCurrencyEnum[keyof typeof BalanceForPayResponseCurrencyEnum];
 /**
  * @export
  */
 export declare const BalanceForPayResponseBalancesAllowEnum: {
-    readonly Bonus: "bonus";
-    readonly Payment: "payment";
-    readonly Profit: "profit";
+    readonly bonus: "bonus";
+    readonly payment: "payment";
+    readonly profit: "profit";
 };
 export type BalanceForPayResponseBalancesAllowEnum = typeof BalanceForPayResponseBalancesAllowEnum[keyof typeof BalanceForPayResponseBalancesAllowEnum];
 /**

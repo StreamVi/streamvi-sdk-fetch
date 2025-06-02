@@ -26,9 +26,9 @@ exports.TranscoderCreateDtoVEnum = {
  * @export
  */
 exports.TranscoderCreateDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the TranscoderCreateDto interface.
@@ -38,7 +38,7 @@ function instanceOfTranscoderCreateDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
@@ -58,7 +58,7 @@ function TranscoderCreateDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'width': json['width'] == null ? undefined : json['width'],
         'height': json['height'] == null ? undefined : json['height'],
         'fps': json['fps'] == null ? undefined : json['fps'],
@@ -83,7 +83,7 @@ function TranscoderCreateDtoToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'width': value['width'],
         'height': value['height'],
         'fps': value['fps'],

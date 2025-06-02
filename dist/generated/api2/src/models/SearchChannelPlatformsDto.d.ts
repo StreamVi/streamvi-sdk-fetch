@@ -38,7 +38,7 @@ export interface SearchChannelPlatformsDto {
      * @type {number}
      * @memberof SearchChannelPlatformsDto
      */
-    editName: number;
+    edit_name: number;
 }
 /**
  * Check if a given object implements the SearchChannelPlatformsDto interface.

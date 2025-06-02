@@ -13,14 +13,14 @@ import * as runtime from '../runtime';
 import type { PaginatedResponseOfMoneyFlowResponse } from '../models/index';
 export interface MoneyFlowListV1Request {
     language: MoneyFlowListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: MoneyFlowListV1VEnum;
     limit?: number;
     offset?: number;
-    dateFrom?: Date;
-    dateTo?: Date;
+    date_from?: Date;
+    date_to?: Date;
     type?: string;
-    balanceType?: string;
+    balance_type?: string;
 }
 /**
  * MoneyFlowApi - interface
@@ -33,14 +33,14 @@ export interface MoneyFlowApiInterface {
      *
      * @summary Transaction list for frontend
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
-     * @param {Date} [dateFrom] Date from
-     * @param {Date} [dateTo] Date to
+     * @param {Date} [date_from] Date from
+     * @param {Date} [date_to] Date to
      * @param {string} [type] Filter code transaction. example 1 or 1,2,3
-     * @param {string} [balanceType] Filter code transaction. example 1 or 1,2,3
+     * @param {string} [balance_type] Filter code transaction. example 1 or 1,2,3
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MoneyFlowApiInterface
@@ -68,9 +68,9 @@ export declare class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowAp
  * @export
  */
 export declare const MoneyFlowListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MoneyFlowListV1LanguageEnum = typeof MoneyFlowListV1LanguageEnum[keyof typeof MoneyFlowListV1LanguageEnum];
 /**

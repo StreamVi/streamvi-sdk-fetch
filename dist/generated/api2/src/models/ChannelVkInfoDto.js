@@ -20,20 +20,20 @@ const ChannelVkCategoryInfoDto_1 = require("./ChannelVkCategoryInfoDto");
  * @export
  */
 exports.ChannelVkInfoDtoPrivacyVideoEnum = {
-    All: 'all',
-    Members: 'members',
-    Editors: 'editors',
-    ByLink: 'by_link',
-    Donut: 'donut'
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    by_link: 'by_link',
+    donut: 'donut'
 };
 /**
  * @export
  */
 exports.ChannelVkInfoDtoPrivacyCommentsEnum = {
-    All: 'all',
-    Members: 'members',
-    Editors: 'editors',
-    Nobody: 'nobody'
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    nobody: 'nobody'
 };
 /**
  * Check if a given object implements the ChannelVkInfoDto interface.

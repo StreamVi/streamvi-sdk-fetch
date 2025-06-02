@@ -18,17 +18,17 @@ exports.InternalNotifyTypeActionTextToJSONTyped = exports.InternalNotifyTypeActi
  * @export
  */
 exports.InternalNotifyTypeActionTextLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.InternalNotifyTypeActionTextLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the InternalNotifyTypeActionText interface.
@@ -36,11 +36,11 @@ exports.InternalNotifyTypeActionTextLanguageIsoEnum = {
 function instanceOfInternalNotifyTypeActionText(value) {
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('complitedTitle' in value) || value['complitedTitle'] === undefined)
+    if (!('complited_title' in value) || value['complited_title'] === undefined)
         return false;
     return true;
 }
@@ -55,9 +55,9 @@ function InternalNotifyTypeActionTextFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'title': json['title'],
-        'complitedTitle': json['complited_title'],
+        'complited_title': json['complited_title'],
     };
 }
 exports.InternalNotifyTypeActionTextFromJSONTyped = InternalNotifyTypeActionTextFromJSONTyped;
@@ -71,9 +71,9 @@ function InternalNotifyTypeActionTextToJSONTyped(value, ignoreDiscriminator = fa
     }
     return {
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'title': value['title'],
-        'complited_title': value['complitedTitle'],
+        'complited_title': value['complited_title'],
     };
 }
 exports.InternalNotifyTypeActionTextToJSONTyped = InternalNotifyTypeActionTextToJSONTyped;

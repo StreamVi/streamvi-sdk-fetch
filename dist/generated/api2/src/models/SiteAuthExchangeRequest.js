@@ -26,18 +26,18 @@ exports.SiteAuthExchangeRequestVEnum = {
  * @export
  */
 exports.SiteAuthExchangeRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteAuthExchangeRequestAppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * Check if a given object implements the SiteAuthExchangeRequest interface.

@@ -32,7 +32,7 @@ export interface TranscoderCreateDto {
      * @type {number}
      * @memberof TranscoderCreateDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Width
      * @type {number}
@@ -107,9 +107,9 @@ export type TranscoderCreateDtoVEnum = typeof TranscoderCreateDtoVEnum[keyof typ
  * @export
  */
 export declare const TranscoderCreateDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type TranscoderCreateDtoLanguageEnum = typeof TranscoderCreateDtoLanguageEnum[keyof typeof TranscoderCreateDtoLanguageEnum];
 /**

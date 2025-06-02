@@ -32,7 +32,7 @@ export interface PlanTranscodingItem {
      * @type {Date}
      * @memberof PlanTranscodingItem
      */
-    dateEnd: Date;
+    date_end: Date;
     /**
      * Plan title
      * @type {string}

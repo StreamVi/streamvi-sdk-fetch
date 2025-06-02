@@ -50,11 +50,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelChatGetTelegramSettingV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelChatGetTelegramSettingV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelChatGetTelegramSettingV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelChatGetTelegramSettingV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelChatGetTelegramSettingV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -66,11 +66,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -95,11 +95,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelChatInitTelegramChatConnectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelChatInitTelegramChatConnectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelChatInitTelegramChatConnectV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelChatInitTelegramChatConnectV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelChatInitTelegramChatConnectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -111,11 +111,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -140,11 +140,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelChatRemoveTelegramChatV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelChatRemoveTelegramChatV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelChatRemoveTelegramChatV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelChatRemoveTelegramChatV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelChatRemoveTelegramChatV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -156,11 +156,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -185,14 +185,14 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelChatSetTelegramSettingV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelChatSetTelegramSettingV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelChatSetTelegramSettingV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelChatSetTelegramSettingV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelChatSetTelegramSettingV1().');
         }
-        if (requestParameters['telegramSetSettingsRequestDto'] == null) {
-            throw new runtime.RequiredError('telegramSetSettingsRequestDto', 'Required parameter "telegramSetSettingsRequestDto" was null or undefined when calling channelChatSetTelegramSettingV1().');
+        if (requestParameters['TelegramSetSettingsRequestDto'] == null) {
+            throw new runtime.RequiredError('TelegramSetSettingsRequestDto', 'Required parameter "TelegramSetSettingsRequestDto" was null or undefined when calling channelChatSetTelegramSettingV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -204,11 +204,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
@@ -217,7 +217,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TelegramSetSettingsRequestDtoToJSON)(requestParameters['telegramSetSettingsRequestDto']),
+            body: (0, index_1.TelegramSetSettingsRequestDtoToJSON)(requestParameters['TelegramSetSettingsRequestDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -235,11 +235,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelChatTelegramPostsV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelChatTelegramPostsV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelChatTelegramPostsV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelChatTelegramPostsV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelChatTelegramPostsV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -251,11 +251,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -277,8 +277,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for telegram
      */
     async channelChatUpdateOptionsTelegramV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateChatTelegramRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateChatTelegramRequest', 'Required parameter "siteUpdateChatTelegramRequest" was null or undefined when calling channelChatUpdateOptionsTelegramV1().');
+        if (requestParameters['SiteUpdateChatTelegramRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateChatTelegramRequest', 'Required parameter "SiteUpdateChatTelegramRequest" was null or undefined when calling channelChatUpdateOptionsTelegramV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -288,7 +288,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateChatTelegramRequestToJSON)(requestParameters['siteUpdateChatTelegramRequest']),
+            body: (0, index_1.SiteUpdateChatTelegramRequestToJSON)(requestParameters['SiteUpdateChatTelegramRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -306,11 +306,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelOptionsGetPlannedV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelOptionsGetPlannedV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelOptionsGetPlannedV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelOptionsGetPlannedV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelOptionsGetPlannedV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -322,11 +322,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -351,11 +351,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelOptionsGetPlayListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelOptionsGetPlayListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelOptionsGetPlayListV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelOptionsGetPlayListV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelOptionsGetPlayListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -367,11 +367,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -393,8 +393,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for ok. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsOkV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsOkRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsOkRequest', 'Required parameter "siteUpdateOptionsOkRequest" was null or undefined when calling channelOptionsUpdateOptionsOkV1().');
+        if (requestParameters['SiteUpdateOptionsOkRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsOkRequest', 'Required parameter "SiteUpdateOptionsOkRequest" was null or undefined when calling channelOptionsUpdateOptionsOkV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -404,7 +404,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsOkRequestToJSON)(requestParameters['siteUpdateOptionsOkRequest']),
+            body: (0, index_1.SiteUpdateOptionsOkRequestToJSON)(requestParameters['SiteUpdateOptionsOkRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -419,8 +419,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for trovo. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTrovoV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsTrovoRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsTrovoRequest', 'Required parameter "siteUpdateOptionsTrovoRequest" was null or undefined when calling channelOptionsUpdateOptionsTrovoV1().');
+        if (requestParameters['SiteUpdateOptionsTrovoRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsTrovoRequest', 'Required parameter "SiteUpdateOptionsTrovoRequest" was null or undefined when calling channelOptionsUpdateOptionsTrovoV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -430,7 +430,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsTrovoRequestToJSON)(requestParameters['siteUpdateOptionsTrovoRequest']),
+            body: (0, index_1.SiteUpdateOptionsTrovoRequestToJSON)(requestParameters['SiteUpdateOptionsTrovoRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -445,8 +445,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for twitch. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTwitchV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsTwitchRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsTwitchRequest', 'Required parameter "siteUpdateOptionsTwitchRequest" was null or undefined when calling channelOptionsUpdateOptionsTwitchV1().');
+        if (requestParameters['SiteUpdateOptionsTwitchRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsTwitchRequest', 'Required parameter "SiteUpdateOptionsTwitchRequest" was null or undefined when calling channelOptionsUpdateOptionsTwitchV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -456,7 +456,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsTwitchRequestToJSON)(requestParameters['siteUpdateOptionsTwitchRequest']),
+            body: (0, index_1.SiteUpdateOptionsTwitchRequestToJSON)(requestParameters['SiteUpdateOptionsTwitchRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -471,8 +471,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for vk. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsVkRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsVkRequest', 'Required parameter "siteUpdateOptionsVkRequest" was null or undefined when calling channelOptionsUpdateOptionsVkV1().');
+        if (requestParameters['SiteUpdateOptionsVkRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsVkRequest', 'Required parameter "SiteUpdateOptionsVkRequest" was null or undefined when calling channelOptionsUpdateOptionsVkV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -482,7 +482,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsVkRequestToJSON)(requestParameters['siteUpdateOptionsVkRequest']),
+            body: (0, index_1.SiteUpdateOptionsVkRequestToJSON)(requestParameters['SiteUpdateOptionsVkRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -497,8 +497,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for vk video live. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkVideoLiveV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsVkVideoLiveRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsVkVideoLiveRequest', 'Required parameter "siteUpdateOptionsVkVideoLiveRequest" was null or undefined when calling channelOptionsUpdateOptionsVkVideoLiveV1().');
+        if (requestParameters['SiteUpdateOptionsVkVideoLiveRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsVkVideoLiveRequest', 'Required parameter "SiteUpdateOptionsVkVideoLiveRequest" was null or undefined when calling channelOptionsUpdateOptionsVkVideoLiveV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -508,7 +508,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsVkVideoLiveRequestToJSON)(requestParameters['siteUpdateOptionsVkVideoLiveRequest']),
+            body: (0, index_1.SiteUpdateOptionsVkVideoLiveRequestToJSON)(requestParameters['SiteUpdateOptionsVkVideoLiveRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -523,8 +523,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for youtube. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsYoutubeV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteUpdateOptionsYoutubeRequest'] == null) {
-            throw new runtime.RequiredError('siteUpdateOptionsYoutubeRequest', 'Required parameter "siteUpdateOptionsYoutubeRequest" was null or undefined when calling channelOptionsUpdateOptionsYoutubeV1().');
+        if (requestParameters['SiteUpdateOptionsYoutubeRequest'] == null) {
+            throw new runtime.RequiredError('SiteUpdateOptionsYoutubeRequest', 'Required parameter "SiteUpdateOptionsYoutubeRequest" was null or undefined when calling channelOptionsUpdateOptionsYoutubeV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -534,7 +534,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsYoutubeRequestToJSON)(requestParameters['siteUpdateOptionsYoutubeRequest']),
+            body: (0, index_1.SiteUpdateOptionsYoutubeRequestToJSON)(requestParameters['SiteUpdateOptionsYoutubeRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -549,8 +549,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set planned id. Depends on the tariff.
      */
     async channelOptionsUpdatePlannedV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteSetPlannedRequest'] == null) {
-            throw new runtime.RequiredError('siteSetPlannedRequest', 'Required parameter "siteSetPlannedRequest" was null or undefined when calling channelOptionsUpdatePlannedV1().');
+        if (requestParameters['SiteSetPlannedRequest'] == null) {
+            throw new runtime.RequiredError('SiteSetPlannedRequest', 'Required parameter "SiteSetPlannedRequest" was null or undefined when calling channelOptionsUpdatePlannedV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -560,7 +560,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetPlannedRequestToJSON)(requestParameters['siteSetPlannedRequest']),
+            body: (0, index_1.SiteSetPlannedRequestToJSON)(requestParameters['SiteSetPlannedRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SitePlannedResponseFromJSON)(jsonValue));
     }
@@ -596,8 +596,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set name from custom channel. Global settings.
      */
     async channelSettingSetNameV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteSetNameRequest'] == null) {
-            throw new runtime.RequiredError('siteSetNameRequest', 'Required parameter "siteSetNameRequest" was null or undefined when calling channelSettingSetNameV1().');
+        if (requestParameters['SiteSetNameRequest'] == null) {
+            throw new runtime.RequiredError('SiteSetNameRequest', 'Required parameter "SiteSetNameRequest" was null or undefined when calling channelSettingSetNameV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -607,7 +607,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetNameRequestToJSON)(requestParameters['siteSetNameRequest']),
+            body: (0, index_1.SiteSetNameRequestToJSON)(requestParameters['SiteSetNameRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -622,8 +622,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set rtmp url from channel. Global settings.
      */
     async channelSettingUpdateRtmpV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteSetUrlRequest'] == null) {
-            throw new runtime.RequiredError('siteSetUrlRequest', 'Required parameter "siteSetUrlRequest" was null or undefined when calling channelSettingUpdateRtmpV1().');
+        if (requestParameters['SiteSetUrlRequest'] == null) {
+            throw new runtime.RequiredError('SiteSetUrlRequest', 'Required parameter "SiteSetUrlRequest" was null or undefined when calling channelSettingUpdateRtmpV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -633,7 +633,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetUrlRequestToJSON)(requestParameters['siteSetUrlRequest']),
+            body: (0, index_1.SiteSetUrlRequestToJSON)(requestParameters['SiteSetUrlRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -651,11 +651,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelSettingUpdateTokenV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling channelSettingUpdateTokenV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelSettingUpdateTokenV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling channelSettingUpdateTokenV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelSettingUpdateTokenV1().');
         }
         if (requestParameters['role'] == null) {
             throw new runtime.RequiredError('role', 'Required parameter "role" was null or undefined when calling channelSettingUpdateTokenV1().');
@@ -670,11 +670,11 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         if (requestParameters['role'] != null) {
             queryParameters['role'] = requestParameters['role'];
@@ -698,8 +698,8 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set transcoder from channel. Personal settings.
      */
     async channelSettingUpdateTranscoderV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteSetTranscoderRequest'] == null) {
-            throw new runtime.RequiredError('siteSetTranscoderRequest', 'Required parameter "siteSetTranscoderRequest" was null or undefined when calling channelSettingUpdateTranscoderV1().');
+        if (requestParameters['SiteSetTranscoderRequest'] == null) {
+            throw new runtime.RequiredError('SiteSetTranscoderRequest', 'Required parameter "SiteSetTranscoderRequest" was null or undefined when calling channelSettingUpdateTranscoderV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -709,7 +709,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetTranscoderRequestToJSON)(requestParameters['siteSetTranscoderRequest']),
+            body: (0, index_1.SiteSetTranscoderRequestToJSON)(requestParameters['SiteSetTranscoderRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -727,14 +727,14 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling telegramGetPostByFilterV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling telegramGetPostByFilterV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling telegramGetPostByFilterV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling telegramGetPostByFilterV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling telegramGetPostByFilterV1().');
         }
-        if (requestParameters['filterMode'] == null) {
-            throw new runtime.RequiredError('filterMode', 'Required parameter "filterMode" was null or undefined when calling telegramGetPostByFilterV1().');
+        if (requestParameters['filter_mode'] == null) {
+            throw new runtime.RequiredError('filter_mode', 'Required parameter "filter_mode" was null or undefined when calling telegramGetPostByFilterV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -746,14 +746,14 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
-        if (requestParameters['filterMode'] != null) {
-            queryParameters['filter_mode'] = requestParameters['filterMode'];
+        if (requestParameters['filter_mode'] != null) {
+            queryParameters['filter_mode'] = requestParameters['filter_mode'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -777,9 +777,9 @@ exports.ChannelSettingsApi = ChannelSettingsApi;
  * @export
  */
 exports.ChannelChatGetTelegramSettingV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -793,9 +793,9 @@ exports.ChannelChatGetTelegramSettingV1VEnum = {
  * @export
  */
 exports.ChannelChatInitTelegramChatConnectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -809,9 +809,9 @@ exports.ChannelChatInitTelegramChatConnectV1VEnum = {
  * @export
  */
 exports.ChannelChatRemoveTelegramChatV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -825,9 +825,9 @@ exports.ChannelChatRemoveTelegramChatV1VEnum = {
  * @export
  */
 exports.ChannelChatSetTelegramSettingV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -841,9 +841,9 @@ exports.ChannelChatSetTelegramSettingV1VEnum = {
  * @export
  */
 exports.ChannelChatTelegramPostsV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -857,9 +857,9 @@ exports.ChannelChatTelegramPostsV1VEnum = {
  * @export
  */
 exports.ChannelOptionsGetPlannedV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -873,9 +873,9 @@ exports.ChannelOptionsGetPlannedV1VEnum = {
  * @export
  */
 exports.ChannelOptionsGetPlayListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -889,16 +889,16 @@ exports.ChannelOptionsGetPlayListV1VEnum = {
  * @export
  */
 exports.ChannelSettingUpdateTokenV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.ChannelSettingUpdateTokenV1RoleEnum = {
-    Account: 'account',
-    Group: 'group'
+    account: 'account',
+    group: 'group'
 };
 /**
  * @export
@@ -912,9 +912,9 @@ exports.ChannelSettingUpdateTokenV1VEnum = {
  * @export
  */
 exports.TelegramGetPostByFilterV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

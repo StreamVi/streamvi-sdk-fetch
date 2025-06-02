@@ -20,7 +20,7 @@ export interface SiteAuthCentrifugeResponse {
      * @type {string}
      * @memberof SiteAuthCentrifugeResponse
      */
-    accessToken: string;
+    access_token: string;
 }
 /**
  * Check if a given object implements the SiteAuthCentrifugeResponse interface.

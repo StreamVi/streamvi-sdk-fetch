@@ -13,12 +13,12 @@ import * as runtime from '../runtime';
 import type { MethodSetStatusChannelRequest, SiteGetShortChannelResponse, SiteSearchChannelResponse, SuccessResponse } from '../models/index';
 export interface ChannelShortChannelListV1Request {
     language: ChannelShortChannelListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: ChannelShortChannelListV1VEnum;
 }
 export interface MethodSearchV1Request {
     language: MethodSearchV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: MethodSearchV1VEnum;
     type?: MethodSearchV1TypeEnum;
     platform?: string;
@@ -27,7 +27,7 @@ export interface MethodSearchV1Request {
     offset?: number;
 }
 export interface MethodSetStatusV1Request {
-    methodSetStatusChannelRequest: MethodSetStatusChannelRequest;
+    MethodSetStatusChannelRequest: MethodSetStatusChannelRequest;
 }
 /**
  * ChannelApi - interface
@@ -40,7 +40,7 @@ export interface ChannelApiInterface {
      *
      * @summary Minimal channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55,7 +55,7 @@ export interface ChannelApiInterface {
      *
      * @summary Search channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'all' | 'my' | 'available' | 'active'} [type]
      * @param {string} [platform] platform type
@@ -74,7 +74,7 @@ export interface ChannelApiInterface {
     /**
      *
      * @summary Get live status
-     * @param {MethodSetStatusChannelRequest} methodSetStatusChannelRequest
+     * @param {MethodSetStatusChannelRequest} MethodSetStatusChannelRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -118,9 +118,9 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
  * @export
  */
 export declare const ChannelShortChannelListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelShortChannelListV1LanguageEnum = typeof ChannelShortChannelListV1LanguageEnum[keyof typeof ChannelShortChannelListV1LanguageEnum];
 /**
@@ -136,9 +136,9 @@ export type ChannelShortChannelListV1VEnum = typeof ChannelShortChannelListV1VEn
  * @export
  */
 export declare const MethodSearchV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodSearchV1LanguageEnum = typeof MethodSearchV1LanguageEnum[keyof typeof MethodSearchV1LanguageEnum];
 /**
@@ -154,10 +154,10 @@ export type MethodSearchV1VEnum = typeof MethodSearchV1VEnum[keyof typeof Method
  * @export
  */
 export declare const MethodSearchV1TypeEnum: {
-    readonly All: "all";
-    readonly My: "my";
-    readonly Available: "available";
-    readonly Active: "active";
+    readonly all: "all";
+    readonly my: "my";
+    readonly available: "available";
+    readonly active: "active";
 };
 export type MethodSearchV1TypeEnum = typeof MethodSearchV1TypeEnum[keyof typeof MethodSearchV1TypeEnum];
 //# sourceMappingURL=ChannelApi.d.ts.map

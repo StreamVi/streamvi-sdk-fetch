@@ -13,11 +13,11 @@ import * as runtime from '../runtime';
 import type { GetStreamKeyResponse, SetRecordStreamRequest, SuccessResponse } from '../models/index';
 export interface StreamKeysKeyV1Request {
     language: StreamKeysKeyV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: StreamKeysKeyV1VEnum;
 }
 export interface StreamKeysUpdateRecordV1Request {
-    setRecordStreamRequest: SetRecordStreamRequest;
+    SetRecordStreamRequest: SetRecordStreamRequest;
 }
 /**
  * StreamKeyApi - interface
@@ -30,7 +30,7 @@ export interface StreamKeyApiInterface {
      *
      * @summary Get stream credentials
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -44,7 +44,7 @@ export interface StreamKeyApiInterface {
     /**
      *
      * @summary Update record
-     * @param {SetRecordStreamRequest} setRecordStreamRequest
+     * @param {SetRecordStreamRequest} SetRecordStreamRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -80,9 +80,9 @@ export declare class StreamKeyApi extends runtime.BaseAPI implements StreamKeyAp
  * @export
  */
 export declare const StreamKeysKeyV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type StreamKeysKeyV1LanguageEnum = typeof StreamKeysKeyV1LanguageEnum[keyof typeof StreamKeysKeyV1LanguageEnum];
 /**

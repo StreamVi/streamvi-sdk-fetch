@@ -20,25 +20,25 @@ export interface PaymentCreateResponse {
      * @type {number}
      * @memberof PaymentCreateResponse
      */
-    paymentId: number;
+    payment_id: number;
     /**
      * Pay system name
      * @type {string}
      * @memberof PaymentCreateResponse
      */
-    payName: string;
+    pay_name: string;
     /**
      * Pay system id
      * @type {string}
      * @memberof PaymentCreateResponse
      */
-    payId?: string;
+    pay_id?: string;
     /**
      * Pay system key
      * @type {string}
      * @memberof PaymentCreateResponse
      */
-    payKey?: string;
+    pay_key?: string;
 }
 /**
  * Check if a given object implements the PaymentCreateResponse interface.

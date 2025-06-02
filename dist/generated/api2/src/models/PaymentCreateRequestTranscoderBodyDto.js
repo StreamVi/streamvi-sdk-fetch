@@ -26,25 +26,25 @@ exports.PaymentCreateRequestTranscoderBodyDtoVEnum = {
  * @export
  */
 exports.PaymentCreateRequestTranscoderBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestTranscoderBodyDtoTypeEnum = {
-    Restream: 'restream',
-    Transcoding: 'transcoding',
-    Storage: 'storage',
-    Topup: 'topup'
+    restream: 'restream',
+    transcoding: 'transcoding',
+    storage: 'storage',
+    topup: 'topup'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PaymentCreateRequestTranscoderBodyDto interface.
@@ -54,17 +54,17 @@ function instanceOfPaymentCreateRequestTranscoderBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
-    if (!('planPeriod' in value) || value['planPeriod'] === undefined)
+    if (!('plan_period' in value) || value['plan_period'] === undefined)
         return false;
-    if (!('planTranscodingId' in value) || value['planTranscodingId'] === undefined)
+    if (!('plan_transcoding_id' in value) || value['plan_transcoding_id'] === undefined)
         return false;
-    if (!('planTranscodingCountFlow' in value) || value['planTranscodingCountFlow'] === undefined)
+    if (!('plan_transcoding_count_flow' in value) || value['plan_transcoding_count_flow'] === undefined)
         return false;
     return true;
 }
@@ -80,12 +80,12 @@ function PaymentCreateRequestTranscoderBodyDtoFromJSONTyped(json, ignoreDiscrimi
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'type': json['type'],
         'amount': json['amount'],
-        'planPeriod': json['plan_period'],
-        'planTranscodingId': json['plan_transcoding_id'],
-        'planTranscodingCountFlow': json['plan_transcoding_count_flow'],
+        'plan_period': json['plan_period'],
+        'plan_transcoding_id': json['plan_transcoding_id'],
+        'plan_transcoding_count_flow': json['plan_transcoding_count_flow'],
     };
 }
 exports.PaymentCreateRequestTranscoderBodyDtoFromJSONTyped = PaymentCreateRequestTranscoderBodyDtoFromJSONTyped;
@@ -100,12 +100,12 @@ function PaymentCreateRequestTranscoderBodyDtoToJSONTyped(value, ignoreDiscrimin
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'type': value['type'],
         'amount': value['amount'],
-        'plan_period': value['planPeriod'],
-        'plan_transcoding_id': value['planTranscodingId'],
-        'plan_transcoding_count_flow': value['planTranscodingCountFlow'],
+        'plan_period': value['plan_period'],
+        'plan_transcoding_id': value['plan_transcoding_id'],
+        'plan_transcoding_count_flow': value['plan_transcoding_count_flow'],
     };
 }
 exports.PaymentCreateRequestTranscoderBodyDtoToJSONTyped = PaymentCreateRequestTranscoderBodyDtoToJSONTyped;

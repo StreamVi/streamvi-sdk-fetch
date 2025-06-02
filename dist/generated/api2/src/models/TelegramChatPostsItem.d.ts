@@ -20,7 +20,7 @@ export interface TelegramChatPostsItem {
      * @type {number}
      * @memberof TelegramChatPostsItem
      */
-    messageId: number;
+    message_id: number;
     /**
      * text
      * @type {string}

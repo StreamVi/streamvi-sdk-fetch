@@ -13,8 +13,8 @@ import * as runtime from '../runtime';
 import type { SiteLiveRestreamsInfoResponse } from '../models/index';
 export interface ControllersRestreamsV1Request {
     language: ControllersRestreamsV1LanguageEnum;
-    projectId: number;
-    broadcastId: number;
+    project_id: number;
+    broadcast_id: number;
     v?: ControllersRestreamsV1VEnum;
 }
 /**
@@ -28,8 +28,8 @@ export interface LiveApiInterface {
      *
      * @summary View live info
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} broadcastId Broadcast id
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id Broadcast id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -58,9 +58,9 @@ export declare class LiveApi extends runtime.BaseAPI implements LiveApiInterface
  * @export
  */
 export declare const ControllersRestreamsV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ControllersRestreamsV1LanguageEnum = typeof ControllersRestreamsV1LanguageEnum[keyof typeof ControllersRestreamsV1LanguageEnum];
 /**

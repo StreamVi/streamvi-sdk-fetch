@@ -50,9 +50,9 @@ export interface RtmpServerPlatformQuality {
  * @export
  */
 export declare const RtmpServerPlatformQualityStatusEnum: {
-    readonly Good: "good";
-    readonly Problem: "problem";
-    readonly Bad: "bad";
+    readonly good: "good";
+    readonly problem: "problem";
+    readonly bad: "bad";
 };
 export type RtmpServerPlatformQualityStatusEnum = typeof RtmpServerPlatformQualityStatusEnum[keyof typeof RtmpServerPlatformQualityStatusEnum];
 /**

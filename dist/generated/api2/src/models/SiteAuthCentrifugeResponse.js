@@ -18,7 +18,7 @@ exports.SiteAuthCentrifugeResponseToJSONTyped = exports.SiteAuthCentrifugeRespon
  * Check if a given object implements the SiteAuthCentrifugeResponse interface.
  */
 function instanceOfSiteAuthCentrifugeResponse(value) {
-    if (!('accessToken' in value) || value['accessToken'] === undefined)
+    if (!('access_token' in value) || value['access_token'] === undefined)
         return false;
     return true;
 }
@@ -32,7 +32,7 @@ function SiteAuthCentrifugeResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'accessToken': json['access_token'],
+        'access_token': json['access_token'],
     };
 }
 exports.SiteAuthCentrifugeResponseFromJSONTyped = SiteAuthCentrifugeResponseFromJSONTyped;
@@ -45,7 +45,7 @@ function SiteAuthCentrifugeResponseToJSONTyped(value, ignoreDiscriminator = fals
         return value;
     }
     return {
-        'access_token': value['accessToken'],
+        'access_token': value['access_token'],
     };
 }
 exports.SiteAuthCentrifugeResponseToJSONTyped = SiteAuthCentrifugeResponseToJSONTyped;

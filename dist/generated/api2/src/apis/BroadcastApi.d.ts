@@ -13,7 +13,7 @@ import * as runtime from '../runtime';
 import type { MethodBroadcastRestreamsResponse, MethodCurrentBroadcastResponse } from '../models/index';
 export interface MethodBroadcastRestreamsV1Request {
     language: MethodBroadcastRestreamsV1LanguageEnum;
-    broadcastId: number;
+    broadcast_id: number;
     key: string;
     v?: MethodBroadcastRestreamsV1VEnum;
 }
@@ -33,7 +33,7 @@ export interface BroadcastApiInterface {
      *
      * @summary Get restreams
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} broadcastId broadcast id
+     * @param {number} broadcast_id broadcast id
      * @param {string} key Chat token
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -86,9 +86,9 @@ export declare class BroadcastApi extends runtime.BaseAPI implements BroadcastAp
  * @export
  */
 export declare const MethodBroadcastRestreamsV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodBroadcastRestreamsV1LanguageEnum = typeof MethodBroadcastRestreamsV1LanguageEnum[keyof typeof MethodBroadcastRestreamsV1LanguageEnum];
 /**
@@ -104,9 +104,9 @@ export type MethodBroadcastRestreamsV1VEnum = typeof MethodBroadcastRestreamsV1V
  * @export
  */
 export declare const MethodBroadcastTokenChannelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodBroadcastTokenChannelV1LanguageEnum = typeof MethodBroadcastTokenChannelV1LanguageEnum[keyof typeof MethodBroadcastTokenChannelV1LanguageEnum];
 /**

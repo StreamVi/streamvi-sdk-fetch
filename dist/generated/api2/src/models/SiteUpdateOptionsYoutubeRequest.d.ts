@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsYoutubeRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -56,19 +56,19 @@ export interface SiteUpdateOptionsYoutubeRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    categoryId: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    categoryName: string;
+    category_name: string;
     /**
      * playlist id
      * @type {string}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    playlistId: string;
+    playlist_id: string;
     /**
      *
      * @type {string}
@@ -86,7 +86,7 @@ export interface SiteUpdateOptionsYoutubeRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    privacyVideo: SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum;
+    privacy_video: SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum;
     /**
      *
      * @type {string}
@@ -119,43 +119,43 @@ export type SiteUpdateOptionsYoutubeRequestVEnum = typeof SiteUpdateOptionsYoutu
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsYoutubeRequestLanguageEnum = typeof SiteUpdateOptionsYoutubeRequestLanguageEnum[keyof typeof SiteUpdateOptionsYoutubeRequestLanguageEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestAudienceEnum: {
-    readonly MarkForKids: "mark_for_kids";
-    readonly MarkForNokids: "mark_for_nokids";
+    readonly mark_for_kids: "mark_for_kids";
+    readonly mark_for_nokids: "mark_for_nokids";
 };
 export type SiteUpdateOptionsYoutubeRequestAudienceEnum = typeof SiteUpdateOptionsYoutubeRequestAudienceEnum[keyof typeof SiteUpdateOptionsYoutubeRequestAudienceEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestLatencyEnum: {
-    readonly Normal: "normal";
-    readonly Low: "low";
-    readonly UltraLow: "ultraLow";
+    readonly normal: "normal";
+    readonly low: "low";
+    readonly ultraLow: "ultraLow";
 };
 export type SiteUpdateOptionsYoutubeRequestLatencyEnum = typeof SiteUpdateOptionsYoutubeRequestLatencyEnum[keyof typeof SiteUpdateOptionsYoutubeRequestLatencyEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum: {
-    readonly Private: "private";
-    readonly Public: "public";
-    readonly Unlisted: "unlisted";
+    readonly private: "private";
+    readonly public: "public";
+    readonly unlisted: "unlisted";
 };
 export type SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum = typeof SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum[keyof typeof SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
+    readonly ru: "ru";
+    readonly en: "en";
 };
 export type SiteUpdateOptionsYoutubeRequestLangEnum = typeof SiteUpdateOptionsYoutubeRequestLangEnum[keyof typeof SiteUpdateOptionsYoutubeRequestLangEnum];
 /**

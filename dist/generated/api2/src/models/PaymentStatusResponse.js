@@ -18,27 +18,27 @@ exports.PaymentStatusResponseToJSONTyped = exports.PaymentStatusResponseToJSON =
  * @export
  */
 exports.PaymentStatusResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * @export
  */
 exports.PaymentStatusResponsePlanPeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PaymentStatusResponse interface.
  */
 function instanceOfPaymentStatusResponse(value) {
-    if (!('paymentId' in value) || value['paymentId'] === undefined)
+    if (!('payment_id' in value) || value['payment_id'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('planPeriod' in value) || value['planPeriod'] === undefined)
+    if (!('plan_period' in value) || value['plan_period'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -56,10 +56,10 @@ function PaymentStatusResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'paymentId': json['payment_id'],
+        'payment_id': json['payment_id'],
         'amount': json['amount'],
         'currency': json['currency'],
-        'planPeriod': json['plan_period'],
+        'plan_period': json['plan_period'],
         'status': json['status'],
         'type': json['type'],
         'title': json['title'] == null ? undefined : json['title'],
@@ -75,10 +75,10 @@ function PaymentStatusResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'payment_id': value['paymentId'],
+        'payment_id': value['payment_id'],
         'amount': value['amount'],
         'currency': value['currency'],
-        'plan_period': value['planPeriod'],
+        'plan_period': value['plan_period'],
         'status': value['status'],
         'type': value['type'],
         'title': value['title'],

@@ -38,14 +38,14 @@ export interface PlanStorageItem {
      * @type {Date}
      * @memberof PlanStorageItem
      */
-    dateEnd: Date;
+    date_end: Date;
 }
 /**
  * @export
  */
 export declare const PlanStorageItemPeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanStorageItemPeriodEnum = typeof PlanStorageItemPeriodEnum[keyof typeof PlanStorageItemPeriodEnum];
 /**

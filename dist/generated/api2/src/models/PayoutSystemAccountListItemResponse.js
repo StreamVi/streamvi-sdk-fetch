@@ -18,29 +18,29 @@ exports.PayoutSystemAccountListItemResponseToJSONTyped = exports.PayoutSystemAcc
  * @export
  */
 exports.PayoutSystemAccountListItemResponseCommissionTypeEnum = {
-    Percent: 'percent',
-    Fix: 'fix'
+    percent: 'percent',
+    fix: 'fix'
 };
 /**
  * @export
  */
 exports.PayoutSystemAccountListItemResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the PayoutSystemAccountListItemResponse interface.
  */
 function instanceOfPayoutSystemAccountListItemResponse(value) {
-    if (!('payoutSystemAccountId' in value) || value['payoutSystemAccountId'] === undefined)
+    if (!('payout_system_account_id' in value) || value['payout_system_account_id'] === undefined)
         return false;
-    if (!('payoutSystemId' in value) || value['payoutSystemId'] === undefined)
+    if (!('payout_system_id' in value) || value['payout_system_id'] === undefined)
         return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
     if (!('commission' in value) || value['commission'] === undefined)
         return false;
-    if (!('commissionType' in value) || value['commissionType'] === undefined)
+    if (!('commission_type' in value) || value['commission_type'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
@@ -48,9 +48,9 @@ function instanceOfPayoutSystemAccountListItemResponse(value) {
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('minAmount' in value) || value['minAmount'] === undefined)
+    if (!('min_amount' in value) || value['min_amount'] === undefined)
         return false;
-    if (!('maxAmount' in value) || value['maxAmount'] === undefined)
+    if (!('max_amount' in value) || value['max_amount'] === undefined)
         return false;
     return true;
 }
@@ -64,16 +64,16 @@ function PayoutSystemAccountListItemResponseFromJSONTyped(json, ignoreDiscrimina
         return json;
     }
     return {
-        'payoutSystemAccountId': json['payout_system_account_id'],
-        'payoutSystemId': json['payout_system_id'],
+        'payout_system_account_id': json['payout_system_account_id'],
+        'payout_system_id': json['payout_system_id'],
         'description': json['description'],
         'commission': json['commission'],
-        'commissionType': json['commission_type'],
+        'commission_type': json['commission_type'],
         'title': json['title'],
         'active': json['active'],
         'currency': json['currency'],
-        'minAmount': json['min_amount'],
-        'maxAmount': json['max_amount'],
+        'min_amount': json['min_amount'],
+        'max_amount': json['max_amount'],
     };
 }
 exports.PayoutSystemAccountListItemResponseFromJSONTyped = PayoutSystemAccountListItemResponseFromJSONTyped;
@@ -86,16 +86,16 @@ function PayoutSystemAccountListItemResponseToJSONTyped(value, ignoreDiscriminat
         return value;
     }
     return {
-        'payout_system_account_id': value['payoutSystemAccountId'],
-        'payout_system_id': value['payoutSystemId'],
+        'payout_system_account_id': value['payout_system_account_id'],
+        'payout_system_id': value['payout_system_id'],
         'description': value['description'],
         'commission': value['commission'],
-        'commission_type': value['commissionType'],
+        'commission_type': value['commission_type'],
         'title': value['title'],
         'active': value['active'],
         'currency': value['currency'],
-        'min_amount': value['minAmount'],
-        'max_amount': value['maxAmount'],
+        'min_amount': value['min_amount'],
+        'max_amount': value['max_amount'],
     };
 }
 exports.PayoutSystemAccountListItemResponseToJSONTyped = PayoutSystemAccountListItemResponseToJSONTyped;

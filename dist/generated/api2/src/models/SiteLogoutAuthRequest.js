@@ -18,10 +18,10 @@ exports.SiteLogoutAuthRequestToJSONTyped = exports.SiteLogoutAuthRequestToJSON =
  * @export
  */
 exports.SiteLogoutAuthRequestAppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * Check if a given object implements the SiteLogoutAuthRequest interface.

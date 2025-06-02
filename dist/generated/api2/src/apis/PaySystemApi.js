@@ -49,8 +49,8 @@ class PaySystemApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySystemCreateChallengeV1().');
         }
-        if (requestParameters['paymentId'] == null) {
-            throw new runtime.RequiredError('paymentId', 'Required parameter "paymentId" was null or undefined when calling paySystemCreateChallengeV1().');
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError('payment_id', 'Required parameter "payment_id" was null or undefined when calling paySystemCreateChallengeV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -62,8 +62,8 @@ class PaySystemApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['paymentId'] != null) {
-            queryParameters['payment_id'] = requestParameters['paymentId'];
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -86,8 +86,8 @@ class PaySystemApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySystemCreateUnitpayV1().');
         }
-        if (requestParameters['paymentId'] == null) {
-            throw new runtime.RequiredError('paymentId', 'Required parameter "paymentId" was null or undefined when calling paySystemCreateUnitpayV1().');
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError('payment_id', 'Required parameter "payment_id" was null or undefined when calling paySystemCreateUnitpayV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -99,8 +99,8 @@ class PaySystemApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['paymentId'] != null) {
-            queryParameters['payment_id'] = requestParameters['paymentId'];
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -144,9 +144,9 @@ exports.PaySystemApi = PaySystemApi;
  * @export
  */
 exports.PaySystemCreateChallengeV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -160,9 +160,9 @@ exports.PaySystemCreateChallengeV1VEnum = {
  * @export
  */
 exports.PaySystemCreateUnitpayV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

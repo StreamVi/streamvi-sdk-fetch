@@ -29,15 +29,15 @@ exports.UserProjectResponseAccessTypeEnum = {
 function instanceOfUserProjectResponse(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('accessType' in value) || value['accessType'] === undefined)
+    if (!('access_type' in value) || value['access_type'] === undefined)
         return false;
     if (!('project' in value) || value['project'] === undefined)
         return false;
-    if (!('memberCount' in value) || value['memberCount'] === undefined)
+    if (!('member_count' in value) || value['member_count'] === undefined)
         return false;
     return true;
 }
@@ -52,11 +52,11 @@ function UserProjectResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'userId': json['user_id'],
-        'projectId': json['project_id'],
-        'accessType': json['access_type'],
+        'user_id': json['user_id'],
+        'project_id': json['project_id'],
+        'access_type': json['access_type'],
         'project': (0, UserProject2ProjectResponse_1.UserProject2ProjectResponseFromJSON)(json['project']),
-        'memberCount': json['member_count'],
+        'member_count': json['member_count'],
     };
 }
 exports.UserProjectResponseFromJSONTyped = UserProjectResponseFromJSONTyped;
@@ -70,11 +70,11 @@ function UserProjectResponseToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'user_id': value['userId'],
-        'project_id': value['projectId'],
-        'access_type': value['accessType'],
+        'user_id': value['user_id'],
+        'project_id': value['project_id'],
+        'access_type': value['access_type'],
         'project': (0, UserProject2ProjectResponse_1.UserProject2ProjectResponseToJSON)(value['project']),
-        'member_count': value['memberCount'],
+        'member_count': value['member_count'],
     };
 }
 exports.UserProjectResponseToJSONTyped = UserProjectResponseToJSONTyped;

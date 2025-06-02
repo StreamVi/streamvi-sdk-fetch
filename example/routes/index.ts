@@ -21,7 +21,7 @@ async function getProjectInfo(accessToken: string, projectId: number, language: 
     language: language,
     project_id: projectId
   });
-  return response; // В fetch API данные возвращаются напрямую, без .data
+  return response; // Ответ содержит структуру с полем data, доступ к данным проекта через response.data
 }
 
 const router = Router();

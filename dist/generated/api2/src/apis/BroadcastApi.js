@@ -50,8 +50,8 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodBroadcastRestreamsV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling methodBroadcastRestreamsV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling methodBroadcastRestreamsV1().');
         }
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling methodBroadcastRestreamsV1().');
@@ -66,8 +66,8 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
@@ -140,9 +140,9 @@ exports.BroadcastApi = BroadcastApi;
  * @export
  */
 exports.MethodBroadcastRestreamsV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -156,9 +156,9 @@ exports.MethodBroadcastRestreamsV1VEnum = {
  * @export
  */
 exports.MethodBroadcastTokenChannelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

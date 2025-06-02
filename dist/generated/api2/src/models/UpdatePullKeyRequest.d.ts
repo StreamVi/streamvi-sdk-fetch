@@ -32,7 +32,7 @@ export interface UpdatePullKeyRequest {
      * @type {number}
      * @memberof UpdatePullKeyRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Key
      * @type {string}
@@ -59,9 +59,9 @@ export type UpdatePullKeyRequestVEnum = typeof UpdatePullKeyRequestVEnum[keyof t
  * @export
  */
 export declare const UpdatePullKeyRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UpdatePullKeyRequestLanguageEnum = typeof UpdatePullKeyRequestLanguageEnum[keyof typeof UpdatePullKeyRequestLanguageEnum];
 /**

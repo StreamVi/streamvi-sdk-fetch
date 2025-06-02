@@ -25,8 +25,8 @@ exports.UserProjectGetResponseTypeEnum = {
  * @export
  */
 exports.UserProjectGetResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the UserProjectGetResponse interface.
@@ -36,21 +36,21 @@ function instanceOfUserProjectGetResponse(value) {
         return false;
     if (!('fename' in value) || value['fename'] === undefined)
         return false;
-    if (!('photo50' in value) || value['photo50'] === undefined)
+    if (!('photo_50' in value) || value['photo_50'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('externalId' in value) || value['externalId'] === undefined)
+    if (!('external_id' in value) || value['external_id'] === undefined)
         return false;
-    if (!('internalId' in value) || value['internalId'] === undefined)
+    if (!('internal_id' in value) || value['internal_id'] === undefined)
         return false;
-    if (!('countrieId' in value) || value['countrieId'] === undefined)
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined)
         return false;
-    if (!('balanceBonus' in value) || value['balanceBonus'] === undefined)
+    if (!('balance_bonus' in value) || value['balance_bonus'] === undefined)
         return false;
-    if (!('balancePayment' in value) || value['balancePayment'] === undefined)
+    if (!('balance_payment' in value) || value['balance_payment'] === undefined)
         return false;
-    if (!('balanceProfit' in value) || value['balanceProfit'] === undefined)
+    if (!('balance_profit' in value) || value['balance_profit'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
@@ -68,14 +68,14 @@ function UserProjectGetResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'name': json['name'],
         'fename': json['fename'],
-        'photo50': json['photo_50'],
+        'photo_50': json['photo_50'],
         'type': json['type'],
-        'externalId': json['external_id'],
-        'internalId': json['internal_id'],
-        'countrieId': json['countrie_id'],
-        'balanceBonus': json['balance_bonus'],
-        'balancePayment': json['balance_payment'],
-        'balanceProfit': json['balance_profit'],
+        'external_id': json['external_id'],
+        'internal_id': json['internal_id'],
+        'countrie_id': json['countrie_id'],
+        'balance_bonus': json['balance_bonus'],
+        'balance_payment': json['balance_payment'],
+        'balance_profit': json['balance_profit'],
         'currency': json['currency'],
     };
 }
@@ -91,14 +91,14 @@ function UserProjectGetResponseToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'name': value['name'],
         'fename': value['fename'],
-        'photo_50': value['photo50'],
+        'photo_50': value['photo_50'],
         'type': value['type'],
-        'external_id': value['externalId'],
-        'internal_id': value['internalId'],
-        'countrie_id': value['countrieId'],
-        'balance_bonus': value['balanceBonus'],
-        'balance_payment': value['balancePayment'],
-        'balance_profit': value['balanceProfit'],
+        'external_id': value['external_id'],
+        'internal_id': value['internal_id'],
+        'countrie_id': value['countrie_id'],
+        'balance_bonus': value['balance_bonus'],
+        'balance_payment': value['balance_payment'],
+        'balance_profit': value['balance_profit'],
         'currency': value['currency'],
     };
 }

@@ -19,16 +19,16 @@ const ChannelCategoryInfoDto_1 = require("./ChannelCategoryInfoDto");
  * @export
  */
 exports.ChannelTrovoInfoDtoLangEnum = {
-    Ru: 'ru',
-    En: 'en'
+    ru: 'ru',
+    en: 'en'
 };
 /**
  * @export
  */
 exports.ChannelTrovoInfoDtoAudienceEnum = {
-    ChannelAudienceTypeFamilyfriendly: 'CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY',
-    ChannelAudienceTypeTeen: 'CHANNEL_AUDIENCE_TYPE_TEEN',
-    ChannelAudienceTypeEighteenplus: 'CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS'
+    CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: 'CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY',
+    CHANNEL_AUDIENCE_TYPE_TEEN: 'CHANNEL_AUDIENCE_TYPE_TEEN',
+    CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: 'CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS'
 };
 /**
  * Check if a given object implements the ChannelTrovoInfoDto interface.

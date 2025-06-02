@@ -13,12 +13,12 @@ import * as runtime from '../runtime';
 import type { ListOfPayoutSystemAccountListItemResponse, PayoutCreateRequestBodyDto, SuccessResponse } from '../models/index';
 export interface PayoutCreateV1Request {
     language: PayoutCreateV1LanguageEnum;
-    payoutCreateRequestBodyDto: PayoutCreateRequestBodyDto;
+    PayoutCreateRequestBodyDto: PayoutCreateRequestBodyDto;
     v?: PayoutCreateV1VEnum;
 }
 export interface PayoutPrepareV1Request {
     language: PayoutPrepareV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PayoutPrepareV1VEnum;
 }
 /**
@@ -32,7 +32,7 @@ export interface PayoutApiInterface {
      *
      * @summary Create payout
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {PayoutCreateRequestBodyDto} payoutCreateRequestBodyDto
+     * @param {PayoutCreateRequestBodyDto} PayoutCreateRequestBodyDto
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -47,7 +47,7 @@ export interface PayoutApiInterface {
      *
      * @summary Get payout data for create
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -84,9 +84,9 @@ export declare class PayoutApi extends runtime.BaseAPI implements PayoutApiInter
  * @export
  */
 export declare const PayoutCreateV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PayoutCreateV1LanguageEnum = typeof PayoutCreateV1LanguageEnum[keyof typeof PayoutCreateV1LanguageEnum];
 /**
@@ -102,9 +102,9 @@ export type PayoutCreateV1VEnum = typeof PayoutCreateV1VEnum[keyof typeof Payout
  * @export
  */
 export declare const PayoutPrepareV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PayoutPrepareV1LanguageEnum = typeof PayoutPrepareV1LanguageEnum[keyof typeof PayoutPrepareV1LanguageEnum];
 /**

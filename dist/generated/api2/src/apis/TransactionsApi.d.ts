@@ -13,12 +13,12 @@ import * as runtime from '../runtime';
 import type { PaginatedResponseOfTransactionResponse } from '../models/index';
 export interface TransactionsListV1Request {
     language: TransactionsListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: TransactionsListV1VEnum;
     limit?: number;
     offset?: number;
-    dateFrom?: Date;
-    dateTo?: Date;
+    date_from?: Date;
+    date_to?: Date;
     code?: string;
 }
 /**
@@ -32,12 +32,12 @@ export interface TransactionsApiInterface {
      *
      * @summary Transaction list for frontend
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
-     * @param {Date} [dateFrom] Date from
-     * @param {Date} [dateTo] Date to
+     * @param {Date} [date_from] Date from
+     * @param {Date} [date_to] Date to
      * @param {string} [code] Filter code transaction. example 1 or 1,2,3
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -66,9 +66,9 @@ export declare class TransactionsApi extends runtime.BaseAPI implements Transact
  * @export
  */
 export declare const TransactionsListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type TransactionsListV1LanguageEnum = typeof TransactionsListV1LanguageEnum[keyof typeof TransactionsListV1LanguageEnum];
 /**

@@ -24,9 +24,9 @@ exports.MethodSetStatusChannelRequestVEnum = {
  * @export
  */
 exports.MethodSetStatusChannelRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the MethodSetStatusChannelRequest interface.
@@ -34,7 +34,7 @@ exports.MethodSetStatusChannelRequestLanguageEnum = {
 function instanceOfMethodSetStatusChannelRequest(value) {
     if (!('v' in value) || value['v'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -52,7 +52,7 @@ function MethodSetStatusChannelRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'] == null ? undefined : json['language'],
-        'channelId': json['channel_id'],
+        'channel_id': json['channel_id'],
         'status': json['status'],
     };
 }
@@ -68,7 +68,7 @@ function MethodSetStatusChannelRequestToJSONTyped(value, ignoreDiscriminator = f
     return {
         'v': value['v'],
         'language': value['language'],
-        'channel_id': value['channelId'],
+        'channel_id': value['channel_id'],
         'status': value['status'],
     };
 }

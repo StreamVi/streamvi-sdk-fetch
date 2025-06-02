@@ -20,7 +20,7 @@ export interface NotifyHistoryStatusUserResponse {
      * @type {number}
      * @memberof NotifyHistoryStatusUserResponse
      */
-    countUnread: number;
+    count_unread: number;
 }
 /**
  * Check if a given object implements the NotifyHistoryStatusUserResponse interface.

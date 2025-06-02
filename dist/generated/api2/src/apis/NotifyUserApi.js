@@ -89,8 +89,8 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling notifyUserGetScreenV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling notifyUserGetScreenV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling notifyUserGetScreenV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -102,8 +102,8 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -125,8 +125,8 @@ class NotifyUserApi extends runtime.BaseAPI {
      * Get user notify settings
      */
     async notifyUserGetV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling notifyUserGetV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling notifyUserGetV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -135,8 +135,8 @@ class NotifyUserApi extends runtime.BaseAPI {
         else {
             queryParameters['v'] = '1';
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -158,8 +158,8 @@ class NotifyUserApi extends runtime.BaseAPI {
      * Remove user screen notify
      */
     async notifyUserRemoveScreenV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling notifyUserRemoveScreenV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling notifyUserRemoveScreenV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -168,8 +168,8 @@ class NotifyUserApi extends runtime.BaseAPI {
         else {
             queryParameters['v'] = '1';
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -191,8 +191,8 @@ class NotifyUserApi extends runtime.BaseAPI {
      * Set user notify settings
      */
     async notifyUserSetV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['siteSetNotifyUserRequest'] == null) {
-            throw new runtime.RequiredError('siteSetNotifyUserRequest', 'Required parameter "siteSetNotifyUserRequest" was null or undefined when calling notifyUserSetV1().');
+        if (requestParameters['SiteSetNotifyUserRequest'] == null) {
+            throw new runtime.RequiredError('SiteSetNotifyUserRequest', 'Required parameter "SiteSetNotifyUserRequest" was null or undefined when calling notifyUserSetV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -208,7 +208,7 @@ class NotifyUserApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetNotifyUserRequestToJSON)(requestParameters['siteSetNotifyUserRequest']),
+            body: (0, index_1.SiteSetNotifyUserRequestToJSON)(requestParameters['SiteSetNotifyUserRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -225,9 +225,9 @@ exports.NotifyUserApi = NotifyUserApi;
  * @export
  */
 exports.NotifyUserDelMobileTokenV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -241,9 +241,9 @@ exports.NotifyUserDelMobileTokenV1VEnum = {
  * @export
  */
 exports.NotifyUserGetScreenV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

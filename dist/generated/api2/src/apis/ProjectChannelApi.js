@@ -50,17 +50,17 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelChangeAccessV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelChangeAccessV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelChangeAccessV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelChangeAccessV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelChangeAccessV1().');
         }
-        if (requestParameters['toProjectId'] == null) {
-            throw new runtime.RequiredError('toProjectId', 'Required parameter "toProjectId" was null or undefined when calling projectChannelChangeAccessV1().');
+        if (requestParameters['to_project_id'] == null) {
+            throw new runtime.RequiredError('to_project_id', 'Required parameter "to_project_id" was null or undefined when calling projectChannelChangeAccessV1().');
         }
-        if (requestParameters['accessType'] == null) {
-            throw new runtime.RequiredError('accessType', 'Required parameter "accessType" was null or undefined when calling projectChannelChangeAccessV1().');
+        if (requestParameters['access_type'] == null) {
+            throw new runtime.RequiredError('access_type', 'Required parameter "access_type" was null or undefined when calling projectChannelChangeAccessV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -72,17 +72,17 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
-        if (requestParameters['toProjectId'] != null) {
-            queryParameters['to_project_id'] = requestParameters['toProjectId'];
+        if (requestParameters['to_project_id'] != null) {
+            queryParameters['to_project_id'] = requestParameters['to_project_id'];
         }
-        if (requestParameters['accessType'] != null) {
-            queryParameters['access_type'] = requestParameters['accessType'];
+        if (requestParameters['access_type'] != null) {
+            queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -107,14 +107,14 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelDelV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelDelV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelDelV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelDelV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelDelV1().');
         }
-        if (requestParameters['targetProjectId'] == null) {
-            throw new runtime.RequiredError('targetProjectId', 'Required parameter "targetProjectId" was null or undefined when calling projectChannelDelV1().');
+        if (requestParameters['target_project_id'] == null) {
+            throw new runtime.RequiredError('target_project_id', 'Required parameter "target_project_id" was null or undefined when calling projectChannelDelV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -126,14 +126,14 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
-        if (requestParameters['targetProjectId'] != null) {
-            queryParameters['target_project_id'] = requestParameters['targetProjectId'];
+        if (requestParameters['target_project_id'] != null) {
+            queryParameters['target_project_id'] = requestParameters['target_project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -158,11 +158,11 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelListV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelListV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -174,11 +174,11 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -203,14 +203,14 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectChannelTransferOwnerV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectChannelTransferOwnerV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectChannelTransferOwnerV1().');
         }
-        if (requestParameters['channelId'] == null) {
-            throw new runtime.RequiredError('channelId', 'Required parameter "channelId" was null or undefined when calling projectChannelTransferOwnerV1().');
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling projectChannelTransferOwnerV1().');
         }
-        if (requestParameters['toProjectId'] == null) {
-            throw new runtime.RequiredError('toProjectId', 'Required parameter "toProjectId" was null or undefined when calling projectChannelTransferOwnerV1().');
+        if (requestParameters['to_project_id'] == null) {
+            throw new runtime.RequiredError('to_project_id', 'Required parameter "to_project_id" was null or undefined when calling projectChannelTransferOwnerV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -222,14 +222,14 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['channelId'] != null) {
-            queryParameters['channel_id'] = requestParameters['channelId'];
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
         }
-        if (requestParameters['toProjectId'] != null) {
-            queryParameters['to_project_id'] = requestParameters['toProjectId'];
+        if (requestParameters['to_project_id'] != null) {
+            queryParameters['to_project_id'] = requestParameters['to_project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -253,9 +253,9 @@ exports.ProjectChannelApi = ProjectChannelApi;
  * @export
  */
 exports.ProjectChannelChangeAccessV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -278,9 +278,9 @@ exports.ProjectChannelChangeAccessV1VEnum = {
  * @export
  */
 exports.ProjectChannelDelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -294,9 +294,9 @@ exports.ProjectChannelDelV1VEnum = {
  * @export
  */
 exports.ProjectChannelListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -310,9 +310,9 @@ exports.ProjectChannelListV1VEnum = {
  * @export
  */
 exports.ProjectChannelTransferOwnerV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

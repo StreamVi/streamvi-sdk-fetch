@@ -1,14 +1,15 @@
 {
   "name": "streamvi-sdk",
   "version": "1.0.1",
-  "description": "Library for working with the StreamVi API (https://dev.streamvi.io)",
+  "description": "Fetch-based version of StreamVi SDK library for working with the StreamVi API (https://dev.streamvi.io)",
   "keywords": [
     "streamvi",
     "api",
     "sdk",
     "typescript",
     "nodejs",
-    "rest"
+    "rest",
+    "fetch"
   ],
   "repository": {
     "type": "git",
@@ -48,8 +49,8 @@
     "prettier": "prettier --check \"src/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\""
   },
-  "dependencies": {
-    "axios": "^1.6.0",
+  "dependencies": {},
+  "optionalDependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.21.2",
     "express-session": "^1.18.1",

@@ -24,12 +24,12 @@ const SearchChannelPlatformDto_1 = require("./SearchChannelPlatformDto");
  * @export
  */
 exports.SearchChannelItemStatusEnum = {
-    Init: 'init',
-    Pending: 'pending',
-    Error: 'error',
-    Live: 'live',
-    Offline: 'offline',
-    Busy: 'busy'
+    init: 'init',
+    pending: 'pending',
+    error: 'error',
+    live: 'live',
+    offline: 'offline',
+    busy: 'busy'
 };
 /**
  * Check if a given object implements the SearchChannelItem interface.
@@ -39,11 +39,11 @@ function instanceOfSearchChannelItem(value) {
         return false;
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('groupId' in value) || value['groupId'] === undefined)
+    if (!('group_id' in value) || value['group_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('photoDefault' in value) || value['photoDefault'] === undefined)
+    if (!('photo_default' in value) || value['photo_default'] === undefined)
         return false;
     if (!('sell' in value) || value['sell'] === undefined)
         return false;
@@ -53,7 +53,7 @@ function instanceOfSearchChannelItem(value) {
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
     if (!('active' in value) || value['active'] === undefined)
         return false;
@@ -92,14 +92,14 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
         'id': json['id'],
         'transcoderId': json['transcoderId'] == null ? undefined : json['transcoderId'],
-        'groupId': json['group_id'],
+        'group_id': json['group_id'],
         'type': json['type'],
-        'photoDefault': json['photo_default'],
+        'photo_default': json['photo_default'],
         'sell': json['sell'],
         'price': json['price'],
         'live': json['live'],
         'status': json['status'],
-        'userId': json['user_id'],
+        'user_id': json['user_id'],
         'active': json['active'],
         'guestsNum': json['guestsNum'],
         'guestRights': json['guestRights'],
@@ -110,7 +110,7 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         'rtmp': (0, SearchChannelRtmpDto_1.SearchChannelRtmpDtoFromJSON)(json['rtmp']),
         'credentials': (json['credentials'] == null ? null : json['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoFromJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoFromJSON)(json['tokens']),
-        'liveUsers': json['live_users'] == null ? undefined : (json['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoFromJSON)),
+        'live_users': json['live_users'] == null ? undefined : (json['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoFromJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoFromJSON)(json['platform']),
     };
 }
@@ -127,14 +127,14 @@ function SearchChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         'name': value['name'],
         'id': value['id'],
         'transcoderId': value['transcoderId'],
-        'group_id': value['groupId'],
+        'group_id': value['group_id'],
         'type': value['type'],
-        'photo_default': value['photoDefault'],
+        'photo_default': value['photo_default'],
         'sell': value['sell'],
         'price': value['price'],
         'live': value['live'],
         'status': value['status'],
-        'user_id': value['userId'],
+        'user_id': value['user_id'],
         'active': value['active'],
         'guestsNum': value['guestsNum'],
         'guestRights': value['guestRights'],
@@ -145,7 +145,7 @@ function SearchChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         'rtmp': (0, SearchChannelRtmpDto_1.SearchChannelRtmpDtoToJSON)(value['rtmp']),
         'credentials': (value['credentials'] == null ? null : value['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoToJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoToJSON)(value['tokens']),
-        'live_users': value['liveUsers'] == null ? undefined : (value['liveUsers'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoToJSON)),
+        'live_users': value['live_users'] == null ? undefined : (value['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoToJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoToJSON)(value['platform']),
     };
 }

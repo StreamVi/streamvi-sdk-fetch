@@ -13,20 +13,20 @@ import * as runtime from '../runtime';
 import type { PlanRestreamCheckV2Response, PlanRestreamDiscountResponse, PlanRestreamForProject, PlanRestreamProjectResponseDto, PlanRestreamResponseDto, SuccessResponse } from '../models/index';
 export interface PlanRestreamBuyV1Request {
     language: PlanRestreamBuyV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     period: PlanRestreamBuyV1PeriodEnum;
-    planRestreamId: number;
+    plan_restream_id: number;
     v?: PlanRestreamBuyV1VEnum;
-    countChannel?: number;
+    count_channel?: number;
     bitrate?: number;
 }
 export interface PlanRestreamCheck2V1Request {
     language: PlanRestreamCheck2V1LanguageEnum;
-    projectId: number;
+    project_id: number;
     period: PlanRestreamCheck2V1PeriodEnum;
-    planRestreamId: number;
+    plan_restream_id: number;
     v?: PlanRestreamCheck2V1VEnum;
-    useBalance?: number;
+    use_balance?: number;
     channels?: number;
     bitrate?: number;
 }
@@ -36,7 +36,7 @@ export interface PlanRestreamGetDiscountV1Request {
 }
 export interface PlanRestreamListProjectV1Request {
     language: PlanRestreamListProjectV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanRestreamListProjectV1VEnum;
 }
 export interface PlanRestreamListV1Request {
@@ -45,13 +45,13 @@ export interface PlanRestreamListV1Request {
 }
 export interface PlanRestreamRemoveV1Request {
     language: PlanRestreamRemoveV1LanguageEnum;
-    projectId: number;
-    planRestreamId: number;
+    project_id: number;
+    plan_restream_id: number;
     v?: PlanRestreamRemoveV1VEnum;
 }
 export interface PlanRestreamTariffV1Request {
     language: PlanRestreamTariffV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanRestreamTariffV1VEnum;
 }
 /**
@@ -65,11 +65,11 @@ export interface PlanRestreamApiInterface {
      *
      * @summary Buy restream tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
-     * @param {number} planRestreamId Restream plan id
+     * @param {number} plan_restream_id Restream plan id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [countChannel] Channel count
+     * @param {number} [count_channel] Channel count
      * @param {number} [bitrate] Bitrate, kbps
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -84,11 +84,11 @@ export interface PlanRestreamApiInterface {
      *
      * @summary Load data for show card the tariffs v2
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
-     * @param {number} planRestreamId Restream plan id
+     * @param {number} plan_restream_id Restream plan id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [useBalance] Is select balance
+     * @param {number} [use_balance] Is select balance
      * @param {number} [channels] Channels count
      * @param {number} [bitrate] Bitrate, kbps
      * @param {*} [options] Override http request option.
@@ -118,7 +118,7 @@ export interface PlanRestreamApiInterface {
      *
      * @summary Get list of restream tariffs for project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -147,8 +147,8 @@ export interface PlanRestreamApiInterface {
      *
      * @summary Remove after tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} planRestreamId Restream plan id
+     * @param {number} project_id Project id
+     * @param {number} plan_restream_id Restream plan id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -163,7 +163,7 @@ export interface PlanRestreamApiInterface {
      *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -240,17 +240,17 @@ export declare class PlanRestreamApi extends runtime.BaseAPI implements PlanRest
  * @export
  */
 export declare const PlanRestreamBuyV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamBuyV1LanguageEnum = typeof PlanRestreamBuyV1LanguageEnum[keyof typeof PlanRestreamBuyV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlanRestreamBuyV1PeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanRestreamBuyV1PeriodEnum = typeof PlanRestreamBuyV1PeriodEnum[keyof typeof PlanRestreamBuyV1PeriodEnum];
 /**
@@ -266,17 +266,17 @@ export type PlanRestreamBuyV1VEnum = typeof PlanRestreamBuyV1VEnum[keyof typeof 
  * @export
  */
 export declare const PlanRestreamCheck2V1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamCheck2V1LanguageEnum = typeof PlanRestreamCheck2V1LanguageEnum[keyof typeof PlanRestreamCheck2V1LanguageEnum];
 /**
  * @export
  */
 export declare const PlanRestreamCheck2V1PeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanRestreamCheck2V1PeriodEnum = typeof PlanRestreamCheck2V1PeriodEnum[keyof typeof PlanRestreamCheck2V1PeriodEnum];
 /**
@@ -292,9 +292,9 @@ export type PlanRestreamCheck2V1VEnum = typeof PlanRestreamCheck2V1VEnum[keyof t
  * @export
  */
 export declare const PlanRestreamGetDiscountV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamGetDiscountV1LanguageEnum = typeof PlanRestreamGetDiscountV1LanguageEnum[keyof typeof PlanRestreamGetDiscountV1LanguageEnum];
 /**
@@ -310,9 +310,9 @@ export type PlanRestreamGetDiscountV1VEnum = typeof PlanRestreamGetDiscountV1VEn
  * @export
  */
 export declare const PlanRestreamListProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamListProjectV1LanguageEnum = typeof PlanRestreamListProjectV1LanguageEnum[keyof typeof PlanRestreamListProjectV1LanguageEnum];
 /**
@@ -328,9 +328,9 @@ export type PlanRestreamListProjectV1VEnum = typeof PlanRestreamListProjectV1VEn
  * @export
  */
 export declare const PlanRestreamListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamListV1LanguageEnum = typeof PlanRestreamListV1LanguageEnum[keyof typeof PlanRestreamListV1LanguageEnum];
 /**
@@ -346,9 +346,9 @@ export type PlanRestreamListV1VEnum = typeof PlanRestreamListV1VEnum[keyof typeo
  * @export
  */
 export declare const PlanRestreamRemoveV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamRemoveV1LanguageEnum = typeof PlanRestreamRemoveV1LanguageEnum[keyof typeof PlanRestreamRemoveV1LanguageEnum];
 /**
@@ -364,9 +364,9 @@ export type PlanRestreamRemoveV1VEnum = typeof PlanRestreamRemoveV1VEnum[keyof t
  * @export
  */
 export declare const PlanRestreamTariffV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanRestreamTariffV1LanguageEnum = typeof PlanRestreamTariffV1LanguageEnum[keyof typeof PlanRestreamTariffV1LanguageEnum];
 /**

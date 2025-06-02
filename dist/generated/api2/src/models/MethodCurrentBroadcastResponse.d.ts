@@ -20,13 +20,13 @@ export interface MethodCurrentBroadcastResponse {
      * @type {string}
      * @memberof MethodCurrentBroadcastResponse
      */
-    accessToken: string;
+    access_token: string;
     /**
      * Broadcast Id
      * @type {number}
      * @memberof MethodCurrentBroadcastResponse
      */
-    broadcastId: number;
+    broadcast_id: number;
 }
 /**
  * Check if a given object implements the MethodCurrentBroadcastResponse interface.

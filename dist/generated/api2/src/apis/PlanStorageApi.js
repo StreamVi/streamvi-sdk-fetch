@@ -50,14 +50,14 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planStorageBuyV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planStorageBuyV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planStorageBuyV1().');
         }
         if (requestParameters['period'] == null) {
             throw new runtime.RequiredError('period', 'Required parameter "period" was null or undefined when calling planStorageBuyV1().');
         }
-        if (requestParameters['planStorageId'] == null) {
-            throw new runtime.RequiredError('planStorageId', 'Required parameter "planStorageId" was null or undefined when calling planStorageBuyV1().');
+        if (requestParameters['plan_storage_id'] == null) {
+            throw new runtime.RequiredError('plan_storage_id', 'Required parameter "plan_storage_id" was null or undefined when calling planStorageBuyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -69,14 +69,14 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['period'] != null) {
             queryParameters['period'] = requestParameters['period'];
         }
-        if (requestParameters['planStorageId'] != null) {
-            queryParameters['plan_storage_id'] = requestParameters['planStorageId'];
+        if (requestParameters['plan_storage_id'] != null) {
+            queryParameters['plan_storage_id'] = requestParameters['plan_storage_id'];
         }
         if (requestParameters['size'] != null) {
             queryParameters['size'] = requestParameters['size'];
@@ -104,8 +104,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planStorageCancelV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planStorageCancelV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planStorageCancelV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -117,8 +117,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -143,8 +143,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planStorageCheckV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planStorageCheckV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planStorageCheckV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -156,8 +156,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -248,8 +248,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planStorageTariffV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planStorageTariffV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planStorageTariffV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -261,8 +261,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -286,16 +286,16 @@ exports.PlanStorageApi = PlanStorageApi;
  * @export
  */
 exports.PlanStorageBuyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlanStorageBuyV1PeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * @export
@@ -309,9 +309,9 @@ exports.PlanStorageBuyV1VEnum = {
  * @export
  */
 exports.PlanStorageCancelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -325,9 +325,9 @@ exports.PlanStorageCancelV1VEnum = {
  * @export
  */
 exports.PlanStorageCheckV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -341,9 +341,9 @@ exports.PlanStorageCheckV1VEnum = {
  * @export
  */
 exports.PlanStorageGetDiscountV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -357,9 +357,9 @@ exports.PlanStorageGetDiscountV1VEnum = {
  * @export
  */
 exports.PlanStorageListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -373,9 +373,9 @@ exports.PlanStorageListV1VEnum = {
  * @export
  */
 exports.PlanStorageTariffV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

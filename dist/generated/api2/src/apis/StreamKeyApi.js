@@ -50,8 +50,8 @@ class StreamKeyApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling streamKeysKeyV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling streamKeysKeyV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling streamKeysKeyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class StreamKeyApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -86,8 +86,8 @@ class StreamKeyApi extends runtime.BaseAPI {
      * Update record
      */
     async streamKeysUpdateRecordV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['setRecordStreamRequest'] == null) {
-            throw new runtime.RequiredError('setRecordStreamRequest', 'Required parameter "setRecordStreamRequest" was null or undefined when calling streamKeysUpdateRecordV1().');
+        if (requestParameters['SetRecordStreamRequest'] == null) {
+            throw new runtime.RequiredError('SetRecordStreamRequest', 'Required parameter "SetRecordStreamRequest" was null or undefined when calling streamKeysUpdateRecordV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -97,7 +97,7 @@ class StreamKeyApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SetRecordStreamRequestToJSON)(requestParameters['setRecordStreamRequest']),
+            body: (0, index_1.SetRecordStreamRequestToJSON)(requestParameters['SetRecordStreamRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -114,9 +114,9 @@ exports.StreamKeyApi = StreamKeyApi;
  * @export
  */
 exports.StreamKeysKeyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

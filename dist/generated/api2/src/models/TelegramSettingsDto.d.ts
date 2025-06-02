@@ -22,7 +22,7 @@ export interface TelegramSettingsDto {
      * @type {number}
      * @memberof TelegramSettingsDto
      */
-    filterMode: TelegramSettingsDtoFilterModeEnum;
+    filter_mode: TelegramSettingsDtoFilterModeEnum;
     /**
      * Chat info
      * @type {TelegramChatInfoResponseDto}

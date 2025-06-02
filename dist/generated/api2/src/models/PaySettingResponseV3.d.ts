@@ -20,7 +20,7 @@ export interface PaySettingResponseV3 {
      * @type {number}
      * @memberof PaySettingResponseV3
      */
-    projectId: number;
+    project_id: number;
     /**
      * Currency
      * @type {string}
@@ -32,19 +32,19 @@ export interface PaySettingResponseV3 {
      * @type {number}
      * @memberof PaySettingResponseV3
      */
-    countrieId: number;
+    countrie_id: number;
     /**
      * Organiztion
      * @type {number}
      * @memberof PaySettingResponseV3
      */
-    organizationId: number | null;
+    organization_id: number | null;
     /**
      * Pay system id
      * @type {number}
      * @memberof PaySettingResponseV3
      */
-    paySystemId: number;
+    pay_system_id: number;
     /**
      * E-mail
      * @type {string}
@@ -62,7 +62,7 @@ export interface PaySettingResponseV3 {
      * @type {string}
      * @memberof PaySettingResponseV3
      */
-    houseNumber?: string | null;
+    house_number?: string | null;
     /**
      * Postal code
      * @type {string}
@@ -86,7 +86,7 @@ export interface PaySettingResponseV3 {
      * @type {string}
      * @memberof PaySettingResponseV3
      */
-    companyName?: string | null;
+    company_name?: string | null;
     /**
      * Additional information about the payment
      * @type {string}
@@ -98,8 +98,8 @@ export interface PaySettingResponseV3 {
  * @export
  */
 export declare const PaySettingResponseV3CurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PaySettingResponseV3CurrencyEnum = typeof PaySettingResponseV3CurrencyEnum[keyof typeof PaySettingResponseV3CurrencyEnum];
 /**

@@ -21,7 +21,7 @@ export interface HelpPageResponse {
      * @type {BlogPageSiteResponseId}
      * @memberof HelpPageResponse
      */
-    id: BlogPageSiteResponseId;
+    _id: BlogPageSiteResponseId;
     /**
      * url
      * @type {string}
@@ -33,13 +33,13 @@ export interface HelpPageResponse {
      * @type {string}
      * @memberof HelpPageResponse
      */
-    urlInherit: string;
+    url_inherit: string;
     /**
      * Notion parent id
      * @type {string}
      * @memberof HelpPageResponse
      */
-    notionParentId: string;
+    notion_parent_id: string;
     /**
      * Page status
      * @type {string}
@@ -51,13 +51,13 @@ export interface HelpPageResponse {
      * @type {Date}
      * @memberof HelpPageResponse
      */
-    dateUpdate: Date;
+    date_update: Date;
     /**
      * Date create
      * @type {Date}
      * @memberof HelpPageResponse
      */
-    dateCreate: Date;
+    date_create: Date;
     /**
      * Page icon
      * @type {object}
@@ -81,7 +81,7 @@ export interface HelpPageResponse {
      * @type {string}
      * @memberof HelpPageResponse
      */
-    languageIso: HelpPageResponseLanguageIsoEnum;
+    language_iso: HelpPageResponseLanguageIsoEnum;
     /**
      * Text
      * @type {string}
@@ -93,7 +93,7 @@ export interface HelpPageResponse {
      * @type {Array<string>}
      * @memberof HelpPageResponse
      */
-    altLanguages: Array<HelpPageResponseAltLanguagesEnum>;
+    alt_languages: Array<HelpPageResponseAltLanguagesEnum>;
 }
 /**
  * @export
@@ -111,27 +111,27 @@ export type HelpPageResponseStatusEnum = typeof HelpPageResponseStatusEnum[keyof
  * @export
  */
 export declare const HelpPageResponseLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type HelpPageResponseLanguageEnum = typeof HelpPageResponseLanguageEnum[keyof typeof HelpPageResponseLanguageEnum];
 /**
  * @export
  */
 export declare const HelpPageResponseLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type HelpPageResponseLanguageIsoEnum = typeof HelpPageResponseLanguageIsoEnum[keyof typeof HelpPageResponseLanguageIsoEnum];
 /**
  * @export
  */
 export declare const HelpPageResponseAltLanguagesEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type HelpPageResponseAltLanguagesEnum = typeof HelpPageResponseAltLanguagesEnum[keyof typeof HelpPageResponseAltLanguagesEnum];
 /**

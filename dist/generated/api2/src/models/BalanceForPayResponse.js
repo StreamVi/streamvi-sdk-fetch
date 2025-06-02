@@ -19,16 +19,16 @@ const MoneyFlowBalanceTypeValuesResponse_1 = require("./MoneyFlowBalanceTypeValu
  * @export
  */
 exports.BalanceForPayResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * @export
  */
 exports.BalanceForPayResponseBalancesAllowEnum = {
-    Bonus: 'bonus',
-    Payment: 'payment',
-    Profit: 'profit'
+    bonus: 'bonus',
+    payment: 'payment',
+    profit: 'profit'
 };
 /**
  * Check if a given object implements the BalanceForPayResponse interface.
@@ -38,9 +38,9 @@ function instanceOfBalanceForPayResponse(value) {
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('balancesAllow' in value) || value['balancesAllow'] === undefined)
+    if (!('balances_allow' in value) || value['balances_allow'] === undefined)
         return false;
-    if (!('balancesValues' in value) || value['balancesValues'] === undefined)
+    if (!('balances_values' in value) || value['balances_values'] === undefined)
         return false;
     return true;
 }
@@ -56,8 +56,8 @@ function BalanceForPayResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'balance': json['balance'],
         'currency': json['currency'],
-        'balancesAllow': json['balances_allow'],
-        'balancesValues': (0, MoneyFlowBalanceTypeValuesResponse_1.MoneyFlowBalanceTypeValuesResponseFromJSON)(json['balances_values']),
+        'balances_allow': json['balances_allow'],
+        'balances_values': (0, MoneyFlowBalanceTypeValuesResponse_1.MoneyFlowBalanceTypeValuesResponseFromJSON)(json['balances_values']),
     };
 }
 exports.BalanceForPayResponseFromJSONTyped = BalanceForPayResponseFromJSONTyped;
@@ -72,8 +72,8 @@ function BalanceForPayResponseToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'balance': value['balance'],
         'currency': value['currency'],
-        'balances_allow': value['balancesAllow'],
-        'balances_values': (0, MoneyFlowBalanceTypeValuesResponse_1.MoneyFlowBalanceTypeValuesResponseToJSON)(value['balancesValues']),
+        'balances_allow': value['balances_allow'],
+        'balances_values': (0, MoneyFlowBalanceTypeValuesResponse_1.MoneyFlowBalanceTypeValuesResponseToJSON)(value['balances_values']),
     };
 }
 exports.BalanceForPayResponseToJSONTyped = BalanceForPayResponseToJSONTyped;

@@ -82,34 +82,34 @@ export interface ChannelYoutubeInfoDto {
  * @export
  */
 export declare const ChannelYoutubeInfoDtoLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
+    readonly ru: "ru";
+    readonly en: "en";
 };
 export type ChannelYoutubeInfoDtoLangEnum = typeof ChannelYoutubeInfoDtoLangEnum[keyof typeof ChannelYoutubeInfoDtoLangEnum];
 /**
  * @export
  */
 export declare const ChannelYoutubeInfoDtoPrivacyVideoEnum: {
-    readonly Private: "private";
-    readonly Public: "public";
-    readonly Unlisted: "unlisted";
+    readonly private: "private";
+    readonly public: "public";
+    readonly unlisted: "unlisted";
 };
 export type ChannelYoutubeInfoDtoPrivacyVideoEnum = typeof ChannelYoutubeInfoDtoPrivacyVideoEnum[keyof typeof ChannelYoutubeInfoDtoPrivacyVideoEnum];
 /**
  * @export
  */
 export declare const ChannelYoutubeInfoDtoLatencyEnum: {
-    readonly Normal: "normal";
-    readonly Low: "low";
-    readonly UltraLow: "ultraLow";
+    readonly normal: "normal";
+    readonly low: "low";
+    readonly ultraLow: "ultraLow";
 };
 export type ChannelYoutubeInfoDtoLatencyEnum = typeof ChannelYoutubeInfoDtoLatencyEnum[keyof typeof ChannelYoutubeInfoDtoLatencyEnum];
 /**
  * @export
  */
 export declare const ChannelYoutubeInfoDtoAudienceEnum: {
-    readonly MarkForKids: "mark_for_kids";
-    readonly MarkForNokids: "mark_for_nokids";
+    readonly mark_for_kids: "mark_for_kids";
+    readonly mark_for_nokids: "mark_for_nokids";
 };
 export type ChannelYoutubeInfoDtoAudienceEnum = typeof ChannelYoutubeInfoDtoAudienceEnum[keyof typeof ChannelYoutubeInfoDtoAudienceEnum];
 /**

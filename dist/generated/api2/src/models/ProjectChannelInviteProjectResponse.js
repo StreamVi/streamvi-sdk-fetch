@@ -18,15 +18,15 @@ exports.ProjectChannelInviteProjectResponseToJSONTyped = exports.ProjectChannelI
  * Check if a given object implements the ProjectChannelInviteProjectResponse interface.
  */
 function instanceOfProjectChannelInviteProjectResponse(value) {
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('fename' in value) || value['fename'] === undefined)
         return false;
-    if (!('photo50' in value) || value['photo50'] === undefined)
+    if (!('photo_50' in value) || value['photo_50'] === undefined)
         return false;
-    if (!('refId' in value) || value['refId'] === undefined)
+    if (!('ref_id' in value) || value['ref_id'] === undefined)
         return false;
     return true;
 }
@@ -40,11 +40,11 @@ function ProjectChannelInviteProjectResponseFromJSONTyped(json, ignoreDiscrimina
         return json;
     }
     return {
-        'userId': json['user_id'],
+        'user_id': json['user_id'],
         'name': json['name'],
         'fename': json['fename'],
-        'photo50': json['photo_50'],
-        'refId': json['ref_id'],
+        'photo_50': json['photo_50'],
+        'ref_id': json['ref_id'],
     };
 }
 exports.ProjectChannelInviteProjectResponseFromJSONTyped = ProjectChannelInviteProjectResponseFromJSONTyped;
@@ -57,11 +57,11 @@ function ProjectChannelInviteProjectResponseToJSONTyped(value, ignoreDiscriminat
         return value;
     }
     return {
-        'user_id': value['userId'],
+        'user_id': value['user_id'],
         'name': value['name'],
         'fename': value['fename'],
-        'photo_50': value['photo50'],
-        'ref_id': value['refId'],
+        'photo_50': value['photo_50'],
+        'ref_id': value['ref_id'],
     };
 }
 exports.ProjectChannelInviteProjectResponseToJSONTyped = ProjectChannelInviteProjectResponseToJSONTyped;

@@ -50,8 +50,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling streamPullKeysSiteCheckV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling streamPullKeysSiteCheckV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling streamPullKeysSiteCheckV1().');
         }
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling streamPullKeysSiteCheckV1().');
@@ -66,8 +66,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
@@ -92,8 +92,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
      * Create key
      */
     async streamPullKeysSiteCreateV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['createPullKeyRequest'] == null) {
-            throw new runtime.RequiredError('createPullKeyRequest', 'Required parameter "createPullKeyRequest" was null or undefined when calling streamPullKeysSiteCreateV1().');
+        if (requestParameters['CreatePullKeyRequest'] == null) {
+            throw new runtime.RequiredError('CreatePullKeyRequest', 'Required parameter "CreatePullKeyRequest" was null or undefined when calling streamPullKeysSiteCreateV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -103,7 +103,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.CreatePullKeyRequestToJSON)(requestParameters['createPullKeyRequest']),
+            body: (0, index_1.CreatePullKeyRequestToJSON)(requestParameters['CreatePullKeyRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreatePullKeyResponseFromJSON)(jsonValue));
     }
@@ -121,8 +121,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling streamPullKeysSiteGetV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling streamPullKeysSiteGetV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling streamPullKeysSiteGetV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -134,8 +134,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -160,8 +160,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling streamPullKeysSiteRemoveV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling streamPullKeysSiteRemoveV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling streamPullKeysSiteRemoveV1().');
         }
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling streamPullKeysSiteRemoveV1().');
@@ -176,8 +176,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
@@ -202,8 +202,8 @@ class StreamPullKeysApi extends runtime.BaseAPI {
      * Update key
      */
     async streamPullKeysSiteUpdateV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['updatePullKeyRequest'] == null) {
-            throw new runtime.RequiredError('updatePullKeyRequest', 'Required parameter "updatePullKeyRequest" was null or undefined when calling streamPullKeysSiteUpdateV1().');
+        if (requestParameters['UpdatePullKeyRequest'] == null) {
+            throw new runtime.RequiredError('UpdatePullKeyRequest', 'Required parameter "UpdatePullKeyRequest" was null or undefined when calling streamPullKeysSiteUpdateV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -213,7 +213,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.UpdatePullKeyRequestToJSON)(requestParameters['updatePullKeyRequest']),
+            body: (0, index_1.UpdatePullKeyRequestToJSON)(requestParameters['UpdatePullKeyRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -230,9 +230,9 @@ exports.StreamPullKeysApi = StreamPullKeysApi;
  * @export
  */
 exports.StreamPullKeysSiteCheckV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -246,9 +246,9 @@ exports.StreamPullKeysSiteCheckV1VEnum = {
  * @export
  */
 exports.StreamPullKeysSiteGetV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -262,9 +262,9 @@ exports.StreamPullKeysSiteGetV1VEnum = {
  * @export
  */
 exports.StreamPullKeysSiteRemoveV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

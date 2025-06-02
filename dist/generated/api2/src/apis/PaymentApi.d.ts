@@ -13,13 +13,13 @@ import * as runtime from '../runtime';
 import type { PaymentCreateResponse, PaymentCreateV1Request, PaymentStatusResponse } from '../models/index';
 export interface PaymentCreateV1OperationRequest {
     language: PaymentCreateV1OperationLanguageEnum;
-    paymentCreateV1Request: PaymentCreateV1Request;
+    PaymentCreateV1Request: PaymentCreateV1Request;
     v?: PaymentCreateV1OperationVEnum;
 }
 export interface PaymentGetStatusV1Request {
     language: PaymentGetStatusV1LanguageEnum;
     payId: number;
-    projectId: number;
+    project_id: number;
     v?: PaymentGetStatusV1VEnum;
 }
 export interface PaymentListV1Request {
@@ -39,7 +39,7 @@ export interface PaymentApiInterface {
      *
      * @summary Create payment item for pay system
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {PaymentCreateV1Request} paymentCreateV1Request
+     * @param {PaymentCreateV1Request} PaymentCreateV1Request
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -54,7 +54,7 @@ export interface PaymentApiInterface {
      *
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payId Pay order id
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -108,9 +108,9 @@ export declare class PaymentApi extends runtime.BaseAPI implements PaymentApiInt
  * @export
  */
 export declare const PaymentCreateV1OperationLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentCreateV1OperationLanguageEnum = typeof PaymentCreateV1OperationLanguageEnum[keyof typeof PaymentCreateV1OperationLanguageEnum];
 /**
@@ -126,9 +126,9 @@ export type PaymentCreateV1OperationVEnum = typeof PaymentCreateV1OperationVEnum
  * @export
  */
 export declare const PaymentGetStatusV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentGetStatusV1LanguageEnum = typeof PaymentGetStatusV1LanguageEnum[keyof typeof PaymentGetStatusV1LanguageEnum];
 /**
@@ -144,9 +144,9 @@ export type PaymentGetStatusV1VEnum = typeof PaymentGetStatusV1VEnum[keyof typeo
  * @export
  */
 export declare const PaymentListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentListV1LanguageEnum = typeof PaymentListV1LanguageEnum[keyof typeof PaymentListV1LanguageEnum];
 /**

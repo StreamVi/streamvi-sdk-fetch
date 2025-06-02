@@ -32,7 +32,7 @@ export interface MethodSetStatusChannelRequest {
      * @type {number}
      * @memberof MethodSetStatusChannelRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Status channel status
      * @type {boolean}
@@ -51,9 +51,9 @@ export type MethodSetStatusChannelRequestVEnum = typeof MethodSetStatusChannelRe
  * @export
  */
 export declare const MethodSetStatusChannelRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodSetStatusChannelRequestLanguageEnum = typeof MethodSetStatusChannelRequestLanguageEnum[keyof typeof MethodSetStatusChannelRequestLanguageEnum];
 /**

@@ -50,8 +50,8 @@ class PaymentApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paymentCreateV1().');
         }
-        if (requestParameters['paymentCreateV1Request'] == null) {
-            throw new runtime.RequiredError('paymentCreateV1Request', 'Required parameter "paymentCreateV1Request" was null or undefined when calling paymentCreateV1().');
+        if (requestParameters['PaymentCreateV1Request'] == null) {
+            throw new runtime.RequiredError('PaymentCreateV1Request', 'Required parameter "PaymentCreateV1Request" was null or undefined when calling paymentCreateV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -70,7 +70,7 @@ class PaymentApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PaymentCreateV1RequestToJSON)(requestParameters['paymentCreateV1Request']),
+            body: (0, index_1.PaymentCreateV1RequestToJSON)(requestParameters['PaymentCreateV1Request']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaymentCreateResponseFromJSON)(jsonValue));
     }
@@ -90,8 +90,8 @@ class PaymentApi extends runtime.BaseAPI {
         if (requestParameters['payId'] == null) {
             throw new runtime.RequiredError('payId', 'Required parameter "payId" was null or undefined when calling paymentGetStatusV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling paymentGetStatusV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling paymentGetStatusV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -106,8 +106,8 @@ class PaymentApi extends runtime.BaseAPI {
         if (requestParameters['payId'] != null) {
             queryParameters['payId'] = requestParameters['payId'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -166,9 +166,9 @@ exports.PaymentApi = PaymentApi;
  * @export
  */
 exports.PaymentCreateV1OperationLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -182,9 +182,9 @@ exports.PaymentCreateV1OperationVEnum = {
  * @export
  */
 exports.PaymentGetStatusV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -198,9 +198,9 @@ exports.PaymentGetStatusV1VEnum = {
  * @export
  */
 exports.PaymentListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

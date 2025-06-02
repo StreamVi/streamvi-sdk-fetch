@@ -20,31 +20,31 @@ const ChannelCategoryInfoDto_1 = require("./ChannelCategoryInfoDto");
  * @export
  */
 exports.ChannelYoutubeInfoDtoLangEnum = {
-    Ru: 'ru',
-    En: 'en'
+    ru: 'ru',
+    en: 'en'
 };
 /**
  * @export
  */
 exports.ChannelYoutubeInfoDtoPrivacyVideoEnum = {
-    Private: 'private',
-    Public: 'public',
-    Unlisted: 'unlisted'
+    private: 'private',
+    public: 'public',
+    unlisted: 'unlisted'
 };
 /**
  * @export
  */
 exports.ChannelYoutubeInfoDtoLatencyEnum = {
-    Normal: 'normal',
-    Low: 'low',
-    UltraLow: 'ultraLow'
+    normal: 'normal',
+    low: 'low',
+    ultraLow: 'ultraLow'
 };
 /**
  * @export
  */
 exports.ChannelYoutubeInfoDtoAudienceEnum = {
-    MarkForKids: 'mark_for_kids',
-    MarkForNokids: 'mark_for_nokids'
+    mark_for_kids: 'mark_for_kids',
+    mark_for_nokids: 'mark_for_nokids'
 };
 /**
  * Check if a given object implements the ChannelYoutubeInfoDto interface.

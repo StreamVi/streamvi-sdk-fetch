@@ -18,7 +18,7 @@ exports.SiteMarkReadHistoryRequestToJSONTyped = exports.SiteMarkReadHistoryReque
  * Check if a given object implements the SiteMarkReadHistoryRequest interface.
  */
 function instanceOfSiteMarkReadHistoryRequest(value) {
-    if (!('notifyHistoryIds' in value) || value['notifyHistoryIds'] === undefined)
+    if (!('notify_history_ids' in value) || value['notify_history_ids'] === undefined)
         return false;
     return true;
 }
@@ -32,7 +32,7 @@ function SiteMarkReadHistoryRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'notifyHistoryIds': json['notify_history_ids'],
+        'notify_history_ids': json['notify_history_ids'],
     };
 }
 exports.SiteMarkReadHistoryRequestFromJSONTyped = SiteMarkReadHistoryRequestFromJSONTyped;
@@ -45,7 +45,7 @@ function SiteMarkReadHistoryRequestToJSONTyped(value, ignoreDiscriminator = fals
         return value;
     }
     return {
-        'notify_history_ids': value['notifyHistoryIds'],
+        'notify_history_ids': value['notify_history_ids'],
     };
 }
 exports.SiteMarkReadHistoryRequestToJSONTyped = SiteMarkReadHistoryRequestToJSONTyped;

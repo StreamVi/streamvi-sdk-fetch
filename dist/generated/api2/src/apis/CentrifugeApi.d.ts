@@ -12,17 +12,17 @@
 import * as runtime from '../runtime';
 import type { SiteAuthCentrifugeResponse } from '../models/index';
 export interface CentrifugeAuthV2Request {
-    projectId: number;
+    project_id: number;
 }
 export interface CentrifugeProjectV1Request {
     language: CentrifugeProjectV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: CentrifugeProjectV1VEnum;
 }
 export interface GetTokenBroadcastV1Request {
-    broadcastId: number;
+    broadcast_id: number;
     language: GetTokenBroadcastV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: GetTokenBroadcastV1VEnum;
 }
 /**
@@ -35,7 +35,7 @@ export interface CentrifugeApiInterface {
     /**
      *
      * @summary Auth centrifuge
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -49,7 +49,7 @@ export interface CentrifugeApiInterface {
      *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
      * @summary Auth token for project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -64,9 +64,9 @@ export interface CentrifugeApiInterface {
     /**
      *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
      * @summary Auth token for broadcast
-     * @param {number} broadcastId
+     * @param {number} broadcast_id
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -116,9 +116,9 @@ export declare class CentrifugeApi extends runtime.BaseAPI implements Centrifuge
  * @export
  */
 export declare const CentrifugeProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type CentrifugeProjectV1LanguageEnum = typeof CentrifugeProjectV1LanguageEnum[keyof typeof CentrifugeProjectV1LanguageEnum];
 /**
@@ -134,9 +134,9 @@ export type CentrifugeProjectV1VEnum = typeof CentrifugeProjectV1VEnum[keyof typ
  * @export
  */
 export declare const GetTokenBroadcastV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type GetTokenBroadcastV1LanguageEnum = typeof GetTokenBroadcastV1LanguageEnum[keyof typeof GetTokenBroadcastV1LanguageEnum];
 /**

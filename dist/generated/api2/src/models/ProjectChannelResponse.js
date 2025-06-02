@@ -20,11 +20,11 @@ exports.ProjectChannelResponseToJSONTyped = exports.ProjectChannelResponseToJSON
 function instanceOfProjectChannelResponse(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
-    if (!('ownerId' in value) || value['ownerId'] === undefined)
+    if (!('owner_id' in value) || value['owner_id'] === undefined)
         return false;
     if (!('usageType' in value) || value['usageType'] === undefined)
         return false;
@@ -41,9 +41,9 @@ function ProjectChannelResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
-        'ownerId': json['owner_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
+        'owner_id': json['owner_id'],
         'usageType': json['usageType'],
     };
 }
@@ -58,9 +58,9 @@ function ProjectChannelResponseToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
-        'owner_id': value['ownerId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
+        'owner_id': value['owner_id'],
         'usageType': value['usageType'],
     };
 }

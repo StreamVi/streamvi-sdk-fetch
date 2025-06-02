@@ -12,21 +12,21 @@
 import * as runtime from '../runtime';
 import type { SiteTranscoderListResponse, SuccessResponse, TranscoderCreateDto, TranscoderItemDto, TranscoderUpdateDto } from '../models/index';
 export interface TranscodersAddV1Request {
-    transcoderCreateDto: TranscoderCreateDto;
+    TranscoderCreateDto: TranscoderCreateDto;
 }
 export interface TranscodersDeleteV1Request {
-    transcoderItemDto: TranscoderItemDto;
+    TranscoderItemDto: TranscoderItemDto;
 }
 export interface TranscodersListV1Request {
     language: TranscodersListV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: TranscodersListV1VEnum;
 }
 export interface TranscodersStopV1Request {
-    transcoderItemDto: TranscoderItemDto;
+    TranscoderItemDto: TranscoderItemDto;
 }
 export interface TranscodersUpdateV1Request {
-    transcoderUpdateDto: TranscoderUpdateDto;
+    TranscoderUpdateDto: TranscoderUpdateDto;
 }
 /**
  * TranscodersApi - interface
@@ -38,7 +38,7 @@ export interface TranscodersApiInterface {
     /**
      *
      * @summary Transcoder create
-     * @param {TranscoderCreateDto} transcoderCreateDto
+     * @param {TranscoderCreateDto} TranscoderCreateDto
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -51,7 +51,7 @@ export interface TranscodersApiInterface {
     /**
      *
      * @summary Transcoder delete
-     * @param {TranscoderItemDto} transcoderItemDto
+     * @param {TranscoderItemDto} TranscoderItemDto
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -65,7 +65,7 @@ export interface TranscodersApiInterface {
      *
      * @summary List of transcoder
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -79,7 +79,7 @@ export interface TranscodersApiInterface {
     /**
      *
      * @summary Transcoder stop
-     * @param {TranscoderItemDto} transcoderItemDto
+     * @param {TranscoderItemDto} TranscoderItemDto
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -92,7 +92,7 @@ export interface TranscodersApiInterface {
     /**
      *
      * @summary Transcoder update
-     * @param {TranscoderUpdateDto} transcoderUpdateDto
+     * @param {TranscoderUpdateDto} TranscoderUpdateDto
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -152,9 +152,9 @@ export declare class TranscodersApi extends runtime.BaseAPI implements Transcode
  * @export
  */
 export declare const TranscodersListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type TranscodersListV1LanguageEnum = typeof TranscodersListV1LanguageEnum[keyof typeof TranscodersListV1LanguageEnum];
 /**

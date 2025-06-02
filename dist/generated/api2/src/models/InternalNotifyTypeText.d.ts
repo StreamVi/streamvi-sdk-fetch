@@ -26,7 +26,7 @@ export interface InternalNotifyTypeText {
      * @type {string}
      * @memberof InternalNotifyTypeText
      */
-    languageIso: InternalNotifyTypeTextLanguageIsoEnum;
+    language_iso: InternalNotifyTypeTextLanguageIsoEnum;
     /**
      * Title value
      * @type {string}
@@ -44,18 +44,18 @@ export interface InternalNotifyTypeText {
  * @export
  */
 export declare const InternalNotifyTypeTextLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type InternalNotifyTypeTextLanguageEnum = typeof InternalNotifyTypeTextLanguageEnum[keyof typeof InternalNotifyTypeTextLanguageEnum];
 /**
  * @export
  */
 export declare const InternalNotifyTypeTextLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type InternalNotifyTypeTextLanguageIsoEnum = typeof InternalNotifyTypeTextLanguageIsoEnum[keyof typeof InternalNotifyTypeTextLanguageIsoEnum];
 /**

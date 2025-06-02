@@ -14,13 +14,13 @@ import type { SuccessResponse, UserProfileResponse } from '../models/index';
 export interface UserGetProfileV1Request {
     language: UserGetProfileV1LanguageEnum;
     v?: UserGetProfileV1VEnum;
-    projectId?: number | null;
+    project_id?: number | null;
 }
 export interface UserUpdateProfileV1Request {
     v: UserUpdateProfileV1VEnum;
     language: UserUpdateProfileV1LanguageEnum;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     avatar?: Blob;
 }
 /**
@@ -35,7 +35,7 @@ export interface UserApiInterface {
      * @summary Get user profile
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [projectId] Project id
+     * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApiInterface
@@ -50,8 +50,8 @@ export interface UserApiInterface {
      * @summary Update profile
      * @param {string} v Version
      * @param {string} language Current language
-     * @param {string} firstName First name
-     * @param {string} lastName Last name
+     * @param {string} first_name First name
+     * @param {string} last_name Last name
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -88,9 +88,9 @@ export declare class UserApi extends runtime.BaseAPI implements UserApiInterface
  * @export
  */
 export declare const UserGetProfileV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserGetProfileV1LanguageEnum = typeof UserGetProfileV1LanguageEnum[keyof typeof UserGetProfileV1LanguageEnum];
 /**
@@ -115,9 +115,9 @@ export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typ
  * @export
  */
 export declare const UserUpdateProfileV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserUpdateProfileV1LanguageEnum = typeof UserUpdateProfileV1LanguageEnum[keyof typeof UserUpdateProfileV1LanguageEnum];
 //# sourceMappingURL=UserApi.d.ts.map

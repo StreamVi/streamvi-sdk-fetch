@@ -31,9 +31,9 @@ exports.ProjectInfoResponseVEnum = {
  * @export
  */
 exports.ProjectInfoResponseLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the ProjectInfoResponse interface.

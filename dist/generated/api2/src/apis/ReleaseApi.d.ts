@@ -56,9 +56,9 @@ export declare class ReleaseApi extends runtime.BaseAPI implements ReleaseApiInt
  * @export
  */
 export declare const ReleaseAppCabinetV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ReleaseAppCabinetV1LanguageEnum = typeof ReleaseAppCabinetV1LanguageEnum[keyof typeof ReleaseAppCabinetV1LanguageEnum];
 /**
@@ -74,7 +74,7 @@ export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typ
  * @export
  */
 export declare const ReleaseAppCabinetV1AppEnum: {
-    readonly Cabinet: "cabinet";
+    readonly cabinet: "cabinet";
 };
 export type ReleaseAppCabinetV1AppEnum = typeof ReleaseAppCabinetV1AppEnum[keyof typeof ReleaseAppCabinetV1AppEnum];
 //# sourceMappingURL=ReleaseApi.d.ts.map

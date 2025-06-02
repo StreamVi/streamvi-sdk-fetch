@@ -50,14 +50,14 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectChangeAccessV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling userProjectChangeAccessV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectChangeAccessV1().');
         }
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError('userId', 'Required parameter "userId" was null or undefined when calling userProjectChangeAccessV1().');
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError('user_id', 'Required parameter "user_id" was null or undefined when calling userProjectChangeAccessV1().');
         }
-        if (requestParameters['accessType'] == null) {
-            throw new runtime.RequiredError('accessType', 'Required parameter "accessType" was null or undefined when calling userProjectChangeAccessV1().');
+        if (requestParameters['access_type'] == null) {
+            throw new runtime.RequiredError('access_type', 'Required parameter "access_type" was null or undefined when calling userProjectChangeAccessV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -69,14 +69,14 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['userId'] != null) {
-            queryParameters['user_id'] = requestParameters['userId'];
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
         }
-        if (requestParameters['accessType'] != null) {
-            queryParameters['access_type'] = requestParameters['accessType'];
+        if (requestParameters['access_type'] != null) {
+            queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -101,11 +101,11 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectDelV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling userProjectDelV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectDelV1().');
         }
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError('userId', 'Required parameter "userId" was null or undefined when calling userProjectDelV1().');
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError('user_id', 'Required parameter "user_id" was null or undefined when calling userProjectDelV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -117,11 +117,11 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['userId'] != null) {
-            queryParameters['user_id'] = requestParameters['userId'];
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -146,8 +146,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetProjectInfoV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling userProjectGetProjectInfoV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectGetProjectInfoV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -159,8 +159,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -185,8 +185,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetProjectV1().');
         }
-        if (requestParameters['projectExternalId'] == null) {
-            throw new runtime.RequiredError('projectExternalId', 'Required parameter "projectExternalId" was null or undefined when calling userProjectGetProjectV1().');
+        if (requestParameters['project_external_id'] == null) {
+            throw new runtime.RequiredError('project_external_id', 'Required parameter "project_external_id" was null or undefined when calling userProjectGetProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -198,8 +198,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectExternalId'] != null) {
-            queryParameters['project_external_id'] = requestParameters['projectExternalId'];
+        if (requestParameters['project_external_id'] != null) {
+            queryParameters['project_external_id'] = requestParameters['project_external_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -224,8 +224,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetUserV1().');
         }
-        if (requestParameters['userExternalId'] == null) {
-            throw new runtime.RequiredError('userExternalId', 'Required parameter "userExternalId" was null or undefined when calling userProjectGetUserV1().');
+        if (requestParameters['user_external_id'] == null) {
+            throw new runtime.RequiredError('user_external_id', 'Required parameter "user_external_id" was null or undefined when calling userProjectGetUserV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -237,8 +237,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['userExternalId'] != null) {
-            queryParameters['user_external_id'] = requestParameters['userExternalId'];
+        if (requestParameters['user_external_id'] != null) {
+            queryParameters['user_external_id'] = requestParameters['user_external_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -263,8 +263,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectListAccessV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling userProjectListAccessV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectListAccessV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -276,8 +276,8 @@ class UserProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -379,9 +379,9 @@ exports.UserProjectApi = UserProjectApi;
  * @export
  */
 exports.UserProjectChangeAccessV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -403,9 +403,9 @@ exports.UserProjectChangeAccessV1VEnum = {
  * @export
  */
 exports.UserProjectDelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -419,9 +419,9 @@ exports.UserProjectDelV1VEnum = {
  * @export
  */
 exports.UserProjectGetProjectInfoV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -435,9 +435,9 @@ exports.UserProjectGetProjectInfoV1VEnum = {
  * @export
  */
 exports.UserProjectGetProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -451,9 +451,9 @@ exports.UserProjectGetProjectV1VEnum = {
  * @export
  */
 exports.UserProjectGetUserV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -467,9 +467,9 @@ exports.UserProjectGetUserV1VEnum = {
  * @export
  */
 exports.UserProjectListAccessV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -483,9 +483,9 @@ exports.UserProjectListAccessV1VEnum = {
  * @export
  */
 exports.UserProjectListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -499,9 +499,9 @@ exports.UserProjectListV1VEnum = {
  * @export
  */
 exports.UserProjectSelectProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

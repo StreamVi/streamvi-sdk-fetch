@@ -12,20 +12,20 @@
 import * as runtime from '../runtime';
 export interface AnalyticsTsStreamBitrateV1Request {
     language: AnalyticsTsStreamBitrateV1LanguageEnum;
-    projectId: number;
-    streamId: number;
+    project_id: number;
+    stream_id: number;
     v?: AnalyticsTsStreamBitrateV1VEnum;
 }
 export interface AnalyticsTsStreamEventsV1Request {
     language: AnalyticsTsStreamEventsV1LanguageEnum;
-    projectId: number;
-    streamId: number;
+    project_id: number;
+    stream_id: number;
     v?: AnalyticsTsStreamEventsV1VEnum;
 }
 export interface AnalyticsTsStreamViewersV1Request {
     language: AnalyticsTsStreamViewersV1LanguageEnum;
-    projectId: number;
-    streamId: number;
+    project_id: number;
+    stream_id: number;
     v?: AnalyticsTsStreamViewersV1VEnum;
 }
 /**
@@ -39,8 +39,8 @@ export interface AnalyticsApiInterface {
      *
      * @summary Bitrate for stream
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} streamId stream id
+     * @param {number} project_id Project id
+     * @param {number} stream_id stream id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55,8 +55,8 @@ export interface AnalyticsApiInterface {
      *
      * @summary Events for stream
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} streamId stream id
+     * @param {number} project_id Project id
+     * @param {number} stream_id stream id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -71,8 +71,8 @@ export interface AnalyticsApiInterface {
      *
      * @summary Viewers for stream
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} streamId stream id
+     * @param {number} project_id Project id
+     * @param {number} stream_id stream id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -117,9 +117,9 @@ export declare class AnalyticsApi extends runtime.BaseAPI implements AnalyticsAp
  * @export
  */
 export declare const AnalyticsTsStreamBitrateV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AnalyticsTsStreamBitrateV1LanguageEnum = typeof AnalyticsTsStreamBitrateV1LanguageEnum[keyof typeof AnalyticsTsStreamBitrateV1LanguageEnum];
 /**
@@ -135,9 +135,9 @@ export type AnalyticsTsStreamBitrateV1VEnum = typeof AnalyticsTsStreamBitrateV1V
  * @export
  */
 export declare const AnalyticsTsStreamEventsV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AnalyticsTsStreamEventsV1LanguageEnum = typeof AnalyticsTsStreamEventsV1LanguageEnum[keyof typeof AnalyticsTsStreamEventsV1LanguageEnum];
 /**
@@ -153,9 +153,9 @@ export type AnalyticsTsStreamEventsV1VEnum = typeof AnalyticsTsStreamEventsV1VEn
  * @export
  */
 export declare const AnalyticsTsStreamViewersV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type AnalyticsTsStreamViewersV1LanguageEnum = typeof AnalyticsTsStreamViewersV1LanguageEnum[keyof typeof AnalyticsTsStreamViewersV1LanguageEnum];
 /**

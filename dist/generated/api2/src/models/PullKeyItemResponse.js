@@ -18,17 +18,17 @@ exports.PullKeyItemResponseToJSONTyped = exports.PullKeyItemResponseToJSON = exp
  * @export
  */
 exports.PullKeyItemResponseTransportEnum = {
-    Rtmp: 'rtmp',
-    Srt: 'srt',
-    Hls: 'hls'
+    rtmp: 'rtmp',
+    srt: 'srt',
+    hls: 'hls'
 };
 /**
  * @export
  */
 exports.PullKeyItemResponseStatusEnum = {
-    Active: 'active',
-    Inactive: 'inactive',
-    Error: 'error'
+    active: 'active',
+    inactive: 'inactive',
+    error: 'error'
 };
 /**
  * Check if a given object implements the PullKeyItemResponse interface.

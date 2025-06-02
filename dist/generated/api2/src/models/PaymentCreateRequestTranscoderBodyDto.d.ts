@@ -32,7 +32,7 @@ export interface PaymentCreateRequestTranscoderBodyDto {
      * @type {number}
      * @memberof PaymentCreateRequestTranscoderBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Code
      * @type {string}
@@ -50,19 +50,19 @@ export interface PaymentCreateRequestTranscoderBodyDto {
      * @type {string}
      * @memberof PaymentCreateRequestTranscoderBodyDto
      */
-    planPeriod: PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum;
+    plan_period: PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum;
     /**
      * Transcoding plan id
      * @type {number}
      * @memberof PaymentCreateRequestTranscoderBodyDto
      */
-    planTranscodingId: number;
+    plan_transcoding_id: number;
     /**
      * Count flow
      * @type {number}
      * @memberof PaymentCreateRequestTranscoderBodyDto
      */
-    planTranscodingCountFlow: number;
+    plan_transcoding_count_flow: number;
 }
 /**
  * @export
@@ -77,27 +77,27 @@ export type PaymentCreateRequestTranscoderBodyDtoVEnum = typeof PaymentCreateReq
  * @export
  */
 export declare const PaymentCreateRequestTranscoderBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentCreateRequestTranscoderBodyDtoLanguageEnum = typeof PaymentCreateRequestTranscoderBodyDtoLanguageEnum[keyof typeof PaymentCreateRequestTranscoderBodyDtoLanguageEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestTranscoderBodyDtoTypeEnum: {
-    readonly Restream: "restream";
-    readonly Transcoding: "transcoding";
-    readonly Storage: "storage";
-    readonly Topup: "topup";
+    readonly restream: "restream";
+    readonly transcoding: "transcoding";
+    readonly storage: "storage";
+    readonly topup: "topup";
 };
 export type PaymentCreateRequestTranscoderBodyDtoTypeEnum = typeof PaymentCreateRequestTranscoderBodyDtoTypeEnum[keyof typeof PaymentCreateRequestTranscoderBodyDtoTypeEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum = typeof PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum[keyof typeof PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum];
 /**

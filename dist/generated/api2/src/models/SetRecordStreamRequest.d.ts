@@ -32,7 +32,7 @@ export interface SetRecordStreamRequest {
      * @type {number}
      * @memberof SetRecordStreamRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Record status
      * @type {boolean}
@@ -53,9 +53,9 @@ export type SetRecordStreamRequestVEnum = typeof SetRecordStreamRequestVEnum[key
  * @export
  */
 export declare const SetRecordStreamRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SetRecordStreamRequestLanguageEnum = typeof SetRecordStreamRequestLanguageEnum[keyof typeof SetRecordStreamRequestLanguageEnum];
 /**

@@ -32,19 +32,19 @@ export interface ProjectHistoryResponse {
      * @type {number}
      * @memberof ProjectHistoryResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * User id
      * @type {number}
      * @memberof ProjectHistoryResponse
      */
-    userId: number;
+    user_id: number;
     /**
      * Group id
      * @type {number}
      * @memberof ProjectHistoryResponse
      */
-    groupId: number;
+    group_id: number;
     /**
      * Date
      * @type {Date}
@@ -56,20 +56,20 @@ export interface ProjectHistoryResponse {
  * @export
  */
 export declare const ProjectHistoryResponseActionEnum: {
-    readonly ProjectChannelInviteAdd: "project_channel_invite_add";
-    readonly ProjectChannelInviteDel: "project_channel_invite_del";
-    readonly ProjectChannelInviteAccept: "project_channel_invite_accept";
-    readonly ProjectChannelInviteDecline: "project_channel_invite_decline";
-    readonly UserProjectInviteAdd: "user_project_invite_add";
-    readonly UserProjectInviteDel: "user_project_invite_del";
-    readonly UserProjectInviteAccept: "user_project_invite_accept";
-    readonly UserProjectInviteDecline: "user_project_invite_decline";
-    readonly UserProjectAdd: "user_project_add";
-    readonly UserProjectDel: "user_project_del";
-    readonly UserProjectChange: "user_project_change";
-    readonly ProjectChannelAdd: "project_channel_add";
-    readonly ProjectChannelDel: "project_channel_del";
-    readonly ProjectChannelChange: "project_channel_change";
+    readonly project_channel_invite_add: "project_channel_invite_add";
+    readonly project_channel_invite_del: "project_channel_invite_del";
+    readonly project_channel_invite_accept: "project_channel_invite_accept";
+    readonly project_channel_invite_decline: "project_channel_invite_decline";
+    readonly user_project_invite_add: "user_project_invite_add";
+    readonly user_project_invite_del: "user_project_invite_del";
+    readonly user_project_invite_accept: "user_project_invite_accept";
+    readonly user_project_invite_decline: "user_project_invite_decline";
+    readonly user_project_add: "user_project_add";
+    readonly user_project_del: "user_project_del";
+    readonly user_project_change: "user_project_change";
+    readonly project_channel_add: "project_channel_add";
+    readonly project_channel_del: "project_channel_del";
+    readonly project_channel_change: "project_channel_change";
 };
 export type ProjectHistoryResponseActionEnum = typeof ProjectHistoryResponseActionEnum[keyof typeof ProjectHistoryResponseActionEnum];
 /**

@@ -20,13 +20,13 @@ export interface PayoutSystemAccountListItemResponse {
      * @type {number}
      * @memberof PayoutSystemAccountListItemResponse
      */
-    payoutSystemAccountId: number;
+    payout_system_account_id: number;
     /**
      * Payout system id
      * @type {number}
      * @memberof PayoutSystemAccountListItemResponse
      */
-    payoutSystemId: number;
+    payout_system_id: number;
     /**
      * Description
      * @type {string}
@@ -44,7 +44,7 @@ export interface PayoutSystemAccountListItemResponse {
      * @type {string}
      * @memberof PayoutSystemAccountListItemResponse
      */
-    commissionType: PayoutSystemAccountListItemResponseCommissionTypeEnum;
+    commission_type: PayoutSystemAccountListItemResponseCommissionTypeEnum;
     /**
      * Title
      * @type {string}
@@ -68,28 +68,28 @@ export interface PayoutSystemAccountListItemResponse {
      * @type {number}
      * @memberof PayoutSystemAccountListItemResponse
      */
-    minAmount: number;
+    min_amount: number;
     /**
      * Maximum amount
      * @type {number}
      * @memberof PayoutSystemAccountListItemResponse
      */
-    maxAmount: number;
+    max_amount: number;
 }
 /**
  * @export
  */
 export declare const PayoutSystemAccountListItemResponseCommissionTypeEnum: {
-    readonly Percent: "percent";
-    readonly Fix: "fix";
+    readonly percent: "percent";
+    readonly fix: "fix";
 };
 export type PayoutSystemAccountListItemResponseCommissionTypeEnum = typeof PayoutSystemAccountListItemResponseCommissionTypeEnum[keyof typeof PayoutSystemAccountListItemResponseCommissionTypeEnum];
 /**
  * @export
  */
 export declare const PayoutSystemAccountListItemResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PayoutSystemAccountListItemResponseCurrencyEnum = typeof PayoutSystemAccountListItemResponseCurrencyEnum[keyof typeof PayoutSystemAccountListItemResponseCurrencyEnum];
 /**

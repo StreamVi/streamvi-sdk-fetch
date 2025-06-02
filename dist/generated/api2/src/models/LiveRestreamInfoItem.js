@@ -20,11 +20,11 @@ exports.LiveRestreamInfoItemToJSONTyped = exports.LiveRestreamInfoItemToJSON = e
 function instanceOfLiveRestreamInfoItem(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
-    if (!('channelName' in value) || value['channelName'] === undefined)
+    if (!('channel_name' in value) || value['channel_name'] === undefined)
         return false;
-    if (!('channelType' in value) || value['channelType'] === undefined)
+    if (!('channel_type' in value) || value['channel_type'] === undefined)
         return false;
     return true;
 }
@@ -39,9 +39,9 @@ function LiveRestreamInfoItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'channelId': json['channel_id'],
-        'channelName': json['channel_name'],
-        'channelType': json['channel_type'],
+        'channel_id': json['channel_id'],
+        'channel_name': json['channel_name'],
+        'channel_type': json['channel_type'],
         'url': json['url'] == null ? undefined : json['url'],
         'viewer': json['viewer'] == null ? undefined : json['viewer'],
         'message': json['message'] == null ? undefined : json['message'],
@@ -59,9 +59,9 @@ function LiveRestreamInfoItemToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'channel_id': value['channelId'],
-        'channel_name': value['channelName'],
-        'channel_type': value['channelType'],
+        'channel_id': value['channel_id'],
+        'channel_name': value['channel_name'],
+        'channel_type': value['channel_type'],
         'url': value['url'],
         'viewer': value['viewer'],
         'message': value['message'],

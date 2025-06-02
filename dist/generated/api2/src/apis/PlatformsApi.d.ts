@@ -13,7 +13,7 @@ import * as runtime from '../runtime';
 import type { ListOfCategoryItemResponse, SitePlatformsSupportedResponse } from '../models/index';
 export interface PlatformsAddAccountV1Request {
     language: PlatformsAddAccountV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     platform: PlatformsAddAccountV1PlatformEnum;
     v?: PlatformsAddAccountV1VEnum;
 }
@@ -44,7 +44,7 @@ export interface PlatformsApiInterface {
      *
      * @summary Get url for start oauth
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch'} platform Provider oauth
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -144,21 +144,21 @@ export declare class PlatformsApi extends runtime.BaseAPI implements PlatformsAp
  * @export
  */
 export declare const PlatformsAddAccountV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlatformsAddAccountV1LanguageEnum = typeof PlatformsAddAccountV1LanguageEnum[keyof typeof PlatformsAddAccountV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlatformsAddAccountV1PlatformEnum: {
-    readonly Vk: "vk";
-    readonly VkId: "vk-id";
-    readonly Ok: "ok";
-    readonly Youtube: "youtube";
-    readonly Trovo: "trovo";
-    readonly Twitch: "twitch";
+    readonly vk: "vk";
+    readonly vk_id: "vk-id";
+    readonly ok: "ok";
+    readonly youtube: "youtube";
+    readonly trovo: "trovo";
+    readonly twitch: "twitch";
 };
 export type PlatformsAddAccountV1PlatformEnum = typeof PlatformsAddAccountV1PlatformEnum[keyof typeof PlatformsAddAccountV1PlatformEnum];
 /**
@@ -174,20 +174,20 @@ export type PlatformsAddAccountV1VEnum = typeof PlatformsAddAccountV1VEnum[keyof
  * @export
  */
 export declare const PlatformsGetCategoryV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlatformsGetCategoryV1LanguageEnum = typeof PlatformsGetCategoryV1LanguageEnum[keyof typeof PlatformsGetCategoryV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlatformsGetCategoryV1TypeEnum: {
-    readonly Vk: "vk";
-    readonly Youtube: "youtube";
-    readonly Trovo: "trovo";
-    readonly Twitch: "twitch";
-    readonly Vkvideolive: "vkvideolive";
+    readonly vk: "vk";
+    readonly youtube: "youtube";
+    readonly trovo: "trovo";
+    readonly twitch: "twitch";
+    readonly vkvideolive: "vkvideolive";
 };
 export type PlatformsGetCategoryV1TypeEnum = typeof PlatformsGetCategoryV1TypeEnum[keyof typeof PlatformsGetCategoryV1TypeEnum];
 /**
@@ -203,21 +203,21 @@ export type PlatformsGetCategoryV1VEnum = typeof PlatformsGetCategoryV1VEnum[key
  * @export
  */
 export declare const PlatformsLogoutAccountV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlatformsLogoutAccountV1LanguageEnum = typeof PlatformsLogoutAccountV1LanguageEnum[keyof typeof PlatformsLogoutAccountV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlatformsLogoutAccountV1PlatformEnum: {
-    readonly Vk: "vk";
-    readonly VkId: "vk-id";
-    readonly Ok: "ok";
-    readonly Youtube: "youtube";
-    readonly Trovo: "trovo";
-    readonly Twitch: "twitch";
+    readonly vk: "vk";
+    readonly vk_id: "vk-id";
+    readonly ok: "ok";
+    readonly youtube: "youtube";
+    readonly trovo: "trovo";
+    readonly twitch: "twitch";
 };
 export type PlatformsLogoutAccountV1PlatformEnum = typeof PlatformsLogoutAccountV1PlatformEnum[keyof typeof PlatformsLogoutAccountV1PlatformEnum];
 /**
@@ -233,9 +233,9 @@ export type PlatformsLogoutAccountV1VEnum = typeof PlatformsLogoutAccountV1VEnum
  * @export
  */
 export declare const PlatformsPlatformListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlatformsPlatformListV1LanguageEnum = typeof PlatformsPlatformListV1LanguageEnum[keyof typeof PlatformsPlatformListV1LanguageEnum];
 /**

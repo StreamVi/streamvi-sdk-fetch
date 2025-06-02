@@ -26,11 +26,11 @@ export interface GetPolicyStructure {
  * @export
  */
 export declare const GetPolicyStructureResultsEnum: {
-    readonly Refund: "refund";
-    readonly TermsOfUse: "terms-of-use";
-    readonly UsingCookie: "using-cookie";
-    readonly AcceptableUse: "acceptable-use";
-    readonly PrivacyNotice: "privacy-notice";
+    readonly refund: "refund";
+    readonly terms_of_use: "terms-of-use";
+    readonly using_cookie: "using-cookie";
+    readonly acceptable_use: "acceptable-use";
+    readonly privacy_notice: "privacy-notice";
 };
 export type GetPolicyStructureResultsEnum = typeof GetPolicyStructureResultsEnum[keyof typeof GetPolicyStructureResultsEnum];
 /**

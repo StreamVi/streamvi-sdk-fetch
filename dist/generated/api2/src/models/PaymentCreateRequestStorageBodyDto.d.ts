@@ -32,7 +32,7 @@ export interface PaymentCreateRequestStorageBodyDto {
      * @type {number}
      * @memberof PaymentCreateRequestStorageBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Code
      * @type {string}
@@ -50,19 +50,19 @@ export interface PaymentCreateRequestStorageBodyDto {
      * @type {string}
      * @memberof PaymentCreateRequestStorageBodyDto
      */
-    planPeriod: PaymentCreateRequestStorageBodyDtoPlanPeriodEnum;
+    plan_period: PaymentCreateRequestStorageBodyDtoPlanPeriodEnum;
     /**
      * Storage plan id
      * @type {number}
      * @memberof PaymentCreateRequestStorageBodyDto
      */
-    planStorageId: number;
+    plan_storage_id: number;
     /**
      * Space GB
      * @type {number}
      * @memberof PaymentCreateRequestStorageBodyDto
      */
-    planStorageValue: number;
+    plan_storage_value: number;
 }
 /**
  * @export
@@ -77,27 +77,27 @@ export type PaymentCreateRequestStorageBodyDtoVEnum = typeof PaymentCreateReques
  * @export
  */
 export declare const PaymentCreateRequestStorageBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentCreateRequestStorageBodyDtoLanguageEnum = typeof PaymentCreateRequestStorageBodyDtoLanguageEnum[keyof typeof PaymentCreateRequestStorageBodyDtoLanguageEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestStorageBodyDtoTypeEnum: {
-    readonly Restream: "restream";
-    readonly Transcoding: "transcoding";
-    readonly Storage: "storage";
-    readonly Topup: "topup";
+    readonly restream: "restream";
+    readonly transcoding: "transcoding";
+    readonly storage: "storage";
+    readonly topup: "topup";
 };
 export type PaymentCreateRequestStorageBodyDtoTypeEnum = typeof PaymentCreateRequestStorageBodyDtoTypeEnum[keyof typeof PaymentCreateRequestStorageBodyDtoTypeEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestStorageBodyDtoPlanPeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PaymentCreateRequestStorageBodyDtoPlanPeriodEnum = typeof PaymentCreateRequestStorageBodyDtoPlanPeriodEnum[keyof typeof PaymentCreateRequestStorageBodyDtoPlanPeriodEnum];
 /**

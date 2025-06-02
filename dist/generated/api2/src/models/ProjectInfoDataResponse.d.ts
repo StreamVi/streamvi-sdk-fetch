@@ -20,7 +20,7 @@ export interface ProjectInfoDataResponse {
      * @type {number}
      * @memberof ProjectInfoDataResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * Project name
      * @type {string}
@@ -38,19 +38,19 @@ export interface ProjectInfoDataResponse {
      * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    photo50: string;
+    photo_50: string;
     /**
      * Project photo in 100px size
      * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    photo100: string;
+    photo_100: string;
     /**
      * External project id
      * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    externalId: string;
+    external_id: string;
     /**
      * Project type
      * @type {number}
@@ -62,19 +62,19 @@ export interface ProjectInfoDataResponse {
      * @type {number}
      * @memberof ProjectInfoDataResponse
      */
-    balanceBonus: number;
+    balance_bonus: number;
     /**
      * Payment balance
      * @type {number}
      * @memberof ProjectInfoDataResponse
      */
-    balancePayment: number;
+    balance_payment: number;
     /**
      * Profit balance
      * @type {number}
      * @memberof ProjectInfoDataResponse
      */
-    balanceProfit: number;
+    balance_profit: number;
     /**
      * Currency
      * @type {number}
@@ -86,7 +86,7 @@ export interface ProjectInfoDataResponse {
      * @type {number}
      * @memberof ProjectInfoDataResponse
      */
-    countryId: number;
+    country_id: number;
 }
 /**
  * @export

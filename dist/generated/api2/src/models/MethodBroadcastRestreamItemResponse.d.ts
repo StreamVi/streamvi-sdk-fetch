@@ -20,13 +20,13 @@ export interface MethodBroadcastRestreamItemResponse {
      * @type {number}
      * @memberof MethodBroadcastRestreamItemResponse
      */
-    restreamId: number;
+    restream_id: number;
     /**
      * Channel Id
      * @type {number}
      * @memberof MethodBroadcastRestreamItemResponse
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Platform name
      * @type {string}

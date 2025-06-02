@@ -20,13 +20,13 @@ export interface MethodProjectLiveStatusVideo {
      * @type {number}
      * @memberof MethodProjectLiveStatusVideo
      */
-    taskId: number;
+    task_id: number;
     /**
      *
      * @type {number}
      * @memberof MethodProjectLiveStatusVideo
      */
-    videoId: number;
+    video_id: number;
     /**
      *
      * @type {string}

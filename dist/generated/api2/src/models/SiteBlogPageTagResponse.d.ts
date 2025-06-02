@@ -21,7 +21,7 @@ export interface SiteBlogPageTagResponse {
      * @type {BlogPageSiteResponseId}
      * @memberof SiteBlogPageTagResponse
      */
-    id: BlogPageSiteResponseId;
+    _id: BlogPageSiteResponseId;
     /**
      * Language for indexing
      * @type {string}
@@ -33,7 +33,7 @@ export interface SiteBlogPageTagResponse {
      * @type {string}
      * @memberof SiteBlogPageTagResponse
      */
-    languageIso: SiteBlogPageTagResponseLanguageIsoEnum;
+    language_iso: SiteBlogPageTagResponseLanguageIsoEnum;
     /**
      * Title
      * @type {string}
@@ -45,24 +45,24 @@ export interface SiteBlogPageTagResponse {
      * @type {number}
      * @memberof SiteBlogPageTagResponse
      */
-    countUse: number;
+    count_use: number;
 }
 /**
  * @export
  */
 export declare const SiteBlogPageTagResponseLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type SiteBlogPageTagResponseLanguageEnum = typeof SiteBlogPageTagResponseLanguageEnum[keyof typeof SiteBlogPageTagResponseLanguageEnum];
 /**
  * @export
  */
 export declare const SiteBlogPageTagResponseLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteBlogPageTagResponseLanguageIsoEnum = typeof SiteBlogPageTagResponseLanguageIsoEnum[keyof typeof SiteBlogPageTagResponseLanguageIsoEnum];
 /**

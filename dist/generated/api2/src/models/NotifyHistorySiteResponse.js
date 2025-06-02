@@ -19,16 +19,16 @@ const InternalNotifyTypeText_1 = require("./InternalNotifyTypeText");
  * @export
  */
 exports.NotifyHistorySiteResponseChannelEnum = {
-    Telegram: 'telegram',
-    Cabinet: 'cabinet',
-    Mobile: 'mobile'
+    telegram: 'telegram',
+    cabinet: 'cabinet',
+    mobile: 'mobile'
 };
 /**
  * @export
  */
 exports.NotifyHistorySiteResponseCategoryEnum = {
-    Important: 'important',
-    Stream: 'stream'
+    important: 'important',
+    stream: 'stream'
 };
 /**
  * Check if a given object implements the NotifyHistorySiteResponse interface.
@@ -36,9 +36,9 @@ exports.NotifyHistorySiteResponseCategoryEnum = {
 function instanceOfNotifyHistorySiteResponse(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('dateCreate' in value) || value['dateCreate'] === undefined)
+    if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
     if (!('actions' in value) || value['actions'] === undefined)
         return false;
@@ -46,7 +46,7 @@ function instanceOfNotifyHistorySiteResponse(value) {
         return false;
     if (!('text' in value) || value['text'] === undefined)
         return false;
-    if (!('statusRead' in value) || value['statusRead'] === undefined)
+    if (!('status_read' in value) || value['status_read'] === undefined)
         return false;
     if (!('category' in value) || value['category'] === undefined)
         return false;
@@ -63,12 +63,12 @@ function NotifyHistorySiteResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'projectId': json['project_id'],
-        'dateCreate': (new Date(json['date_create'])),
+        'project_id': json['project_id'],
+        'date_create': (new Date(json['date_create'])),
         'actions': json['actions'],
         'channel': json['channel'],
         'text': (json['text'].map(InternalNotifyTypeText_1.InternalNotifyTypeTextFromJSON)),
-        'statusRead': json['status_read'],
+        'status_read': json['status_read'],
         'category': json['category'],
     };
 }
@@ -83,12 +83,12 @@ function NotifyHistorySiteResponseToJSONTyped(value, ignoreDiscriminator = false
     }
     return {
         'id': value['id'],
-        'project_id': value['projectId'],
-        'date_create': ((value['dateCreate']).toISOString()),
+        'project_id': value['project_id'],
+        'date_create': ((value['date_create']).toISOString()),
         'actions': value['actions'],
         'channel': value['channel'],
         'text': (value['text'].map(InternalNotifyTypeText_1.InternalNotifyTypeTextToJSON)),
-        'status_read': value['statusRead'],
+        'status_read': value['status_read'],
         'category': value['category'],
     };
 }

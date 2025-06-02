@@ -32,25 +32,25 @@ export interface PaySettingBodyDto {
      * @type {number}
      * @memberof PaySettingBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Countrie id
      * @type {number}
      * @memberof PaySettingBodyDto
      */
-    countrieId: number;
+    countrie_id: number;
     /**
      * Organization
      * @type {number}
      * @memberof PaySettingBodyDto
      */
-    organizationId?: number | null;
+    organization_id?: number | null;
     /**
      * Pay system id
      * @type {number}
      * @memberof PaySettingBodyDto
      */
-    paySystemId: number;
+    pay_system_id: number;
     /**
      * E-mail
      * @type {string}
@@ -77,9 +77,9 @@ export type PaySettingBodyDtoVEnum = typeof PaySettingBodyDtoVEnum[keyof typeof 
  * @export
  */
 export declare const PaySettingBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaySettingBodyDtoLanguageEnum = typeof PaySettingBodyDtoLanguageEnum[keyof typeof PaySettingBodyDtoLanguageEnum];
 /**

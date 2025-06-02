@@ -163,9 +163,9 @@ exports.HelpPageApi = HelpPageApi;
  * @export
  */
 exports.HelpPageGetV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -179,9 +179,9 @@ exports.HelpPageGetV1VEnum = {
  * @export
  */
 exports.HelpPageListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -195,9 +195,9 @@ exports.HelpPageListV1VEnum = {
  * @export
  */
 exports.HelpPageStructureV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

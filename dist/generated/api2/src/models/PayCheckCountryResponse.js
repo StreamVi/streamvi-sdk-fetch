@@ -18,8 +18,8 @@ exports.PayCheckCountryResponseToJSONTyped = exports.PayCheckCountryResponseToJS
  * @export
  */
 exports.PayCheckCountryResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the PayCheckCountryResponse interface.

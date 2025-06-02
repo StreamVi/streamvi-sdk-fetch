@@ -26,7 +26,7 @@ exports.ProjectInfoAccessResponseAccessTypeEnum = {
  * Check if a given object implements the ProjectInfoAccessResponse interface.
  */
 function instanceOfProjectInfoAccessResponse(value) {
-    if (!('accessType' in value) || value['accessType'] === undefined)
+    if (!('access_type' in value) || value['access_type'] === undefined)
         return false;
     return true;
 }
@@ -40,7 +40,7 @@ function ProjectInfoAccessResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'accessType': json['access_type'],
+        'access_type': json['access_type'],
     };
 }
 exports.ProjectInfoAccessResponseFromJSONTyped = ProjectInfoAccessResponseFromJSONTyped;
@@ -53,7 +53,7 @@ function ProjectInfoAccessResponseToJSONTyped(value, ignoreDiscriminator = false
         return value;
     }
     return {
-        'access_type': value['accessType'],
+        'access_type': value['access_type'],
     };
 }
 exports.ProjectInfoAccessResponseToJSONTyped = ProjectInfoAccessResponseToJSONTyped;

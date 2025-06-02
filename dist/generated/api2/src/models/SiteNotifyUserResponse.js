@@ -20,7 +20,7 @@ const NotifyUserRelation_1 = require("./NotifyUserRelation");
  * Check if a given object implements the SiteNotifyUserResponse interface.
  */
 function instanceOfSiteNotifyUserResponse(value) {
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
     if (!('channels' in value) || value['channels'] === undefined)
         return false;
@@ -38,7 +38,7 @@ function SiteNotifyUserResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'userId': json['user_id'],
+        'user_id': json['user_id'],
         'channels': (0, NotifyUserChannels_1.NotifyUserChannelsFromJSON)(json['channels']),
         'relation': (0, NotifyUserRelation_1.NotifyUserRelationFromJSON)(json['relation']),
     };
@@ -53,7 +53,7 @@ function SiteNotifyUserResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'user_id': value['userId'],
+        'user_id': value['user_id'],
         'channels': (0, NotifyUserChannels_1.NotifyUserChannelsToJSON)(value['channels']),
         'relation': (0, NotifyUserRelation_1.NotifyUserRelationToJSON)(value['relation']),
     };

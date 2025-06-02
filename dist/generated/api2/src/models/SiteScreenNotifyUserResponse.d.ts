@@ -45,10 +45,10 @@ export interface SiteScreenNotifyUserResponse {
  * @export
  */
 export declare const SiteScreenNotifyUserResponseTypeEnum: {
-    readonly Debug: "debug";
-    readonly Info: "info";
-    readonly Warning: "warning";
-    readonly Error: "error";
+    readonly debug: "debug";
+    readonly info: "info";
+    readonly warning: "warning";
+    readonly error: "error";
 };
 export type SiteScreenNotifyUserResponseTypeEnum = typeof SiteScreenNotifyUserResponseTypeEnum[keyof typeof SiteScreenNotifyUserResponseTypeEnum];
 /**

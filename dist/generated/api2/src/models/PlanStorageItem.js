@@ -18,8 +18,8 @@ exports.PlanStorageItemToJSONTyped = exports.PlanStorageItemToJSON = exports.Pla
  * @export
  */
 exports.PlanStorageItemPeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PlanStorageItem interface.
@@ -31,7 +31,7 @@ function instanceOfPlanStorageItem(value) {
         return false;
     if (!('period' in value) || value['period'] === undefined)
         return false;
-    if (!('dateEnd' in value) || value['dateEnd'] === undefined)
+    if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
     return true;
 }
@@ -48,7 +48,7 @@ function PlanStorageItemFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
         'size': json['size'],
         'period': json['period'],
-        'dateEnd': (new Date(json['date_end'])),
+        'date_end': (new Date(json['date_end'])),
     };
 }
 exports.PlanStorageItemFromJSONTyped = PlanStorageItemFromJSONTyped;
@@ -64,7 +64,7 @@ function PlanStorageItemToJSONTyped(value, ignoreDiscriminator = false) {
         'id': value['id'],
         'size': value['size'],
         'period': value['period'],
-        'date_end': ((value['dateEnd']).toISOString()),
+        'date_end': ((value['date_end']).toISOString()),
     };
 }
 exports.PlanStorageItemToJSONTyped = PlanStorageItemToJSONTyped;

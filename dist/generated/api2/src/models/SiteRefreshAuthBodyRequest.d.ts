@@ -59,19 +59,19 @@ export type SiteRefreshAuthBodyRequestVEnum = typeof SiteRefreshAuthBodyRequestV
  * @export
  */
 export declare const SiteRefreshAuthBodyRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteRefreshAuthBodyRequestLanguageEnum = typeof SiteRefreshAuthBodyRequestLanguageEnum[keyof typeof SiteRefreshAuthBodyRequestLanguageEnum];
 /**
  * @export
  */
 export declare const SiteRefreshAuthBodyRequestAppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type SiteRefreshAuthBodyRequestAppEnum = typeof SiteRefreshAuthBodyRequestAppEnum[keyof typeof SiteRefreshAuthBodyRequestAppEnum];
 /**

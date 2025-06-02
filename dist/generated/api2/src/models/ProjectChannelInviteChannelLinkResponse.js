@@ -18,11 +18,11 @@ exports.ProjectChannelInviteChannelLinkResponseToJSONTyped = exports.ProjectChan
  * Check if a given object implements the ProjectChannelInviteChannelLinkResponse interface.
  */
 function instanceOfProjectChannelInviteChannelLinkResponse(value) {
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
-    if (!('photo50' in value) || value['photo50'] === undefined)
+    if (!('photo_50' in value) || value['photo_50'] === undefined)
         return false;
     return true;
 }
@@ -36,9 +36,9 @@ function ProjectChannelInviteChannelLinkResponseFromJSONTyped(json, ignoreDiscri
         return json;
     }
     return {
-        'channelId': json['channel_id'],
+        'channel_id': json['channel_id'],
         'name': json['name'],
-        'photo50': json['photo_50'],
+        'photo_50': json['photo_50'],
     };
 }
 exports.ProjectChannelInviteChannelLinkResponseFromJSONTyped = ProjectChannelInviteChannelLinkResponseFromJSONTyped;
@@ -51,9 +51,9 @@ function ProjectChannelInviteChannelLinkResponseToJSONTyped(value, ignoreDiscrim
         return value;
     }
     return {
-        'channel_id': value['channelId'],
+        'channel_id': value['channel_id'],
         'name': value['name'],
-        'photo_50': value['photo50'],
+        'photo_50': value['photo_50'],
     };
 }
 exports.ProjectChannelInviteChannelLinkResponseToJSONTyped = ProjectChannelInviteChannelLinkResponseToJSONTyped;

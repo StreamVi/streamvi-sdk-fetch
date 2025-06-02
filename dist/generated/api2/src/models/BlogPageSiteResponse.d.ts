@@ -21,7 +21,7 @@ export interface BlogPageSiteResponse {
      * @type {BlogPageSiteResponseId}
      * @memberof BlogPageSiteResponse
      */
-    id: BlogPageSiteResponseId;
+    _id: BlogPageSiteResponseId;
     /**
      * Url of page
      * @type {string}
@@ -39,13 +39,13 @@ export interface BlogPageSiteResponse {
      * @type {Date}
      * @memberof BlogPageSiteResponse
      */
-    dateUpdate: Date;
+    date_update: Date;
     /**
      * Date of publish for sort
      * @type {Date}
      * @memberof BlogPageSiteResponse
      */
-    datePublish: Date;
+    date_publish: Date;
     /**
      * Tags
      * @type {Array<object>}
@@ -63,7 +63,7 @@ export interface BlogPageSiteResponse {
      * @type {string}
      * @memberof BlogPageSiteResponse
      */
-    languageIso: BlogPageSiteResponseLanguageIsoEnum;
+    language_iso: BlogPageSiteResponseLanguageIsoEnum;
     /**
      * Subject
      * @type {string}
@@ -81,7 +81,7 @@ export interface BlogPageSiteResponse {
      * @type {string}
      * @memberof BlogPageSiteResponse
      */
-    shortText: string;
+    short_text: string;
     /**
      * Text
      * @type {string}
@@ -93,7 +93,7 @@ export interface BlogPageSiteResponse {
      * @type {Array<string>}
      * @memberof BlogPageSiteResponse
      */
-    altLanguages: Array<BlogPageSiteResponseAltLanguagesEnum>;
+    alt_languages: Array<BlogPageSiteResponseAltLanguagesEnum>;
 }
 /**
  * @export
@@ -111,27 +111,27 @@ export type BlogPageSiteResponseStatusEnum = typeof BlogPageSiteResponseStatusEn
  * @export
  */
 export declare const BlogPageSiteResponseLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type BlogPageSiteResponseLanguageEnum = typeof BlogPageSiteResponseLanguageEnum[keyof typeof BlogPageSiteResponseLanguageEnum];
 /**
  * @export
  */
 export declare const BlogPageSiteResponseLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type BlogPageSiteResponseLanguageIsoEnum = typeof BlogPageSiteResponseLanguageIsoEnum[keyof typeof BlogPageSiteResponseLanguageIsoEnum];
 /**
  * @export
  */
 export declare const BlogPageSiteResponseAltLanguagesEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type BlogPageSiteResponseAltLanguagesEnum = typeof BlogPageSiteResponseAltLanguagesEnum[keyof typeof BlogPageSiteResponseAltLanguagesEnum];
 /**

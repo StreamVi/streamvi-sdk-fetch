@@ -50,8 +50,8 @@ class PolicyPageApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling policyPageGetItemV1().');
         }
-        if (requestParameters['fileName'] == null) {
-            throw new runtime.RequiredError('fileName', 'Required parameter "fileName" was null or undefined when calling policyPageGetItemV1().');
+        if (requestParameters['file_name'] == null) {
+            throw new runtime.RequiredError('file_name', 'Required parameter "file_name" was null or undefined when calling policyPageGetItemV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class PolicyPageApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['fileName'] != null) {
-            queryParameters['file_name'] = requestParameters['fileName'];
+        if (requestParameters['file_name'] != null) {
+            queryParameters['file_name'] = requestParameters['file_name'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -120,19 +120,19 @@ exports.PolicyPageApi = PolicyPageApi;
  * @export
  */
 exports.PolicyPageGetItemV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PolicyPageGetItemV1FileNameEnum = {
-    Refund: 'refund',
-    TermsOfUse: 'terms-of-use',
-    UsingCookie: 'using-cookie',
-    AcceptableUse: 'acceptable-use',
-    PrivacyNotice: 'privacy-notice'
+    refund: 'refund',
+    terms_of_use: 'terms-of-use',
+    using_cookie: 'using-cookie',
+    acceptable_use: 'acceptable-use',
+    privacy_notice: 'privacy-notice'
 };
 /**
  * @export
@@ -146,9 +146,9 @@ exports.PolicyPageGetItemV1VEnum = {
  * @export
  */
 exports.PolicyPageGetStructureV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

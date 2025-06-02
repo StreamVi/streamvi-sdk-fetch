@@ -26,13 +26,13 @@ export interface MessageRestreamResponseDto {
      * @type {string}
      * @memberof MessageRestreamResponseDto
      */
-    eventId?: string;
+    event_id?: string;
     /**
      *
      * @type {number}
      * @memberof MessageRestreamResponseDto
      */
-    restreamId: number;
+    restream_id: number;
     /**
      *
      * @type {string}
@@ -44,7 +44,7 @@ export interface MessageRestreamResponseDto {
      * @type {Date}
      * @memberof MessageRestreamResponseDto
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      *
      * @type {string}

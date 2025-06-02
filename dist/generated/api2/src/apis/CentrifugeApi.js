@@ -47,12 +47,12 @@ class CentrifugeApi extends runtime.BaseAPI {
      * Auth centrifuge
      */
     async centrifugeAuthV2Raw(requestParameters, initOverrides) {
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling centrifugeAuthV2().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling centrifugeAuthV2().');
         }
         const queryParameters = {};
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -78,8 +78,8 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling centrifugeProjectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling centrifugeProjectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling centrifugeProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -91,8 +91,8 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -116,18 +116,18 @@ class CentrifugeApi extends runtime.BaseAPI {
      * Auth token for broadcast
      */
     async getTokenBroadcastV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling getTokenBroadcastV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling getTokenBroadcastV1().');
         }
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling getTokenBroadcastV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling getTokenBroadcastV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling getTokenBroadcastV1().');
         }
         const queryParameters = {};
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
@@ -138,8 +138,8 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -164,9 +164,9 @@ exports.CentrifugeApi = CentrifugeApi;
  * @export
  */
 exports.CentrifugeProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -180,9 +180,9 @@ exports.CentrifugeProjectV1VEnum = {
  * @export
  */
 exports.GetTokenBroadcastV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

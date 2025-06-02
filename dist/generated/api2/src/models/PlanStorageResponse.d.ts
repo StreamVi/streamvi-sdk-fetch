@@ -21,7 +21,7 @@ export interface PlanStorageResponse {
      * @type {number}
      * @memberof PlanStorageResponse
      */
-    planStorageId: number;
+    plan_storage_id: number;
     /**
      * Title
      * @type {string}
@@ -45,13 +45,13 @@ export interface PlanStorageResponse {
      * @type {number}
      * @memberof PlanStorageResponse
      */
-    priceRub: number;
+    price_rub: number;
     /**
      * Price per gb (USD)
      * @type {number}
      * @memberof PlanStorageResponse
      */
-    priceUsd: number;
+    price_usd: number;
     /**
      * Step increase in gb
      * @type {number}

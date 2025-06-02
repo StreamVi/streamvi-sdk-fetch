@@ -50,8 +50,8 @@ class PromoApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling promoApplyV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling promoApplyV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling promoApplyV1().');
         }
         if (requestParameters['code'] == null) {
             throw new runtime.RequiredError('code', 'Required parameter "code" was null or undefined when calling promoApplyV1().');
@@ -66,8 +66,8 @@ class PromoApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['code'] != null) {
             queryParameters['code'] = requestParameters['code'];
@@ -95,8 +95,8 @@ class PromoApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling promoCheckV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling promoCheckV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling promoCheckV1().');
         }
         if (requestParameters['code'] == null) {
             throw new runtime.RequiredError('code', 'Required parameter "code" was null or undefined when calling promoCheckV1().');
@@ -111,8 +111,8 @@ class PromoApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['code'] != null) {
             queryParameters['code'] = requestParameters['code'];
@@ -139,9 +139,9 @@ exports.PromoApi = PromoApi;
  * @export
  */
 exports.PromoApplyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -155,9 +155,9 @@ exports.PromoApplyV1VEnum = {
  * @export
  */
 exports.PromoCheckV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsVkRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -56,43 +56,43 @@ export interface SiteUpdateOptionsVkRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    categoryId: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    categoryName: string;
+    category_name: string;
     /**
      * category id
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    categorySecondaryId: string;
+    category_secondary_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    categorySecondaryName: string;
+    category_secondary_name: string;
     /**
      * playlist id
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    playlistId: string;
+    playlist_id: string;
     /**
      *
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    privacyComments: SiteUpdateOptionsVkRequestPrivacyCommentsEnum;
+    privacy_comments: SiteUpdateOptionsVkRequestPrivacyCommentsEnum;
     /**
      *
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    privacyVideo: SiteUpdateOptionsVkRequestPrivacyVideoEnum;
+    privacy_video: SiteUpdateOptionsVkRequestPrivacyVideoEnum;
     /**
      * Is publish stream on wall
      * @type {boolean}
@@ -113,29 +113,29 @@ export type SiteUpdateOptionsVkRequestVEnum = typeof SiteUpdateOptionsVkRequestV
  * @export
  */
 export declare const SiteUpdateOptionsVkRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsVkRequestLanguageEnum = typeof SiteUpdateOptionsVkRequestLanguageEnum[keyof typeof SiteUpdateOptionsVkRequestLanguageEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsVkRequestPrivacyCommentsEnum: {
-    readonly All: "all";
-    readonly Members: "members";
-    readonly Editors: "editors";
-    readonly Nobody: "nobody";
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly nobody: "nobody";
 };
 export type SiteUpdateOptionsVkRequestPrivacyCommentsEnum = typeof SiteUpdateOptionsVkRequestPrivacyCommentsEnum[keyof typeof SiteUpdateOptionsVkRequestPrivacyCommentsEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsVkRequestPrivacyVideoEnum: {
-    readonly All: "all";
-    readonly Members: "members";
-    readonly Editors: "editors";
-    readonly Nobody: "nobody";
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly nobody: "nobody";
 };
 export type SiteUpdateOptionsVkRequestPrivacyVideoEnum = typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum[keyof typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum];
 /**

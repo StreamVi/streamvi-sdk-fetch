@@ -44,7 +44,7 @@ export interface SearchChannelItem {
      * @type {number}
      * @memberof SearchChannelItem
      */
-    groupId: number;
+    group_id: number;
     /**
      * type
      * @type {string}
@@ -56,7 +56,7 @@ export interface SearchChannelItem {
      * @type {string}
      * @memberof SearchChannelItem
      */
-    photoDefault: string;
+    photo_default: string;
     /**
      * sell
      * @type {boolean}
@@ -86,7 +86,7 @@ export interface SearchChannelItem {
      * @type {number}
      * @memberof SearchChannelItem
      */
-    userId: number;
+    user_id: number;
     /**
      * active
      * @type {boolean}
@@ -152,7 +152,7 @@ export interface SearchChannelItem {
      * @type {Array<SearchChannelLiveUserDto>}
      * @memberof SearchChannelItem
      */
-    liveUsers?: Array<SearchChannelLiveUserDto>;
+    live_users?: Array<SearchChannelLiveUserDto>;
     /**
      * Platform
      * @type {SearchChannelPlatformDto}
@@ -164,12 +164,12 @@ export interface SearchChannelItem {
  * @export
  */
 export declare const SearchChannelItemStatusEnum: {
-    readonly Init: "init";
-    readonly Pending: "pending";
-    readonly Error: "error";
-    readonly Live: "live";
-    readonly Offline: "offline";
-    readonly Busy: "busy";
+    readonly init: "init";
+    readonly pending: "pending";
+    readonly error: "error";
+    readonly live: "live";
+    readonly offline: "offline";
+    readonly busy: "busy";
 };
 export type SearchChannelItemStatusEnum = typeof SearchChannelItemStatusEnum[keyof typeof SearchChannelItemStatusEnum];
 /**

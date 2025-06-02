@@ -20,19 +20,19 @@ export interface SiteSetNotifyUserRequest {
      * @type {number}
      * @memberof SiteSetNotifyUserRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Notify channel
      * @type {string}
      * @memberof SiteSetNotifyUserRequest
      */
-    notifyChannel: SiteSetNotifyUserRequestNotifyChannelEnum;
+    notify_channel: SiteSetNotifyUserRequestNotifyChannelEnum;
     /**
      * Notify category
      * @type {string}
      * @memberof SiteSetNotifyUserRequest
      */
-    notifyCategory: SiteSetNotifyUserRequestNotifyCategoryEnum;
+    notify_category: SiteSetNotifyUserRequestNotifyCategoryEnum;
     /**
      * Set status
      * @type {string}
@@ -44,25 +44,25 @@ export interface SiteSetNotifyUserRequest {
  * @export
  */
 export declare const SiteSetNotifyUserRequestNotifyChannelEnum: {
-    readonly Telegram: "telegram";
-    readonly Cabinet: "cabinet";
-    readonly Mobile: "mobile";
+    readonly telegram: "telegram";
+    readonly cabinet: "cabinet";
+    readonly mobile: "mobile";
 };
 export type SiteSetNotifyUserRequestNotifyChannelEnum = typeof SiteSetNotifyUserRequestNotifyChannelEnum[keyof typeof SiteSetNotifyUserRequestNotifyChannelEnum];
 /**
  * @export
  */
 export declare const SiteSetNotifyUserRequestNotifyCategoryEnum: {
-    readonly Important: "important";
-    readonly Stream: "stream";
+    readonly important: "important";
+    readonly stream: "stream";
 };
 export type SiteSetNotifyUserRequestNotifyCategoryEnum = typeof SiteSetNotifyUserRequestNotifyCategoryEnum[keyof typeof SiteSetNotifyUserRequestNotifyCategoryEnum];
 /**
  * @export
  */
 export declare const SiteSetNotifyUserRequestStatusEnum: {
-    readonly Enable: "enable";
-    readonly Disable: "disable";
+    readonly enable: "enable";
+    readonly disable: "disable";
 };
 export type SiteSetNotifyUserRequestStatusEnum = typeof SiteSetNotifyUserRequestStatusEnum[keyof typeof SiteSetNotifyUserRequestStatusEnum];
 /**

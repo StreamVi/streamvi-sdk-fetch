@@ -21,9 +21,9 @@ const RtmpServerLoading_1 = require("./RtmpServerLoading");
  * @export
  */
 exports.RtmpServerListItemServerStatusEnum = {
-    Good: 'good',
-    Problem: 'problem',
-    Bad: 'bad'
+    good: 'good',
+    problem: 'problem',
+    bad: 'bad'
 };
 /**
  * Check if a given object implements the RtmpServerListItem interface.

@@ -26,16 +26,16 @@ exports.SiteUpdateOptionsTwitchRequestVEnum = {
  * @export
  */
 exports.SiteUpdateOptionsTwitchRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsTwitchRequestLangEnum = {
-    Ru: 'ru',
-    En: 'en'
+    ru: 'ru',
+    en: 'en'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsTwitchRequest interface.
@@ -45,15 +45,15 @@ function instanceOfSiteUpdateOptionsTwitchRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('categoryId' in value) || value['categoryId'] === undefined)
+    if (!('category_id' in value) || value['category_id'] === undefined)
         return false;
-    if (!('categoryName' in value) || value['categoryName'] === undefined)
+    if (!('category_name' in value) || value['category_name'] === undefined)
         return false;
     if (!('lang' in value) || value['lang'] === undefined)
         return false;
@@ -75,11 +75,11 @@ function SiteUpdateOptionsTwitchRequestFromJSONTyped(json, ignoreDiscriminator) 
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'title': json['title'],
-        'categoryId': json['category_id'],
-        'categoryName': json['category_name'],
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
         'lang': json['lang'],
         'tags': new Set(json['tags']),
         'domain': json['domain'],
@@ -97,11 +97,11 @@ function SiteUpdateOptionsTwitchRequestToJSONTyped(value, ignoreDiscriminator = 
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'title': value['title'],
-        'category_id': value['categoryId'],
-        'category_name': value['categoryName'],
+        'category_id': value['category_id'],
+        'category_name': value['category_name'],
         'lang': value['lang'],
         'tags': Array.from(value['tags']),
         'domain': value['domain'],

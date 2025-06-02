@@ -26,25 +26,25 @@ exports.PaymentCreateRequestRestreamBodyDtoVEnum = {
  * @export
  */
 exports.PaymentCreateRequestRestreamBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestRestreamBodyDtoTypeEnum = {
-    Restream: 'restream',
-    Transcoding: 'transcoding',
-    Storage: 'storage',
-    Topup: 'topup'
+    restream: 'restream',
+    transcoding: 'transcoding',
+    storage: 'storage',
+    topup: 'topup'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestRestreamBodyDtoPlanPeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PaymentCreateRequestRestreamBodyDto interface.
@@ -54,19 +54,19 @@ function instanceOfPaymentCreateRequestRestreamBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
-    if (!('planPeriod' in value) || value['planPeriod'] === undefined)
+    if (!('plan_period' in value) || value['plan_period'] === undefined)
         return false;
-    if (!('planRestreamId' in value) || value['planRestreamId'] === undefined)
+    if (!('plan_restream_id' in value) || value['plan_restream_id'] === undefined)
         return false;
-    if (!('planRestreamCountChannel' in value) || value['planRestreamCountChannel'] === undefined)
+    if (!('plan_restream_count_channel' in value) || value['plan_restream_count_channel'] === undefined)
         return false;
-    if (!('planRestreamBitrate' in value) || value['planRestreamBitrate'] === undefined)
+    if (!('plan_restream_bitrate' in value) || value['plan_restream_bitrate'] === undefined)
         return false;
     return true;
 }
@@ -82,13 +82,13 @@ function PaymentCreateRequestRestreamBodyDtoFromJSONTyped(json, ignoreDiscrimina
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'type': json['type'],
         'amount': json['amount'],
-        'planPeriod': json['plan_period'],
-        'planRestreamId': json['plan_restream_id'],
-        'planRestreamCountChannel': json['plan_restream_count_channel'],
-        'planRestreamBitrate': json['plan_restream_bitrate'],
+        'plan_period': json['plan_period'],
+        'plan_restream_id': json['plan_restream_id'],
+        'plan_restream_count_channel': json['plan_restream_count_channel'],
+        'plan_restream_bitrate': json['plan_restream_bitrate'],
     };
 }
 exports.PaymentCreateRequestRestreamBodyDtoFromJSONTyped = PaymentCreateRequestRestreamBodyDtoFromJSONTyped;
@@ -103,13 +103,13 @@ function PaymentCreateRequestRestreamBodyDtoToJSONTyped(value, ignoreDiscriminat
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'type': value['type'],
         'amount': value['amount'],
-        'plan_period': value['planPeriod'],
-        'plan_restream_id': value['planRestreamId'],
-        'plan_restream_count_channel': value['planRestreamCountChannel'],
-        'plan_restream_bitrate': value['planRestreamBitrate'],
+        'plan_period': value['plan_period'],
+        'plan_restream_id': value['plan_restream_id'],
+        'plan_restream_count_channel': value['plan_restream_count_channel'],
+        'plan_restream_bitrate': value['plan_restream_bitrate'],
     };
 }
 exports.PaymentCreateRequestRestreamBodyDtoToJSONTyped = PaymentCreateRequestRestreamBodyDtoToJSONTyped;

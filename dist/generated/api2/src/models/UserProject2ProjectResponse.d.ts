@@ -20,13 +20,13 @@ export interface UserProject2ProjectResponse {
      * @type {number}
      * @memberof UserProject2ProjectResponse
      */
-    userId: number;
+    user_id: number;
     /**
      * Project id
      * @type {number}
      * @memberof UserProject2ProjectResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * Имя
      * @type {string}
@@ -44,7 +44,7 @@ export interface UserProject2ProjectResponse {
      * @type {string}
      * @memberof UserProject2ProjectResponse
      */
-    photo50: string;
+    photo_50: string;
     /**
      * Тип 0 - личный проект, 1 - командный проект
      * @type {number}
@@ -56,13 +56,13 @@ export interface UserProject2ProjectResponse {
      * @type {string}
      * @memberof UserProject2ProjectResponse
      */
-    externalId: string;
+    external_id: string;
     /**
      * Access type
      * @type {number}
      * @memberof UserProject2ProjectResponse
      */
-    accessType: UserProject2ProjectResponseAccessTypeEnum;
+    access_type: UserProject2ProjectResponseAccessTypeEnum;
 }
 /**
  * @export

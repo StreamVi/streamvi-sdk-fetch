@@ -38,18 +38,18 @@ export interface CheckPullKeyResponse {
  * @export
  */
 export declare const CheckPullKeyResponseTransportEnum: {
-    readonly Rtmp: "rtmp";
-    readonly Srt: "srt";
-    readonly Hls: "hls";
+    readonly rtmp: "rtmp";
+    readonly srt: "srt";
+    readonly hls: "hls";
 };
 export type CheckPullKeyResponseTransportEnum = typeof CheckPullKeyResponseTransportEnum[keyof typeof CheckPullKeyResponseTransportEnum];
 /**
  * @export
  */
 export declare const CheckPullKeyResponseStatusEnum: {
-    readonly Active: "active";
-    readonly Inactive: "inactive";
-    readonly Error: "error";
+    readonly active: "active";
+    readonly inactive: "inactive";
+    readonly error: "error";
 };
 export type CheckPullKeyResponseStatusEnum = typeof CheckPullKeyResponseStatusEnum[keyof typeof CheckPullKeyResponseStatusEnum];
 /**

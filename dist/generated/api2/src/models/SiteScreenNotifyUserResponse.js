@@ -19,10 +19,10 @@ const InternalNotifyTypeAction_1 = require("./InternalNotifyTypeAction");
  * @export
  */
 exports.SiteScreenNotifyUserResponseTypeEnum = {
-    Debug: 'debug',
-    Info: 'info',
-    Warning: 'warning',
-    Error: 'error'
+    debug: 'debug',
+    info: 'info',
+    warning: 'warning',
+    error: 'error'
 };
 /**
  * Check if a given object implements the SiteScreenNotifyUserResponse interface.

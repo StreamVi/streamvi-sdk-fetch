@@ -21,7 +21,7 @@ export interface PlanRestreamResponse {
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    planRestreamId: number;
+    plan_restream_id: number;
     /**
      * Title
      * @type {string}
@@ -39,13 +39,13 @@ export interface PlanRestreamResponse {
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    countChannelMin: number | null;
+    count_channel_min: number | null;
     /**
      * Maximum channel count
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    countChannelMax: number | null;
+    count_channel_max: number | null;
     /**
      * Type
      * @type {string}
@@ -57,25 +57,25 @@ export interface PlanRestreamResponse {
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    priceRub: number | null;
+    price_rub: number | null;
     /**
      * Price (USD)
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    priceUsd: number | null;
+    price_usd: number | null;
     /**
      * Maximum bitrate, kbps
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    bitrateMax: number | null;
+    bitrate_max: number | null;
     /**
      * Minimum bitrate, kbps
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    bitrateMin: number | null;
+    bitrate_min: number | null;
     /**
      * Resolution
      * @type {string}
@@ -93,7 +93,7 @@ export interface PlanRestreamResponse {
      * @type {boolean}
      * @memberof PlanRestreamResponse
      */
-    createProjects: boolean;
+    create_projects: boolean;
     /**
      * Use multichat
      * @type {boolean}
@@ -111,37 +111,37 @@ export interface PlanRestreamResponse {
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    videoStorage: number | null;
+    video_storage: number | null;
     /**
      * Change title, description, image and other data of stream
      * @type {boolean}
      * @memberof PlanRestreamResponse
      */
-    changeSubject: boolean;
+    change_subject: boolean;
     /**
      * Collect chat messages in the background
      * @type {boolean}
      * @memberof PlanRestreamResponse
      */
-    backgroundChat: boolean;
+    background_chat: boolean;
     /**
      * Dedicated server
      * @type {boolean}
      * @memberof PlanRestreamResponse
      */
-    dedicatedServer: boolean;
+    dedicated_server: boolean;
     /**
      * Personal manager
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    personalManager: number | null;
+    personal_manager: number | null;
     /**
      * pull links
      * @type {number}
      * @memberof PlanRestreamResponse
      */
-    pullLinkLimit: number;
+    pull_link_limit: number;
     /**
      * Field for sort
      * @type {number}
@@ -159,10 +159,10 @@ export interface PlanRestreamResponse {
  * @export
  */
 export declare const PlanRestreamResponseTypeEnum: {
-    readonly Free: "free";
-    readonly PaidFix: "paid_fix";
-    readonly PaidFlex: "paid_flex";
-    readonly Custom: "custom";
+    readonly free: "free";
+    readonly paid_fix: "paid_fix";
+    readonly paid_flex: "paid_flex";
+    readonly custom: "custom";
 };
 export type PlanRestreamResponseTypeEnum = typeof PlanRestreamResponseTypeEnum[keyof typeof PlanRestreamResponseTypeEnum];
 /**
@@ -172,7 +172,7 @@ export declare const PlanRestreamResponseResolutionEnum: {
     readonly _720p: "720p";
     readonly _1080p: "1080p";
     readonly _2K: "2K";
-    readonly Uw: "UW";
+    readonly UW: "UW";
     readonly _4K: "4K";
     readonly _8K: "8K";
 };

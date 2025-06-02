@@ -32,13 +32,13 @@ export interface SiteSetNameRequest {
      * @type {number}
      * @memberof SiteSetNameRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteSetNameRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -59,9 +59,9 @@ export type SiteSetNameRequestVEnum = typeof SiteSetNameRequestVEnum[keyof typeo
  * @export
  */
 export declare const SiteSetNameRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteSetNameRequestLanguageEnum = typeof SiteSetNameRequestLanguageEnum[keyof typeof SiteSetNameRequestLanguageEnum];
 /**

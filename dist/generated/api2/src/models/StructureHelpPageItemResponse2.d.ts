@@ -23,19 +23,19 @@ export interface StructureHelpPageItemResponse2 {
      * @type {BlogPageSiteResponseId}
      * @memberof StructureHelpPageItemResponse2
      */
-    id: BlogPageSiteResponseId;
+    _id: BlogPageSiteResponseId;
     /**
      * Notion id
      * @type {string}
      * @memberof StructureHelpPageItemResponse2
      */
-    notionId: string;
+    notion_id: string;
     /**
      * Notion parent id
      * @type {string}
      * @memberof StructureHelpPageItemResponse2
      */
-    notionParentId: string;
+    notion_parent_id: string;
     /**
      * url
      * @type {string}
@@ -47,7 +47,7 @@ export interface StructureHelpPageItemResponse2 {
      * @type {string}
      * @memberof StructureHelpPageItemResponse2
      */
-    urlInherit: string;
+    url_inherit: string;
     /**
      * Page status
      * @type {string}

@@ -18,10 +18,10 @@ exports.SearchChannelTokensDtoToJSONTyped = exports.SearchChannelTokensDtoToJSON
  * @export
  */
 exports.SearchChannelTokensDtoStatusEnum = {
-    Unused: 'unused',
-    Invalid: 'invalid',
-    Deprecated: 'deprecated',
-    Valid: 'valid'
+    unused: 'unused',
+    invalid: 'invalid',
+    deprecated: 'deprecated',
+    valid: 'valid'
 };
 /**
  * Check if a given object implements the SearchChannelTokensDto interface.

@@ -29,29 +29,29 @@ exports.ProjectInfoDataResponseCurrencyEnum = {};
  * Check if a given object implements the ProjectInfoDataResponse interface.
  */
 function instanceOfProjectInfoDataResponse(value) {
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('fename' in value) || value['fename'] === undefined)
         return false;
-    if (!('photo50' in value) || value['photo50'] === undefined)
+    if (!('photo_50' in value) || value['photo_50'] === undefined)
         return false;
-    if (!('photo100' in value) || value['photo100'] === undefined)
+    if (!('photo_100' in value) || value['photo_100'] === undefined)
         return false;
-    if (!('externalId' in value) || value['externalId'] === undefined)
+    if (!('external_id' in value) || value['external_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('balanceBonus' in value) || value['balanceBonus'] === undefined)
+    if (!('balance_bonus' in value) || value['balance_bonus'] === undefined)
         return false;
-    if (!('balancePayment' in value) || value['balancePayment'] === undefined)
+    if (!('balance_payment' in value) || value['balance_payment'] === undefined)
         return false;
-    if (!('balanceProfit' in value) || value['balanceProfit'] === undefined)
+    if (!('balance_profit' in value) || value['balance_profit'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('countryId' in value) || value['countryId'] === undefined)
+    if (!('country_id' in value) || value['country_id'] === undefined)
         return false;
     return true;
 }
@@ -65,18 +65,18 @@ function ProjectInfoDataResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'name': json['name'],
         'fename': json['fename'],
-        'photo50': json['photo_50'],
-        'photo100': json['photo_100'],
-        'externalId': json['external_id'],
+        'photo_50': json['photo_50'],
+        'photo_100': json['photo_100'],
+        'external_id': json['external_id'],
         'type': json['type'],
-        'balanceBonus': json['balance_bonus'],
-        'balancePayment': json['balance_payment'],
-        'balanceProfit': json['balance_profit'],
+        'balance_bonus': json['balance_bonus'],
+        'balance_payment': json['balance_payment'],
+        'balance_profit': json['balance_profit'],
         'currency': json['currency'],
-        'countryId': json['country_id'],
+        'country_id': json['country_id'],
     };
 }
 exports.ProjectInfoDataResponseFromJSONTyped = ProjectInfoDataResponseFromJSONTyped;
@@ -89,18 +89,18 @@ function ProjectInfoDataResponseToJSONTyped(value, ignoreDiscriminator = false) 
         return value;
     }
     return {
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'name': value['name'],
         'fename': value['fename'],
-        'photo_50': value['photo50'],
-        'photo_100': value['photo100'],
-        'external_id': value['externalId'],
+        'photo_50': value['photo_50'],
+        'photo_100': value['photo_100'],
+        'external_id': value['external_id'],
         'type': value['type'],
-        'balance_bonus': value['balanceBonus'],
-        'balance_payment': value['balancePayment'],
-        'balance_profit': value['balanceProfit'],
+        'balance_bonus': value['balance_bonus'],
+        'balance_payment': value['balance_payment'],
+        'balance_profit': value['balance_profit'],
         'currency': value['currency'],
-        'country_id': value['countryId'],
+        'country_id': value['country_id'],
     };
 }
 exports.ProjectInfoDataResponseToJSONTyped = ProjectInfoDataResponseToJSONTyped;

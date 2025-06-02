@@ -19,10 +19,10 @@ const PlanTranscodingDiscountResponse_1 = require("./PlanTranscodingDiscountResp
  * @export
  */
 exports.PlanTranscodingResponseTypeEnum = {
-    Free: 'free',
-    PaidMonth: 'paid_month',
-    PaidMinute: 'paid_minute',
-    Custom: 'custom'
+    free: 'free',
+    paid_month: 'paid_month',
+    paid_minute: 'paid_minute',
+    custom: 'custom'
 };
 /**
  * @export
@@ -31,7 +31,7 @@ exports.PlanTranscodingResponseResolutionEnum = {
     _720p: '720p',
     _1080p: '1080p',
     _2K: '2K',
-    Uw: 'UW',
+    UW: 'UW',
     _4K: '4K',
     _8K: '8K'
 };
@@ -46,15 +46,15 @@ exports.PlanTranscodingResponseFpsEnum = {
  * Check if a given object implements the PlanTranscodingResponse interface.
  */
 function instanceOfPlanTranscodingResponse(value) {
-    if (!('planTranscodingId' in value) || value['planTranscodingId'] === undefined)
+    if (!('plan_transcoding_id' in value) || value['plan_transcoding_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('priceRub' in value) || value['priceRub'] === undefined)
+    if (!('price_rub' in value) || value['price_rub'] === undefined)
         return false;
-    if (!('priceUsd' in value) || value['priceUsd'] === undefined)
+    if (!('price_usd' in value) || value['price_usd'] === undefined)
         return false;
     if (!('resolution' in value) || value['resolution'] === undefined)
         return false;
@@ -82,11 +82,11 @@ function PlanTranscodingResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planTranscodingId': json['plan_transcoding_id'],
+        'plan_transcoding_id': json['plan_transcoding_id'],
         'title': json['title'],
         'type': json['type'],
-        'priceRub': json['price_rub'],
-        'priceUsd': json['price_usd'],
+        'price_rub': json['price_rub'],
+        'price_usd': json['price_usd'],
         'resolution': json['resolution'],
         'fps': json['fps'],
         'weight': json['weight'],
@@ -106,11 +106,11 @@ function PlanTranscodingResponseToJSONTyped(value, ignoreDiscriminator = false) 
         return value;
     }
     return {
-        'plan_transcoding_id': value['planTranscodingId'],
+        'plan_transcoding_id': value['plan_transcoding_id'],
         'title': value['title'],
         'type': value['type'],
-        'price_rub': value['priceRub'],
-        'price_usd': value['priceUsd'],
+        'price_rub': value['price_rub'],
+        'price_usd': value['price_usd'],
         'resolution': value['resolution'],
         'fps': value['fps'],
         'weight': value['weight'],

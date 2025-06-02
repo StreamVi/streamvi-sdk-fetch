@@ -26,9 +26,9 @@ exports.SiteSetUrlRequestVEnum = {
  * @export
  */
 exports.SiteSetUrlRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteSetUrlRequest interface.
@@ -38,9 +38,9 @@ function instanceOfSiteSetUrlRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('url' in value) || value['url'] === undefined)
         return false;
@@ -58,8 +58,8 @@ function SiteSetUrlRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'url': json['url'],
     };
 }
@@ -75,8 +75,8 @@ function SiteSetUrlRequestToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'url': value['url'],
     };
 }

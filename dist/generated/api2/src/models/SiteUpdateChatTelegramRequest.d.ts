@@ -32,13 +32,13 @@ export interface SiteUpdateChatTelegramRequest {
      * @type {number}
      * @memberof SiteUpdateChatTelegramRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateChatTelegramRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      * link
      * @type {string}
@@ -71,9 +71,9 @@ export type SiteUpdateChatTelegramRequestVEnum = typeof SiteUpdateChatTelegramRe
  * @export
  */
 export declare const SiteUpdateChatTelegramRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateChatTelegramRequestLanguageEnum = typeof SiteUpdateChatTelegramRequestLanguageEnum[keyof typeof SiteUpdateChatTelegramRequestLanguageEnum];
 /**

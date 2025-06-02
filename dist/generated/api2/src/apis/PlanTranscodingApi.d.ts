@@ -13,20 +13,20 @@ import * as runtime from '../runtime';
 import type { PlanTranscodingCheckResponse, PlanTranscodingDiscountResponse, PlanTranscodingForProject, PlanTranscodingResponseDto, SuccessResponse } from '../models/index';
 export interface PlanTranscodingBuyV1Request {
     language: PlanTranscodingBuyV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     period: PlanTranscodingBuyV1PeriodEnum;
-    planTranscodingId: number;
+    plan_transcoding_id: number;
     v?: PlanTranscodingBuyV1VEnum;
     count?: number;
 }
 export interface PlanTranscodingCancelV1Request {
     language: PlanTranscodingCancelV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanTranscodingCancelV1VEnum;
 }
 export interface PlanTranscodingCheckV1Request {
     language: PlanTranscodingCheckV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanTranscodingCheckV1VEnum;
 }
 export interface PlanTranscodingGetDiscountV1Request {
@@ -39,7 +39,7 @@ export interface PlanTranscodingListV1Request {
 }
 export interface PlanTranscodingTariffV1Request {
     language: PlanTranscodingTariffV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PlanTranscodingTariffV1VEnum;
 }
 /**
@@ -53,9 +53,9 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Buy transcoder tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
-     * @param {number} planTranscodingId Transcoding plan id
+     * @param {number} plan_transcoding_id Transcoding plan id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [count] Count flow
      * @param {*} [options] Override http request option.
@@ -71,7 +71,7 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Remove after tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -86,7 +86,7 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Check transcoding tariff before buy
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -129,7 +129,7 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -198,17 +198,17 @@ export declare class PlanTranscodingApi extends runtime.BaseAPI implements PlanT
  * @export
  */
 export declare const PlanTranscodingBuyV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingBuyV1LanguageEnum = typeof PlanTranscodingBuyV1LanguageEnum[keyof typeof PlanTranscodingBuyV1LanguageEnum];
 /**
  * @export
  */
 export declare const PlanTranscodingBuyV1PeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanTranscodingBuyV1PeriodEnum = typeof PlanTranscodingBuyV1PeriodEnum[keyof typeof PlanTranscodingBuyV1PeriodEnum];
 /**
@@ -224,9 +224,9 @@ export type PlanTranscodingBuyV1VEnum = typeof PlanTranscodingBuyV1VEnum[keyof t
  * @export
  */
 export declare const PlanTranscodingCancelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingCancelV1LanguageEnum = typeof PlanTranscodingCancelV1LanguageEnum[keyof typeof PlanTranscodingCancelV1LanguageEnum];
 /**
@@ -242,9 +242,9 @@ export type PlanTranscodingCancelV1VEnum = typeof PlanTranscodingCancelV1VEnum[k
  * @export
  */
 export declare const PlanTranscodingCheckV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingCheckV1LanguageEnum = typeof PlanTranscodingCheckV1LanguageEnum[keyof typeof PlanTranscodingCheckV1LanguageEnum];
 /**
@@ -260,9 +260,9 @@ export type PlanTranscodingCheckV1VEnum = typeof PlanTranscodingCheckV1VEnum[key
  * @export
  */
 export declare const PlanTranscodingGetDiscountV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingGetDiscountV1LanguageEnum = typeof PlanTranscodingGetDiscountV1LanguageEnum[keyof typeof PlanTranscodingGetDiscountV1LanguageEnum];
 /**
@@ -278,9 +278,9 @@ export type PlanTranscodingGetDiscountV1VEnum = typeof PlanTranscodingGetDiscoun
  * @export
  */
 export declare const PlanTranscodingListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingListV1LanguageEnum = typeof PlanTranscodingListV1LanguageEnum[keyof typeof PlanTranscodingListV1LanguageEnum];
 /**
@@ -296,9 +296,9 @@ export type PlanTranscodingListV1VEnum = typeof PlanTranscodingListV1VEnum[keyof
  * @export
  */
 export declare const PlanTranscodingTariffV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PlanTranscodingTariffV1LanguageEnum = typeof PlanTranscodingTariffV1LanguageEnum[keyof typeof PlanTranscodingTariffV1LanguageEnum];
 /**

@@ -18,22 +18,22 @@ exports.NotifyUserRelationToJSONTyped = exports.NotifyUserRelationToJSON = expor
  * @export
  */
 exports.NotifyUserRelationCabinetEnum = {
-    Important: 'important',
-    Stream: 'stream'
+    important: 'important',
+    stream: 'stream'
 };
 /**
  * @export
  */
 exports.NotifyUserRelationTelegramEnum = {
-    Important: 'important',
-    Stream: 'stream'
+    important: 'important',
+    stream: 'stream'
 };
 /**
  * @export
  */
 exports.NotifyUserRelationMobileEnum = {
-    Important: 'important',
-    Stream: 'stream'
+    important: 'important',
+    stream: 'stream'
 };
 /**
  * Check if a given object implements the NotifyUserRelation interface.
@@ -45,7 +45,7 @@ function instanceOfNotifyUserRelation(value) {
         return false;
     if (!('mobile' in value) || value['mobile'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     return true;
 }
@@ -62,7 +62,7 @@ function NotifyUserRelationFromJSONTyped(json, ignoreDiscriminator) {
         'cabinet': json['cabinet'],
         'telegram': json['telegram'],
         'mobile': json['mobile'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
     };
 }
 exports.NotifyUserRelationFromJSONTyped = NotifyUserRelationFromJSONTyped;
@@ -78,7 +78,7 @@ function NotifyUserRelationToJSONTyped(value, ignoreDiscriminator = false) {
         'cabinet': value['cabinet'],
         'telegram': value['telegram'],
         'mobile': value['mobile'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
     };
 }
 exports.NotifyUserRelationToJSONTyped = NotifyUserRelationToJSONTyped;

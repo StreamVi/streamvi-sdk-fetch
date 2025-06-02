@@ -32,7 +32,7 @@ export interface PaymentCreateRequestTopUpBodyDto {
      * @type {number}
      * @memberof PaymentCreateRequestTopUpBodyDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Code
      * @type {string}
@@ -59,19 +59,19 @@ export type PaymentCreateRequestTopUpBodyDtoVEnum = typeof PaymentCreateRequestT
  * @export
  */
 export declare const PaymentCreateRequestTopUpBodyDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaymentCreateRequestTopUpBodyDtoLanguageEnum = typeof PaymentCreateRequestTopUpBodyDtoLanguageEnum[keyof typeof PaymentCreateRequestTopUpBodyDtoLanguageEnum];
 /**
  * @export
  */
 export declare const PaymentCreateRequestTopUpBodyDtoTypeEnum: {
-    readonly Restream: "restream";
-    readonly Transcoding: "transcoding";
-    readonly Storage: "storage";
-    readonly Topup: "topup";
+    readonly restream: "restream";
+    readonly transcoding: "transcoding";
+    readonly storage: "storage";
+    readonly topup: "topup";
 };
 export type PaymentCreateRequestTopUpBodyDtoTypeEnum = typeof PaymentCreateRequestTopUpBodyDtoTypeEnum[keyof typeof PaymentCreateRequestTopUpBodyDtoTypeEnum];
 /**

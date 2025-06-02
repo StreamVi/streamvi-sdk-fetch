@@ -26,18 +26,18 @@ exports.SiteRefreshAuthBodyRequestVEnum = {
  * @export
  */
 exports.SiteRefreshAuthBodyRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteRefreshAuthBodyRequestAppEnum = {
-    Site: 'site',
-    Admin: 'admin',
-    Mobile: 'mobile',
-    Desktop: 'desktop'
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
 };
 /**
  * Check if a given object implements the SiteRefreshAuthBodyRequest interface.

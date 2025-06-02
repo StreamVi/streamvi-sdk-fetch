@@ -32,13 +32,13 @@ export interface TranscoderUpdateDto {
      * @type {number}
      * @memberof TranscoderUpdateDto
      */
-    projectId: number;
+    project_id: number;
     /**
      * Transcoder id
      * @type {number}
      * @memberof TranscoderUpdateDto
      */
-    transcoderId: number;
+    transcoder_id: number;
     /**
      * Width
      * @type {number}
@@ -113,9 +113,9 @@ export type TranscoderUpdateDtoVEnum = typeof TranscoderUpdateDtoVEnum[keyof typ
  * @export
  */
 export declare const TranscoderUpdateDtoLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type TranscoderUpdateDtoLanguageEnum = typeof TranscoderUpdateDtoLanguageEnum[keyof typeof TranscoderUpdateDtoLanguageEnum];
 /**

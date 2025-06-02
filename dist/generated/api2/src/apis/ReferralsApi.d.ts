@@ -13,7 +13,7 @@ import * as runtime from '../runtime';
 import type { SiteTotalInfoReferralsResponse } from '../models/index';
 export interface ReferralsTotalInfoV1Request {
     language: ReferralsTotalInfoV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: ReferralsTotalInfoV1VEnum;
 }
 /**
@@ -27,7 +27,7 @@ export interface ReferralsApiInterface {
      *
      * @summary Total info
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -56,9 +56,9 @@ export declare class ReferralsApi extends runtime.BaseAPI implements ReferralsAp
  * @export
  */
 export declare const ReferralsTotalInfoV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ReferralsTotalInfoV1LanguageEnum = typeof ReferralsTotalInfoV1LanguageEnum[keyof typeof ReferralsTotalInfoV1LanguageEnum];
 /**

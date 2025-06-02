@@ -26,39 +26,39 @@ exports.SiteUpdateOptionsYoutubeRequestVEnum = {
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestAudienceEnum = {
-    MarkForKids: 'mark_for_kids',
-    MarkForNokids: 'mark_for_nokids'
+    mark_for_kids: 'mark_for_kids',
+    mark_for_nokids: 'mark_for_nokids'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestLatencyEnum = {
-    Normal: 'normal',
-    Low: 'low',
-    UltraLow: 'ultraLow'
+    normal: 'normal',
+    low: 'low',
+    ultraLow: 'ultraLow'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestPrivacyVideoEnum = {
-    Private: 'private',
-    Public: 'public',
-    Unlisted: 'unlisted'
+    private: 'private',
+    public: 'public',
+    unlisted: 'unlisted'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestLangEnum = {
-    Ru: 'ru',
-    En: 'en'
+    ru: 'ru',
+    en: 'en'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsYoutubeRequest interface.
@@ -68,25 +68,25 @@ function instanceOfSiteUpdateOptionsYoutubeRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
-    if (!('categoryId' in value) || value['categoryId'] === undefined)
+    if (!('category_id' in value) || value['category_id'] === undefined)
         return false;
-    if (!('categoryName' in value) || value['categoryName'] === undefined)
+    if (!('category_name' in value) || value['category_name'] === undefined)
         return false;
-    if (!('playlistId' in value) || value['playlistId'] === undefined)
+    if (!('playlist_id' in value) || value['playlist_id'] === undefined)
         return false;
     if (!('audience' in value) || value['audience'] === undefined)
         return false;
     if (!('latency' in value) || value['latency'] === undefined)
         return false;
-    if (!('privacyVideo' in value) || value['privacyVideo'] === undefined)
+    if (!('privacy_video' in value) || value['privacy_video'] === undefined)
         return false;
     if (!('image' in value) || value['image'] === undefined)
         return false;
@@ -108,16 +108,16 @@ function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json, ignoreDiscriminator)
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'title': json['title'],
         'description': json['description'],
-        'categoryId': json['category_id'],
-        'categoryName': json['category_name'],
-        'playlistId': json['playlist_id'],
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
+        'playlist_id': json['playlist_id'],
         'audience': json['audience'],
         'latency': json['latency'],
-        'privacyVideo': json['privacy_video'],
+        'privacy_video': json['privacy_video'],
         'image': json['image'],
         'lang': json['lang'],
         'tags': new Set(json['tags']),
@@ -135,16 +135,16 @@ function SiteUpdateOptionsYoutubeRequestToJSONTyped(value, ignoreDiscriminator =
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'title': value['title'],
         'description': value['description'],
-        'category_id': value['categoryId'],
-        'category_name': value['categoryName'],
-        'playlist_id': value['playlistId'],
+        'category_id': value['category_id'],
+        'category_name': value['category_name'],
+        'playlist_id': value['playlist_id'],
         'audience': value['audience'],
         'latency': value['latency'],
-        'privacy_video': value['privacyVideo'],
+        'privacy_video': value['privacy_video'],
         'image': value['image'],
         'lang': value['lang'],
         'tags': Array.from(value['tags']),

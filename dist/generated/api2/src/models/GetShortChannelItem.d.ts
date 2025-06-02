@@ -20,7 +20,7 @@ export interface GetShortChannelItem {
      * @type {number}
      * @memberof GetShortChannelItem
      */
-    channelId: number;
+    channel_id: number;
     /**
      * type
      * @type {string}
@@ -38,7 +38,7 @@ export interface GetShortChannelItem {
      * @type {string}
      * @memberof GetShortChannelItem
      */
-    photoDefault: string | null;
+    photo_default: string | null;
 }
 /**
  * Check if a given object implements the GetShortChannelItem interface.

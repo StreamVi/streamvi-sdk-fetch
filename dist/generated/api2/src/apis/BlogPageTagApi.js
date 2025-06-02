@@ -91,9 +91,9 @@ exports.BlogPageTagApi = BlogPageTagApi;
  * @export
  */
 exports.BlogPageTagListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

@@ -26,25 +26,25 @@ exports.PaymentCreateRequestStorageBodyDtoVEnum = {
  * @export
  */
 exports.PaymentCreateRequestStorageBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestStorageBodyDtoTypeEnum = {
-    Restream: 'restream',
-    Transcoding: 'transcoding',
-    Storage: 'storage',
-    Topup: 'topup'
+    restream: 'restream',
+    transcoding: 'transcoding',
+    storage: 'storage',
+    topup: 'topup'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestStorageBodyDtoPlanPeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PaymentCreateRequestStorageBodyDto interface.
@@ -54,17 +54,17 @@ function instanceOfPaymentCreateRequestStorageBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
-    if (!('planPeriod' in value) || value['planPeriod'] === undefined)
+    if (!('plan_period' in value) || value['plan_period'] === undefined)
         return false;
-    if (!('planStorageId' in value) || value['planStorageId'] === undefined)
+    if (!('plan_storage_id' in value) || value['plan_storage_id'] === undefined)
         return false;
-    if (!('planStorageValue' in value) || value['planStorageValue'] === undefined)
+    if (!('plan_storage_value' in value) || value['plan_storage_value'] === undefined)
         return false;
     return true;
 }
@@ -80,12 +80,12 @@ function PaymentCreateRequestStorageBodyDtoFromJSONTyped(json, ignoreDiscriminat
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'type': json['type'],
         'amount': json['amount'],
-        'planPeriod': json['plan_period'],
-        'planStorageId': json['plan_storage_id'],
-        'planStorageValue': json['plan_storage_value'],
+        'plan_period': json['plan_period'],
+        'plan_storage_id': json['plan_storage_id'],
+        'plan_storage_value': json['plan_storage_value'],
     };
 }
 exports.PaymentCreateRequestStorageBodyDtoFromJSONTyped = PaymentCreateRequestStorageBodyDtoFromJSONTyped;
@@ -100,12 +100,12 @@ function PaymentCreateRequestStorageBodyDtoToJSONTyped(value, ignoreDiscriminato
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'type': value['type'],
         'amount': value['amount'],
-        'plan_period': value['planPeriod'],
-        'plan_storage_id': value['planStorageId'],
-        'plan_storage_value': value['planStorageValue'],
+        'plan_period': value['plan_period'],
+        'plan_storage_id': value['plan_storage_id'],
+        'plan_storage_value': value['plan_storage_value'],
     };
 }
 exports.PaymentCreateRequestStorageBodyDtoToJSONTyped = PaymentCreateRequestStorageBodyDtoToJSONTyped;

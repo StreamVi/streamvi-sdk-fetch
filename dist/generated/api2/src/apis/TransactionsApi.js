@@ -50,8 +50,8 @@ class TransactionsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling transactionsListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling transactionsListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling transactionsListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -63,8 +63,8 @@ class TransactionsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
@@ -72,11 +72,11 @@ class TransactionsApi extends runtime.BaseAPI {
         if (requestParameters['offset'] != null) {
             queryParameters['offset'] = requestParameters['offset'];
         }
-        if (requestParameters['dateFrom'] != null) {
-            queryParameters['date_from'] = requestParameters['dateFrom'].toISOString();
+        if (requestParameters['date_from'] != null) {
+            queryParameters['date_from'] = requestParameters['date_from'].toISOString();
         }
-        if (requestParameters['dateTo'] != null) {
-            queryParameters['date_to'] = requestParameters['dateTo'].toISOString();
+        if (requestParameters['date_to'] != null) {
+            queryParameters['date_to'] = requestParameters['date_to'].toISOString();
         }
         if (requestParameters['code'] != null) {
             queryParameters['code'] = requestParameters['code'];
@@ -103,9 +103,9 @@ exports.TransactionsApi = TransactionsApi;
  * @export
  */
 exports.TransactionsListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

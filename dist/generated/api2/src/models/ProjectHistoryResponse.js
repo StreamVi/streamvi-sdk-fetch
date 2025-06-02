@@ -18,20 +18,20 @@ exports.ProjectHistoryResponseToJSONTyped = exports.ProjectHistoryResponseToJSON
  * @export
  */
 exports.ProjectHistoryResponseActionEnum = {
-    ProjectChannelInviteAdd: 'project_channel_invite_add',
-    ProjectChannelInviteDel: 'project_channel_invite_del',
-    ProjectChannelInviteAccept: 'project_channel_invite_accept',
-    ProjectChannelInviteDecline: 'project_channel_invite_decline',
-    UserProjectInviteAdd: 'user_project_invite_add',
-    UserProjectInviteDel: 'user_project_invite_del',
-    UserProjectInviteAccept: 'user_project_invite_accept',
-    UserProjectInviteDecline: 'user_project_invite_decline',
-    UserProjectAdd: 'user_project_add',
-    UserProjectDel: 'user_project_del',
-    UserProjectChange: 'user_project_change',
-    ProjectChannelAdd: 'project_channel_add',
-    ProjectChannelDel: 'project_channel_del',
-    ProjectChannelChange: 'project_channel_change'
+    project_channel_invite_add: 'project_channel_invite_add',
+    project_channel_invite_del: 'project_channel_invite_del',
+    project_channel_invite_accept: 'project_channel_invite_accept',
+    project_channel_invite_decline: 'project_channel_invite_decline',
+    user_project_invite_add: 'user_project_invite_add',
+    user_project_invite_del: 'user_project_invite_del',
+    user_project_invite_accept: 'user_project_invite_accept',
+    user_project_invite_decline: 'user_project_invite_decline',
+    user_project_add: 'user_project_add',
+    user_project_del: 'user_project_del',
+    user_project_change: 'user_project_change',
+    project_channel_add: 'project_channel_add',
+    project_channel_del: 'project_channel_del',
+    project_channel_change: 'project_channel_change'
 };
 /**
  * Check if a given object implements the ProjectHistoryResponse interface.
@@ -41,11 +41,11 @@ function instanceOfProjectHistoryResponse(value) {
         return false;
     if (!('action' in value) || value['action'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
-    if (!('groupId' in value) || value['groupId'] === undefined)
+    if (!('group_id' in value) || value['group_id'] === undefined)
         return false;
     return true;
 }
@@ -61,9 +61,9 @@ function ProjectHistoryResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'id': json['id'],
         'action': json['action'],
-        'projectId': json['project_id'],
-        'userId': json['user_id'],
-        'groupId': json['group_id'],
+        'project_id': json['project_id'],
+        'user_id': json['user_id'],
+        'group_id': json['group_id'],
         'date': json['date'] == null ? undefined : (new Date(json['date'])),
     };
 }
@@ -79,9 +79,9 @@ function ProjectHistoryResponseToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'id': value['id'],
         'action': value['action'],
-        'project_id': value['projectId'],
-        'user_id': value['userId'],
-        'group_id': value['groupId'],
+        'project_id': value['project_id'],
+        'user_id': value['user_id'],
+        'group_id': value['group_id'],
         'date': value['date'] == null ? undefined : ((value['date']).toISOString()),
     };
 }

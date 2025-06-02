@@ -26,7 +26,7 @@ export interface InternalNotifyTypeActionText {
      * @type {string}
      * @memberof InternalNotifyTypeActionText
      */
-    languageIso: InternalNotifyTypeActionTextLanguageIsoEnum;
+    language_iso: InternalNotifyTypeActionTextLanguageIsoEnum;
     /**
      * Title value
      * @type {string}
@@ -38,24 +38,24 @@ export interface InternalNotifyTypeActionText {
      * @type {string}
      * @memberof InternalNotifyTypeActionText
      */
-    complitedTitle: string;
+    complited_title: string;
 }
 /**
  * @export
  */
 export declare const InternalNotifyTypeActionTextLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type InternalNotifyTypeActionTextLanguageEnum = typeof InternalNotifyTypeActionTextLanguageEnum[keyof typeof InternalNotifyTypeActionTextLanguageEnum];
 /**
  * @export
  */
 export declare const InternalNotifyTypeActionTextLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type InternalNotifyTypeActionTextLanguageIsoEnum = typeof InternalNotifyTypeActionTextLanguageIsoEnum[keyof typeof InternalNotifyTypeActionTextLanguageIsoEnum];
 /**

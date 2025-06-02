@@ -29,7 +29,7 @@ exports.TelegramSettingsDtoFilterModeEnum = {
  * Check if a given object implements the TelegramSettingsDto interface.
  */
 function instanceOfTelegramSettingsDto(value) {
-    if (!('filterMode' in value) || value['filterMode'] === undefined)
+    if (!('filter_mode' in value) || value['filter_mode'] === undefined)
         return false;
     if (!('chat' in value) || value['chat'] === undefined)
         return false;
@@ -45,7 +45,7 @@ function TelegramSettingsDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'filterMode': json['filter_mode'],
+        'filter_mode': json['filter_mode'],
         'chat': (0, TelegramChatInfoResponseDto_1.TelegramChatInfoResponseDtoFromJSON)(json['chat']),
         'post': json['post'] == null ? undefined : (0, TelegramChatPostsItem_1.TelegramChatPostsItemFromJSON)(json['post']),
     };
@@ -60,7 +60,7 @@ function TelegramSettingsDtoToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'filter_mode': value['filterMode'],
+        'filter_mode': value['filter_mode'],
         'chat': (0, TelegramChatInfoResponseDto_1.TelegramChatInfoResponseDtoToJSON)(value['chat']),
         'post': (0, TelegramChatPostsItem_1.TelegramChatPostsItemToJSON)(value['post']),
     };

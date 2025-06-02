@@ -13,7 +13,7 @@ import * as runtime from '../runtime';
 import type { GetPolicyStructureDto } from '../models/index';
 export interface PolicyPageGetItemV1Request {
     language: PolicyPageGetItemV1LanguageEnum;
-    fileName: PolicyPageGetItemV1FileNameEnum;
+    file_name: PolicyPageGetItemV1FileNameEnum;
     v?: PolicyPageGetItemV1VEnum;
 }
 export interface PolicyPageGetStructureV1Request {
@@ -31,7 +31,7 @@ export interface PolicyPageApiInterface {
      *
      * @summary Get policy page
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'refund' | 'terms-of-use' | 'using-cookie' | 'acceptable-use' | 'privacy-notice'} fileName Policy file name
+     * @param {'refund' | 'terms-of-use' | 'using-cookie' | 'acceptable-use' | 'privacy-notice'} file_name Policy file name
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -82,20 +82,20 @@ export declare class PolicyPageApi extends runtime.BaseAPI implements PolicyPage
  * @export
  */
 export declare const PolicyPageGetItemV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PolicyPageGetItemV1LanguageEnum = typeof PolicyPageGetItemV1LanguageEnum[keyof typeof PolicyPageGetItemV1LanguageEnum];
 /**
  * @export
  */
 export declare const PolicyPageGetItemV1FileNameEnum: {
-    readonly Refund: "refund";
-    readonly TermsOfUse: "terms-of-use";
-    readonly UsingCookie: "using-cookie";
-    readonly AcceptableUse: "acceptable-use";
-    readonly PrivacyNotice: "privacy-notice";
+    readonly refund: "refund";
+    readonly terms_of_use: "terms-of-use";
+    readonly using_cookie: "using-cookie";
+    readonly acceptable_use: "acceptable-use";
+    readonly privacy_notice: "privacy-notice";
 };
 export type PolicyPageGetItemV1FileNameEnum = typeof PolicyPageGetItemV1FileNameEnum[keyof typeof PolicyPageGetItemV1FileNameEnum];
 /**
@@ -111,9 +111,9 @@ export type PolicyPageGetItemV1VEnum = typeof PolicyPageGetItemV1VEnum[keyof typ
  * @export
  */
 export declare const PolicyPageGetStructureV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PolicyPageGetStructureV1LanguageEnum = typeof PolicyPageGetStructureV1LanguageEnum[keyof typeof PolicyPageGetStructureV1LanguageEnum];
 /**

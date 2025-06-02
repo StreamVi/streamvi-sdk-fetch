@@ -18,8 +18,8 @@ exports.SearchChannelPlatformDtoToJSONTyped = exports.SearchChannelPlatformDtoTo
  * @export
  */
 exports.SearchChannelPlatformDtoExtensionEnum = {
-    Png: 'png',
-    Svg: 'svg'
+    png: 'png',
+    svg: 'svg'
 };
 /**
  * Check if a given object implements the SearchChannelPlatformDto interface.
@@ -33,7 +33,7 @@ function instanceOfSearchChannelPlatformDto(value) {
         return false;
     if (!('extension' in value) || value['extension'] === undefined)
         return false;
-    if (!('editName' in value) || value['editName'] === undefined)
+    if (!('edit_name' in value) || value['edit_name'] === undefined)
         return false;
     return true;
 }
@@ -51,7 +51,7 @@ function SearchChannelPlatformDtoFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
         'url': json['url'],
         'extension': json['extension'],
-        'editName': json['edit_name'],
+        'edit_name': json['edit_name'],
     };
 }
 exports.SearchChannelPlatformDtoFromJSONTyped = SearchChannelPlatformDtoFromJSONTyped;
@@ -68,7 +68,7 @@ function SearchChannelPlatformDtoToJSONTyped(value, ignoreDiscriminator = false)
         'type': value['type'],
         'url': value['url'],
         'extension': value['extension'],
-        'edit_name': value['editName'],
+        'edit_name': value['edit_name'],
     };
 }
 exports.SearchChannelPlatformDtoToJSONTyped = SearchChannelPlatformDtoToJSONTyped;

@@ -18,33 +18,33 @@ exports.SiteSetNotifyUserRequestToJSONTyped = exports.SiteSetNotifyUserRequestTo
  * @export
  */
 exports.SiteSetNotifyUserRequestNotifyChannelEnum = {
-    Telegram: 'telegram',
-    Cabinet: 'cabinet',
-    Mobile: 'mobile'
+    telegram: 'telegram',
+    cabinet: 'cabinet',
+    mobile: 'mobile'
 };
 /**
  * @export
  */
 exports.SiteSetNotifyUserRequestNotifyCategoryEnum = {
-    Important: 'important',
-    Stream: 'stream'
+    important: 'important',
+    stream: 'stream'
 };
 /**
  * @export
  */
 exports.SiteSetNotifyUserRequestStatusEnum = {
-    Enable: 'enable',
-    Disable: 'disable'
+    enable: 'enable',
+    disable: 'disable'
 };
 /**
  * Check if a given object implements the SiteSetNotifyUserRequest interface.
  */
 function instanceOfSiteSetNotifyUserRequest(value) {
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('notifyChannel' in value) || value['notifyChannel'] === undefined)
+    if (!('notify_channel' in value) || value['notify_channel'] === undefined)
         return false;
-    if (!('notifyCategory' in value) || value['notifyCategory'] === undefined)
+    if (!('notify_category' in value) || value['notify_category'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -60,9 +60,9 @@ function SiteSetNotifyUserRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'projectId': json['project_id'],
-        'notifyChannel': json['notify_channel'],
-        'notifyCategory': json['notify_category'],
+        'project_id': json['project_id'],
+        'notify_channel': json['notify_channel'],
+        'notify_category': json['notify_category'],
         'status': json['status'],
     };
 }
@@ -76,9 +76,9 @@ function SiteSetNotifyUserRequestToJSONTyped(value, ignoreDiscriminator = false)
         return value;
     }
     return {
-        'project_id': value['projectId'],
-        'notify_channel': value['notifyChannel'],
-        'notify_category': value['notifyCategory'],
+        'project_id': value['project_id'],
+        'notify_channel': value['notify_channel'],
+        'notify_category': value['notify_category'],
         'status': value['status'],
     };
 }

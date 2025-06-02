@@ -19,40 +19,40 @@ const MoneyFlowDetails_1 = require("./MoneyFlowDetails");
  * @export
  */
 exports.MoneyFlowResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * @export
  */
 exports.MoneyFlowResponseTypeEnum = {
-    RegistrationBonus: 'registration_bonus',
-    PlanRestreamBuy: 'plan_restream_buy',
-    PlanTranscodingBuy: 'plan_transcoding_buy',
-    PlanStorageBuy: 'plan_storage_buy',
-    ChannelStoryBuy: 'channel_story_buy',
-    ChannelShopSell: 'channel_shop_sell',
-    ReferralProfit: 'referral_profit',
-    Payment: 'payment',
-    PaymentCancel: 'payment_cancel',
-    Payout: 'payout',
-    PayoutCancel: 'payout_cancel',
-    Refund: 'refund',
-    Conversion: 'conversion',
-    Withdrawal: 'withdrawal',
-    TransferredOfOldSite: 'transferred_of_old_site',
-    AccruedAdmin: 'accrued_admin',
-    ReducedAdmin: 'reduced_admin',
-    PromoTopup1: 'promo_topup_1',
-    PromoTopup2: 'promo_topup_2',
-    PromoCreatePlanRestream1: 'promo_create_plan_restream_1',
-    PromoCreatePlanRestream2: 'promo_create_plan_restream_2'
+    registration_bonus: 'registration_bonus',
+    plan_restream_buy: 'plan_restream_buy',
+    plan_transcoding_buy: 'plan_transcoding_buy',
+    plan_storage_buy: 'plan_storage_buy',
+    channel_story_buy: 'channel_story_buy',
+    channel_shop_sell: 'channel_shop_sell',
+    referral_profit: 'referral_profit',
+    payment: 'payment',
+    payment_cancel: 'payment_cancel',
+    payout: 'payout',
+    payout_cancel: 'payout_cancel',
+    refund: 'refund',
+    conversion: 'conversion',
+    withdrawal: 'withdrawal',
+    transferred_of_old_site: 'transferred_of_old_site',
+    accrued_admin: 'accrued_admin',
+    reduced_admin: 'reduced_admin',
+    promo_topup_1: 'promo_topup_1',
+    promo_topup_2: 'promo_topup_2',
+    promo_create_plan_restream_1: 'promo_create_plan_restream_1',
+    promo_create_plan_restream_2: 'promo_create_plan_restream_2'
 };
 /**
  * Check if a given object implements the MoneyFlowResponse interface.
  */
 function instanceOfMoneyFlowResponse(value) {
-    if (!('moneyFlowId' in value) || value['moneyFlowId'] === undefined)
+    if (!('money_flow_id' in value) || value['money_flow_id'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
@@ -78,7 +78,7 @@ function MoneyFlowResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'moneyFlowId': json['money_flow_id'],
+        'money_flow_id': json['money_flow_id'],
         'amount': json['amount'],
         'currency': json['currency'],
         'date': (new Date(json['date'])),
@@ -97,7 +97,7 @@ function MoneyFlowResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'money_flow_id': value['moneyFlowId'],
+        'money_flow_id': value['money_flow_id'],
         'amount': value['amount'],
         'currency': value['currency'],
         'date': ((value['date']).toISOString()),

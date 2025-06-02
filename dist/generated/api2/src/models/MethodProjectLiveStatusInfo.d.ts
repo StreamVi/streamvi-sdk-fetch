@@ -21,19 +21,19 @@ export interface MethodProjectLiveStatusInfo {
      * @type {Array<MethodProjectLiveStatusInfoRestreamData>}
      * @memberof MethodProjectLiveStatusInfo
      */
-    restreamData?: Array<MethodProjectLiveStatusInfoRestreamData>;
+    restream_data?: Array<MethodProjectLiveStatusInfoRestreamData>;
     /**
      *
      * @type {number}
      * @memberof MethodProjectLiveStatusInfo
      */
-    connectId: number;
+    connect_id: number;
     /**
      *
      * @type {string}
      * @memberof MethodProjectLiveStatusInfo
      */
-    connectIdV2: string;
+    connect_id_v2: string;
     /**
      *
      * @type {number}
@@ -45,7 +45,7 @@ export interface MethodProjectLiveStatusInfo {
      * @type {number}
      * @memberof MethodProjectLiveStatusInfo
      */
-    keyFrame: number;
+    key_frame: number;
     /**
      *
      * @type {number}
@@ -75,7 +75,7 @@ export interface MethodProjectLiveStatusInfo {
      * @type {number}
      * @memberof MethodProjectLiveStatusInfo
      */
-    fullBitrate: number;
+    full_bitrate: number;
     /**
      *
      * @type {string}

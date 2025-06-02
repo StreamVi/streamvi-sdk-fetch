@@ -21,34 +21,34 @@ const PlanRestreamForProjectV2_1 = require("./PlanRestreamForProjectV2");
  * @export
  */
 exports.PlanRestreamProjectResponseTypeEnum = {
-    Free: 'free',
-    PaidFix: 'paid_fix',
-    PaidFlex: 'paid_flex',
-    Custom: 'custom'
+    free: 'free',
+    paid_fix: 'paid_fix',
+    paid_flex: 'paid_flex',
+    custom: 'custom'
 };
 /**
  * @export
  */
 exports.PlanRestreamProjectResponseStatusEnum = {
-    Current: 'current',
-    Upgrade: 'upgrade',
-    Downgrade: 'downgrade'
+    current: 'current',
+    upgrade: 'upgrade',
+    downgrade: 'downgrade'
 };
 /**
  * Check if a given object implements the PlanRestreamProjectResponse interface.
  */
 function instanceOfPlanRestreamProjectResponse(value) {
-    if (!('planRestreamId' in value) || value['planRestreamId'] === undefined)
+    if (!('plan_restream_id' in value) || value['plan_restream_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('active' in value) || value['active'] === undefined)
         return false;
-    if (!('countChannelMax' in value) || value['countChannelMax'] === undefined)
+    if (!('count_channel_max' in value) || value['count_channel_max'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('bitrateMax' in value) || value['bitrateMax'] === undefined)
+    if (!('bitrate_max' in value) || value['bitrate_max'] === undefined)
         return false;
     if (!('index' in value) || value['index'] === undefined)
         return false;
@@ -58,7 +58,7 @@ function instanceOfPlanRestreamProjectResponse(value) {
         return false;
     if (!('feature' in value) || value['feature'] === undefined)
         return false;
-    if (!('ownTariff' in value) || value['ownTariff'] === undefined)
+    if (!('own_tariff' in value) || value['own_tariff'] === undefined)
         return false;
     return true;
 }
@@ -72,21 +72,21 @@ function PlanRestreamProjectResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planRestreamId': json['plan_restream_id'],
+        'plan_restream_id': json['plan_restream_id'],
         'title': json['title'],
         'active': json['active'],
-        'countChannelMin': json['count_channel_min'] == null ? undefined : json['count_channel_min'],
-        'countChannelMax': json['count_channel_max'],
-        'countChannelStep': json['count_channel_step'] == null ? undefined : json['count_channel_step'],
+        'count_channel_min': json['count_channel_min'] == null ? undefined : json['count_channel_min'],
+        'count_channel_max': json['count_channel_max'],
+        'count_channel_step': json['count_channel_step'] == null ? undefined : json['count_channel_step'],
         'type': json['type'],
-        'bitrateMax': json['bitrate_max'],
-        'bitrateMin': json['bitrate_min'] == null ? undefined : json['bitrate_min'],
-        'bitrateStep': json['bitrate_step'] == null ? undefined : json['bitrate_step'],
+        'bitrate_max': json['bitrate_max'],
+        'bitrate_min': json['bitrate_min'] == null ? undefined : json['bitrate_min'],
+        'bitrate_step': json['bitrate_step'] == null ? undefined : json['bitrate_step'],
         'index': json['index'],
         'price': (0, PlanRestreamPrice_1.PlanRestreamPriceFromJSON)(json['price']),
         'status': json['status'],
         'feature': (json['feature'].map(PlanRestreamFeatureItemV2_1.PlanRestreamFeatureItemV2FromJSON)),
-        'ownTariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2FromJSON)(json['own_tariff']),
+        'own_tariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2FromJSON)(json['own_tariff']),
     };
 }
 exports.PlanRestreamProjectResponseFromJSONTyped = PlanRestreamProjectResponseFromJSONTyped;
@@ -99,21 +99,21 @@ function PlanRestreamProjectResponseToJSONTyped(value, ignoreDiscriminator = fal
         return value;
     }
     return {
-        'plan_restream_id': value['planRestreamId'],
+        'plan_restream_id': value['plan_restream_id'],
         'title': value['title'],
         'active': value['active'],
-        'count_channel_min': value['countChannelMin'],
-        'count_channel_max': value['countChannelMax'],
-        'count_channel_step': value['countChannelStep'],
+        'count_channel_min': value['count_channel_min'],
+        'count_channel_max': value['count_channel_max'],
+        'count_channel_step': value['count_channel_step'],
         'type': value['type'],
-        'bitrate_max': value['bitrateMax'],
-        'bitrate_min': value['bitrateMin'],
-        'bitrate_step': value['bitrateStep'],
+        'bitrate_max': value['bitrate_max'],
+        'bitrate_min': value['bitrate_min'],
+        'bitrate_step': value['bitrate_step'],
         'index': value['index'],
         'price': (0, PlanRestreamPrice_1.PlanRestreamPriceToJSON)(value['price']),
         'status': value['status'],
         'feature': (value['feature'].map(PlanRestreamFeatureItemV2_1.PlanRestreamFeatureItemV2ToJSON)),
-        'own_tariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2ToJSON)(value['ownTariff']),
+        'own_tariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2ToJSON)(value['own_tariff']),
     };
 }
 exports.PlanRestreamProjectResponseToJSONTyped = PlanRestreamProjectResponseToJSONTyped;

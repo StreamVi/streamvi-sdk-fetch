@@ -1,12 +1,15 @@
-# StreamVi SDK
+# StreamVi SDK (Fetch-based)
 
 Library for working with StreamVi API along with OAuth authorization example using [passport-streamvi](https://www.npmjs.com/package/passport-streamvi) library.
+
+This is a fetch-based version of the StreamVi SDK. The original axios-based version is available at: [https://github.com/StreamVi/streamvi-sdk](https://github.com/StreamVi/streamvi-sdk)
 
 API methods documentation is available at: [https://dev.streamvi.io](https://dev.streamvi.io)
 
 ## Features
 
 - ✅ StreamVi SDK library for TypeScript/JavaScript
+- ✅ Built on native fetch API (no external HTTP dependencies)
 - ✅ Ready-to-use examples with OAuth2 authorization
 
 ## Installation
@@ -40,35 +43,40 @@ Open http://localhost:3000 and login via StreamVi.
 
 ```typescript
 import { StreamViSdkConfig } from './src/streamvi-sdk-config';
-import { UserProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from './src/generated/api2/api/user-project-api';
+import { UserProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from './src/generated/api2/api';
 
-async function getProjectInfo(accessToken: string, projectId: number, language: UserProjectGetProjectInfoV1LanguageEnum = UserProjectGetProjectInfoV1LanguageEnum.Ru) {
+async function getProjectInfo(accessToken: string, projectId: number, language: UserProjectGetProjectInfoV1LanguageEnum = UserProjectGetProjectInfoV1LanguageEnum.ru) {
   const sdkConfig = new StreamViSdkConfig({ accessToken });
   const userProjectApi = new UserProjectApi(sdkConfig.configuration);
 
   const response = await userProjectApi.userProjectGetProjectInfoV1({
     language: language,
-    projectId: projectId
+    project_id: projectId
   });
-  return response.data;
+  return response; // Response contains data directly, access via response.data.name, response.data.photo_100, etc.
 }
+
+// Usage example:
+const projectInfo = await getProjectInfo(accessToken, projectId);
+console.log(projectInfo.data.name); // Project name
+console.log(projectInfo.data.photo_100); // Project avatar URL
 ```
 
 ### Example of using PaySetting API with version 3
 
 ```typescript
 import { StreamViSdkConfig } from './src/streamvi-sdk-config';
-import { PaySettingApi, PaySettingGetSettingV3LanguageEnum } from './src/generated/api2/api/pay-setting-api';
+import { PaySettingApi, PaySettingGetSettingV3LanguageEnum } from './src/generated/api2/api';
 
-async function getPaySettings(accessToken: string, projectId: number, language: PaySettingGetSettingV3LanguageEnum = PaySettingGetSettingV3LanguageEnum.Ru) {
+async function getPaySettings(accessToken: string, projectId: number, language: PaySettingGetSettingV3LanguageEnum = PaySettingGetSettingV3LanguageEnum.ru) {
   const sdkConfig = new StreamViSdkConfig({ accessToken });
   const paySettingApi = new PaySettingApi(sdkConfig.configuration);
 
   const response = await paySettingApi.paySettingGetSettingV3({
     language: language,
-    projectId: projectId
+    project_id: projectId
   });
-  return response.data;
+  return response; // Response contains data directly, access via response.data
 }
 ```
 
@@ -184,6 +192,33 @@ The example includes comprehensive error handling:
 - **API errors** - shows API response errors with full context
 - **Session errors** - handles session destruction and recreation
 - **Network errors** - graceful handling of network issues
+
+## Migration from axios to fetch
+
+Starting from version 2.0, the SDK uses native fetch API instead of axios. This change brings several benefits:
+
+- **No external dependencies** - reduces bundle size
+- **Better browser compatibility** - fetch is natively supported in modern browsers
+- **Improved performance** - no additional HTTP client overhead
+
+### Key changes:
+
+1. **Response structure remains the same** - API responses still contain the same data structure
+2. **Error handling** - errors are now native fetch errors instead of axios errors
+3. **Configuration** - same StreamViSdkConfig interface, but internally uses fetch
+
+### Code migration:
+
+No changes needed in your existing code! The API interface remains identical:
+
+```typescript
+// This code works the same way as before
+const response = await userProjectApi.userProjectGetProjectInfoV1({
+  language: language,
+  project_id: projectId
+});
+// Access data via response.data.name, response.data.photo_100, etc.
+```
 
 ## API Client Generation
 

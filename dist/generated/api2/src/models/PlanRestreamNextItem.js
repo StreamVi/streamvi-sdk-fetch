@@ -20,7 +20,7 @@ exports.PlanRestreamNextItemToJSONTyped = exports.PlanRestreamNextItemToJSON = e
 function instanceOfPlanRestreamNextItem(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('dateStart' in value) || value['dateStart'] === undefined)
+    if (!('date_start' in value) || value['date_start'] === undefined)
         return false;
     return true;
 }
@@ -35,9 +35,9 @@ function PlanRestreamNextItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'channelMax': json['channel_max'] == null ? undefined : json['channel_max'],
-        'bitrateMax': json['bitrate_max'] == null ? undefined : json['bitrate_max'],
-        'dateStart': (new Date(json['date_start'])),
+        'channel_max': json['channel_max'] == null ? undefined : json['channel_max'],
+        'bitrate_max': json['bitrate_max'] == null ? undefined : json['bitrate_max'],
+        'date_start': (new Date(json['date_start'])),
     };
 }
 exports.PlanRestreamNextItemFromJSONTyped = PlanRestreamNextItemFromJSONTyped;
@@ -51,9 +51,9 @@ function PlanRestreamNextItemToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'channel_max': value['channelMax'],
-        'bitrate_max': value['bitrateMax'],
-        'date_start': ((value['dateStart']).toISOString()),
+        'channel_max': value['channel_max'],
+        'bitrate_max': value['bitrate_max'],
+        'date_start': ((value['date_start']).toISOString()),
     };
 }
 exports.PlanRestreamNextItemToJSONTyped = PlanRestreamNextItemToJSONTyped;

@@ -26,7 +26,13 @@ export interface TransactionResponse {
      * @type {number}
      * @memberof TransactionResponse
      */
-    userId: number;
+    user_id: number;
+    /**
+     *
+     * @type {number}
+     * @memberof TransactionResponse
+     */
+    payout_id: number | null;
     /**
      *
      * @type {string}
@@ -56,7 +62,7 @@ export interface TransactionResponse {
      * @type {number}
      * @memberof TransactionResponse
      */
-    referralId: number | null;
+    referral_id: number | null;
     /**
      *
      * @type {Date}

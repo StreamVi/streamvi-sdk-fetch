@@ -64,21 +64,21 @@ export interface ChannelVkInfoDto {
  * @export
  */
 export declare const ChannelVkInfoDtoPrivacyVideoEnum: {
-    readonly All: "all";
-    readonly Members: "members";
-    readonly Editors: "editors";
-    readonly ByLink: "by_link";
-    readonly Donut: "donut";
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly by_link: "by_link";
+    readonly donut: "donut";
 };
 export type ChannelVkInfoDtoPrivacyVideoEnum = typeof ChannelVkInfoDtoPrivacyVideoEnum[keyof typeof ChannelVkInfoDtoPrivacyVideoEnum];
 /**
  * @export
  */
 export declare const ChannelVkInfoDtoPrivacyCommentsEnum: {
-    readonly All: "all";
-    readonly Members: "members";
-    readonly Editors: "editors";
-    readonly Nobody: "nobody";
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly nobody: "nobody";
 };
 export type ChannelVkInfoDtoPrivacyCommentsEnum = typeof ChannelVkInfoDtoPrivacyCommentsEnum[keyof typeof ChannelVkInfoDtoPrivacyCommentsEnum];
 /**

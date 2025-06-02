@@ -19,31 +19,31 @@ const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
  * @export
  */
 exports.SiteBlogPageTagResponseLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.SiteBlogPageTagResponseLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteBlogPageTagResponse interface.
  */
 function instanceOfSiteBlogPageTagResponse(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('_id' in value) || value['_id'] === undefined)
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('countUse' in value) || value['countUse'] === undefined)
+    if (!('count_use' in value) || value['count_use'] === undefined)
         return false;
     return true;
 }
@@ -57,11 +57,11 @@ function SiteBlogPageTagResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'title': json['title'],
-        'countUse': json['count_use'],
+        'count_use': json['count_use'],
     };
 }
 exports.SiteBlogPageTagResponseFromJSONTyped = SiteBlogPageTagResponseFromJSONTyped;
@@ -74,11 +74,11 @@ function SiteBlogPageTagResponseToJSONTyped(value, ignoreDiscriminator = false) 
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'title': value['title'],
-        'count_use': value['countUse'],
+        'count_use': value['count_use'],
     };
 }
 exports.SiteBlogPageTagResponseToJSONTyped = SiteBlogPageTagResponseToJSONTyped;

@@ -18,17 +18,17 @@ exports.PlanRestreamFeatureItemToJSONTyped = exports.PlanRestreamFeatureItemToJS
  * @export
  */
 exports.PlanRestreamFeatureItemNameEnum = {
-    CountChannelMax: 'count_channel_max',
-    BitrateMax: 'bitrate_max',
-    Resolution: 'resolution',
-    CreateProjects: 'create_projects',
-    Chat: 'chat',
-    Video: 'video',
-    VideoStorage: 'video_storage',
-    ChangeSubject: 'change_subject',
-    BackgroundChat: 'background_chat',
-    DedicatedServer: 'dedicated_server',
-    PersonalManager: 'personal_manager'
+    count_channel_max: 'count_channel_max',
+    bitrate_max: 'bitrate_max',
+    resolution: 'resolution',
+    create_projects: 'create_projects',
+    chat: 'chat',
+    video: 'video',
+    video_storage: 'video_storage',
+    change_subject: 'change_subject',
+    background_chat: 'background_chat',
+    dedicated_server: 'dedicated_server',
+    personal_manager: 'personal_manager'
 };
 /**
  * Check if a given object implements the PlanRestreamFeatureItem interface.

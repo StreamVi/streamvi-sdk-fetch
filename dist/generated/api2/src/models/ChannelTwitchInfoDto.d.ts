@@ -51,8 +51,8 @@ export interface ChannelTwitchInfoDto {
  * @export
  */
 export declare const ChannelTwitchInfoDtoLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
+    readonly ru: "ru";
+    readonly en: "en";
 };
 export type ChannelTwitchInfoDtoLangEnum = typeof ChannelTwitchInfoDtoLangEnum[keyof typeof ChannelTwitchInfoDtoLangEnum];
 /**

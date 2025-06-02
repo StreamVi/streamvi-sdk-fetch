@@ -18,17 +18,17 @@ exports.InternalNotifyTypeTextToJSONTyped = exports.InternalNotifyTypeTextToJSON
  * @export
  */
 exports.InternalNotifyTypeTextLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.InternalNotifyTypeTextLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the InternalNotifyTypeText interface.
@@ -36,7 +36,7 @@ exports.InternalNotifyTypeTextLanguageIsoEnum = {
 function instanceOfInternalNotifyTypeText(value) {
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
@@ -55,7 +55,7 @@ function InternalNotifyTypeTextFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'title': json['title'],
         'text': json['text'],
     };
@@ -71,7 +71,7 @@ function InternalNotifyTypeTextToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'title': value['title'],
         'text': value['text'],
     };

@@ -13,17 +13,17 @@ import * as runtime from '../runtime';
 import type { GetPaySettingResponseV3, PayCheckCountryResponse, PaySettingBodyDto } from '../models/index';
 export interface PaySettingCheckCountryV1Request {
     language: PaySettingCheckCountryV1LanguageEnum;
-    projectId: number;
-    countryId: number;
+    project_id: number;
+    country_id: number;
     v?: PaySettingCheckCountryV1VEnum;
 }
 export interface PaySettingGetSettingV3Request {
     language: PaySettingGetSettingV3LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: PaySettingGetSettingV3VEnum;
 }
 export interface PaySettingSetSettingV1Request {
-    paySettingBodyDto: PaySettingBodyDto;
+    PaySettingBodyDto: PaySettingBodyDto;
 }
 /**
  * PaySettingApi - interface
@@ -36,8 +36,8 @@ export interface PaySettingApiInterface {
      *
      * @summary Check country after update user
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} countryId country id
+     * @param {number} project_id Project id
+     * @param {number} country_id country id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -52,7 +52,7 @@ export interface PaySettingApiInterface {
      *
      * @summary Get pay settings for profile v3
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -66,7 +66,7 @@ export interface PaySettingApiInterface {
     /**
      *
      * @summary Set pay settings for profile
-     * @param {PaySettingBodyDto} paySettingBodyDto
+     * @param {PaySettingBodyDto} PaySettingBodyDto
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
@@ -110,9 +110,9 @@ export declare class PaySettingApi extends runtime.BaseAPI implements PaySetting
  * @export
  */
 export declare const PaySettingCheckCountryV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaySettingCheckCountryV1LanguageEnum = typeof PaySettingCheckCountryV1LanguageEnum[keyof typeof PaySettingCheckCountryV1LanguageEnum];
 /**
@@ -128,9 +128,9 @@ export type PaySettingCheckCountryV1VEnum = typeof PaySettingCheckCountryV1VEnum
  * @export
  */
 export declare const PaySettingGetSettingV3LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaySettingGetSettingV3LanguageEnum = typeof PaySettingGetSettingV3LanguageEnum[keyof typeof PaySettingGetSettingV3LanguageEnum];
 /**

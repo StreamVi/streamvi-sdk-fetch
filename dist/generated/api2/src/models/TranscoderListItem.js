@@ -19,15 +19,15 @@ const TranscoderChannelItem_1 = require("./TranscoderChannelItem");
  * @export
  */
 exports.TranscoderListItemStatusEnum = {
-    Active: 'active',
-    Inactive: 'inactive'
+    active: 'active',
+    inactive: 'inactive'
 };
 /**
  * @export
  */
 exports.TranscoderListItemVideoCodecEnum = {
-    H264: 'h264',
-    Hevc: 'hevc'
+    h264: 'h264',
+    hevc: 'hevc'
 };
 /**
  * Check if a given object implements the TranscoderListItem interface.

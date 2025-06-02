@@ -76,9 +76,9 @@ export type ProjectInfoResponseVEnum = typeof ProjectInfoResponseVEnum[keyof typ
  * @export
  */
 export declare const ProjectInfoResponseLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ProjectInfoResponseLanguageEnum = typeof ProjectInfoResponseLanguageEnum[keyof typeof ProjectInfoResponseLanguageEnum];
 /**

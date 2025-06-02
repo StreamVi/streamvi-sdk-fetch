@@ -21,7 +21,7 @@ export interface MoneyFlowResponse {
      * @type {number}
      * @memberof MoneyFlowResponse
      */
-    moneyFlowId: number;
+    money_flow_id: number;
     /**
      * Amount
      * @type {number}
@@ -63,35 +63,35 @@ export interface MoneyFlowResponse {
  * @export
  */
 export declare const MoneyFlowResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type MoneyFlowResponseCurrencyEnum = typeof MoneyFlowResponseCurrencyEnum[keyof typeof MoneyFlowResponseCurrencyEnum];
 /**
  * @export
  */
 export declare const MoneyFlowResponseTypeEnum: {
-    readonly RegistrationBonus: "registration_bonus";
-    readonly PlanRestreamBuy: "plan_restream_buy";
-    readonly PlanTranscodingBuy: "plan_transcoding_buy";
-    readonly PlanStorageBuy: "plan_storage_buy";
-    readonly ChannelStoryBuy: "channel_story_buy";
-    readonly ChannelShopSell: "channel_shop_sell";
-    readonly ReferralProfit: "referral_profit";
-    readonly Payment: "payment";
-    readonly PaymentCancel: "payment_cancel";
-    readonly Payout: "payout";
-    readonly PayoutCancel: "payout_cancel";
-    readonly Refund: "refund";
-    readonly Conversion: "conversion";
-    readonly Withdrawal: "withdrawal";
-    readonly TransferredOfOldSite: "transferred_of_old_site";
-    readonly AccruedAdmin: "accrued_admin";
-    readonly ReducedAdmin: "reduced_admin";
-    readonly PromoTopup1: "promo_topup_1";
-    readonly PromoTopup2: "promo_topup_2";
-    readonly PromoCreatePlanRestream1: "promo_create_plan_restream_1";
-    readonly PromoCreatePlanRestream2: "promo_create_plan_restream_2";
+    readonly registration_bonus: "registration_bonus";
+    readonly plan_restream_buy: "plan_restream_buy";
+    readonly plan_transcoding_buy: "plan_transcoding_buy";
+    readonly plan_storage_buy: "plan_storage_buy";
+    readonly channel_story_buy: "channel_story_buy";
+    readonly channel_shop_sell: "channel_shop_sell";
+    readonly referral_profit: "referral_profit";
+    readonly payment: "payment";
+    readonly payment_cancel: "payment_cancel";
+    readonly payout: "payout";
+    readonly payout_cancel: "payout_cancel";
+    readonly refund: "refund";
+    readonly conversion: "conversion";
+    readonly withdrawal: "withdrawal";
+    readonly transferred_of_old_site: "transferred_of_old_site";
+    readonly accrued_admin: "accrued_admin";
+    readonly reduced_admin: "reduced_admin";
+    readonly promo_topup_1: "promo_topup_1";
+    readonly promo_topup_2: "promo_topup_2";
+    readonly promo_create_plan_restream_1: "promo_create_plan_restream_1";
+    readonly promo_create_plan_restream_2: "promo_create_plan_restream_2";
 };
 export type MoneyFlowResponseTypeEnum = typeof MoneyFlowResponseTypeEnum[keyof typeof MoneyFlowResponseTypeEnum];
 /**

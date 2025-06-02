@@ -50,11 +50,11 @@ class LiveApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling controllersRestreamsV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling controllersRestreamsV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling controllersRestreamsV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling controllersRestreamsV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling controllersRestreamsV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -66,11 +66,11 @@ class LiveApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -94,9 +94,9 @@ exports.LiveApi = LiveApi;
  * @export
  */
 exports.ControllersRestreamsV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

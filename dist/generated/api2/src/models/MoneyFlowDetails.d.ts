@@ -26,7 +26,7 @@ export interface MoneyFlowDetails {
      * @type {Date}
      * @memberof MoneyFlowDetails
      */
-    dateEnd: Date;
+    date_end: Date;
 }
 /**
  * Check if a given object implements the MoneyFlowDetails interface.

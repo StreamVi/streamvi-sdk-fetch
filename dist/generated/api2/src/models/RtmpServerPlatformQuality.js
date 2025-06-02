@@ -18,9 +18,9 @@ exports.RtmpServerPlatformQualityToJSONTyped = exports.RtmpServerPlatformQuality
  * @export
  */
 exports.RtmpServerPlatformQualityStatusEnum = {
-    Good: 'good',
-    Problem: 'problem',
-    Bad: 'bad'
+    good: 'good',
+    problem: 'problem',
+    bad: 'bad'
 };
 /**
  * Check if a given object implements the RtmpServerPlatformQuality interface.

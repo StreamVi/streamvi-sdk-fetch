@@ -21,13 +21,13 @@ export interface SiteLiveRestreamCentrifugeResponse {
      * @type {LiveRestreamCentrifugeItemV2}
      * @memberof SiteLiveRestreamCentrifugeResponse
      */
-    updateUrlChannel: LiveRestreamCentrifugeItemV2;
+    update_url_channel: LiveRestreamCentrifugeItemV2;
     /**
      * Event for restream update viewers
      * @type {LiveRestreamCentrifugeItemV2}
      * @memberof SiteLiveRestreamCentrifugeResponse
      */
-    updateStatsChannel: LiveRestreamCentrifugeItemV2;
+    update_stats_channel: LiveRestreamCentrifugeItemV2;
 }
 /**
  * Check if a given object implements the SiteLiveRestreamCentrifugeResponse interface.

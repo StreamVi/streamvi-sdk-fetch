@@ -26,9 +26,9 @@ exports.PayoutCreateRequestBodyDtoVEnum = {
  * @export
  */
 exports.PayoutCreateRequestBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the PayoutCreateRequestBodyDto interface.
@@ -38,13 +38,13 @@ function instanceOfPayoutCreateRequestBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('payoutSystemAccountId' in value) || value['payoutSystemAccountId'] === undefined)
+    if (!('payout_system_account_id' in value) || value['payout_system_account_id'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
-    if (!('walletValue' in value) || value['walletValue'] === undefined)
+    if (!('wallet_value' in value) || value['wallet_value'] === undefined)
         return false;
     return true;
 }
@@ -60,10 +60,10 @@ function PayoutCreateRequestBodyDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'payoutSystemAccountId': json['payout_system_account_id'],
-        'projectId': json['project_id'],
+        'payout_system_account_id': json['payout_system_account_id'],
+        'project_id': json['project_id'],
         'amount': json['amount'],
-        'walletValue': json['wallet_value'],
+        'wallet_value': json['wallet_value'],
     };
 }
 exports.PayoutCreateRequestBodyDtoFromJSONTyped = PayoutCreateRequestBodyDtoFromJSONTyped;
@@ -78,10 +78,10 @@ function PayoutCreateRequestBodyDtoToJSONTyped(value, ignoreDiscriminator = fals
     return {
         'v': value['v'],
         'language': value['language'],
-        'payout_system_account_id': value['payoutSystemAccountId'],
-        'project_id': value['projectId'],
+        'payout_system_account_id': value['payout_system_account_id'],
+        'project_id': value['project_id'],
         'amount': value['amount'],
-        'wallet_value': value['walletValue'],
+        'wallet_value': value['wallet_value'],
     };
 }
 exports.PayoutCreateRequestBodyDtoToJSONTyped = PayoutCreateRequestBodyDtoToJSONTyped;

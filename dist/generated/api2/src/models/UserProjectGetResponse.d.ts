@@ -32,7 +32,7 @@ export interface UserProjectGetResponse {
      * @type {string}
      * @memberof UserProjectGetResponse
      */
-    photo50: string;
+    photo_50: string;
     /**
      * Тип 0 - личный проект, 1 - командный проект
      * @type {number}
@@ -44,37 +44,37 @@ export interface UserProjectGetResponse {
      * @type {string}
      * @memberof UserProjectGetResponse
      */
-    externalId: string;
+    external_id: string;
     /**
      * Internal id
      * @type {number}
      * @memberof UserProjectGetResponse
      */
-    internalId: number;
+    internal_id: number;
     /**
      * Countrie id
      * @type {number}
      * @memberof UserProjectGetResponse
      */
-    countrieId: number;
+    countrie_id: number;
     /**
      * Balance bonus
      * @type {number}
      * @memberof UserProjectGetResponse
      */
-    balanceBonus: number;
+    balance_bonus: number;
     /**
      * Balance payment
      * @type {number}
      * @memberof UserProjectGetResponse
      */
-    balancePayment: number;
+    balance_payment: number;
     /**
      * Balance profit
      * @type {number}
      * @memberof UserProjectGetResponse
      */
-    balanceProfit: number;
+    balance_profit: number;
     /**
      * Currency
      * @type {string}
@@ -94,8 +94,8 @@ export type UserProjectGetResponseTypeEnum = typeof UserProjectGetResponseTypeEn
  * @export
  */
 export declare const UserProjectGetResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type UserProjectGetResponseCurrencyEnum = typeof UserProjectGetResponseCurrencyEnum[keyof typeof UserProjectGetResponseCurrencyEnum];
 /**

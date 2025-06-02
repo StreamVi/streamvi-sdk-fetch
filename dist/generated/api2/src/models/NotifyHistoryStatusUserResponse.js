@@ -18,7 +18,7 @@ exports.NotifyHistoryStatusUserResponseToJSONTyped = exports.NotifyHistoryStatus
  * Check if a given object implements the NotifyHistoryStatusUserResponse interface.
  */
 function instanceOfNotifyHistoryStatusUserResponse(value) {
-    if (!('countUnread' in value) || value['countUnread'] === undefined)
+    if (!('count_unread' in value) || value['count_unread'] === undefined)
         return false;
     return true;
 }
@@ -32,7 +32,7 @@ function NotifyHistoryStatusUserResponseFromJSONTyped(json, ignoreDiscriminator)
         return json;
     }
     return {
-        'countUnread': json['count_unread'],
+        'count_unread': json['count_unread'],
     };
 }
 exports.NotifyHistoryStatusUserResponseFromJSONTyped = NotifyHistoryStatusUserResponseFromJSONTyped;
@@ -45,7 +45,7 @@ function NotifyHistoryStatusUserResponseToJSONTyped(value, ignoreDiscriminator =
         return value;
     }
     return {
-        'count_unread': value['countUnread'],
+        'count_unread': value['count_unread'],
     };
 }
 exports.NotifyHistoryStatusUserResponseToJSONTyped = NotifyHistoryStatusUserResponseToJSONTyped;

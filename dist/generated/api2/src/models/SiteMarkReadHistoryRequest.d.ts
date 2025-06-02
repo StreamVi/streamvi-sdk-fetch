@@ -20,7 +20,7 @@ export interface SiteMarkReadHistoryRequest {
      * @type {Array<string>}
      * @memberof SiteMarkReadHistoryRequest
      */
-    notifyHistoryIds: Array<string>;
+    notify_history_ids: Array<string>;
 }
 /**
  * Check if a given object implements the SiteMarkReadHistoryRequest interface.

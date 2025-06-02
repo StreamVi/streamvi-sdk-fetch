@@ -83,9 +83,9 @@ export interface RtmpServerStateItem {
  * @export
  */
 export declare const RtmpServerStateItemServerStatusEnum: {
-    readonly Good: "good";
-    readonly Problem: "problem";
-    readonly Bad: "bad";
+    readonly good: "good";
+    readonly problem: "problem";
+    readonly bad: "bad";
 };
 export type RtmpServerStateItemServerStatusEnum = typeof RtmpServerStateItemServerStatusEnum[keyof typeof RtmpServerStateItemServerStatusEnum];
 /**

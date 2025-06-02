@@ -50,14 +50,14 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planTranscodingBuyV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planTranscodingBuyV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planTranscodingBuyV1().');
         }
         if (requestParameters['period'] == null) {
             throw new runtime.RequiredError('period', 'Required parameter "period" was null or undefined when calling planTranscodingBuyV1().');
         }
-        if (requestParameters['planTranscodingId'] == null) {
-            throw new runtime.RequiredError('planTranscodingId', 'Required parameter "planTranscodingId" was null or undefined when calling planTranscodingBuyV1().');
+        if (requestParameters['plan_transcoding_id'] == null) {
+            throw new runtime.RequiredError('plan_transcoding_id', 'Required parameter "plan_transcoding_id" was null or undefined when calling planTranscodingBuyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -69,14 +69,14 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['period'] != null) {
             queryParameters['period'] = requestParameters['period'];
         }
-        if (requestParameters['planTranscodingId'] != null) {
-            queryParameters['plan_transcoding_id'] = requestParameters['planTranscodingId'];
+        if (requestParameters['plan_transcoding_id'] != null) {
+            queryParameters['plan_transcoding_id'] = requestParameters['plan_transcoding_id'];
         }
         if (requestParameters['count'] != null) {
             queryParameters['count'] = requestParameters['count'];
@@ -104,8 +104,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planTranscodingCancelV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planTranscodingCancelV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planTranscodingCancelV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -117,8 +117,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -143,8 +143,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planTranscodingCheckV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planTranscodingCheckV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planTranscodingCheckV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -156,8 +156,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -248,8 +248,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planTranscodingTariffV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planTranscodingTariffV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planTranscodingTariffV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -261,8 +261,8 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -286,16 +286,16 @@ exports.PlanTranscodingApi = PlanTranscodingApi;
  * @export
  */
 exports.PlanTranscodingBuyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlanTranscodingBuyV1PeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * @export
@@ -309,9 +309,9 @@ exports.PlanTranscodingBuyV1VEnum = {
  * @export
  */
 exports.PlanTranscodingCancelV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -325,9 +325,9 @@ exports.PlanTranscodingCancelV1VEnum = {
  * @export
  */
 exports.PlanTranscodingCheckV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -341,9 +341,9 @@ exports.PlanTranscodingCheckV1VEnum = {
  * @export
  */
 exports.PlanTranscodingGetDiscountV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -357,9 +357,9 @@ exports.PlanTranscodingGetDiscountV1VEnum = {
  * @export
  */
 exports.PlanTranscodingListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -373,9 +373,9 @@ exports.PlanTranscodingListV1VEnum = {
  * @export
  */
 exports.PlanTranscodingTariffV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

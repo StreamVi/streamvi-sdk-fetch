@@ -32,17 +32,17 @@ export interface PlanRestreamFeatureItem {
  * @export
  */
 export declare const PlanRestreamFeatureItemNameEnum: {
-    readonly CountChannelMax: "count_channel_max";
-    readonly BitrateMax: "bitrate_max";
-    readonly Resolution: "resolution";
-    readonly CreateProjects: "create_projects";
-    readonly Chat: "chat";
-    readonly Video: "video";
-    readonly VideoStorage: "video_storage";
-    readonly ChangeSubject: "change_subject";
-    readonly BackgroundChat: "background_chat";
-    readonly DedicatedServer: "dedicated_server";
-    readonly PersonalManager: "personal_manager";
+    readonly count_channel_max: "count_channel_max";
+    readonly bitrate_max: "bitrate_max";
+    readonly resolution: "resolution";
+    readonly create_projects: "create_projects";
+    readonly chat: "chat";
+    readonly video: "video";
+    readonly video_storage: "video_storage";
+    readonly change_subject: "change_subject";
+    readonly background_chat: "background_chat";
+    readonly dedicated_server: "dedicated_server";
+    readonly personal_manager: "personal_manager";
 };
 export type PlanRestreamFeatureItemNameEnum = typeof PlanRestreamFeatureItemNameEnum[keyof typeof PlanRestreamFeatureItemNameEnum];
 /**

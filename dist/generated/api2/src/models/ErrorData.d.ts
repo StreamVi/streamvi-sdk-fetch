@@ -33,7 +33,7 @@ export interface ErrorData {
      * @type {Array<ValidationErrorDto>}
      * @memberof ErrorData
      */
-    validatorError?: Array<ValidationErrorDto>;
+    validator_error?: Array<ValidationErrorDto>;
     /**
      * Options
      * @type {object}

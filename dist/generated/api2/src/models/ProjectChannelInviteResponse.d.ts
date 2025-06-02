@@ -21,25 +21,25 @@ export interface ProjectChannelInviteResponse {
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    projectChannelInviteId: number;
+    project_channel_invite_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    channelId: number;
+    channel_id: number;
     /**
      * Project id (user)
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    toProjectId: number | null;
+    to_project_id: number | null;
     /**
      * Access type
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    accessType: number;
+    access_type: number;
     /**
      * Date create
      * @type {Date}
@@ -69,19 +69,19 @@ export interface ProjectChannelInviteResponse {
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    fromUserId: number | null;
+    from_user_id: number | null;
     /**
      * from_project_id
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    fromProjectId: number | null;
+    from_project_id: number | null;
     /**
      * User info
      * @type {ProjectChannelInviteProjectResponse}
      * @memberof ProjectChannelInviteResponse
      */
-    toProject?: ProjectChannelInviteProjectResponse;
+    to_project_?: ProjectChannelInviteProjectResponse;
 }
 /**
  * Check if a given object implements the ProjectChannelInviteResponse interface.

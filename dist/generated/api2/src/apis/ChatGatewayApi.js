@@ -53,11 +53,11 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling methodChatGatewayDeleteV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling methodChatGatewayDeleteV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling methodChatGatewayDeleteV1().');
         }
-        if (requestParameters['eventId'] == null) {
-            throw new runtime.RequiredError('eventId', 'Required parameter "eventId" was null or undefined when calling methodChatGatewayDeleteV1().');
+        if (requestParameters['event_id'] == null) {
+            throw new runtime.RequiredError('event_id', 'Required parameter "event_id" was null or undefined when calling methodChatGatewayDeleteV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -72,11 +72,11 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
-        if (requestParameters['eventId'] != null) {
-            queryParameters['event_id'] = requestParameters['eventId'];
+        if (requestParameters['event_id'] != null) {
+            queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -104,11 +104,11 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling methodChatGatewayGetMessageV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling methodChatGatewayGetMessageV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling methodChatGatewayGetMessageV1().');
         }
-        if (requestParameters['eventId'] == null) {
-            throw new runtime.RequiredError('eventId', 'Required parameter "eventId" was null or undefined when calling methodChatGatewayGetMessageV1().');
+        if (requestParameters['event_id'] == null) {
+            throw new runtime.RequiredError('event_id', 'Required parameter "event_id" was null or undefined when calling methodChatGatewayGetMessageV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -123,11 +123,11 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
-        if (requestParameters['eventId'] != null) {
-            queryParameters['event_id'] = requestParameters['eventId'];
+        if (requestParameters['event_id'] != null) {
+            queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -155,8 +155,8 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling methodChatGatewayHistoryV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling methodChatGatewayHistoryV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling methodChatGatewayHistoryV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -171,8 +171,8 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -200,11 +200,11 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] == null) {
             throw new runtime.RequiredError('key', 'Required parameter "key" was null or undefined when calling methodChatGatewaySendV1().');
         }
-        if (requestParameters['broadcastId'] == null) {
-            throw new runtime.RequiredError('broadcastId', 'Required parameter "broadcastId" was null or undefined when calling methodChatGatewaySendV1().');
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling methodChatGatewaySendV1().');
         }
-        if (requestParameters['methodChatSendMessageRequestDto'] == null) {
-            throw new runtime.RequiredError('methodChatSendMessageRequestDto', 'Required parameter "methodChatSendMessageRequestDto" was null or undefined when calling methodChatGatewaySendV1().');
+        if (requestParameters['MethodChatSendMessageRequestDto'] == null) {
+            throw new runtime.RequiredError('MethodChatSendMessageRequestDto', 'Required parameter "MethodChatSendMessageRequestDto" was null or undefined when calling methodChatGatewaySendV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -219,8 +219,8 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
-        if (requestParameters['broadcastId'] != null) {
-            queryParameters['broadcast_id'] = requestParameters['broadcastId'];
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
@@ -229,7 +229,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.MethodChatSendMessageRequestDtoToJSON)(requestParameters['methodChatSendMessageRequestDto']),
+            body: (0, index_1.MethodChatSendMessageRequestDtoToJSON)(requestParameters['MethodChatSendMessageRequestDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MessageResponseDtoFromJSON)(jsonValue));
     }
@@ -246,9 +246,9 @@ exports.ChatGatewayApi = ChatGatewayApi;
  * @export
  */
 exports.MethodChatGatewayDeleteV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -262,9 +262,9 @@ exports.MethodChatGatewayDeleteV1VEnum = {
  * @export
  */
 exports.MethodChatGatewayGetMessageV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -278,9 +278,9 @@ exports.MethodChatGatewayGetMessageV1VEnum = {
  * @export
  */
 exports.MethodChatGatewayHistoryV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -294,9 +294,9 @@ exports.MethodChatGatewayHistoryV1VEnum = {
  * @export
  */
 exports.MethodChatGatewaySendV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

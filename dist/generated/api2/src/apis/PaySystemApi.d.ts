@@ -13,12 +13,12 @@ import * as runtime from '../runtime';
 import type { ListOfPaySystemListResponse, SuccessResponse } from '../models/index';
 export interface PaySystemCreateChallengeV1Request {
     language: PaySystemCreateChallengeV1LanguageEnum;
-    paymentId: number;
+    payment_id: number;
     v?: PaySystemCreateChallengeV1VEnum;
 }
 export interface PaySystemCreateUnitpayV1Request {
     language: PaySystemCreateUnitpayV1LanguageEnum;
-    paymentId: number;
+    payment_id: number;
     v?: PaySystemCreateUnitpayV1VEnum;
 }
 /**
@@ -31,7 +31,7 @@ export interface PaySystemApiInterface {
     /**
      *
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} paymentId Payment id
+     * @param {number} payment_id Payment id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -44,7 +44,7 @@ export interface PaySystemApiInterface {
     /**
      *
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} paymentId Payment id
+     * @param {number} payment_id Payment id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -96,9 +96,9 @@ export declare class PaySystemApi extends runtime.BaseAPI implements PaySystemAp
  * @export
  */
 export declare const PaySystemCreateChallengeV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaySystemCreateChallengeV1LanguageEnum = typeof PaySystemCreateChallengeV1LanguageEnum[keyof typeof PaySystemCreateChallengeV1LanguageEnum];
 /**
@@ -114,9 +114,9 @@ export type PaySystemCreateChallengeV1VEnum = typeof PaySystemCreateChallengeV1V
  * @export
  */
 export declare const PaySystemCreateUnitpayV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PaySystemCreateUnitpayV1LanguageEnum = typeof PaySystemCreateUnitpayV1LanguageEnum[keyof typeof PaySystemCreateUnitpayV1LanguageEnum];
 /**

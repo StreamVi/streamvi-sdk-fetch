@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsTrovoRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -50,13 +50,13 @@ export interface SiteUpdateOptionsTrovoRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    categoryId: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    categoryName: string;
+    category_name: string;
     /**
      *
      * @type {string}
@@ -83,27 +83,27 @@ export type SiteUpdateOptionsTrovoRequestVEnum = typeof SiteUpdateOptionsTrovoRe
  * @export
  */
 export declare const SiteUpdateOptionsTrovoRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsTrovoRequestLanguageEnum = typeof SiteUpdateOptionsTrovoRequestLanguageEnum[keyof typeof SiteUpdateOptionsTrovoRequestLanguageEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsTrovoRequestAudienceEnum: {
-    readonly ChannelAudienceTypeFamilyfriendly: "CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY";
-    readonly ChannelAudienceTypeTeen: "CHANNEL_AUDIENCE_TYPE_TEEN";
-    readonly ChannelAudienceTypeEighteenplus: "CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS";
+    readonly CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: "CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY";
+    readonly CHANNEL_AUDIENCE_TYPE_TEEN: "CHANNEL_AUDIENCE_TYPE_TEEN";
+    readonly CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: "CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS";
 };
 export type SiteUpdateOptionsTrovoRequestAudienceEnum = typeof SiteUpdateOptionsTrovoRequestAudienceEnum[keyof typeof SiteUpdateOptionsTrovoRequestAudienceEnum];
 /**
  * @export
  */
 export declare const SiteUpdateOptionsTrovoRequestLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsTrovoRequestLangEnum = typeof SiteUpdateOptionsTrovoRequestLangEnum[keyof typeof SiteUpdateOptionsTrovoRequestLangEnum];
 /**

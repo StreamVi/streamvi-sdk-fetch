@@ -22,7 +22,7 @@ export interface SiteNotifyUserResponse {
      * @type {number}
      * @memberof SiteNotifyUserResponse
      */
-    userId: number;
+    user_id: number;
     /**
      * Channels
      * @type {NotifyUserChannels}

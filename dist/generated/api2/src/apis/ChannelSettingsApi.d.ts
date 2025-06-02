@@ -13,92 +13,92 @@ import * as runtime from '../runtime';
 import type { ListOfPlaylistItemResponse, ListOfSitePlannedResponse, SiteChannelStatusResponse, SitePlannedResponse, SiteSetNameRequest, SiteSetPlannedRequest, SiteSetTranscoderRequest, SiteSetUrlRequest, SiteUpdateChatTelegramRequest, SiteUpdateOptionsOkRequest, SiteUpdateOptionsTrovoRequest, SiteUpdateOptionsTwitchRequest, SiteUpdateOptionsVkRequest, SiteUpdateOptionsVkVideoLiveRequest, SiteUpdateOptionsYoutubeRequest, SuccessResponse, TelegramChatPostsItem, TelegramChatPostsResponseDto, TelegramInitConnectResponseDto, TelegramSetSettingsRequestDto, TelegramSettingsResponseDto } from '../models/index';
 export interface ChannelChatGetTelegramSettingV1Request {
     language: ChannelChatGetTelegramSettingV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelChatGetTelegramSettingV1VEnum;
 }
 export interface ChannelChatInitTelegramChatConnectV1Request {
     language: ChannelChatInitTelegramChatConnectV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelChatInitTelegramChatConnectV1VEnum;
 }
 export interface ChannelChatRemoveTelegramChatV1Request {
     language: ChannelChatRemoveTelegramChatV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelChatRemoveTelegramChatV1VEnum;
 }
 export interface ChannelChatSetTelegramSettingV1Request {
     language: ChannelChatSetTelegramSettingV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    telegramSetSettingsRequestDto: TelegramSetSettingsRequestDto;
+    project_id: number;
+    channel_id: number;
+    TelegramSetSettingsRequestDto: TelegramSetSettingsRequestDto;
     v?: ChannelChatSetTelegramSettingV1VEnum;
 }
 export interface ChannelChatTelegramPostsV1Request {
     language: ChannelChatTelegramPostsV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelChatTelegramPostsV1VEnum;
 }
 export interface ChannelChatUpdateOptionsTelegramV1Request {
-    siteUpdateChatTelegramRequest: SiteUpdateChatTelegramRequest;
+    SiteUpdateChatTelegramRequest: SiteUpdateChatTelegramRequest;
 }
 export interface ChannelOptionsGetPlannedV1Request {
     language: ChannelOptionsGetPlannedV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelOptionsGetPlannedV1VEnum;
 }
 export interface ChannelOptionsGetPlayListV1Request {
     language: ChannelOptionsGetPlayListV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     v?: ChannelOptionsGetPlayListV1VEnum;
 }
 export interface ChannelOptionsUpdateOptionsOkV1Request {
-    siteUpdateOptionsOkRequest: SiteUpdateOptionsOkRequest;
+    SiteUpdateOptionsOkRequest: SiteUpdateOptionsOkRequest;
 }
 export interface ChannelOptionsUpdateOptionsTrovoV1Request {
-    siteUpdateOptionsTrovoRequest: SiteUpdateOptionsTrovoRequest;
+    SiteUpdateOptionsTrovoRequest: SiteUpdateOptionsTrovoRequest;
 }
 export interface ChannelOptionsUpdateOptionsTwitchV1Request {
-    siteUpdateOptionsTwitchRequest: SiteUpdateOptionsTwitchRequest;
+    SiteUpdateOptionsTwitchRequest: SiteUpdateOptionsTwitchRequest;
 }
 export interface ChannelOptionsUpdateOptionsVkV1Request {
-    siteUpdateOptionsVkRequest: SiteUpdateOptionsVkRequest;
+    SiteUpdateOptionsVkRequest: SiteUpdateOptionsVkRequest;
 }
 export interface ChannelOptionsUpdateOptionsVkVideoLiveV1Request {
-    siteUpdateOptionsVkVideoLiveRequest: SiteUpdateOptionsVkVideoLiveRequest;
+    SiteUpdateOptionsVkVideoLiveRequest: SiteUpdateOptionsVkVideoLiveRequest;
 }
 export interface ChannelOptionsUpdateOptionsYoutubeV1Request {
-    siteUpdateOptionsYoutubeRequest: SiteUpdateOptionsYoutubeRequest;
+    SiteUpdateOptionsYoutubeRequest: SiteUpdateOptionsYoutubeRequest;
 }
 export interface ChannelOptionsUpdatePlannedV1Request {
-    siteSetPlannedRequest: SiteSetPlannedRequest;
+    SiteSetPlannedRequest: SiteSetPlannedRequest;
 }
 export interface ChannelSettingSetNameV1Request {
-    siteSetNameRequest: SiteSetNameRequest;
+    SiteSetNameRequest: SiteSetNameRequest;
 }
 export interface ChannelSettingUpdateRtmpV1Request {
-    siteSetUrlRequest: SiteSetUrlRequest;
+    SiteSetUrlRequest: SiteSetUrlRequest;
 }
 export interface ChannelSettingUpdateTokenV1Request {
     language: ChannelSettingUpdateTokenV1LanguageEnum;
-    projectId: number;
-    channelId: number;
+    project_id: number;
+    channel_id: number;
     role: ChannelSettingUpdateTokenV1RoleEnum;
     v?: ChannelSettingUpdateTokenV1VEnum;
 }
 export interface ChannelSettingUpdateTranscoderV1Request {
-    siteSetTranscoderRequest: SiteSetTranscoderRequest;
+    SiteSetTranscoderRequest: SiteSetTranscoderRequest;
 }
 export interface TelegramGetPostByFilterV1Request {
     language: TelegramGetPostByFilterV1LanguageEnum;
-    projectId: number;
-    channelId: number;
-    filterMode: number;
+    project_id: number;
+    channel_id: number;
+    filter_mode: number;
     v?: TelegramGetPostByFilterV1VEnum;
 }
 /**
@@ -112,8 +112,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get telegram settings
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -128,8 +128,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get code for connected chat
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -144,8 +144,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Disconnect telegram chat
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -160,9 +160,9 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Set telegram settings
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {TelegramSetSettingsRequestDto} telegramSetSettingsRequestDto
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {TelegramSetSettingsRequestDto} TelegramSetSettingsRequestDto
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -177,8 +177,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get telegram post list
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -192,7 +192,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for telegram
-     * @param {SiteUpdateChatTelegramRequest} siteUpdateChatTelegramRequest
+     * @param {SiteUpdateChatTelegramRequest} SiteUpdateChatTelegramRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -206,8 +206,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get planned list
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -222,8 +222,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get playlists from the platform
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -237,7 +237,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for ok. Depends on the tariff.
-     * @param {SiteUpdateOptionsOkRequest} siteUpdateOptionsOkRequest
+     * @param {SiteUpdateOptionsOkRequest} SiteUpdateOptionsOkRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -250,7 +250,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for trovo. Depends on the tariff.
-     * @param {SiteUpdateOptionsTrovoRequest} siteUpdateOptionsTrovoRequest
+     * @param {SiteUpdateOptionsTrovoRequest} SiteUpdateOptionsTrovoRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -263,7 +263,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for twitch. Depends on the tariff.
-     * @param {SiteUpdateOptionsTwitchRequest} siteUpdateOptionsTwitchRequest
+     * @param {SiteUpdateOptionsTwitchRequest} SiteUpdateOptionsTwitchRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -276,7 +276,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for vk. Depends on the tariff.
-     * @param {SiteUpdateOptionsVkRequest} siteUpdateOptionsVkRequest
+     * @param {SiteUpdateOptionsVkRequest} SiteUpdateOptionsVkRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -289,7 +289,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for vk video live. Depends on the tariff.
-     * @param {SiteUpdateOptionsVkVideoLiveRequest} siteUpdateOptionsVkVideoLiveRequest
+     * @param {SiteUpdateOptionsVkVideoLiveRequest} SiteUpdateOptionsVkVideoLiveRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -302,7 +302,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Optional settings for youtube. Depends on the tariff.
-     * @param {SiteUpdateOptionsYoutubeRequest} siteUpdateOptionsYoutubeRequest
+     * @param {SiteUpdateOptionsYoutubeRequest} SiteUpdateOptionsYoutubeRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -315,7 +315,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Set planned id. Depends on the tariff.
-     * @param {SiteSetPlannedRequest} siteSetPlannedRequest
+     * @param {SiteSetPlannedRequest} SiteSetPlannedRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -340,7 +340,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Set name from custom channel. Global settings.
-     * @param {SiteSetNameRequest} siteSetNameRequest
+     * @param {SiteSetNameRequest} SiteSetNameRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -353,7 +353,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Set rtmp url from channel. Global settings.
-     * @param {SiteSetUrlRequest} siteSetUrlRequest
+     * @param {SiteSetUrlRequest} SiteSetUrlRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -367,8 +367,8 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get status platform
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
      * @param {'account' | 'group'} role Token role
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -383,7 +383,7 @@ export interface ChannelSettingsApiInterface {
     /**
      *
      * @summary Set transcoder from channel. Personal settings.
-     * @param {SiteSetTranscoderRequest} siteSetTranscoderRequest
+     * @param {SiteSetTranscoderRequest} SiteSetTranscoderRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -397,9 +397,9 @@ export interface ChannelSettingsApiInterface {
      *
      * @summary Get telegram post by filter
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} channelId Channel id
-     * @param {number} filterMode
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {number} filter_mode
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -588,9 +588,9 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
  * @export
  */
 export declare const ChannelChatGetTelegramSettingV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelChatGetTelegramSettingV1LanguageEnum = typeof ChannelChatGetTelegramSettingV1LanguageEnum[keyof typeof ChannelChatGetTelegramSettingV1LanguageEnum];
 /**
@@ -606,9 +606,9 @@ export type ChannelChatGetTelegramSettingV1VEnum = typeof ChannelChatGetTelegram
  * @export
  */
 export declare const ChannelChatInitTelegramChatConnectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelChatInitTelegramChatConnectV1LanguageEnum = typeof ChannelChatInitTelegramChatConnectV1LanguageEnum[keyof typeof ChannelChatInitTelegramChatConnectV1LanguageEnum];
 /**
@@ -624,9 +624,9 @@ export type ChannelChatInitTelegramChatConnectV1VEnum = typeof ChannelChatInitTe
  * @export
  */
 export declare const ChannelChatRemoveTelegramChatV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelChatRemoveTelegramChatV1LanguageEnum = typeof ChannelChatRemoveTelegramChatV1LanguageEnum[keyof typeof ChannelChatRemoveTelegramChatV1LanguageEnum];
 /**
@@ -642,9 +642,9 @@ export type ChannelChatRemoveTelegramChatV1VEnum = typeof ChannelChatRemoveTeleg
  * @export
  */
 export declare const ChannelChatSetTelegramSettingV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelChatSetTelegramSettingV1LanguageEnum = typeof ChannelChatSetTelegramSettingV1LanguageEnum[keyof typeof ChannelChatSetTelegramSettingV1LanguageEnum];
 /**
@@ -660,9 +660,9 @@ export type ChannelChatSetTelegramSettingV1VEnum = typeof ChannelChatSetTelegram
  * @export
  */
 export declare const ChannelChatTelegramPostsV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelChatTelegramPostsV1LanguageEnum = typeof ChannelChatTelegramPostsV1LanguageEnum[keyof typeof ChannelChatTelegramPostsV1LanguageEnum];
 /**
@@ -678,9 +678,9 @@ export type ChannelChatTelegramPostsV1VEnum = typeof ChannelChatTelegramPostsV1V
  * @export
  */
 export declare const ChannelOptionsGetPlannedV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelOptionsGetPlannedV1LanguageEnum = typeof ChannelOptionsGetPlannedV1LanguageEnum[keyof typeof ChannelOptionsGetPlannedV1LanguageEnum];
 /**
@@ -696,9 +696,9 @@ export type ChannelOptionsGetPlannedV1VEnum = typeof ChannelOptionsGetPlannedV1V
  * @export
  */
 export declare const ChannelOptionsGetPlayListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelOptionsGetPlayListV1LanguageEnum = typeof ChannelOptionsGetPlayListV1LanguageEnum[keyof typeof ChannelOptionsGetPlayListV1LanguageEnum];
 /**
@@ -714,17 +714,17 @@ export type ChannelOptionsGetPlayListV1VEnum = typeof ChannelOptionsGetPlayListV
  * @export
  */
 export declare const ChannelSettingUpdateTokenV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type ChannelSettingUpdateTokenV1LanguageEnum = typeof ChannelSettingUpdateTokenV1LanguageEnum[keyof typeof ChannelSettingUpdateTokenV1LanguageEnum];
 /**
  * @export
  */
 export declare const ChannelSettingUpdateTokenV1RoleEnum: {
-    readonly Account: "account";
-    readonly Group: "group";
+    readonly account: "account";
+    readonly group: "group";
 };
 export type ChannelSettingUpdateTokenV1RoleEnum = typeof ChannelSettingUpdateTokenV1RoleEnum[keyof typeof ChannelSettingUpdateTokenV1RoleEnum];
 /**
@@ -740,9 +740,9 @@ export type ChannelSettingUpdateTokenV1VEnum = typeof ChannelSettingUpdateTokenV
  * @export
  */
 export declare const TelegramGetPostByFilterV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type TelegramGetPostByFilterV1LanguageEnum = typeof TelegramGetPostByFilterV1LanguageEnum[keyof typeof TelegramGetPostByFilterV1LanguageEnum];
 /**

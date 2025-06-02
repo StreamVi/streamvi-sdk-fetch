@@ -32,13 +32,13 @@ export interface SiteUpdateOptionsOkRequest {
      * @type {number}
      * @memberof SiteUpdateOptionsOkRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Channel id
      * @type {number}
      * @memberof SiteUpdateOptionsOkRequest
      */
-    channelId: number;
+    channel_id: number;
     /**
      *
      * @type {string}
@@ -65,9 +65,9 @@ export type SiteUpdateOptionsOkRequestVEnum = typeof SiteUpdateOptionsOkRequestV
  * @export
  */
 export declare const SiteUpdateOptionsOkRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type SiteUpdateOptionsOkRequestLanguageEnum = typeof SiteUpdateOptionsOkRequestLanguageEnum[keyof typeof SiteUpdateOptionsOkRequestLanguageEnum];
 /**

@@ -26,9 +26,9 @@ exports.UpdatePullKeyRequestVEnum = {
  * @export
  */
 exports.UpdatePullKeyRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the UpdatePullKeyRequest interface.
@@ -38,7 +38,7 @@ function instanceOfUpdatePullKeyRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('key' in value) || value['key'] === undefined)
         return false;
@@ -58,7 +58,7 @@ function UpdatePullKeyRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'key': json['key'],
         'region': json['region'],
     };
@@ -75,7 +75,7 @@ function UpdatePullKeyRequestToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'key': value['key'],
         'region': value['region'],
     };

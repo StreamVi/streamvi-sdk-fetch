@@ -18,9 +18,9 @@ exports.MethodCurrentBroadcastResponseToJSONTyped = exports.MethodCurrentBroadca
  * Check if a given object implements the MethodCurrentBroadcastResponse interface.
  */
 function instanceOfMethodCurrentBroadcastResponse(value) {
-    if (!('accessToken' in value) || value['accessToken'] === undefined)
+    if (!('access_token' in value) || value['access_token'] === undefined)
         return false;
-    if (!('broadcastId' in value) || value['broadcastId'] === undefined)
+    if (!('broadcast_id' in value) || value['broadcast_id'] === undefined)
         return false;
     return true;
 }
@@ -34,8 +34,8 @@ function MethodCurrentBroadcastResponseFromJSONTyped(json, ignoreDiscriminator) 
         return json;
     }
     return {
-        'accessToken': json['access_token'],
-        'broadcastId': json['broadcast_id'],
+        'access_token': json['access_token'],
+        'broadcast_id': json['broadcast_id'],
     };
 }
 exports.MethodCurrentBroadcastResponseFromJSONTyped = MethodCurrentBroadcastResponseFromJSONTyped;
@@ -48,8 +48,8 @@ function MethodCurrentBroadcastResponseToJSONTyped(value, ignoreDiscriminator = 
         return value;
     }
     return {
-        'access_token': value['accessToken'],
-        'broadcast_id': value['broadcastId'],
+        'access_token': value['access_token'],
+        'broadcast_id': value['broadcast_id'],
     };
 }
 exports.MethodCurrentBroadcastResponseToJSONTyped = MethodCurrentBroadcastResponseToJSONTyped;

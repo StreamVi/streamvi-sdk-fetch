@@ -50,8 +50,8 @@ class ProjectHistoryApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectHistoryListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling projectHistoryListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectHistoryListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -69,20 +69,20 @@ class ProjectHistoryApi extends runtime.BaseAPI {
         if (requestParameters['offset'] != null) {
             queryParameters['offset'] = requestParameters['offset'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['dateFrom'] != null) {
-            queryParameters['date_from'] = requestParameters['dateFrom'].toISOString();
+        if (requestParameters['date_from'] != null) {
+            queryParameters['date_from'] = requestParameters['date_from'].toISOString();
         }
-        if (requestParameters['dateTo'] != null) {
-            queryParameters['date_to'] = requestParameters['dateTo'].toISOString();
+        if (requestParameters['date_to'] != null) {
+            queryParameters['date_to'] = requestParameters['date_to'].toISOString();
         }
         if (requestParameters['action'] != null) {
             queryParameters['action'] = requestParameters['action'];
         }
-        if (requestParameters['groupId'] != null) {
-            queryParameters['group_id'] = requestParameters['groupId'];
+        if (requestParameters['group_id'] != null) {
+            queryParameters['group_id'] = requestParameters['group_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -106,9 +106,9 @@ exports.ProjectHistoryApi = ProjectHistoryApi;
  * @export
  */
 exports.ProjectHistoryListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -122,18 +122,18 @@ exports.ProjectHistoryListV1VEnum = {
  * @export
  */
 exports.ProjectHistoryListV1ActionEnum = {
-    ProjectChannelInviteAdd: 'project_channel_invite_add',
-    ProjectChannelInviteDel: 'project_channel_invite_del',
-    ProjectChannelInviteAccept: 'project_channel_invite_accept',
-    ProjectChannelInviteDecline: 'project_channel_invite_decline',
-    UserProjectInviteAdd: 'user_project_invite_add',
-    UserProjectInviteDel: 'user_project_invite_del',
-    UserProjectInviteAccept: 'user_project_invite_accept',
-    UserProjectInviteDecline: 'user_project_invite_decline',
-    UserProjectAdd: 'user_project_add',
-    UserProjectDel: 'user_project_del',
-    UserProjectChange: 'user_project_change',
-    ProjectChannelAdd: 'project_channel_add',
-    ProjectChannelDel: 'project_channel_del',
-    ProjectChannelChange: 'project_channel_change'
+    project_channel_invite_add: 'project_channel_invite_add',
+    project_channel_invite_del: 'project_channel_invite_del',
+    project_channel_invite_accept: 'project_channel_invite_accept',
+    project_channel_invite_decline: 'project_channel_invite_decline',
+    user_project_invite_add: 'user_project_invite_add',
+    user_project_invite_del: 'user_project_invite_del',
+    user_project_invite_accept: 'user_project_invite_accept',
+    user_project_invite_decline: 'user_project_invite_decline',
+    user_project_add: 'user_project_add',
+    user_project_del: 'user_project_del',
+    user_project_change: 'user_project_change',
+    project_channel_add: 'project_channel_add',
+    project_channel_del: 'project_channel_del',
+    project_channel_change: 'project_channel_change'
 };

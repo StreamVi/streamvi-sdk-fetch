@@ -20,31 +20,31 @@ export interface PlanRestream2UserItemResponse {
      * @type {number}
      * @memberof PlanRestream2UserItemResponse
      */
-    planRestream2userId: number;
+    plan_restream2user_id: number;
     /**
      * Plan restream id
      * @type {number}
      * @memberof PlanRestream2UserItemResponse
      */
-    planRestreamId: number;
+    plan_restream_id: number;
     /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanRestream2UserItemResponse
      */
-    dateEnd: Date | null;
+    date_end: Date | null;
     /**
      * Date start
      * @type {Date}
      * @memberof PlanRestream2UserItemResponse
      */
-    dateStart: Date | null;
+    date_start: Date | null;
     /**
      * Date create
      * @type {Date}
      * @memberof PlanRestream2UserItemResponse
      */
-    dateCreate: Date | null;
+    date_create: Date | null;
     /**
      * Plan period
      * @type {string}
@@ -56,13 +56,13 @@ export interface PlanRestream2UserItemResponse {
      * @type {string}
      * @memberof PlanRestream2UserItemResponse
      */
-    moneyFlowUuid: string;
+    money_flow_uuid: string;
     /**
      * Period uuid
      * @type {string}
      * @memberof PlanRestream2UserItemResponse
      */
-    periodUuid: string;
+    period_uuid: string;
     /**
      * Status
      * @type {string}
@@ -80,8 +80,8 @@ export interface PlanRestream2UserItemResponse {
  * @export
  */
 export declare const PlanRestream2UserItemResponsePeriodEnum: {
-    readonly Month: "month";
-    readonly Year: "year";
+    readonly month: "month";
+    readonly year: "year";
 };
 export type PlanRestream2UserItemResponsePeriodEnum = typeof PlanRestream2UserItemResponsePeriodEnum[keyof typeof PlanRestream2UserItemResponsePeriodEnum];
 /**

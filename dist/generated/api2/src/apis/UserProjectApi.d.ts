@@ -13,35 +13,35 @@ import * as runtime from '../runtime';
 import type { ListOfUserProject2ProjectResponse, PaginatedResponseOfUserProjectResponse, ProjectInfoResponse, SuccessResponse, UserProjectGetResponse } from '../models/index';
 export interface UserProjectChangeAccessV1Request {
     language: UserProjectChangeAccessV1LanguageEnum;
-    projectId: number;
-    userId: number;
-    accessType: UserProjectChangeAccessV1AccessTypeEnum;
+    project_id: number;
+    user_id: number;
+    access_type: UserProjectChangeAccessV1AccessTypeEnum;
     v?: UserProjectChangeAccessV1VEnum;
 }
 export interface UserProjectDelV1Request {
     language: UserProjectDelV1LanguageEnum;
-    projectId: number;
-    userId: number;
+    project_id: number;
+    user_id: number;
     v?: UserProjectDelV1VEnum;
 }
 export interface UserProjectGetProjectInfoV1Request {
     language: UserProjectGetProjectInfoV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: UserProjectGetProjectInfoV1VEnum;
 }
 export interface UserProjectGetProjectV1Request {
     language: UserProjectGetProjectV1LanguageEnum;
-    projectExternalId: string;
+    project_external_id: string;
     v?: UserProjectGetProjectV1VEnum;
 }
 export interface UserProjectGetUserV1Request {
     language: UserProjectGetUserV1LanguageEnum;
-    userExternalId: string;
+    user_external_id: string;
     v?: UserProjectGetUserV1VEnum;
 }
 export interface UserProjectListAccessV1Request {
     language: UserProjectListAccessV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: UserProjectListAccessV1VEnum;
 }
 export interface UserProjectListV1Request {
@@ -66,9 +66,9 @@ export interface UserProjectApiInterface {
      *
      * @summary Change access user from project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} userId User id
-     * @param {0 | 1 | 2} accessType Access type
+     * @param {number} project_id Project id
+     * @param {number} user_id User id
+     * @param {0 | 1 | 2} access_type Access type
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -83,8 +83,8 @@ export interface UserProjectApiInterface {
      *
      * @summary Remove user from project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
-     * @param {number} userId User id
+     * @param {number} project_id Project id
+     * @param {number} user_id User id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -99,7 +99,7 @@ export interface UserProjectApiInterface {
      *
      * @summary Get project full info
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -114,7 +114,7 @@ export interface UserProjectApiInterface {
      *
      * @summary Get project by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {string} projectExternalId Project external id
+     * @param {string} project_external_id Project external id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -129,7 +129,7 @@ export interface UserProjectApiInterface {
      *
      * @summary Get user by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {string} userExternalId User external id
+     * @param {string} user_external_id User external id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -144,7 +144,7 @@ export interface UserProjectApiInterface {
      *
      * @summary List of user in project
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -260,9 +260,9 @@ export declare class UserProjectApi extends runtime.BaseAPI implements UserProje
  * @export
  */
 export declare const UserProjectChangeAccessV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectChangeAccessV1LanguageEnum = typeof UserProjectChangeAccessV1LanguageEnum[keyof typeof UserProjectChangeAccessV1LanguageEnum];
 /**
@@ -287,9 +287,9 @@ export type UserProjectChangeAccessV1VEnum = typeof UserProjectChangeAccessV1VEn
  * @export
  */
 export declare const UserProjectDelV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectDelV1LanguageEnum = typeof UserProjectDelV1LanguageEnum[keyof typeof UserProjectDelV1LanguageEnum];
 /**
@@ -305,9 +305,9 @@ export type UserProjectDelV1VEnum = typeof UserProjectDelV1VEnum[keyof typeof Us
  * @export
  */
 export declare const UserProjectGetProjectInfoV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectGetProjectInfoV1LanguageEnum = typeof UserProjectGetProjectInfoV1LanguageEnum[keyof typeof UserProjectGetProjectInfoV1LanguageEnum];
 /**
@@ -323,9 +323,9 @@ export type UserProjectGetProjectInfoV1VEnum = typeof UserProjectGetProjectInfoV
  * @export
  */
 export declare const UserProjectGetProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectGetProjectV1LanguageEnum = typeof UserProjectGetProjectV1LanguageEnum[keyof typeof UserProjectGetProjectV1LanguageEnum];
 /**
@@ -341,9 +341,9 @@ export type UserProjectGetProjectV1VEnum = typeof UserProjectGetProjectV1VEnum[k
  * @export
  */
 export declare const UserProjectGetUserV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectGetUserV1LanguageEnum = typeof UserProjectGetUserV1LanguageEnum[keyof typeof UserProjectGetUserV1LanguageEnum];
 /**
@@ -359,9 +359,9 @@ export type UserProjectGetUserV1VEnum = typeof UserProjectGetUserV1VEnum[keyof t
  * @export
  */
 export declare const UserProjectListAccessV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectListAccessV1LanguageEnum = typeof UserProjectListAccessV1LanguageEnum[keyof typeof UserProjectListAccessV1LanguageEnum];
 /**
@@ -377,9 +377,9 @@ export type UserProjectListAccessV1VEnum = typeof UserProjectListAccessV1VEnum[k
  * @export
  */
 export declare const UserProjectListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectListV1LanguageEnum = typeof UserProjectListV1LanguageEnum[keyof typeof UserProjectListV1LanguageEnum];
 /**
@@ -395,9 +395,9 @@ export type UserProjectListV1VEnum = typeof UserProjectListV1VEnum[keyof typeof 
  * @export
  */
 export declare const UserProjectSelectProjectV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProjectSelectProjectV1LanguageEnum = typeof UserProjectSelectProjectV1LanguageEnum[keyof typeof UserProjectSelectProjectV1LanguageEnum];
 /**

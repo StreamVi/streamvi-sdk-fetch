@@ -128,8 +128,8 @@ class RtmpServerApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling rtmpServerListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListV1().');
         }
         if (requestParameters['interval'] == null) {
             throw new runtime.RequiredError('interval', 'Required parameter "interval" was null or undefined when calling rtmpServerListV1().');
@@ -144,8 +144,8 @@ class RtmpServerApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['interval'] != null) {
             queryParameters['interval'] = requestParameters['interval'];
@@ -232,9 +232,9 @@ exports.RtmpServerApi = RtmpServerApi;
  * @export
  */
 exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -248,9 +248,9 @@ exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = {
  * @export
  */
 exports.RtmpServerGraphV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -266,11 +266,11 @@ exports.RtmpServerGraphV1IntervalEnum = {
  * @export
  */
 exports.RtmpServerGraphV1TypeEnum = {
-    Performance: 'performance',
-    Network: 'network',
-    Cpu: 'cpu',
-    Ram: 'ram',
-    DeliveredPackages: 'deliveredPackages'
+    performance: 'performance',
+    network: 'network',
+    cpu: 'cpu',
+    ram: 'ram',
+    deliveredPackages: 'deliveredPackages'
 };
 /**
  * @export
@@ -284,9 +284,9 @@ exports.RtmpServerGraphV1VEnum = {
  * @export
  */
 exports.RtmpServerListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -310,9 +310,9 @@ exports.RtmpServerListV1VEnum = {
  * @export
  */
 exports.RtmpServerStateV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

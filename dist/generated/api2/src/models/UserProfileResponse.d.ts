@@ -80,7 +80,7 @@ export interface UserProfileResponse {
      * @type {number}
      * @memberof UserProfileResponse
      */
-    countrieId: number;
+    countrie_id: number;
     /**
      * Language
      * @type {string}
@@ -112,17 +112,17 @@ export type UserProfileResponseIdEnum = typeof UserProfileResponseIdEnum[keyof t
  * @export
  */
 export declare const UserProfileResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type UserProfileResponseCurrencyEnum = typeof UserProfileResponseCurrencyEnum[keyof typeof UserProfileResponseCurrencyEnum];
 /**
  * @export
  */
 export declare const UserProfileResponseLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type UserProfileResponseLanguageEnum = typeof UserProfileResponseLanguageEnum[keyof typeof UserProfileResponseLanguageEnum];
 /**

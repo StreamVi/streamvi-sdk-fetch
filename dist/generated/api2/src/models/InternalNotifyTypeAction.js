@@ -19,31 +19,31 @@ const InternalNotifyTypeActionText_1 = require("./InternalNotifyTypeActionText")
  * @export
  */
 exports.InternalNotifyTypeActionNameEnum = {
-    ExternalLink: 'external_link',
-    CabinetLink: 'cabinet_link',
-    LandingLink: 'landing_link',
-    Link: 'link',
-    Accept: 'accept',
-    Decline: 'decline',
-    Accept1: 'accept_1',
-    Accept2: 'accept_2',
-    Accept3: 'accept_3'
+    external_link: 'external_link',
+    cabinet_link: 'cabinet_link',
+    landing_link: 'landing_link',
+    link: 'link',
+    accept: 'accept',
+    decline: 'decline',
+    accept_1: 'accept_1',
+    accept_2: 'accept_2',
+    accept_3: 'accept_3'
 };
 /**
  * @export
  */
 exports.InternalNotifyTypeActionTypeEnum = {
-    Primary: 'primary',
-    Secondary: 'secondary',
-    Link: 'link'
+    primary: 'primary',
+    secondary: 'secondary',
+    link: 'link'
 };
 /**
  * @export
  */
 exports.InternalNotifyTypeActionGroupTypeEnum = {
-    Toggle: 'toggle',
-    Select: 'select',
-    Default: 'default'
+    toggle: 'toggle',
+    select: 'select',
+    default: 'default'
 };
 /**
  * Check if a given object implements the InternalNotifyTypeAction interface.
@@ -59,9 +59,9 @@ function instanceOfInternalNotifyTypeAction(value) {
         return false;
     if (!('icon' in value) || value['icon'] === undefined)
         return false;
-    if (!('groupId' in value) || value['groupId'] === undefined)
+    if (!('group_id' in value) || value['group_id'] === undefined)
         return false;
-    if (!('groupType' in value) || value['groupType'] === undefined)
+    if (!('group_type' in value) || value['group_type'] === undefined)
         return false;
     return true;
 }
@@ -80,8 +80,8 @@ function InternalNotifyTypeActionFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
         'text': (json['text'].map(InternalNotifyTypeActionText_1.InternalNotifyTypeActionTextFromJSON)),
         'icon': json['icon'],
-        'groupId': json['group_id'],
-        'groupType': json['group_type'],
+        'group_id': json['group_id'],
+        'group_type': json['group_type'],
     };
 }
 exports.InternalNotifyTypeActionFromJSONTyped = InternalNotifyTypeActionFromJSONTyped;
@@ -99,8 +99,8 @@ function InternalNotifyTypeActionToJSONTyped(value, ignoreDiscriminator = false)
         'type': value['type'],
         'text': (value['text'].map(InternalNotifyTypeActionText_1.InternalNotifyTypeActionTextToJSON)),
         'icon': value['icon'],
-        'group_id': value['groupId'],
-        'group_type': value['groupType'],
+        'group_id': value['group_id'],
+        'group_type': value['group_type'],
     };
 }
 exports.InternalNotifyTypeActionToJSONTyped = InternalNotifyTypeActionToJSONTyped;

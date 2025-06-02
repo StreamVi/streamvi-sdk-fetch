@@ -26,25 +26,25 @@ exports.SiteUpdateOptionsTrovoRequestVEnum = {
  * @export
  */
 exports.SiteUpdateOptionsTrovoRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsTrovoRequestAudienceEnum = {
-    ChannelAudienceTypeFamilyfriendly: 'CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY',
-    ChannelAudienceTypeTeen: 'CHANNEL_AUDIENCE_TYPE_TEEN',
-    ChannelAudienceTypeEighteenplus: 'CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS'
+    CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: 'CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY',
+    CHANNEL_AUDIENCE_TYPE_TEEN: 'CHANNEL_AUDIENCE_TYPE_TEEN',
+    CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: 'CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsTrovoRequestLangEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsTrovoRequest interface.
@@ -54,15 +54,15 @@ function instanceOfSiteUpdateOptionsTrovoRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('categoryId' in value) || value['categoryId'] === undefined)
+    if (!('category_id' in value) || value['category_id'] === undefined)
         return false;
-    if (!('categoryName' in value) || value['categoryName'] === undefined)
+    if (!('category_name' in value) || value['category_name'] === undefined)
         return false;
     if (!('audience' in value) || value['audience'] === undefined)
         return false;
@@ -82,11 +82,11 @@ function SiteUpdateOptionsTrovoRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'title': json['title'],
-        'categoryId': json['category_id'],
-        'categoryName': json['category_name'],
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
         'audience': json['audience'],
         'lang': json['lang'],
     };
@@ -103,11 +103,11 @@ function SiteUpdateOptionsTrovoRequestToJSONTyped(value, ignoreDiscriminator = f
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'title': value['title'],
-        'category_id': value['categoryId'],
-        'category_name': value['categoryName'],
+        'category_id': value['category_id'],
+        'category_name': value['category_name'],
         'audience': value['audience'],
         'lang': value['lang'],
     };

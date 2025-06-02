@@ -50,11 +50,11 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySettingCheckCountryV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling paySettingCheckCountryV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling paySettingCheckCountryV1().');
         }
-        if (requestParameters['countryId'] == null) {
-            throw new runtime.RequiredError('countryId', 'Required parameter "countryId" was null or undefined when calling paySettingCheckCountryV1().');
+        if (requestParameters['country_id'] == null) {
+            throw new runtime.RequiredError('country_id', 'Required parameter "country_id" was null or undefined when calling paySettingCheckCountryV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -66,11 +66,11 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['countryId'] != null) {
-            queryParameters['country_id'] = requestParameters['countryId'];
+        if (requestParameters['country_id'] != null) {
+            queryParameters['country_id'] = requestParameters['country_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -95,8 +95,8 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySettingGetSettingV3().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling paySettingGetSettingV3().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling paySettingGetSettingV3().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -108,8 +108,8 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -131,8 +131,8 @@ class PaySettingApi extends runtime.BaseAPI {
      * Set pay settings for profile
      */
     async paySettingSetSettingV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['paySettingBodyDto'] == null) {
-            throw new runtime.RequiredError('paySettingBodyDto', 'Required parameter "paySettingBodyDto" was null or undefined when calling paySettingSetSettingV1().');
+        if (requestParameters['PaySettingBodyDto'] == null) {
+            throw new runtime.RequiredError('PaySettingBodyDto', 'Required parameter "PaySettingBodyDto" was null or undefined when calling paySettingSetSettingV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -142,7 +142,7 @@ class PaySettingApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PaySettingBodyDtoToJSON)(requestParameters['paySettingBodyDto']),
+            body: (0, index_1.PaySettingBodyDtoToJSON)(requestParameters['PaySettingBodyDto']),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -158,9 +158,9 @@ exports.PaySettingApi = PaySettingApi;
  * @export
  */
 exports.PaySettingCheckCountryV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -174,9 +174,9 @@ exports.PaySettingCheckCountryV1VEnum = {
  * @export
  */
 exports.PaySettingGetSettingV3LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

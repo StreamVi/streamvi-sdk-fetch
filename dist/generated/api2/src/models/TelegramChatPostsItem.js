@@ -18,7 +18,7 @@ exports.TelegramChatPostsItemToJSONTyped = exports.TelegramChatPostsItemToJSON =
  * Check if a given object implements the TelegramChatPostsItem interface.
  */
 function instanceOfTelegramChatPostsItem(value) {
-    if (!('messageId' in value) || value['messageId'] === undefined)
+    if (!('message_id' in value) || value['message_id'] === undefined)
         return false;
     if (!('text' in value) || value['text'] === undefined)
         return false;
@@ -36,7 +36,7 @@ function TelegramChatPostsItemFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'messageId': json['message_id'],
+        'message_id': json['message_id'],
         'text': json['text'],
         'attachments': json['attachments'],
     };
@@ -51,7 +51,7 @@ function TelegramChatPostsItemToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'message_id': value['messageId'],
+        'message_id': value['message_id'],
         'text': value['text'],
         'attachments': value['attachments'],
     };

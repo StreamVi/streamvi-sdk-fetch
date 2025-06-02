@@ -26,17 +26,17 @@ exports.CreatePullKeyRequestVEnum = {
  * @export
  */
 exports.CreatePullKeyRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.CreatePullKeyRequestTransportEnum = {
-    Rtmp: 'rtmp',
-    Srt: 'srt',
-    Hls: 'hls'
+    rtmp: 'rtmp',
+    srt: 'srt',
+    hls: 'hls'
 };
 /**
  * Check if a given object implements the CreatePullKeyRequest interface.
@@ -46,7 +46,7 @@ function instanceOfCreatePullKeyRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('transport' in value) || value['transport'] === undefined)
         return false;
@@ -64,7 +64,7 @@ function CreatePullKeyRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'transport': json['transport'],
         'name': json['name'] == null ? undefined : json['name'],
     };
@@ -81,7 +81,7 @@ function CreatePullKeyRequestToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'transport': value['transport'],
         'name': value['name'],
     };

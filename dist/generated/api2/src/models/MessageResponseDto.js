@@ -19,7 +19,7 @@ const MessageRestreamResponseDto_1 = require("./MessageRestreamResponseDto");
  * Check if a given object implements the MessageResponseDto interface.
  */
 function instanceOfMessageResponseDto(value) {
-    if (!('eventId' in value) || value['eventId'] === undefined)
+    if (!('event_id' in value) || value['event_id'] === undefined)
         return false;
     if (!('restreams' in value) || value['restreams'] === undefined)
         return false;
@@ -29,11 +29,11 @@ function instanceOfMessageResponseDto(value) {
         return false;
     if (!('sender' in value) || value['sender'] === undefined)
         return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
+    if (!('created_at' in value) || value['created_at'] === undefined)
         return false;
-    if (!('broadcastId' in value) || value['broadcastId'] === undefined)
+    if (!('broadcast_id' in value) || value['broadcast_id'] === undefined)
         return false;
-    if (!('isOutgoing' in value) || value['isOutgoing'] === undefined)
+    if (!('is_outgoing' in value) || value['is_outgoing'] === undefined)
         return false;
     return true;
 }
@@ -47,14 +47,14 @@ function MessageResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'eventId': json['event_id'],
+        'event_id': json['event_id'],
         'restreams': (json['restreams'].map(MessageRestreamResponseDto_1.MessageRestreamResponseDtoFromJSON)),
         'entities': json['entities'],
         'text': json['text'],
         'sender': json['sender'],
-        'createdAt': (new Date(json['created_at'])),
-        'broadcastId': json['broadcast_id'],
-        'isOutgoing': json['is_outgoing'],
+        'created_at': (new Date(json['created_at'])),
+        'broadcast_id': json['broadcast_id'],
+        'is_outgoing': json['is_outgoing'],
     };
 }
 exports.MessageResponseDtoFromJSONTyped = MessageResponseDtoFromJSONTyped;
@@ -67,14 +67,14 @@ function MessageResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'event_id': value['eventId'],
+        'event_id': value['event_id'],
         'restreams': (value['restreams'].map(MessageRestreamResponseDto_1.MessageRestreamResponseDtoToJSON)),
         'entities': value['entities'],
         'text': value['text'],
         'sender': value['sender'],
-        'created_at': ((value['createdAt']).toISOString()),
-        'broadcast_id': value['broadcastId'],
-        'is_outgoing': value['isOutgoing'],
+        'created_at': ((value['created_at']).toISOString()),
+        'broadcast_id': value['broadcast_id'],
+        'is_outgoing': value['is_outgoing'],
     };
 }
 exports.MessageResponseDtoToJSONTyped = MessageResponseDtoToJSONTyped;

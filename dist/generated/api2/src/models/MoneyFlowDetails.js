@@ -20,7 +20,7 @@ exports.MoneyFlowDetailsToJSONTyped = exports.MoneyFlowDetailsToJSON = exports.M
 function instanceOfMoneyFlowDetails(value) {
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('dateEnd' in value) || value['dateEnd'] === undefined)
+    if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
     return true;
 }
@@ -35,7 +35,7 @@ function MoneyFlowDetailsFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'title': json['title'],
-        'dateEnd': (new Date(json['date_end'])),
+        'date_end': (new Date(json['date_end'])),
     };
 }
 exports.MoneyFlowDetailsFromJSONTyped = MoneyFlowDetailsFromJSONTyped;
@@ -49,7 +49,7 @@ function MoneyFlowDetailsToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'title': value['title'],
-        'date_end': ((value['dateEnd']).toISOString()),
+        'date_end': ((value['date_end']).toISOString()),
     };
 }
 exports.MoneyFlowDetailsToJSONTyped = MoneyFlowDetailsToJSONTyped;

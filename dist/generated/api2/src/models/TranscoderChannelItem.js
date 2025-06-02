@@ -18,7 +18,7 @@ exports.TranscoderChannelItemToJSONTyped = exports.TranscoderChannelItemToJSON =
  * Check if a given object implements the TranscoderChannelItem interface.
  */
 function instanceOfTranscoderChannelItem(value) {
-    if (!('groupId' in value) || value['groupId'] === undefined)
+    if (!('group_id' in value) || value['group_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
@@ -26,13 +26,13 @@ function instanceOfTranscoderChannelItem(value) {
         return false;
     if (!('active' in value) || value['active'] === undefined)
         return false;
-    if (!('photoDefault' in value) || value['photoDefault'] === undefined)
+    if (!('photo_default' in value) || value['photo_default'] === undefined)
         return false;
     if (!('live' in value) || value['live'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
     if (!('transcoderId' in value) || value['transcoderId'] === undefined)
         return false;
@@ -48,14 +48,14 @@ function TranscoderChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'groupId': json['group_id'],
+        'group_id': json['group_id'],
         'name': json['name'],
         'type': json['type'],
         'active': json['active'],
-        'photoDefault': json['photo_default'],
+        'photo_default': json['photo_default'],
         'live': json['live'],
         'status': json['status'],
-        'userId': json['user_id'],
+        'user_id': json['user_id'],
         'transcoderId': json['transcoderId'],
     };
 }
@@ -69,14 +69,14 @@ function TranscoderChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'group_id': value['groupId'],
+        'group_id': value['group_id'],
         'name': value['name'],
         'type': value['type'],
         'active': value['active'],
-        'photo_default': value['photoDefault'],
+        'photo_default': value['photo_default'],
         'live': value['live'],
         'status': value['status'],
-        'user_id': value['userId'],
+        'user_id': value['user_id'],
         'transcoderId': value['transcoderId'],
     };
 }

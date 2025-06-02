@@ -26,9 +26,9 @@ exports.SiteUpdateOptionsVkVideoLiveRequestVEnum = {
  * @export
  */
 exports.SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsVkVideoLiveRequest interface.
@@ -38,15 +38,15 @@ function instanceOfSiteUpdateOptionsVkVideoLiveRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('categoryId' in value) || value['categoryId'] === undefined)
+    if (!('category_id' in value) || value['category_id'] === undefined)
         return false;
-    if (!('categoryName' in value) || value['categoryName'] === undefined)
+    if (!('category_name' in value) || value['category_name'] === undefined)
         return false;
     return true;
 }
@@ -62,11 +62,11 @@ function SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped(json, ignoreDiscrimina
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'title': json['title'],
-        'categoryId': json['category_id'],
-        'categoryName': json['category_name'],
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
     };
 }
 exports.SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped = SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped;
@@ -81,11 +81,11 @@ function SiteUpdateOptionsVkVideoLiveRequestToJSONTyped(value, ignoreDiscriminat
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'title': value['title'],
-        'category_id': value['categoryId'],
-        'category_name': value['categoryName'],
+        'category_id': value['category_id'],
+        'category_name': value['category_name'],
     };
 }
 exports.SiteUpdateOptionsVkVideoLiveRequestToJSONTyped = SiteUpdateOptionsVkVideoLiveRequestToJSONTyped;

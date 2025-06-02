@@ -33,21 +33,21 @@ exports.UserProject2ProjectResponseAccessTypeEnum = {
  * Check if a given object implements the UserProject2ProjectResponse interface.
  */
 function instanceOfUserProject2ProjectResponse(value) {
-    if (!('userId' in value) || value['userId'] === undefined)
+    if (!('user_id' in value) || value['user_id'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('fename' in value) || value['fename'] === undefined)
         return false;
-    if (!('photo50' in value) || value['photo50'] === undefined)
+    if (!('photo_50' in value) || value['photo_50'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
-    if (!('externalId' in value) || value['externalId'] === undefined)
+    if (!('external_id' in value) || value['external_id'] === undefined)
         return false;
-    if (!('accessType' in value) || value['accessType'] === undefined)
+    if (!('access_type' in value) || value['access_type'] === undefined)
         return false;
     return true;
 }
@@ -61,14 +61,14 @@ function UserProject2ProjectResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'userId': json['user_id'],
-        'projectId': json['project_id'],
+        'user_id': json['user_id'],
+        'project_id': json['project_id'],
         'name': json['name'],
         'fename': json['fename'],
-        'photo50': json['photo_50'],
+        'photo_50': json['photo_50'],
         'type': json['type'],
-        'externalId': json['external_id'],
-        'accessType': json['access_type'],
+        'external_id': json['external_id'],
+        'access_type': json['access_type'],
     };
 }
 exports.UserProject2ProjectResponseFromJSONTyped = UserProject2ProjectResponseFromJSONTyped;
@@ -81,14 +81,14 @@ function UserProject2ProjectResponseToJSONTyped(value, ignoreDiscriminator = fal
         return value;
     }
     return {
-        'user_id': value['userId'],
-        'project_id': value['projectId'],
+        'user_id': value['user_id'],
+        'project_id': value['project_id'],
         'name': value['name'],
         'fename': value['fename'],
-        'photo_50': value['photo50'],
+        'photo_50': value['photo_50'],
         'type': value['type'],
-        'external_id': value['externalId'],
-        'access_type': value['accessType'],
+        'external_id': value['external_id'],
+        'access_type': value['access_type'],
     };
 }
 exports.UserProject2ProjectResponseToJSONTyped = UserProject2ProjectResponseToJSONTyped;

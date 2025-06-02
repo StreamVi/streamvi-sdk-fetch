@@ -30,43 +30,43 @@ exports.HelpPageResponseStatusEnum = {
  * @export
  */
 exports.HelpPageResponseLanguageEnum = {
-    Russian: 'russian',
-    English: 'english',
-    None: 'none'
+    russian: 'russian',
+    english: 'english',
+    none: 'none'
 };
 /**
  * @export
  */
 exports.HelpPageResponseLanguageIsoEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.HelpPageResponseAltLanguagesEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the HelpPageResponse interface.
  */
 function instanceOfHelpPageResponse(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('_id' in value) || value['_id'] === undefined)
         return false;
     if (!('url' in value) || value['url'] === undefined)
         return false;
-    if (!('urlInherit' in value) || value['urlInherit'] === undefined)
+    if (!('url_inherit' in value) || value['url_inherit'] === undefined)
         return false;
-    if (!('notionParentId' in value) || value['notionParentId'] === undefined)
+    if (!('notion_parent_id' in value) || value['notion_parent_id'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
-    if (!('dateUpdate' in value) || value['dateUpdate'] === undefined)
+    if (!('date_update' in value) || value['date_update'] === undefined)
         return false;
-    if (!('dateCreate' in value) || value['dateCreate'] === undefined)
+    if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
     if (!('icon' in value) || value['icon'] === undefined)
         return false;
@@ -74,11 +74,11 @@ function instanceOfHelpPageResponse(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('languageIso' in value) || value['languageIso'] === undefined)
+    if (!('language_iso' in value) || value['language_iso'] === undefined)
         return false;
     if (!('text' in value) || value['text'] === undefined)
         return false;
-    if (!('altLanguages' in value) || value['altLanguages'] === undefined)
+    if (!('alt_languages' in value) || value['alt_languages'] === undefined)
         return false;
     return true;
 }
@@ -92,19 +92,19 @@ function HelpPageResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
         'url': json['url'],
-        'urlInherit': json['url_inherit'],
-        'notionParentId': json['notion_parent_id'],
+        'url_inherit': json['url_inherit'],
+        'notion_parent_id': json['notion_parent_id'],
         'status': json['status'],
-        'dateUpdate': (new Date(json['date_update'])),
-        'dateCreate': (new Date(json['date_create'])),
+        'date_update': (new Date(json['date_update'])),
+        'date_create': (new Date(json['date_create'])),
         'icon': json['icon'],
         'title': json['title'],
         'language': json['language'],
-        'languageIso': json['language_iso'],
+        'language_iso': json['language_iso'],
         'text': json['text'],
-        'altLanguages': json['alt_languages'],
+        'alt_languages': json['alt_languages'],
     };
 }
 exports.HelpPageResponseFromJSONTyped = HelpPageResponseFromJSONTyped;
@@ -117,19 +117,19 @@ function HelpPageResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['id']),
+        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
         'url': value['url'],
-        'url_inherit': value['urlInherit'],
-        'notion_parent_id': value['notionParentId'],
+        'url_inherit': value['url_inherit'],
+        'notion_parent_id': value['notion_parent_id'],
         'status': value['status'],
-        'date_update': ((value['dateUpdate']).toISOString()),
-        'date_create': ((value['dateCreate']).toISOString()),
+        'date_update': ((value['date_update']).toISOString()),
+        'date_create': ((value['date_create']).toISOString()),
         'icon': value['icon'],
         'title': value['title'],
         'language': value['language'],
-        'language_iso': value['languageIso'],
+        'language_iso': value['language_iso'],
         'text': value['text'],
-        'alt_languages': value['altLanguages'],
+        'alt_languages': value['alt_languages'],
     };
 }
 exports.HelpPageResponseToJSONTyped = HelpPageResponseToJSONTyped;

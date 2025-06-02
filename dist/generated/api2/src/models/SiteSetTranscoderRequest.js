@@ -26,9 +26,9 @@ exports.SiteSetTranscoderRequestVEnum = {
  * @export
  */
 exports.SiteSetTranscoderRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteSetTranscoderRequest interface.
@@ -38,9 +38,9 @@ function instanceOfSiteSetTranscoderRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     return true;
 }
@@ -56,9 +56,9 @@ function SiteSetTranscoderRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
-        'transcoderId': json['transcoder_id'] == null ? undefined : json['transcoder_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
+        'transcoder_id': json['transcoder_id'] == null ? undefined : json['transcoder_id'],
     };
 }
 exports.SiteSetTranscoderRequestFromJSONTyped = SiteSetTranscoderRequestFromJSONTyped;
@@ -73,9 +73,9 @@ function SiteSetTranscoderRequestToJSONTyped(value, ignoreDiscriminator = false)
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
-        'transcoder_id': value['transcoderId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
+        'transcoder_id': value['transcoder_id'],
     };
 }
 exports.SiteSetTranscoderRequestToJSONTyped = SiteSetTranscoderRequestToJSONTyped;

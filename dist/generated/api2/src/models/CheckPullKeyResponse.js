@@ -18,17 +18,17 @@ exports.CheckPullKeyResponseToJSONTyped = exports.CheckPullKeyResponseToJSON = e
  * @export
  */
 exports.CheckPullKeyResponseTransportEnum = {
-    Rtmp: 'rtmp',
-    Srt: 'srt',
-    Hls: 'hls'
+    rtmp: 'rtmp',
+    srt: 'srt',
+    hls: 'hls'
 };
 /**
  * @export
  */
 exports.CheckPullKeyResponseStatusEnum = {
-    Active: 'active',
-    Inactive: 'inactive',
-    Error: 'error'
+    active: 'active',
+    inactive: 'inactive',
+    error: 'error'
 };
 /**
  * Check if a given object implements the CheckPullKeyResponse interface.

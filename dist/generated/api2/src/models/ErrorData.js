@@ -41,7 +41,7 @@ function ErrorDataFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'name': json['name'],
         'msg': json['msg'],
-        'validatorError': json['validator_error'] == null ? undefined : (json['validator_error'].map(ValidationErrorDto_1.ValidationErrorDtoFromJSON)),
+        'validator_error': json['validator_error'] == null ? undefined : (json['validator_error'].map(ValidationErrorDto_1.ValidationErrorDtoFromJSON)),
         'options': json['options'],
         'data': json['data'],
     };
@@ -58,7 +58,7 @@ function ErrorDataToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'name': value['name'],
         'msg': value['msg'],
-        'validator_error': value['validatorError'] == null ? undefined : (value['validatorError'].map(ValidationErrorDto_1.ValidationErrorDtoToJSON)),
+        'validator_error': value['validator_error'] == null ? undefined : (value['validator_error'].map(ValidationErrorDto_1.ValidationErrorDtoToJSON)),
         'options': value['options'],
         'data': value['data'],
     };

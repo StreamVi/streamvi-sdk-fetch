@@ -50,8 +50,8 @@ export interface PayCheckCountryResponse {
  * @export
  */
 export declare const PayCheckCountryResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PayCheckCountryResponseCurrencyEnum = typeof PayCheckCountryResponseCurrencyEnum[keyof typeof PayCheckCountryResponseCurrencyEnum];
 /**

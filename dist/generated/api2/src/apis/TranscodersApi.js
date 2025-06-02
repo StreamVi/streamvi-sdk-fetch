@@ -47,8 +47,8 @@ class TranscodersApi extends runtime.BaseAPI {
      * Transcoder create
      */
     async transcodersAddV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['transcoderCreateDto'] == null) {
-            throw new runtime.RequiredError('transcoderCreateDto', 'Required parameter "transcoderCreateDto" was null or undefined when calling transcodersAddV1().');
+        if (requestParameters['TranscoderCreateDto'] == null) {
+            throw new runtime.RequiredError('TranscoderCreateDto', 'Required parameter "TranscoderCreateDto" was null or undefined when calling transcodersAddV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -58,7 +58,7 @@ class TranscodersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TranscoderCreateDtoToJSON)(requestParameters['transcoderCreateDto']),
+            body: (0, index_1.TranscoderCreateDtoToJSON)(requestParameters['TranscoderCreateDto']),
         }, initOverrides);
         if (this.isJsonMime(response.headers.get('content-type'))) {
             return new runtime.JSONApiResponse(response);
@@ -78,8 +78,8 @@ class TranscodersApi extends runtime.BaseAPI {
      * Transcoder delete
      */
     async transcodersDeleteV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['transcoderItemDto'] == null) {
-            throw new runtime.RequiredError('transcoderItemDto', 'Required parameter "transcoderItemDto" was null or undefined when calling transcodersDeleteV1().');
+        if (requestParameters['TranscoderItemDto'] == null) {
+            throw new runtime.RequiredError('TranscoderItemDto', 'Required parameter "TranscoderItemDto" was null or undefined when calling transcodersDeleteV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -89,7 +89,7 @@ class TranscodersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TranscoderItemDtoToJSON)(requestParameters['transcoderItemDto']),
+            body: (0, index_1.TranscoderItemDtoToJSON)(requestParameters['TranscoderItemDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -107,8 +107,8 @@ class TranscodersApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling transcodersListV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling transcodersListV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling transcodersListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -120,8 +120,8 @@ class TranscodersApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -143,8 +143,8 @@ class TranscodersApi extends runtime.BaseAPI {
      * Transcoder stop
      */
     async transcodersStopV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['transcoderItemDto'] == null) {
-            throw new runtime.RequiredError('transcoderItemDto', 'Required parameter "transcoderItemDto" was null or undefined when calling transcodersStopV1().');
+        if (requestParameters['TranscoderItemDto'] == null) {
+            throw new runtime.RequiredError('TranscoderItemDto', 'Required parameter "TranscoderItemDto" was null or undefined when calling transcodersStopV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -154,7 +154,7 @@ class TranscodersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TranscoderItemDtoToJSON)(requestParameters['transcoderItemDto']),
+            body: (0, index_1.TranscoderItemDtoToJSON)(requestParameters['TranscoderItemDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -169,8 +169,8 @@ class TranscodersApi extends runtime.BaseAPI {
      * Transcoder update
      */
     async transcodersUpdateV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['transcoderUpdateDto'] == null) {
-            throw new runtime.RequiredError('transcoderUpdateDto', 'Required parameter "transcoderUpdateDto" was null or undefined when calling transcodersUpdateV1().');
+        if (requestParameters['TranscoderUpdateDto'] == null) {
+            throw new runtime.RequiredError('TranscoderUpdateDto', 'Required parameter "TranscoderUpdateDto" was null or undefined when calling transcodersUpdateV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -180,7 +180,7 @@ class TranscodersApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TranscoderUpdateDtoToJSON)(requestParameters['transcoderUpdateDto']),
+            body: (0, index_1.TranscoderUpdateDtoToJSON)(requestParameters['TranscoderUpdateDto']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -197,9 +197,9 @@ exports.TranscodersApi = TranscodersApi;
  * @export
  */
 exports.TranscodersListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

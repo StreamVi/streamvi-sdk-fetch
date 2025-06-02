@@ -13,13 +13,13 @@ import * as runtime from '../runtime';
 import type { SitePromoApplyResponse, SitePromoCheckResponse } from '../models/index';
 export interface PromoApplyV1Request {
     language: PromoApplyV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     code: number;
     v?: PromoApplyV1VEnum;
 }
 export interface PromoCheckV1Request {
     language: PromoCheckV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     code: number;
     v?: PromoCheckV1VEnum;
 }
@@ -34,7 +34,7 @@ export interface PromoApiInterface {
      *
      * @summary Apply code
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {number} code Code
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -50,7 +50,7 @@ export interface PromoApiInterface {
      *
      * @summary Check code
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {number} code Code
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -88,9 +88,9 @@ export declare class PromoApi extends runtime.BaseAPI implements PromoApiInterfa
  * @export
  */
 export declare const PromoApplyV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PromoApplyV1LanguageEnum = typeof PromoApplyV1LanguageEnum[keyof typeof PromoApplyV1LanguageEnum];
 /**
@@ -106,9 +106,9 @@ export type PromoApplyV1VEnum = typeof PromoApplyV1VEnum[keyof typeof PromoApply
  * @export
  */
 export declare const PromoCheckV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type PromoCheckV1LanguageEnum = typeof PromoCheckV1LanguageEnum[keyof typeof PromoCheckV1LanguageEnum];
 /**

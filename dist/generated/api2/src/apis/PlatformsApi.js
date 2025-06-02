@@ -50,8 +50,8 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformsAddAccountV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling platformsAddAccountV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling platformsAddAccountV1().');
         }
         if (requestParameters['platform'] == null) {
             throw new runtime.RequiredError('platform', 'Required parameter "platform" was null or undefined when calling platformsAddAccountV1().');
@@ -66,8 +66,8 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['platform'] != null) {
             queryParameters['platform'] = requestParameters['platform'];
@@ -213,20 +213,20 @@ exports.PlatformsApi = PlatformsApi;
  * @export
  */
 exports.PlatformsAddAccountV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlatformsAddAccountV1PlatformEnum = {
-    Vk: 'vk',
-    VkId: 'vk-id',
-    Ok: 'ok',
-    Youtube: 'youtube',
-    Trovo: 'trovo',
-    Twitch: 'twitch'
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch'
 };
 /**
  * @export
@@ -240,19 +240,19 @@ exports.PlatformsAddAccountV1VEnum = {
  * @export
  */
 exports.PlatformsGetCategoryV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlatformsGetCategoryV1TypeEnum = {
-    Vk: 'vk',
-    Youtube: 'youtube',
-    Trovo: 'trovo',
-    Twitch: 'twitch',
-    Vkvideolive: 'vkvideolive'
+    vk: 'vk',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
 };
 /**
  * @export
@@ -266,20 +266,20 @@ exports.PlatformsGetCategoryV1VEnum = {
  * @export
  */
 exports.PlatformsLogoutAccountV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlatformsLogoutAccountV1PlatformEnum = {
-    Vk: 'vk',
-    VkId: 'vk-id',
-    Ok: 'ok',
-    Youtube: 'youtube',
-    Trovo: 'trovo',
-    Twitch: 'twitch'
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch'
 };
 /**
  * @export
@@ -293,9 +293,9 @@ exports.PlatformsLogoutAccountV1VEnum = {
  * @export
  */
 exports.PlatformsPlatformListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

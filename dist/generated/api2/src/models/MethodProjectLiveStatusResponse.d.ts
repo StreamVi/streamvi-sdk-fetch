@@ -22,13 +22,13 @@ export interface MethodProjectLiveStatusResponse {
      * @type {number}
      * @memberof MethodProjectLiveStatusResponse
      */
-    liveGroupsCount: number;
+    live_groups_count: number;
     /**
      * Stream id
      * @type {number}
      * @memberof MethodProjectLiveStatusResponse
      */
-    streamId?: number;
+    stream_id?: number;
     /**
      * Url live stream
      * @type {string}
@@ -64,7 +64,7 @@ export interface MethodProjectLiveStatusResponse {
      * @type {number}
      * @memberof MethodProjectLiveStatusResponse
      */
-    broadcastId?: number;
+    broadcast_id?: number;
     /**
      * Action
      * @type {string}

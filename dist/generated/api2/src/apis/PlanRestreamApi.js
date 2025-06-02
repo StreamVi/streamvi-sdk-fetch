@@ -50,14 +50,14 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamBuyV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planRestreamBuyV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamBuyV1().');
         }
         if (requestParameters['period'] == null) {
             throw new runtime.RequiredError('period', 'Required parameter "period" was null or undefined when calling planRestreamBuyV1().');
         }
-        if (requestParameters['planRestreamId'] == null) {
-            throw new runtime.RequiredError('planRestreamId', 'Required parameter "planRestreamId" was null or undefined when calling planRestreamBuyV1().');
+        if (requestParameters['plan_restream_id'] == null) {
+            throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamBuyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -69,17 +69,17 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['period'] != null) {
             queryParameters['period'] = requestParameters['period'];
         }
-        if (requestParameters['planRestreamId'] != null) {
-            queryParameters['plan_restream_id'] = requestParameters['planRestreamId'];
+        if (requestParameters['plan_restream_id'] != null) {
+            queryParameters['plan_restream_id'] = requestParameters['plan_restream_id'];
         }
-        if (requestParameters['countChannel'] != null) {
-            queryParameters['count_channel'] = requestParameters['countChannel'];
+        if (requestParameters['count_channel'] != null) {
+            queryParameters['count_channel'] = requestParameters['count_channel'];
         }
         if (requestParameters['bitrate'] != null) {
             queryParameters['bitrate'] = requestParameters['bitrate'];
@@ -107,14 +107,14 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamCheck2V1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planRestreamCheck2V1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamCheck2V1().');
         }
         if (requestParameters['period'] == null) {
             throw new runtime.RequiredError('period', 'Required parameter "period" was null or undefined when calling planRestreamCheck2V1().');
         }
-        if (requestParameters['planRestreamId'] == null) {
-            throw new runtime.RequiredError('planRestreamId', 'Required parameter "planRestreamId" was null or undefined when calling planRestreamCheck2V1().');
+        if (requestParameters['plan_restream_id'] == null) {
+            throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamCheck2V1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -126,17 +126,17 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['period'] != null) {
             queryParameters['period'] = requestParameters['period'];
         }
-        if (requestParameters['planRestreamId'] != null) {
-            queryParameters['plan_restream_id'] = requestParameters['planRestreamId'];
+        if (requestParameters['plan_restream_id'] != null) {
+            queryParameters['plan_restream_id'] = requestParameters['plan_restream_id'];
         }
-        if (requestParameters['useBalance'] != null) {
-            queryParameters['use_balance'] = requestParameters['useBalance'];
+        if (requestParameters['use_balance'] != null) {
+            queryParameters['use_balance'] = requestParameters['use_balance'];
         }
         if (requestParameters['channels'] != null) {
             queryParameters['channels'] = requestParameters['channels'];
@@ -200,8 +200,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamListProjectV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planRestreamListProjectV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamListProjectV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -213,8 +213,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -272,11 +272,11 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamRemoveV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planRestreamRemoveV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamRemoveV1().');
         }
-        if (requestParameters['planRestreamId'] == null) {
-            throw new runtime.RequiredError('planRestreamId', 'Required parameter "planRestreamId" was null or undefined when calling planRestreamRemoveV1().');
+        if (requestParameters['plan_restream_id'] == null) {
+            throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamRemoveV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -288,11 +288,11 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['planRestreamId'] != null) {
-            queryParameters['plan_restream_id'] = requestParameters['planRestreamId'];
+        if (requestParameters['plan_restream_id'] != null) {
+            queryParameters['plan_restream_id'] = requestParameters['plan_restream_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -317,8 +317,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamTariffV1().');
         }
-        if (requestParameters['projectId'] == null) {
-            throw new runtime.RequiredError('projectId', 'Required parameter "projectId" was null or undefined when calling planRestreamTariffV1().');
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamTariffV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -330,8 +330,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -355,16 +355,16 @@ exports.PlanRestreamApi = PlanRestreamApi;
  * @export
  */
 exports.PlanRestreamBuyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlanRestreamBuyV1PeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * @export
@@ -378,16 +378,16 @@ exports.PlanRestreamBuyV1VEnum = {
  * @export
  */
 exports.PlanRestreamCheck2V1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PlanRestreamCheck2V1PeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * @export
@@ -401,9 +401,9 @@ exports.PlanRestreamCheck2V1VEnum = {
  * @export
  */
 exports.PlanRestreamGetDiscountV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -417,9 +417,9 @@ exports.PlanRestreamGetDiscountV1VEnum = {
  * @export
  */
 exports.PlanRestreamListProjectV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -433,9 +433,9 @@ exports.PlanRestreamListProjectV1VEnum = {
  * @export
  */
 exports.PlanRestreamListV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -449,9 +449,9 @@ exports.PlanRestreamListV1VEnum = {
  * @export
  */
 exports.PlanRestreamRemoveV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -465,9 +465,9 @@ exports.PlanRestreamRemoveV1VEnum = {
  * @export
  */
 exports.PlanRestreamTariffV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

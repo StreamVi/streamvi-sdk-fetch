@@ -45,17 +45,17 @@ export interface ChannelTrovoInfoDto {
  * @export
  */
 export declare const ChannelTrovoInfoDtoLangEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
+    readonly ru: "ru";
+    readonly en: "en";
 };
 export type ChannelTrovoInfoDtoLangEnum = typeof ChannelTrovoInfoDtoLangEnum[keyof typeof ChannelTrovoInfoDtoLangEnum];
 /**
  * @export
  */
 export declare const ChannelTrovoInfoDtoAudienceEnum: {
-    readonly ChannelAudienceTypeFamilyfriendly: "CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY";
-    readonly ChannelAudienceTypeTeen: "CHANNEL_AUDIENCE_TYPE_TEEN";
-    readonly ChannelAudienceTypeEighteenplus: "CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS";
+    readonly CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: "CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY";
+    readonly CHANNEL_AUDIENCE_TYPE_TEEN: "CHANNEL_AUDIENCE_TYPE_TEEN";
+    readonly CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: "CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS";
 };
 export type ChannelTrovoInfoDtoAudienceEnum = typeof ChannelTrovoInfoDtoAudienceEnum[keyof typeof ChannelTrovoInfoDtoAudienceEnum];
 /**

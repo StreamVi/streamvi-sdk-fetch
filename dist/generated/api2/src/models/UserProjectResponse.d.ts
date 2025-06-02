@@ -27,19 +27,19 @@ export interface UserProjectResponse {
      * @type {number}
      * @memberof UserProjectResponse
      */
-    userId: number;
+    user_id: number;
     /**
      * Project id
      * @type {number}
      * @memberof UserProjectResponse
      */
-    projectId: number;
+    project_id: number;
     /**
      * Access type
      * @type {number}
      * @memberof UserProjectResponse
      */
-    accessType: UserProjectResponseAccessTypeEnum;
+    access_type: UserProjectResponseAccessTypeEnum;
     /**
      * Project data
      * @type {UserProject2ProjectResponse}
@@ -51,7 +51,7 @@ export interface UserProjectResponse {
      * @type {number}
      * @memberof UserProjectResponse
      */
-    memberCount: number;
+    member_count: number;
 }
 /**
  * @export

@@ -20,11 +20,11 @@ exports.MessageRestreamResponseDtoToJSONTyped = exports.MessageRestreamResponseD
 function instanceOfMessageRestreamResponseDto(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('restreamId' in value) || value['restreamId'] === undefined)
+    if (!('restream_id' in value) || value['restream_id'] === undefined)
         return false;
     if (!('platform' in value) || value['platform'] === undefined)
         return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
+    if (!('created_at' in value) || value['created_at'] === undefined)
         return false;
     return true;
 }
@@ -39,10 +39,10 @@ function MessageRestreamResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'eventId': json['event_id'] == null ? undefined : json['event_id'],
-        'restreamId': json['restream_id'],
+        'event_id': json['event_id'] == null ? undefined : json['event_id'],
+        'restream_id': json['restream_id'],
         'platform': json['platform'],
-        'createdAt': (new Date(json['created_at'])),
+        'created_at': (new Date(json['created_at'])),
         'error': json['error'] == null ? undefined : json['error'],
     };
 }
@@ -57,10 +57,10 @@ function MessageRestreamResponseDtoToJSONTyped(value, ignoreDiscriminator = fals
     }
     return {
         'id': value['id'],
-        'event_id': value['eventId'],
-        'restream_id': value['restreamId'],
+        'event_id': value['event_id'],
+        'restream_id': value['restream_id'],
         'platform': value['platform'],
-        'created_at': ((value['createdAt']).toISOString()),
+        'created_at': ((value['created_at']).toISOString()),
         'error': value['error'],
     };
 }

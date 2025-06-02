@@ -18,28 +18,28 @@ exports.PlanRestream2UserItemResponseToJSONTyped = exports.PlanRestream2UserItem
  * @export
  */
 exports.PlanRestream2UserItemResponsePeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PlanRestream2UserItemResponse interface.
  */
 function instanceOfPlanRestream2UserItemResponse(value) {
-    if (!('planRestream2userId' in value) || value['planRestream2userId'] === undefined)
+    if (!('plan_restream2user_id' in value) || value['plan_restream2user_id'] === undefined)
         return false;
-    if (!('planRestreamId' in value) || value['planRestreamId'] === undefined)
+    if (!('plan_restream_id' in value) || value['plan_restream_id'] === undefined)
         return false;
-    if (!('dateEnd' in value) || value['dateEnd'] === undefined)
+    if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
-    if (!('dateStart' in value) || value['dateStart'] === undefined)
+    if (!('date_start' in value) || value['date_start'] === undefined)
         return false;
-    if (!('dateCreate' in value) || value['dateCreate'] === undefined)
+    if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
     if (!('period' in value) || value['period'] === undefined)
         return false;
-    if (!('moneyFlowUuid' in value) || value['moneyFlowUuid'] === undefined)
+    if (!('money_flow_uuid' in value) || value['money_flow_uuid'] === undefined)
         return false;
-    if (!('periodUuid' in value) || value['periodUuid'] === undefined)
+    if (!('period_uuid' in value) || value['period_uuid'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -57,14 +57,14 @@ function PlanRestream2UserItemResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planRestream2userId': json['plan_restream2user_id'],
-        'planRestreamId': json['plan_restream_id'],
-        'dateEnd': (json['date_end'] == null ? null : new Date(json['date_end'])),
-        'dateStart': (json['date_start'] == null ? null : new Date(json['date_start'])),
-        'dateCreate': (json['date_create'] == null ? null : new Date(json['date_create'])),
+        'plan_restream2user_id': json['plan_restream2user_id'],
+        'plan_restream_id': json['plan_restream_id'],
+        'date_end': (json['date_end'] == null ? null : new Date(json['date_end'])),
+        'date_start': (json['date_start'] == null ? null : new Date(json['date_start'])),
+        'date_create': (json['date_create'] == null ? null : new Date(json['date_create'])),
         'period': json['period'],
-        'moneyFlowUuid': json['money_flow_uuid'],
-        'periodUuid': json['period_uuid'],
+        'money_flow_uuid': json['money_flow_uuid'],
+        'period_uuid': json['period_uuid'],
         'status': json['status'],
         'prolongation': json['prolongation'],
     };
@@ -79,14 +79,14 @@ function PlanRestream2UserItemResponseToJSONTyped(value, ignoreDiscriminator = f
         return value;
     }
     return {
-        'plan_restream2user_id': value['planRestream2userId'],
-        'plan_restream_id': value['planRestreamId'],
-        'date_end': (value['dateEnd'] == null ? null : value['dateEnd'].toISOString()),
-        'date_start': (value['dateStart'] == null ? null : value['dateStart'].toISOString()),
-        'date_create': (value['dateCreate'] == null ? null : value['dateCreate'].toISOString()),
+        'plan_restream2user_id': value['plan_restream2user_id'],
+        'plan_restream_id': value['plan_restream_id'],
+        'date_end': (value['date_end'] == null ? null : value['date_end'].toISOString()),
+        'date_start': (value['date_start'] == null ? null : value['date_start'].toISOString()),
+        'date_create': (value['date_create'] == null ? null : value['date_create'].toISOString()),
         'period': value['period'],
-        'money_flow_uuid': value['moneyFlowUuid'],
-        'period_uuid': value['periodUuid'],
+        'money_flow_uuid': value['money_flow_uuid'],
+        'period_uuid': value['period_uuid'],
         'status': value['status'],
         'prolongation': value['prolongation'],
     };

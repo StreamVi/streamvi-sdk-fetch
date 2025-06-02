@@ -26,18 +26,18 @@ exports.PaymentCreateRequestTopUpBodyDtoVEnum = {
  * @export
  */
 exports.PaymentCreateRequestTopUpBodyDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.PaymentCreateRequestTopUpBodyDtoTypeEnum = {
-    Restream: 'restream',
-    Transcoding: 'transcoding',
-    Storage: 'storage',
-    Topup: 'topup'
+    restream: 'restream',
+    transcoding: 'transcoding',
+    storage: 'storage',
+    topup: 'topup'
 };
 /**
  * Check if a given object implements the PaymentCreateRequestTopUpBodyDto interface.
@@ -47,7 +47,7 @@ function instanceOfPaymentCreateRequestTopUpBodyDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
@@ -67,7 +67,7 @@ function PaymentCreateRequestTopUpBodyDtoFromJSONTyped(json, ignoreDiscriminator
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'type': json['type'],
         'amount': json['amount'],
     };
@@ -84,7 +84,7 @@ function PaymentCreateRequestTopUpBodyDtoToJSONTyped(value, ignoreDiscriminator 
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'type': value['type'],
         'amount': value['amount'],
     };

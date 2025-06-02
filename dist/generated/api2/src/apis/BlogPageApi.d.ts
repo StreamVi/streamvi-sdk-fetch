@@ -88,9 +88,9 @@ export declare class BlogPageApi extends runtime.BaseAPI implements BlogPageApiI
  * @export
  */
 export declare const BlogPageGetV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type BlogPageGetV1LanguageEnum = typeof BlogPageGetV1LanguageEnum[keyof typeof BlogPageGetV1LanguageEnum];
 /**
@@ -106,9 +106,9 @@ export type BlogPageGetV1VEnum = typeof BlogPageGetV1VEnum[keyof typeof BlogPage
  * @export
  */
 export declare const BlogPageListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type BlogPageListV1LanguageEnum = typeof BlogPageListV1LanguageEnum[keyof typeof BlogPageListV1LanguageEnum];
 /**

@@ -32,10 +32,10 @@ export interface SiteLogoutAuthRequest {
  * @export
  */
 export declare const SiteLogoutAuthRequestAppEnum: {
-    readonly Site: "site";
-    readonly Admin: "admin";
-    readonly Mobile: "mobile";
-    readonly Desktop: "desktop";
+    readonly site: "site";
+    readonly admin: "admin";
+    readonly mobile: "mobile";
+    readonly desktop: "desktop";
 };
 export type SiteLogoutAuthRequestAppEnum = typeof SiteLogoutAuthRequestAppEnum[keyof typeof SiteLogoutAuthRequestAppEnum];
 /**

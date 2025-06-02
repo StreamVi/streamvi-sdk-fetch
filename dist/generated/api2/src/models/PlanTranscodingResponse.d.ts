@@ -21,7 +21,7 @@ export interface PlanTranscodingResponse {
      * @type {number}
      * @memberof PlanTranscodingResponse
      */
-    planTranscodingId: number;
+    plan_transcoding_id: number;
     /**
      * Title
      * @type {string}
@@ -39,13 +39,13 @@ export interface PlanTranscodingResponse {
      * @type {number}
      * @memberof PlanTranscodingResponse
      */
-    priceRub: number;
+    price_rub: number;
     /**
      * Price (USD)
      * @type {number}
      * @memberof PlanTranscodingResponse
      */
-    priceUsd: number;
+    price_usd: number;
     /**
      * Maximum resolution
      * @type {string}
@@ -93,10 +93,10 @@ export interface PlanTranscodingResponse {
  * @export
  */
 export declare const PlanTranscodingResponseTypeEnum: {
-    readonly Free: "free";
-    readonly PaidMonth: "paid_month";
-    readonly PaidMinute: "paid_minute";
-    readonly Custom: "custom";
+    readonly free: "free";
+    readonly paid_month: "paid_month";
+    readonly paid_minute: "paid_minute";
+    readonly custom: "custom";
 };
 export type PlanTranscodingResponseTypeEnum = typeof PlanTranscodingResponseTypeEnum[keyof typeof PlanTranscodingResponseTypeEnum];
 /**
@@ -106,7 +106,7 @@ export declare const PlanTranscodingResponseResolutionEnum: {
     readonly _720p: "720p";
     readonly _1080p: "1080p";
     readonly _2K: "2K";
-    readonly Uw: "UW";
+    readonly UW: "UW";
     readonly _4K: "4K";
     readonly _8K: "8K";
 };

@@ -20,7 +20,7 @@ export interface ProjectInfoAccessResponse {
      * @type {number}
      * @memberof ProjectInfoAccessResponse
      */
-    accessType: ProjectInfoAccessResponseAccessTypeEnum;
+    access_type: ProjectInfoAccessResponseAccessTypeEnum;
 }
 /**
  * @export

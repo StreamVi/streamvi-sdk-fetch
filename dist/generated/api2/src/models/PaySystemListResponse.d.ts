@@ -20,7 +20,7 @@ export interface PaySystemListResponse {
      * @type {number}
      * @memberof PaySystemListResponse
      */
-    paySystemId: number;
+    pay_system_id: number;
     /**
      * Name
      * @type {string}
@@ -32,13 +32,13 @@ export interface PaySystemListResponse {
      * @type {number}
      * @memberof PaySystemListResponse
      */
-    minAmount: number;
+    min_amount: number;
     /**
      * Max amount
      * @type {number}
      * @memberof PaySystemListResponse
      */
-    maxAmount: number;
+    max_amount: number;
     /**
      * Currency
      * @type {string}
@@ -74,8 +74,8 @@ export interface PaySystemListResponse {
  * @export
  */
 export declare const PaySystemListResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PaySystemListResponseCurrencyEnum = typeof PaySystemListResponseCurrencyEnum[keyof typeof PaySystemListResponseCurrencyEnum];
 /**

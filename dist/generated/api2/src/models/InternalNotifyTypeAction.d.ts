@@ -51,45 +51,45 @@ export interface InternalNotifyTypeAction {
      * @type {string}
      * @memberof InternalNotifyTypeAction
      */
-    groupId: string;
+    group_id: string;
     /**
      * Group actions
      * @type {string}
      * @memberof InternalNotifyTypeAction
      */
-    groupType: InternalNotifyTypeActionGroupTypeEnum;
+    group_type: InternalNotifyTypeActionGroupTypeEnum;
 }
 /**
  * @export
  */
 export declare const InternalNotifyTypeActionNameEnum: {
-    readonly ExternalLink: "external_link";
-    readonly CabinetLink: "cabinet_link";
-    readonly LandingLink: "landing_link";
-    readonly Link: "link";
-    readonly Accept: "accept";
-    readonly Decline: "decline";
-    readonly Accept1: "accept_1";
-    readonly Accept2: "accept_2";
-    readonly Accept3: "accept_3";
+    readonly external_link: "external_link";
+    readonly cabinet_link: "cabinet_link";
+    readonly landing_link: "landing_link";
+    readonly link: "link";
+    readonly accept: "accept";
+    readonly decline: "decline";
+    readonly accept_1: "accept_1";
+    readonly accept_2: "accept_2";
+    readonly accept_3: "accept_3";
 };
 export type InternalNotifyTypeActionNameEnum = typeof InternalNotifyTypeActionNameEnum[keyof typeof InternalNotifyTypeActionNameEnum];
 /**
  * @export
  */
 export declare const InternalNotifyTypeActionTypeEnum: {
-    readonly Primary: "primary";
-    readonly Secondary: "secondary";
-    readonly Link: "link";
+    readonly primary: "primary";
+    readonly secondary: "secondary";
+    readonly link: "link";
 };
 export type InternalNotifyTypeActionTypeEnum = typeof InternalNotifyTypeActionTypeEnum[keyof typeof InternalNotifyTypeActionTypeEnum];
 /**
  * @export
  */
 export declare const InternalNotifyTypeActionGroupTypeEnum: {
-    readonly Toggle: "toggle";
-    readonly Select: "select";
-    readonly Default: "default";
+    readonly toggle: "toggle";
+    readonly select: "select";
+    readonly default: "default";
 };
 export type InternalNotifyTypeActionGroupTypeEnum = typeof InternalNotifyTypeActionGroupTypeEnum[keyof typeof InternalNotifyTypeActionGroupTypeEnum];
 /**

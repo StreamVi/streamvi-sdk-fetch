@@ -18,26 +18,26 @@ exports.PlanTranscoding2UserItemResponseToJSONTyped = exports.PlanTranscoding2Us
  * @export
  */
 exports.PlanTranscoding2UserItemResponsePeriodEnum = {
-    Month: 'month',
-    Year: 'year'
+    month: 'month',
+    year: 'year'
 };
 /**
  * Check if a given object implements the PlanTranscoding2UserItemResponse interface.
  */
 function instanceOfPlanTranscoding2UserItemResponse(value) {
-    if (!('planTranscoding2userId' in value) || value['planTranscoding2userId'] === undefined)
+    if (!('plan_transcoding2user_id' in value) || value['plan_transcoding2user_id'] === undefined)
         return false;
     if (!('count' in value) || value['count'] === undefined)
         return false;
-    if (!('dateStart' in value) || value['dateStart'] === undefined)
+    if (!('date_start' in value) || value['date_start'] === undefined)
         return false;
-    if (!('dateEnd' in value) || value['dateEnd'] === undefined)
+    if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
-    if (!('dateCreate' in value) || value['dateCreate'] === undefined)
+    if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
     if (!('period' in value) || value['period'] === undefined)
         return false;
-    if (!('periodUuid' in value) || value['periodUuid'] === undefined)
+    if (!('period_uuid' in value) || value['period_uuid'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -53,13 +53,13 @@ function PlanTranscoding2UserItemResponseFromJSONTyped(json, ignoreDiscriminator
         return json;
     }
     return {
-        'planTranscoding2userId': json['plan_transcoding2user_id'],
+        'plan_transcoding2user_id': json['plan_transcoding2user_id'],
         'count': json['count'],
-        'dateStart': (new Date(json['date_start'])),
-        'dateEnd': (new Date(json['date_end'])),
-        'dateCreate': (new Date(json['date_create'])),
+        'date_start': (new Date(json['date_start'])),
+        'date_end': (new Date(json['date_end'])),
+        'date_create': (new Date(json['date_create'])),
         'period': json['period'],
-        'periodUuid': json['period_uuid'],
+        'period_uuid': json['period_uuid'],
         'status': json['status'],
         'prolongation': json['prolongation'] == null ? undefined : json['prolongation'],
     };
@@ -74,13 +74,13 @@ function PlanTranscoding2UserItemResponseToJSONTyped(value, ignoreDiscriminator 
         return value;
     }
     return {
-        'plan_transcoding2user_id': value['planTranscoding2userId'],
+        'plan_transcoding2user_id': value['plan_transcoding2user_id'],
         'count': value['count'],
-        'date_start': ((value['dateStart']).toISOString()),
-        'date_end': ((value['dateEnd']).toISOString()),
-        'date_create': ((value['dateCreate']).toISOString()),
+        'date_start': ((value['date_start']).toISOString()),
+        'date_end': ((value['date_end']).toISOString()),
+        'date_create': ((value['date_create']).toISOString()),
         'period': value['period'],
-        'period_uuid': value['periodUuid'],
+        'period_uuid': value['period_uuid'],
         'status': value['status'],
         'prolongation': value['prolongation'],
     };

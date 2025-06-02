@@ -18,9 +18,9 @@ exports.PaymentCreateResponseToJSONTyped = exports.PaymentCreateResponseToJSON =
  * Check if a given object implements the PaymentCreateResponse interface.
  */
 function instanceOfPaymentCreateResponse(value) {
-    if (!('paymentId' in value) || value['paymentId'] === undefined)
+    if (!('payment_id' in value) || value['payment_id'] === undefined)
         return false;
-    if (!('payName' in value) || value['payName'] === undefined)
+    if (!('pay_name' in value) || value['pay_name'] === undefined)
         return false;
     return true;
 }
@@ -34,10 +34,10 @@ function PaymentCreateResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'paymentId': json['payment_id'],
-        'payName': json['pay_name'],
-        'payId': json['pay_id'] == null ? undefined : json['pay_id'],
-        'payKey': json['pay_key'] == null ? undefined : json['pay_key'],
+        'payment_id': json['payment_id'],
+        'pay_name': json['pay_name'],
+        'pay_id': json['pay_id'] == null ? undefined : json['pay_id'],
+        'pay_key': json['pay_key'] == null ? undefined : json['pay_key'],
     };
 }
 exports.PaymentCreateResponseFromJSONTyped = PaymentCreateResponseFromJSONTyped;
@@ -50,10 +50,10 @@ function PaymentCreateResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'payment_id': value['paymentId'],
-        'pay_name': value['payName'],
-        'pay_id': value['payId'],
-        'pay_key': value['payKey'],
+        'payment_id': value['payment_id'],
+        'pay_name': value['pay_name'],
+        'pay_id': value['pay_id'],
+        'pay_key': value['pay_key'],
     };
 }
 exports.PaymentCreateResponseToJSONTyped = PaymentCreateResponseToJSONTyped;

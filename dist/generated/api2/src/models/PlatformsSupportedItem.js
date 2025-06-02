@@ -18,8 +18,8 @@ exports.PlatformsSupportedItemToJSONTyped = exports.PlatformsSupportedItemToJSON
  * @export
  */
 exports.PlatformsSupportedItemExtensionEnum = {
-    Png: 'png',
-    Svg: 'svg'
+    png: 'png',
+    svg: 'svg'
 };
 /**
  * Check if a given object implements the PlatformsSupportedItem interface.
@@ -27,7 +27,7 @@ exports.PlatformsSupportedItemExtensionEnum = {
 function instanceOfPlatformsSupportedItem(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
-    if (!('isAdding' in value) || value['isAdding'] === undefined)
+    if (!('is_adding' in value) || value['is_adding'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
@@ -39,27 +39,27 @@ function instanceOfPlatformsSupportedItem(value) {
         return false;
     if (!('oauth' in value) || value['oauth'] === undefined)
         return false;
-    if (!('readChat' in value) || value['readChat'] === undefined)
+    if (!('read_chat' in value) || value['read_chat'] === undefined)
         return false;
-    if (!('writeChat' in value) || value['writeChat'] === undefined)
+    if (!('write_chat' in value) || value['write_chat'] === undefined)
         return false;
-    if (!('editName' in value) || value['editName'] === undefined)
+    if (!('edit_name' in value) || value['edit_name'] === undefined)
         return false;
-    if (!('setTitle' in value) || value['setTitle'] === undefined)
+    if (!('set_title' in value) || value['set_title'] === undefined)
         return false;
-    if (!('setDescription' in value) || value['setDescription'] === undefined)
+    if (!('set_description' in value) || value['set_description'] === undefined)
         return false;
-    if (!('createdStream' in value) || value['createdStream'] === undefined)
+    if (!('created_stream' in value) || value['created_stream'] === undefined)
         return false;
-    if (!('rtmpUrl' in value) || value['rtmpUrl'] === undefined)
+    if (!('rtmp_url' in value) || value['rtmp_url'] === undefined)
         return false;
-    if (!('rtmpKey' in value) || value['rtmpKey'] === undefined)
+    if (!('rtmp_key' in value) || value['rtmp_key'] === undefined)
         return false;
     if (!('planned' in value) || value['planned'] === undefined)
         return false;
     if (!('options' in value) || value['options'] === undefined)
         return false;
-    if (!('urlStream' in value) || value['urlStream'] === undefined)
+    if (!('url_stream' in value) || value['url_stream'] === undefined)
         return false;
     if (!('viewers' in value) || value['viewers'] === undefined)
         return false;
@@ -80,23 +80,23 @@ function PlatformsSupportedItemFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'isAdding': json['is_adding'],
+        'is_adding': json['is_adding'],
         'title': json['title'],
         'extension': json['extension'],
         'url': json['url'],
         'type': json['type'],
         'oauth': json['oauth'],
-        'readChat': json['read_chat'],
-        'writeChat': json['write_chat'],
-        'editName': json['edit_name'],
-        'setTitle': json['set_title'],
-        'setDescription': json['set_description'],
-        'createdStream': json['created_stream'],
-        'rtmpUrl': json['rtmp_url'],
-        'rtmpKey': json['rtmp_key'],
+        'read_chat': json['read_chat'],
+        'write_chat': json['write_chat'],
+        'edit_name': json['edit_name'],
+        'set_title': json['set_title'],
+        'set_description': json['set_description'],
+        'created_stream': json['created_stream'],
+        'rtmp_url': json['rtmp_url'],
+        'rtmp_key': json['rtmp_key'],
         'planned': json['planned'],
         'options': json['options'],
-        'urlStream': json['url_stream'],
+        'url_stream': json['url_stream'],
         'viewers': json['viewers'],
         'messages': json['messages'],
         'like': json['like'],
@@ -113,23 +113,23 @@ function PlatformsSupportedItemToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
-        'is_adding': value['isAdding'],
+        'is_adding': value['is_adding'],
         'title': value['title'],
         'extension': value['extension'],
         'url': value['url'],
         'type': value['type'],
         'oauth': value['oauth'],
-        'read_chat': value['readChat'],
-        'write_chat': value['writeChat'],
-        'edit_name': value['editName'],
-        'set_title': value['setTitle'],
-        'set_description': value['setDescription'],
-        'created_stream': value['createdStream'],
-        'rtmp_url': value['rtmpUrl'],
-        'rtmp_key': value['rtmpKey'],
+        'read_chat': value['read_chat'],
+        'write_chat': value['write_chat'],
+        'edit_name': value['edit_name'],
+        'set_title': value['set_title'],
+        'set_description': value['set_description'],
+        'created_stream': value['created_stream'],
+        'rtmp_url': value['rtmp_url'],
+        'rtmp_key': value['rtmp_key'],
         'planned': value['planned'],
         'options': value['options'],
-        'url_stream': value['urlStream'],
+        'url_stream': value['url_stream'],
         'viewers': value['viewers'],
         'messages': value['messages'],
         'like': value['like'],

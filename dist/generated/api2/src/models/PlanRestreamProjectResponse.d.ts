@@ -23,7 +23,7 @@ export interface PlanRestreamProjectResponse {
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    planRestreamId: number;
+    plan_restream_id: number;
     /**
      * Title
      * @type {string}
@@ -41,19 +41,19 @@ export interface PlanRestreamProjectResponse {
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    countChannelMin?: number;
+    count_channel_min?: number;
     /**
      * Maximum channel count
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    countChannelMax: number;
+    count_channel_max: number;
     /**
      * Step channel
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    countChannelStep?: number;
+    count_channel_step?: number;
     /**
      * Type
      * @type {string}
@@ -65,19 +65,19 @@ export interface PlanRestreamProjectResponse {
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    bitrateMax: number | null;
+    bitrate_max: number | null;
     /**
      * Minimum bitrate, kbps
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    bitrateMin?: number;
+    bitrate_min?: number;
     /**
      * Step bitrate
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    bitrateStep?: number;
+    bitrate_step?: number;
     /**
      * Field for sort
      * @type {number}
@@ -107,25 +107,25 @@ export interface PlanRestreamProjectResponse {
      * @type {PlanRestreamForProjectV2}
      * @memberof PlanRestreamProjectResponse
      */
-    ownTariff: PlanRestreamForProjectV2;
+    own_tariff: PlanRestreamForProjectV2;
 }
 /**
  * @export
  */
 export declare const PlanRestreamProjectResponseTypeEnum: {
-    readonly Free: "free";
-    readonly PaidFix: "paid_fix";
-    readonly PaidFlex: "paid_flex";
-    readonly Custom: "custom";
+    readonly free: "free";
+    readonly paid_fix: "paid_fix";
+    readonly paid_flex: "paid_flex";
+    readonly custom: "custom";
 };
 export type PlanRestreamProjectResponseTypeEnum = typeof PlanRestreamProjectResponseTypeEnum[keyof typeof PlanRestreamProjectResponseTypeEnum];
 /**
  * @export
  */
 export declare const PlanRestreamProjectResponseStatusEnum: {
-    readonly Current: "current";
-    readonly Upgrade: "upgrade";
-    readonly Downgrade: "downgrade";
+    readonly current: "current";
+    readonly upgrade: "upgrade";
+    readonly downgrade: "downgrade";
 };
 export type PlanRestreamProjectResponseStatusEnum = typeof PlanRestreamProjectResponseStatusEnum[keyof typeof PlanRestreamProjectResponseStatusEnum];
 /**

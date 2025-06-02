@@ -26,7 +26,7 @@ export interface StructureHelpPageConnectionsItemLang {
      * @type {string}
      * @memberof StructureHelpPageConnectionsItemLang
      */
-    languageIso: StructureHelpPageConnectionsItemLangLanguageIsoEnum;
+    language_iso: StructureHelpPageConnectionsItemLangLanguageIsoEnum;
     /**
      * Help menu article title
      * @type {string}
@@ -38,18 +38,18 @@ export interface StructureHelpPageConnectionsItemLang {
  * @export
  */
 export declare const StructureHelpPageConnectionsItemLangLanguageEnum: {
-    readonly Russian: "russian";
-    readonly English: "english";
-    readonly None: "none";
+    readonly russian: "russian";
+    readonly english: "english";
+    readonly none: "none";
 };
 export type StructureHelpPageConnectionsItemLangLanguageEnum = typeof StructureHelpPageConnectionsItemLangLanguageEnum[keyof typeof StructureHelpPageConnectionsItemLangLanguageEnum];
 /**
  * @export
  */
 export declare const StructureHelpPageConnectionsItemLangLanguageIsoEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type StructureHelpPageConnectionsItemLangLanguageIsoEnum = typeof StructureHelpPageConnectionsItemLangLanguageIsoEnum[keyof typeof StructureHelpPageConnectionsItemLangLanguageIsoEnum];
 /**

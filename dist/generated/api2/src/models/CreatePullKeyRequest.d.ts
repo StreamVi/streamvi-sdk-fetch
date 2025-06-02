@@ -32,7 +32,7 @@ export interface CreatePullKeyRequest {
      * @type {number}
      * @memberof CreatePullKeyRequest
      */
-    projectId: number;
+    project_id: number;
     /**
      * Provider oauth
      * @type {string}
@@ -59,18 +59,18 @@ export type CreatePullKeyRequestVEnum = typeof CreatePullKeyRequestVEnum[keyof t
  * @export
  */
 export declare const CreatePullKeyRequestLanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type CreatePullKeyRequestLanguageEnum = typeof CreatePullKeyRequestLanguageEnum[keyof typeof CreatePullKeyRequestLanguageEnum];
 /**
  * @export
  */
 export declare const CreatePullKeyRequestTransportEnum: {
-    readonly Rtmp: "rtmp";
-    readonly Srt: "srt";
-    readonly Hls: "hls";
+    readonly rtmp: "rtmp";
+    readonly srt: "srt";
+    readonly hls: "hls";
 };
 export type CreatePullKeyRequestTransportEnum = typeof CreatePullKeyRequestTransportEnum[keyof typeof CreatePullKeyRequestTransportEnum];
 /**

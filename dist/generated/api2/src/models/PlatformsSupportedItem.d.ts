@@ -26,7 +26,7 @@ export interface PlatformsSupportedItem {
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    isAdding: number;
+    is_adding: number;
     /**
      * title
      * @type {string}
@@ -62,49 +62,49 @@ export interface PlatformsSupportedItem {
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    readChat: number;
+    read_chat: number;
     /**
      * write_chat
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    writeChat: number;
+    write_chat: number;
     /**
      * edit_name
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    editName: number;
+    edit_name: number;
     /**
      * set_title
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    setTitle: number;
+    set_title: number;
     /**
      * set_description
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    setDescription: number;
+    set_description: number;
     /**
      * created_stream
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    createdStream: number;
+    created_stream: number;
     /**
      * rtmp_url
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    rtmpUrl: number;
+    rtmp_url: number;
     /**
      * rtmp_key
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    rtmpKey: number;
+    rtmp_key: number;
     /**
      * planned
      * @type {number}
@@ -122,7 +122,7 @@ export interface PlatformsSupportedItem {
      * @type {number}
      * @memberof PlatformsSupportedItem
      */
-    urlStream: number;
+    url_stream: number;
     /**
      * viewers
      * @type {number}
@@ -146,8 +146,8 @@ export interface PlatformsSupportedItem {
  * @export
  */
 export declare const PlatformsSupportedItemExtensionEnum: {
-    readonly Png: "png";
-    readonly Svg: "svg";
+    readonly png: "png";
+    readonly svg: "svg";
 };
 export type PlatformsSupportedItemExtensionEnum = typeof PlatformsSupportedItemExtensionEnum[keyof typeof PlatformsSupportedItemExtensionEnum];
 /**

@@ -14,28 +14,28 @@ import type { MessageResponseDto, MethodChatHistoryResponse, MethodChatSendMessa
 export interface MethodChatGatewayDeleteV1Request {
     language: MethodChatGatewayDeleteV1LanguageEnum;
     key: string;
-    broadcastId: number;
-    eventId: string;
+    broadcast_id: number;
+    event_id: string;
     v?: MethodChatGatewayDeleteV1VEnum;
 }
 export interface MethodChatGatewayGetMessageV1Request {
     language: MethodChatGatewayGetMessageV1LanguageEnum;
     key: string;
-    broadcastId: number;
-    eventId: string;
+    broadcast_id: number;
+    event_id: string;
     v?: MethodChatGatewayGetMessageV1VEnum;
 }
 export interface MethodChatGatewayHistoryV1Request {
     language: MethodChatGatewayHistoryV1LanguageEnum;
     key: string;
-    broadcastId: number;
+    broadcast_id: number;
     v?: MethodChatGatewayHistoryV1VEnum;
 }
 export interface MethodChatGatewaySendV1Request {
     language: MethodChatGatewaySendV1LanguageEnum;
     key: string;
-    broadcastId: number;
-    methodChatSendMessageRequestDto: MethodChatSendMessageRequestDto;
+    broadcast_id: number;
+    MethodChatSendMessageRequestDto: MethodChatSendMessageRequestDto;
     v?: MethodChatGatewaySendV1VEnum;
 }
 /**
@@ -50,8 +50,8 @@ export interface ChatGatewayApiInterface {
      * @summary Remove message
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
-     * @param {number} broadcastId broadcast id
-     * @param {string} eventId Event id
+     * @param {number} broadcast_id broadcast id
+     * @param {string} event_id Event id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -67,8 +67,8 @@ export interface ChatGatewayApiInterface {
      * @summary Get one message
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
-     * @param {number} broadcastId broadcast id
-     * @param {string} eventId Event id
+     * @param {number} broadcast_id broadcast id
+     * @param {string} event_id Event id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -84,7 +84,7 @@ export interface ChatGatewayApiInterface {
      * @summary List history message
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
-     * @param {number} broadcastId broadcast id
+     * @param {number} broadcast_id broadcast id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -100,8 +100,8 @@ export interface ChatGatewayApiInterface {
      * @summary Send message
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
-     * @param {number} broadcastId
-     * @param {MethodChatSendMessageRequestDto} methodChatSendMessageRequestDto
+     * @param {number} broadcast_id
+     * @param {MethodChatSendMessageRequestDto} MethodChatSendMessageRequestDto
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -154,9 +154,9 @@ export declare class ChatGatewayApi extends runtime.BaseAPI implements ChatGatew
  * @export
  */
 export declare const MethodChatGatewayDeleteV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodChatGatewayDeleteV1LanguageEnum = typeof MethodChatGatewayDeleteV1LanguageEnum[keyof typeof MethodChatGatewayDeleteV1LanguageEnum];
 /**
@@ -172,9 +172,9 @@ export type MethodChatGatewayDeleteV1VEnum = typeof MethodChatGatewayDeleteV1VEn
  * @export
  */
 export declare const MethodChatGatewayGetMessageV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodChatGatewayGetMessageV1LanguageEnum = typeof MethodChatGatewayGetMessageV1LanguageEnum[keyof typeof MethodChatGatewayGetMessageV1LanguageEnum];
 /**
@@ -190,9 +190,9 @@ export type MethodChatGatewayGetMessageV1VEnum = typeof MethodChatGatewayGetMess
  * @export
  */
 export declare const MethodChatGatewayHistoryV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodChatGatewayHistoryV1LanguageEnum = typeof MethodChatGatewayHistoryV1LanguageEnum[keyof typeof MethodChatGatewayHistoryV1LanguageEnum];
 /**
@@ -208,9 +208,9 @@ export type MethodChatGatewayHistoryV1VEnum = typeof MethodChatGatewayHistoryV1V
  * @export
  */
 export declare const MethodChatGatewaySendV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type MethodChatGatewaySendV1LanguageEnum = typeof MethodChatGatewaySendV1LanguageEnum[keyof typeof MethodChatGatewaySendV1LanguageEnum];
 /**

@@ -60,9 +60,9 @@ export declare class BlogPageTagApi extends runtime.BaseAPI implements BlogPageT
  * @export
  */
 export declare const BlogPageTagListV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type BlogPageTagListV1LanguageEnum = typeof BlogPageTagListV1LanguageEnum[keyof typeof BlogPageTagListV1LanguageEnum];
 /**

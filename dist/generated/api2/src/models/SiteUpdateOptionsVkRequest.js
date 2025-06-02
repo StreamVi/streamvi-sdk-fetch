@@ -26,27 +26,27 @@ exports.SiteUpdateOptionsVkRequestVEnum = {
  * @export
  */
 exports.SiteUpdateOptionsVkRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsVkRequestPrivacyCommentsEnum = {
-    All: 'all',
-    Members: 'members',
-    Editors: 'editors',
-    Nobody: 'nobody'
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    nobody: 'nobody'
 };
 /**
  * @export
  */
 exports.SiteUpdateOptionsVkRequestPrivacyVideoEnum = {
-    All: 'all',
-    Members: 'members',
-    Editors: 'editors',
-    Nobody: 'nobody'
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    nobody: 'nobody'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsVkRequest interface.
@@ -56,27 +56,27 @@ function instanceOfSiteUpdateOptionsVkRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
-    if (!('categoryId' in value) || value['categoryId'] === undefined)
+    if (!('category_id' in value) || value['category_id'] === undefined)
         return false;
-    if (!('categoryName' in value) || value['categoryName'] === undefined)
+    if (!('category_name' in value) || value['category_name'] === undefined)
         return false;
-    if (!('categorySecondaryId' in value) || value['categorySecondaryId'] === undefined)
+    if (!('category_secondary_id' in value) || value['category_secondary_id'] === undefined)
         return false;
-    if (!('categorySecondaryName' in value) || value['categorySecondaryName'] === undefined)
+    if (!('category_secondary_name' in value) || value['category_secondary_name'] === undefined)
         return false;
-    if (!('playlistId' in value) || value['playlistId'] === undefined)
+    if (!('playlist_id' in value) || value['playlist_id'] === undefined)
         return false;
-    if (!('privacyComments' in value) || value['privacyComments'] === undefined)
+    if (!('privacy_comments' in value) || value['privacy_comments'] === undefined)
         return false;
-    if (!('privacyVideo' in value) || value['privacyVideo'] === undefined)
+    if (!('privacy_video' in value) || value['privacy_video'] === undefined)
         return false;
     if (!('wall' in value) || value['wall'] === undefined)
         return false;
@@ -94,17 +94,17 @@ function SiteUpdateOptionsVkRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'title': json['title'],
         'description': json['description'],
-        'categoryId': json['category_id'],
-        'categoryName': json['category_name'],
-        'categorySecondaryId': json['category_secondary_id'],
-        'categorySecondaryName': json['category_secondary_name'],
-        'playlistId': json['playlist_id'],
-        'privacyComments': json['privacy_comments'],
-        'privacyVideo': json['privacy_video'],
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
+        'category_secondary_id': json['category_secondary_id'],
+        'category_secondary_name': json['category_secondary_name'],
+        'playlist_id': json['playlist_id'],
+        'privacy_comments': json['privacy_comments'],
+        'privacy_video': json['privacy_video'],
         'wall': json['wall'],
     };
 }
@@ -120,17 +120,17 @@ function SiteUpdateOptionsVkRequestToJSONTyped(value, ignoreDiscriminator = fals
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'title': value['title'],
         'description': value['description'],
-        'category_id': value['categoryId'],
-        'category_name': value['categoryName'],
-        'category_secondary_id': value['categorySecondaryId'],
-        'category_secondary_name': value['categorySecondaryName'],
-        'playlist_id': value['playlistId'],
-        'privacy_comments': value['privacyComments'],
-        'privacy_video': value['privacyVideo'],
+        'category_id': value['category_id'],
+        'category_name': value['category_name'],
+        'category_secondary_id': value['category_secondary_id'],
+        'category_secondary_name': value['category_secondary_name'],
+        'playlist_id': value['playlist_id'],
+        'privacy_comments': value['privacy_comments'],
+        'privacy_video': value['privacy_video'],
         'wall': value['wall'],
     };
 }

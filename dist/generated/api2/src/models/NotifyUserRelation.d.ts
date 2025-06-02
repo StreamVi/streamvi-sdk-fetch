@@ -38,30 +38,30 @@ export interface NotifyUserRelation {
      * @type {number}
      * @memberof NotifyUserRelation
      */
-    projectId: number;
+    project_id: number;
 }
 /**
  * @export
  */
 export declare const NotifyUserRelationCabinetEnum: {
-    readonly Important: "important";
-    readonly Stream: "stream";
+    readonly important: "important";
+    readonly stream: "stream";
 };
 export type NotifyUserRelationCabinetEnum = typeof NotifyUserRelationCabinetEnum[keyof typeof NotifyUserRelationCabinetEnum];
 /**
  * @export
  */
 export declare const NotifyUserRelationTelegramEnum: {
-    readonly Important: "important";
-    readonly Stream: "stream";
+    readonly important: "important";
+    readonly stream: "stream";
 };
 export type NotifyUserRelationTelegramEnum = typeof NotifyUserRelationTelegramEnum[keyof typeof NotifyUserRelationTelegramEnum];
 /**
  * @export
  */
 export declare const NotifyUserRelationMobileEnum: {
-    readonly Important: "important";
-    readonly Stream: "stream";
+    readonly important: "important";
+    readonly stream: "stream";
 };
 export type NotifyUserRelationMobileEnum = typeof NotifyUserRelationMobileEnum[keyof typeof NotifyUserRelationMobileEnum];
 /**

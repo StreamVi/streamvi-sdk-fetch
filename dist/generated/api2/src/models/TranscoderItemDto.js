@@ -26,9 +26,9 @@ exports.TranscoderItemDtoVEnum = {
  * @export
  */
 exports.TranscoderItemDtoLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the TranscoderItemDto interface.
@@ -38,9 +38,9 @@ function instanceOfTranscoderItemDto(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('transcoderId' in value) || value['transcoderId'] === undefined)
+    if (!('transcoder_id' in value) || value['transcoder_id'] === undefined)
         return false;
     return true;
 }
@@ -56,8 +56,8 @@ function TranscoderItemDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'transcoderId': json['transcoder_id'],
+        'project_id': json['project_id'],
+        'transcoder_id': json['transcoder_id'],
     };
 }
 exports.TranscoderItemDtoFromJSONTyped = TranscoderItemDtoFromJSONTyped;
@@ -72,8 +72,8 @@ function TranscoderItemDtoToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'transcoder_id': value['transcoderId'],
+        'project_id': value['project_id'],
+        'transcoder_id': value['transcoder_id'],
     };
 }
 exports.TranscoderItemDtoToJSONTyped = TranscoderItemDtoToJSONTyped;

@@ -32,8 +32,8 @@ export interface AmountItem {
  * @export
  */
 export declare const AmountItemCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type AmountItemCurrencyEnum = typeof AmountItemCurrencyEnum[keyof typeof AmountItemCurrencyEnum];
 /**

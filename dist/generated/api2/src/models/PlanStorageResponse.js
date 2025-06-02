@@ -19,7 +19,7 @@ const PlanStorageDiscountResponse_1 = require("./PlanStorageDiscountResponse");
  * Check if a given object implements the PlanStorageResponse interface.
  */
 function instanceOfPlanStorageResponse(value) {
-    if (!('planStorageId' in value) || value['planStorageId'] === undefined)
+    if (!('plan_storage_id' in value) || value['plan_storage_id'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
@@ -27,9 +27,9 @@ function instanceOfPlanStorageResponse(value) {
         return false;
     if (!('max' in value) || value['max'] === undefined)
         return false;
-    if (!('priceRub' in value) || value['priceRub'] === undefined)
+    if (!('price_rub' in value) || value['price_rub'] === undefined)
         return false;
-    if (!('priceUsd' in value) || value['priceUsd'] === undefined)
+    if (!('price_usd' in value) || value['price_usd'] === undefined)
         return false;
     if (!('step' in value) || value['step'] === undefined)
         return false;
@@ -49,12 +49,12 @@ function PlanStorageResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planStorageId': json['plan_storage_id'],
+        'plan_storage_id': json['plan_storage_id'],
         'title': json['title'],
         'min': json['min'],
         'max': json['max'],
-        'priceRub': json['price_rub'],
-        'priceUsd': json['price_usd'],
+        'price_rub': json['price_rub'],
+        'price_usd': json['price_usd'],
         'step': json['step'],
         'active': json['active'],
         'discount': (0, PlanStorageDiscountResponse_1.PlanStorageDiscountResponseFromJSON)(json['discount']),
@@ -70,12 +70,12 @@ function PlanStorageResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'plan_storage_id': value['planStorageId'],
+        'plan_storage_id': value['plan_storage_id'],
         'title': value['title'],
         'min': value['min'],
         'max': value['max'],
-        'price_rub': value['priceRub'],
-        'price_usd': value['priceUsd'],
+        'price_rub': value['price_rub'],
+        'price_usd': value['price_usd'],
         'step': value['step'],
         'active': value['active'],
         'discount': (0, PlanStorageDiscountResponse_1.PlanStorageDiscountResponseToJSON)(value['discount']),

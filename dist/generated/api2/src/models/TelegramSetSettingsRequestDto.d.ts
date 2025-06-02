@@ -20,13 +20,13 @@ export interface TelegramSetSettingsRequestDto {
      * @type {number}
      * @memberof TelegramSetSettingsRequestDto
      */
-    filterMode: TelegramSetSettingsRequestDtoFilterModeEnum;
+    filter_mode: TelegramSetSettingsRequestDtoFilterModeEnum;
     /**
      * Message ID
      * @type {number}
      * @memberof TelegramSetSettingsRequestDto
      */
-    messageId?: number;
+    message_id?: number;
     /**
      * Message Link
      * @type {string}

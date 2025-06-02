@@ -13,26 +13,26 @@ import * as runtime from '../runtime';
 import type { CheckPullKeyResponse, CreatePullKeyRequest, CreatePullKeyResponse, PullKeyListResponse, SuccessResponse, UpdatePullKeyRequest } from '../models/index';
 export interface StreamPullKeysSiteCheckV1Request {
     language: StreamPullKeysSiteCheckV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     key: string;
     v?: StreamPullKeysSiteCheckV1VEnum;
 }
 export interface StreamPullKeysSiteCreateV1Request {
-    createPullKeyRequest: CreatePullKeyRequest;
+    CreatePullKeyRequest: CreatePullKeyRequest;
 }
 export interface StreamPullKeysSiteGetV1Request {
     language: StreamPullKeysSiteGetV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: StreamPullKeysSiteGetV1VEnum;
 }
 export interface StreamPullKeysSiteRemoveV1Request {
     language: StreamPullKeysSiteRemoveV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     key: string;
     v?: StreamPullKeysSiteRemoveV1VEnum;
 }
 export interface StreamPullKeysSiteUpdateV1Request {
-    updatePullKeyRequest: UpdatePullKeyRequest;
+    UpdatePullKeyRequest: UpdatePullKeyRequest;
 }
 /**
  * StreamPullKeysApi - interface
@@ -45,7 +45,7 @@ export interface StreamPullKeysApiInterface {
      *
      * @summary Check key
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {string} key Key
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -60,7 +60,7 @@ export interface StreamPullKeysApiInterface {
     /**
      *
      * @summary Create key
-     * @param {CreatePullKeyRequest} createPullKeyRequest
+     * @param {CreatePullKeyRequest} CreatePullKeyRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -74,7 +74,7 @@ export interface StreamPullKeysApiInterface {
      *
      * @summary List keys
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -89,7 +89,7 @@ export interface StreamPullKeysApiInterface {
      *
      * @summary Delete key
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {string} key Key
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -104,7 +104,7 @@ export interface StreamPullKeysApiInterface {
     /**
      *
      * @summary Update key
-     * @param {UpdatePullKeyRequest} updatePullKeyRequest
+     * @param {UpdatePullKeyRequest} UpdatePullKeyRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -164,9 +164,9 @@ export declare class StreamPullKeysApi extends runtime.BaseAPI implements Stream
  * @export
  */
 export declare const StreamPullKeysSiteCheckV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type StreamPullKeysSiteCheckV1LanguageEnum = typeof StreamPullKeysSiteCheckV1LanguageEnum[keyof typeof StreamPullKeysSiteCheckV1LanguageEnum];
 /**
@@ -182,9 +182,9 @@ export type StreamPullKeysSiteCheckV1VEnum = typeof StreamPullKeysSiteCheckV1VEn
  * @export
  */
 export declare const StreamPullKeysSiteGetV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type StreamPullKeysSiteGetV1LanguageEnum = typeof StreamPullKeysSiteGetV1LanguageEnum[keyof typeof StreamPullKeysSiteGetV1LanguageEnum];
 /**
@@ -200,9 +200,9 @@ export type StreamPullKeysSiteGetV1VEnum = typeof StreamPullKeysSiteGetV1VEnum[k
  * @export
  */
 export declare const StreamPullKeysSiteRemoveV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type StreamPullKeysSiteRemoveV1LanguageEnum = typeof StreamPullKeysSiteRemoveV1LanguageEnum[keyof typeof StreamPullKeysSiteRemoveV1LanguageEnum];
 /**

@@ -18,22 +18,22 @@ exports.PaySettingResponseV3ToJSONTyped = exports.PaySettingResponseV3ToJSON = e
  * @export
  */
 exports.PaySettingResponseV3CurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * Check if a given object implements the PaySettingResponseV3 interface.
  */
 function instanceOfPaySettingResponseV3(value) {
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('countrieId' in value) || value['countrieId'] === undefined)
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined)
         return false;
-    if (!('organizationId' in value) || value['organizationId'] === undefined)
+    if (!('organization_id' in value) || value['organization_id'] === undefined)
         return false;
-    if (!('paySystemId' in value) || value['paySystemId'] === undefined)
+    if (!('pay_system_id' in value) || value['pay_system_id'] === undefined)
         return false;
     if (!('email' in value) || value['email'] === undefined)
         return false;
@@ -49,18 +49,18 @@ function PaySettingResponseV3FromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'currency': json['currency'],
-        'countrieId': json['countrie_id'],
-        'organizationId': json['organization_id'],
-        'paySystemId': json['pay_system_id'],
+        'countrie_id': json['countrie_id'],
+        'organization_id': json['organization_id'],
+        'pay_system_id': json['pay_system_id'],
         'email': json['email'],
         'street': json['street'] == null ? undefined : json['street'],
-        'houseNumber': json['house_number'] == null ? undefined : json['house_number'],
+        'house_number': json['house_number'] == null ? undefined : json['house_number'],
         'zip': json['zip'] == null ? undefined : json['zip'],
         'city': json['city'] == null ? undefined : json['city'],
         'state': json['state'] == null ? undefined : json['state'],
-        'companyName': json['company_name'] == null ? undefined : json['company_name'],
+        'company_name': json['company_name'] == null ? undefined : json['company_name'],
         'description': json['description'] == null ? undefined : json['description'],
     };
 }
@@ -74,18 +74,18 @@ function PaySettingResponseV3ToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'currency': value['currency'],
-        'countrie_id': value['countrieId'],
-        'organization_id': value['organizationId'],
-        'pay_system_id': value['paySystemId'],
+        'countrie_id': value['countrie_id'],
+        'organization_id': value['organization_id'],
+        'pay_system_id': value['pay_system_id'],
         'email': value['email'],
         'street': value['street'],
-        'house_number': value['houseNumber'],
+        'house_number': value['house_number'],
         'zip': value['zip'],
         'city': value['city'],
         'state': value['state'],
-        'company_name': value['companyName'],
+        'company_name': value['company_name'],
         'description': value['description'],
     };
 }

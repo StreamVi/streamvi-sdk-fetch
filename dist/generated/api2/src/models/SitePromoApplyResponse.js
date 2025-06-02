@@ -18,8 +18,8 @@ exports.SitePromoApplyResponseToJSONTyped = exports.SitePromoApplyResponseToJSON
  * @export
  */
 exports.SitePromoApplyResponseResultEnum = {
-    TopUp: 'top_up',
-    Tariff: 'tariff'
+    top_up: 'top_up',
+    tariff: 'tariff'
 };
 /**
  * Check if a given object implements the SitePromoApplyResponse interface.

@@ -26,9 +26,9 @@ exports.SiteUpdateChatTelegramRequestVEnum = {
  * @export
  */
 exports.SiteUpdateChatTelegramRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SiteUpdateChatTelegramRequest interface.
@@ -38,9 +38,9 @@ function instanceOfSiteUpdateChatTelegramRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
-    if (!('channelId' in value) || value['channelId'] === undefined)
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     return true;
 }
@@ -56,8 +56,8 @@ function SiteUpdateChatTelegramRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
-        'channelId': json['channel_id'],
+        'project_id': json['project_id'],
+        'channel_id': json['channel_id'],
         'link': json['link'] == null ? undefined : json['link'],
         'select': json['select'] == null ? undefined : json['select'],
         'messageId': json['messageId'] == null ? undefined : json['messageId'],
@@ -75,8 +75,8 @@ function SiteUpdateChatTelegramRequestToJSONTyped(value, ignoreDiscriminator = f
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
-        'channel_id': value['channelId'],
+        'project_id': value['project_id'],
+        'channel_id': value['channel_id'],
         'link': value['link'],
         'select': value['select'],
         'messageId': value['messageId'],

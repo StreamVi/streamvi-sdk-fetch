@@ -18,44 +18,44 @@ exports.PlanRestreamCheckV2ResponseToJSONTyped = exports.PlanRestreamCheckV2Resp
  * @export
  */
 exports.PlanRestreamCheckV2ResponseCurrencyEnum = {
-    Rub: 'rub',
-    Usd: 'usd'
+    rub: 'rub',
+    usd: 'usd'
 };
 /**
  * @export
  */
 exports.PlanRestreamCheckV2ResponseChooseStatusEnum = {
-    New: 'new',
-    Prolongate: 'prolongate',
-    Upgrade: 'upgrade',
-    Downgrade: 'downgrade'
+    new: 'new',
+    prolongate: 'prolongate',
+    upgrade: 'upgrade',
+    downgrade: 'downgrade'
 };
 /**
  * @export
  */
 exports.PlanRestreamCheckV2ResponseStatusEnum = {
-    New: 'new',
-    Current: 'current',
-    CurrentUpgrade: 'current_upgrade',
-    CurrentDowngrade: 'current_downgrade',
-    Upgrade: 'upgrade',
-    Downgrade: 'downgrade'
+    new: 'new',
+    current: 'current',
+    current_upgrade: 'current_upgrade',
+    current_downgrade: 'current_downgrade',
+    upgrade: 'upgrade',
+    downgrade: 'downgrade'
 };
 /**
  * Check if a given object implements the PlanRestreamCheckV2Response interface.
  */
 function instanceOfPlanRestreamCheckV2Response(value) {
-    if (!('tariffPriceMonth' in value) || value['tariffPriceMonth'] === undefined)
+    if (!('tariff_price_month' in value) || value['tariff_price_month'] === undefined)
         return false;
-    if (!('tariffPriceYear' in value) || value['tariffPriceYear'] === undefined)
+    if (!('tariff_price_year' in value) || value['tariff_price_year'] === undefined)
         return false;
     if (!('balance' in value) || value['balance'] === undefined)
         return false;
-    if (!('buttonName' in value) || value['buttonName'] === undefined)
+    if (!('button_name' in value) || value['button_name'] === undefined)
         return false;
     if (!('currency' in value) || value['currency'] === undefined)
         return false;
-    if (!('chooseStatus' in value) || value['chooseStatus'] === undefined)
+    if (!('choose_status' in value) || value['choose_status'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
@@ -71,20 +71,20 @@ function PlanRestreamCheckV2ResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'tariffPriceMonth': json['tariff_price_month'],
-        'tariffPriceYear': json['tariff_price_year'],
+        'tariff_price_month': json['tariff_price_month'],
+        'tariff_price_year': json['tariff_price_year'],
         'balance': json['balance'],
         'sum': json['sum'] == null ? undefined : json['sum'],
-        'refundCurrent': json['refund_current'] == null ? undefined : json['refund_current'],
-        'refundAfter': json['refund_after'] == null ? undefined : json['refund_after'],
-        'refundBalance': json['refund_balance'] == null ? undefined : json['refund_balance'],
-        'decreaseBalance': json['decrease_balance'] == null ? undefined : json['decrease_balance'],
+        'refund_current': json['refund_current'] == null ? undefined : json['refund_current'],
+        'refund_after': json['refund_after'] == null ? undefined : json['refund_after'],
+        'refund_balance': json['refund_balance'] == null ? undefined : json['refund_balance'],
+        'decrease_balance': json['decrease_balance'] == null ? undefined : json['decrease_balance'],
         'total': json['total'] == null ? undefined : json['total'],
         'notification': json['notification'] == null ? undefined : json['notification'],
-        'notificationDate': json['notification_date'] == null ? undefined : (new Date(json['notification_date'])),
-        'buttonName': json['button_name'],
+        'notification_date': json['notification_date'] == null ? undefined : (new Date(json['notification_date'])),
+        'button_name': json['button_name'],
         'currency': json['currency'],
-        'chooseStatus': json['choose_status'],
+        'choose_status': json['choose_status'],
         'status': json['status'],
         'channel': json['channel'] == null ? undefined : json['channel'],
         'bitrate': json['bitrate'] == null ? undefined : json['bitrate'],
@@ -100,20 +100,20 @@ function PlanRestreamCheckV2ResponseToJSONTyped(value, ignoreDiscriminator = fal
         return value;
     }
     return {
-        'tariff_price_month': value['tariffPriceMonth'],
-        'tariff_price_year': value['tariffPriceYear'],
+        'tariff_price_month': value['tariff_price_month'],
+        'tariff_price_year': value['tariff_price_year'],
         'balance': value['balance'],
         'sum': value['sum'],
-        'refund_current': value['refundCurrent'],
-        'refund_after': value['refundAfter'],
-        'refund_balance': value['refundBalance'],
-        'decrease_balance': value['decreaseBalance'],
+        'refund_current': value['refund_current'],
+        'refund_after': value['refund_after'],
+        'refund_balance': value['refund_balance'],
+        'decrease_balance': value['decrease_balance'],
         'total': value['total'],
         'notification': value['notification'],
-        'notification_date': value['notificationDate'] == null ? undefined : ((value['notificationDate']).toISOString()),
-        'button_name': value['buttonName'],
+        'notification_date': value['notification_date'] == null ? undefined : ((value['notification_date']).toISOString()),
+        'button_name': value['button_name'],
         'currency': value['currency'],
-        'choose_status': value['chooseStatus'],
+        'choose_status': value['choose_status'],
         'status': value['status'],
         'channel': value['channel'],
         'bitrate': value['bitrate'],

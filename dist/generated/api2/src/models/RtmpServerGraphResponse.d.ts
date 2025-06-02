@@ -39,11 +39,11 @@ export interface RtmpServerGraphResponse {
  * @export
  */
 export declare const RtmpServerGraphResponseTypeEnum: {
-    readonly Performance: "performance";
-    readonly Network: "network";
-    readonly Cpu: "cpu";
-    readonly Ram: "ram";
-    readonly DeliveredPackages: "deliveredPackages";
+    readonly performance: "performance";
+    readonly network: "network";
+    readonly cpu: "cpu";
+    readonly ram: "ram";
+    readonly deliveredPackages: "deliveredPackages";
 };
 export type RtmpServerGraphResponseTypeEnum = typeof RtmpServerGraphResponseTypeEnum[keyof typeof RtmpServerGraphResponseTypeEnum];
 /**

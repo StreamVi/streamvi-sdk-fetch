@@ -20,13 +20,13 @@ export interface PlanRestreamCheckV2Response {
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    tariffPriceMonth: number;
+    tariff_price_month: number;
     /**
      * Tariff price
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    tariffPriceYear: number;
+    tariff_price_year: number;
     /**
      * Balance for pay
      * @type {number}
@@ -44,25 +44,25 @@ export interface PlanRestreamCheckV2Response {
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    refundCurrent?: number;
+    refund_current?: number;
     /**
      * Refund after
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    refundAfter?: number;
+    refund_after?: number;
     /**
      * Refund balance
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    refundBalance?: number;
+    refund_balance?: number;
     /**
      * Decrease balance
      * @type {number}
      * @memberof PlanRestreamCheckV2Response
      */
-    decreaseBalance?: number;
+    decrease_balance?: number;
     /**
      * Value for total
      * @type {number}
@@ -80,13 +80,13 @@ export interface PlanRestreamCheckV2Response {
      * @type {Date}
      * @memberof PlanRestreamCheckV2Response
      */
-    notificationDate?: Date;
+    notification_date?: Date;
     /**
      * Name for button
      * @type {string}
      * @memberof PlanRestreamCheckV2Response
      */
-    buttonName: string;
+    button_name: string;
     /**
      * Currency
      * @type {string}
@@ -98,7 +98,7 @@ export interface PlanRestreamCheckV2Response {
      * @type {string}
      * @memberof PlanRestreamCheckV2Response
      */
-    chooseStatus: PlanRestreamCheckV2ResponseChooseStatusEnum;
+    choose_status: PlanRestreamCheckV2ResponseChooseStatusEnum;
     /**
      * Status for plan
      * @type {string}
@@ -122,30 +122,30 @@ export interface PlanRestreamCheckV2Response {
  * @export
  */
 export declare const PlanRestreamCheckV2ResponseCurrencyEnum: {
-    readonly Rub: "rub";
-    readonly Usd: "usd";
+    readonly rub: "rub";
+    readonly usd: "usd";
 };
 export type PlanRestreamCheckV2ResponseCurrencyEnum = typeof PlanRestreamCheckV2ResponseCurrencyEnum[keyof typeof PlanRestreamCheckV2ResponseCurrencyEnum];
 /**
  * @export
  */
 export declare const PlanRestreamCheckV2ResponseChooseStatusEnum: {
-    readonly New: "new";
-    readonly Prolongate: "prolongate";
-    readonly Upgrade: "upgrade";
-    readonly Downgrade: "downgrade";
+    readonly new: "new";
+    readonly prolongate: "prolongate";
+    readonly upgrade: "upgrade";
+    readonly downgrade: "downgrade";
 };
 export type PlanRestreamCheckV2ResponseChooseStatusEnum = typeof PlanRestreamCheckV2ResponseChooseStatusEnum[keyof typeof PlanRestreamCheckV2ResponseChooseStatusEnum];
 /**
  * @export
  */
 export declare const PlanRestreamCheckV2ResponseStatusEnum: {
-    readonly New: "new";
-    readonly Current: "current";
-    readonly CurrentUpgrade: "current_upgrade";
-    readonly CurrentDowngrade: "current_downgrade";
-    readonly Upgrade: "upgrade";
-    readonly Downgrade: "downgrade";
+    readonly new: "new";
+    readonly current: "current";
+    readonly current_upgrade: "current_upgrade";
+    readonly current_downgrade: "current_downgrade";
+    readonly upgrade: "upgrade";
+    readonly downgrade: "downgrade";
 };
 export type PlanRestreamCheckV2ResponseStatusEnum = typeof PlanRestreamCheckV2ResponseStatusEnum[keyof typeof PlanRestreamCheckV2ResponseStatusEnum];
 /**

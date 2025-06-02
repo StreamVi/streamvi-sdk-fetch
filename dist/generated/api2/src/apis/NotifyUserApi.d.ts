@@ -18,19 +18,19 @@ export interface NotifyUserDelMobileTokenV1Request {
 }
 export interface NotifyUserGetScreenV1Request {
     language: NotifyUserGetScreenV1LanguageEnum;
-    projectId: number;
+    project_id: number;
     v?: NotifyUserGetScreenV1VEnum;
 }
 export interface NotifyUserGetV1Request {
-    projectId: number;
+    project_id: number;
     v?: NotifyUserGetV1VEnum;
 }
 export interface NotifyUserRemoveScreenV1Request {
-    projectId: number;
+    project_id: number;
     v?: NotifyUserRemoveScreenV1VEnum;
 }
 export interface NotifyUserSetV1Request {
-    siteSetNotifyUserRequest: SiteSetNotifyUserRequest;
+    SiteSetNotifyUserRequest: SiteSetNotifyUserRequest;
     v?: NotifyUserSetV1VEnum;
 }
 /**
@@ -59,7 +59,7 @@ export interface NotifyUserApiInterface {
      *
      * @summary Get user screen notify
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -73,7 +73,7 @@ export interface NotifyUserApiInterface {
     /**
      *
      * @summary Get user notify settings
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -87,7 +87,7 @@ export interface NotifyUserApiInterface {
     /**
      *
      * @summary Remove user screen notify
-     * @param {number} projectId Project id
+     * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -101,7 +101,7 @@ export interface NotifyUserApiInterface {
     /**
      *
      * @summary Set user notify settings
-     * @param {SiteSetNotifyUserRequest} siteSetNotifyUserRequest Set user notify settings
+     * @param {SiteSetNotifyUserRequest} SiteSetNotifyUserRequest Set user notify settings
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -162,9 +162,9 @@ export declare class NotifyUserApi extends runtime.BaseAPI implements NotifyUser
  * @export
  */
 export declare const NotifyUserDelMobileTokenV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type NotifyUserDelMobileTokenV1LanguageEnum = typeof NotifyUserDelMobileTokenV1LanguageEnum[keyof typeof NotifyUserDelMobileTokenV1LanguageEnum];
 /**
@@ -180,9 +180,9 @@ export type NotifyUserDelMobileTokenV1VEnum = typeof NotifyUserDelMobileTokenV1V
  * @export
  */
 export declare const NotifyUserGetScreenV1LanguageEnum: {
-    readonly Ru: "ru";
-    readonly En: "en";
-    readonly Cn: "cn";
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
 export type NotifyUserGetScreenV1LanguageEnum = typeof NotifyUserGetScreenV1LanguageEnum[keyof typeof NotifyUserGetScreenV1LanguageEnum];
 /**

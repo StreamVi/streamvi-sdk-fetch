@@ -66,8 +66,8 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['offset'] != null) {
             queryParameters['offset'] = requestParameters['offset'];
         }
-        if (requestParameters['projectId'] != null) {
-            queryParameters['project_id'] = requestParameters['projectId'];
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['name'] != null) {
             queryParameters['name'] = requestParameters['name'];
@@ -75,14 +75,14 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['channel'] != null) {
             queryParameters['channel'] = requestParameters['channel'];
         }
-        if (requestParameters['dateFrom'] != null) {
-            queryParameters['date_from'] = requestParameters['dateFrom'].toISOString();
+        if (requestParameters['date_from'] != null) {
+            queryParameters['date_from'] = requestParameters['date_from'].toISOString();
         }
-        if (requestParameters['dateTo'] != null) {
-            queryParameters['date_to'] = requestParameters['dateTo'].toISOString();
+        if (requestParameters['date_to'] != null) {
+            queryParameters['date_to'] = requestParameters['date_to'].toISOString();
         }
-        if (requestParameters['statusRead'] != null) {
-            queryParameters['status_read'] = requestParameters['statusRead'];
+        if (requestParameters['status_read'] != null) {
+            queryParameters['status_read'] = requestParameters['status_read'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -137,8 +137,8 @@ class NotifyHistoryApi extends runtime.BaseAPI {
      * Get my NotifyHistory item by id
      */
     async notifyHistoryGetV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling notifyHistoryGetV1().');
+        if (requestParameters['_id'] == null) {
+            throw new runtime.RequiredError('_id', 'Required parameter "_id" was null or undefined when calling notifyHistoryGetV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -147,8 +147,8 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         else {
             queryParameters['v'] = '1';
         }
-        if (requestParameters['id'] != null) {
-            queryParameters['_id'] = requestParameters['id'];
+        if (requestParameters['_id'] != null) {
+            queryParameters['_id'] = requestParameters['_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -173,8 +173,8 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling notifyHistoryMarkOfReadV1().');
         }
-        if (requestParameters['siteMarkReadHistoryRequest'] == null) {
-            throw new runtime.RequiredError('siteMarkReadHistoryRequest', 'Required parameter "siteMarkReadHistoryRequest" was null or undefined when calling notifyHistoryMarkOfReadV1().');
+        if (requestParameters['SiteMarkReadHistoryRequest'] == null) {
+            throw new runtime.RequiredError('SiteMarkReadHistoryRequest', 'Required parameter "SiteMarkReadHistoryRequest" was null or undefined when calling notifyHistoryMarkOfReadV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -193,7 +193,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteMarkReadHistoryRequestToJSON)(requestParameters['siteMarkReadHistoryRequest']),
+            body: (0, index_1.SiteMarkReadHistoryRequestToJSON)(requestParameters['SiteMarkReadHistoryRequest']),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteMarkReadHistoryResponseFromJSON)(jsonValue));
     }
@@ -208,14 +208,14 @@ class NotifyHistoryApi extends runtime.BaseAPI {
      * Run action in my notify item
      */
     async notifyHistoryRunActionV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['notifyHistoryId'] == null) {
-            throw new runtime.RequiredError('notifyHistoryId', 'Required parameter "notifyHistoryId" was null or undefined when calling notifyHistoryRunActionV1().');
+        if (requestParameters['notify_history_id'] == null) {
+            throw new runtime.RequiredError('notify_history_id', 'Required parameter "notify_history_id" was null or undefined when calling notifyHistoryRunActionV1().');
         }
-        if (requestParameters['actionName'] == null) {
-            throw new runtime.RequiredError('actionName', 'Required parameter "actionName" was null or undefined when calling notifyHistoryRunActionV1().');
+        if (requestParameters['action_name'] == null) {
+            throw new runtime.RequiredError('action_name', 'Required parameter "action_name" was null or undefined when calling notifyHistoryRunActionV1().');
         }
-        if (requestParameters['groupId'] == null) {
-            throw new runtime.RequiredError('groupId', 'Required parameter "groupId" was null or undefined when calling notifyHistoryRunActionV1().');
+        if (requestParameters['group_id'] == null) {
+            throw new runtime.RequiredError('group_id', 'Required parameter "group_id" was null or undefined when calling notifyHistoryRunActionV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -224,14 +224,14 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         else {
             queryParameters['v'] = '1';
         }
-        if (requestParameters['notifyHistoryId'] != null) {
-            queryParameters['notify_history_id'] = requestParameters['notifyHistoryId'];
+        if (requestParameters['notify_history_id'] != null) {
+            queryParameters['notify_history_id'] = requestParameters['notify_history_id'];
         }
-        if (requestParameters['actionName'] != null) {
-            queryParameters['action_name'] = requestParameters['actionName'];
+        if (requestParameters['action_name'] != null) {
+            queryParameters['action_name'] = requestParameters['action_name'];
         }
-        if (requestParameters['groupId'] != null) {
-            queryParameters['group_id'] = requestParameters['groupId'];
+        if (requestParameters['group_id'] != null) {
+            queryParameters['group_id'] = requestParameters['group_id'];
         }
         const headerParameters = {};
         const response = await this.request({
@@ -276,9 +276,9 @@ exports.NotifyHistoryApi = NotifyHistoryApi;
  * @export
  */
 exports.NotifyHistoryGetListMyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -292,119 +292,119 @@ exports.NotifyHistoryGetListMyV1VEnum = {
  * @export
  */
 exports.NotifyHistoryGetListMyV1NameEnum = {
-    HighBitrate: 'high_bitrate',
-    RequestAccessChannel: 'request_access_channel',
-    RequestAccessProject: 'request_access_project',
-    PromocodeTest: 'promocode_test',
-    StreamTest: 'stream_test',
-    PlanRestreamExpires: 'plan_restream_expires',
-    PlanRestreamExpired: 'plan_restream_expired',
-    PlanRestreamRenewed: 'plan_restream_renewed',
-    PlanTranscoderExpires: 'plan_transcoder_expires',
-    PlanTranscoderExpired: 'plan_transcoder_expired',
-    PlanTranscoderRenewed: 'plan_transcoder_renewed',
-    PlanStorageExpires: 'plan_storage_expires',
-    PlanStorageExpired: 'plan_storage_expired',
-    PlanStorageRenewed: 'plan_storage_renewed',
-    BroadcastUnsupportedCodec: 'broadcast_unsupported_codec',
-    BroadcastUnsupportedCodecScreen: 'broadcast_unsupported_codec_screen',
-    BroadcastBitrateExceededScreen: 'broadcast_bitrate_exceeded_screen',
-    RtmpConnectOldServerScreen: 'rtmp_connect_old_server_screen',
-    BroadcastNotAudio: 'broadcast_not_audio',
-    BroadcastBitrateExceeded: 'broadcast_bitrate_exceeded',
-    BroadcastStarted: 'broadcast_started',
-    BroadcastStopped: 'broadcast_stopped',
-    RestreamCheckTwitchBitrate1: 'restream_check_twitch_bitrate_1',
-    ApiPauseStart: 'api_pause_start',
-    ApiPauseEnd: 'api_pause_end',
-    ApiWaitEdit: 'api_wait_edit',
-    ApiRestreamStart: 'api_restream_start',
-    ApiRestreamStop: 'api_restream_stop',
-    ApiDropBroadcast: 'api_drop_broadcast',
-    ApiDropBroadcastRemoveCompany: 'api_drop_broadcast_remove_company',
-    ApiDropBroadcastUpdateKey: 'api_drop_broadcast_update_key',
-    PublisherDisconnected: 'publisher_disconnected',
-    PublisherConnected: 'publisher_connected',
-    PublisherInitializing: 'publisher_initializing',
-    PublisherClose: 'publisher_close',
-    BroadcastConnectedStart: 'broadcast_connected_start',
-    BroadcastConnectedEnd: 'broadcast_connected_end',
-    BroadcastConnectingStream: 'broadcast_connecting_stream',
-    BroadcastStartedNewStream: 'broadcast_started_new_stream',
-    BroadcastConnectingLost: 'broadcast_connecting_lost',
-    BroadcastVideoLostStart: 'broadcast_video_lost_start',
-    BroadcastVideoLostEnd: 'broadcast_video_lost_end',
-    BroadcastVideoPauseStart: 'broadcast_video_pause_start',
-    BroadcastVideoPauseEnd: 'broadcast_video_pause_end',
-    BroadcastInitRestream: 'broadcast_init_restream',
-    StartStream: 'start_stream',
-    CreateReader: 'create_reader',
-    StartChannel: 'start_channel',
-    StopChannel: 'stop_channel',
-    StopStreamVideoTimeout: 'stop_stream_video_timeout',
-    StopStreamNoStartVideo: 'stop_stream_no_start_video',
-    StopStream: 'stop_stream',
-    DeleteReader: 'delete_reader',
-    TranscoderStart: 'transcoder_start',
-    TranscoderStop: 'transcoder_stop',
-    StartChannelFailed: 'start_channel_failed',
-    StartChannelSuccess: 'start_channel_success',
-    ApiChannelInitializingStart: 'api_channel_initializing_start',
-    ApiChannelInitializingFailed: 'api_channel_initializing_failed',
-    ApiChannelInitializingSuccess: 'api_channel_initializing_success',
-    ChannelApiUpdateSettingsSuccess: 'channel_api_update_settings_success',
-    ChannelApiUpdateSettingsError: 'channel_api_update_settings_error',
-    ChannelApiUpdatePlaylistSuccess: 'channel_api_update_playlist_success',
-    ChannelApiUpdatePlaylistError: 'channel_api_update_playlist_error',
-    ChannelApiUpdateChatError: 'channel_api_update_chat_error',
-    ChannelApiStreamKeySuccess: 'channel_api_stream_key_success',
-    ChannelApiStreamKeyError: 'channel_api_stream_key_error',
-    ChannelApiAutoStopDisableSuccess: 'channel_api_auto_stop_disable_success',
-    ChannelApiAutoStopDisableError: 'channel_api_auto_stop_disable_error',
-    ChannelApiUnbindingStreamKeyError: 'channel_api_unbinding_stream_key_error',
-    ChannelApiCreateBroadcastSuccess: 'channel_api_create_broadcast_success',
-    ChannelApiCreateBroadcastError: 'channel_api_create_broadcast_error',
-    ChannelApiSetPlannedSuccess: 'channel_api_set_planned_success',
-    ChannelApiSetPlannedError: 'channel_api_set_planned_error',
-    ChannelApiSetThumbnailSuccess: 'channel_api_set_thumbnail_success',
-    ChannelApiSetThumbnailError: 'channel_api_set_thumbnail_error',
-    ChannelTokenError: 'channel_token_error',
-    ChannelApiGroupFailed: 'channel_api_group_failed',
-    NoAudioReader: 'no_audio_reader',
-    RestreamCheckTwitchBitrate2: 'restream_check_twitch_bitrate_2',
-    TranscoderSupportErrorScreen: 'transcoder_support_error_screen',
-    TranscoderTariffEndScreen: 'transcoder_tariff_end_screen',
-    TranscoderCountFlowScreen: 'transcoder_count_flow_screen',
-    TranscoderResolutionScreen: 'transcoder_resolution_screen',
-    StreamKeyBanned: 'stream_key_banned',
-    BroadcastChangeCodec: 'broadcast_change_codec',
-    BroadcastChangeRegion: 'broadcast_change_region',
-    VideoUploadError: 'video_upload_error',
-    StopChannelError: 'stop_channel_error',
-    BroadcastUserActionStop: 'broadcast_user_action_stop'
+    high_bitrate: 'high_bitrate',
+    request_access_channel: 'request_access_channel',
+    request_access_project: 'request_access_project',
+    promocode_test: 'promocode_test',
+    stream_test: 'stream_test',
+    plan_restream_expires: 'plan_restream_expires',
+    plan_restream_expired: 'plan_restream_expired',
+    plan_restream_renewed: 'plan_restream_renewed',
+    plan_transcoder_expires: 'plan_transcoder_expires',
+    plan_transcoder_expired: 'plan_transcoder_expired',
+    plan_transcoder_renewed: 'plan_transcoder_renewed',
+    plan_storage_expires: 'plan_storage_expires',
+    plan_storage_expired: 'plan_storage_expired',
+    plan_storage_renewed: 'plan_storage_renewed',
+    broadcast_unsupported_codec: 'broadcast_unsupported_codec',
+    broadcast_unsupported_codec_screen: 'broadcast_unsupported_codec_screen',
+    broadcast_bitrate_exceeded_screen: 'broadcast_bitrate_exceeded_screen',
+    rtmp_connect_old_server_screen: 'rtmp_connect_old_server_screen',
+    broadcast_not_audio: 'broadcast_not_audio',
+    broadcast_bitrate_exceeded: 'broadcast_bitrate_exceeded',
+    broadcast_started: 'broadcast_started',
+    broadcast_stopped: 'broadcast_stopped',
+    restream_check_twitch_bitrate_1: 'restream_check_twitch_bitrate_1',
+    api_pause_start: 'api_pause_start',
+    api_pause_end: 'api_pause_end',
+    api_wait_edit: 'api_wait_edit',
+    api_restream_start: 'api_restream_start',
+    api_restream_stop: 'api_restream_stop',
+    api_drop_broadcast: 'api_drop_broadcast',
+    api_drop_broadcast_remove_company: 'api_drop_broadcast_remove_company',
+    api_drop_broadcast_update_key: 'api_drop_broadcast_update_key',
+    publisher_disconnected: 'publisher_disconnected',
+    publisher_connected: 'publisher_connected',
+    publisher_initializing: 'publisher_initializing',
+    publisher_close: 'publisher_close',
+    broadcast_connected_start: 'broadcast_connected_start',
+    broadcast_connected_end: 'broadcast_connected_end',
+    broadcast_connecting_stream: 'broadcast_connecting_stream',
+    broadcast_started_new_stream: 'broadcast_started_new_stream',
+    broadcast_connecting_lost: 'broadcast_connecting_lost',
+    broadcast_video_lost_start: 'broadcast_video_lost_start',
+    broadcast_video_lost_end: 'broadcast_video_lost_end',
+    broadcast_video_pause_start: 'broadcast_video_pause_start',
+    broadcast_video_pause_end: 'broadcast_video_pause_end',
+    broadcast_init_restream: 'broadcast_init_restream',
+    start_stream: 'start_stream',
+    create_reader: 'create_reader',
+    start_channel: 'start_channel',
+    stop_channel: 'stop_channel',
+    stop_stream_video_timeout: 'stop_stream_video_timeout',
+    stop_stream_no_start_video: 'stop_stream_no_start_video',
+    stop_stream: 'stop_stream',
+    delete_reader: 'delete_reader',
+    transcoder_start: 'transcoder_start',
+    transcoder_stop: 'transcoder_stop',
+    start_channel_failed: 'start_channel_failed',
+    start_channel_success: 'start_channel_success',
+    api_channel_initializing_start: 'api_channel_initializing_start',
+    api_channel_initializing_failed: 'api_channel_initializing_failed',
+    api_channel_initializing_success: 'api_channel_initializing_success',
+    channel_api_update_settings_success: 'channel_api_update_settings_success',
+    channel_api_update_settings_error: 'channel_api_update_settings_error',
+    channel_api_update_playlist_success: 'channel_api_update_playlist_success',
+    channel_api_update_playlist_error: 'channel_api_update_playlist_error',
+    channel_api_update_chat_error: 'channel_api_update_chat_error',
+    channel_api_stream_key_success: 'channel_api_stream_key_success',
+    channel_api_stream_key_error: 'channel_api_stream_key_error',
+    channel_api_auto_stop_disable_success: 'channel_api_auto_stop_disable_success',
+    channel_api_auto_stop_disable_error: 'channel_api_auto_stop_disable_error',
+    channel_api_unbinding_stream_key_error: 'channel_api_unbinding_stream_key_error',
+    channel_api_create_broadcast_success: 'channel_api_create_broadcast_success',
+    channel_api_create_broadcast_error: 'channel_api_create_broadcast_error',
+    channel_api_set_planned_success: 'channel_api_set_planned_success',
+    channel_api_set_planned_error: 'channel_api_set_planned_error',
+    channel_api_set_thumbnail_success: 'channel_api_set_thumbnail_success',
+    channel_api_set_thumbnail_error: 'channel_api_set_thumbnail_error',
+    channel_token_error: 'channel_token_error',
+    channel_api_group_failed: 'channel_api_group_failed',
+    no_audio_reader: 'no_audio_reader',
+    restream_check_twitch_bitrate_2: 'restream_check_twitch_bitrate_2',
+    transcoder_support_error_screen: 'transcoder_support_error_screen',
+    transcoder_tariff_end_screen: 'transcoder_tariff_end_screen',
+    transcoder_count_flow_screen: 'transcoder_count_flow_screen',
+    transcoder_resolution_screen: 'transcoder_resolution_screen',
+    stream_key_banned: 'stream_key_banned',
+    broadcast_change_codec: 'broadcast_change_codec',
+    broadcast_change_region: 'broadcast_change_region',
+    video_upload_error: 'video_upload_error',
+    stop_channel_error: 'stop_channel_error',
+    broadcast_user_action_stop: 'broadcast_user_action_stop'
 };
 /**
  * @export
  */
 exports.NotifyHistoryGetListMyV1ChannelEnum = {
-    Telegram: 'telegram',
-    Cabinet: 'cabinet',
-    Mobile: 'mobile'
+    telegram: 'telegram',
+    cabinet: 'cabinet',
+    mobile: 'mobile'
 };
 /**
  * @export
  */
 exports.NotifyHistoryGetListMyV1StatusReadEnum = {
-    Unread: 'unread',
-    Read: 'read'
+    unread: 'unread',
+    read: 'read'
 };
 /**
  * @export
  */
 exports.NotifyHistoryGetStatusMyV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export
@@ -424,9 +424,9 @@ exports.NotifyHistoryGetV1VEnum = {
  * @export
  */
 exports.NotifyHistoryMarkOfReadV1LanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * @export

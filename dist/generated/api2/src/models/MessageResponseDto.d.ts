@@ -21,7 +21,7 @@ export interface MessageResponseDto {
      * @type {string}
      * @memberof MessageResponseDto
      */
-    eventId: string;
+    event_id: string;
     /**
      *
      * @type {Array<MessageRestreamResponseDto>}
@@ -51,19 +51,19 @@ export interface MessageResponseDto {
      * @type {Date}
      * @memberof MessageResponseDto
      */
-    createdAt: Date;
+    created_at: Date;
     /**
      *
      * @type {number}
      * @memberof MessageResponseDto
      */
-    broadcastId: number;
+    broadcast_id: number;
     /**
      *
      * @type {boolean}
      * @memberof MessageResponseDto
      */
-    isOutgoing: boolean;
+    is_outgoing: boolean;
 }
 /**
  * Check if a given object implements the MessageResponseDto interface.

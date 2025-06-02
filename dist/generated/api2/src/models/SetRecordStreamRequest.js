@@ -26,9 +26,9 @@ exports.SetRecordStreamRequestVEnum = {
  * @export
  */
 exports.SetRecordStreamRequestLanguageEnum = {
-    Ru: 'ru',
-    En: 'en',
-    Cn: 'cn'
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 };
 /**
  * Check if a given object implements the SetRecordStreamRequest interface.
@@ -38,7 +38,7 @@ function instanceOfSetRecordStreamRequest(value) {
         return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
-    if (!('projectId' in value) || value['projectId'] === undefined)
+    if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
     if (!('record' in value) || value['record'] === undefined)
         return false;
@@ -56,7 +56,7 @@ function SetRecordStreamRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'],
         'language': json['language'],
-        'projectId': json['project_id'],
+        'project_id': json['project_id'],
         'record': json['record'],
     };
 }
@@ -72,7 +72,7 @@ function SetRecordStreamRequestToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
-        'project_id': value['projectId'],
+        'project_id': value['project_id'],
         'record': value['record'],
     };
 }
