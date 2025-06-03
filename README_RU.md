@@ -14,7 +14,23 @@
 
 ## Установка
 
+### Установка из GitHub репозитория
+
 ```bash
+npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git
+```
+
+### Установка определённой версии/тега
+
+```bash
+npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git#v1.0.1
+```
+
+### Установка для разработки (клонирование репозитория)
+
+```bash
+git clone https://github.com/StreamVi/streamvi-sdk-fetch.git
+cd streamvi-sdk-fetch
 npm install
 ```
 
@@ -31,7 +47,26 @@ PORT=3000
 
 ## Использование
 
+### Импорт модулей после установки
+
+После установки из GitHub вы можете импортировать модули следующим образом:
+
+```typescript
+// Импорт основного класса конфигурации
+import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
+
+// Импорт конкретных API классов и перечислений
+import { 
+  UserProjectApi, 
+  UserProjectGetProjectInfoV1LanguageEnum,
+  PaySettingApi,
+  PaySettingGetSettingV3LanguageEnum 
+} from 'streamvi-sdk-fetch';
+```
+
 ### Запуск примера сервера для авторизации через StreamVi
+
+Если вы клонировали репозиторий для разработки:
 
 ```bash
 npm run example
@@ -42,8 +77,7 @@ npm run example
 ### Пример получения информации о проекте через SDK
 
 ```typescript
-import { StreamViSdkConfig } from './src/streamvi-sdk-config';
-import { UserProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from './src/generated/api2/api';
+import { StreamViSdkConfig, UserProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from 'streamvi-sdk-fetch';
 
 async function getProjectInfo(accessToken: string, projectId: number, language: UserProjectGetProjectInfoV1LanguageEnum = UserProjectGetProjectInfoV1LanguageEnum.ru) {
   const sdkConfig = new StreamViSdkConfig({ accessToken });
@@ -65,8 +99,7 @@ console.log(projectInfo.data.photo_100); // URL аватара проекта
 ### Пример использования PaySetting API с версией 3
 
 ```typescript
-import { StreamViSdkConfig } from './src/streamvi-sdk-config';
-import { PaySettingApi, PaySettingGetSettingV3LanguageEnum } from './src/generated/api2/api';
+import { StreamViSdkConfig, PaySettingApi, PaySettingGetSettingV3LanguageEnum } from 'streamvi-sdk-fetch';
 
 async function getPaySettings(accessToken: string, projectId: number, language: PaySettingGetSettingV3LanguageEnum = PaySettingGetSettingV3LanguageEnum.ru) {
   const sdkConfig = new StreamViSdkConfig({ accessToken });
@@ -78,6 +111,47 @@ async function getPaySettings(accessToken: string, projectId: number, language: 
   });
   return response; // Ответ содержит данные напрямую, доступ через response.data
 }
+```
+
+### Полный рабочий пример
+
+```typescript
+import { 
+  StreamViSdkConfig, 
+  UserProjectApi, 
+  UserProjectGetProjectInfoV1LanguageEnum,
+  PaymentApi,
+  PaymentGetPaymentHistoryV1LanguageEnum 
+} from 'streamvi-sdk-fetch';
+
+class StreamViClient {
+  private config: StreamViSdkConfig;
+
+  constructor(accessToken: string) {
+    this.config = new StreamViSdkConfig({ accessToken });
+  }
+
+  async getProjectInfo(projectId: number, language = UserProjectGetProjectInfoV1LanguageEnum.ru) {
+    const api = new UserProjectApi(this.config.configuration);
+    return await api.userProjectGetProjectInfoV1({
+      language,
+      project_id: projectId
+    });
+  }
+
+  async getPaymentHistory(projectId: number, language = PaymentGetPaymentHistoryV1LanguageEnum.ru) {
+    const api = new PaymentApi(this.config.configuration);
+    return await api.paymentGetPaymentHistoryV1({
+      language,
+      project_id: projectId
+    });
+  }
+}
+
+// Использование
+const client = new StreamViClient('ваш_токен_доступа');
+const projectInfo = await client.getProjectInfo(123);
+console.log(projectInfo.data);
 ```
 
 ## Доступные API
