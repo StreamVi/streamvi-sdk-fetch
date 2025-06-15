@@ -6,8 +6,8 @@
  *
  * @example
  * ```typescript
- * import { StreamViSdkConfig } from 'streamvi-sdk';
- * import { UserProjectApi } from 'streamvi-sdk';
+ * import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
+ * import { UserProjectApi } from 'streamvi-sdk-fetch';
  *
  * const config = new StreamViSdkConfig({ accessToken: 'your_token' });
  * const userProjectApi = new UserProjectApi(config.configuration);
