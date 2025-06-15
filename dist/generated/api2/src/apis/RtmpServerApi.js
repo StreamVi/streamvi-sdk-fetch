@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RtmpServerStateV1VEnum = exports.RtmpServerStateV1IntervalEnum = exports.RtmpServerStateV1LanguageEnum = exports.RtmpServerListV1VEnum = exports.RtmpServerListV1IntervalEnum = exports.RtmpServerListV1LanguageEnum = exports.RtmpServerGraphV1VEnum = exports.RtmpServerGraphV1TypeEnum = exports.RtmpServerGraphV1IntervalEnum = exports.RtmpServerGraphV1LanguageEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = exports.RtmpServerApi = void 0;
+exports.RtmpServerStateV1VEnum = exports.RtmpServerStateV1IntervalEnum = exports.RtmpServerStateV1LanguageEnum = exports.RtmpServerListV2VEnum = exports.RtmpServerListV2IntervalEnum = exports.RtmpServerListV2LanguageEnum = exports.RtmpServerGraphV1VEnum = exports.RtmpServerGraphV1TypeEnum = exports.RtmpServerGraphV1IntervalEnum = exports.RtmpServerGraphV1LanguageEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = exports.RtmpServerApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -124,22 +124,22 @@ class RtmpServerApi extends runtime.BaseAPI {
     /**
      * List rtmp servers
      */
-    async rtmpServerListV1Raw(requestParameters, initOverrides) {
+    async rtmpServerListV2Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListV1().');
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListV2().');
         }
         if (requestParameters['project_id'] == null) {
-            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListV1().');
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListV2().');
         }
         if (requestParameters['interval'] == null) {
-            throw new runtime.RequiredError('interval', 'Required parameter "interval" was null or undefined when calling rtmpServerListV1().');
+            throw new runtime.RequiredError('interval', 'Required parameter "interval" was null or undefined when calling rtmpServerListV2().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
-            queryParameters['v'] = '1';
+            queryParameters['v'] = '2';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -157,13 +157,13 @@ class RtmpServerApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListV2ResponseFromJSON)(jsonValue));
     }
     /**
      * List rtmp servers
      */
-    async rtmpServerListV1(requestParameters, initOverrides) {
-        const response = await this.rtmpServerListV1Raw(requestParameters, initOverrides);
+    async rtmpServerListV2(requestParameters, initOverrides) {
+        const response = await this.rtmpServerListV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -283,7 +283,7 @@ exports.RtmpServerGraphV1VEnum = {
 /**
  * @export
  */
-exports.RtmpServerListV1LanguageEnum = {
+exports.RtmpServerListV2LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
@@ -291,7 +291,7 @@ exports.RtmpServerListV1LanguageEnum = {
 /**
  * @export
  */
-exports.RtmpServerListV1IntervalEnum = {
+exports.RtmpServerListV2IntervalEnum = {
     NUMBER_1: 1,
     NUMBER_3: 3,
     NUMBER_6: 6,
@@ -301,7 +301,7 @@ exports.RtmpServerListV1IntervalEnum = {
 /**
  * @export
  */
-exports.RtmpServerListV1VEnum = {
+exports.RtmpServerListV2VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'

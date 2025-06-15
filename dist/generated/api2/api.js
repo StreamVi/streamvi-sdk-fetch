@@ -64,5 +64,5 @@ __exportStar(require("./src/apis/StreamKeyApi"), exports);
 __exportStar(require("./src/apis/StreamPullKeysApi"), exports);
 __exportStar(require("./src/apis/TransactionsApi"), exports);
 __exportStar(require("./src/apis/TranscodersApi"), exports);
-__exportStar(require("./src/apis/UserApi"), exports);
-__exportStar(require("./src/apis/UserProjectApi"), exports);
+__exportStar(require("./src/apis/UsersApi"), exports);
+__exportStar(require("./src/apis/AccountApi"), exports);

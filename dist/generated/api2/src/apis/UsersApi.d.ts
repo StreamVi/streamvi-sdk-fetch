@@ -24,29 +24,32 @@ export interface UserUpdateProfileV1Request {
     avatar?: Blob;
 }
 /**
- * UserApi - interface
+ * UsersApi - interface
  *
  * @export
- * @interface UserApiInterface
+ * @interface UsersApiInterface
  */
-export interface UserApiInterface {
+export interface UsersApiInterface {
     /**
-     *
+     * Use /method/account/profile instead.
      * @summary Get user profile
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
-     * @memberof UserApiInterface
+     * @memberof UsersApiInterface
      */
     userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
+     * Use /method/account/profile instead.
      * Get user profile
+     * @deprecated
      */
     userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
-     *
+     * Use /method/account/profile instead.
      * @summary Update profile
      * @param {string} v Version
      * @param {string} language Current language
@@ -54,33 +57,44 @@ export interface UserApiInterface {
      * @param {string} last_name Last name
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
-     * @memberof UserApiInterface
+     * @memberof UsersApiInterface
      */
     userUpdateProfileV1Raw(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Use /method/account/profile instead.
      * Update profile
+     * @deprecated
      */
     userUpdateProfileV1(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
 /**
  *
  */
-export declare class UserApi extends runtime.BaseAPI implements UserApiInterface {
+export declare class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
     /**
+     * Use /method/account/profile instead.
      * Get user profile
+     * @deprecated
      */
     userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
+     * Use /method/account/profile instead.
      * Get user profile
+     * @deprecated
      */
     userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
+     * Use /method/account/profile instead.
      * Update profile
+     * @deprecated
      */
     userUpdateProfileV1Raw(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Use /method/account/profile instead.
      * Update profile
+     * @deprecated
      */
     userUpdateProfileV1(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
@@ -120,4 +134,4 @@ export declare const UserUpdateProfileV1LanguageEnum: {
     readonly cn: "cn";
 };
 export type UserUpdateProfileV1LanguageEnum = typeof UserUpdateProfileV1LanguageEnum[keyof typeof UserUpdateProfileV1LanguageEnum];
-//# sourceMappingURL=UserApi.d.ts.map
+//# sourceMappingURL=UsersApi.d.ts.map

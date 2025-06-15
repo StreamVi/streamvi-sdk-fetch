@@ -36,19 +36,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserUpdateProfileV1LanguageEnum = exports.UserUpdateProfileV1VEnum = exports.UserGetProfileV1VEnum = exports.UserGetProfileV1LanguageEnum = exports.UserApi = void 0;
+exports.AccountUpdateProfileV1LanguageEnum = exports.AccountUpdateProfileV1VEnum = exports.AccountGetProfileV1VEnum = exports.AccountGetProfileV1LanguageEnum = exports.AccountApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
  *
  */
-class UserApi extends runtime.BaseAPI {
+class AccountApi extends runtime.BaseAPI {
     /**
-     * Get user profile
+     * Get account profile
      */
-    async userGetProfileV1Raw(requestParameters, initOverrides) {
+    async accountGetProfileV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userGetProfileV1().');
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling accountGetProfileV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -65,7 +65,7 @@ class UserApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         const response = await this.request({
-            path: `/method/users/profile`,
+            path: `/method/account/profile`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -73,27 +73,27 @@ class UserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProfileResponseFromJSON)(jsonValue));
     }
     /**
-     * Get user profile
+     * Get account profile
      */
-    async userGetProfileV1(requestParameters, initOverrides) {
-        const response = await this.userGetProfileV1Raw(requestParameters, initOverrides);
+    async accountGetProfileV1(requestParameters, initOverrides) {
+        const response = await this.accountGetProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
-     * Update profile
+     * Update account profile
      */
-    async userUpdateProfileV1Raw(requestParameters, initOverrides) {
+    async accountUpdateProfileV1Raw(requestParameters, initOverrides) {
         if (requestParameters['v'] == null) {
-            throw new runtime.RequiredError('v', 'Required parameter "v" was null or undefined when calling userUpdateProfileV1().');
+            throw new runtime.RequiredError('v', 'Required parameter "v" was null or undefined when calling accountUpdateProfileV1().');
         }
         if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userUpdateProfileV1().');
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling accountUpdateProfileV1().');
         }
         if (requestParameters['first_name'] == null) {
-            throw new runtime.RequiredError('first_name', 'Required parameter "first_name" was null or undefined when calling userUpdateProfileV1().');
+            throw new runtime.RequiredError('first_name', 'Required parameter "first_name" was null or undefined when calling accountUpdateProfileV1().');
         }
         if (requestParameters['last_name'] == null) {
-            throw new runtime.RequiredError('last_name', 'Required parameter "last_name" was null or undefined when calling userUpdateProfileV1().');
+            throw new runtime.RequiredError('last_name', 'Required parameter "last_name" was null or undefined when calling accountUpdateProfileV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -131,7 +131,7 @@ class UserApi extends runtime.BaseAPI {
             formParams.append('avatar', requestParameters['avatar']);
         }
         const response = await this.request({
-            path: `/method/users/profile`,
+            path: `/method/account/profile`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -140,18 +140,18 @@ class UserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Update profile
+     * Update account profile
      */
-    async userUpdateProfileV1(requestParameters, initOverrides) {
-        const response = await this.userUpdateProfileV1Raw(requestParameters, initOverrides);
+    async accountUpdateProfileV1(requestParameters, initOverrides) {
+        const response = await this.accountUpdateProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 }
-exports.UserApi = UserApi;
+exports.AccountApi = AccountApi;
 /**
  * @export
  */
-exports.UserGetProfileV1LanguageEnum = {
+exports.AccountGetProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
@@ -159,7 +159,7 @@ exports.UserGetProfileV1LanguageEnum = {
 /**
  * @export
  */
-exports.UserGetProfileV1VEnum = {
+exports.AccountGetProfileV1VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'
@@ -167,7 +167,7 @@ exports.UserGetProfileV1VEnum = {
 /**
  * @export
  */
-exports.UserUpdateProfileV1VEnum = {
+exports.AccountUpdateProfileV1VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'
@@ -175,7 +175,7 @@ exports.UserUpdateProfileV1VEnum = {
 /**
  * @export
  */
-exports.UserUpdateProfileV1LanguageEnum = {
+exports.AccountUpdateProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'

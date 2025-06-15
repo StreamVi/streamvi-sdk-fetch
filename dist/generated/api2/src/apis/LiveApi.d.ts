@@ -25,19 +25,22 @@ export interface ControllersRestreamsV1Request {
  */
 export interface LiveApiInterface {
     /**
-     *
+     * Use /site/broadcast/restreams instead.
      * @summary View live info
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof LiveApiInterface
      */
     controllersRestreamsV1Raw(requestParameters: ControllersRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteLiveRestreamsInfoResponse>>;
     /**
+     * Use /site/broadcast/restreams instead.
      * View live info
+     * @deprecated
      */
     controllersRestreamsV1(requestParameters: ControllersRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteLiveRestreamsInfoResponse>;
 }
@@ -46,11 +49,15 @@ export interface LiveApiInterface {
  */
 export declare class LiveApi extends runtime.BaseAPI implements LiveApiInterface {
     /**
+     * Use /site/broadcast/restreams instead.
      * View live info
+     * @deprecated
      */
     controllersRestreamsV1Raw(requestParameters: ControllersRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteLiveRestreamsInfoResponse>>;
     /**
+     * Use /site/broadcast/restreams instead.
      * View live info
+     * @deprecated
      */
     controllersRestreamsV1(requestParameters: ControllersRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteLiveRestreamsInfoResponse>;
 }

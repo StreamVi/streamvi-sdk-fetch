@@ -10,25 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { CodeAppAuthResponse, RefreshAuthResponse, SiteAuthExchangeRequest, SiteLogoutAuthRequest, SiteRefreshAuthBodyRequest, SuccessResponse } from '../models/index';
-export interface AuthAuthTelegramV1Request {
-    language: AuthAuthTelegramV1LanguageEnum;
-    auth_date: number;
-    id: number;
-    first_name: string;
-    hash: string;
-    app: AuthAuthTelegramV1AppEnum;
-    v?: AuthAuthTelegramV1VEnum;
-    last_name?: string;
-    username?: string;
-    photo_url?: string;
-    language_code?: string;
-    is_premium?: boolean;
-    added_to_attachment_menu?: boolean;
-    refId?: string;
-    redirect?: string;
-    country?: string;
-}
+import type { CodeAppAuthResponse, RefreshAuthResponse, SiteAuthExchangeRequest, SuccessResponse } from '../models/index';
 export interface AuthCallbackGoogleV1Request {
     state: string;
 }
@@ -73,20 +55,6 @@ export interface AuthGetAuthUrlV1Request {
     refId?: string;
     country?: string;
 }
-export interface AuthGetProfileV1Request {
-    language: AuthGetProfileV1LanguageEnum;
-    v?: AuthGetProfileV1VEnum;
-}
-export interface AuthGuestV1Request {
-    refId: string;
-}
-export interface AuthLogoutV1Request {
-    SiteLogoutAuthRequest: SiteLogoutAuthRequest;
-}
-export interface AuthRefreshAccessV1Request {
-    User_Agent: string;
-    SiteRefreshAuthBodyRequest: SiteRefreshAuthBodyRequest;
-}
 /**
  * AuthApi - interface
  *
@@ -94,34 +62,6 @@ export interface AuthRefreshAccessV1Request {
  * @interface AuthApiInterface
  */
 export interface AuthApiInterface {
-    /**
-     *
-     * @summary Auth telegram
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} auth_date Time auth
-     * @param {number} id Telegram userId
-     * @param {string} first_name First name
-     * @param {string} hash Hash
-     * @param {'site' | 'admin' | 'mobile' | 'desktop'} app App oauth
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {string} [last_name] Last name
-     * @param {string} [username] Nickname
-     * @param {string} [photo_url] Photo
-     * @param {string} [language_code] IETF language tag of the user\&#39;s language
-     * @param {boolean} [is_premium] True, if this user is a Telegram Premium user
-     * @param {boolean} [added_to_attachment_menu] True, if this user added the bot to the attachment menu
-     * @param {string} [refId] Referal id
-     * @param {string} [redirect] Redirect url
-     * @param {string} [country] Country code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApiInterface
-     */
-    authAuthTelegramV1Raw(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Auth telegram
-     */
-    authAuthTelegramV1(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
      * @summary Internal request of auth google
@@ -268,73 +208,11 @@ export interface AuthApiInterface {
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     *
-     * @summary Get basic data for auth user
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApiInterface
-     */
-    authGetProfileV1Raw(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Get basic data for auth user
-     */
-    authGetProfileV1(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     *
-     * @summary Guest request of auth
-     * @param {string} refId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApiInterface
-     */
-    authGuestV1Raw(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Guest request of auth
-     */
-    authGuestV1(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     *
-     * @summary Logout
-     * @param {SiteLogoutAuthRequest} SiteLogoutAuthRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApiInterface
-     */
-    authLogoutV1Raw(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
-    /**
-     * Logout
-     */
-    authLogoutV1(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
-    /**
-     *
-     * @summary Update access token
-     * @param {string} User_Agent
-     * @param {SiteRefreshAuthBodyRequest} SiteRefreshAuthBodyRequest
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AuthApiInterface
-     */
-    authRefreshAccessV1Raw(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>>;
-    /**
-     * Update access token
-     */
-    authRefreshAccessV1(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse>;
 }
 /**
  *
  */
 export declare class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
-    /**
-     * Auth telegram
-     */
-    authAuthTelegramV1Raw(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Auth telegram
-     */
-    authAuthTelegramV1(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Internal request of auth google
      */
@@ -415,67 +293,7 @@ export declare class AuthApi extends runtime.BaseAPI implements AuthApiInterface
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Get basic data for auth user
-     */
-    authGetProfileV1Raw(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Get basic data for auth user
-     */
-    authGetProfileV1(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Guest request of auth
-     */
-    authGuestV1Raw(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * Guest request of auth
-     */
-    authGuestV1(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * Logout
-     */
-    authLogoutV1Raw(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
-    /**
-     * Logout
-     */
-    authLogoutV1(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
-    /**
-     * Update access token
-     */
-    authRefreshAccessV1Raw(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>>;
-    /**
-     * Update access token
-     */
-    authRefreshAccessV1(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse>;
 }
-/**
- * @export
- */
-export declare const AuthAuthTelegramV1LanguageEnum: {
-    readonly ru: "ru";
-    readonly en: "en";
-    readonly cn: "cn";
-};
-export type AuthAuthTelegramV1LanguageEnum = typeof AuthAuthTelegramV1LanguageEnum[keyof typeof AuthAuthTelegramV1LanguageEnum];
-/**
- * @export
- */
-export declare const AuthAuthTelegramV1AppEnum: {
-    readonly site: "site";
-    readonly admin: "admin";
-    readonly mobile: "mobile";
-    readonly desktop: "desktop";
-};
-export type AuthAuthTelegramV1AppEnum = typeof AuthAuthTelegramV1AppEnum[keyof typeof AuthAuthTelegramV1AppEnum];
-/**
- * @export
- */
-export declare const AuthAuthTelegramV1VEnum: {
-    readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
-};
-export type AuthAuthTelegramV1VEnum = typeof AuthAuthTelegramV1VEnum[keyof typeof AuthAuthTelegramV1VEnum];
 /**
  * @export
  */
@@ -634,22 +452,4 @@ export declare const AuthGetAuthUrlV1AppEnum: {
     readonly desktop: "desktop";
 };
 export type AuthGetAuthUrlV1AppEnum = typeof AuthGetAuthUrlV1AppEnum[keyof typeof AuthGetAuthUrlV1AppEnum];
-/**
- * @export
- */
-export declare const AuthGetProfileV1LanguageEnum: {
-    readonly ru: "ru";
-    readonly en: "en";
-    readonly cn: "cn";
-};
-export type AuthGetProfileV1LanguageEnum = typeof AuthGetProfileV1LanguageEnum[keyof typeof AuthGetProfileV1LanguageEnum];
-/**
- * @export
- */
-export declare const AuthGetProfileV1VEnum: {
-    readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
-};
-export type AuthGetProfileV1VEnum = typeof AuthGetProfileV1VEnum[keyof typeof AuthGetProfileV1VEnum];
 //# sourceMappingURL=AuthApi.d.ts.map

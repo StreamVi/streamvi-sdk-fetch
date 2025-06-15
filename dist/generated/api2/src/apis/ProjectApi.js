@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectApi = void 0;
+exports.UserProjectSelectProjectV1VEnum = exports.UserProjectSelectProjectV1LanguageEnum = exports.UserProjectListV1VEnum = exports.UserProjectListV1LanguageEnum = exports.UserProjectListAccessV1VEnum = exports.UserProjectListAccessV1LanguageEnum = exports.UserProjectGetUserV1VEnum = exports.UserProjectGetUserV1LanguageEnum = exports.UserProjectGetProjectV1VEnum = exports.UserProjectGetProjectV1LanguageEnum = exports.UserProjectGetProjectInfoV1VEnum = exports.UserProjectGetProjectInfoV1LanguageEnum = exports.UserProjectDelV1VEnum = exports.UserProjectDelV1LanguageEnum = exports.UserProjectChangeAccessV1VEnum = exports.UserProjectChangeAccessV1AccessTypeEnum = exports.UserProjectChangeAccessV1LanguageEnum = exports.ProjectApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,28 +44,470 @@ const index_1 = require("../models/index");
  */
 class ProjectApi extends runtime.BaseAPI {
     /**
-     * Get live status
+     * Change access user from project
      */
-    async methodLiveStatusV1Raw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+    async userProjectChangeAccessV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectChangeAccessV1().');
         }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectChangeAccessV1().');
+        }
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError('user_id', 'Required parameter "user_id" was null or undefined when calling userProjectChangeAccessV1().');
+        }
+        if (requestParameters['access_type'] == null) {
+            throw new runtime.RequiredError('access_type', 'Required parameter "access_type" was null or undefined when calling userProjectChangeAccessV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
+        }
+        if (requestParameters['access_type'] != null) {
+            queryParameters['access_type'] = requestParameters['access_type'];
+        }
+        const headerParameters = {};
         const response = await this.request({
-            path: `/method/project/live-status`,
+            path: `/method/project/user/change_access`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Change access user from project
+     */
+    async userProjectChangeAccessV1(requestParameters, initOverrides) {
+        const response = await this.userProjectChangeAccessV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Remove user from project
+     */
+    async userProjectDelV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectDelV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectDelV1().');
+        }
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError('user_id', 'Required parameter "user_id" was null or undefined when calling userProjectDelV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/user/del`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Remove user from project
+     */
+    async userProjectDelV1(requestParameters, initOverrides) {
+        const response = await this.userProjectDelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get project full info
+     */
+    async userProjectGetProjectInfoV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetProjectInfoV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectGetProjectInfoV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/get_project_info`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodProjectLiveStatusResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectInfoResponseFromJSON)(jsonValue));
     }
     /**
-     * Get live status
+     * Get project full info
      */
-    async methodLiveStatusV1(initOverrides) {
-        const response = await this.methodLiveStatusV1Raw(initOverrides);
+    async userProjectGetProjectInfoV1(requestParameters, initOverrides) {
+        const response = await this.userProjectGetProjectInfoV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get project by number id
+     */
+    async userProjectGetProjectV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetProjectV1().');
+        }
+        if (requestParameters['project_external_id'] == null) {
+            throw new runtime.RequiredError('project_external_id', 'Required parameter "project_external_id" was null or undefined when calling userProjectGetProjectV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_external_id'] != null) {
+            queryParameters['project_external_id'] = requestParameters['project_external_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/get_project`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get project by number id
+     */
+    async userProjectGetProjectV1(requestParameters, initOverrides) {
+        const response = await this.userProjectGetProjectV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get user by number id
+     */
+    async userProjectGetUserV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectGetUserV1().');
+        }
+        if (requestParameters['user_external_id'] == null) {
+            throw new runtime.RequiredError('user_external_id', 'Required parameter "user_external_id" was null or undefined when calling userProjectGetUserV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['user_external_id'] != null) {
+            queryParameters['user_external_id'] = requestParameters['user_external_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/get_user`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get user by number id
+     */
+    async userProjectGetUserV1(requestParameters, initOverrides) {
+        const response = await this.userProjectGetUserV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * List of user in project
+     */
+    async userProjectListAccessV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectListAccessV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectListAccessV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/user/list`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfUserProject2ProjectResponseFromJSON)(jsonValue));
+    }
+    /**
+     * List of user in project
+     */
+    async userProjectListAccessV1(requestParameters, initOverrides) {
+        const response = await this.userProjectListAccessV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * List of project for current user
+     */
+    async userProjectListV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectListV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/list`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfUserProjectResponseFromJSON)(jsonValue));
+    }
+    /**
+     * List of project for current user
+     */
+    async userProjectListV1(requestParameters, initOverrides) {
+        const response = await this.userProjectListV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Select user for project
+     */
+    async userProjectSelectProjectV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectSelectProjectV1().');
+        }
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling userProjectSelectProjectV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/project/select`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Select user for project
+     */
+    async userProjectSelectProjectV1(requestParameters, initOverrides) {
+        const response = await this.userProjectSelectProjectV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 }
 exports.ProjectApi = ProjectApi;
+/**
+ * @export
+ */
+exports.UserProjectChangeAccessV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectChangeAccessV1AccessTypeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_2: 2
+};
+/**
+ * @export
+ */
+exports.UserProjectChangeAccessV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectDelV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectDelV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetProjectInfoV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetProjectInfoV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetProjectV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetProjectV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetUserV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectGetUserV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectListAccessV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectListAccessV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectListV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectListV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.UserProjectSelectProjectV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectSelectProjectV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+};
