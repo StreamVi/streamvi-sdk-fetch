@@ -51,6 +51,6 @@ export * from './src/apis/StreamKeyApi';
 export * from './src/apis/StreamPullKeysApi';
 export * from './src/apis/TransactionsApi';
 export * from './src/apis/TranscodersApi';
-export * from './src/apis/UserApi';
-export * from './src/apis/UserProjectApi';
+export * from './src/apis/UsersApi';
+export * from './src/apis/AccountApi';
 
