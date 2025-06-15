@@ -1,6 +1,6 @@
 {
   "name": "streamvi-sdk-fetch",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fetch-based version of StreamVi SDK library for working with the StreamVi API (https://dev.streamvi.io)",
   "keywords": [
     "streamvi",
