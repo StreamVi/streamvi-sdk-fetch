@@ -3,7 +3,7 @@ import passport from 'passport';
 import type { Request } from 'express';
 import session from 'express-session';
 import { StreamViSdkConfig } from '../../src/streamvi-sdk-config';
-import { ProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from '../../src/generated/api2/src/apis/ProjectApi';
+import { ProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from '../../src/generated/api2';
 
 interface SessionData {
   accessToken?: string;
