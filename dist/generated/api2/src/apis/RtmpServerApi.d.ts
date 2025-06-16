@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfRtmpServerLocationResponse, RtmpServerGraphResponse, RtmpServerListResponse, RtmpServerStateResponse } from '../models/index';
+import type { ListOfRtmpServerLocationResponse, RtmpServerGraphResponse, RtmpServerListV2Response, RtmpServerStateResponse } from '../models/index';
 export interface MethodRtmpServerListLocationsUnauthorizedV1Request {
     language: MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum;
     v?: MethodRtmpServerListLocationsUnauthorizedV1VEnum;
@@ -21,11 +21,11 @@ export interface RtmpServerGraphV1Request {
     type: RtmpServerGraphV1TypeEnum;
     v?: RtmpServerGraphV1VEnum;
 }
-export interface RtmpServerListV1Request {
-    language: RtmpServerListV1LanguageEnum;
+export interface RtmpServerListV2Request {
+    language: RtmpServerListV2LanguageEnum;
     project_id: number;
-    interval: RtmpServerListV1IntervalEnum;
-    v?: RtmpServerListV1VEnum;
+    interval: RtmpServerListV2IntervalEnum;
+    v?: RtmpServerListV2VEnum;
 }
 export interface RtmpServerStateV1Request {
     language: RtmpServerStateV1LanguageEnum;
@@ -75,16 +75,16 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    rtmpServerListV1Raw(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponse>>;
+    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
     /**
      * List rtmp servers
      */
-    rtmpServerListV1(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponse>;
+    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
     /**
      *
      * @summary State of rtmp servers
@@ -136,11 +136,11 @@ export declare class RtmpServerApi extends runtime.BaseAPI implements RtmpServer
     /**
      * List rtmp servers
      */
-    rtmpServerListV1Raw(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponse>>;
+    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
     /**
      * List rtmp servers
      */
-    rtmpServerListV1(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponse>;
+    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
     /**
      * State of rtmp servers
      */
@@ -219,32 +219,32 @@ export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof 
 /**
  * @export
  */
-export declare const RtmpServerListV1LanguageEnum: {
+export declare const RtmpServerListV2LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
-export type RtmpServerListV1LanguageEnum = typeof RtmpServerListV1LanguageEnum[keyof typeof RtmpServerListV1LanguageEnum];
+export type RtmpServerListV2LanguageEnum = typeof RtmpServerListV2LanguageEnum[keyof typeof RtmpServerListV2LanguageEnum];
 /**
  * @export
  */
-export declare const RtmpServerListV1IntervalEnum: {
+export declare const RtmpServerListV2IntervalEnum: {
     readonly NUMBER_1: 1;
     readonly NUMBER_3: 3;
     readonly NUMBER_6: 6;
     readonly NUMBER_12: 12;
     readonly NUMBER_24: 24;
 };
-export type RtmpServerListV1IntervalEnum = typeof RtmpServerListV1IntervalEnum[keyof typeof RtmpServerListV1IntervalEnum];
+export type RtmpServerListV2IntervalEnum = typeof RtmpServerListV2IntervalEnum[keyof typeof RtmpServerListV2IntervalEnum];
 /**
  * @export
  */
-export declare const RtmpServerListV1VEnum: {
+export declare const RtmpServerListV2VEnum: {
     readonly _1: "1";
     readonly _2: "2";
     readonly _3: "3";
 };
-export type RtmpServerListV1VEnum = typeof RtmpServerListV1VEnum[keyof typeof RtmpServerListV1VEnum];
+export type RtmpServerListV2VEnum = typeof RtmpServerListV2VEnum[keyof typeof RtmpServerListV2VEnum];
 /**
  * @export
  */

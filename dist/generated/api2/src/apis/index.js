@@ -16,6 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /* tslint:disable */
 /* eslint-disable */
+__exportStar(require("./AccountApi"), exports);
 __exportStar(require("./AnalyticsApi"), exports);
 __exportStar(require("./AuthApi"), exports);
 __exportStar(require("./BlogPageApi"), exports);
@@ -53,5 +54,4 @@ __exportStar(require("./StreamKeyApi"), exports);
 __exportStar(require("./StreamPullKeysApi"), exports);
 __exportStar(require("./TransactionsApi"), exports);
 __exportStar(require("./TranscodersApi"), exports);
-__exportStar(require("./UserApi"), exports);
-__exportStar(require("./UserProjectApi"), exports);
+__exportStar(require("./UsersApi"), exports);

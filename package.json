@@ -1,6 +1,6 @@
 {
   "name": "streamvi-sdk-fetch",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Fetch-based version of StreamVi SDK library for working with the StreamVi API (https://dev.streamvi.io)",
   "keywords": [
     "streamvi",
@@ -29,7 +29,7 @@
     "src",
     "README.md"
   ],
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "example": "ts-node example/server.ts",
@@ -50,14 +50,12 @@
     "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {},
-  "optionalDependencies": {
+  "devDependencies": {
     "dotenv": "^16.3.1",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "passport": "^0.7.0",
-    "passport-streamvi": "^1.0.6"
-  },
-  "devDependencies": {
+    "passport-streamvi": "^1.0.6",
     "@openapitools/openapi-generator-cli": "2.20.2",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.22",

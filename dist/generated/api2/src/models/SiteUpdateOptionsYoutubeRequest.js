@@ -76,24 +76,6 @@ function instanceOfSiteUpdateOptionsYoutubeRequest(value) {
         return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
-    if (!('category_id' in value) || value['category_id'] === undefined)
-        return false;
-    if (!('category_name' in value) || value['category_name'] === undefined)
-        return false;
-    if (!('playlist_id' in value) || value['playlist_id'] === undefined)
-        return false;
-    if (!('audience' in value) || value['audience'] === undefined)
-        return false;
-    if (!('latency' in value) || value['latency'] === undefined)
-        return false;
-    if (!('privacy_video' in value) || value['privacy_video'] === undefined)
-        return false;
-    if (!('image' in value) || value['image'] === undefined)
-        return false;
-    if (!('lang' in value) || value['lang'] === undefined)
-        return false;
-    if (!('tags' in value) || value['tags'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfSiteUpdateOptionsYoutubeRequest = instanceOfSiteUpdateOptionsYoutubeRequest;
@@ -112,15 +94,15 @@ function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json, ignoreDiscriminator)
         'channel_id': json['channel_id'],
         'title': json['title'],
         'description': json['description'],
-        'category_id': json['category_id'],
-        'category_name': json['category_name'],
-        'playlist_id': json['playlist_id'],
-        'audience': json['audience'],
-        'latency': json['latency'],
-        'privacy_video': json['privacy_video'],
-        'image': json['image'],
-        'lang': json['lang'],
-        'tags': new Set(json['tags']),
+        'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'playlist_id': json['playlist_id'] == null ? undefined : json['playlist_id'],
+        'audience': json['audience'] == null ? undefined : json['audience'],
+        'latency': json['latency'] == null ? undefined : json['latency'],
+        'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
+        'image': json['image'] == null ? undefined : json['image'],
+        'lang': json['lang'] == null ? undefined : json['lang'],
+        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
     };
 }
 exports.SiteUpdateOptionsYoutubeRequestFromJSONTyped = SiteUpdateOptionsYoutubeRequestFromJSONTyped;
@@ -147,7 +129,7 @@ function SiteUpdateOptionsYoutubeRequestToJSONTyped(value, ignoreDiscriminator =
         'privacy_video': value['privacy_video'],
         'image': value['image'],
         'lang': value['lang'],
-        'tags': Array.from(value['tags']),
+        'tags': value['tags'] == null ? undefined : Array.from(value['tags']),
     };
 }
 exports.SiteUpdateOptionsYoutubeRequestToJSONTyped = SiteUpdateOptionsYoutubeRequestToJSONTyped;

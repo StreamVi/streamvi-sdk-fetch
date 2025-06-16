@@ -44,7 +44,9 @@ const index_1 = require("../models/index");
  */
 class LiveApi extends runtime.BaseAPI {
     /**
+     * Use /site/broadcast/restreams instead.
      * View live info
+     * @deprecated
      */
     async controllersRestreamsV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -82,7 +84,9 @@ class LiveApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteLiveRestreamsInfoResponseFromJSON)(jsonValue));
     }
     /**
+     * Use /site/broadcast/restreams instead.
      * View live info
+     * @deprecated
      */
     async controllersRestreamsV1(requestParameters, initOverrides) {
         const response = await this.controllersRestreamsV1Raw(requestParameters, initOverrides);

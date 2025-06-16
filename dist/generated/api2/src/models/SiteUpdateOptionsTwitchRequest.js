@@ -51,14 +51,6 @@ function instanceOfSiteUpdateOptionsTwitchRequest(value) {
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('category_id' in value) || value['category_id'] === undefined)
-        return false;
-    if (!('category_name' in value) || value['category_name'] === undefined)
-        return false;
-    if (!('lang' in value) || value['lang'] === undefined)
-        return false;
-    if (!('tags' in value) || value['tags'] === undefined)
-        return false;
     if (!('domain' in value) || value['domain'] === undefined)
         return false;
     return true;
@@ -78,10 +70,10 @@ function SiteUpdateOptionsTwitchRequestFromJSONTyped(json, ignoreDiscriminator) 
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'title': json['title'],
-        'category_id': json['category_id'],
-        'category_name': json['category_name'],
-        'lang': json['lang'],
-        'tags': new Set(json['tags']),
+        'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'lang': json['lang'] == null ? undefined : json['lang'],
+        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
         'domain': json['domain'],
     };
 }
@@ -103,7 +95,7 @@ function SiteUpdateOptionsTwitchRequestToJSONTyped(value, ignoreDiscriminator = 
         'category_id': value['category_id'],
         'category_name': value['category_name'],
         'lang': value['lang'],
-        'tags': Array.from(value['tags']),
+        'tags': value['tags'] == null ? undefined : Array.from(value['tags']),
         'domain': value['domain'],
     };
 }

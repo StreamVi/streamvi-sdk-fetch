@@ -44,10 +44,6 @@ function instanceOfSiteUpdateOptionsVkVideoLiveRequest(value) {
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('category_id' in value) || value['category_id'] === undefined)
-        return false;
-    if (!('category_name' in value) || value['category_name'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfSiteUpdateOptionsVkVideoLiveRequest = instanceOfSiteUpdateOptionsVkVideoLiveRequest;
@@ -65,8 +61,8 @@ function SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped(json, ignoreDiscrimina
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'title': json['title'],
-        'category_id': json['category_id'],
-        'category_name': json['category_name'],
+        'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
     };
 }
 exports.SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped = SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped;

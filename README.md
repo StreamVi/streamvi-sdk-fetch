@@ -57,7 +57,7 @@ import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
 
 // Import specific API classes and enums
 import { 
-  UserProjectApi, 
+  ProjectApi, 
   UserProjectGetProjectInfoV1LanguageEnum,
   PaySettingApi,
   PaySettingGetSettingV3LanguageEnum 
@@ -77,13 +77,13 @@ Open http://localhost:3000 and login via StreamVi.
 ### Example of getting project information via SDK
 
 ```typescript
-import { StreamViSdkConfig, UserProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from 'streamvi-sdk-fetch';
+import { StreamViSdkConfig, ProjectApi, UserProjectGetProjectInfoV1LanguageEnum } from 'streamvi-sdk-fetch';
 
 async function getProjectInfo(accessToken: string, projectId: number, language: UserProjectGetProjectInfoV1LanguageEnum = UserProjectGetProjectInfoV1LanguageEnum.ru) {
   const sdkConfig = new StreamViSdkConfig({ accessToken });
-  const userProjectApi = new UserProjectApi(sdkConfig.configuration);
+  const projectApi = new ProjectApi(sdkConfig.configuration);
 
-  const response = await userProjectApi.userProjectGetProjectInfoV1({
+  const response = await projectApi.userProjectGetProjectInfoV1({
     language: language,
     project_id: projectId
   });
@@ -118,10 +118,10 @@ async function getPaySettings(accessToken: string, projectId: number, language: 
 ```typescript
 import { 
   StreamViSdkConfig, 
-  UserProjectApi, 
+  ProjectApi, 
   UserProjectGetProjectInfoV1LanguageEnum,
   PaymentApi,
-  PaymentGetPaymentHistoryV1LanguageEnum 
+  PaymentListV1LanguageEnum 
 } from 'streamvi-sdk-fetch';
 
 class StreamViClient {
@@ -132,18 +132,19 @@ class StreamViClient {
   }
 
   async getProjectInfo(projectId: number, language = UserProjectGetProjectInfoV1LanguageEnum.en) {
-    const api = new UserProjectApi(this.config.configuration);
+    const api = new ProjectApi(this.config.configuration);
     return await api.userProjectGetProjectInfoV1({
       language,
       project_id: projectId
     });
   }
 
-  async getPaymentHistory(projectId: number, language = PaymentGetPaymentHistoryV1LanguageEnum.en) {
+  async getPaymentList(language = PaymentListV1LanguageEnum.en, pageSize = 10, page = 1) {
     const api = new PaymentApi(this.config.configuration);
-    return await api.paymentGetPaymentHistoryV1({
+    return await api.paymentListV1({
       language,
-      project_id: projectId
+      pageSize,
+      page
     });
   }
 }
@@ -158,6 +159,7 @@ console.log(projectInfo.data);
 
 After generation, the following API clients are available:
 
+- [AccountApi](src/generated/api2/docs/AccountApi.md)
 - [AnalyticsApi](src/generated/api2/docs/AnalyticsApi.md)
 - [AuthApi](src/generated/api2/docs/AuthApi.md)
 - [BlogPageApi](src/generated/api2/docs/BlogPageApi.md)
@@ -195,8 +197,7 @@ After generation, the following API clients are available:
 - [StreamPullKeysApi](src/generated/api2/docs/StreamPullKeysApi.md)
 - [TranscodersApi](src/generated/api2/docs/TranscodersApi.md)
 - [TransactionsApi](src/generated/api2/docs/TransactionsApi.md)
-- [UserApi](src/generated/api2/docs/UserApi.md)
-- [UserProjectApi](src/generated/api2/docs/UserProjectApi.md) 
+- [UsersApi](src/generated/api2/docs/UsersApi.md) 
 
 The full list is available in `src/generated/api2/api.ts`
 
