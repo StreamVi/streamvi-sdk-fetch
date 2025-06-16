@@ -54,25 +54,25 @@ export interface SiteUpdateOptionsTwitchRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    category_id?: string;
+    category_id: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    category_name?: string;
+    category_name: string;
     /**
      * 
      * @type {string}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    lang?: SiteUpdateOptionsTwitchRequestLangEnum;
+    lang: SiteUpdateOptionsTwitchRequestLangEnum;
     /**
      * 
      * @type {Set<string>}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    tags?: Set<string>;
+    tags: Set<string>;
     /**
      * domain
      * @type {string}
@@ -121,6 +121,10 @@ export function instanceOfSiteUpdateOptionsTwitchRequest(value: object): value i
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('category_id' in value) || value['category_id'] === undefined) return false;
+    if (!('category_name' in value) || value['category_name'] === undefined) return false;
+    if (!('lang' in value) || value['lang'] === undefined) return false;
+    if (!('tags' in value) || value['tags'] === undefined) return false;
     if (!('domain' in value) || value['domain'] === undefined) return false;
     return true;
 }
@@ -140,10 +144,10 @@ export function SiteUpdateOptionsTwitchRequestFromJSONTyped(json: any, ignoreDis
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'title': json['title'],
-        'category_id': json['category_id'] == null ? undefined : json['category_id'],
-        'category_name': json['category_name'] == null ? undefined : json['category_name'],
-        'lang': json['lang'] == null ? undefined : json['lang'],
-        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'category_id': json['category_id'],
+        'category_name': json['category_name'],
+        'lang': json['lang'],
+        'tags': new Set(json['tags']),
         'domain': json['domain'],
     };
 }
@@ -167,7 +171,7 @@ export function SiteUpdateOptionsTwitchRequestToJSONTyped(value?: SiteUpdateOpti
         'category_id': value['category_id'],
         'category_name': value['category_name'],
         'lang': value['lang'],
-        'tags': value['tags'] == null ? undefined : Array.from(value['tags'] as Set<any>),
+        'tags': Array.from(value['tags'] as Set<any>),
         'domain': value['domain'],
     };
 }

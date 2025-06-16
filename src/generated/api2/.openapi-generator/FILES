@@ -2,7 +2,6 @@
 .npmignore
 README.md
 package.json
-src/apis/AccountApi.ts
 src/apis/AnalyticsApi.ts
 src/apis/AuthApi.ts
 src/apis/BlogPageApi.ts
@@ -40,7 +39,8 @@ src/apis/StreamKeyApi.ts
 src/apis/StreamPullKeysApi.ts
 src/apis/TransactionsApi.ts
 src/apis/TranscodersApi.ts
-src/apis/UsersApi.ts
+src/apis/UserApi.ts
+src/apis/UserProjectApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/AmountItem.ts
@@ -95,6 +95,10 @@ src/models/MethodBroadcastRestreamsResponse.ts
 src/models/MethodChatHistoryResponse.ts
 src/models/MethodChatSendMessageRequestDto.ts
 src/models/MethodCurrentBroadcastResponse.ts
+src/models/MethodProjectLiveStatusInfo.ts
+src/models/MethodProjectLiveStatusInfoRestreamData.ts
+src/models/MethodProjectLiveStatusResponse.ts
+src/models/MethodProjectLiveStatusVideo.ts
 src/models/MethodSetStatusChannelRequest.ts
 src/models/MoneyFlowBalanceTypeValuesResponse.ts
 src/models/MoneyFlowDetails.ts
@@ -180,8 +184,8 @@ src/models/PullServerListResponse.ts
 src/models/PullServerTransports.ts
 src/models/RefreshAuthResponse.ts
 src/models/RtmpServerGraphResponse.ts
-src/models/RtmpServerListItemV2.ts
-src/models/RtmpServerListV2Response.ts
+src/models/RtmpServerListItem.ts
+src/models/RtmpServerListResponse.ts
 src/models/RtmpServerLoading.ts
 src/models/RtmpServerLocationResponse.ts
 src/models/RtmpServerPlatformQuality.ts
@@ -196,8 +200,6 @@ src/models/SearchChannelPlatformDto.ts
 src/models/SearchChannelPlatformsDto.ts
 src/models/SearchChannelRtmpDto.ts
 src/models/SearchChannelTokensDto.ts
-src/models/ServerUrl.ts
-src/models/ServerUrlValue.ts
 src/models/SetRecordStreamRequest.ts
 src/models/SiteAuthCentrifugeResponse.ts
 src/models/SiteAuthExchangeRequest.ts
@@ -206,6 +208,7 @@ src/models/SiteChannelStatusResponse.ts
 src/models/SiteGetShortChannelResponse.ts
 src/models/SiteLiveRestreamCentrifugeResponse.ts
 src/models/SiteLiveRestreamsInfoResponse.ts
+src/models/SiteLogoutAuthRequest.ts
 src/models/SiteMarkReadHistoryRequest.ts
 src/models/SiteMarkReadHistoryResponse.ts
 src/models/SiteNotifyUserResponse.ts
@@ -213,6 +216,7 @@ src/models/SitePlannedResponse.ts
 src/models/SitePlatformsSupportedResponse.ts
 src/models/SitePromoApplyResponse.ts
 src/models/SitePromoCheckResponse.ts
+src/models/SiteRefreshAuthBodyRequest.ts
 src/models/SiteScreenNotifyUserResponse.ts
 src/models/SiteSearchChannelResponse.ts
 src/models/SiteSetNameRequest.ts

@@ -19,6 +19,8 @@ import type {
   ErrorResponse,
   RefreshAuthResponse,
   SiteAuthExchangeRequest,
+  SiteLogoutAuthRequest,
+  SiteRefreshAuthBodyRequest,
   SuccessResponse,
 } from '../models/index';
 import {
@@ -30,9 +32,32 @@ import {
     RefreshAuthResponseToJSON,
     SiteAuthExchangeRequestFromJSON,
     SiteAuthExchangeRequestToJSON,
+    SiteLogoutAuthRequestFromJSON,
+    SiteLogoutAuthRequestToJSON,
+    SiteRefreshAuthBodyRequestFromJSON,
+    SiteRefreshAuthBodyRequestToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
 } from '../models/index';
+
+export interface AuthAuthTelegramV1Request {
+    language: AuthAuthTelegramV1LanguageEnum;
+    auth_date: number;
+    id: number;
+    first_name: string;
+    hash: string;
+    app: AuthAuthTelegramV1AppEnum;
+    v?: AuthAuthTelegramV1VEnum;
+    last_name?: string;
+    username?: string;
+    photo_url?: string;
+    language_code?: string;
+    is_premium?: boolean;
+    added_to_attachment_menu?: boolean;
+    refId?: string;
+    redirect?: string;
+    country?: string;
+}
 
 export interface AuthCallbackGoogleV1Request {
     state: string;
@@ -87,6 +112,24 @@ export interface AuthGetAuthUrlV1Request {
     country?: string;
 }
 
+export interface AuthGetProfileV1Request {
+    language: AuthGetProfileV1LanguageEnum;
+    v?: AuthGetProfileV1VEnum;
+}
+
+export interface AuthGuestV1Request {
+    refId: string;
+}
+
+export interface AuthLogoutV1Request {
+    SiteLogoutAuthRequest: SiteLogoutAuthRequest;
+}
+
+export interface AuthRefreshAccessV1Request {
+    User_Agent: string;
+    SiteRefreshAuthBodyRequest: SiteRefreshAuthBodyRequest;
+}
+
 /**
  * AuthApi - interface
  * 
@@ -94,6 +137,36 @@ export interface AuthGetAuthUrlV1Request {
  * @interface AuthApiInterface
  */
 export interface AuthApiInterface {
+    /**
+     * 
+     * @summary Auth telegram
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} auth_date Time auth
+     * @param {number} id Telegram userId
+     * @param {string} first_name First name
+     * @param {string} hash Hash
+     * @param {'site' | 'admin' | 'mobile' | 'desktop'} app App oauth
+     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [last_name] Last name
+     * @param {string} [username] Nickname
+     * @param {string} [photo_url] Photo
+     * @param {string} [language_code] IETF language tag of the user\&#39;s language
+     * @param {boolean} [is_premium] True, if this user is a Telegram Premium user
+     * @param {boolean} [added_to_attachment_menu] True, if this user added the bot to the attachment menu
+     * @param {string} [refId] Referal id
+     * @param {string} [redirect] Redirect url
+     * @param {string} [country] Country code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authAuthTelegramV1Raw(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Auth telegram
+     */
+    authAuthTelegramV1(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
     /**
      * 
      * @summary Internal request of auth google
@@ -260,12 +333,207 @@ export interface AuthApiInterface {
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
+    /**
+     * 
+     * @summary Get basic data for auth user
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authGetProfileV1Raw(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Get basic data for auth user
+     */
+    authGetProfileV1(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Guest request of auth
+     * @param {string} refId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authGuestV1Raw(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Guest request of auth
+     */
+    authGuestV1(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Logout
+     * @param {SiteLogoutAuthRequest} SiteLogoutAuthRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authLogoutV1Raw(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Logout
+     */
+    authLogoutV1(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Update access token
+     * @param {string} User_Agent 
+     * @param {SiteRefreshAuthBodyRequest} SiteRefreshAuthBodyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authRefreshAccessV1Raw(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>>;
+
+    /**
+     * Update access token
+     */
+    authRefreshAccessV1(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse>;
+
 }
 
 /**
  * 
  */
 export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
+
+    /**
+     * Auth telegram
+     */
+    async authAuthTelegramV1Raw(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        if (requestParameters['auth_date'] == null) {
+            throw new runtime.RequiredError(
+                'auth_date',
+                'Required parameter "auth_date" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        if (requestParameters['first_name'] == null) {
+            throw new runtime.RequiredError(
+                'first_name',
+                'Required parameter "first_name" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        if (requestParameters['hash'] == null) {
+            throw new runtime.RequiredError(
+                'hash',
+                'Required parameter "hash" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        if (requestParameters['app'] == null) {
+            throw new runtime.RequiredError(
+                'app',
+                'Required parameter "app" was null or undefined when calling authAuthTelegramV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['auth_date'] != null) {
+            queryParameters['auth_date'] = requestParameters['auth_date'];
+        }
+
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+
+        if (requestParameters['first_name'] != null) {
+            queryParameters['first_name'] = requestParameters['first_name'];
+        }
+
+        if (requestParameters['last_name'] != null) {
+            queryParameters['last_name'] = requestParameters['last_name'];
+        }
+
+        if (requestParameters['username'] != null) {
+            queryParameters['username'] = requestParameters['username'];
+        }
+
+        if (requestParameters['photo_url'] != null) {
+            queryParameters['photo_url'] = requestParameters['photo_url'];
+        }
+
+        if (requestParameters['language_code'] != null) {
+            queryParameters['language_code'] = requestParameters['language_code'];
+        }
+
+        if (requestParameters['is_premium'] != null) {
+            queryParameters['is_premium'] = requestParameters['is_premium'];
+        }
+
+        if (requestParameters['added_to_attachment_menu'] != null) {
+            queryParameters['added_to_attachment_menu'] = requestParameters['added_to_attachment_menu'];
+        }
+
+        if (requestParameters['hash'] != null) {
+            queryParameters['hash'] = requestParameters['hash'];
+        }
+
+        if (requestParameters['refId'] != null) {
+            queryParameters['refId'] = requestParameters['refId'];
+        }
+
+        if (requestParameters['app'] != null) {
+            queryParameters['app'] = requestParameters['app'];
+        }
+
+        if (requestParameters['redirect'] != null) {
+            queryParameters['redirect'] = requestParameters['redirect'];
+        }
+
+        if (requestParameters['country'] != null) {
+            queryParameters['country'] = requestParameters['country'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/auth/auth-telegram`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Auth telegram
+     */
+    async authAuthTelegramV1(requestParameters: AuthAuthTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authAuthTelegramV1Raw(requestParameters, initOverrides);
+    }
 
     /**
      * Internal request of auth google
@@ -734,8 +1002,197 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
         await this.authGetAuthUrlV1Raw(requestParameters, initOverrides);
     }
 
+    /**
+     * Get basic data for auth user
+     */
+    async authGetProfileV1Raw(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling authGetProfileV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/auth/me`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Get basic data for auth user
+     */
+    async authGetProfileV1(requestParameters: AuthGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authGetProfileV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Guest request of auth
+     */
+    async authGuestV1Raw(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['refId'] == null) {
+            throw new runtime.RequiredError(
+                'refId',
+                'Required parameter "refId" was null or undefined when calling authGuestV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['refId'] != null) {
+            queryParameters['refId'] = requestParameters['refId'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/auth/guest`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Guest request of auth
+     */
+    async authGuestV1(requestParameters: AuthGuestV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authGuestV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Logout
+     */
+    async authLogoutV1Raw(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['SiteLogoutAuthRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SiteLogoutAuthRequest',
+                'Required parameter "SiteLogoutAuthRequest" was null or undefined when calling authLogoutV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/auth/logout`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SiteLogoutAuthRequestToJSON(requestParameters['SiteLogoutAuthRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Logout
+     */
+    async authLogoutV1(requestParameters: AuthLogoutV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.authLogoutV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update access token
+     */
+    async authRefreshAccessV1Raw(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>> {
+        if (requestParameters['User_Agent'] == null) {
+            throw new runtime.RequiredError(
+                'User_Agent',
+                'Required parameter "User_Agent" was null or undefined when calling authRefreshAccessV1().'
+            );
+        }
+
+        if (requestParameters['SiteRefreshAuthBodyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SiteRefreshAuthBodyRequest',
+                'Required parameter "SiteRefreshAuthBodyRequest" was null or undefined when calling authRefreshAccessV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['User_Agent'] != null) {
+            headerParameters['User-Agent'] = String(requestParameters['User_Agent']);
+        }
+
+        const response = await this.request({
+            path: `/method/auth/refresh-access`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SiteRefreshAuthBodyRequestToJSON(requestParameters['SiteRefreshAuthBodyRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RefreshAuthResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update access token
+     */
+    async authRefreshAccessV1(requestParameters: AuthRefreshAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse> {
+        const response = await this.authRefreshAccessV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
 }
 
+/**
+ * @export
+ */
+export const AuthAuthTelegramV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type AuthAuthTelegramV1LanguageEnum = typeof AuthAuthTelegramV1LanguageEnum[keyof typeof AuthAuthTelegramV1LanguageEnum];
+/**
+ * @export
+ */
+export const AuthAuthTelegramV1AppEnum = {
+    site: 'site',
+    admin: 'admin',
+    mobile: 'mobile',
+    desktop: 'desktop'
+} as const;
+export type AuthAuthTelegramV1AppEnum = typeof AuthAuthTelegramV1AppEnum[keyof typeof AuthAuthTelegramV1AppEnum];
+/**
+ * @export
+ */
+export const AuthAuthTelegramV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+} as const;
+export type AuthAuthTelegramV1VEnum = typeof AuthAuthTelegramV1VEnum[keyof typeof AuthAuthTelegramV1VEnum];
 /**
  * @export
  */
@@ -894,3 +1351,21 @@ export const AuthGetAuthUrlV1AppEnum = {
     desktop: 'desktop'
 } as const;
 export type AuthGetAuthUrlV1AppEnum = typeof AuthGetAuthUrlV1AppEnum[keyof typeof AuthGetAuthUrlV1AppEnum];
+/**
+ * @export
+ */
+export const AuthGetProfileV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type AuthGetProfileV1LanguageEnum = typeof AuthGetProfileV1LanguageEnum[keyof typeof AuthGetProfileV1LanguageEnum];
+/**
+ * @export
+ */
+export const AuthGetProfileV1VEnum = {
+    _1: '1',
+    _2: '2',
+    _3: '3'
+} as const;
+export type AuthGetProfileV1VEnum = typeof AuthGetProfileV1VEnum[keyof typeof AuthGetProfileV1VEnum];

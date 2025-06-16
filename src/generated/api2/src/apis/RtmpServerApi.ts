@@ -18,7 +18,7 @@ import type {
   ErrorResponse,
   ListOfRtmpServerLocationResponse,
   RtmpServerGraphResponse,
-  RtmpServerListV2Response,
+  RtmpServerListResponse,
   RtmpServerStateResponse,
 } from '../models/index';
 import {
@@ -28,8 +28,8 @@ import {
     ListOfRtmpServerLocationResponseToJSON,
     RtmpServerGraphResponseFromJSON,
     RtmpServerGraphResponseToJSON,
-    RtmpServerListV2ResponseFromJSON,
-    RtmpServerListV2ResponseToJSON,
+    RtmpServerListResponseFromJSON,
+    RtmpServerListResponseToJSON,
     RtmpServerStateResponseFromJSON,
     RtmpServerStateResponseToJSON,
 } from '../models/index';
@@ -46,11 +46,11 @@ export interface RtmpServerGraphV1Request {
     v?: RtmpServerGraphV1VEnum;
 }
 
-export interface RtmpServerListV2Request {
-    language: RtmpServerListV2LanguageEnum;
+export interface RtmpServerListV1Request {
+    language: RtmpServerListV1LanguageEnum;
     project_id: number;
-    interval: RtmpServerListV2IntervalEnum;
-    v?: RtmpServerListV2VEnum;
+    interval: RtmpServerListV1IntervalEnum;
+    v?: RtmpServerListV1VEnum;
 }
 
 export interface RtmpServerStateV1Request {
@@ -106,17 +106,17 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
+     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
+    rtmpServerListV1Raw(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponse>>;
 
     /**
      * List rtmp servers
      */
-    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
+    rtmpServerListV1(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponse>;
 
     /**
      * 
@@ -267,25 +267,25 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
     /**
      * List rtmp servers
      */
-    async rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>> {
+    async rtmpServerListV1Raw(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
-                'Required parameter "language" was null or undefined when calling rtmpServerListV2().'
+                'Required parameter "language" was null or undefined when calling rtmpServerListV1().'
             );
         }
 
         if (requestParameters['project_id'] == null) {
             throw new runtime.RequiredError(
                 'project_id',
-                'Required parameter "project_id" was null or undefined when calling rtmpServerListV2().'
+                'Required parameter "project_id" was null or undefined when calling rtmpServerListV1().'
             );
         }
 
         if (requestParameters['interval'] == null) {
             throw new runtime.RequiredError(
                 'interval',
-                'Required parameter "interval" was null or undefined when calling rtmpServerListV2().'
+                'Required parameter "interval" was null or undefined when calling rtmpServerListV1().'
             );
         }
 
@@ -294,7 +294,7 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
-            queryParameters['v'] = '2';
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -318,14 +318,14 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerListV2ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerListResponseFromJSON(jsonValue));
     }
 
     /**
      * List rtmp servers
      */
-    async rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response> {
-        const response = await this.rtmpServerListV2Raw(requestParameters, initOverrides);
+    async rtmpServerListV1(requestParameters: RtmpServerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponse> {
+        const response = await this.rtmpServerListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -472,32 +472,32 @@ export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof 
 /**
  * @export
  */
-export const RtmpServerListV2LanguageEnum = {
+export const RtmpServerListV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
 } as const;
-export type RtmpServerListV2LanguageEnum = typeof RtmpServerListV2LanguageEnum[keyof typeof RtmpServerListV2LanguageEnum];
+export type RtmpServerListV1LanguageEnum = typeof RtmpServerListV1LanguageEnum[keyof typeof RtmpServerListV1LanguageEnum];
 /**
  * @export
  */
-export const RtmpServerListV2IntervalEnum = {
+export const RtmpServerListV1IntervalEnum = {
     NUMBER_1: 1,
     NUMBER_3: 3,
     NUMBER_6: 6,
     NUMBER_12: 12,
     NUMBER_24: 24
 } as const;
-export type RtmpServerListV2IntervalEnum = typeof RtmpServerListV2IntervalEnum[keyof typeof RtmpServerListV2IntervalEnum];
+export type RtmpServerListV1IntervalEnum = typeof RtmpServerListV1IntervalEnum[keyof typeof RtmpServerListV1IntervalEnum];
 /**
  * @export
  */
-export const RtmpServerListV2VEnum = {
+export const RtmpServerListV1VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'
 } as const;
-export type RtmpServerListV2VEnum = typeof RtmpServerListV2VEnum[keyof typeof RtmpServerListV2VEnum];
+export type RtmpServerListV1VEnum = typeof RtmpServerListV1VEnum[keyof typeof RtmpServerListV1VEnum];
 /**
  * @export
  */

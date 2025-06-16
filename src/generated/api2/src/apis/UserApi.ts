@@ -28,47 +28,47 @@ import {
     UserProfileResponseToJSON,
 } from '../models/index';
 
-export interface AccountGetProfileV1Request {
-    language: AccountGetProfileV1LanguageEnum;
-    v?: AccountGetProfileV1VEnum;
+export interface UserGetProfileV1Request {
+    language: UserGetProfileV1LanguageEnum;
+    v?: UserGetProfileV1VEnum;
     project_id?: number | null;
 }
 
-export interface AccountUpdateProfileV1Request {
-    v: AccountUpdateProfileV1VEnum;
-    language: AccountUpdateProfileV1LanguageEnum;
+export interface UserUpdateProfileV1Request {
+    v: UserUpdateProfileV1VEnum;
+    language: UserUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
     avatar?: Blob;
 }
 
 /**
- * AccountApi - interface
+ * UserApi - interface
  * 
  * @export
- * @interface AccountApiInterface
+ * @interface UserApiInterface
  */
-export interface AccountApiInterface {
+export interface UserApiInterface {
     /**
      * 
-     * @summary Get account profile
+     * @summary Get user profile
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AccountApiInterface
+     * @memberof UserApiInterface
      */
-    accountGetProfileV1Raw(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
 
     /**
-     * Get account profile
+     * Get user profile
      */
-    accountGetProfileV1(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
 
     /**
      * 
-     * @summary Update account profile
+     * @summary Update profile
      * @param {string} v Version
      * @param {string} language Current language
      * @param {string} first_name First name
@@ -76,30 +76,30 @@ export interface AccountApiInterface {
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AccountApiInterface
+     * @memberof UserApiInterface
      */
-    accountUpdateProfileV1Raw(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    userUpdateProfileV1Raw(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Update account profile
+     * Update profile
      */
-    accountUpdateProfileV1(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    userUpdateProfileV1(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
 }
 
 /**
  * 
  */
-export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
+export class UserApi extends runtime.BaseAPI implements UserApiInterface {
 
     /**
-     * Get account profile
+     * Get user profile
      */
-    async accountGetProfileV1Raw(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
+    async userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
-                'Required parameter "language" was null or undefined when calling accountGetProfileV1().'
+                'Required parameter "language" was null or undefined when calling userGetProfileV1().'
             );
         }
 
@@ -122,7 +122,7 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/method/account/profile`,
+            path: `/method/users/profile`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -132,42 +132,42 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
     }
 
     /**
-     * Get account profile
+     * Get user profile
      */
-    async accountGetProfileV1(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
-        const response = await this.accountGetProfileV1Raw(requestParameters, initOverrides);
+    async userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
+        const response = await this.userGetProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Update account profile
+     * Update profile
      */
-    async accountUpdateProfileV1Raw(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+    async userUpdateProfileV1Raw(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['v'] == null) {
             throw new runtime.RequiredError(
                 'v',
-                'Required parameter "v" was null or undefined when calling accountUpdateProfileV1().'
+                'Required parameter "v" was null or undefined when calling userUpdateProfileV1().'
             );
         }
 
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
-                'Required parameter "language" was null or undefined when calling accountUpdateProfileV1().'
+                'Required parameter "language" was null or undefined when calling userUpdateProfileV1().'
             );
         }
 
         if (requestParameters['first_name'] == null) {
             throw new runtime.RequiredError(
                 'first_name',
-                'Required parameter "first_name" was null or undefined when calling accountUpdateProfileV1().'
+                'Required parameter "first_name" was null or undefined when calling userUpdateProfileV1().'
             );
         }
 
         if (requestParameters['last_name'] == null) {
             throw new runtime.RequiredError(
                 'last_name',
-                'Required parameter "last_name" was null or undefined when calling accountUpdateProfileV1().'
+                'Required parameter "last_name" was null or undefined when calling userUpdateProfileV1().'
             );
         }
 
@@ -214,7 +214,7 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
         }
 
         const response = await this.request({
-            path: `/method/account/profile`,
+            path: `/method/users/profile`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -225,10 +225,10 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
     }
 
     /**
-     * Update account profile
+     * Update profile
      */
-    async accountUpdateProfileV1(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
-        const response = await this.accountUpdateProfileV1Raw(requestParameters, initOverrides);
+    async userUpdateProfileV1(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.userUpdateProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -237,36 +237,36 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 /**
  * @export
  */
-export const AccountGetProfileV1LanguageEnum = {
+export const UserGetProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
 } as const;
-export type AccountGetProfileV1LanguageEnum = typeof AccountGetProfileV1LanguageEnum[keyof typeof AccountGetProfileV1LanguageEnum];
+export type UserGetProfileV1LanguageEnum = typeof UserGetProfileV1LanguageEnum[keyof typeof UserGetProfileV1LanguageEnum];
 /**
  * @export
  */
-export const AccountGetProfileV1VEnum = {
+export const UserGetProfileV1VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'
 } as const;
-export type AccountGetProfileV1VEnum = typeof AccountGetProfileV1VEnum[keyof typeof AccountGetProfileV1VEnum];
+export type UserGetProfileV1VEnum = typeof UserGetProfileV1VEnum[keyof typeof UserGetProfileV1VEnum];
 /**
  * @export
  */
-export const AccountUpdateProfileV1VEnum = {
+export const UserUpdateProfileV1VEnum = {
     _1: '1',
     _2: '2',
     _3: '3'
 } as const;
-export type AccountUpdateProfileV1VEnum = typeof AccountUpdateProfileV1VEnum[keyof typeof AccountUpdateProfileV1VEnum];
+export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];
 /**
  * @export
  */
-export const AccountUpdateProfileV1LanguageEnum = {
+export const UserUpdateProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
 } as const;
-export type AccountUpdateProfileV1LanguageEnum = typeof AccountUpdateProfileV1LanguageEnum[keyof typeof AccountUpdateProfileV1LanguageEnum];
+export type UserUpdateProfileV1LanguageEnum = typeof UserUpdateProfileV1LanguageEnum[keyof typeof UserUpdateProfileV1LanguageEnum];
