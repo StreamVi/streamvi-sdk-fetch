@@ -54,25 +54,25 @@ export interface SiteUpdateOptionsTrovoRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    category_id: string;
+    category_id?: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    category_name: string;
+    category_name?: string;
     /**
      * 
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    audience: SiteUpdateOptionsTrovoRequestAudienceEnum;
+    audience?: SiteUpdateOptionsTrovoRequestAudienceEnum;
     /**
      * 
      * @type {string}
      * @memberof SiteUpdateOptionsTrovoRequest
      */
-    lang: SiteUpdateOptionsTrovoRequestLangEnum;
+    lang?: SiteUpdateOptionsTrovoRequestLangEnum;
 }
 
 
@@ -126,10 +126,6 @@ export function instanceOfSiteUpdateOptionsTrovoRequest(value: object): value is
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category_id' in value) || value['category_id'] === undefined) return false;
-    if (!('category_name' in value) || value['category_name'] === undefined) return false;
-    if (!('audience' in value) || value['audience'] === undefined) return false;
-    if (!('lang' in value) || value['lang'] === undefined) return false;
     return true;
 }
 
@@ -148,10 +144,10 @@ export function SiteUpdateOptionsTrovoRequestFromJSONTyped(json: any, ignoreDisc
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'title': json['title'],
-        'category_id': json['category_id'],
-        'category_name': json['category_name'],
-        'audience': json['audience'],
-        'lang': json['lang'],
+        'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'audience': json['audience'] == null ? undefined : json['audience'],
+        'lang': json['lang'] == null ? undefined : json['lang'],
     };
 }
 

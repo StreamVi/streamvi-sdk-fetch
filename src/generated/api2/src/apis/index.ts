@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+export * from './AccountApi';
 export * from './AnalyticsApi';
 export * from './AuthApi';
 export * from './BlogPageApi';
@@ -37,5 +38,4 @@ export * from './StreamKeyApi';
 export * from './StreamPullKeysApi';
 export * from './TransactionsApi';
 export * from './TranscodersApi';
-export * from './UserApi';
-export * from './UserProjectApi';
+export * from './UsersApi';

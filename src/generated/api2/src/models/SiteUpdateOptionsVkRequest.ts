@@ -60,49 +60,49 @@ export interface SiteUpdateOptionsVkRequest {
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    category_id: string;
+    category_id?: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    category_name: string;
+    category_name?: string;
     /**
      * category id
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    category_secondary_id: string;
+    category_secondary_id?: string;
     /**
      * category name
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    category_secondary_name: string;
+    category_secondary_name?: string;
     /**
      * playlist id
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    playlist_id: string;
+    playlist_id?: string;
     /**
      * 
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    privacy_comments: SiteUpdateOptionsVkRequestPrivacyCommentsEnum;
+    privacy_comments?: SiteUpdateOptionsVkRequestPrivacyCommentsEnum;
     /**
      * 
      * @type {string}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    privacy_video: SiteUpdateOptionsVkRequestPrivacyVideoEnum;
+    privacy_video?: SiteUpdateOptionsVkRequestPrivacyVideoEnum;
     /**
      * Is publish stream on wall
      * @type {boolean}
      * @memberof SiteUpdateOptionsVkRequest
      */
-    wall: boolean;
+    wall?: boolean;
 }
 
 
@@ -159,14 +159,6 @@ export function instanceOfSiteUpdateOptionsVkRequest(value: object): value is Si
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('category_id' in value) || value['category_id'] === undefined) return false;
-    if (!('category_name' in value) || value['category_name'] === undefined) return false;
-    if (!('category_secondary_id' in value) || value['category_secondary_id'] === undefined) return false;
-    if (!('category_secondary_name' in value) || value['category_secondary_name'] === undefined) return false;
-    if (!('playlist_id' in value) || value['playlist_id'] === undefined) return false;
-    if (!('privacy_comments' in value) || value['privacy_comments'] === undefined) return false;
-    if (!('privacy_video' in value) || value['privacy_video'] === undefined) return false;
-    if (!('wall' in value) || value['wall'] === undefined) return false;
     return true;
 }
 
@@ -186,14 +178,14 @@ export function SiteUpdateOptionsVkRequestFromJSONTyped(json: any, ignoreDiscrim
         'channel_id': json['channel_id'],
         'title': json['title'],
         'description': json['description'],
-        'category_id': json['category_id'],
-        'category_name': json['category_name'],
-        'category_secondary_id': json['category_secondary_id'],
-        'category_secondary_name': json['category_secondary_name'],
-        'playlist_id': json['playlist_id'],
-        'privacy_comments': json['privacy_comments'],
-        'privacy_video': json['privacy_video'],
-        'wall': json['wall'],
+        'category_id': json['category_id'] == null ? undefined : json['category_id'],
+        'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'category_secondary_id': json['category_secondary_id'] == null ? undefined : json['category_secondary_id'],
+        'category_secondary_name': json['category_secondary_name'] == null ? undefined : json['category_secondary_name'],
+        'playlist_id': json['playlist_id'] == null ? undefined : json['playlist_id'],
+        'privacy_comments': json['privacy_comments'] == null ? undefined : json['privacy_comments'],
+        'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
+        'wall': json['wall'] == null ? undefined : json['wall'],
     };
 }
 
