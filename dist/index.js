@@ -14,7 +14,7 @@
  * const projectApi = new ProjectApi(config.configuration);
  * ```
  *
- * @version 1.0.5
+ * @version 1.0.6
  * @author StreamVi <info@streamvi.io>
  * @license MIT
  */
