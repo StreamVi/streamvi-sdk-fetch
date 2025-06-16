@@ -27,7 +27,7 @@ import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
 
 // API classes and enums
 import { 
-  UserProjectApi, 
+  ProjectApi, 
   UserProjectGetProjectInfoV1LanguageEnum,
   PaySettingApi,
   PaymentApi 
@@ -35,9 +35,9 @@ import {
 
 // Usage example
 const config = new StreamViSdkConfig({ accessToken: 'your_token' });
-const userProjectApi = new UserProjectApi(config.configuration);
+const projectApi = new ProjectApi(config.configuration);
 
-const projectInfo = await userProjectApi.userProjectGetProjectInfoV1({
+const projectInfo = await projectApi.userProjectGetProjectInfoV1({
   language: UserProjectGetProjectInfoV1LanguageEnum.en,
   project_id: 123
 });
@@ -83,7 +83,7 @@ import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
 
 // API классы и перечисления
 import { 
-  UserProjectApi, 
+  ProjectApi, 
   UserProjectGetProjectInfoV1LanguageEnum,
   PaySettingApi,
   PaymentApi 
@@ -91,9 +91,9 @@ import {
 
 // Пример использования
 const config = new StreamViSdkConfig({ accessToken: 'ваш_токен' });
-const userProjectApi = new UserProjectApi(config.configuration);
+const projectApi = new ProjectApi(config.configuration);
 
-const projectInfo = await userProjectApi.userProjectGetProjectInfoV1({
+const projectInfo = await projectApi.userProjectGetProjectInfoV1({
   language: UserProjectGetProjectInfoV1LanguageEnum.ru,
   project_id: 123
 });
