@@ -8,13 +8,13 @@
  * @example
  * ```typescript
  * import { StreamViSdkConfig } from 'streamvi-sdk-fetch';
- * import { UserProjectApi } from 'streamvi-sdk-fetch';
+ * import { ProjectApi } from 'streamvi-sdk-fetch';
  *
  * const config = new StreamViSdkConfig({ accessToken: 'your_token' });
- * const userProjectApi = new UserProjectApi(config.configuration);
+ * const projectApi = new ProjectApi(config.configuration);
  * ```
  *
- * @version 1.0.1
+ * @version 1.0.4
  * @author StreamVi <info@streamvi.io>
  * @license MIT
  */

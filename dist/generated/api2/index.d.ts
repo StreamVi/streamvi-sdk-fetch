@@ -9,7 +9,5 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-export * from "./api";
-export * from "./configuration";
-export * from "./models";
+export * from "./src";
 //# sourceMappingURL=index.d.ts.map
