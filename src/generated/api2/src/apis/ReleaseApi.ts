@@ -42,7 +42,7 @@ export interface ReleaseApiInterface {
      * 
      * @summary Get current version app
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'cabinet'} [app] Apps
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -124,9 +124,7 @@ export type ReleaseAppCabinetV1LanguageEnum = typeof ReleaseAppCabinetV1Language
  * @export
  */
 export const ReleaseAppCabinetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typeof ReleaseAppCabinetV1VEnum];
 /**

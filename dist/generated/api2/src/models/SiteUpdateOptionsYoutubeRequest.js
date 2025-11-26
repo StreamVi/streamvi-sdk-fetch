@@ -18,9 +18,7 @@ exports.SiteUpdateOptionsYoutubeRequestToJSONTyped = exports.SiteUpdateOptionsYo
  * @export
  */
 exports.SiteUpdateOptionsYoutubeRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -103,6 +101,7 @@ function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json, ignoreDiscriminator)
         'image': json['image'] == null ? undefined : json['image'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
 exports.SiteUpdateOptionsYoutubeRequestFromJSONTyped = SiteUpdateOptionsYoutubeRequestFromJSONTyped;
@@ -130,6 +129,7 @@ function SiteUpdateOptionsYoutubeRequestToJSONTyped(value, ignoreDiscriminator =
         'image': value['image'],
         'lang': value['lang'],
         'tags': value['tags'] == null ? undefined : Array.from(value['tags']),
+        'disable_auto_end': value['disable_auto_end'],
     };
 }
 exports.SiteUpdateOptionsYoutubeRequestToJSONTyped = SiteUpdateOptionsYoutubeRequestToJSONTyped;

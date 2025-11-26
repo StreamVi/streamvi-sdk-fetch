@@ -301,9 +301,7 @@ exports.PlanStorageBuyV1PeriodEnum = {
  * @export
  */
 exports.PlanStorageBuyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -317,9 +315,7 @@ exports.PlanStorageCancelV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageCancelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -333,9 +329,7 @@ exports.PlanStorageCheckV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -349,9 +343,7 @@ exports.PlanStorageGetDiscountV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageGetDiscountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -365,9 +357,7 @@ exports.PlanStorageListV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -381,7 +371,5 @@ exports.PlanStorageTariffV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageTariffV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

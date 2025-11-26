@@ -75,8 +75,6 @@ export interface SiteUpdateOptionsTrovoRequest {
  */
 export declare const SiteUpdateOptionsTrovoRequestVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type SiteUpdateOptionsTrovoRequestVEnum = typeof SiteUpdateOptionsTrovoRequestVEnum[keyof typeof SiteUpdateOptionsTrovoRequestVEnum];
 /**

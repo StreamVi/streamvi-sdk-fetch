@@ -200,6 +200,18 @@ export interface SearchChannelItem {
      * @memberof SearchChannelItem
      */
     platform: SearchChannelPlatformDto;
+    /**
+     * Timer
+     * @type {number}
+     * @memberof SearchChannelItem
+     */
+    timer?: number | null;
+    /**
+     * Delay
+     * @type {number}
+     * @memberof SearchChannelItem
+     */
+    delay?: number | null;
 }
 
 
@@ -212,7 +224,10 @@ export const SearchChannelItemStatusEnum = {
     error: 'error',
     live: 'live',
     offline: 'offline',
-    busy: 'busy'
+    busy: 'busy',
+    wait_transcoding: 'wait_transcoding',
+    running_transcoding: 'running_transcoding',
+    error_transcoding: 'error_transcoding'
 } as const;
 export type SearchChannelItemStatusEnum = typeof SearchChannelItemStatusEnum[keyof typeof SearchChannelItemStatusEnum];
 
@@ -278,6 +293,8 @@ export function SearchChannelItemFromJSONTyped(json: any, ignoreDiscriminator: b
         'tokens': SearchChannelCredentialDtoFromJSON(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : ((json['live_users'] as Array<any>).map(SearchChannelLiveUserDtoFromJSON)),
         'platform': SearchChannelPlatformDtoFromJSON(json['platform']),
+        'timer': json['timer'] == null ? undefined : json['timer'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 
@@ -315,6 +332,8 @@ export function SearchChannelItemToJSONTyped(value?: SearchChannelItem | null, i
         'tokens': SearchChannelCredentialDtoToJSON(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : ((value['live_users'] as Array<any>).map(SearchChannelLiveUserDtoToJSON)),
         'platform': SearchChannelPlatformDtoToJSON(value['platform']),
+        'timer': value['timer'],
+        'delay': value['delay'],
     };
 }
 

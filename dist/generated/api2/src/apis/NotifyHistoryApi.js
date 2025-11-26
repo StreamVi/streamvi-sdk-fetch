@@ -284,9 +284,7 @@ exports.NotifyHistoryGetListMyV1LanguageEnum = {
  * @export
  */
 exports.NotifyHistoryGetListMyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -381,7 +379,9 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     broadcast_change_region: 'broadcast_change_region',
     video_upload_error: 'video_upload_error',
     stop_channel_error: 'stop_channel_error',
-    broadcast_user_action_stop: 'broadcast_user_action_stop'
+    broadcast_user_action_stop: 'broadcast_user_action_stop',
+    completed_api_channel_error: 'completed_api_channel_error',
+    transcoder_twitch_tracks: 'transcoder_twitch_tracks'
 };
 /**
  * @export
@@ -410,9 +410,7 @@ exports.NotifyHistoryGetStatusMyV1LanguageEnum = {
  * @export
  */
 exports.NotifyHistoryGetStatusMyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -432,9 +430,7 @@ exports.NotifyHistoryMarkOfReadV1LanguageEnum = {
  * @export
  */
 exports.NotifyHistoryMarkOfReadV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

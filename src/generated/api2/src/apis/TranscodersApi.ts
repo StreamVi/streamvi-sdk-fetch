@@ -51,6 +51,10 @@ export interface TranscodersListV1Request {
     v?: TranscodersListV1VEnum;
 }
 
+export interface TranscodersResetDelayV1Request {
+    TranscoderItemDto: TranscoderItemDto;
+}
+
 export interface TranscodersStopV1Request {
     TranscoderItemDto: TranscoderItemDto;
 }
@@ -101,7 +105,7 @@ export interface TranscodersApiInterface {
      * @summary List of transcoder
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -112,6 +116,21 @@ export interface TranscodersApiInterface {
      * List of transcoder
      */
     transcodersListV1(requestParameters: TranscodersListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteTranscoderListResponse>;
+
+    /**
+     * 
+     * @summary Reset delay
+     * @param {TranscoderItemDto} TranscoderItemDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TranscodersApiInterface
+     */
+    transcodersResetDelayV1Raw(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Reset delay
+     */
+    transcodersResetDelayV1(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
      * 
@@ -281,6 +300,42 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Reset delay
+     */
+    async transcodersResetDelayV1Raw(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['TranscoderItemDto'] == null) {
+            throw new runtime.RequiredError(
+                'TranscoderItemDto',
+                'Required parameter "TranscoderItemDto" was null or undefined when calling transcodersResetDelayV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/transcoder/reset-delay`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TranscoderItemDtoToJSON(requestParameters['TranscoderItemDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Reset delay
+     */
+    async transcodersResetDelayV1(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.transcodersResetDelayV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Transcoder stop
      */
     async transcodersStopV1Raw(requestParameters: TranscodersStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -367,8 +422,6 @@ export type TranscodersListV1LanguageEnum = typeof TranscodersListV1LanguageEnum
  * @export
  */
 export const TranscodersListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type TranscodersListV1VEnum = typeof TranscodersListV1VEnum[keyof typeof TranscodersListV1VEnum];

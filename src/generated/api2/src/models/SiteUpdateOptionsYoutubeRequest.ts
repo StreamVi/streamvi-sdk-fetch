@@ -109,6 +109,12 @@ export interface SiteUpdateOptionsYoutubeRequest {
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
     tags?: Set<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SiteUpdateOptionsYoutubeRequest
+     */
+    disable_auto_end?: boolean;
 }
 
 
@@ -116,9 +122,7 @@ export interface SiteUpdateOptionsYoutubeRequest {
  * @export
  */
 export const SiteUpdateOptionsYoutubeRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type SiteUpdateOptionsYoutubeRequestVEnum = typeof SiteUpdateOptionsYoutubeRequestVEnum[keyof typeof SiteUpdateOptionsYoutubeRequestVEnum];
 
@@ -209,6 +213,7 @@ export function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json: any, ignoreDi
         'image': json['image'] == null ? undefined : json['image'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
 
@@ -238,6 +243,7 @@ export function SiteUpdateOptionsYoutubeRequestToJSONTyped(value?: SiteUpdateOpt
         'image': value['image'],
         'lang': value['lang'],
         'tags': value['tags'] == null ? undefined : Array.from(value['tags'] as Set<any>),
+        'disable_auto_end': value['disable_auto_end'],
     };
 }
 

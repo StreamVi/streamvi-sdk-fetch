@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedResponseOfMoneyFlowResponse } from '../models/index';
+import type { PaginatedMoneyFlowResponse } from '../models/index';
 export interface MoneyFlowListV1Request {
     language: MoneyFlowListV1LanguageEnum;
     project_id: number;
     v?: MoneyFlowListV1VEnum;
     limit?: number;
     offset?: number;
-    date_from?: Date;
-    date_to?: Date;
+    date_from?: string;
+    date_to?: string;
     type?: string;
     balance_type?: string;
 }
@@ -34,22 +34,22 @@ export interface MoneyFlowApiInterface {
      * @summary Transaction list for frontend
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
-     * @param {Date} [date_from] Date from
-     * @param {Date} [date_to] Date to
-     * @param {string} [type] Filter code transaction. example 1 or 1,2,3
+     * @param {string} [date_from] Date from
+     * @param {string} [date_to] Date to
+     * @param {string} [type] Filter code transaction. example: referral_profit or payment,referral_profit
      * @param {string} [balance_type] Filter code transaction. example 1 or 1,2,3
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MoneyFlowApiInterface
      */
-    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfMoneyFlowResponse>>;
+    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>>;
     /**
      * Transaction list for frontend
      */
-    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfMoneyFlowResponse>;
+    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse>;
 }
 /**
  *
@@ -58,11 +58,11 @@ export declare class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowAp
     /**
      * Transaction list for frontend
      */
-    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfMoneyFlowResponse>>;
+    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>>;
     /**
      * Transaction list for frontend
      */
-    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfMoneyFlowResponse>;
+    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse>;
 }
 /**
  * @export
@@ -78,8 +78,6 @@ export type MoneyFlowListV1LanguageEnum = typeof MoneyFlowListV1LanguageEnum[key
  */
 export declare const MoneyFlowListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type MoneyFlowListV1VEnum = typeof MoneyFlowListV1VEnum[keyof typeof MoneyFlowListV1VEnum];
 //# sourceMappingURL=MoneyFlowApi.d.ts.map

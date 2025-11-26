@@ -76,6 +76,12 @@ export interface ChannelVkInfoDto {
      * @memberof ChannelVkInfoDto
      */
     category?: ChannelVkCategoryInfoDto;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ChannelVkInfoDto
+     */
+    disableAutoEnd?: boolean;
 }
 
 
@@ -129,6 +135,7 @@ export function ChannelVkInfoDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
         'privacyComments': json['privacyComments'] == null ? undefined : json['privacyComments'],
         'playlist': json['playlist'] == null ? undefined : ChannelPlayListInfoDtoFromJSON(json['playlist']),
         'category': json['category'] == null ? undefined : ChannelVkCategoryInfoDtoFromJSON(json['category']),
+        'disableAutoEnd': json['disableAutoEnd'] == null ? undefined : json['disableAutoEnd'],
     };
 }
 
@@ -150,6 +157,7 @@ export function ChannelVkInfoDtoToJSONTyped(value?: ChannelVkInfoDto | null, ign
         'privacyComments': value['privacyComments'],
         'playlist': ChannelPlayListInfoDtoToJSON(value['playlist']),
         'category': ChannelVkCategoryInfoDtoToJSON(value['category']),
+        'disableAutoEnd': value['disableAutoEnd'],
     };
 }
 

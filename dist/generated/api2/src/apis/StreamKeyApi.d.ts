@@ -31,7 +31,7 @@ export interface StreamKeyApiInterface {
      * @summary Get stream credentials
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -90,8 +90,6 @@ export type StreamKeysKeyV1LanguageEnum = typeof StreamKeysKeyV1LanguageEnum[key
  */
 export declare const StreamKeysKeyV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type StreamKeysKeyV1VEnum = typeof StreamKeysKeyV1VEnum[keyof typeof StreamKeysKeyV1VEnum];
 //# sourceMappingURL=StreamKeyApi.d.ts.map

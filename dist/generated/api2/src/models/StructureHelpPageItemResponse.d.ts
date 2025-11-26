@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
 import type { StructureHelpPageItemResponse2 } from './StructureHelpPageItemResponse2';
 import type { StructureHelpPageConnectionsItemLang } from './StructureHelpPageConnectionsItemLang';
 /**
@@ -19,11 +18,11 @@ import type { StructureHelpPageConnectionsItemLang } from './StructureHelpPageCo
  */
 export interface StructureHelpPageItemResponse {
     /**
-     *
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof StructureHelpPageItemResponse
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * Notion id
      * @type {string}
@@ -77,7 +76,7 @@ export interface StructureHelpPageItemResponse {
      * @type {Array<StructureHelpPageItemResponse2>}
      * @memberof StructureHelpPageItemResponse
      */
-    connections: Array<StructureHelpPageItemResponse2>;
+    connections?: Array<StructureHelpPageItemResponse2>;
 }
 /**
  * @export

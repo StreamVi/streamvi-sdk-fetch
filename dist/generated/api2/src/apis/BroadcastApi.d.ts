@@ -10,17 +10,67 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { MethodBroadcastRestreamsResponse, MethodCurrentBroadcastResponse } from '../models/index';
-export interface MethodBroadcastRestreamsV1Request {
-    language: MethodBroadcastRestreamsV1LanguageEnum;
+import type { MethodBroadcastRestreamsResponse, MethodCurrentBroadcastResponse, SiteBroadcastCredentialsResponse, SiteBroadcastEventsResponse, SiteBroadcastFindResponse, SiteBroadcastGraphResponse, SiteBroadcastListResponse, SiteBroadcastRestreamsInfoResponse } from '../models/index';
+export interface BroadcastCredentialsV1Request {
+    language: BroadcastCredentialsV1LanguageEnum;
+    project_id: number;
+    v?: BroadcastCredentialsV1VEnum;
+}
+export interface BroadcastEventsV1Request {
+    language: BroadcastEventsV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    channels?: Set<number>;
+    level?: BroadcastEventsV1LevelEnum;
+    platform?: string;
+    app?: string;
+    server?: string;
+    date_from?: Date;
+    date_to?: Date;
+    v?: BroadcastEventsV1VEnum;
+}
+export interface BroadcastFindV1Request {
+    language: BroadcastFindV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: BroadcastFindV1VEnum;
+}
+export interface BroadcastGraphBitrateV1Request {
+    language: BroadcastGraphBitrateV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: BroadcastGraphBitrateV1VEnum;
+}
+export interface BroadcastGraphViewersV1Request {
+    language: BroadcastGraphViewersV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: BroadcastGraphViewersV1VEnum;
+}
+export interface BroadcastListV1Request {
+    language: BroadcastListV1LanguageEnum;
+    project_id: number;
+    limit?: number;
+    offset?: number;
+    order?: BroadcastListV1OrderEnum;
+    v?: BroadcastListV1VEnum;
+}
+export interface BroadcastRestreamChatV1Request {
+    language: BroadcastRestreamChatV1LanguageEnum;
     broadcast_id: number;
     key: string;
-    v?: MethodBroadcastRestreamsV1VEnum;
+    v?: BroadcastRestreamChatV1VEnum;
 }
-export interface MethodBroadcastTokenChannelV1Request {
-    language: MethodBroadcastTokenChannelV1LanguageEnum;
+export interface BroadcastRestreamsV1Request {
+    language: BroadcastRestreamsV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: BroadcastRestreamsV1VEnum;
+}
+export interface BroadcastTokenChannelV1Request {
+    language: BroadcastTokenChannelV1LanguageEnum;
     key: string;
-    v?: MethodBroadcastTokenChannelV1VEnum;
+    v?: BroadcastTokenChannelV1VEnum;
 }
 /**
  * BroadcastApi - interface
@@ -31,91 +81,393 @@ export interface MethodBroadcastTokenChannelV1Request {
 export interface BroadcastApiInterface {
     /**
      *
-     * @summary Get restreams
+     * @summary Get credentials
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} broadcast_id broadcast id
-     * @param {string} key Chat token
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
      */
-    methodBroadcastRestreamsV1Raw(requestParameters: MethodBroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>>;
+    broadcastCredentialsV1Raw(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastCredentialsResponse>>;
     /**
-     * Get restreams
+     * Get credentials
      */
-    methodBroadcastRestreamsV1(requestParameters: MethodBroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse>;
+    broadcastCredentialsV1(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastCredentialsResponse>;
+    /**
+     *
+     * @summary Events from broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id broadcast id
+     * @param {Set<number>} [channels] Channels id
+     * @param {'info' | 'warning' | 'error' | 'debug'} [level] Level log
+     * @param {string} [platform] Platform
+     * @param {string} [app] App stream
+     * @param {string} [server] Server IP
+     * @param {Date} [date_from] Date only after create date
+     * @param {Date} [date_to] Date only after create date
+     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastEventsV1Raw(requestParameters: BroadcastEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastEventsResponse>>;
+    /**
+     * Events from broadcast
+     */
+    broadcastEventsV1(requestParameters: BroadcastEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastEventsResponse>;
+    /**
+     *
+     * @summary Get one broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id broadcast id
+     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastFindV1Raw(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastFindResponse>>;
+    /**
+     * Get one broadcast
+     */
+    broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
+    /**
+     *
+     * @summary Bitrate from broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id broadcast id
+     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastGraphBitrateV1Raw(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
+    /**
+     * Bitrate from broadcast
+     */
+    broadcastGraphBitrateV1(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
+    /**
+     *
+     * @summary Viewers from broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id broadcast id
+     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastGraphViewersV1Raw(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
+    /**
+     * Viewers from broadcast
+     */
+    broadcastGraphViewersV1(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
+    /**
+     *
+     * @summary List broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} [limit] Number of results
+     * @param {number} [offset] Page offset number
+     * @param {'asc' | 'desc'} [order] order
+     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastListV1Raw(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastListResponse>>;
+    /**
+     * List broadcast
+     */
+    broadcastListV1(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastListResponse>;
+    /**
+     *
+     * @summary Get restreams for chat
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} broadcast_id broadcast id
+     * @param {string} key Chat token
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastRestreamChatV1Raw(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>>;
+    /**
+     * Get restreams for chat
+     */
+    broadcastRestreamChatV1(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse>;
+    /**
+     *
+     * @summary View live info
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id Broadcast id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastRestreamsV1Raw(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastRestreamsInfoResponse>>;
+    /**
+     * View live info
+     */
+    broadcastRestreamsV1(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastRestreamsInfoResponse>;
     /**
      *
      * @summary Connect channel, long polling
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
      */
-    methodBroadcastTokenChannelV1Raw(requestParameters: MethodBroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>>;
+    broadcastTokenChannelV1Raw(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>>;
     /**
      * Connect channel, long polling
      */
-    methodBroadcastTokenChannelV1(requestParameters: MethodBroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined>;
+    broadcastTokenChannelV1(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined>;
 }
 /**
  *
  */
 export declare class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterface {
     /**
-     * Get restreams
+     * Get credentials
      */
-    methodBroadcastRestreamsV1Raw(requestParameters: MethodBroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>>;
+    broadcastCredentialsV1Raw(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastCredentialsResponse>>;
     /**
-     * Get restreams
+     * Get credentials
      */
-    methodBroadcastRestreamsV1(requestParameters: MethodBroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse>;
+    broadcastCredentialsV1(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastCredentialsResponse>;
+    /**
+     * Events from broadcast
+     */
+    broadcastEventsV1Raw(requestParameters: BroadcastEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastEventsResponse>>;
+    /**
+     * Events from broadcast
+     */
+    broadcastEventsV1(requestParameters: BroadcastEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastEventsResponse>;
+    /**
+     * Get one broadcast
+     */
+    broadcastFindV1Raw(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastFindResponse>>;
+    /**
+     * Get one broadcast
+     */
+    broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
+    /**
+     * Bitrate from broadcast
+     */
+    broadcastGraphBitrateV1Raw(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
+    /**
+     * Bitrate from broadcast
+     */
+    broadcastGraphBitrateV1(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
+    /**
+     * Viewers from broadcast
+     */
+    broadcastGraphViewersV1Raw(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
+    /**
+     * Viewers from broadcast
+     */
+    broadcastGraphViewersV1(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
+    /**
+     * List broadcast
+     */
+    broadcastListV1Raw(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastListResponse>>;
+    /**
+     * List broadcast
+     */
+    broadcastListV1(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastListResponse>;
+    /**
+     * Get restreams for chat
+     */
+    broadcastRestreamChatV1Raw(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>>;
+    /**
+     * Get restreams for chat
+     */
+    broadcastRestreamChatV1(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse>;
+    /**
+     * View live info
+     */
+    broadcastRestreamsV1Raw(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastRestreamsInfoResponse>>;
+    /**
+     * View live info
+     */
+    broadcastRestreamsV1(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastRestreamsInfoResponse>;
     /**
      * Connect channel, long polling
      */
-    methodBroadcastTokenChannelV1Raw(requestParameters: MethodBroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>>;
+    broadcastTokenChannelV1Raw(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>>;
     /**
      * Connect channel, long polling
      */
-    methodBroadcastTokenChannelV1(requestParameters: MethodBroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined>;
+    broadcastTokenChannelV1(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined>;
 }
 /**
  * @export
  */
-export declare const MethodBroadcastRestreamsV1LanguageEnum: {
+export declare const BroadcastCredentialsV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
-export type MethodBroadcastRestreamsV1LanguageEnum = typeof MethodBroadcastRestreamsV1LanguageEnum[keyof typeof MethodBroadcastRestreamsV1LanguageEnum];
+export type BroadcastCredentialsV1LanguageEnum = typeof BroadcastCredentialsV1LanguageEnum[keyof typeof BroadcastCredentialsV1LanguageEnum];
 /**
  * @export
  */
-export declare const MethodBroadcastRestreamsV1VEnum: {
+export declare const BroadcastCredentialsV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
-export type MethodBroadcastRestreamsV1VEnum = typeof MethodBroadcastRestreamsV1VEnum[keyof typeof MethodBroadcastRestreamsV1VEnum];
+export type BroadcastCredentialsV1VEnum = typeof BroadcastCredentialsV1VEnum[keyof typeof BroadcastCredentialsV1VEnum];
 /**
  * @export
  */
-export declare const MethodBroadcastTokenChannelV1LanguageEnum: {
+export declare const BroadcastEventsV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
-export type MethodBroadcastTokenChannelV1LanguageEnum = typeof MethodBroadcastTokenChannelV1LanguageEnum[keyof typeof MethodBroadcastTokenChannelV1LanguageEnum];
+export type BroadcastEventsV1LanguageEnum = typeof BroadcastEventsV1LanguageEnum[keyof typeof BroadcastEventsV1LanguageEnum];
 /**
  * @export
  */
-export declare const MethodBroadcastTokenChannelV1VEnum: {
-    readonly _1: "1";
-    readonly _2: "2";
+export declare const BroadcastEventsV1LevelEnum: {
+    readonly info: "info";
+    readonly warning: "warning";
+    readonly error: "error";
+    readonly debug: "debug";
+};
+export type BroadcastEventsV1LevelEnum = typeof BroadcastEventsV1LevelEnum[keyof typeof BroadcastEventsV1LevelEnum];
+/**
+ * @export
+ */
+export declare const BroadcastEventsV1VEnum: {
     readonly _3: "3";
 };
-export type MethodBroadcastTokenChannelV1VEnum = typeof MethodBroadcastTokenChannelV1VEnum[keyof typeof MethodBroadcastTokenChannelV1VEnum];
+export type BroadcastEventsV1VEnum = typeof BroadcastEventsV1VEnum[keyof typeof BroadcastEventsV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastFindV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastFindV1LanguageEnum = typeof BroadcastFindV1LanguageEnum[keyof typeof BroadcastFindV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastFindV1VEnum: {
+    readonly _3: "3";
+};
+export type BroadcastFindV1VEnum = typeof BroadcastFindV1VEnum[keyof typeof BroadcastFindV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGraphBitrateV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastGraphBitrateV1LanguageEnum = typeof BroadcastGraphBitrateV1LanguageEnum[keyof typeof BroadcastGraphBitrateV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGraphBitrateV1VEnum: {
+    readonly _3: "3";
+};
+export type BroadcastGraphBitrateV1VEnum = typeof BroadcastGraphBitrateV1VEnum[keyof typeof BroadcastGraphBitrateV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGraphViewersV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastGraphViewersV1LanguageEnum = typeof BroadcastGraphViewersV1LanguageEnum[keyof typeof BroadcastGraphViewersV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGraphViewersV1VEnum: {
+    readonly _3: "3";
+};
+export type BroadcastGraphViewersV1VEnum = typeof BroadcastGraphViewersV1VEnum[keyof typeof BroadcastGraphViewersV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastListV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastListV1LanguageEnum = typeof BroadcastListV1LanguageEnum[keyof typeof BroadcastListV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastListV1OrderEnum: {
+    readonly asc: "asc";
+    readonly desc: "desc";
+};
+export type BroadcastListV1OrderEnum = typeof BroadcastListV1OrderEnum[keyof typeof BroadcastListV1OrderEnum];
+/**
+ * @export
+ */
+export declare const BroadcastListV1VEnum: {
+    readonly _3: "3";
+};
+export type BroadcastListV1VEnum = typeof BroadcastListV1VEnum[keyof typeof BroadcastListV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastRestreamChatV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastRestreamChatV1LanguageEnum = typeof BroadcastRestreamChatV1LanguageEnum[keyof typeof BroadcastRestreamChatV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastRestreamChatV1VEnum: {
+    readonly _1: "1";
+};
+export type BroadcastRestreamChatV1VEnum = typeof BroadcastRestreamChatV1VEnum[keyof typeof BroadcastRestreamChatV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastRestreamsV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastRestreamsV1LanguageEnum = typeof BroadcastRestreamsV1LanguageEnum[keyof typeof BroadcastRestreamsV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastRestreamsV1VEnum: {
+    readonly _1: "1";
+};
+export type BroadcastRestreamsV1VEnum = typeof BroadcastRestreamsV1VEnum[keyof typeof BroadcastRestreamsV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastTokenChannelV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastTokenChannelV1LanguageEnum = typeof BroadcastTokenChannelV1LanguageEnum[keyof typeof BroadcastTokenChannelV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastTokenChannelV1VEnum: {
+    readonly _1: "1";
+};
+export type BroadcastTokenChannelV1VEnum = typeof BroadcastTokenChannelV1VEnum[keyof typeof BroadcastTokenChannelV1VEnum];
 //# sourceMappingURL=BroadcastApi.d.ts.map

@@ -31,7 +31,7 @@ import {
 export interface UserGetProfileV1Request {
     language: UserGetProfileV1LanguageEnum;
     v?: UserGetProfileV1VEnum;
-    project_id?: number | null;
+    project_id?: number;
 }
 
 export interface UserUpdateProfileV1Request {
@@ -53,7 +53,7 @@ export interface UsersApiInterface {
      * Use /method/account/profile instead.
      * @summary Get user profile
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -261,18 +261,14 @@ export type UserGetProfileV1LanguageEnum = typeof UserGetProfileV1LanguageEnum[k
  * @export
  */
 export const UserGetProfileV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type UserGetProfileV1VEnum = typeof UserGetProfileV1VEnum[keyof typeof UserGetProfileV1VEnum];
 /**
  * @export
  */
 export const UserUpdateProfileV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];
 /**

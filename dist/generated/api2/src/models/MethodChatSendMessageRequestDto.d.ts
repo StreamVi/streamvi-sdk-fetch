@@ -27,6 +27,12 @@ export interface MethodChatSendMessageRequestDto {
      * @memberof MethodChatSendMessageRequestDto
      */
     text: string;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof MethodChatSendMessageRequestDto
+     */
+    restreams: Array<number>;
 }
 /**
  * Check if a given object implements the MethodChatSendMessageRequestDto interface.

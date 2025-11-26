@@ -111,7 +111,5 @@ exports.TransactionsListV1LanguageEnum = {
  * @export
  */
 exports.TransactionsListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

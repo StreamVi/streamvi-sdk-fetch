@@ -147,9 +147,7 @@ exports.PromoApplyV1LanguageEnum = {
  * @export
  */
 exports.PromoApplyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -163,7 +161,5 @@ exports.PromoCheckV1LanguageEnum = {
  * @export
  */
 exports.PromoCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

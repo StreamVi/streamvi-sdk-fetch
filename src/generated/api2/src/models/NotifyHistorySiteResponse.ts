@@ -32,7 +32,7 @@ export interface NotifyHistorySiteResponse {
      * @type {string}
      * @memberof NotifyHistorySiteResponse
      */
-    id: string;
+    _id: string;
     /**
      * Project id
      * @type {number}
@@ -41,10 +41,10 @@ export interface NotifyHistorySiteResponse {
     project_id: number;
     /**
      * Date create
-     * @type {Date}
+     * @type {string}
      * @memberof NotifyHistorySiteResponse
      */
-    date_create: Date;
+    date_create: string;
     /**
      * Actions
      * @type {object}
@@ -102,7 +102,7 @@ export type NotifyHistorySiteResponseCategoryEnum = typeof NotifyHistorySiteResp
  * Check if a given object implements the NotifyHistorySiteResponse interface.
  */
 export function instanceOfNotifyHistorySiteResponse(value: object): value is NotifyHistorySiteResponse {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('_id' in value) || value['_id'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('date_create' in value) || value['date_create'] === undefined) return false;
     if (!('actions' in value) || value['actions'] === undefined) return false;
@@ -123,9 +123,9 @@ export function NotifyHistorySiteResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'id': json['id'],
+        '_id': json['_id'],
         'project_id': json['project_id'],
-        'date_create': (new Date(json['date_create'])),
+        'date_create': json['date_create'],
         'actions': json['actions'],
         'channel': json['channel'],
         'text': ((json['text'] as Array<any>).map(InternalNotifyTypeTextFromJSON)),
@@ -145,9 +145,9 @@ export function NotifyHistorySiteResponseToJSONTyped(value?: NotifyHistorySiteRe
 
     return {
         
-        'id': value['id'],
+        '_id': value['_id'],
         'project_id': value['project_id'],
-        'date_create': ((value['date_create']).toISOString()),
+        'date_create': value['date_create'],
         'actions': value['actions'],
         'channel': value['channel'],
         'text': ((value['text'] as Array<any>).map(InternalNotifyTypeTextToJSON)),

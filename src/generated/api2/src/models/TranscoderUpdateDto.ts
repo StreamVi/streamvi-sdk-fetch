@@ -93,16 +93,28 @@ export interface TranscoderUpdateDto {
     bFrames?: number;
     /**
      * ChannelIds
-     * @type {number}
+     * @type {Array<number>}
      * @memberof TranscoderUpdateDto
      */
-    channelIds?: number;
+    channelIds?: Array<number>;
     /**
      * Video codec id
+     * @type {string}
+     * @memberof TranscoderUpdateDto
+     */
+    videoCodec: TranscoderUpdateDtoVideoCodecEnum;
+    /**
+     * Preset
+     * @type {string}
+     * @memberof TranscoderUpdateDto
+     */
+    preset?: string;
+    /**
+     * Delay
      * @type {number}
      * @memberof TranscoderUpdateDto
      */
-    videoCodecId: number;
+    delay?: number;
 }
 
 
@@ -110,9 +122,7 @@ export interface TranscoderUpdateDto {
  * @export
  */
 export const TranscoderUpdateDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type TranscoderUpdateDtoVEnum = typeof TranscoderUpdateDtoVEnum[keyof typeof TranscoderUpdateDtoVEnum];
 
@@ -126,6 +136,15 @@ export const TranscoderUpdateDtoLanguageEnum = {
 } as const;
 export type TranscoderUpdateDtoLanguageEnum = typeof TranscoderUpdateDtoLanguageEnum[keyof typeof TranscoderUpdateDtoLanguageEnum];
 
+/**
+ * @export
+ */
+export const TranscoderUpdateDtoVideoCodecEnum = {
+    h264: 'h264',
+    hevc: 'hevc'
+} as const;
+export type TranscoderUpdateDtoVideoCodecEnum = typeof TranscoderUpdateDtoVideoCodecEnum[keyof typeof TranscoderUpdateDtoVideoCodecEnum];
+
 
 /**
  * Check if a given object implements the TranscoderUpdateDto interface.
@@ -135,7 +154,7 @@ export function instanceOfTranscoderUpdateDto(value: object): value is Transcode
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('transcoder_id' in value) || value['transcoder_id'] === undefined) return false;
-    if (!('videoCodecId' in value) || value['videoCodecId'] === undefined) return false;
+    if (!('videoCodec' in value) || value['videoCodec'] === undefined) return false;
     return true;
 }
 
@@ -162,7 +181,9 @@ export function TranscoderUpdateDtoFromJSONTyped(json: any, ignoreDiscriminator:
         'rotation': json['rotation'] == null ? undefined : json['rotation'],
         'bFrames': json['bFrames'] == null ? undefined : json['bFrames'],
         'channelIds': json['channelIds'] == null ? undefined : json['channelIds'],
-        'videoCodecId': json['videoCodecId'],
+        'videoCodec': json['videoCodec'],
+        'preset': json['preset'] == null ? undefined : json['preset'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 
@@ -190,7 +211,9 @@ export function TranscoderUpdateDtoToJSONTyped(value?: TranscoderUpdateDto | nul
         'rotation': value['rotation'],
         'bFrames': value['bFrames'],
         'channelIds': value['channelIds'],
-        'videoCodecId': value['videoCodecId'],
+        'videoCodec': value['videoCodec'],
+        'preset': value['preset'],
+        'delay': value['delay'],
     };
 }
 

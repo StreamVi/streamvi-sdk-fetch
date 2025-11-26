@@ -76,6 +76,7 @@ function ChannelYoutubeInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         'latency': json['latency'] == null ? undefined : json['latency'],
         'audience': json['audience'] == null ? undefined : json['audience'],
         'image': json['image'] == null ? undefined : json['image'],
+        'disableAutoEnd': json['disableAutoEnd'] == null ? undefined : json['disableAutoEnd'],
     };
 }
 exports.ChannelYoutubeInfoDtoFromJSONTyped = ChannelYoutubeInfoDtoFromJSONTyped;
@@ -98,6 +99,7 @@ function ChannelYoutubeInfoDtoToJSONTyped(value, ignoreDiscriminator = false) {
         'latency': value['latency'],
         'audience': value['audience'],
         'image': value['image'],
+        'disableAutoEnd': value['disableAutoEnd'],
     };
 }
 exports.ChannelYoutubeInfoDtoToJSONTyped = ChannelYoutubeInfoDtoToJSONTyped;

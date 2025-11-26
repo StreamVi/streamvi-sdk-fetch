@@ -254,9 +254,7 @@ exports.MethodChatGatewayDeleteV1LanguageEnum = {
  * @export
  */
 exports.MethodChatGatewayDeleteV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -270,9 +268,7 @@ exports.MethodChatGatewayGetMessageV1LanguageEnum = {
  * @export
  */
 exports.MethodChatGatewayGetMessageV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -286,9 +282,7 @@ exports.MethodChatGatewayHistoryV1LanguageEnum = {
  * @export
  */
 exports.MethodChatGatewayHistoryV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -302,7 +296,5 @@ exports.MethodChatGatewaySendV1LanguageEnum = {
  * @export
  */
 exports.MethodChatGatewaySendV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

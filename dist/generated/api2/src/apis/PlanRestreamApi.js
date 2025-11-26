@@ -117,14 +117,14 @@ class PlanRestreamApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamCheck2V1().');
         }
         const queryParameters = {};
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
             queryParameters['v'] = '1';
-        }
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
@@ -370,9 +370,7 @@ exports.PlanRestreamBuyV1PeriodEnum = {
  * @export
  */
 exports.PlanRestreamBuyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -393,9 +391,7 @@ exports.PlanRestreamCheck2V1PeriodEnum = {
  * @export
  */
 exports.PlanRestreamCheck2V1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 };
 /**
  * @export
@@ -409,9 +405,7 @@ exports.PlanRestreamGetDiscountV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamGetDiscountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -425,9 +419,7 @@ exports.PlanRestreamListProjectV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamListProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -441,9 +433,7 @@ exports.PlanRestreamListV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -457,9 +447,7 @@ exports.PlanRestreamRemoveV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamRemoveV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -473,7 +461,5 @@ exports.PlanRestreamTariffV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamTariffV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

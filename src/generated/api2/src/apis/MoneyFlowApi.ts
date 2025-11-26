@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  PaginatedResponseOfMoneyFlowResponse,
+  PaginatedMoneyFlowResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    PaginatedResponseOfMoneyFlowResponseFromJSON,
-    PaginatedResponseOfMoneyFlowResponseToJSON,
+    PaginatedMoneyFlowResponseFromJSON,
+    PaginatedMoneyFlowResponseToJSON,
 } from '../models/index';
 
 export interface MoneyFlowListV1Request {
@@ -31,8 +31,8 @@ export interface MoneyFlowListV1Request {
     v?: MoneyFlowListV1VEnum;
     limit?: number;
     offset?: number;
-    date_from?: Date;
-    date_to?: Date;
+    date_from?: string;
+    date_to?: string;
     type?: string;
     balance_type?: string;
 }
@@ -49,23 +49,23 @@ export interface MoneyFlowApiInterface {
      * @summary Transaction list for frontend
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
-     * @param {Date} [date_from] Date from
-     * @param {Date} [date_to] Date to
-     * @param {string} [type] Filter code transaction. example 1 or 1,2,3
+     * @param {string} [date_from] Date from
+     * @param {string} [date_to] Date to
+     * @param {string} [type] Filter code transaction. example: referral_profit or payment,referral_profit
      * @param {string} [balance_type] Filter code transaction. example 1 or 1,2,3
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MoneyFlowApiInterface
      */
-    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfMoneyFlowResponse>>;
+    moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>>;
 
     /**
      * Transaction list for frontend
      */
-    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfMoneyFlowResponse>;
+    moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse>;
 
 }
 
@@ -77,7 +77,7 @@ export class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterfa
     /**
      * Transaction list for frontend
      */
-    async moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfMoneyFlowResponse>> {
+    async moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -117,11 +117,11 @@ export class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterfa
         }
 
         if (requestParameters['date_from'] != null) {
-            queryParameters['date_from'] = (requestParameters['date_from'] as any).toISOString();
+            queryParameters['date_from'] = requestParameters['date_from'];
         }
 
         if (requestParameters['date_to'] != null) {
-            queryParameters['date_to'] = (requestParameters['date_to'] as any).toISOString();
+            queryParameters['date_to'] = requestParameters['date_to'];
         }
 
         if (requestParameters['type'] != null) {
@@ -141,13 +141,13 @@ export class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterfa
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfMoneyFlowResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedMoneyFlowResponseFromJSON(jsonValue));
     }
 
     /**
      * Transaction list for frontend
      */
-    async moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfMoneyFlowResponse> {
+    async moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse> {
         const response = await this.moneyFlowListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -167,8 +167,6 @@ export type MoneyFlowListV1LanguageEnum = typeof MoneyFlowListV1LanguageEnum[key
  * @export
  */
 export const MoneyFlowListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MoneyFlowListV1VEnum = typeof MoneyFlowListV1VEnum[keyof typeof MoneyFlowListV1VEnum];

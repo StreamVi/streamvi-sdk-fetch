@@ -553,7 +553,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfProjectChannelInviteResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteListResponseFromJSON)(jsonValue));
     }
     /**
      * List of invites for channel in project
@@ -576,9 +576,7 @@ exports.ProjectChannelInviteAcceptForProjectV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteAcceptForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -592,9 +590,7 @@ exports.ProjectChannelInviteAcceptForSecretV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteAcceptForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -617,9 +613,7 @@ exports.ProjectChannelInviteAddByEmailV1AccessTypeEnum = {
  * @export
  */
 exports.ProjectChannelInviteAddByEmailV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -642,9 +636,7 @@ exports.ProjectChannelInviteAddByIdV1AccessTypeEnum = {
  * @export
  */
 exports.ProjectChannelInviteAddByIdV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -658,9 +650,7 @@ exports.ProjectChannelInviteDeclineForProjectV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteDeclineForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -674,9 +664,7 @@ exports.ProjectChannelInviteDeclineForSecretV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteDeclineForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -690,9 +678,7 @@ exports.ProjectChannelInviteDelV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteDelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -706,9 +692,7 @@ exports.ProjectChannelInviteGetForProjectV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -722,9 +706,7 @@ exports.ProjectChannelInviteGetForSecretV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -738,9 +720,7 @@ exports.ProjectChannelInviteGetV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -754,7 +734,5 @@ exports.ProjectChannelInviteListV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelInviteListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

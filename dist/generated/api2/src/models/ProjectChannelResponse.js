@@ -13,20 +13,47 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectChannelResponseToJSONTyped = exports.ProjectChannelResponseToJSON = exports.ProjectChannelResponseFromJSONTyped = exports.ProjectChannelResponseFromJSON = exports.instanceOfProjectChannelResponse = void 0;
+exports.ProjectChannelResponseToJSONTyped = exports.ProjectChannelResponseToJSON = exports.ProjectChannelResponseFromJSONTyped = exports.ProjectChannelResponseFromJSON = exports.instanceOfProjectChannelResponse = exports.ProjectChannelResponseUsageTypeEnum = exports.ProjectChannelResponseAccessTypeEnum = void 0;
+const ProjectChannelMemberStreamInfoResponse_1 = require("./ProjectChannelMemberStreamInfoResponse");
+const ProjectChannelMemberInfoResponse_1 = require("./ProjectChannelMemberInfoResponse");
+/**
+ * @export
+ */
+exports.ProjectChannelResponseAccessTypeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_12: 1,
+    NUMBER_2: 2
+};
+/**
+ * @export
+ */
+exports.ProjectChannelResponseUsageTypeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_2: 2
+};
 /**
  * Check if a given object implements the ProjectChannelResponse interface.
  */
 function instanceOfProjectChannelResponse(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('access_type' in value) || value['access_type'] === undefined)
         return false;
-    if (!('project_id' in value) || value['project_id'] === undefined)
+    if (!('active' in value) || value['active'] === undefined)
         return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
     if (!('owner_id' in value) || value['owner_id'] === undefined)
         return false;
+    if (!('unlim' in value) || value['unlim'] === undefined)
+        return false;
     if (!('usageType' in value) || value['usageType'] === undefined)
+        return false;
+    if (!('project_id' in value) || value['project_id'] === undefined)
+        return false;
+    if (!('streamInfo' in value) || value['streamInfo'] === undefined)
         return false;
     return true;
 }
@@ -40,11 +67,19 @@ function ProjectChannelResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'id': json['id'],
-        'project_id': json['project_id'],
+        'access_type': json['access_type'],
+        'active': json['active'],
         'channel_id': json['channel_id'],
+        'id': json['id'],
         'owner_id': json['owner_id'],
+        'preview': json['preview'] == null ? undefined : json['preview'],
+        'title': json['title'] == null ? undefined : json['title'],
+        'transcoder_id': json['transcoder_id'] == null ? undefined : json['transcoder_id'],
+        'unlim': json['unlim'],
         'usageType': json['usageType'],
+        'project_id': json['project_id'],
+        'project_': json['project_'] == null ? undefined : (0, ProjectChannelMemberInfoResponse_1.ProjectChannelMemberInfoResponseFromJSON)(json['project_']),
+        'streamInfo': (0, ProjectChannelMemberStreamInfoResponse_1.ProjectChannelMemberStreamInfoResponseFromJSON)(json['streamInfo']),
     };
 }
 exports.ProjectChannelResponseFromJSONTyped = ProjectChannelResponseFromJSONTyped;
@@ -57,11 +92,19 @@ function ProjectChannelResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'id': value['id'],
-        'project_id': value['project_id'],
+        'access_type': value['access_type'],
+        'active': value['active'],
         'channel_id': value['channel_id'],
+        'id': value['id'],
         'owner_id': value['owner_id'],
+        'preview': value['preview'],
+        'title': value['title'],
+        'transcoder_id': value['transcoder_id'],
+        'unlim': value['unlim'],
         'usageType': value['usageType'],
+        'project_id': value['project_id'],
+        'project_': (0, ProjectChannelMemberInfoResponse_1.ProjectChannelMemberInfoResponseToJSON)(value['project_']),
+        'streamInfo': (0, ProjectChannelMemberStreamInfoResponse_1.ProjectChannelMemberStreamInfoResponseToJSON)(value['streamInfo']),
     };
 }
 exports.ProjectChannelResponseToJSONTyped = ProjectChannelResponseToJSONTyped;

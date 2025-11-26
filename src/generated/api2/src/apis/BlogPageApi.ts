@@ -51,7 +51,7 @@ export interface BlogPageApiInterface {
      * @summary Get blog page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} url Url of page
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlogPageApiInterface
@@ -67,7 +67,7 @@ export interface BlogPageApiInterface {
      * 
      * @summary Get list of blog pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {string} [s] String for search
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
@@ -213,9 +213,7 @@ export type BlogPageGetV1LanguageEnum = typeof BlogPageGetV1LanguageEnum[keyof t
  * @export
  */
 export const BlogPageGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type BlogPageGetV1VEnum = typeof BlogPageGetV1VEnum[keyof typeof BlogPageGetV1VEnum];
 /**
@@ -231,8 +229,6 @@ export type BlogPageListV1LanguageEnum = typeof BlogPageListV1LanguageEnum[keyof
  * @export
  */
 export const BlogPageListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type BlogPageListV1VEnum = typeof BlogPageListV1VEnum[keyof typeof BlogPageListV1VEnum];

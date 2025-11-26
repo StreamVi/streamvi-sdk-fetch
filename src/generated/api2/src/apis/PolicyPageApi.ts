@@ -48,7 +48,7 @@ export interface PolicyPageApiInterface {
      * @summary Get policy page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'refund' | 'terms-of-use' | 'using-cookie' | 'acceptable-use' | 'privacy-notice'} file_name Policy file name
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface
@@ -64,7 +64,7 @@ export interface PolicyPageApiInterface {
      * 
      * @summary Get policy structure
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface
@@ -205,9 +205,7 @@ export type PolicyPageGetItemV1FileNameEnum = typeof PolicyPageGetItemV1FileName
  * @export
  */
 export const PolicyPageGetItemV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PolicyPageGetItemV1VEnum = typeof PolicyPageGetItemV1VEnum[keyof typeof PolicyPageGetItemV1VEnum];
 /**
@@ -223,8 +221,6 @@ export type PolicyPageGetStructureV1LanguageEnum = typeof PolicyPageGetStructure
  * @export
  */
 export const PolicyPageGetStructureV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PolicyPageGetStructureV1VEnum = typeof PolicyPageGetStructureV1VEnum[keyof typeof PolicyPageGetStructureV1VEnum];

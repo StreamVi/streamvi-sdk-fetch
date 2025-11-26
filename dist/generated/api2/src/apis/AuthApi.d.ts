@@ -105,7 +105,7 @@ export interface AuthApiInterface {
      * @summary Get code for auth
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} app Create auth code for app
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -120,7 +120,7 @@ export interface AuthApiInterface {
      * @summary CallBack for connect social
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} message Result message for connect
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -134,7 +134,7 @@ export interface AuthApiInterface {
      *
      * @summary Connect telegram in account
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -149,7 +149,7 @@ export interface AuthApiInterface {
      * @summary Connected social account
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
      * @param {string} [redirect] Redirect url
      * @param {*} [options] Override http request option.
@@ -166,7 +166,7 @@ export interface AuthApiInterface {
      * @summary Disconnected social account
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} social_id Social id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -194,7 +194,7 @@ export interface AuthApiInterface {
      * @summary Get url for start oauth
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
      * @param {string} [redirect] Redirect url
      * @param {string} [refId] Referal id
@@ -208,6 +208,18 @@ export interface AuthApiInterface {
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Get client configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApiInterface
+     */
+    authGetClientConfigurationV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Get client configuration
+     */
+    authGetClientConfigurationV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  *
@@ -293,6 +305,14 @@ export declare class AuthApi extends runtime.BaseAPI implements AuthApiInterface
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Get client configuration
+     */
+    authGetClientConfigurationV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Get client configuration
+     */
+    authGetClientConfigurationV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  * @export
@@ -318,8 +338,6 @@ export type AuthCodeV1AppEnum = typeof AuthCodeV1AppEnum[keyof typeof AuthCodeV1
  */
 export declare const AuthCodeV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthCodeV1VEnum = typeof AuthCodeV1VEnum[keyof typeof AuthCodeV1VEnum];
 /**
@@ -336,8 +354,6 @@ export type AuthConnectResultV1LanguageEnum = typeof AuthConnectResultV1Language
  */
 export declare const AuthConnectResultV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthConnectResultV1VEnum = typeof AuthConnectResultV1VEnum[keyof typeof AuthConnectResultV1VEnum];
 /**
@@ -354,8 +370,6 @@ export type AuthConnectTelegramV1LanguageEnum = typeof AuthConnectTelegramV1Lang
  */
 export declare const AuthConnectTelegramV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthConnectTelegramV1VEnum = typeof AuthConnectTelegramV1VEnum[keyof typeof AuthConnectTelegramV1VEnum];
 /**
@@ -382,8 +396,6 @@ export type AuthConnectV1ProviderEnum = typeof AuthConnectV1ProviderEnum[keyof t
  */
 export declare const AuthConnectV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthConnectV1VEnum = typeof AuthConnectV1VEnum[keyof typeof AuthConnectV1VEnum];
 /**
@@ -410,8 +422,6 @@ export type AuthDisconnectV1LanguageEnum = typeof AuthDisconnectV1LanguageEnum[k
  */
 export declare const AuthDisconnectV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthDisconnectV1VEnum = typeof AuthDisconnectV1VEnum[keyof typeof AuthDisconnectV1VEnum];
 /**
@@ -438,8 +448,6 @@ export type AuthGetAuthUrlV1ProviderEnum = typeof AuthGetAuthUrlV1ProviderEnum[k
  */
 export declare const AuthGetAuthUrlV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AuthGetAuthUrlV1VEnum = typeof AuthGetAuthUrlV1VEnum[keyof typeof AuthGetAuthUrlV1VEnum];
 /**

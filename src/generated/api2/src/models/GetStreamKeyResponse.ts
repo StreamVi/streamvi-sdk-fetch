@@ -37,6 +37,18 @@ export interface GetStreamKeyResponse {
      * @memberof GetStreamKeyResponse
      */
     key: string;
+    /**
+     * Pause video id
+     * @type {number}
+     * @memberof GetStreamKeyResponse
+     */
+    pause_media_service_file_id: number | null;
+    /**
+     * Protected video id
+     * @type {number}
+     * @memberof GetStreamKeyResponse
+     */
+    lost_media_service_file_id: number | null;
 }
 
 /**
@@ -46,6 +58,8 @@ export function instanceOfGetStreamKeyResponse(value: object): value is GetStrea
     if (!('wait' in value) || value['wait'] === undefined) return false;
     if (!('record' in value) || value['record'] === undefined) return false;
     if (!('key' in value) || value['key'] === undefined) return false;
+    if (!('pause_media_service_file_id' in value) || value['pause_media_service_file_id'] === undefined) return false;
+    if (!('lost_media_service_file_id' in value) || value['lost_media_service_file_id'] === undefined) return false;
     return true;
 }
 
@@ -62,6 +76,8 @@ export function GetStreamKeyResponseFromJSONTyped(json: any, ignoreDiscriminator
         'wait': json['wait'],
         'record': json['record'],
         'key': json['key'],
+        'pause_media_service_file_id': json['pause_media_service_file_id'],
+        'lost_media_service_file_id': json['lost_media_service_file_id'],
     };
 }
 
@@ -79,6 +95,8 @@ export function GetStreamKeyResponseToJSONTyped(value?: GetStreamKeyResponse | n
         'wait': value['wait'],
         'record': value['record'],
         'key': value['key'],
+        'pause_media_service_file_id': value['pause_media_service_file_id'],
+        'lost_media_service_file_id': value['lost_media_service_file_id'],
     };
 }
 

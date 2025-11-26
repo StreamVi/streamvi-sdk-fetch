@@ -68,9 +68,7 @@ export interface SiteUpdateChatTelegramRequest {
  * @export
  */
 export const SiteUpdateChatTelegramRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type SiteUpdateChatTelegramRequestVEnum = typeof SiteUpdateChatTelegramRequestVEnum[keyof typeof SiteUpdateChatTelegramRequestVEnum];
 

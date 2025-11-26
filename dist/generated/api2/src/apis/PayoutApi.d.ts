@@ -33,7 +33,7 @@ export interface PayoutApiInterface {
      * @summary Create payout
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {PayoutCreateRequestBodyDto} PayoutCreateRequestBodyDto
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
@@ -48,7 +48,7 @@ export interface PayoutApiInterface {
      * @summary Get payout data for create
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
@@ -94,8 +94,6 @@ export type PayoutCreateV1LanguageEnum = typeof PayoutCreateV1LanguageEnum[keyof
  */
 export declare const PayoutCreateV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PayoutCreateV1VEnum = typeof PayoutCreateV1VEnum[keyof typeof PayoutCreateV1VEnum];
 /**
@@ -112,8 +110,6 @@ export type PayoutPrepareV1LanguageEnum = typeof PayoutPrepareV1LanguageEnum[key
  */
 export declare const PayoutPrepareV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PayoutPrepareV1VEnum = typeof PayoutPrepareV1VEnum[keyof typeof PayoutPrepareV1VEnum];
 //# sourceMappingURL=PayoutApi.d.ts.map

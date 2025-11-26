@@ -208,7 +208,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -226,7 +226,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -244,7 +244,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -263,7 +263,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {TelegramSetSettingsRequestDto} TelegramSetSettingsRequestDto 
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -281,7 +281,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -314,7 +314,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -332,7 +332,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -500,7 +500,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {'account' | 'group'} role Token role
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -534,7 +534,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} filter_mode 
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -1606,9 +1606,7 @@ export type ChannelChatGetTelegramSettingV1LanguageEnum = typeof ChannelChatGetT
  * @export
  */
 export const ChannelChatGetTelegramSettingV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelChatGetTelegramSettingV1VEnum = typeof ChannelChatGetTelegramSettingV1VEnum[keyof typeof ChannelChatGetTelegramSettingV1VEnum];
 /**
@@ -1624,9 +1622,7 @@ export type ChannelChatInitTelegramChatConnectV1LanguageEnum = typeof ChannelCha
  * @export
  */
 export const ChannelChatInitTelegramChatConnectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelChatInitTelegramChatConnectV1VEnum = typeof ChannelChatInitTelegramChatConnectV1VEnum[keyof typeof ChannelChatInitTelegramChatConnectV1VEnum];
 /**
@@ -1642,9 +1638,7 @@ export type ChannelChatRemoveTelegramChatV1LanguageEnum = typeof ChannelChatRemo
  * @export
  */
 export const ChannelChatRemoveTelegramChatV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelChatRemoveTelegramChatV1VEnum = typeof ChannelChatRemoveTelegramChatV1VEnum[keyof typeof ChannelChatRemoveTelegramChatV1VEnum];
 /**
@@ -1660,9 +1654,7 @@ export type ChannelChatSetTelegramSettingV1LanguageEnum = typeof ChannelChatSetT
  * @export
  */
 export const ChannelChatSetTelegramSettingV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelChatSetTelegramSettingV1VEnum = typeof ChannelChatSetTelegramSettingV1VEnum[keyof typeof ChannelChatSetTelegramSettingV1VEnum];
 /**
@@ -1678,9 +1670,7 @@ export type ChannelChatTelegramPostsV1LanguageEnum = typeof ChannelChatTelegramP
  * @export
  */
 export const ChannelChatTelegramPostsV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelChatTelegramPostsV1VEnum = typeof ChannelChatTelegramPostsV1VEnum[keyof typeof ChannelChatTelegramPostsV1VEnum];
 /**
@@ -1696,9 +1686,7 @@ export type ChannelOptionsGetPlannedV1LanguageEnum = typeof ChannelOptionsGetPla
  * @export
  */
 export const ChannelOptionsGetPlannedV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelOptionsGetPlannedV1VEnum = typeof ChannelOptionsGetPlannedV1VEnum[keyof typeof ChannelOptionsGetPlannedV1VEnum];
 /**
@@ -1714,9 +1702,7 @@ export type ChannelOptionsGetPlayListV1LanguageEnum = typeof ChannelOptionsGetPl
  * @export
  */
 export const ChannelOptionsGetPlayListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelOptionsGetPlayListV1VEnum = typeof ChannelOptionsGetPlayListV1VEnum[keyof typeof ChannelOptionsGetPlayListV1VEnum];
 /**
@@ -1740,9 +1726,7 @@ export type ChannelSettingUpdateTokenV1RoleEnum = typeof ChannelSettingUpdateTok
  * @export
  */
 export const ChannelSettingUpdateTokenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelSettingUpdateTokenV1VEnum = typeof ChannelSettingUpdateTokenV1VEnum[keyof typeof ChannelSettingUpdateTokenV1VEnum];
 /**
@@ -1758,8 +1742,6 @@ export type TelegramGetPostByFilterV1LanguageEnum = typeof TelegramGetPostByFilt
  * @export
  */
 export const TelegramGetPostByFilterV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type TelegramGetPostByFilterV1VEnum = typeof TelegramGetPostByFilterV1VEnum[keyof typeof TelegramGetPostByFilterV1VEnum];

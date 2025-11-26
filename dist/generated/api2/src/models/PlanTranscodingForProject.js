@@ -19,12 +19,6 @@ const PlanTranscodingItem_1 = require("./PlanTranscodingItem");
  * Check if a given object implements the PlanTranscodingForProject interface.
  */
 function instanceOfPlanTranscodingForProject(value) {
-    if (!('before' in value) || value['before'] === undefined)
-        return false;
-    if (!('current' in value) || value['current'] === undefined)
-        return false;
-    if (!('next' in value) || value['next'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfPlanTranscodingForProject = instanceOfPlanTranscodingForProject;
@@ -37,9 +31,9 @@ function PlanTranscodingForProjectFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'before': (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['before']),
-        'current': (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['current']),
-        'next': (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['next']),
+        'before': json['before'] == null ? undefined : (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['before']),
+        'current': json['current'] == null ? undefined : (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['current']),
+        'next': json['next'] == null ? undefined : (0, PlanTranscodingItem_1.PlanTranscodingItemFromJSON)(json['next']),
     };
 }
 exports.PlanTranscodingForProjectFromJSONTyped = PlanTranscodingForProjectFromJSONTyped;

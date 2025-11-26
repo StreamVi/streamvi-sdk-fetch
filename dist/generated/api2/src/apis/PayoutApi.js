@@ -134,9 +134,7 @@ exports.PayoutCreateV1LanguageEnum = {
  * @export
  */
 exports.PayoutCreateV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -150,7 +148,5 @@ exports.PayoutPrepareV1LanguageEnum = {
  * @export
  */
 exports.PayoutPrepareV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

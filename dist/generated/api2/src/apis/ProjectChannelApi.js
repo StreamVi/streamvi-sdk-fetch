@@ -187,7 +187,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfProjectChannelResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelListResponseFromJSON)(jsonValue));
     }
     /**
      * Project channel list
@@ -270,9 +270,7 @@ exports.ProjectChannelChangeAccessV1AccessTypeEnum = {
  * @export
  */
 exports.ProjectChannelChangeAccessV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -286,9 +284,7 @@ exports.ProjectChannelDelV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelDelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -302,9 +298,7 @@ exports.ProjectChannelListV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -318,7 +312,5 @@ exports.ProjectChannelTransferOwnerV1LanguageEnum = {
  * @export
  */
 exports.ProjectChannelTransferOwnerV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

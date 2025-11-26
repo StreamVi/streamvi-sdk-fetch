@@ -73,10 +73,10 @@ class MoneyFlowApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         if (requestParameters['date_from'] != null) {
-            queryParameters['date_from'] = requestParameters['date_from'].toISOString();
+            queryParameters['date_from'] = requestParameters['date_from'];
         }
         if (requestParameters['date_to'] != null) {
-            queryParameters['date_to'] = requestParameters['date_to'].toISOString();
+            queryParameters['date_to'] = requestParameters['date_to'];
         }
         if (requestParameters['type'] != null) {
             queryParameters['type'] = requestParameters['type'];
@@ -91,7 +91,7 @@ class MoneyFlowApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfMoneyFlowResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedMoneyFlowResponseFromJSON)(jsonValue));
     }
     /**
      * Transaction list for frontend
@@ -114,7 +114,5 @@ exports.MoneyFlowListV1LanguageEnum = {
  * @export
  */
 exports.MoneyFlowListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

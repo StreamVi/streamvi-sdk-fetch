@@ -24,6 +24,10 @@ function instanceOfGetStreamKeyResponse(value) {
         return false;
     if (!('key' in value) || value['key'] === undefined)
         return false;
+    if (!('pause_media_service_file_id' in value) || value['pause_media_service_file_id'] === undefined)
+        return false;
+    if (!('lost_media_service_file_id' in value) || value['lost_media_service_file_id'] === undefined)
+        return false;
     return true;
 }
 exports.instanceOfGetStreamKeyResponse = instanceOfGetStreamKeyResponse;
@@ -39,6 +43,8 @@ function GetStreamKeyResponseFromJSONTyped(json, ignoreDiscriminator) {
         'wait': json['wait'],
         'record': json['record'],
         'key': json['key'],
+        'pause_media_service_file_id': json['pause_media_service_file_id'],
+        'lost_media_service_file_id': json['lost_media_service_file_id'],
     };
 }
 exports.GetStreamKeyResponseFromJSONTyped = GetStreamKeyResponseFromJSONTyped;
@@ -54,6 +60,8 @@ function GetStreamKeyResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'wait': value['wait'],
         'record': value['record'],
         'key': value['key'],
+        'pause_media_service_file_id': value['pause_media_service_file_id'],
+        'lost_media_service_file_id': value['lost_media_service_file_id'],
     };
 }
 exports.GetStreamKeyResponseToJSONTyped = GetStreamKeyResponseToJSONTyped;

@@ -10,11 +10,16 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPaySystemListResponse, SuccessResponse } from '../models/index';
+import type { ListOfPaySystemListResponse, PayRedirectUrlDto } from '../models/index';
 export interface PaySystemCreateChallengeV1Request {
     language: PaySystemCreateChallengeV1LanguageEnum;
     payment_id: number;
     v?: PaySystemCreateChallengeV1VEnum;
+}
+export interface PaySystemCreateTBankV1Request {
+    language: PaySystemCreateTBankV1LanguageEnum;
+    payment_id: number;
+    v?: PaySystemCreateTBankV1VEnum;
 }
 export interface PaySystemCreateUnitpayV1Request {
     language: PaySystemCreateUnitpayV1LanguageEnum;
@@ -30,30 +35,49 @@ export interface PaySystemCreateUnitpayV1Request {
 export interface PaySystemApiInterface {
     /**
      *
+     * @summary Create payoneer payment challenge redirect url
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
      */
-    paySystemCreateChallengeV1Raw(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    paySystemCreateChallengeV1Raw(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
     /**
+     * Create payoneer payment challenge redirect url
      */
-    paySystemCreateChallengeV1(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    paySystemCreateChallengeV1(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
     /**
      *
+     * @summary Create t-bank payment challenge redirect url
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
      */
-    paySystemCreateUnitpayV1Raw(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    paySystemCreateTBankV1Raw(requestParameters: PaySystemCreateTBankV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
     /**
+     * Create t-bank payment challenge redirect url
      */
-    paySystemCreateUnitpayV1(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    paySystemCreateTBankV1(requestParameters: PaySystemCreateTBankV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
+    /**
+     *
+     * @summary Create unitpay payment challenge redirect url
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    paySystemCreateUnitpayV1Raw(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
+    /**
+     * Create unitpay payment challenge redirect url
+     */
+    paySystemCreateUnitpayV1(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
     /**
      *
      * @summary Load available pay systems
@@ -72,17 +96,29 @@ export interface PaySystemApiInterface {
  */
 export declare class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterface {
     /**
+     * Create payoneer payment challenge redirect url
      */
-    paySystemCreateChallengeV1Raw(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    paySystemCreateChallengeV1Raw(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
     /**
+     * Create payoneer payment challenge redirect url
      */
-    paySystemCreateChallengeV1(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    paySystemCreateChallengeV1(requestParameters: PaySystemCreateChallengeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
     /**
+     * Create t-bank payment challenge redirect url
      */
-    paySystemCreateUnitpayV1Raw(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    paySystemCreateTBankV1Raw(requestParameters: PaySystemCreateTBankV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
     /**
+     * Create t-bank payment challenge redirect url
      */
-    paySystemCreateUnitpayV1(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    paySystemCreateTBankV1(requestParameters: PaySystemCreateTBankV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
+    /**
+     * Create unitpay payment challenge redirect url
+     */
+    paySystemCreateUnitpayV1Raw(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayRedirectUrlDto>>;
+    /**
+     * Create unitpay payment challenge redirect url
+     */
+    paySystemCreateUnitpayV1(requestParameters: PaySystemCreateUnitpayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayRedirectUrlDto>;
     /**
      * Load available pay systems
      */
@@ -106,10 +142,24 @@ export type PaySystemCreateChallengeV1LanguageEnum = typeof PaySystemCreateChall
  */
 export declare const PaySystemCreateChallengeV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PaySystemCreateChallengeV1VEnum = typeof PaySystemCreateChallengeV1VEnum[keyof typeof PaySystemCreateChallengeV1VEnum];
+/**
+ * @export
+ */
+export declare const PaySystemCreateTBankV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type PaySystemCreateTBankV1LanguageEnum = typeof PaySystemCreateTBankV1LanguageEnum[keyof typeof PaySystemCreateTBankV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const PaySystemCreateTBankV1VEnum: {
+    readonly _1: "1";
+};
+export type PaySystemCreateTBankV1VEnum = typeof PaySystemCreateTBankV1VEnum[keyof typeof PaySystemCreateTBankV1VEnum];
 /**
  * @export
  */
@@ -124,8 +174,6 @@ export type PaySystemCreateUnitpayV1LanguageEnum = typeof PaySystemCreateUnitpay
  */
 export declare const PaySystemCreateUnitpayV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PaySystemCreateUnitpayV1VEnum = typeof PaySystemCreateUnitpayV1VEnum[keyof typeof PaySystemCreateUnitpayV1VEnum];
 //# sourceMappingURL=PaySystemApi.d.ts.map

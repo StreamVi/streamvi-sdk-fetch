@@ -34,11 +34,23 @@ export interface PlanRestreamItem {
      */
     bitrate_max: number;
     /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamItem
+     */
+    support_custom_channel: boolean;
+    /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanRestreamItem
      */
     date_end: Date;
+    /**
+     * Custom video
+     * @type {number}
+     * @memberof PlanRestreamItem
+     */
+    custom_video: number;
 }
 /**
  * Check if a given object implements the PlanRestreamItem interface.

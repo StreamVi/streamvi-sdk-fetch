@@ -140,6 +140,32 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Reset delay
+     */
+    async transcodersResetDelayV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['TranscoderItemDto'] == null) {
+            throw new runtime.RequiredError('TranscoderItemDto', 'Required parameter "TranscoderItemDto" was null or undefined when calling transcodersResetDelayV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/transcoder/reset-delay`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.TranscoderItemDtoToJSON)(requestParameters['TranscoderItemDto']),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Reset delay
+     */
+    async transcodersResetDelayV1(requestParameters, initOverrides) {
+        const response = await this.transcodersResetDelayV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * Transcoder stop
      */
     async transcodersStopV1Raw(requestParameters, initOverrides) {
@@ -205,7 +231,5 @@ exports.TranscodersListV1LanguageEnum = {
  * @export
  */
 exports.TranscodersListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

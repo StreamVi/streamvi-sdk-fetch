@@ -79,7 +79,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -98,7 +98,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -116,7 +116,7 @@ export interface ChatGatewayApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -135,7 +135,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id 
      * @param {MethodChatSendMessageRequestDto} MethodChatSendMessageRequestDto 
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -461,9 +461,7 @@ export type MethodChatGatewayDeleteV1LanguageEnum = typeof MethodChatGatewayDele
  * @export
  */
 export const MethodChatGatewayDeleteV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodChatGatewayDeleteV1VEnum = typeof MethodChatGatewayDeleteV1VEnum[keyof typeof MethodChatGatewayDeleteV1VEnum];
 /**
@@ -479,9 +477,7 @@ export type MethodChatGatewayGetMessageV1LanguageEnum = typeof MethodChatGateway
  * @export
  */
 export const MethodChatGatewayGetMessageV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodChatGatewayGetMessageV1VEnum = typeof MethodChatGatewayGetMessageV1VEnum[keyof typeof MethodChatGatewayGetMessageV1VEnum];
 /**
@@ -497,9 +493,7 @@ export type MethodChatGatewayHistoryV1LanguageEnum = typeof MethodChatGatewayHis
  * @export
  */
 export const MethodChatGatewayHistoryV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodChatGatewayHistoryV1VEnum = typeof MethodChatGatewayHistoryV1VEnum[keyof typeof MethodChatGatewayHistoryV1VEnum];
 /**
@@ -515,8 +509,6 @@ export type MethodChatGatewaySendV1LanguageEnum = typeof MethodChatGatewaySendV1
  * @export
  */
 export const MethodChatGatewaySendV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodChatGatewaySendV1VEnum = typeof MethodChatGatewaySendV1VEnum[keyof typeof MethodChatGatewaySendV1VEnum];

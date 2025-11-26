@@ -105,14 +105,18 @@ export interface SiteUpdateOptionsYoutubeRequest {
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
     tags?: Set<string>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof SiteUpdateOptionsYoutubeRequest
+     */
+    disable_auto_end?: boolean;
 }
 /**
  * @export
  */
 export declare const SiteUpdateOptionsYoutubeRequestVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type SiteUpdateOptionsYoutubeRequestVEnum = typeof SiteUpdateOptionsYoutubeRequestVEnum[keyof typeof SiteUpdateOptionsYoutubeRequestVEnum];
 /**

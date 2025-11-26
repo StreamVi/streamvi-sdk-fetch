@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaySystemCreateUnitpayV1VEnum = exports.PaySystemCreateUnitpayV1LanguageEnum = exports.PaySystemCreateChallengeV1VEnum = exports.PaySystemCreateChallengeV1LanguageEnum = exports.PaySystemApi = void 0;
+exports.PaySystemCreateUnitpayV1VEnum = exports.PaySystemCreateUnitpayV1LanguageEnum = exports.PaySystemCreateTBankV1VEnum = exports.PaySystemCreateTBankV1LanguageEnum = exports.PaySystemCreateChallengeV1VEnum = exports.PaySystemCreateChallengeV1LanguageEnum = exports.PaySystemApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PaySystemApi extends runtime.BaseAPI {
     /**
+     * Create payoneer payment challenge redirect url
      */
     async paySystemCreateChallengeV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -72,15 +73,56 @@ class PaySystemApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
     }
     /**
+     * Create payoneer payment challenge redirect url
      */
     async paySystemCreateChallengeV1(requestParameters, initOverrides) {
         const response = await this.paySystemCreateChallengeV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Create t-bank payment challenge redirect url
+     */
+    async paySystemCreateTBankV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySystemCreateTBankV1().');
+        }
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError('payment_id', 'Required parameter "payment_id" was null or undefined when calling paySystemCreateTBankV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/pay-system/t-bank/create`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
+    }
+    /**
+     * Create t-bank payment challenge redirect url
+     */
+    async paySystemCreateTBankV1(requestParameters, initOverrides) {
+        const response = await this.paySystemCreateTBankV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Create unitpay payment challenge redirect url
      */
     async paySystemCreateUnitpayV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -109,9 +151,10 @@ class PaySystemApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
     }
     /**
+     * Create unitpay payment challenge redirect url
      */
     async paySystemCreateUnitpayV1(requestParameters, initOverrides) {
         const response = await this.paySystemCreateUnitpayV1Raw(requestParameters, initOverrides);
@@ -152,9 +195,21 @@ exports.PaySystemCreateChallengeV1LanguageEnum = {
  * @export
  */
 exports.PaySystemCreateChallengeV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PaySystemCreateTBankV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PaySystemCreateTBankV1VEnum = {
+    _1: '1'
 };
 /**
  * @export
@@ -168,7 +223,5 @@ exports.PaySystemCreateUnitpayV1LanguageEnum = {
  * @export
  */
 exports.PaySystemCreateUnitpayV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

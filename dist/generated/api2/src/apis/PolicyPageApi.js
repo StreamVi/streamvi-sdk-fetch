@@ -138,9 +138,7 @@ exports.PolicyPageGetItemV1FileNameEnum = {
  * @export
  */
 exports.PolicyPageGetItemV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -154,7 +152,5 @@ exports.PolicyPageGetStructureV1LanguageEnum = {
  * @export
  */
 exports.PolicyPageGetStructureV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

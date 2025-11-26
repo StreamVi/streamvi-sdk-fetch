@@ -59,14 +59,14 @@ class LiveApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('broadcast_id', 'Required parameter "broadcast_id" was null or undefined when calling controllersRestreamsV1().');
         }
         const queryParameters = {};
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
             queryParameters['v'] = '1';
-        }
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
@@ -106,7 +106,5 @@ exports.ControllersRestreamsV1LanguageEnum = {
  * @export
  */
 exports.ControllersRestreamsV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 };

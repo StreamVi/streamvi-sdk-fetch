@@ -18,9 +18,7 @@ exports.TranscoderItemDtoToJSONTyped = exports.TranscoderItemDtoToJSON = exports
  * @export
  */
 exports.TranscoderItemDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

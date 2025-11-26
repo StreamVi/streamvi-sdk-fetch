@@ -43,6 +43,7 @@ export declare const PlanRestreamFeatureItemNameEnum: {
     readonly background_chat: "background_chat";
     readonly dedicated_server: "dedicated_server";
     readonly personal_manager: "personal_manager";
+    readonly support_custom_channel: "support_custom_channel";
 };
 export type PlanRestreamFeatureItemNameEnum = typeof PlanRestreamFeatureItemNameEnum[keyof typeof PlanRestreamFeatureItemNameEnum];
 /**

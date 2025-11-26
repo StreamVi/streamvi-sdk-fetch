@@ -56,15 +56,11 @@ function instanceOfMoneyFlowResponse(value) {
         return false;
     if (!('amount' in value) || value['amount'] === undefined)
         return false;
-    if (!('currency' in value) || value['currency'] === undefined)
-        return false;
     if (!('date' in value) || value['date'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
     if (!('balance' in value) || value['balance'] === undefined)
-        return false;
-    if (!('details' in value) || value['details'] === undefined)
         return false;
     return true;
 }
@@ -80,11 +76,11 @@ function MoneyFlowResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'money_flow_id': json['money_flow_id'],
         'amount': json['amount'],
-        'currency': json['currency'],
-        'date': (new Date(json['date'])),
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'date': json['date'],
         'type': json['type'],
         'balance': json['balance'],
-        'details': (0, MoneyFlowDetails_1.MoneyFlowDetailsFromJSON)(json['details']),
+        'details': json['details'] == null ? undefined : (0, MoneyFlowDetails_1.MoneyFlowDetailsFromJSON)(json['details']),
     };
 }
 exports.MoneyFlowResponseFromJSONTyped = MoneyFlowResponseFromJSONTyped;
@@ -100,7 +96,7 @@ function MoneyFlowResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'money_flow_id': value['money_flow_id'],
         'amount': value['amount'],
         'currency': value['currency'],
-        'date': ((value['date']).toISOString()),
+        'date': value['date'],
         'type': value['type'],
         'balance': value['balance'],
         'details': (0, MoneyFlowDetails_1.MoneyFlowDetailsToJSON)(value['details']),

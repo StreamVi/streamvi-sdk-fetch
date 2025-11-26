@@ -115,7 +115,7 @@ class HelpPageApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfHelpPageResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedHelpPageResponseFromJSON)(jsonValue));
     }
     /**
      * Get list of help pages
@@ -171,9 +171,7 @@ exports.HelpPageGetV1LanguageEnum = {
  * @export
  */
 exports.HelpPageGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -187,9 +185,7 @@ exports.HelpPageListV1LanguageEnum = {
  * @export
  */
 exports.HelpPageListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -203,7 +199,5 @@ exports.HelpPageStructureV1LanguageEnum = {
  * @export
  */
 exports.HelpPageStructureV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformsApi = void 0;
+exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetChannelsV1SortEnum = exports.PlatformsGetChannelsV1VEnum = exports.PlatformsGetChannelsV1PlatformEnum = exports.PlatformsGetChannelsV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsGetAccountsV1VEnum = exports.PlatformsGetAccountsV1PlatformEnum = exports.PlatformsGetAccountsV1LanguageEnum = exports.PlatformsCallbackV1ProviderEnum = exports.PlatformsAddAccountVkCommunityV1VEnum = exports.PlatformsAddAccountVkCommunityV1LanguageEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformsApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -72,6 +72,9 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['platform'] != null) {
             queryParameters['platform'] = requestParameters['platform'];
         }
+        if (requestParameters['sub_id'] != null) {
+            queryParameters['sub_id'] = requestParameters['sub_id'];
+        }
         const headerParameters = {};
         const response = await this.request({
             path: `/method/platforms/connect`,
@@ -86,6 +89,197 @@ class PlatformsApi extends runtime.BaseAPI {
      */
     async platformsAddAccountV1(requestParameters, initOverrides) {
         await this.platformsAddAccountV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Get url for start oauth
+     */
+    async platformsAddAccountVkCommunityV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformsAddAccountVkCommunityV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling platformsAddAccountVkCommunityV1().');
+        }
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling platformsAddAccountVkCommunityV1().');
+        }
+        if (requestParameters['account_id'] == null) {
+            throw new runtime.RequiredError('account_id', 'Required parameter "account_id" was null or undefined when calling platformsAddAccountVkCommunityV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+        if (requestParameters['account_id'] != null) {
+            queryParameters['account_id'] = requestParameters['account_id'];
+        }
+        if (requestParameters['sub_id'] != null) {
+            queryParameters['sub_id'] = requestParameters['sub_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/connect/vk-community`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Get url for start oauth
+     */
+    async platformsAddAccountVkCommunityV1(requestParameters, initOverrides) {
+        await this.platformsAddAccountVkCommunityV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackCommunityV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError('state', 'Required parameter "state" was null or undefined when calling platformsCallbackCommunityV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/vk/callback-community`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
+    }
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackCommunityV1(requestParameters, initOverrides) {
+        const response = await this.platformsCallbackCommunityV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['provider'] == null) {
+            throw new runtime.RequiredError('provider', 'Required parameter "provider" was null or undefined when calling platformsCallbackV1().');
+        }
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError('state', 'Required parameter "state" was null or undefined when calling platformsCallbackV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/{provider}/callback`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
+    }
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackV1(requestParameters, initOverrides) {
+        const response = await this.platformsCallbackV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Internal request of auth vk-id
+     */
+    async platformsCallbackVkIdV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError('state', 'Required parameter "state" was null or undefined when calling platformsCallbackVkIdV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/vk-id/callback`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
+    }
+    /**
+     * Internal request of auth vk-id
+     */
+    async platformsCallbackVkIdV1(requestParameters, initOverrides) {
+        const response = await this.platformsCallbackVkIdV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get accounts
+     */
+    async platformsGetAccountsV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformsGetAccountsV1().');
+        }
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError('platform', 'Required parameter "platform" was null or undefined when calling platformsGetAccountsV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/accounts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetAccountsResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get accounts
+     */
+    async platformsGetAccountsV1(requestParameters, initOverrides) {
+        const response = await this.platformsGetAccountsV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
     /**
      * Get category from the platform
@@ -127,6 +321,75 @@ class PlatformsApi extends runtime.BaseAPI {
      */
     async platformsGetCategoryV1(requestParameters, initOverrides) {
         const response = await this.platformsGetCategoryV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get channels with accounts
+     */
+    async platformsGetChannelsV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformsGetChannelsV1().');
+        }
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError('platform', 'Required parameter "platform" was null or undefined when calling platformsGetChannelsV1().');
+        }
+        if (requestParameters['ids'] == null) {
+            throw new runtime.RequiredError('ids', 'Required parameter "ids" was null or undefined when calling platformsGetChannelsV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling platformsGetChannelsV1().');
+        }
+        if (requestParameters['request_id'] == null) {
+            throw new runtime.RequiredError('request_id', 'Required parameter "request_id" was null or undefined when calling platformsGetChannelsV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
+        }
+        if (requestParameters['request_id'] != null) {
+            queryParameters['request_id'] = requestParameters['request_id'];
+        }
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/platforms/account/channels`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetAccountChannelsResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get channels with accounts
+     */
+    async platformsGetChannelsV1(requestParameters, initOverrides) {
+        const response = await this.platformsGetChannelsV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -207,6 +470,32 @@ class PlatformsApi extends runtime.BaseAPI {
         const response = await this.platformsPlatformListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
+    /**
+     * Remove account
+     */
+    async platformsRemoveAccountV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['RemoveAccountQuery'] == null) {
+            throw new runtime.RequiredError('RemoveAccountQuery', 'Required parameter "RemoveAccountQuery" was null or undefined when calling platformsRemoveAccountV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/platforms/account/remove`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.RemoveAccountQueryToJSON)(requestParameters['RemoveAccountQuery']),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Remove account
+     */
+    async platformsRemoveAccountV1(requestParameters, initOverrides) {
+        const response = await this.platformsRemoveAccountV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
 }
 exports.PlatformsApi = PlatformsApi;
 /**
@@ -226,15 +515,66 @@ exports.PlatformsAddAccountV1PlatformEnum = {
     ok: 'ok',
     youtube: 'youtube',
     trovo: 'trovo',
-    twitch: 'twitch'
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
 };
 /**
  * @export
  */
 exports.PlatformsAddAccountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsAddAccountVkCommunityV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlatformsAddAccountVkCommunityV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsCallbackV1ProviderEnum = {
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetAccountsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetAccountsV1PlatformEnum = {
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetAccountsV1VEnum = {
+    _1: '1'
 };
 /**
  * @export
@@ -258,9 +598,35 @@ exports.PlatformsGetCategoryV1TypeEnum = {
  * @export
  */
 exports.PlatformsGetCategoryV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetChannelsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetChannelsV1PlatformEnum = {
+    vk: 'vk',
+    ok: 'ok'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetChannelsV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsGetChannelsV1SortEnum = {
+    asc: 'asc',
+    desc: 'desc'
 };
 /**
  * @export
@@ -279,15 +645,14 @@ exports.PlatformsLogoutAccountV1PlatformEnum = {
     ok: 'ok',
     youtube: 'youtube',
     trovo: 'trovo',
-    twitch: 'twitch'
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
 };
 /**
  * @export
  */
 exports.PlatformsLogoutAccountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -301,7 +666,5 @@ exports.PlatformsPlatformListV1LanguageEnum = {
  * @export
  */
 exports.PlatformsPlatformListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

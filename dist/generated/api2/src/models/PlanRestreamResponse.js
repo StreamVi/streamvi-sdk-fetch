@@ -90,6 +90,8 @@ function instanceOfPlanRestreamResponse(value) {
         return false;
     if (!('index' in value) || value['index'] === undefined)
         return false;
+    if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined)
+        return false;
     if (!('discount' in value) || value['discount'] === undefined)
         return false;
     return true;
@@ -126,6 +128,7 @@ function PlanRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         'personal_manager': json['personal_manager'],
         'pull_link_limit': json['pull_link_limit'],
         'index': json['index'],
+        'support_custom_channel': json['support_custom_channel'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseFromJSON)(json['discount']),
     };
 }
@@ -161,6 +164,7 @@ function PlanRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'personal_manager': value['personal_manager'],
         'pull_link_limit': value['pull_link_limit'],
         'index': value['index'],
+        'support_custom_channel': value['support_custom_channel'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseToJSON)(value['discount']),
     };
 }

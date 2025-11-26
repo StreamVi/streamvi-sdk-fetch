@@ -81,7 +81,7 @@ export interface StreamPullKeysApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {string} key Key
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -113,7 +113,7 @@ export interface StreamPullKeysApiInterface {
      * @summary List keys
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -131,7 +131,7 @@ export interface StreamPullKeysApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {string} key Key
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -436,9 +436,7 @@ export type StreamPullKeysSiteCheckV1LanguageEnum = typeof StreamPullKeysSiteChe
  * @export
  */
 export const StreamPullKeysSiteCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type StreamPullKeysSiteCheckV1VEnum = typeof StreamPullKeysSiteCheckV1VEnum[keyof typeof StreamPullKeysSiteCheckV1VEnum];
 /**
@@ -454,9 +452,7 @@ export type StreamPullKeysSiteGetV1LanguageEnum = typeof StreamPullKeysSiteGetV1
  * @export
  */
 export const StreamPullKeysSiteGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type StreamPullKeysSiteGetV1VEnum = typeof StreamPullKeysSiteGetV1VEnum[keyof typeof StreamPullKeysSiteGetV1VEnum];
 /**
@@ -472,8 +468,6 @@ export type StreamPullKeysSiteRemoveV1LanguageEnum = typeof StreamPullKeysSiteRe
  * @export
  */
 export const StreamPullKeysSiteRemoveV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type StreamPullKeysSiteRemoveV1VEnum = typeof StreamPullKeysSiteRemoveV1VEnum[keyof typeof StreamPullKeysSiteRemoveV1VEnum];

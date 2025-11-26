@@ -174,9 +174,7 @@ exports.PaymentCreateV1OperationLanguageEnum = {
  * @export
  */
 exports.PaymentCreateV1OperationVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -190,9 +188,7 @@ exports.PaymentGetStatusV1LanguageEnum = {
  * @export
  */
 exports.PaymentGetStatusV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -206,7 +202,5 @@ exports.PaymentListV1LanguageEnum = {
  * @export
  */
 exports.PaymentListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfProjectChannelResponse, SuccessResponse } from '../models/index';
+import type { ProjectChannelListResponse, SuccessResponse } from '../models/index';
 export interface ProjectChannelChangeAccessV1Request {
     language: ProjectChannelChangeAccessV1LanguageEnum;
     project_id: number;
@@ -54,7 +54,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
      * @param {0 | 1 | 1 | 2} access_type Access type
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -71,7 +71,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} target_project_id Target project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -87,16 +87,16 @@ export interface ProjectChannelApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
      */
-    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelResponse>>;
+    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>>;
     /**
      * Project channel list
      */
-    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelResponse>;
+    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse>;
     /**
      *
      * @summary Transfer owner for project in channel
@@ -104,7 +104,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -138,11 +138,11 @@ export declare class ProjectChannelApi extends runtime.BaseAPI implements Projec
     /**
      * Project channel list
      */
-    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelResponse>>;
+    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>>;
     /**
      * Project channel list
      */
-    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelResponse>;
+    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse>;
     /**
      * Transfer owner for project in channel
      */
@@ -176,8 +176,6 @@ export type ProjectChannelChangeAccessV1AccessTypeEnum = typeof ProjectChannelCh
  */
 export declare const ProjectChannelChangeAccessV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type ProjectChannelChangeAccessV1VEnum = typeof ProjectChannelChangeAccessV1VEnum[keyof typeof ProjectChannelChangeAccessV1VEnum];
 /**
@@ -194,8 +192,6 @@ export type ProjectChannelDelV1LanguageEnum = typeof ProjectChannelDelV1Language
  */
 export declare const ProjectChannelDelV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type ProjectChannelDelV1VEnum = typeof ProjectChannelDelV1VEnum[keyof typeof ProjectChannelDelV1VEnum];
 /**
@@ -212,8 +208,6 @@ export type ProjectChannelListV1LanguageEnum = typeof ProjectChannelListV1Langua
  */
 export declare const ProjectChannelListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type ProjectChannelListV1VEnum = typeof ProjectChannelListV1VEnum[keyof typeof ProjectChannelListV1VEnum];
 /**
@@ -230,8 +224,6 @@ export type ProjectChannelTransferOwnerV1LanguageEnum = typeof ProjectChannelTra
  */
 export declare const ProjectChannelTransferOwnerV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type ProjectChannelTransferOwnerV1VEnum = typeof ProjectChannelTransferOwnerV1VEnum[keyof typeof ProjectChannelTransferOwnerV1VEnum];
 //# sourceMappingURL=ProjectChannelApi.d.ts.map

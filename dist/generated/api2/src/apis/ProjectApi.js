@@ -395,9 +395,7 @@ exports.UserProjectChangeAccessV1AccessTypeEnum = {
  * @export
  */
 exports.UserProjectChangeAccessV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -411,9 +409,7 @@ exports.UserProjectDelV1LanguageEnum = {
  * @export
  */
 exports.UserProjectDelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -427,9 +423,7 @@ exports.UserProjectGetProjectInfoV1LanguageEnum = {
  * @export
  */
 exports.UserProjectGetProjectInfoV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -443,9 +437,7 @@ exports.UserProjectGetProjectV1LanguageEnum = {
  * @export
  */
 exports.UserProjectGetProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -459,9 +451,7 @@ exports.UserProjectGetUserV1LanguageEnum = {
  * @export
  */
 exports.UserProjectGetUserV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -475,9 +465,7 @@ exports.UserProjectListAccessV1LanguageEnum = {
  * @export
  */
 exports.UserProjectListAccessV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -491,9 +479,7 @@ exports.UserProjectListV1LanguageEnum = {
  * @export
  */
 exports.UserProjectListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -507,7 +493,5 @@ exports.UserProjectSelectProjectV1LanguageEnum = {
  * @export
  */
 exports.UserProjectSelectProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

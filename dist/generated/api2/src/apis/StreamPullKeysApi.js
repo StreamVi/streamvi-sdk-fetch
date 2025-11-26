@@ -238,9 +238,7 @@ exports.StreamPullKeysSiteCheckV1LanguageEnum = {
  * @export
  */
 exports.StreamPullKeysSiteCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -254,9 +252,7 @@ exports.StreamPullKeysSiteGetV1LanguageEnum = {
  * @export
  */
 exports.StreamPullKeysSiteGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -270,7 +266,5 @@ exports.StreamPullKeysSiteRemoveV1LanguageEnum = {
  * @export
  */
 exports.StreamPullKeysSiteRemoveV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

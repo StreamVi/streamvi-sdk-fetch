@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetHelpPageResponse, PaginatedResponseOfHelpPageResponse, StructureHelpPageResponse } from '../models/index';
+import type { GetHelpPageResponse, PaginatedHelpPageResponse, StructureHelpPageResponse } from '../models/index';
 export interface HelpPageGetV1Request {
     language: HelpPageGetV1LanguageEnum;
     url: string;
@@ -39,7 +39,7 @@ export interface HelpPageApiInterface {
      * @summary Get help page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} url Url of page
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -53,7 +53,7 @@ export interface HelpPageApiInterface {
      *
      * @summary Get list of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {string} [s] String for search
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
@@ -61,16 +61,16 @@ export interface HelpPageApiInterface {
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
      */
-    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfHelpPageResponse>>;
+    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>>;
     /**
      * Get list of help pages
      */
-    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfHelpPageResponse>;
+    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse>;
     /**
      *
      * @summary Get structure of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -96,11 +96,11 @@ export declare class HelpPageApi extends runtime.BaseAPI implements HelpPageApiI
     /**
      * Get list of help pages
      */
-    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfHelpPageResponse>>;
+    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>>;
     /**
      * Get list of help pages
      */
-    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfHelpPageResponse>;
+    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse>;
     /**
      * Get structure of help pages
      */
@@ -124,8 +124,6 @@ export type HelpPageGetV1LanguageEnum = typeof HelpPageGetV1LanguageEnum[keyof t
  */
 export declare const HelpPageGetV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type HelpPageGetV1VEnum = typeof HelpPageGetV1VEnum[keyof typeof HelpPageGetV1VEnum];
 /**
@@ -142,8 +140,6 @@ export type HelpPageListV1LanguageEnum = typeof HelpPageListV1LanguageEnum[keyof
  */
 export declare const HelpPageListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type HelpPageListV1VEnum = typeof HelpPageListV1VEnum[keyof typeof HelpPageListV1VEnum];
 /**
@@ -160,8 +156,6 @@ export type HelpPageStructureV1LanguageEnum = typeof HelpPageStructureV1Language
  */
 export declare const HelpPageStructureV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type HelpPageStructureV1VEnum = typeof HelpPageStructureV1VEnum[keyof typeof HelpPageStructureV1VEnum];
 //# sourceMappingURL=HelpPageApi.d.ts.map

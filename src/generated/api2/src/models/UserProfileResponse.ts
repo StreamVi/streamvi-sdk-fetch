@@ -24,7 +24,7 @@ export interface UserProfileResponse {
      * @type {number}
      * @memberof UserProfileResponse
      */
-    id: UserProfileResponseIdEnum;
+    id: number;
     /**
      * Type profile
      * @type {number}
@@ -105,15 +105,6 @@ export interface UserProfileResponse {
     lastProjectId: number | null;
 }
 
-
-/**
- * @export
- */
-export const UserProfileResponseIdEnum = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
-} as const;
-export type UserProfileResponseIdEnum = typeof UserProfileResponseIdEnum[keyof typeof UserProfileResponseIdEnum];
 
 /**
  * @export

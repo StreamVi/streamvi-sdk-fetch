@@ -160,6 +160,12 @@ export interface PlanRestreamResponse {
      */
     index: number;
     /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamResponse
+     */
+    support_custom_channel: boolean;
+    /**
      * Discount
      * @type {PlanRestreamDiscountResponse}
      * @memberof PlanRestreamResponse
@@ -228,6 +234,7 @@ export function instanceOfPlanRestreamResponse(value: object): value is PlanRest
     if (!('personal_manager' in value) || value['personal_manager'] === undefined) return false;
     if (!('pull_link_limit' in value) || value['pull_link_limit'] === undefined) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
+    if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('discount' in value) || value['discount'] === undefined) return false;
     return true;
 }
@@ -264,6 +271,7 @@ export function PlanRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
         'personal_manager': json['personal_manager'],
         'pull_link_limit': json['pull_link_limit'],
         'index': json['index'],
+        'support_custom_channel': json['support_custom_channel'],
         'discount': PlanRestreamDiscountResponseFromJSON(json['discount']),
     };
 }
@@ -301,6 +309,7 @@ export function PlanRestreamResponseToJSONTyped(value?: PlanRestreamResponse | n
         'personal_manager': value['personal_manager'],
         'pull_link_limit': value['pull_link_limit'],
         'index': value['index'],
+        'support_custom_channel': value['support_custom_channel'],
         'discount': PlanRestreamDiscountResponseToJSON(value['discount']),
     };
 }

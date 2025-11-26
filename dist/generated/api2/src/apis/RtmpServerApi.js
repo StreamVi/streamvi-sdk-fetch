@@ -135,14 +135,14 @@ class RtmpServerApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('interval', 'Required parameter "interval" was null or undefined when calling rtmpServerListV2().');
         }
         const queryParameters = {};
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
             queryParameters['v'] = '2';
-        }
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
@@ -240,9 +240,7 @@ exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = {
  * @export
  */
 exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -276,9 +274,7 @@ exports.RtmpServerGraphV1TypeEnum = {
  * @export
  */
 exports.RtmpServerGraphV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -302,9 +298,7 @@ exports.RtmpServerListV2IntervalEnum = {
  * @export
  */
 exports.RtmpServerListV2VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 };
 /**
  * @export
@@ -328,7 +322,5 @@ exports.RtmpServerStateV1IntervalEnum = {
  * @export
  */
 exports.RtmpServerStateV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

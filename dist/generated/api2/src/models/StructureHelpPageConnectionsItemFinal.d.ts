@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
 import type { StructureHelpPageConnectionsItemLang } from './StructureHelpPageConnectionsItemLang';
 /**
  *
@@ -18,11 +17,11 @@ import type { StructureHelpPageConnectionsItemLang } from './StructureHelpPageCo
  */
 export interface StructureHelpPageConnectionsItemFinal {
     /**
-     *
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof StructureHelpPageConnectionsItemFinal
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * Notion id
      * @type {string}

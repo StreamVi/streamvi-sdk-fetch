@@ -45,7 +45,7 @@ export interface LiveApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -96,14 +96,14 @@ export class LiveApi extends runtime.BaseAPI implements LiveApiInterface {
 
         const queryParameters: any = {};
 
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
             queryParameters['v'] = '1';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
 
         if (requestParameters['project_id'] != null) {
@@ -151,8 +151,6 @@ export type ControllersRestreamsV1LanguageEnum = typeof ControllersRestreamsV1La
  * @export
  */
 export const ControllersRestreamsV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 } as const;
 export type ControllersRestreamsV1VEnum = typeof ControllersRestreamsV1VEnum[keyof typeof ControllersRestreamsV1VEnum];

@@ -16,14 +16,14 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  ListOfProjectChannelResponse,
+  ProjectChannelListResponse,
   SuccessResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ListOfProjectChannelResponseFromJSON,
-    ListOfProjectChannelResponseToJSON,
+    ProjectChannelListResponseFromJSON,
+    ProjectChannelListResponseToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
 } from '../models/index';
@@ -75,7 +75,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
      * @param {0 | 1 | 1 | 2} access_type Access type
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -94,7 +94,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} target_project_id Target project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -112,17 +112,17 @@ export interface ProjectChannelApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
      */
-    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelResponse>>;
+    projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>>;
 
     /**
      * Project channel list
      */
-    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelResponse>;
+    projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse>;
 
     /**
      * 
@@ -131,7 +131,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -316,7 +316,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     /**
      * Project channel list
      */
-    async projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelResponse>> {
+    async projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -367,13 +367,13 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfProjectChannelResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProjectChannelListResponseFromJSON(jsonValue));
     }
 
     /**
      * Project channel list
      */
-    async projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelResponse> {
+    async projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse> {
         const response = await this.projectChannelListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -479,9 +479,7 @@ export type ProjectChannelChangeAccessV1AccessTypeEnum = typeof ProjectChannelCh
  * @export
  */
 export const ProjectChannelChangeAccessV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelChangeAccessV1VEnum = typeof ProjectChannelChangeAccessV1VEnum[keyof typeof ProjectChannelChangeAccessV1VEnum];
 /**
@@ -497,9 +495,7 @@ export type ProjectChannelDelV1LanguageEnum = typeof ProjectChannelDelV1Language
  * @export
  */
 export const ProjectChannelDelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelDelV1VEnum = typeof ProjectChannelDelV1VEnum[keyof typeof ProjectChannelDelV1VEnum];
 /**
@@ -515,9 +511,7 @@ export type ProjectChannelListV1LanguageEnum = typeof ProjectChannelListV1Langua
  * @export
  */
 export const ProjectChannelListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelListV1VEnum = typeof ProjectChannelListV1VEnum[keyof typeof ProjectChannelListV1VEnum];
 /**
@@ -533,8 +527,6 @@ export type ProjectChannelTransferOwnerV1LanguageEnum = typeof ProjectChannelTra
  * @export
  */
 export const ProjectChannelTransferOwnerV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelTransferOwnerV1VEnum = typeof ProjectChannelTransferOwnerV1VEnum[keyof typeof ProjectChannelTransferOwnerV1VEnum];

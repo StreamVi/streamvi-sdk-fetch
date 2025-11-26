@@ -96,7 +96,5 @@ exports.ReferralsTotalInfoV1LanguageEnum = {
  * @export
  */
 exports.ReferralsTotalInfoV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

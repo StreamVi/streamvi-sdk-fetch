@@ -48,7 +48,7 @@ export interface TransactionsApiInterface {
      * @summary Transaction list for frontend
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {Date} [date_from] Date from
@@ -161,8 +161,6 @@ export type TransactionsListV1LanguageEnum = typeof TransactionsListV1LanguageEn
  * @export
  */
 export const TransactionsListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type TransactionsListV1VEnum = typeof TransactionsListV1VEnum[keyof typeof TransactionsListV1VEnum];

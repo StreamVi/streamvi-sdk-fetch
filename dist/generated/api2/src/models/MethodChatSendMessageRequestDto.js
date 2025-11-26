@@ -22,6 +22,8 @@ function instanceOfMethodChatSendMessageRequestDto(value) {
         return false;
     if (!('text' in value) || value['text'] === undefined)
         return false;
+    if (!('restreams' in value) || value['restreams'] === undefined)
+        return false;
     return true;
 }
 exports.instanceOfMethodChatSendMessageRequestDto = instanceOfMethodChatSendMessageRequestDto;
@@ -36,6 +38,7 @@ function MethodChatSendMessageRequestDtoFromJSONTyped(json, ignoreDiscriminator)
     return {
         'id': json['id'],
         'text': json['text'],
+        'restreams': json['restreams'],
     };
 }
 exports.MethodChatSendMessageRequestDtoFromJSONTyped = MethodChatSendMessageRequestDtoFromJSONTyped;
@@ -50,6 +53,7 @@ function MethodChatSendMessageRequestDtoToJSONTyped(value, ignoreDiscriminator =
     return {
         'id': value['id'],
         'text': value['text'],
+        'restreams': value['restreams'],
     };
 }
 exports.MethodChatSendMessageRequestDtoToJSONTyped = MethodChatSendMessageRequestDtoToJSONTyped;

@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StructureHelpPageItemResponse3ToJSONTyped = exports.StructureHelpPageItemResponse3ToJSON = exports.StructureHelpPageItemResponse3FromJSONTyped = exports.StructureHelpPageItemResponse3FromJSON = exports.instanceOfStructureHelpPageItemResponse3 = exports.StructureHelpPageItemResponse3StatusEnum = void 0;
-const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
 const StructureHelpPageConnectionsItemFinal_1 = require("./StructureHelpPageConnectionsItemFinal");
 const StructureHelpPageConnectionsItemLang_1 = require("./StructureHelpPageConnectionsItemLang");
 /**
@@ -50,8 +49,6 @@ function instanceOfStructureHelpPageItemResponse3(value) {
         return false;
     if (!('priority' in value) || value['priority'] === undefined)
         return false;
-    if (!('connections' in value) || value['connections'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfStructureHelpPageItemResponse3 = instanceOfStructureHelpPageItemResponse3;
@@ -64,7 +61,7 @@ function StructureHelpPageItemResponse3FromJSONTyped(json, ignoreDiscriminator) 
         return json;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': json['_id'],
         'notion_id': json['notion_id'],
         'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
@@ -73,7 +70,7 @@ function StructureHelpPageItemResponse3FromJSONTyped(json, ignoreDiscriminator) 
         'title': (json['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangFromJSON)),
         'icon': json['icon'],
         'priority': json['priority'],
-        'connections': (json['connections'].map(StructureHelpPageConnectionsItemFinal_1.StructureHelpPageConnectionsItemFinalFromJSON)),
+        'connections': json['connections'] == null ? undefined : (json['connections'].map(StructureHelpPageConnectionsItemFinal_1.StructureHelpPageConnectionsItemFinalFromJSON)),
     };
 }
 exports.StructureHelpPageItemResponse3FromJSONTyped = StructureHelpPageItemResponse3FromJSONTyped;
@@ -86,7 +83,7 @@ function StructureHelpPageItemResponse3ToJSONTyped(value, ignoreDiscriminator = 
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        '_id': value['_id'],
         'notion_id': value['notion_id'],
         'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],
@@ -95,7 +92,7 @@ function StructureHelpPageItemResponse3ToJSONTyped(value, ignoreDiscriminator = 
         'title': (value['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangToJSON)),
         'icon': value['icon'],
         'priority': value['priority'],
-        'connections': (value['connections'].map(StructureHelpPageConnectionsItemFinal_1.StructureHelpPageConnectionsItemFinalToJSON)),
+        'connections': value['connections'] == null ? undefined : (value['connections'].map(StructureHelpPageConnectionsItemFinal_1.StructureHelpPageConnectionsItemFinalToJSON)),
     };
 }
 exports.StructureHelpPageItemResponse3ToJSONTyped = StructureHelpPageItemResponse3ToJSONTyped;

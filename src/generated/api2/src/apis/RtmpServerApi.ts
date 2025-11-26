@@ -70,7 +70,7 @@ export interface RtmpServerApiInterface {
      * 
      * @summary Rtmp locations server list example for unauthorized
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -88,7 +88,7 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
      * @param {'performance' | 'network' | 'cpu' | 'ram' | 'deliveredPackages'} type Type graph
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -106,7 +106,7 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -123,7 +123,7 @@ export interface RtmpServerApiInterface {
      * @summary State of rtmp servers
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -291,14 +291,14 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         const queryParameters: any = {};
 
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
             queryParameters['v'] = '2';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
 
         if (requestParameters['project_id'] != null) {
@@ -424,9 +424,7 @@ export type MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = typeof Met
  * @export
  */
 export const MethodRtmpServerListLocationsUnauthorizedV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodRtmpServerListLocationsUnauthorizedV1VEnum = typeof MethodRtmpServerListLocationsUnauthorizedV1VEnum[keyof typeof MethodRtmpServerListLocationsUnauthorizedV1VEnum];
 /**
@@ -464,9 +462,7 @@ export type RtmpServerGraphV1TypeEnum = typeof RtmpServerGraphV1TypeEnum[keyof t
  * @export
  */
 export const RtmpServerGraphV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof RtmpServerGraphV1VEnum];
 /**
@@ -493,9 +489,7 @@ export type RtmpServerListV2IntervalEnum = typeof RtmpServerListV2IntervalEnum[k
  * @export
  */
 export const RtmpServerListV2VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 } as const;
 export type RtmpServerListV2VEnum = typeof RtmpServerListV2VEnum[keyof typeof RtmpServerListV2VEnum];
 /**
@@ -522,8 +516,6 @@ export type RtmpServerStateV1IntervalEnum = typeof RtmpServerStateV1IntervalEnum
  * @export
  */
 export const RtmpServerStateV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type RtmpServerStateV1VEnum = typeof RtmpServerStateV1VEnum[keyof typeof RtmpServerStateV1VEnum];

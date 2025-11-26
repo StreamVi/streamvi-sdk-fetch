@@ -94,6 +94,12 @@ export interface ChannelYoutubeInfoDto {
      * @memberof ChannelYoutubeInfoDto
      */
     image?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ChannelYoutubeInfoDto
+     */
+    disableAutoEnd?: boolean;
 }
 
 
@@ -165,6 +171,7 @@ export function ChannelYoutubeInfoDtoFromJSONTyped(json: any, ignoreDiscriminato
         'latency': json['latency'] == null ? undefined : json['latency'],
         'audience': json['audience'] == null ? undefined : json['audience'],
         'image': json['image'] == null ? undefined : json['image'],
+        'disableAutoEnd': json['disableAutoEnd'] == null ? undefined : json['disableAutoEnd'],
     };
 }
 
@@ -189,6 +196,7 @@ export function ChannelYoutubeInfoDtoToJSONTyped(value?: ChannelYoutubeInfoDto |
         'latency': value['latency'],
         'audience': value['audience'],
         'image': value['image'],
+        'disableAutoEnd': value['disableAutoEnd'],
     };
 }
 

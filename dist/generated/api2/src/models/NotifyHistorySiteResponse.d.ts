@@ -21,7 +21,7 @@ export interface NotifyHistorySiteResponse {
      * @type {string}
      * @memberof NotifyHistorySiteResponse
      */
-    id: string;
+    _id: string;
     /**
      * Project id
      * @type {number}
@@ -30,10 +30,10 @@ export interface NotifyHistorySiteResponse {
     project_id: number;
     /**
      * Date create
-     * @type {Date}
+     * @type {string}
      * @memberof NotifyHistorySiteResponse
      */
-    date_create: Date;
+    date_create: string;
     /**
      * Actions
      * @type {object}

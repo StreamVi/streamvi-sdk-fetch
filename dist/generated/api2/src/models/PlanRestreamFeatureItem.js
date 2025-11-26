@@ -28,7 +28,8 @@ exports.PlanRestreamFeatureItemNameEnum = {
     change_subject: 'change_subject',
     background_chat: 'background_chat',
     dedicated_server: 'dedicated_server',
-    personal_manager: 'personal_manager'
+    personal_manager: 'personal_manager',
+    support_custom_channel: 'support_custom_channel'
 };
 /**
  * Check if a given object implements the PlanRestreamFeatureItem interface.

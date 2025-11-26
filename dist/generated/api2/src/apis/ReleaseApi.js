@@ -93,9 +93,7 @@ exports.ReleaseAppCabinetV1LanguageEnum = {
  * @export
  */
 exports.ReleaseAppCabinetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

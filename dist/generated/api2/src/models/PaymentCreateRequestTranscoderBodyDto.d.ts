@@ -69,8 +69,6 @@ export interface PaymentCreateRequestTranscoderBodyDto {
  */
 export declare const PaymentCreateRequestTranscoderBodyDtoVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PaymentCreateRequestTranscoderBodyDtoVEnum = typeof PaymentCreateRequestTranscoderBodyDtoVEnum[keyof typeof PaymentCreateRequestTranscoderBodyDtoVEnum];
 /**

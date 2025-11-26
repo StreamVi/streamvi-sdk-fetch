@@ -18,9 +18,7 @@ exports.SiteAuthExchangeRequestToJSONTyped = exports.SiteAuthExchangeRequestToJS
  * @export
  */
 exports.SiteAuthExchangeRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

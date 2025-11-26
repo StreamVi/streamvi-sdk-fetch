@@ -13,14 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TranscoderUpdateDtoToJSONTyped = exports.TranscoderUpdateDtoToJSON = exports.TranscoderUpdateDtoFromJSONTyped = exports.TranscoderUpdateDtoFromJSON = exports.instanceOfTranscoderUpdateDto = exports.TranscoderUpdateDtoLanguageEnum = exports.TranscoderUpdateDtoVEnum = void 0;
+exports.TranscoderUpdateDtoToJSONTyped = exports.TranscoderUpdateDtoToJSON = exports.TranscoderUpdateDtoFromJSONTyped = exports.TranscoderUpdateDtoFromJSON = exports.instanceOfTranscoderUpdateDto = exports.TranscoderUpdateDtoVideoCodecEnum = exports.TranscoderUpdateDtoLanguageEnum = exports.TranscoderUpdateDtoVEnum = void 0;
 /**
  * @export
  */
 exports.TranscoderUpdateDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -29,6 +27,13 @@ exports.TranscoderUpdateDtoLanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.TranscoderUpdateDtoVideoCodecEnum = {
+    h264: 'h264',
+    hevc: 'hevc'
 };
 /**
  * Check if a given object implements the TranscoderUpdateDto interface.
@@ -42,7 +47,7 @@ function instanceOfTranscoderUpdateDto(value) {
         return false;
     if (!('transcoder_id' in value) || value['transcoder_id'] === undefined)
         return false;
-    if (!('videoCodecId' in value) || value['videoCodecId'] === undefined)
+    if (!('videoCodec' in value) || value['videoCodec'] === undefined)
         return false;
     return true;
 }
@@ -69,7 +74,9 @@ function TranscoderUpdateDtoFromJSONTyped(json, ignoreDiscriminator) {
         'rotation': json['rotation'] == null ? undefined : json['rotation'],
         'bFrames': json['bFrames'] == null ? undefined : json['bFrames'],
         'channelIds': json['channelIds'] == null ? undefined : json['channelIds'],
-        'videoCodecId': json['videoCodecId'],
+        'videoCodec': json['videoCodec'],
+        'preset': json['preset'] == null ? undefined : json['preset'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 exports.TranscoderUpdateDtoFromJSONTyped = TranscoderUpdateDtoFromJSONTyped;
@@ -95,7 +102,9 @@ function TranscoderUpdateDtoToJSONTyped(value, ignoreDiscriminator = false) {
         'rotation': value['rotation'],
         'bFrames': value['bFrames'],
         'channelIds': value['channelIds'],
-        'videoCodecId': value['videoCodecId'],
+        'videoCodec': value['videoCodec'],
+        'preset': value['preset'],
+        'delay': value['delay'],
     };
 }
 exports.TranscoderUpdateDtoToJSONTyped = TranscoderUpdateDtoToJSONTyped;

@@ -24,7 +24,11 @@ function instanceOfPlanRestreamItem(value) {
         return false;
     if (!('bitrate_max' in value) || value['bitrate_max'] === undefined)
         return false;
+    if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined)
+        return false;
     if (!('date_end' in value) || value['date_end'] === undefined)
+        return false;
+    if (!('custom_video' in value) || value['custom_video'] === undefined)
         return false;
     return true;
 }
@@ -41,7 +45,9 @@ function PlanRestreamItemFromJSONTyped(json, ignoreDiscriminator) {
         'id': json['id'],
         'channel_max': json['channel_max'],
         'bitrate_max': json['bitrate_max'],
+        'support_custom_channel': json['support_custom_channel'],
         'date_end': (new Date(json['date_end'])),
+        'custom_video': json['custom_video'],
     };
 }
 exports.PlanRestreamItemFromJSONTyped = PlanRestreamItemFromJSONTyped;
@@ -57,7 +63,9 @@ function PlanRestreamItemToJSONTyped(value, ignoreDiscriminator = false) {
         'id': value['id'],
         'channel_max': value['channel_max'],
         'bitrate_max': value['bitrate_max'],
+        'support_custom_channel': value['support_custom_channel'],
         'date_end': ((value['date_end']).toISOString()),
+        'custom_video': value['custom_video'],
     };
 }
 exports.PlanRestreamItemToJSONTyped = PlanRestreamItemToJSONTyped;

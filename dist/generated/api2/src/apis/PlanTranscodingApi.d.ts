@@ -56,7 +56,7 @@ export interface PlanTranscodingApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_transcoding_id Transcoding plan id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [count] Count flow
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -72,7 +72,7 @@ export interface PlanTranscodingApiInterface {
      * @summary Remove after tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -87,7 +87,7 @@ export interface PlanTranscodingApiInterface {
      * @summary Check transcoding tariff before buy
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -101,7 +101,7 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Get discount transcoding
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -115,7 +115,7 @@ export interface PlanTranscodingApiInterface {
      *
      * @summary Get list of transcoding tariffs
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -130,7 +130,7 @@ export interface PlanTranscodingApiInterface {
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -216,8 +216,6 @@ export type PlanTranscodingBuyV1PeriodEnum = typeof PlanTranscodingBuyV1PeriodEn
  */
 export declare const PlanTranscodingBuyV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingBuyV1VEnum = typeof PlanTranscodingBuyV1VEnum[keyof typeof PlanTranscodingBuyV1VEnum];
 /**
@@ -234,8 +232,6 @@ export type PlanTranscodingCancelV1LanguageEnum = typeof PlanTranscodingCancelV1
  */
 export declare const PlanTranscodingCancelV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingCancelV1VEnum = typeof PlanTranscodingCancelV1VEnum[keyof typeof PlanTranscodingCancelV1VEnum];
 /**
@@ -252,8 +248,6 @@ export type PlanTranscodingCheckV1LanguageEnum = typeof PlanTranscodingCheckV1La
  */
 export declare const PlanTranscodingCheckV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingCheckV1VEnum = typeof PlanTranscodingCheckV1VEnum[keyof typeof PlanTranscodingCheckV1VEnum];
 /**
@@ -270,8 +264,6 @@ export type PlanTranscodingGetDiscountV1LanguageEnum = typeof PlanTranscodingGet
  */
 export declare const PlanTranscodingGetDiscountV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingGetDiscountV1VEnum = typeof PlanTranscodingGetDiscountV1VEnum[keyof typeof PlanTranscodingGetDiscountV1VEnum];
 /**
@@ -288,8 +280,6 @@ export type PlanTranscodingListV1LanguageEnum = typeof PlanTranscodingListV1Lang
  */
 export declare const PlanTranscodingListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingListV1VEnum = typeof PlanTranscodingListV1VEnum[keyof typeof PlanTranscodingListV1VEnum];
 /**
@@ -306,8 +296,6 @@ export type PlanTranscodingTariffV1LanguageEnum = typeof PlanTranscodingTariffV1
  */
 export declare const PlanTranscodingTariffV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanTranscodingTariffV1VEnum = typeof PlanTranscodingTariffV1VEnum[keyof typeof PlanTranscodingTariffV1VEnum];
 //# sourceMappingURL=PlanTranscodingApi.d.ts.map

@@ -191,9 +191,7 @@ exports.AnalyticsTsStreamBitrateV1LanguageEnum = {
  * @export
  */
 exports.AnalyticsTsStreamBitrateV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -207,9 +205,7 @@ exports.AnalyticsTsStreamEventsV1LanguageEnum = {
  * @export
  */
 exports.AnalyticsTsStreamEventsV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -223,7 +219,5 @@ exports.AnalyticsTsStreamViewersV1LanguageEnum = {
  * @export
  */
 exports.AnalyticsTsStreamViewersV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

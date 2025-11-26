@@ -31,14 +31,14 @@ import {
 export interface PromoApplyV1Request {
     language: PromoApplyV1LanguageEnum;
     project_id: number;
-    code: number;
+    code: string;
     v?: PromoApplyV1VEnum;
 }
 
 export interface PromoCheckV1Request {
     language: PromoCheckV1LanguageEnum;
     project_id: number;
-    code: number;
+    code: string;
     v?: PromoCheckV1VEnum;
 }
 
@@ -54,8 +54,8 @@ export interface PromoApiInterface {
      * @summary Apply code
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {number} code Code
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} code Code
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PromoApiInterface
@@ -72,8 +72,8 @@ export interface PromoApiInterface {
      * @summary Check code
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {number} code Code
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} code Code
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PromoApiInterface
@@ -237,9 +237,7 @@ export type PromoApplyV1LanguageEnum = typeof PromoApplyV1LanguageEnum[keyof typ
  * @export
  */
 export const PromoApplyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PromoApplyV1VEnum = typeof PromoApplyV1VEnum[keyof typeof PromoApplyV1VEnum];
 /**
@@ -255,8 +253,6 @@ export type PromoCheckV1LanguageEnum = typeof PromoCheckV1LanguageEnum[keyof typ
  * @export
  */
 export const PromoCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PromoCheckV1VEnum = typeof PromoCheckV1VEnum[keyof typeof PromoCheckV1VEnum];

@@ -99,17 +99,17 @@ class PaySettingApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling paySettingGetSettingV3().');
         }
         const queryParameters = {};
-        if (requestParameters['v'] != null) {
-            queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '3';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '3';
         }
         const headerParameters = {};
         const response = await this.request({
@@ -131,8 +131,8 @@ class PaySettingApi extends runtime.BaseAPI {
      * Set pay settings for profile
      */
     async paySettingSetSettingV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['PaySettingBodyDto'] == null) {
-            throw new runtime.RequiredError('PaySettingBodyDto', 'Required parameter "PaySettingBodyDto" was null or undefined when calling paySettingSetSettingV1().');
+        if (requestParameters['PaySettingSetSettingV1Request'] == null) {
+            throw new runtime.RequiredError('PaySettingSetSettingV1Request', 'Required parameter "PaySettingSetSettingV1Request" was null or undefined when calling paySettingSetSettingV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -142,15 +142,16 @@ class PaySettingApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PaySettingBodyDtoToJSON)(requestParameters['PaySettingBodyDto']),
+            body: (0, index_1.PaySettingSetSettingV1RequestToJSON)(requestParameters['PaySettingSetSettingV1Request']),
         }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
      * Set pay settings for profile
      */
     async paySettingSetSettingV1(requestParameters, initOverrides) {
-        await this.paySettingSetSettingV1Raw(requestParameters, initOverrides);
+        const response = await this.paySettingSetSettingV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 }
 exports.PaySettingApi = PaySettingApi;
@@ -166,9 +167,7 @@ exports.PaySettingCheckCountryV1LanguageEnum = {
  * @export
  */
 exports.PaySettingCheckCountryV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -182,7 +181,5 @@ exports.PaySettingGetSettingV3LanguageEnum = {
  * @export
  */
 exports.PaySettingGetSettingV3VEnum = {
-    _1: '1',
-    _2: '2',
     _3: '3'
 };

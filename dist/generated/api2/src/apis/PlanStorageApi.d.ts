@@ -56,7 +56,7 @@ export interface PlanStorageApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_storage_id Storage plan id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [size] Size
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -72,7 +72,7 @@ export interface PlanStorageApiInterface {
      * @summary Remove next tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -87,7 +87,7 @@ export interface PlanStorageApiInterface {
      * @summary Check storage tariff before buy
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -101,7 +101,7 @@ export interface PlanStorageApiInterface {
      *
      * @summary Get discount of storage
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -115,7 +115,7 @@ export interface PlanStorageApiInterface {
      *
      * @summary Get info for storage tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -130,7 +130,7 @@ export interface PlanStorageApiInterface {
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -216,8 +216,6 @@ export type PlanStorageBuyV1PeriodEnum = typeof PlanStorageBuyV1PeriodEnum[keyof
  */
 export declare const PlanStorageBuyV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageBuyV1VEnum = typeof PlanStorageBuyV1VEnum[keyof typeof PlanStorageBuyV1VEnum];
 /**
@@ -234,8 +232,6 @@ export type PlanStorageCancelV1LanguageEnum = typeof PlanStorageCancelV1Language
  */
 export declare const PlanStorageCancelV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageCancelV1VEnum = typeof PlanStorageCancelV1VEnum[keyof typeof PlanStorageCancelV1VEnum];
 /**
@@ -252,8 +248,6 @@ export type PlanStorageCheckV1LanguageEnum = typeof PlanStorageCheckV1LanguageEn
  */
 export declare const PlanStorageCheckV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageCheckV1VEnum = typeof PlanStorageCheckV1VEnum[keyof typeof PlanStorageCheckV1VEnum];
 /**
@@ -270,8 +264,6 @@ export type PlanStorageGetDiscountV1LanguageEnum = typeof PlanStorageGetDiscount
  */
 export declare const PlanStorageGetDiscountV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageGetDiscountV1VEnum = typeof PlanStorageGetDiscountV1VEnum[keyof typeof PlanStorageGetDiscountV1VEnum];
 /**
@@ -288,8 +280,6 @@ export type PlanStorageListV1LanguageEnum = typeof PlanStorageListV1LanguageEnum
  */
 export declare const PlanStorageListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageListV1VEnum = typeof PlanStorageListV1VEnum[keyof typeof PlanStorageListV1VEnum];
 /**
@@ -306,8 +296,6 @@ export type PlanStorageTariffV1LanguageEnum = typeof PlanStorageTariffV1Language
  */
 export declare const PlanStorageTariffV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PlanStorageTariffV1VEnum = typeof PlanStorageTariffV1VEnum[keyof typeof PlanStorageTariffV1VEnum];
 //# sourceMappingURL=PlanStorageApi.d.ts.map

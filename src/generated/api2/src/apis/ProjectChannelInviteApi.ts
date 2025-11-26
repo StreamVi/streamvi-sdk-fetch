@@ -16,18 +16,18 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  ListOfProjectChannelInviteResponse,
   ProjectChannelInviteLinkResponse,
+  ProjectChannelInviteListResponse,
   ProjectChannelInviteResponse,
   SuccessResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ListOfProjectChannelInviteResponseFromJSON,
-    ListOfProjectChannelInviteResponseToJSON,
     ProjectChannelInviteLinkResponseFromJSON,
     ProjectChannelInviteLinkResponseToJSON,
+    ProjectChannelInviteListResponseFromJSON,
+    ProjectChannelInviteListResponseToJSON,
     ProjectChannelInviteResponseFromJSON,
     ProjectChannelInviteResponseToJSON,
     SuccessResponseFromJSON,
@@ -128,7 +128,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -147,7 +147,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -167,7 +167,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} channel_id Channel id
      * @param {string} email Email
      * @param {0 | 1 | 1 | 2} access_type Access type
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -187,7 +187,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} channel_id Channel id
      * @param {0 | 1 | 1 | 2} access_type Access type
      * @param {string} to_project_external_id Project for get access by external id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -205,7 +205,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Channel id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -224,7 +224,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -241,7 +241,7 @@ export interface ProjectChannelInviteApiInterface {
      * @summary Del channel invite item for my channel for another user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Unique id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -259,7 +259,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Current project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -277,7 +277,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -294,7 +294,7 @@ export interface ProjectChannelInviteApiInterface {
      * @summary Get channel invite item for my channel for another user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Channel request id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -312,17 +312,17 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
-    projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelInviteResponse>>;
+    projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteListResponse>>;
 
     /**
      * List of invites for channel in project
      */
-    projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelInviteResponse>;
+    projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteListResponse>;
 
 }
 
@@ -1028,7 +1028,7 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
     /**
      * List of invites for channel in project
      */
-    async projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfProjectChannelInviteResponse>> {
+    async projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -1079,13 +1079,13 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfProjectChannelInviteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProjectChannelInviteListResponseFromJSON(jsonValue));
     }
 
     /**
      * List of invites for channel in project
      */
-    async projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfProjectChannelInviteResponse> {
+    async projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteListResponse> {
         const response = await this.projectChannelInviteListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -1105,9 +1105,7 @@ export type ProjectChannelInviteAcceptForProjectV1LanguageEnum = typeof ProjectC
  * @export
  */
 export const ProjectChannelInviteAcceptForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteAcceptForProjectV1VEnum = typeof ProjectChannelInviteAcceptForProjectV1VEnum[keyof typeof ProjectChannelInviteAcceptForProjectV1VEnum];
 /**
@@ -1123,9 +1121,7 @@ export type ProjectChannelInviteAcceptForSecretV1LanguageEnum = typeof ProjectCh
  * @export
  */
 export const ProjectChannelInviteAcceptForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteAcceptForSecretV1VEnum = typeof ProjectChannelInviteAcceptForSecretV1VEnum[keyof typeof ProjectChannelInviteAcceptForSecretV1VEnum];
 /**
@@ -1151,9 +1147,7 @@ export type ProjectChannelInviteAddByEmailV1AccessTypeEnum = typeof ProjectChann
  * @export
  */
 export const ProjectChannelInviteAddByEmailV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteAddByEmailV1VEnum = typeof ProjectChannelInviteAddByEmailV1VEnum[keyof typeof ProjectChannelInviteAddByEmailV1VEnum];
 /**
@@ -1179,9 +1173,7 @@ export type ProjectChannelInviteAddByIdV1AccessTypeEnum = typeof ProjectChannelI
  * @export
  */
 export const ProjectChannelInviteAddByIdV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteAddByIdV1VEnum = typeof ProjectChannelInviteAddByIdV1VEnum[keyof typeof ProjectChannelInviteAddByIdV1VEnum];
 /**
@@ -1197,9 +1189,7 @@ export type ProjectChannelInviteDeclineForProjectV1LanguageEnum = typeof Project
  * @export
  */
 export const ProjectChannelInviteDeclineForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteDeclineForProjectV1VEnum = typeof ProjectChannelInviteDeclineForProjectV1VEnum[keyof typeof ProjectChannelInviteDeclineForProjectV1VEnum];
 /**
@@ -1215,9 +1205,7 @@ export type ProjectChannelInviteDeclineForSecretV1LanguageEnum = typeof ProjectC
  * @export
  */
 export const ProjectChannelInviteDeclineForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteDeclineForSecretV1VEnum = typeof ProjectChannelInviteDeclineForSecretV1VEnum[keyof typeof ProjectChannelInviteDeclineForSecretV1VEnum];
 /**
@@ -1233,9 +1221,7 @@ export type ProjectChannelInviteDelV1LanguageEnum = typeof ProjectChannelInviteD
  * @export
  */
 export const ProjectChannelInviteDelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteDelV1VEnum = typeof ProjectChannelInviteDelV1VEnum[keyof typeof ProjectChannelInviteDelV1VEnum];
 /**
@@ -1251,9 +1237,7 @@ export type ProjectChannelInviteGetForProjectV1LanguageEnum = typeof ProjectChan
  * @export
  */
 export const ProjectChannelInviteGetForProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteGetForProjectV1VEnum = typeof ProjectChannelInviteGetForProjectV1VEnum[keyof typeof ProjectChannelInviteGetForProjectV1VEnum];
 /**
@@ -1269,9 +1253,7 @@ export type ProjectChannelInviteGetForSecretV1LanguageEnum = typeof ProjectChann
  * @export
  */
 export const ProjectChannelInviteGetForSecretV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteGetForSecretV1VEnum = typeof ProjectChannelInviteGetForSecretV1VEnum[keyof typeof ProjectChannelInviteGetForSecretV1VEnum];
 /**
@@ -1287,9 +1269,7 @@ export type ProjectChannelInviteGetV1LanguageEnum = typeof ProjectChannelInviteG
  * @export
  */
 export const ProjectChannelInviteGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteGetV1VEnum = typeof ProjectChannelInviteGetV1VEnum[keyof typeof ProjectChannelInviteGetV1VEnum];
 /**
@@ -1305,8 +1285,6 @@ export type ProjectChannelInviteListV1LanguageEnum = typeof ProjectChannelInvite
  * @export
  */
 export const ProjectChannelInviteListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectChannelInviteListV1VEnum = typeof ProjectChannelInviteListV1VEnum[keyof typeof ProjectChannelInviteListV1VEnum];

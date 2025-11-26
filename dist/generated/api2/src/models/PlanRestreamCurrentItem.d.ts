@@ -39,6 +39,18 @@ export interface PlanRestreamCurrentItem {
      * @memberof PlanRestreamCurrentItem
      */
     date_end: Date;
+    /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamCurrentItem
+     */
+    support_custom_channel: boolean;
+    /**
+     * Custom video
+     * @type {number}
+     * @memberof PlanRestreamCurrentItem
+     */
+    custom_video: number;
 }
 /**
  * Check if a given object implements the PlanRestreamCurrentItem interface.

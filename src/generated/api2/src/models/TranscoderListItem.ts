@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { TranscoderState } from './TranscoderState';
+import {
+    TranscoderStateFromJSON,
+    TranscoderStateFromJSONTyped,
+    TranscoderStateToJSON,
+    TranscoderStateToJSONTyped,
+} from './TranscoderState';
 import type { TranscoderChannelItem } from './TranscoderChannelItem';
 import {
     TranscoderChannelItemFromJSON,
@@ -105,6 +112,30 @@ export interface TranscoderListItem {
      * @memberof TranscoderListItem
      */
     channels: Array<TranscoderChannelItem>;
+    /**
+     * Delay
+     * @type {number}
+     * @memberof TranscoderListItem
+     */
+    delay: number;
+    /**
+     * Preset
+     * @type {string}
+     * @memberof TranscoderListItem
+     */
+    preset: string;
+    /**
+     * State
+     * @type {TranscoderState}
+     * @memberof TranscoderListItem
+     */
+    state?: TranscoderState | null;
+    /**
+     * Mode
+     * @type {string}
+     * @memberof TranscoderListItem
+     */
+    mode: TranscoderListItemModeEnum;
 }
 
 
@@ -126,6 +157,15 @@ export const TranscoderListItemVideoCodecEnum = {
 } as const;
 export type TranscoderListItemVideoCodecEnum = typeof TranscoderListItemVideoCodecEnum[keyof typeof TranscoderListItemVideoCodecEnum];
 
+/**
+ * @export
+ */
+export const TranscoderListItemModeEnum = {
+    custom: 'custom',
+    twitch: 'twitch'
+} as const;
+export type TranscoderListItemModeEnum = typeof TranscoderListItemModeEnum[keyof typeof TranscoderListItemModeEnum];
+
 
 /**
  * Check if a given object implements the TranscoderListItem interface.
@@ -137,6 +177,9 @@ export function instanceOfTranscoderListItem(value: object): value is Transcoder
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('videoCodec' in value) || value['videoCodec'] === undefined) return false;
     if (!('channels' in value) || value['channels'] === undefined) return false;
+    if (!('delay' in value) || value['delay'] === undefined) return false;
+    if (!('preset' in value) || value['preset'] === undefined) return false;
+    if (!('mode' in value) || value['mode'] === undefined) return false;
     return true;
 }
 
@@ -163,6 +206,10 @@ export function TranscoderListItemFromJSONTyped(json: any, ignoreDiscriminator: 
         'status': json['status'],
         'videoCodec': json['videoCodec'],
         'channels': ((json['channels'] as Array<any>).map(TranscoderChannelItemFromJSON)),
+        'delay': json['delay'],
+        'preset': json['preset'],
+        'state': json['state'] == null ? undefined : TranscoderStateFromJSON(json['state']),
+        'mode': json['mode'],
     };
 }
 
@@ -190,6 +237,10 @@ export function TranscoderListItemToJSONTyped(value?: TranscoderListItem | null,
         'status': value['status'],
         'videoCodec': value['videoCodec'],
         'channels': ((value['channels'] as Array<any>).map(TranscoderChannelItemToJSON)),
+        'delay': value['delay'],
+        'preset': value['preset'],
+        'state': TranscoderStateToJSON(value['state']),
+        'mode': value['mode'],
     };
 }
 

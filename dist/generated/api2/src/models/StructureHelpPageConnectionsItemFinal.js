@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StructureHelpPageConnectionsItemFinalToJSONTyped = exports.StructureHelpPageConnectionsItemFinalToJSON = exports.StructureHelpPageConnectionsItemFinalFromJSONTyped = exports.StructureHelpPageConnectionsItemFinalFromJSON = exports.instanceOfStructureHelpPageConnectionsItemFinal = exports.StructureHelpPageConnectionsItemFinalStatusEnum = void 0;
-const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
 const StructureHelpPageConnectionsItemLang_1 = require("./StructureHelpPageConnectionsItemLang");
 /**
  * @export
@@ -61,7 +60,7 @@ function StructureHelpPageConnectionsItemFinalFromJSONTyped(json, ignoreDiscrimi
         return json;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': json['_id'],
         'notion_id': json['notion_id'],
         'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
@@ -82,7 +81,7 @@ function StructureHelpPageConnectionsItemFinalToJSONTyped(value, ignoreDiscrimin
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        '_id': value['_id'],
         'notion_id': value['notion_id'],
         'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],

@@ -13,14 +13,12 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TranscoderCreateDtoToJSONTyped = exports.TranscoderCreateDtoToJSON = exports.TranscoderCreateDtoFromJSONTyped = exports.TranscoderCreateDtoFromJSON = exports.instanceOfTranscoderCreateDto = exports.TranscoderCreateDtoLanguageEnum = exports.TranscoderCreateDtoVEnum = void 0;
+exports.TranscoderCreateDtoToJSONTyped = exports.TranscoderCreateDtoToJSON = exports.TranscoderCreateDtoFromJSONTyped = exports.TranscoderCreateDtoFromJSON = exports.instanceOfTranscoderCreateDto = exports.TranscoderCreateDtoVideoCodecEnum = exports.TranscoderCreateDtoModeEnum = exports.TranscoderCreateDtoLanguageEnum = exports.TranscoderCreateDtoVEnum = void 0;
 /**
  * @export
  */
 exports.TranscoderCreateDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -29,6 +27,20 @@ exports.TranscoderCreateDtoLanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.TranscoderCreateDtoModeEnum = {
+    custom: 'custom',
+    twitch: 'twitch'
+};
+/**
+ * @export
+ */
+exports.TranscoderCreateDtoVideoCodecEnum = {
+    h264: 'h264',
+    hevc: 'hevc'
 };
 /**
  * Check if a given object implements the TranscoderCreateDto interface.
@@ -42,7 +54,7 @@ function instanceOfTranscoderCreateDto(value) {
         return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
-    if (!('videoCodecId' in value) || value['videoCodecId'] === undefined)
+    if (!('videoCodec' in value) || value['videoCodec'] === undefined)
         return false;
     return true;
 }
@@ -59,6 +71,7 @@ function TranscoderCreateDtoFromJSONTyped(json, ignoreDiscriminator) {
         'v': json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
+        'mode': json['mode'] == null ? undefined : json['mode'],
         'width': json['width'] == null ? undefined : json['width'],
         'height': json['height'] == null ? undefined : json['height'],
         'fps': json['fps'] == null ? undefined : json['fps'],
@@ -68,7 +81,9 @@ function TranscoderCreateDtoFromJSONTyped(json, ignoreDiscriminator) {
         'rotation': json['rotation'] == null ? undefined : json['rotation'],
         'bFrames': json['bFrames'] == null ? undefined : json['bFrames'],
         'channelIds': json['channelIds'] == null ? undefined : json['channelIds'],
-        'videoCodecId': json['videoCodecId'],
+        'videoCodec': json['videoCodec'],
+        'preset': json['preset'] == null ? undefined : json['preset'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 exports.TranscoderCreateDtoFromJSONTyped = TranscoderCreateDtoFromJSONTyped;
@@ -84,6 +99,7 @@ function TranscoderCreateDtoToJSONTyped(value, ignoreDiscriminator = false) {
         'v': value['v'],
         'language': value['language'],
         'project_id': value['project_id'],
+        'mode': value['mode'],
         'width': value['width'],
         'height': value['height'],
         'fps': value['fps'],
@@ -93,7 +109,9 @@ function TranscoderCreateDtoToJSONTyped(value, ignoreDiscriminator = false) {
         'rotation': value['rotation'],
         'bFrames': value['bFrames'],
         'channelIds': value['channelIds'],
-        'videoCodecId': value['videoCodecId'],
+        'videoCodec': value['videoCodec'],
+        'preset': value['preset'],
+        'delay': value['delay'],
     };
 }
 exports.TranscoderCreateDtoToJSONTyped = TranscoderCreateDtoToJSONTyped;

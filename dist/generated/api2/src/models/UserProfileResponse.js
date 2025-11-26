@@ -13,14 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserProfileResponseToJSONTyped = exports.UserProfileResponseToJSON = exports.UserProfileResponseFromJSONTyped = exports.UserProfileResponseFromJSON = exports.instanceOfUserProfileResponse = exports.UserProfileResponseLanguageEnum = exports.UserProfileResponseCurrencyEnum = exports.UserProfileResponseIdEnum = void 0;
-/**
- * @export
- */
-exports.UserProfileResponseIdEnum = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
-};
+exports.UserProfileResponseToJSONTyped = exports.UserProfileResponseToJSON = exports.UserProfileResponseFromJSONTyped = exports.UserProfileResponseFromJSON = exports.instanceOfUserProfileResponse = exports.UserProfileResponseLanguageEnum = exports.UserProfileResponseCurrencyEnum = void 0;
 /**
  * @export
  */

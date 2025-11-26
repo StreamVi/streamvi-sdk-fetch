@@ -18,9 +18,7 @@ exports.SetRecordStreamRequestToJSONTyped = exports.SetRecordStreamRequestToJSON
  * @export
  */
 exports.SetRecordStreamRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

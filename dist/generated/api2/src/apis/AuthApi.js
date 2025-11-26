@@ -384,6 +384,26 @@ class AuthApi extends runtime.BaseAPI {
     async authGetAuthUrlV1(requestParameters, initOverrides) {
         await this.authGetAuthUrlV1Raw(requestParameters, initOverrides);
     }
+    /**
+     * Get client configuration
+     */
+    async authGetClientConfigurationV1Raw(initOverrides) {
+        const queryParameters = {};
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/auth/GetClientConfiguration`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Get client configuration
+     */
+    async authGetClientConfigurationV1(initOverrides) {
+        await this.authGetClientConfigurationV1Raw(initOverrides);
+    }
 }
 exports.AuthApi = AuthApi;
 /**
@@ -407,9 +427,7 @@ exports.AuthCodeV1AppEnum = {
  * @export
  */
 exports.AuthCodeV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -423,9 +441,7 @@ exports.AuthConnectResultV1LanguageEnum = {
  * @export
  */
 exports.AuthConnectResultV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -439,9 +455,7 @@ exports.AuthConnectTelegramV1LanguageEnum = {
  * @export
  */
 exports.AuthConnectTelegramV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -464,9 +478,7 @@ exports.AuthConnectV1ProviderEnum = {
  * @export
  */
 exports.AuthConnectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -489,9 +501,7 @@ exports.AuthDisconnectV1LanguageEnum = {
  * @export
  */
 exports.AuthDisconnectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -514,9 +524,7 @@ exports.AuthGetAuthUrlV1ProviderEnum = {
  * @export
  */
 exports.AuthGetAuthUrlV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

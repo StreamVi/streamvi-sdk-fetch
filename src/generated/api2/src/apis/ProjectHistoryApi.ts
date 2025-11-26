@@ -49,7 +49,7 @@ export interface ProjectHistoryApiInterface {
      * @summary Get project history of actions
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {Date} [date_from] Date from
@@ -167,9 +167,7 @@ export type ProjectHistoryListV1LanguageEnum = typeof ProjectHistoryListV1Langua
  * @export
  */
 export const ProjectHistoryListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectHistoryListV1VEnum = typeof ProjectHistoryListV1VEnum[keyof typeof ProjectHistoryListV1VEnum];
 /**

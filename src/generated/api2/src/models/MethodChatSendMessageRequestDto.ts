@@ -31,6 +31,12 @@ export interface MethodChatSendMessageRequestDto {
      * @memberof MethodChatSendMessageRequestDto
      */
     text: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof MethodChatSendMessageRequestDto
+     */
+    restreams: Array<number>;
 }
 
 /**
@@ -39,6 +45,7 @@ export interface MethodChatSendMessageRequestDto {
 export function instanceOfMethodChatSendMessageRequestDto(value: object): value is MethodChatSendMessageRequestDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('text' in value) || value['text'] === undefined) return false;
+    if (!('restreams' in value) || value['restreams'] === undefined) return false;
     return true;
 }
 
@@ -54,6 +61,7 @@ export function MethodChatSendMessageRequestDtoFromJSONTyped(json: any, ignoreDi
         
         'id': json['id'],
         'text': json['text'],
+        'restreams': json['restreams'],
     };
 }
 
@@ -70,6 +78,7 @@ export function MethodChatSendMessageRequestDtoToJSONTyped(value?: MethodChatSen
         
         'id': value['id'],
         'text': value['text'],
+        'restreams': value['restreams'],
     };
 }
 

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetPaySettingResponseV3, PayCheckCountryResponse, PaySettingBodyDto } from '../models/index';
+import type { GetPaySettingResponseV3, PayCheckCountryResponse, PaySettingSetSettingV1Request, SuccessResponse } from '../models/index';
 export interface PaySettingCheckCountryV1Request {
     language: PaySettingCheckCountryV1LanguageEnum;
     project_id: number;
@@ -22,8 +22,8 @@ export interface PaySettingGetSettingV3Request {
     project_id: number;
     v?: PaySettingGetSettingV3VEnum;
 }
-export interface PaySettingSetSettingV1Request {
-    PaySettingBodyDto: PaySettingBodyDto;
+export interface PaySettingSetSettingV1OperationRequest {
+    PaySettingSetSettingV1Request: PaySettingSetSettingV1Request;
 }
 /**
  * PaySettingApi - interface
@@ -38,7 +38,7 @@ export interface PaySettingApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} country_id country id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
@@ -53,7 +53,7 @@ export interface PaySettingApiInterface {
      * @summary Get pay settings for profile v3
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
@@ -66,16 +66,16 @@ export interface PaySettingApiInterface {
     /**
      *
      * @summary Set pay settings for profile
-     * @param {PaySettingBodyDto} PaySettingBodyDto
+     * @param {PaySettingSetSettingV1Request} PaySettingSetSettingV1Request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
      */
-    paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
      * Set pay settings for profile
      */
-    paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
 /**
  *
@@ -100,11 +100,11 @@ export declare class PaySettingApi extends runtime.BaseAPI implements PaySetting
     /**
      * Set pay settings for profile
      */
-    paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
      * Set pay settings for profile
      */
-    paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
 /**
  * @export
@@ -120,8 +120,6 @@ export type PaySettingCheckCountryV1LanguageEnum = typeof PaySettingCheckCountry
  */
 export declare const PaySettingCheckCountryV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type PaySettingCheckCountryV1VEnum = typeof PaySettingCheckCountryV1VEnum[keyof typeof PaySettingCheckCountryV1VEnum];
 /**
@@ -137,8 +135,6 @@ export type PaySettingGetSettingV3LanguageEnum = typeof PaySettingGetSettingV3La
  * @export
  */
 export declare const PaySettingGetSettingV3VEnum: {
-    readonly _1: "1";
-    readonly _2: "2";
     readonly _3: "3";
 };
 export type PaySettingGetSettingV3VEnum = typeof PaySettingGetSettingV3VEnum[keyof typeof PaySettingGetSettingV3VEnum];

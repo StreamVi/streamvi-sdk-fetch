@@ -30,7 +30,7 @@ export interface LiveApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -74,9 +74,7 @@ export type ControllersRestreamsV1LanguageEnum = typeof ControllersRestreamsV1La
  * @export
  */
 export declare const ControllersRestreamsV1VEnum: {
-    readonly _1: "1";
     readonly _2: "2";
-    readonly _3: "3";
 };
 export type ControllersRestreamsV1VEnum = typeof ControllersRestreamsV1VEnum[keyof typeof ControllersRestreamsV1VEnum];
 //# sourceMappingURL=LiveApi.d.ts.map

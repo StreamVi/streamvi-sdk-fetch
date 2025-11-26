@@ -60,7 +60,7 @@ export interface PaymentApiInterface {
      * @summary Create payment item for pay system
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {PaymentCreateV1Request} PaymentCreateV1Request 
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
@@ -77,7 +77,7 @@ export interface PaymentApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payId Pay order id
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
@@ -91,7 +91,7 @@ export interface PaymentApiInterface {
     /**
      * 
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [pageSize] Number of results
      * @param {number} [page] Page number
      * @param {*} [options] Override http request option.
@@ -290,9 +290,7 @@ export type PaymentCreateV1OperationLanguageEnum = typeof PaymentCreateV1Operati
  * @export
  */
 export const PaymentCreateV1OperationVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PaymentCreateV1OperationVEnum = typeof PaymentCreateV1OperationVEnum[keyof typeof PaymentCreateV1OperationVEnum];
 /**
@@ -308,9 +306,7 @@ export type PaymentGetStatusV1LanguageEnum = typeof PaymentGetStatusV1LanguageEn
  * @export
  */
 export const PaymentGetStatusV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PaymentGetStatusV1VEnum = typeof PaymentGetStatusV1VEnum[keyof typeof PaymentGetStatusV1VEnum];
 /**
@@ -326,8 +322,6 @@ export type PaymentListV1LanguageEnum = typeof PaymentListV1LanguageEnum[keyof t
  * @export
  */
 export const PaymentListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PaymentListV1VEnum = typeof PaymentListV1VEnum[keyof typeof PaymentListV1VEnum];

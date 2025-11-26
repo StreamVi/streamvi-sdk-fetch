@@ -99,14 +99,18 @@ export interface SiteUpdateOptionsVkRequest {
      * @memberof SiteUpdateOptionsVkRequest
      */
     wall?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof SiteUpdateOptionsVkRequest
+     */
+    disable_auto_end?: boolean;
 }
 /**
  * @export
  */
 export declare const SiteUpdateOptionsVkRequestVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type SiteUpdateOptionsVkRequestVEnum = typeof SiteUpdateOptionsVkRequestVEnum[keyof typeof SiteUpdateOptionsVkRequestVEnum];
 /**
@@ -135,7 +139,8 @@ export declare const SiteUpdateOptionsVkRequestPrivacyVideoEnum: {
     readonly all: "all";
     readonly members: "members";
     readonly editors: "editors";
-    readonly nobody: "nobody";
+    readonly by_link: "by_link";
+    readonly donut: "donut";
 };
 export type SiteUpdateOptionsVkRequestPrivacyVideoEnum = typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum[keyof typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum];
 /**

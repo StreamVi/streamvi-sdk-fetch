@@ -126,6 +126,18 @@ export interface PlanRestreamProjectResponse {
      */
     feature: Array<PlanRestreamFeatureItemV2>;
     /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamProjectResponse
+     */
+    support_custom_channel: boolean;
+    /**
+     * Custom video
+     * @type {number}
+     * @memberof PlanRestreamProjectResponse
+     */
+    custom_video: number;
+    /**
      * Tariff project
      * @type {PlanRestreamForProjectV2}
      * @memberof PlanRestreamProjectResponse
@@ -170,6 +182,8 @@ export function instanceOfPlanRestreamProjectResponse(value: object): value is P
     if (!('price' in value) || value['price'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('feature' in value) || value['feature'] === undefined) return false;
+    if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
+    if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
     if (!('own_tariff' in value) || value['own_tariff'] === undefined) return false;
     return true;
 }
@@ -198,6 +212,8 @@ export function PlanRestreamProjectResponseFromJSONTyped(json: any, ignoreDiscri
         'price': PlanRestreamPriceFromJSON(json['price']),
         'status': json['status'],
         'feature': ((json['feature'] as Array<any>).map(PlanRestreamFeatureItemV2FromJSON)),
+        'support_custom_channel': json['support_custom_channel'],
+        'custom_video': json['custom_video'],
         'own_tariff': PlanRestreamForProjectV2FromJSON(json['own_tariff']),
     };
 }
@@ -227,6 +243,8 @@ export function PlanRestreamProjectResponseToJSONTyped(value?: PlanRestreamProje
         'price': PlanRestreamPriceToJSON(value['price']),
         'status': value['status'],
         'feature': ((value['feature'] as Array<any>).map(PlanRestreamFeatureItemV2ToJSON)),
+        'support_custom_channel': value['support_custom_channel'],
+        'custom_video': value['custom_video'],
         'own_tariff': PlanRestreamForProjectV2ToJSON(value['own_tariff']),
     };
 }

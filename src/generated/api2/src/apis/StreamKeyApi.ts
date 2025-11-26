@@ -53,7 +53,7 @@ export interface StreamKeyApiInterface {
      * @summary Get stream credentials
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -192,8 +192,6 @@ export type StreamKeysKeyV1LanguageEnum = typeof StreamKeysKeyV1LanguageEnum[key
  * @export
  */
 export const StreamKeysKeyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type StreamKeysKeyV1VEnum = typeof StreamKeysKeyV1VEnum[keyof typeof StreamKeysKeyV1VEnum];

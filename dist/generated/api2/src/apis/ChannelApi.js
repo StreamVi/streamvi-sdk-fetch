@@ -36,13 +36,667 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MethodSearchV1TypeEnum = exports.MethodSearchV1VEnum = exports.MethodSearchV1LanguageEnum = exports.ChannelShortChannelListV1VEnum = exports.ChannelShortChannelListV1LanguageEnum = exports.ChannelApi = void 0;
+exports.MethodSearchV1TypeEnum = exports.MethodSearchV1VEnum = exports.MethodSearchV1LanguageEnum = exports.ChannelShortChannelListV1VEnum = exports.ChannelShortChannelListV1LanguageEnum = exports.ChannelGetChannelV1VEnum = exports.ChannelGetChannelV1LanguageEnum = exports.ChannelApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
  *
  */
 class ChannelApi extends runtime.BaseAPI {
+    /**
+     * Add boosty channel
+     */
+    async addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['BoostyDto'] == null) {
+            throw new runtime.RequiredError('BoostyDto', 'Required parameter "BoostyDto" was null or undefined when calling addChannelMethodAddBoostyV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/boosty`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.BoostyDtoToJSON)(requestParameters['BoostyDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add boosty channel
+     */
+    async addChannelMethodAddBoostyV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add custom channel
+     */
+    async addChannelMethodAddCustomV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['CustomDto'] == null) {
+            throw new runtime.RequiredError('CustomDto', 'Required parameter "CustomDto" was null or undefined when calling addChannelMethodAddCustomV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/custom`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.CustomDtoToJSON)(requestParameters['CustomDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add custom channel
+     */
+    async addChannelMethodAddCustomV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddCustomV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add douyu channel
+     */
+    async addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['DouyuDto'] == null) {
+            throw new runtime.RequiredError('DouyuDto', 'Required parameter "DouyuDto" was null or undefined when calling addChannelMethodAddDouyuV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/douyu`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.DouyuDtoToJSON)(requestParameters['DouyuDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add douyu channel
+     */
+    async addChannelMethodAddDouyuV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add fb channel
+     */
+    async addChannelMethodAddFbV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['FbDto'] == null) {
+            throw new runtime.RequiredError('FbDto', 'Required parameter "FbDto" was null or undefined when calling addChannelMethodAddFbV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/fb`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.FbDtoToJSON)(requestParameters['FbDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add fb channel
+     */
+    async addChannelMethodAddFbV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddFbV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add fc2Live channel
+     */
+    async addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['Fc2liveDto'] == null) {
+            throw new runtime.RequiredError('Fc2liveDto', 'Required parameter "Fc2liveDto" was null or undefined when calling addChannelMethodAddFc2LiveV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/fc2Live`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.Fc2liveDtoToJSON)(requestParameters['Fc2liveDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add fc2Live channel
+     */
+    async addChannelMethodAddFc2LiveV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add goodgame channel
+     */
+    async addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['GoodgameDto'] == null) {
+            throw new runtime.RequiredError('GoodgameDto', 'Required parameter "GoodgameDto" was null or undefined when calling addChannelMethodAddGoodgameV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/goodgame`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.GoodgameDtoToJSON)(requestParameters['GoodgameDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add goodgame channel
+     */
+    async addChannelMethodAddGoodgameV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add huya channel
+     */
+    async addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['HuyaDto'] == null) {
+            throw new runtime.RequiredError('HuyaDto', 'Required parameter "HuyaDto" was null or undefined when calling addChannelMethodAddHuyaV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/huya`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.HuyaDtoToJSON)(requestParameters['HuyaDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add huya channel
+     */
+    async addChannelMethodAddHuyaV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add instagram channel
+     */
+    async addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['InstagramDto'] == null) {
+            throw new runtime.RequiredError('InstagramDto', 'Required parameter "InstagramDto" was null or undefined when calling addChannelMethodAddInstagramV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/instagram`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.InstagramDtoToJSON)(requestParameters['InstagramDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add instagram channel
+     */
+    async addChannelMethodAddInstagramV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add kick channel
+     */
+    async addChannelMethodAddKickV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['KickDto'] == null) {
+            throw new runtime.RequiredError('KickDto', 'Required parameter "KickDto" was null or undefined when calling addChannelMethodAddKickV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/kick`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.KickDtoToJSON)(requestParameters['KickDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add kick channel
+     */
+    async addChannelMethodAddKickV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddKickV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add linkedin channel
+     */
+    async addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['LinkedinDto'] == null) {
+            throw new runtime.RequiredError('LinkedinDto', 'Required parameter "LinkedinDto" was null or undefined when calling addChannelMethodAddLinkedinV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/linkedin`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.LinkedinDtoToJSON)(requestParameters['LinkedinDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add linkedin channel
+     */
+    async addChannelMethodAddLinkedinV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add navertv channel
+     */
+    async addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['NavertvDto'] == null) {
+            throw new runtime.RequiredError('NavertvDto', 'Required parameter "NavertvDto" was null or undefined when calling addChannelMethodAddNavertvV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/navertv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.NavertvDtoToJSON)(requestParameters['NavertvDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add navertv channel
+     */
+    async addChannelMethodAddNavertvV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add nimotv channel
+     */
+    async addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['NimotvDto'] == null) {
+            throw new runtime.RequiredError('NimotvDto', 'Required parameter "NimotvDto" was null or undefined when calling addChannelMethodAddNimotvV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/nimotv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.NimotvDtoToJSON)(requestParameters['NimotvDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add nimotv channel
+     */
+    async addChannelMethodAddNimotvV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add nonolive channel
+     */
+    async addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['NonoliveDto'] == null) {
+            throw new runtime.RequiredError('NonoliveDto', 'Required parameter "NonoliveDto" was null or undefined when calling addChannelMethodAddNonoliveV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/nonolive`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.NonoliveDtoToJSON)(requestParameters['NonoliveDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add nonolive channel
+     */
+    async addChannelMethodAddNonoliveV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add ok channel
+     */
+    async addChannelMethodAddOkV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['OkDto'] == null) {
+            throw new runtime.RequiredError('OkDto', 'Required parameter "OkDto" was null or undefined when calling addChannelMethodAddOkV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/ok`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.OkDtoToJSON)(requestParameters['OkDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add ok channel
+     */
+    async addChannelMethodAddOkV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddOkV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add plvideo channel
+     */
+    async addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['PlvideoDto'] == null) {
+            throw new runtime.RequiredError('PlvideoDto', 'Required parameter "PlvideoDto" was null or undefined when calling addChannelMethodAddPlvideoV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/plvideo`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.PlvideoDtoToJSON)(requestParameters['PlvideoDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add plvideo channel
+     */
+    async addChannelMethodAddPlvideoV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add rutube channel
+     */
+    async addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['RutubeDto'] == null) {
+            throw new runtime.RequiredError('RutubeDto', 'Required parameter "RutubeDto" was null or undefined when calling addChannelMethodAddRutubeV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/rutube`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.RutubeDtoToJSON)(requestParameters['RutubeDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add rutube channel
+     */
+    async addChannelMethodAddRutubeV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add steam channel
+     */
+    async addChannelMethodAddSteamV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['SteamDto'] == null) {
+            throw new runtime.RequiredError('SteamDto', 'Required parameter "SteamDto" was null or undefined when calling addChannelMethodAddSteamV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/steam`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.SteamDtoToJSON)(requestParameters['SteamDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add steam channel
+     */
+    async addChannelMethodAddSteamV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddSteamV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add telegram channel
+     */
+    async addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['TelegramDto'] == null) {
+            throw new runtime.RequiredError('TelegramDto', 'Required parameter "TelegramDto" was null or undefined when calling addChannelMethodAddTelegramV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/telegram`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.TelegramDtoToJSON)(requestParameters['TelegramDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add telegram channel
+     */
+    async addChannelMethodAddTelegramV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add tiktok channel
+     */
+    async addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['TiktokDto'] == null) {
+            throw new runtime.RequiredError('TiktokDto', 'Required parameter "TiktokDto" was null or undefined when calling addChannelMethodAddTiktokV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/tiktok`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.TiktokDtoToJSON)(requestParameters['TiktokDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add tiktok channel
+     */
+    async addChannelMethodAddTiktokV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add vk channel
+     */
+    async addChannelMethodAddVkV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['VkDto'] == null) {
+            throw new runtime.RequiredError('VkDto', 'Required parameter "VkDto" was null or undefined when calling addChannelMethodAddVkV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/vk`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.VkDtoToJSON)(requestParameters['VkDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add vk channel
+     */
+    async addChannelMethodAddVkV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddVkV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add vlive channel
+     */
+    async addChannelMethodAddVliveV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['VliveDto'] == null) {
+            throw new runtime.RequiredError('VliveDto', 'Required parameter "VliveDto" was null or undefined when calling addChannelMethodAddVliveV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/vlive`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.VliveDtoToJSON)(requestParameters['VliveDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add vlive channel
+     */
+    async addChannelMethodAddVliveV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddVliveV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Add zhanqitv channel
+     */
+    async addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['ZhanqitvDto'] == null) {
+            throw new runtime.RequiredError('ZhanqitvDto', 'Required parameter "ZhanqitvDto" was null or undefined when calling addChannelMethodAddZhanqiTvV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/add/zhanqitv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.ZhanqitvDtoToJSON)(requestParameters['ZhanqitvDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add zhanqitv channel
+     */
+    async addChannelMethodAddZhanqiTvV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides);
+    }
+    /**
+     * Delete channel
+     */
+    async channelDeleteChannelV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['DeleteChannelDto'] == null) {
+            throw new runtime.RequiredError('DeleteChannelDto', 'Required parameter "DeleteChannelDto" was null or undefined when calling channelDeleteChannelV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        const response = await this.request({
+            path: `/method/channel/delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.DeleteChannelDtoToJSON)(requestParameters['DeleteChannelDto']),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Delete channel
+     */
+    async channelDeleteChannelV1(requestParameters, initOverrides) {
+        const response = await this.channelDeleteChannelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get channel by id
+     */
+    async channelGetChannelV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling channelGetChannelV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelGetChannelV1().');
+        }
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelGetChannelV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/channel/get`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SearchChannelItemFromJSON)(jsonValue));
+    }
+    /**
+     * Get channel by id
+     */
+    async channelGetChannelV1(requestParameters, initOverrides) {
+        const response = await this.channelGetChannelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Set delay - test point
+     */
+    async channelSetDelayV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError('channel_id', 'Required parameter "channel_id" was null or undefined when calling channelSetDelayV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling channelSetDelayV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/channel/set-delay`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Set delay - test point
+     */
+    async channelSetDelayV1(requestParameters, initOverrides) {
+        const response = await this.channelSetDelayV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
     /**
      * Minimal channel list
      */
@@ -173,6 +827,20 @@ exports.ChannelApi = ChannelApi;
 /**
  * @export
  */
+exports.ChannelGetChannelV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.ChannelGetChannelV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
 exports.ChannelShortChannelListV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -182,9 +850,7 @@ exports.ChannelShortChannelListV1LanguageEnum = {
  * @export
  */
 exports.ChannelShortChannelListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -198,9 +864,7 @@ exports.MethodSearchV1LanguageEnum = {
  * @export
  */
 exports.MethodSearchV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

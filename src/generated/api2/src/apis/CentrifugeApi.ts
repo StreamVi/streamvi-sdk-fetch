@@ -27,6 +27,7 @@ import {
 
 export interface CentrifugeAuthV2Request {
     project_id: number;
+    v?: CentrifugeAuthV2VEnum;
 }
 
 export interface CentrifugeProjectV1Request {
@@ -53,6 +54,7 @@ export interface CentrifugeApiInterface {
      * 
      * @summary Auth centrifuge
      * @param {number} project_id Project id
+     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -69,7 +71,7 @@ export interface CentrifugeApiInterface {
      * @summary Auth token for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -88,7 +90,7 @@ export interface CentrifugeApiInterface {
      * @param {number} broadcast_id 
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -120,6 +122,12 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '2';
+        }
 
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
@@ -169,7 +177,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
-            queryParameters['v'] = '2';
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -233,14 +241,14 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
 
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
             queryParameters['v'] = '1';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
 
         if (requestParameters['project_id'] != null) {
@@ -273,6 +281,13 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 /**
  * @export
  */
+export const CentrifugeAuthV2VEnum = {
+    _2: '2'
+} as const;
+export type CentrifugeAuthV2VEnum = typeof CentrifugeAuthV2VEnum[keyof typeof CentrifugeAuthV2VEnum];
+/**
+ * @export
+ */
 export const CentrifugeProjectV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -283,9 +298,7 @@ export type CentrifugeProjectV1LanguageEnum = typeof CentrifugeProjectV1Language
  * @export
  */
 export const CentrifugeProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type CentrifugeProjectV1VEnum = typeof CentrifugeProjectV1VEnum[keyof typeof CentrifugeProjectV1VEnum];
 /**
@@ -301,8 +314,6 @@ export type GetTokenBroadcastV1LanguageEnum = typeof GetTokenBroadcastV1Language
  * @export
  */
 export const GetTokenBroadcastV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 } as const;
 export type GetTokenBroadcastV1VEnum = typeof GetTokenBroadcastV1VEnum[keyof typeof GetTokenBroadcastV1VEnum];

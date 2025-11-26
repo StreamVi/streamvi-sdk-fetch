@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { TranscoderState } from './TranscoderState';
 import type { TranscoderChannelItem } from './TranscoderChannelItem';
 /**
  *
@@ -94,6 +95,30 @@ export interface TranscoderListItem {
      * @memberof TranscoderListItem
      */
     channels: Array<TranscoderChannelItem>;
+    /**
+     * Delay
+     * @type {number}
+     * @memberof TranscoderListItem
+     */
+    delay: number;
+    /**
+     * Preset
+     * @type {string}
+     * @memberof TranscoderListItem
+     */
+    preset: string;
+    /**
+     * State
+     * @type {TranscoderState}
+     * @memberof TranscoderListItem
+     */
+    state?: TranscoderState | null;
+    /**
+     * Mode
+     * @type {string}
+     * @memberof TranscoderListItem
+     */
+    mode: TranscoderListItemModeEnum;
 }
 /**
  * @export
@@ -111,6 +136,14 @@ export declare const TranscoderListItemVideoCodecEnum: {
     readonly hevc: "hevc";
 };
 export type TranscoderListItemVideoCodecEnum = typeof TranscoderListItemVideoCodecEnum[keyof typeof TranscoderListItemVideoCodecEnum];
+/**
+ * @export
+ */
+export declare const TranscoderListItemModeEnum: {
+    readonly custom: "custom";
+    readonly twitch: "twitch";
+};
+export type TranscoderListItemModeEnum = typeof TranscoderListItemModeEnum[keyof typeof TranscoderListItemModeEnum];
 /**
  * Check if a given object implements the TranscoderListItem interface.
  */

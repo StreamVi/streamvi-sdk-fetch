@@ -84,13 +84,13 @@ export interface ProjectInfoResponse {
      * @type {ProjectInfoTranscodingResponse}
      * @memberof ProjectInfoResponse
      */
-    transcoding: ProjectInfoTranscodingResponse | null;
+    transcoding?: ProjectInfoTranscodingResponse | null;
     /**
      * Storage tariff
      * @type {ProjectInfoStorageResponse}
      * @memberof ProjectInfoResponse
      */
-    storage: ProjectInfoStorageResponse | null;
+    storage?: ProjectInfoStorageResponse | null;
     /**
      * Project info access
      * @type {ProjectInfoAccessResponse}
@@ -104,9 +104,7 @@ export interface ProjectInfoResponse {
  * @export
  */
 export const ProjectInfoResponseVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ProjectInfoResponseVEnum = typeof ProjectInfoResponseVEnum[keyof typeof ProjectInfoResponseVEnum];
 
@@ -129,8 +127,6 @@ export function instanceOfProjectInfoResponse(value: object): value is ProjectIn
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('data' in value) || value['data'] === undefined) return false;
     if (!('restream' in value) || value['restream'] === undefined) return false;
-    if (!('transcoding' in value) || value['transcoding'] === undefined) return false;
-    if (!('storage' in value) || value['storage'] === undefined) return false;
     if (!('access' in value) || value['access'] === undefined) return false;
     return true;
 }
@@ -149,8 +145,8 @@ export function ProjectInfoResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'language': json['language'],
         'data': ProjectInfoDataResponseFromJSON(json['data']),
         'restream': ProjectInfoRestreamResponseFromJSON(json['restream']),
-        'transcoding': ProjectInfoTranscodingResponseFromJSON(json['transcoding']),
-        'storage': ProjectInfoStorageResponseFromJSON(json['storage']),
+        'transcoding': json['transcoding'] == null ? undefined : ProjectInfoTranscodingResponseFromJSON(json['transcoding']),
+        'storage': json['storage'] == null ? undefined : ProjectInfoStorageResponseFromJSON(json['storage']),
         'access': ProjectInfoAccessResponseFromJSON(json['access']),
     };
 }

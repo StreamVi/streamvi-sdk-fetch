@@ -44,13 +44,13 @@ export interface MoneyFlowResponse {
      * @type {string}
      * @memberof MoneyFlowResponse
      */
-    currency: MoneyFlowResponseCurrencyEnum | null;
+    currency?: MoneyFlowResponseCurrencyEnum | null;
     /**
      * Date
-     * @type {Date}
+     * @type {string}
      * @memberof MoneyFlowResponse
      */
-    date: Date;
+    date: string;
     /**
      * Type
      * @type {string}
@@ -68,7 +68,7 @@ export interface MoneyFlowResponse {
      * @type {MoneyFlowDetails}
      * @memberof MoneyFlowResponse
      */
-    details: MoneyFlowDetails | null;
+    details?: MoneyFlowDetails | null;
 }
 
 
@@ -116,11 +116,9 @@ export type MoneyFlowResponseTypeEnum = typeof MoneyFlowResponseTypeEnum[keyof t
 export function instanceOfMoneyFlowResponse(value: object): value is MoneyFlowResponse {
     if (!('money_flow_id' in value) || value['money_flow_id'] === undefined) return false;
     if (!('amount' in value) || value['amount'] === undefined) return false;
-    if (!('currency' in value) || value['currency'] === undefined) return false;
     if (!('date' in value) || value['date'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('balance' in value) || value['balance'] === undefined) return false;
-    if (!('details' in value) || value['details'] === undefined) return false;
     return true;
 }
 
@@ -136,11 +134,11 @@ export function MoneyFlowResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'money_flow_id': json['money_flow_id'],
         'amount': json['amount'],
-        'currency': json['currency'],
-        'date': (new Date(json['date'])),
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'date': json['date'],
         'type': json['type'],
         'balance': json['balance'],
-        'details': MoneyFlowDetailsFromJSON(json['details']),
+        'details': json['details'] == null ? undefined : MoneyFlowDetailsFromJSON(json['details']),
     };
 }
 
@@ -158,7 +156,7 @@ export function MoneyFlowResponseToJSONTyped(value?: MoneyFlowResponse | null, i
         'money_flow_id': value['money_flow_id'],
         'amount': value['amount'],
         'currency': value['currency'],
-        'date': ((value['date']).toISOString()),
+        'date': value['date'],
         'type': value['type'],
         'balance': value['balance'],
         'details': MoneyFlowDetailsToJSON(value['details']),

@@ -16,15 +16,24 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
+  GetAccountChannelsResponse,
+  GetAccountsResponse,
   ListOfCategoryItemResponse,
+  RemoveAccountQuery,
   SitePlatformsSupportedResponse,
   SuccessResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    GetAccountChannelsResponseFromJSON,
+    GetAccountChannelsResponseToJSON,
+    GetAccountsResponseFromJSON,
+    GetAccountsResponseToJSON,
     ListOfCategoryItemResponseFromJSON,
     ListOfCategoryItemResponseToJSON,
+    RemoveAccountQueryFromJSON,
+    RemoveAccountQueryToJSON,
     SitePlatformsSupportedResponseFromJSON,
     SitePlatformsSupportedResponseToJSON,
     SuccessResponseFromJSON,
@@ -36,6 +45,35 @@ export interface PlatformsAddAccountV1Request {
     project_id: number;
     platform: PlatformsAddAccountV1PlatformEnum;
     v?: PlatformsAddAccountV1VEnum;
+    sub_id?: string;
+}
+
+export interface PlatformsAddAccountVkCommunityV1Request {
+    language: PlatformsAddAccountVkCommunityV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    account_id: string;
+    v?: PlatformsAddAccountVkCommunityV1VEnum;
+    sub_id?: string;
+}
+
+export interface PlatformsCallbackCommunityV1Request {
+    state: string;
+}
+
+export interface PlatformsCallbackV1Request {
+    provider: PlatformsCallbackV1ProviderEnum;
+    state: string;
+}
+
+export interface PlatformsCallbackVkIdV1Request {
+    state: string;
+}
+
+export interface PlatformsGetAccountsV1Request {
+    language: PlatformsGetAccountsV1LanguageEnum;
+    platform: PlatformsGetAccountsV1PlatformEnum;
+    v?: PlatformsGetAccountsV1VEnum;
 }
 
 export interface PlatformsGetCategoryV1Request {
@@ -43,6 +81,19 @@ export interface PlatformsGetCategoryV1Request {
     type: PlatformsGetCategoryV1TypeEnum;
     v?: PlatformsGetCategoryV1VEnum;
     q?: string;
+}
+
+export interface PlatformsGetChannelsV1Request {
+    language: PlatformsGetChannelsV1LanguageEnum;
+    platform: PlatformsGetChannelsV1PlatformEnum;
+    ids: Array<number>;
+    project_id: number;
+    request_id: string;
+    v?: PlatformsGetChannelsV1VEnum;
+    q?: string;
+    sort?: PlatformsGetChannelsV1SortEnum;
+    limit?: number;
+    page?: number;
 }
 
 export interface PlatformsLogoutAccountV1Request {
@@ -57,6 +108,10 @@ export interface PlatformsPlatformListV1Request {
     v?: PlatformsPlatformListV1VEnum;
 }
 
+export interface PlatformsRemoveAccountV1Request {
+    RemoveAccountQuery: RemoveAccountQuery;
+}
+
 /**
  * PlatformsApi - interface
  * 
@@ -69,8 +124,9 @@ export interface PlatformsApiInterface {
      * @summary Get url for start oauth
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch'} platform Provider oauth
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [sub_id] Sub id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -84,10 +140,93 @@ export interface PlatformsApiInterface {
 
     /**
      * 
+     * @summary Get url for start oauth
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel external id
+     * @param {string} account_id Id account on platform
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [sub_id] Sub id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsAddAccountVkCommunityV1Raw(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Get url for start oauth
+     */
+    platformsAddAccountVkCommunityV1(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Internal request of auth
+     * @param {string} state State
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsCallbackCommunityV1Raw(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+     * Internal request of auth
+     */
+    platformsCallbackCommunityV1(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+
+    /**
+     * 
+     * @summary Internal request of auth
+     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} provider Provider oauth
+     * @param {string} state State
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsCallbackV1Raw(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+     * Internal request of auth
+     */
+    platformsCallbackV1(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+
+    /**
+     * 
+     * @summary Internal request of auth vk-id
+     * @param {string} state State
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsCallbackVkIdV1Raw(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
+
+    /**
+     * Internal request of auth vk-id
+     */
+    platformsCallbackVkIdV1(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
+
+    /**
+     * 
+     * @summary Get accounts
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsGetAccountsV1Raw(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountsResponse>>;
+
+    /**
+     * Get accounts
+     */
+    platformsGetAccountsV1(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountsResponse>;
+
+    /**
+     * 
      * @summary Get category from the platform
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'vk' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} type Category search bar
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {string} [q] Category search bar
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -102,11 +241,35 @@ export interface PlatformsApiInterface {
 
     /**
      * 
+     * @summary Get channels with accounts
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'vk' | 'ok'} platform Platform (vk, ok)
+     * @param {Array<number>} ids Id accounts
+     * @param {number} project_id Project id
+     * @param {string} request_id Request id (for cache)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [q] Search
+     * @param {'asc' | 'desc'} [sort] Sort by asc or desc (default asc)
+     * @param {number} [limit] Limit
+     * @param {number} [page] Page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsGetChannelsV1Raw(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountChannelsResponse>>;
+
+    /**
+     * Get channels with accounts
+     */
+    platformsGetChannelsV1(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountChannelsResponse>;
+
+    /**
+     * 
      * @summary Get category from the platform
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} id Category search bar
-     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch'} platform Provider oauth
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -122,7 +285,7 @@ export interface PlatformsApiInterface {
      * 
      * @summary Supported platforms
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -133,6 +296,21 @@ export interface PlatformsApiInterface {
      * Supported platforms
      */
     platformsPlatformListV1(requestParameters: PlatformsPlatformListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlatformsSupportedResponse>;
+
+    /**
+     * 
+     * @summary Remove account
+     * @param {RemoveAccountQuery} RemoveAccountQuery 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsRemoveAccountV1Raw(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Remove account
+     */
+    platformsRemoveAccountV1(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
 }
 
@@ -186,6 +364,10 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
             queryParameters['platform'] = requestParameters['platform'];
         }
 
+        if (requestParameters['sub_id'] != null) {
+            queryParameters['sub_id'] = requestParameters['sub_id'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
@@ -203,6 +385,269 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
      */
     async platformsAddAccountV1(requestParameters: PlatformsAddAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.platformsAddAccountV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Get url for start oauth
+     */
+    async platformsAddAccountVkCommunityV1Raw(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling platformsAddAccountVkCommunityV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling platformsAddAccountVkCommunityV1().'
+            );
+        }
+
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError(
+                'channel_id',
+                'Required parameter "channel_id" was null or undefined when calling platformsAddAccountVkCommunityV1().'
+            );
+        }
+
+        if (requestParameters['account_id'] == null) {
+            throw new runtime.RequiredError(
+                'account_id',
+                'Required parameter "account_id" was null or undefined when calling platformsAddAccountVkCommunityV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+
+        if (requestParameters['account_id'] != null) {
+            queryParameters['account_id'] = requestParameters['account_id'];
+        }
+
+        if (requestParameters['sub_id'] != null) {
+            queryParameters['sub_id'] = requestParameters['sub_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/connect/vk-community`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Get url for start oauth
+     */
+    async platformsAddAccountVkCommunityV1(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.platformsAddAccountVkCommunityV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackCommunityV1Raw(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError(
+                'state',
+                'Required parameter "state" was null or undefined when calling platformsCallbackCommunityV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/vk/callback-community`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackCommunityV1(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.platformsCallbackCommunityV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackV1Raw(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        if (requestParameters['provider'] == null) {
+            throw new runtime.RequiredError(
+                'provider',
+                'Required parameter "provider" was null or undefined when calling platformsCallbackV1().'
+            );
+        }
+
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError(
+                'state',
+                'Required parameter "state" was null or undefined when calling platformsCallbackV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/{provider}/callback`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Internal request of auth
+     */
+    async platformsCallbackV1(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.platformsCallbackV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Internal request of auth vk-id
+     */
+    async platformsCallbackVkIdV1Raw(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>> {
+        if (requestParameters['state'] == null) {
+            throw new runtime.RequiredError(
+                'state',
+                'Required parameter "state" was null or undefined when calling platformsCallbackVkIdV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['state'] != null) {
+            queryParameters['state'] = requestParameters['state'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/vk-id/callback`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<string>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * Internal request of auth vk-id
+     */
+    async platformsCallbackVkIdV1(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string> {
+        const response = await this.platformsCallbackVkIdV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get accounts
+     */
+    async platformsGetAccountsV1Raw(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountsResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling platformsGetAccountsV1().'
+            );
+        }
+
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError(
+                'platform',
+                'Required parameter "platform" was null or undefined when calling platformsGetAccountsV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/accounts`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetAccountsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get accounts
+     */
+    async platformsGetAccountsV1(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountsResponse> {
+        const response = await this.platformsGetAccountsV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -260,6 +705,109 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
      */
     async platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfCategoryItemResponse> {
         const response = await this.platformsGetCategoryV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get channels with accounts
+     */
+    async platformsGetChannelsV1Raw(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountChannelsResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling platformsGetChannelsV1().'
+            );
+        }
+
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError(
+                'platform',
+                'Required parameter "platform" was null or undefined when calling platformsGetChannelsV1().'
+            );
+        }
+
+        if (requestParameters['ids'] == null) {
+            throw new runtime.RequiredError(
+                'ids',
+                'Required parameter "ids" was null or undefined when calling platformsGetChannelsV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling platformsGetChannelsV1().'
+            );
+        }
+
+        if (requestParameters['request_id'] == null) {
+            throw new runtime.RequiredError(
+                'request_id',
+                'Required parameter "request_id" was null or undefined when calling platformsGetChannelsV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        if (requestParameters['sort'] != null) {
+            queryParameters['sort'] = requestParameters['sort'];
+        }
+
+        if (requestParameters['request_id'] != null) {
+            queryParameters['request_id'] = requestParameters['request_id'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/platforms/account/channels`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetAccountChannelsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get channels with accounts
+     */
+    async platformsGetChannelsV1(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountChannelsResponse> {
+        const response = await this.platformsGetChannelsV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -371,6 +919,42 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         return await response.value();
     }
 
+    /**
+     * Remove account
+     */
+    async platformsRemoveAccountV1Raw(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['RemoveAccountQuery'] == null) {
+            throw new runtime.RequiredError(
+                'RemoveAccountQuery',
+                'Required parameter "RemoveAccountQuery" was null or undefined when calling platformsRemoveAccountV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/platforms/account/remove`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RemoveAccountQueryToJSON(requestParameters['RemoveAccountQuery']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove account
+     */
+    async platformsRemoveAccountV1(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.platformsRemoveAccountV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
 }
 
 /**
@@ -391,18 +975,75 @@ export const PlatformsAddAccountV1PlatformEnum = {
     ok: 'ok',
     youtube: 'youtube',
     trovo: 'trovo',
-    twitch: 'twitch'
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
 } as const;
 export type PlatformsAddAccountV1PlatformEnum = typeof PlatformsAddAccountV1PlatformEnum[keyof typeof PlatformsAddAccountV1PlatformEnum];
 /**
  * @export
  */
 export const PlatformsAddAccountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlatformsAddAccountV1VEnum = typeof PlatformsAddAccountV1VEnum[keyof typeof PlatformsAddAccountV1VEnum];
+/**
+ * @export
+ */
+export const PlatformsAddAccountVkCommunityV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PlatformsAddAccountVkCommunityV1LanguageEnum = typeof PlatformsAddAccountVkCommunityV1LanguageEnum[keyof typeof PlatformsAddAccountVkCommunityV1LanguageEnum];
+/**
+ * @export
+ */
+export const PlatformsAddAccountVkCommunityV1VEnum = {
+    _1: '1'
+} as const;
+export type PlatformsAddAccountVkCommunityV1VEnum = typeof PlatformsAddAccountVkCommunityV1VEnum[keyof typeof PlatformsAddAccountVkCommunityV1VEnum];
+/**
+ * @export
+ */
+export const PlatformsCallbackV1ProviderEnum = {
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
+} as const;
+export type PlatformsCallbackV1ProviderEnum = typeof PlatformsCallbackV1ProviderEnum[keyof typeof PlatformsCallbackV1ProviderEnum];
+/**
+ * @export
+ */
+export const PlatformsGetAccountsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PlatformsGetAccountsV1LanguageEnum = typeof PlatformsGetAccountsV1LanguageEnum[keyof typeof PlatformsGetAccountsV1LanguageEnum];
+/**
+ * @export
+ */
+export const PlatformsGetAccountsV1PlatformEnum = {
+    vk: 'vk',
+    vk_id: 'vk-id',
+    ok: 'ok',
+    youtube: 'youtube',
+    trovo: 'trovo',
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
+} as const;
+export type PlatformsGetAccountsV1PlatformEnum = typeof PlatformsGetAccountsV1PlatformEnum[keyof typeof PlatformsGetAccountsV1PlatformEnum];
+/**
+ * @export
+ */
+export const PlatformsGetAccountsV1VEnum = {
+    _1: '1'
+} as const;
+export type PlatformsGetAccountsV1VEnum = typeof PlatformsGetAccountsV1VEnum[keyof typeof PlatformsGetAccountsV1VEnum];
 /**
  * @export
  */
@@ -427,11 +1068,41 @@ export type PlatformsGetCategoryV1TypeEnum = typeof PlatformsGetCategoryV1TypeEn
  * @export
  */
 export const PlatformsGetCategoryV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlatformsGetCategoryV1VEnum = typeof PlatformsGetCategoryV1VEnum[keyof typeof PlatformsGetCategoryV1VEnum];
+/**
+ * @export
+ */
+export const PlatformsGetChannelsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PlatformsGetChannelsV1LanguageEnum = typeof PlatformsGetChannelsV1LanguageEnum[keyof typeof PlatformsGetChannelsV1LanguageEnum];
+/**
+ * @export
+ */
+export const PlatformsGetChannelsV1PlatformEnum = {
+    vk: 'vk',
+    ok: 'ok'
+} as const;
+export type PlatformsGetChannelsV1PlatformEnum = typeof PlatformsGetChannelsV1PlatformEnum[keyof typeof PlatformsGetChannelsV1PlatformEnum];
+/**
+ * @export
+ */
+export const PlatformsGetChannelsV1VEnum = {
+    _1: '1'
+} as const;
+export type PlatformsGetChannelsV1VEnum = typeof PlatformsGetChannelsV1VEnum[keyof typeof PlatformsGetChannelsV1VEnum];
+/**
+ * @export
+ */
+export const PlatformsGetChannelsV1SortEnum = {
+    asc: 'asc',
+    desc: 'desc'
+} as const;
+export type PlatformsGetChannelsV1SortEnum = typeof PlatformsGetChannelsV1SortEnum[keyof typeof PlatformsGetChannelsV1SortEnum];
 /**
  * @export
  */
@@ -450,16 +1121,15 @@ export const PlatformsLogoutAccountV1PlatformEnum = {
     ok: 'ok',
     youtube: 'youtube',
     trovo: 'trovo',
-    twitch: 'twitch'
+    twitch: 'twitch',
+    vkvideolive: 'vkvideolive'
 } as const;
 export type PlatformsLogoutAccountV1PlatformEnum = typeof PlatformsLogoutAccountV1PlatformEnum[keyof typeof PlatformsLogoutAccountV1PlatformEnum];
 /**
  * @export
  */
 export const PlatformsLogoutAccountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlatformsLogoutAccountV1VEnum = typeof PlatformsLogoutAccountV1VEnum[keyof typeof PlatformsLogoutAccountV1VEnum];
 /**
@@ -475,8 +1145,6 @@ export type PlatformsPlatformListV1LanguageEnum = typeof PlatformsPlatformListV1
  * @export
  */
 export const PlatformsPlatformListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlatformsPlatformListV1VEnum = typeof PlatformsPlatformListV1VEnum[keyof typeof PlatformsPlatformListV1VEnum];

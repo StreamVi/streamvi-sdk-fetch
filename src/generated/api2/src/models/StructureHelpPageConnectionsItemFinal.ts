@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
-import {
-    BlogPageSiteResponseIdFromJSON,
-    BlogPageSiteResponseIdFromJSONTyped,
-    BlogPageSiteResponseIdToJSON,
-    BlogPageSiteResponseIdToJSONTyped,
-} from './BlogPageSiteResponseId';
 import type { StructureHelpPageConnectionsItemLang } from './StructureHelpPageConnectionsItemLang';
 import {
     StructureHelpPageConnectionsItemLangFromJSON,
@@ -35,11 +28,11 @@ import {
  */
 export interface StructureHelpPageConnectionsItemFinal {
     /**
-     * 
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof StructureHelpPageConnectionsItemFinal
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * Notion id
      * @type {string}
@@ -131,7 +124,7 @@ export function StructureHelpPageConnectionsItemFinalFromJSONTyped(json: any, ig
     }
     return {
         
-        '_id': BlogPageSiteResponseIdFromJSON(json['_id']),
+        '_id': json['_id'],
         'notion_id': json['notion_id'],
         'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
@@ -154,7 +147,7 @@ export function StructureHelpPageConnectionsItemFinalToJSONTyped(value?: Structu
 
     return {
         
-        '_id': BlogPageSiteResponseIdToJSON(value['_id']),
+        '_id': value['_id'],
         'notion_id': value['notion_id'],
         'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],

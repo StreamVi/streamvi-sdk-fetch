@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { AmountItem } from './AmountItem';
+import type { TotalInfoReferralsProfit } from './TotalInfoReferralsProfit';
 /**
  *
  * @export
@@ -18,10 +18,10 @@ import type { AmountItem } from './AmountItem';
 export interface SiteTotalInfoReferralsResponse {
     /**
      * Amount of referrals
-     * @type {Array<AmountItem>}
+     * @type {TotalInfoReferralsProfit}
      * @memberof SiteTotalInfoReferralsResponse
      */
-    profit: Array<AmountItem>;
+    profit: TotalInfoReferralsProfit;
     /**
      * Members of referral
      * @type {number}

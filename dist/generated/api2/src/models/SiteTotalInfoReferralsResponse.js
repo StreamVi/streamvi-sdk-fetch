@@ -14,7 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SiteTotalInfoReferralsResponseToJSONTyped = exports.SiteTotalInfoReferralsResponseToJSON = exports.SiteTotalInfoReferralsResponseFromJSONTyped = exports.SiteTotalInfoReferralsResponseFromJSON = exports.instanceOfSiteTotalInfoReferralsResponse = void 0;
-const AmountItem_1 = require("./AmountItem");
+const TotalInfoReferralsProfit_1 = require("./TotalInfoReferralsProfit");
 /**
  * Check if a given object implements the SiteTotalInfoReferralsResponse interface.
  */
@@ -35,7 +35,7 @@ function SiteTotalInfoReferralsResponseFromJSONTyped(json, ignoreDiscriminator) 
         return json;
     }
     return {
-        'profit': (json['profit'].map(AmountItem_1.AmountItemFromJSON)),
+        'profit': (0, TotalInfoReferralsProfit_1.TotalInfoReferralsProfitFromJSON)(json['profit']),
         'members': json['members'],
     };
 }
@@ -49,7 +49,7 @@ function SiteTotalInfoReferralsResponseToJSONTyped(value, ignoreDiscriminator = 
         return value;
     }
     return {
-        'profit': (value['profit'].map(AmountItem_1.AmountItemToJSON)),
+        'profit': (0, TotalInfoReferralsProfit_1.TotalInfoReferralsProfitToJSON)(value['profit']),
         'members': value['members'],
     };
 }

@@ -138,9 +138,7 @@ exports.BlogPageGetV1LanguageEnum = {
  * @export
  */
 exports.BlogPageGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -154,7 +152,5 @@ exports.BlogPageListV1LanguageEnum = {
  * @export
  */
 exports.BlogPageListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

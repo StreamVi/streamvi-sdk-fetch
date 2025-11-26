@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AmountItem } from './AmountItem';
+import type { TotalInfoReferralsProfit } from './TotalInfoReferralsProfit';
 import {
-    AmountItemFromJSON,
-    AmountItemFromJSONTyped,
-    AmountItemToJSON,
-    AmountItemToJSONTyped,
-} from './AmountItem';
+    TotalInfoReferralsProfitFromJSON,
+    TotalInfoReferralsProfitFromJSONTyped,
+    TotalInfoReferralsProfitToJSON,
+    TotalInfoReferralsProfitToJSONTyped,
+} from './TotalInfoReferralsProfit';
 
 /**
  * 
@@ -29,10 +29,10 @@ import {
 export interface SiteTotalInfoReferralsResponse {
     /**
      * Amount of referrals
-     * @type {Array<AmountItem>}
+     * @type {TotalInfoReferralsProfit}
      * @memberof SiteTotalInfoReferralsResponse
      */
-    profit: Array<AmountItem>;
+    profit: TotalInfoReferralsProfit;
     /**
      * Members of referral
      * @type {number}
@@ -60,7 +60,7 @@ export function SiteTotalInfoReferralsResponseFromJSONTyped(json: any, ignoreDis
     }
     return {
         
-        'profit': ((json['profit'] as Array<any>).map(AmountItemFromJSON)),
+        'profit': TotalInfoReferralsProfitFromJSON(json['profit']),
         'members': json['members'],
     };
 }
@@ -76,7 +76,7 @@ export function SiteTotalInfoReferralsResponseToJSONTyped(value?: SiteTotalInfoR
 
     return {
         
-        'profit': ((value['profit'] as Array<any>).map(AmountItemToJSON)),
+        'profit': TotalInfoReferralsProfitToJSON(value['profit']),
         'members': value['members'],
     };
 }

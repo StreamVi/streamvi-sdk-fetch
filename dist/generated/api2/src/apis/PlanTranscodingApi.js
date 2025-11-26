@@ -301,9 +301,7 @@ exports.PlanTranscodingBuyV1PeriodEnum = {
  * @export
  */
 exports.PlanTranscodingBuyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -317,9 +315,7 @@ exports.PlanTranscodingCancelV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingCancelV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -333,9 +329,7 @@ exports.PlanTranscodingCheckV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingCheckV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -349,9 +343,7 @@ exports.PlanTranscodingGetDiscountV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingGetDiscountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -365,9 +357,7 @@ exports.PlanTranscodingListV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -381,7 +371,5 @@ exports.PlanTranscodingTariffV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingTariffV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

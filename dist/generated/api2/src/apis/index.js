@@ -28,6 +28,7 @@ __exportStar(require("./ChannelSettingsApi"), exports);
 __exportStar(require("./ChatGatewayApi"), exports);
 __exportStar(require("./HelpPageApi"), exports);
 __exportStar(require("./LiveApi"), exports);
+__exportStar(require("./MediaServiceFilesApi"), exports);
 __exportStar(require("./MoneyFlowApi"), exports);
 __exportStar(require("./NotifyHistoryApi"), exports);
 __exportStar(require("./NotifyUserApi"), exports);

@@ -18,9 +18,7 @@ exports.SiteUpdateChatTelegramRequestToJSONTyped = exports.SiteUpdateChatTelegra
  * @export
  */
 exports.SiteUpdateChatTelegramRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

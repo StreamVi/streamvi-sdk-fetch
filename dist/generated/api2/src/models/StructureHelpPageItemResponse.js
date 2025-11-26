@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StructureHelpPageItemResponseToJSONTyped = exports.StructureHelpPageItemResponseToJSON = exports.StructureHelpPageItemResponseFromJSONTyped = exports.StructureHelpPageItemResponseFromJSON = exports.instanceOfStructureHelpPageItemResponse = exports.StructureHelpPageItemResponseStatusEnum = void 0;
-const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
 const StructureHelpPageItemResponse2_1 = require("./StructureHelpPageItemResponse2");
 const StructureHelpPageConnectionsItemLang_1 = require("./StructureHelpPageConnectionsItemLang");
 /**
@@ -50,8 +49,6 @@ function instanceOfStructureHelpPageItemResponse(value) {
         return false;
     if (!('priority' in value) || value['priority'] === undefined)
         return false;
-    if (!('connections' in value) || value['connections'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfStructureHelpPageItemResponse = instanceOfStructureHelpPageItemResponse;
@@ -64,7 +61,7 @@ function StructureHelpPageItemResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': json['_id'],
         'notion_id': json['notion_id'],
         'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
@@ -73,7 +70,7 @@ function StructureHelpPageItemResponseFromJSONTyped(json, ignoreDiscriminator) {
         'title': (json['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangFromJSON)),
         'icon': json['icon'],
         'priority': json['priority'],
-        'connections': (json['connections'].map(StructureHelpPageItemResponse2_1.StructureHelpPageItemResponse2FromJSON)),
+        'connections': json['connections'] == null ? undefined : (json['connections'].map(StructureHelpPageItemResponse2_1.StructureHelpPageItemResponse2FromJSON)),
     };
 }
 exports.StructureHelpPageItemResponseFromJSONTyped = StructureHelpPageItemResponseFromJSONTyped;
@@ -86,7 +83,7 @@ function StructureHelpPageItemResponseToJSONTyped(value, ignoreDiscriminator = f
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        '_id': value['_id'],
         'notion_id': value['notion_id'],
         'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],
@@ -95,7 +92,7 @@ function StructureHelpPageItemResponseToJSONTyped(value, ignoreDiscriminator = f
         'title': (value['title'].map(StructureHelpPageConnectionsItemLang_1.StructureHelpPageConnectionsItemLangToJSON)),
         'icon': value['icon'],
         'priority': value['priority'],
-        'connections': (value['connections'].map(StructureHelpPageItemResponse2_1.StructureHelpPageItemResponse2ToJSON)),
+        'connections': value['connections'] == null ? undefined : (value['connections'].map(StructureHelpPageItemResponse2_1.StructureHelpPageItemResponse2ToJSON)),
     };
 }
 exports.StructureHelpPageItemResponseToJSONTyped = StructureHelpPageItemResponseToJSONTyped;

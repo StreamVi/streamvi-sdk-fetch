@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HelpPageResponseToJSONTyped = exports.HelpPageResponseToJSON = exports.HelpPageResponseFromJSONTyped = exports.HelpPageResponseFromJSON = exports.instanceOfHelpPageResponse = exports.HelpPageResponseAltLanguagesEnum = exports.HelpPageResponseLanguageIsoEnum = exports.HelpPageResponseLanguageEnum = exports.HelpPageResponseStatusEnum = void 0;
-const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
 /**
  * @export
  */
@@ -68,8 +67,6 @@ function instanceOfHelpPageResponse(value) {
         return false;
     if (!('date_create' in value) || value['date_create'] === undefined)
         return false;
-    if (!('icon' in value) || value['icon'] === undefined)
-        return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('language' in value) || value['language'] === undefined)
@@ -92,14 +89,14 @@ function HelpPageResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': json['_id'],
         'url': json['url'],
         'url_inherit': json['url_inherit'],
         'notion_parent_id': json['notion_parent_id'],
         'status': json['status'],
-        'date_update': (new Date(json['date_update'])),
-        'date_create': (new Date(json['date_create'])),
-        'icon': json['icon'],
+        'date_update': json['date_update'],
+        'date_create': json['date_create'],
+        'icon': json['icon'] == null ? undefined : json['icon'],
         'title': json['title'],
         'language': json['language'],
         'language_iso': json['language_iso'],
@@ -117,13 +114,13 @@ function HelpPageResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        '_id': value['_id'],
         'url': value['url'],
         'url_inherit': value['url_inherit'],
         'notion_parent_id': value['notion_parent_id'],
         'status': value['status'],
-        'date_update': ((value['date_update']).toISOString()),
-        'date_create': ((value['date_create']).toISOString()),
+        'date_update': value['date_update'],
+        'date_create': value['date_create'],
         'icon': value['icon'],
         'title': value['title'],
         'language': value['language'],

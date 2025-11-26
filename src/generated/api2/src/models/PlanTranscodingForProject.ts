@@ -32,28 +32,25 @@ export interface PlanTranscodingForProject {
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    before: PlanTranscodingItem;
+    before?: PlanTranscodingItem;
     /**
      * Current tariff transcoding
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    current: PlanTranscodingItem;
+    current?: PlanTranscodingItem;
     /**
      * Next tariff transcoding
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    next: PlanTranscodingItem;
+    next?: PlanTranscodingItem;
 }
 
 /**
  * Check if a given object implements the PlanTranscodingForProject interface.
  */
 export function instanceOfPlanTranscodingForProject(value: object): value is PlanTranscodingForProject {
-    if (!('before' in value) || value['before'] === undefined) return false;
-    if (!('current' in value) || value['current'] === undefined) return false;
-    if (!('next' in value) || value['next'] === undefined) return false;
     return true;
 }
 
@@ -67,9 +64,9 @@ export function PlanTranscodingForProjectFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'before': PlanTranscodingItemFromJSON(json['before']),
-        'current': PlanTranscodingItemFromJSON(json['current']),
-        'next': PlanTranscodingItemFromJSON(json['next']),
+        'before': json['before'] == null ? undefined : PlanTranscodingItemFromJSON(json['before']),
+        'current': json['current'] == null ? undefined : PlanTranscodingItemFromJSON(json['current']),
+        'next': json['next'] == null ? undefined : PlanTranscodingItemFromJSON(json['next']),
     };
 }
 

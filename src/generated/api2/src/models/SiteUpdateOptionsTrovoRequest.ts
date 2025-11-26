@@ -80,9 +80,7 @@ export interface SiteUpdateOptionsTrovoRequest {
  * @export
  */
 export const SiteUpdateOptionsTrovoRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type SiteUpdateOptionsTrovoRequestVEnum = typeof SiteUpdateOptionsTrovoRequestVEnum[keyof typeof SiteUpdateOptionsTrovoRequestVEnum];
 

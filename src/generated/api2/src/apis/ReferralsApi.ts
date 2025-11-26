@@ -43,7 +43,7 @@ export interface ReferralsApiInterface {
      * @summary Total info
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReferralsApiInterface
@@ -131,8 +131,6 @@ export type ReferralsTotalInfoV1LanguageEnum = typeof ReferralsTotalInfoV1Langua
  * @export
  */
 export const ReferralsTotalInfoV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ReferralsTotalInfoV1VEnum = typeof ReferralsTotalInfoV1VEnum[keyof typeof ReferralsTotalInfoV1VEnum];

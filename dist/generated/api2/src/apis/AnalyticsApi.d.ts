@@ -41,7 +41,7 @@ export interface AnalyticsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
@@ -57,7 +57,7 @@ export interface AnalyticsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
@@ -73,7 +73,7 @@ export interface AnalyticsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
@@ -127,8 +127,6 @@ export type AnalyticsTsStreamBitrateV1LanguageEnum = typeof AnalyticsTsStreamBit
  */
 export declare const AnalyticsTsStreamBitrateV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AnalyticsTsStreamBitrateV1VEnum = typeof AnalyticsTsStreamBitrateV1VEnum[keyof typeof AnalyticsTsStreamBitrateV1VEnum];
 /**
@@ -145,8 +143,6 @@ export type AnalyticsTsStreamEventsV1LanguageEnum = typeof AnalyticsTsStreamEven
  */
 export declare const AnalyticsTsStreamEventsV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AnalyticsTsStreamEventsV1VEnum = typeof AnalyticsTsStreamEventsV1VEnum[keyof typeof AnalyticsTsStreamEventsV1VEnum];
 /**
@@ -163,8 +159,6 @@ export type AnalyticsTsStreamViewersV1LanguageEnum = typeof AnalyticsTsStreamVie
  */
 export declare const AnalyticsTsStreamViewersV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AnalyticsTsStreamViewersV1VEnum = typeof AnalyticsTsStreamViewersV1VEnum[keyof typeof AnalyticsTsStreamViewersV1VEnum];
 //# sourceMappingURL=AnalyticsApi.d.ts.map

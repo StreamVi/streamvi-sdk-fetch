@@ -13,6 +13,7 @@ import * as runtime from '../runtime';
 import type { SiteAuthCentrifugeResponse } from '../models/index';
 export interface CentrifugeAuthV2Request {
     project_id: number;
+    v?: CentrifugeAuthV2VEnum;
 }
 export interface CentrifugeProjectV1Request {
     language: CentrifugeProjectV1LanguageEnum;
@@ -36,6 +37,7 @@ export interface CentrifugeApiInterface {
      *
      * @summary Auth centrifuge
      * @param {number} project_id Project id
+     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -50,7 +52,7 @@ export interface CentrifugeApiInterface {
      * @summary Auth token for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -67,7 +69,7 @@ export interface CentrifugeApiInterface {
      * @param {number} broadcast_id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -115,6 +117,13 @@ export declare class CentrifugeApi extends runtime.BaseAPI implements Centrifuge
 /**
  * @export
  */
+export declare const CentrifugeAuthV2VEnum: {
+    readonly _2: "2";
+};
+export type CentrifugeAuthV2VEnum = typeof CentrifugeAuthV2VEnum[keyof typeof CentrifugeAuthV2VEnum];
+/**
+ * @export
+ */
 export declare const CentrifugeProjectV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
@@ -126,8 +135,6 @@ export type CentrifugeProjectV1LanguageEnum = typeof CentrifugeProjectV1Language
  */
 export declare const CentrifugeProjectV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type CentrifugeProjectV1VEnum = typeof CentrifugeProjectV1VEnum[keyof typeof CentrifugeProjectV1VEnum];
 /**
@@ -143,9 +150,7 @@ export type GetTokenBroadcastV1LanguageEnum = typeof GetTokenBroadcastV1Language
  * @export
  */
 export declare const GetTokenBroadcastV1VEnum: {
-    readonly _1: "1";
     readonly _2: "2";
-    readonly _3: "3";
 };
 export type GetTokenBroadcastV1VEnum = typeof GetTokenBroadcastV1VEnum[keyof typeof GetTokenBroadcastV1VEnum];
 //# sourceMappingURL=CentrifugeApi.d.ts.map

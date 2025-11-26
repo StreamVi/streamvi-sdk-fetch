@@ -45,8 +45,6 @@ export interface SetRecordStreamRequest {
  */
 export declare const SetRecordStreamRequestVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type SetRecordStreamRequestVEnum = typeof SetRecordStreamRequestVEnum[keyof typeof SetRecordStreamRequestVEnum];
 /**

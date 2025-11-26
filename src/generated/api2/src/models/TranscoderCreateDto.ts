@@ -38,6 +38,12 @@ export interface TranscoderCreateDto {
      */
     project_id: number;
     /**
+     * Mode
+     * @type {string}
+     * @memberof TranscoderCreateDto
+     */
+    mode?: TranscoderCreateDtoModeEnum;
+    /**
      * Width
      * @type {number}
      * @memberof TranscoderCreateDto
@@ -87,16 +93,28 @@ export interface TranscoderCreateDto {
     bFrames?: number;
     /**
      * ChannelIds
-     * @type {number}
+     * @type {Array<number>}
      * @memberof TranscoderCreateDto
      */
-    channelIds?: number;
+    channelIds?: Array<number>;
     /**
-     * Video codec id
+     * Video codec
+     * @type {string}
+     * @memberof TranscoderCreateDto
+     */
+    videoCodec: TranscoderCreateDtoVideoCodecEnum;
+    /**
+     * Preset
+     * @type {string}
+     * @memberof TranscoderCreateDto
+     */
+    preset?: string;
+    /**
+     * Delay
      * @type {number}
      * @memberof TranscoderCreateDto
      */
-    videoCodecId: number;
+    delay?: number;
 }
 
 
@@ -104,9 +122,7 @@ export interface TranscoderCreateDto {
  * @export
  */
 export const TranscoderCreateDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type TranscoderCreateDtoVEnum = typeof TranscoderCreateDtoVEnum[keyof typeof TranscoderCreateDtoVEnum];
 
@@ -120,6 +136,24 @@ export const TranscoderCreateDtoLanguageEnum = {
 } as const;
 export type TranscoderCreateDtoLanguageEnum = typeof TranscoderCreateDtoLanguageEnum[keyof typeof TranscoderCreateDtoLanguageEnum];
 
+/**
+ * @export
+ */
+export const TranscoderCreateDtoModeEnum = {
+    custom: 'custom',
+    twitch: 'twitch'
+} as const;
+export type TranscoderCreateDtoModeEnum = typeof TranscoderCreateDtoModeEnum[keyof typeof TranscoderCreateDtoModeEnum];
+
+/**
+ * @export
+ */
+export const TranscoderCreateDtoVideoCodecEnum = {
+    h264: 'h264',
+    hevc: 'hevc'
+} as const;
+export type TranscoderCreateDtoVideoCodecEnum = typeof TranscoderCreateDtoVideoCodecEnum[keyof typeof TranscoderCreateDtoVideoCodecEnum];
+
 
 /**
  * Check if a given object implements the TranscoderCreateDto interface.
@@ -129,7 +163,7 @@ export function instanceOfTranscoderCreateDto(value: object): value is Transcode
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('videoCodecId' in value) || value['videoCodecId'] === undefined) return false;
+    if (!('videoCodec' in value) || value['videoCodec'] === undefined) return false;
     return true;
 }
 
@@ -146,6 +180,7 @@ export function TranscoderCreateDtoFromJSONTyped(json: any, ignoreDiscriminator:
         'v': json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
+        'mode': json['mode'] == null ? undefined : json['mode'],
         'width': json['width'] == null ? undefined : json['width'],
         'height': json['height'] == null ? undefined : json['height'],
         'fps': json['fps'] == null ? undefined : json['fps'],
@@ -155,7 +190,9 @@ export function TranscoderCreateDtoFromJSONTyped(json: any, ignoreDiscriminator:
         'rotation': json['rotation'] == null ? undefined : json['rotation'],
         'bFrames': json['bFrames'] == null ? undefined : json['bFrames'],
         'channelIds': json['channelIds'] == null ? undefined : json['channelIds'],
-        'videoCodecId': json['videoCodecId'],
+        'videoCodec': json['videoCodec'],
+        'preset': json['preset'] == null ? undefined : json['preset'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 
@@ -173,6 +210,7 @@ export function TranscoderCreateDtoToJSONTyped(value?: TranscoderCreateDto | nul
         'v': value['v'],
         'language': value['language'],
         'project_id': value['project_id'],
+        'mode': value['mode'],
         'width': value['width'],
         'height': value['height'],
         'fps': value['fps'],
@@ -182,7 +220,9 @@ export function TranscoderCreateDtoToJSONTyped(value?: TranscoderCreateDto | nul
         'rotation': value['rotation'],
         'bFrames': value['bFrames'],
         'channelIds': value['channelIds'],
-        'videoCodecId': value['videoCodecId'],
+        'videoCodec': value['videoCodec'],
+        'preset': value['preset'],
+        'delay': value['delay'],
     };
 }
 

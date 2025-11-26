@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
-import {
-    BlogPageSiteResponseIdFromJSON,
-    BlogPageSiteResponseIdFromJSONTyped,
-    BlogPageSiteResponseIdToJSON,
-    BlogPageSiteResponseIdToJSONTyped,
-} from './BlogPageSiteResponseId';
-
 /**
  * 
  * @export
@@ -28,11 +20,11 @@ import {
  */
 export interface HelpPageResponse {
     /**
-     * 
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * url
      * @type {string}
@@ -59,22 +51,22 @@ export interface HelpPageResponse {
     status: HelpPageResponseStatusEnum;
     /**
      * Date last update
-     * @type {Date}
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    date_update: Date;
+    date_update: string;
     /**
      * Date create
-     * @type {Date}
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    date_create: Date;
+    date_create: string;
     /**
      * Page icon
      * @type {object}
      * @memberof HelpPageResponse
      */
-    icon: object | null;
+    icon?: object | null;
     /**
      * Subject
      * @type {string}
@@ -163,7 +155,6 @@ export function instanceOfHelpPageResponse(value: object): value is HelpPageResp
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('date_update' in value) || value['date_update'] === undefined) return false;
     if (!('date_create' in value) || value['date_create'] === undefined) return false;
-    if (!('icon' in value) || value['icon'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('language_iso' in value) || value['language_iso'] === undefined) return false;
@@ -182,14 +173,14 @@ export function HelpPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        '_id': BlogPageSiteResponseIdFromJSON(json['_id']),
+        '_id': json['_id'],
         'url': json['url'],
         'url_inherit': json['url_inherit'],
         'notion_parent_id': json['notion_parent_id'],
         'status': json['status'],
-        'date_update': (new Date(json['date_update'])),
-        'date_create': (new Date(json['date_create'])),
-        'icon': json['icon'],
+        'date_update': json['date_update'],
+        'date_create': json['date_create'],
+        'icon': json['icon'] == null ? undefined : json['icon'],
         'title': json['title'],
         'language': json['language'],
         'language_iso': json['language_iso'],
@@ -209,13 +200,13 @@ export function HelpPageResponseToJSONTyped(value?: HelpPageResponse | null, ign
 
     return {
         
-        '_id': BlogPageSiteResponseIdToJSON(value['_id']),
+        '_id': value['_id'],
         'url': value['url'],
         'url_inherit': value['url_inherit'],
         'notion_parent_id': value['notion_parent_id'],
         'status': value['status'],
-        'date_update': ((value['date_update']).toISOString()),
-        'date_create': ((value['date_create']).toISOString()),
+        'date_update': value['date_update'],
+        'date_create': value['date_create'],
         'icon': value['icon'],
         'title': value['title'],
         'language': value['language'],

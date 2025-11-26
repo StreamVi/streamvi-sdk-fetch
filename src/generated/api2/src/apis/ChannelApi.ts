@@ -15,24 +15,200 @@
 
 import * as runtime from '../runtime';
 import type {
+  BoostyDto,
+  CustomDto,
+  DeleteChannelDto,
+  DouyuDto,
   ErrorResponse,
+  FbDto,
+  Fc2liveDto,
+  GoodgameDto,
+  HuyaDto,
+  InstagramDto,
+  KickDto,
+  LinkedinDto,
   MethodSetStatusChannelRequest,
+  NavertvDto,
+  NimotvDto,
+  NonoliveDto,
+  OkDto,
+  PlvideoDto,
+  RutubeDto,
+  SearchChannelItem,
   SiteGetShortChannelResponse,
   SiteSearchChannelResponse,
+  SteamDto,
   SuccessResponse,
+  TelegramDto,
+  TiktokDto,
+  VkDto,
+  VliveDto,
+  ZhanqitvDto,
 } from '../models/index';
 import {
+    BoostyDtoFromJSON,
+    BoostyDtoToJSON,
+    CustomDtoFromJSON,
+    CustomDtoToJSON,
+    DeleteChannelDtoFromJSON,
+    DeleteChannelDtoToJSON,
+    DouyuDtoFromJSON,
+    DouyuDtoToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    FbDtoFromJSON,
+    FbDtoToJSON,
+    Fc2liveDtoFromJSON,
+    Fc2liveDtoToJSON,
+    GoodgameDtoFromJSON,
+    GoodgameDtoToJSON,
+    HuyaDtoFromJSON,
+    HuyaDtoToJSON,
+    InstagramDtoFromJSON,
+    InstagramDtoToJSON,
+    KickDtoFromJSON,
+    KickDtoToJSON,
+    LinkedinDtoFromJSON,
+    LinkedinDtoToJSON,
     MethodSetStatusChannelRequestFromJSON,
     MethodSetStatusChannelRequestToJSON,
+    NavertvDtoFromJSON,
+    NavertvDtoToJSON,
+    NimotvDtoFromJSON,
+    NimotvDtoToJSON,
+    NonoliveDtoFromJSON,
+    NonoliveDtoToJSON,
+    OkDtoFromJSON,
+    OkDtoToJSON,
+    PlvideoDtoFromJSON,
+    PlvideoDtoToJSON,
+    RutubeDtoFromJSON,
+    RutubeDtoToJSON,
+    SearchChannelItemFromJSON,
+    SearchChannelItemToJSON,
     SiteGetShortChannelResponseFromJSON,
     SiteGetShortChannelResponseToJSON,
     SiteSearchChannelResponseFromJSON,
     SiteSearchChannelResponseToJSON,
+    SteamDtoFromJSON,
+    SteamDtoToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
+    TelegramDtoFromJSON,
+    TelegramDtoToJSON,
+    TiktokDtoFromJSON,
+    TiktokDtoToJSON,
+    VkDtoFromJSON,
+    VkDtoToJSON,
+    VliveDtoFromJSON,
+    VliveDtoToJSON,
+    ZhanqitvDtoFromJSON,
+    ZhanqitvDtoToJSON,
 } from '../models/index';
+
+export interface AddChannelMethodAddBoostyV1Request {
+    BoostyDto: BoostyDto;
+}
+
+export interface AddChannelMethodAddCustomV1Request {
+    CustomDto: CustomDto;
+}
+
+export interface AddChannelMethodAddDouyuV1Request {
+    DouyuDto: DouyuDto;
+}
+
+export interface AddChannelMethodAddFbV1Request {
+    FbDto: FbDto;
+}
+
+export interface AddChannelMethodAddFc2LiveV1Request {
+    Fc2liveDto: Fc2liveDto;
+}
+
+export interface AddChannelMethodAddGoodgameV1Request {
+    GoodgameDto: GoodgameDto;
+}
+
+export interface AddChannelMethodAddHuyaV1Request {
+    HuyaDto: HuyaDto;
+}
+
+export interface AddChannelMethodAddInstagramV1Request {
+    InstagramDto: InstagramDto;
+}
+
+export interface AddChannelMethodAddKickV1Request {
+    KickDto: KickDto;
+}
+
+export interface AddChannelMethodAddLinkedinV1Request {
+    LinkedinDto: LinkedinDto;
+}
+
+export interface AddChannelMethodAddNavertvV1Request {
+    NavertvDto: NavertvDto;
+}
+
+export interface AddChannelMethodAddNimotvV1Request {
+    NimotvDto: NimotvDto;
+}
+
+export interface AddChannelMethodAddNonoliveV1Request {
+    NonoliveDto: NonoliveDto;
+}
+
+export interface AddChannelMethodAddOkV1Request {
+    OkDto: OkDto;
+}
+
+export interface AddChannelMethodAddPlvideoV1Request {
+    PlvideoDto: PlvideoDto;
+}
+
+export interface AddChannelMethodAddRutubeV1Request {
+    RutubeDto: RutubeDto;
+}
+
+export interface AddChannelMethodAddSteamV1Request {
+    SteamDto: SteamDto;
+}
+
+export interface AddChannelMethodAddTelegramV1Request {
+    TelegramDto: TelegramDto;
+}
+
+export interface AddChannelMethodAddTiktokV1Request {
+    TiktokDto: TiktokDto;
+}
+
+export interface AddChannelMethodAddVkV1Request {
+    VkDto: VkDto;
+}
+
+export interface AddChannelMethodAddVliveV1Request {
+    VliveDto: VliveDto;
+}
+
+export interface AddChannelMethodAddZhanqiTvV1Request {
+    ZhanqitvDto: ZhanqitvDto;
+}
+
+export interface ChannelDeleteChannelV1Request {
+    DeleteChannelDto: DeleteChannelDto;
+}
+
+export interface ChannelGetChannelV1Request {
+    language: ChannelGetChannelV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    v?: ChannelGetChannelV1VEnum;
+}
+
+export interface ChannelSetDelayV1Request {
+    channel_id: number;
+    project_id: number;
+}
 
 export interface ChannelShortChannelListV1Request {
     language: ChannelShortChannelListV1LanguageEnum;
@@ -64,10 +240,389 @@ export interface MethodSetStatusV1Request {
 export interface ChannelApiInterface {
     /**
      * 
+     * @summary Add boosty channel
+     * @param {BoostyDto} BoostyDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add boosty channel
+     */
+    addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add custom channel
+     * @param {CustomDto} CustomDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add custom channel
+     */
+    addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add douyu channel
+     * @param {DouyuDto} DouyuDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add douyu channel
+     */
+    addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add fb channel
+     * @param {FbDto} FbDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add fb channel
+     */
+    addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add fc2Live channel
+     * @param {Fc2liveDto} Fc2liveDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add fc2Live channel
+     */
+    addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add goodgame channel
+     * @param {GoodgameDto} GoodgameDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add goodgame channel
+     */
+    addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add huya channel
+     * @param {HuyaDto} HuyaDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add huya channel
+     */
+    addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add instagram channel
+     * @param {InstagramDto} InstagramDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add instagram channel
+     */
+    addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add kick channel
+     * @param {KickDto} KickDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add kick channel
+     */
+    addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add linkedin channel
+     * @param {LinkedinDto} LinkedinDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add linkedin channel
+     */
+    addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add navertv channel
+     * @param {NavertvDto} NavertvDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add navertv channel
+     */
+    addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add nimotv channel
+     * @param {NimotvDto} NimotvDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add nimotv channel
+     */
+    addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add nonolive channel
+     * @param {NonoliveDto} NonoliveDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add nonolive channel
+     */
+    addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add ok channel
+     * @param {OkDto} OkDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add ok channel
+     */
+    addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add plvideo channel
+     * @param {PlvideoDto} PlvideoDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add plvideo channel
+     */
+    addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add rutube channel
+     * @param {RutubeDto} RutubeDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add rutube channel
+     */
+    addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add steam channel
+     * @param {SteamDto} SteamDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add steam channel
+     */
+    addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add telegram channel
+     * @param {TelegramDto} TelegramDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add telegram channel
+     */
+    addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add tiktok channel
+     * @param {TiktokDto} TiktokDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add tiktok channel
+     */
+    addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add vk channel
+     * @param {VkDto} VkDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add vk channel
+     */
+    addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add vlive channel
+     * @param {VliveDto} VliveDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add vlive channel
+     */
+    addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add zhanqitv channel
+     * @param {ZhanqitvDto} ZhanqitvDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add zhanqitv channel
+     */
+    addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Delete channel
+     * @param {DeleteChannelDto} DeleteChannelDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Delete channel
+     */
+    channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Get channel by id
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>>;
+
+    /**
+     * Get channel by id
+     */
+    channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem>;
+
+    /**
+     * 
+     * @summary Set delay - test point
+     * @param {number} channel_id 
+     * @param {number} project_id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Set delay - test point
+     */
+    channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
      * @summary Minimal channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -84,7 +639,7 @@ export interface ChannelApiInterface {
      * @summary Search channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'all' | 'my' | 'available' | 'active'} [type] 
      * @param {string} [platform] platform type
      * @param {string} [name] name
@@ -122,6 +677,925 @@ export interface ChannelApiInterface {
  * 
  */
 export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
+
+    /**
+     * Add boosty channel
+     */
+    async addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['BoostyDto'] == null) {
+            throw new runtime.RequiredError(
+                'BoostyDto',
+                'Required parameter "BoostyDto" was null or undefined when calling addChannelMethodAddBoostyV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/boosty`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BoostyDtoToJSON(requestParameters['BoostyDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add boosty channel
+     */
+    async addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add custom channel
+     */
+    async addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['CustomDto'] == null) {
+            throw new runtime.RequiredError(
+                'CustomDto',
+                'Required parameter "CustomDto" was null or undefined when calling addChannelMethodAddCustomV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/custom`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomDtoToJSON(requestParameters['CustomDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add custom channel
+     */
+    async addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddCustomV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add douyu channel
+     */
+    async addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['DouyuDto'] == null) {
+            throw new runtime.RequiredError(
+                'DouyuDto',
+                'Required parameter "DouyuDto" was null or undefined when calling addChannelMethodAddDouyuV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/douyu`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DouyuDtoToJSON(requestParameters['DouyuDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add douyu channel
+     */
+    async addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add fb channel
+     */
+    async addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['FbDto'] == null) {
+            throw new runtime.RequiredError(
+                'FbDto',
+                'Required parameter "FbDto" was null or undefined when calling addChannelMethodAddFbV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/fb`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FbDtoToJSON(requestParameters['FbDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add fb channel
+     */
+    async addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddFbV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add fc2Live channel
+     */
+    async addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['Fc2liveDto'] == null) {
+            throw new runtime.RequiredError(
+                'Fc2liveDto',
+                'Required parameter "Fc2liveDto" was null or undefined when calling addChannelMethodAddFc2LiveV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/fc2Live`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: Fc2liveDtoToJSON(requestParameters['Fc2liveDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add fc2Live channel
+     */
+    async addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add goodgame channel
+     */
+    async addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['GoodgameDto'] == null) {
+            throw new runtime.RequiredError(
+                'GoodgameDto',
+                'Required parameter "GoodgameDto" was null or undefined when calling addChannelMethodAddGoodgameV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/goodgame`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GoodgameDtoToJSON(requestParameters['GoodgameDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add goodgame channel
+     */
+    async addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add huya channel
+     */
+    async addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['HuyaDto'] == null) {
+            throw new runtime.RequiredError(
+                'HuyaDto',
+                'Required parameter "HuyaDto" was null or undefined when calling addChannelMethodAddHuyaV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/huya`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: HuyaDtoToJSON(requestParameters['HuyaDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add huya channel
+     */
+    async addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add instagram channel
+     */
+    async addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['InstagramDto'] == null) {
+            throw new runtime.RequiredError(
+                'InstagramDto',
+                'Required parameter "InstagramDto" was null or undefined when calling addChannelMethodAddInstagramV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/instagram`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: InstagramDtoToJSON(requestParameters['InstagramDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add instagram channel
+     */
+    async addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add kick channel
+     */
+    async addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['KickDto'] == null) {
+            throw new runtime.RequiredError(
+                'KickDto',
+                'Required parameter "KickDto" was null or undefined when calling addChannelMethodAddKickV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/kick`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: KickDtoToJSON(requestParameters['KickDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add kick channel
+     */
+    async addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddKickV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add linkedin channel
+     */
+    async addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['LinkedinDto'] == null) {
+            throw new runtime.RequiredError(
+                'LinkedinDto',
+                'Required parameter "LinkedinDto" was null or undefined when calling addChannelMethodAddLinkedinV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/linkedin`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LinkedinDtoToJSON(requestParameters['LinkedinDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add linkedin channel
+     */
+    async addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add navertv channel
+     */
+    async addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['NavertvDto'] == null) {
+            throw new runtime.RequiredError(
+                'NavertvDto',
+                'Required parameter "NavertvDto" was null or undefined when calling addChannelMethodAddNavertvV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/navertv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NavertvDtoToJSON(requestParameters['NavertvDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add navertv channel
+     */
+    async addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add nimotv channel
+     */
+    async addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['NimotvDto'] == null) {
+            throw new runtime.RequiredError(
+                'NimotvDto',
+                'Required parameter "NimotvDto" was null or undefined when calling addChannelMethodAddNimotvV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/nimotv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NimotvDtoToJSON(requestParameters['NimotvDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add nimotv channel
+     */
+    async addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add nonolive channel
+     */
+    async addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['NonoliveDto'] == null) {
+            throw new runtime.RequiredError(
+                'NonoliveDto',
+                'Required parameter "NonoliveDto" was null or undefined when calling addChannelMethodAddNonoliveV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/nonolive`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: NonoliveDtoToJSON(requestParameters['NonoliveDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add nonolive channel
+     */
+    async addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add ok channel
+     */
+    async addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['OkDto'] == null) {
+            throw new runtime.RequiredError(
+                'OkDto',
+                'Required parameter "OkDto" was null or undefined when calling addChannelMethodAddOkV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/ok`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OkDtoToJSON(requestParameters['OkDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add ok channel
+     */
+    async addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddOkV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add plvideo channel
+     */
+    async addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['PlvideoDto'] == null) {
+            throw new runtime.RequiredError(
+                'PlvideoDto',
+                'Required parameter "PlvideoDto" was null or undefined when calling addChannelMethodAddPlvideoV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/plvideo`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PlvideoDtoToJSON(requestParameters['PlvideoDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add plvideo channel
+     */
+    async addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add rutube channel
+     */
+    async addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['RutubeDto'] == null) {
+            throw new runtime.RequiredError(
+                'RutubeDto',
+                'Required parameter "RutubeDto" was null or undefined when calling addChannelMethodAddRutubeV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/rutube`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RutubeDtoToJSON(requestParameters['RutubeDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add rutube channel
+     */
+    async addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add steam channel
+     */
+    async addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['SteamDto'] == null) {
+            throw new runtime.RequiredError(
+                'SteamDto',
+                'Required parameter "SteamDto" was null or undefined when calling addChannelMethodAddSteamV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/steam`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SteamDtoToJSON(requestParameters['SteamDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add steam channel
+     */
+    async addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddSteamV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add telegram channel
+     */
+    async addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['TelegramDto'] == null) {
+            throw new runtime.RequiredError(
+                'TelegramDto',
+                'Required parameter "TelegramDto" was null or undefined when calling addChannelMethodAddTelegramV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/telegram`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TelegramDtoToJSON(requestParameters['TelegramDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add telegram channel
+     */
+    async addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add tiktok channel
+     */
+    async addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['TiktokDto'] == null) {
+            throw new runtime.RequiredError(
+                'TiktokDto',
+                'Required parameter "TiktokDto" was null or undefined when calling addChannelMethodAddTiktokV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/tiktok`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TiktokDtoToJSON(requestParameters['TiktokDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add tiktok channel
+     */
+    async addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add vk channel
+     */
+    async addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['VkDto'] == null) {
+            throw new runtime.RequiredError(
+                'VkDto',
+                'Required parameter "VkDto" was null or undefined when calling addChannelMethodAddVkV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/vk`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: VkDtoToJSON(requestParameters['VkDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add vk channel
+     */
+    async addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddVkV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add vlive channel
+     */
+    async addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['VliveDto'] == null) {
+            throw new runtime.RequiredError(
+                'VliveDto',
+                'Required parameter "VliveDto" was null or undefined when calling addChannelMethodAddVliveV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/vlive`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: VliveDtoToJSON(requestParameters['VliveDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add vlive channel
+     */
+    async addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddVliveV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Add zhanqitv channel
+     */
+    async addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['ZhanqitvDto'] == null) {
+            throw new runtime.RequiredError(
+                'ZhanqitvDto',
+                'Required parameter "ZhanqitvDto" was null or undefined when calling addChannelMethodAddZhanqiTvV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/add/zhanqitv`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ZhanqitvDtoToJSON(requestParameters['ZhanqitvDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add zhanqitv channel
+     */
+    async addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete channel
+     */
+    async channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['DeleteChannelDto'] == null) {
+            throw new runtime.RequiredError(
+                'DeleteChannelDto',
+                'Required parameter "DeleteChannelDto" was null or undefined when calling channelDeleteChannelV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/method/channel/delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DeleteChannelDtoToJSON(requestParameters['DeleteChannelDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete channel
+     */
+    async channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.channelDeleteChannelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get channel by id
+     */
+    async channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling channelGetChannelV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling channelGetChannelV1().'
+            );
+        }
+
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError(
+                'channel_id',
+                'Required parameter "channel_id" was null or undefined when calling channelGetChannelV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/channel/get`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SearchChannelItemFromJSON(jsonValue));
+    }
+
+    /**
+     * Get channel by id
+     */
+    async channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem> {
+        const response = await this.channelGetChannelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set delay - test point
+     */
+    async channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError(
+                'channel_id',
+                'Required parameter "channel_id" was null or undefined when calling channelSetDelayV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling channelSetDelayV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/channel/set-delay`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Set delay - test point
+     */
+    async channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.channelSetDelayV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Minimal channel list
@@ -300,6 +1774,22 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 /**
  * @export
  */
+export const ChannelGetChannelV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type ChannelGetChannelV1LanguageEnum = typeof ChannelGetChannelV1LanguageEnum[keyof typeof ChannelGetChannelV1LanguageEnum];
+/**
+ * @export
+ */
+export const ChannelGetChannelV1VEnum = {
+    _1: '1'
+} as const;
+export type ChannelGetChannelV1VEnum = typeof ChannelGetChannelV1VEnum[keyof typeof ChannelGetChannelV1VEnum];
+/**
+ * @export
+ */
 export const ChannelShortChannelListV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -310,9 +1800,7 @@ export type ChannelShortChannelListV1LanguageEnum = typeof ChannelShortChannelLi
  * @export
  */
 export const ChannelShortChannelListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type ChannelShortChannelListV1VEnum = typeof ChannelShortChannelListV1VEnum[keyof typeof ChannelShortChannelListV1VEnum];
 /**
@@ -328,9 +1816,7 @@ export type MethodSearchV1LanguageEnum = typeof MethodSearchV1LanguageEnum[keyof
  * @export
  */
 export const MethodSearchV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type MethodSearchV1VEnum = typeof MethodSearchV1VEnum[keyof typeof MethodSearchV1VEnum];
 /**

@@ -160,17 +160,13 @@ exports.AccountGetProfileV1LanguageEnum = {
  * @export
  */
 exports.AccountGetProfileV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
  */
 exports.AccountUpdateProfileV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

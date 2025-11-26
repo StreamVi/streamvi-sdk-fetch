@@ -38,11 +38,23 @@ export interface PlanRestreamItem {
      */
     bitrate_max: number;
     /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamItem
+     */
+    support_custom_channel: boolean;
+    /**
      * Date end tariff
      * @type {Date}
      * @memberof PlanRestreamItem
      */
     date_end: Date;
+    /**
+     * Custom video
+     * @type {number}
+     * @memberof PlanRestreamItem
+     */
+    custom_video: number;
 }
 
 /**
@@ -52,7 +64,9 @@ export function instanceOfPlanRestreamItem(value: object): value is PlanRestream
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('channel_max' in value) || value['channel_max'] === undefined) return false;
     if (!('bitrate_max' in value) || value['bitrate_max'] === undefined) return false;
+    if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('date_end' in value) || value['date_end'] === undefined) return false;
+    if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
     return true;
 }
 
@@ -69,7 +83,9 @@ export function PlanRestreamItemFromJSONTyped(json: any, ignoreDiscriminator: bo
         'id': json['id'],
         'channel_max': json['channel_max'],
         'bitrate_max': json['bitrate_max'],
+        'support_custom_channel': json['support_custom_channel'],
         'date_end': (new Date(json['date_end'])),
+        'custom_video': json['custom_video'],
     };
 }
 
@@ -87,7 +103,9 @@ export function PlanRestreamItemToJSONTyped(value?: PlanRestreamItem | null, ign
         'id': value['id'],
         'channel_max': value['channel_max'],
         'bitrate_max': value['bitrate_max'],
+        'support_custom_channel': value['support_custom_channel'],
         'date_end': ((value['date_end']).toISOString()),
+        'custom_video': value['custom_video'],
     };
 }
 

@@ -104,7 +104,7 @@ export interface PlanRestreamApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_restream_id Restream plan id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [count_channel] Channel count
      * @param {number} [bitrate] Bitrate, kbps
      * @param {*} [options] Override http request option.
@@ -125,7 +125,7 @@ export interface PlanRestreamApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_restream_id Restream plan id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [use_balance] Is select balance
      * @param {number} [channels] Channels count
      * @param {number} [bitrate] Bitrate, kbps
@@ -144,7 +144,7 @@ export interface PlanRestreamApiInterface {
      * 
      * @summary Get discount restream
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -161,7 +161,7 @@ export interface PlanRestreamApiInterface {
      * @summary Get list of restream tariffs for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -177,7 +177,7 @@ export interface PlanRestreamApiInterface {
      * 
      * @summary Get list of restream tariffs
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -195,7 +195,7 @@ export interface PlanRestreamApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} plan_restream_id Restream plan id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -212,7 +212,7 @@ export interface PlanRestreamApiInterface {
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -349,14 +349,14 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const queryParameters: any = {};
 
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         } else {
             queryParameters['v'] = '1';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
 
         if (requestParameters['project_id'] != null) {
@@ -685,9 +685,7 @@ export type PlanRestreamBuyV1PeriodEnum = typeof PlanRestreamBuyV1PeriodEnum[key
  * @export
  */
 export const PlanRestreamBuyV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamBuyV1VEnum = typeof PlanRestreamBuyV1VEnum[keyof typeof PlanRestreamBuyV1VEnum];
 /**
@@ -711,9 +709,7 @@ export type PlanRestreamCheck2V1PeriodEnum = typeof PlanRestreamCheck2V1PeriodEn
  * @export
  */
 export const PlanRestreamCheck2V1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 } as const;
 export type PlanRestreamCheck2V1VEnum = typeof PlanRestreamCheck2V1VEnum[keyof typeof PlanRestreamCheck2V1VEnum];
 /**
@@ -729,9 +725,7 @@ export type PlanRestreamGetDiscountV1LanguageEnum = typeof PlanRestreamGetDiscou
  * @export
  */
 export const PlanRestreamGetDiscountV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamGetDiscountV1VEnum = typeof PlanRestreamGetDiscountV1VEnum[keyof typeof PlanRestreamGetDiscountV1VEnum];
 /**
@@ -747,9 +741,7 @@ export type PlanRestreamListProjectV1LanguageEnum = typeof PlanRestreamListProje
  * @export
  */
 export const PlanRestreamListProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamListProjectV1VEnum = typeof PlanRestreamListProjectV1VEnum[keyof typeof PlanRestreamListProjectV1VEnum];
 /**
@@ -765,9 +757,7 @@ export type PlanRestreamListV1LanguageEnum = typeof PlanRestreamListV1LanguageEn
  * @export
  */
 export const PlanRestreamListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamListV1VEnum = typeof PlanRestreamListV1VEnum[keyof typeof PlanRestreamListV1VEnum];
 /**
@@ -783,9 +773,7 @@ export type PlanRestreamRemoveV1LanguageEnum = typeof PlanRestreamRemoveV1Langua
  * @export
  */
 export const PlanRestreamRemoveV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamRemoveV1VEnum = typeof PlanRestreamRemoveV1VEnum[keyof typeof PlanRestreamRemoveV1VEnum];
 /**
@@ -801,8 +789,6 @@ export type PlanRestreamTariffV1LanguageEnum = typeof PlanRestreamTariffV1Langua
  * @export
  */
 export const PlanRestreamTariffV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PlanRestreamTariffV1VEnum = typeof PlanRestreamTariffV1VEnum[keyof typeof PlanRestreamTariffV1VEnum];

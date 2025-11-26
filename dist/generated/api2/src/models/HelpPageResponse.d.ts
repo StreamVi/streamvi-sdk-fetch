@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
 /**
  *
  * @export
@@ -17,11 +16,11 @@ import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
  */
 export interface HelpPageResponse {
     /**
-     *
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * url
      * @type {string}
@@ -48,22 +47,22 @@ export interface HelpPageResponse {
     status: HelpPageResponseStatusEnum;
     /**
      * Date last update
-     * @type {Date}
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    date_update: Date;
+    date_update: string;
     /**
      * Date create
-     * @type {Date}
+     * @type {string}
      * @memberof HelpPageResponse
      */
-    date_create: Date;
+    date_create: string;
     /**
      * Page icon
      * @type {object}
      * @memberof HelpPageResponse
      */
-    icon: object | null;
+    icon?: object | null;
     /**
      * Subject
      * @type {string}

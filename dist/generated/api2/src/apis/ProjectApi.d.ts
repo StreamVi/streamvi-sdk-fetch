@@ -69,7 +69,7 @@ export interface ProjectApiInterface {
      * @param {number} project_id Project id
      * @param {number} user_id User id
      * @param {0 | 1 | 2} access_type Access type
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -85,7 +85,7 @@ export interface ProjectApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -100,7 +100,7 @@ export interface ProjectApiInterface {
      * @summary Get project full info
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -115,7 +115,7 @@ export interface ProjectApiInterface {
      * @summary Get project by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} project_external_id Project external id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -130,7 +130,7 @@ export interface ProjectApiInterface {
      * @summary Get user by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} user_external_id User external id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -145,7 +145,7 @@ export interface ProjectApiInterface {
      * @summary List of user in project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -159,7 +159,7 @@ export interface ProjectApiInterface {
      *
      * @summary List of project for current user
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {*} [options] Override http request option.
@@ -176,7 +176,7 @@ export interface ProjectApiInterface {
      * @summary Select user for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Project internal id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -279,8 +279,6 @@ export type UserProjectChangeAccessV1AccessTypeEnum = typeof UserProjectChangeAc
  */
 export declare const UserProjectChangeAccessV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectChangeAccessV1VEnum = typeof UserProjectChangeAccessV1VEnum[keyof typeof UserProjectChangeAccessV1VEnum];
 /**
@@ -297,8 +295,6 @@ export type UserProjectDelV1LanguageEnum = typeof UserProjectDelV1LanguageEnum[k
  */
 export declare const UserProjectDelV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectDelV1VEnum = typeof UserProjectDelV1VEnum[keyof typeof UserProjectDelV1VEnum];
 /**
@@ -315,8 +311,6 @@ export type UserProjectGetProjectInfoV1LanguageEnum = typeof UserProjectGetProje
  */
 export declare const UserProjectGetProjectInfoV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectGetProjectInfoV1VEnum = typeof UserProjectGetProjectInfoV1VEnum[keyof typeof UserProjectGetProjectInfoV1VEnum];
 /**
@@ -333,8 +327,6 @@ export type UserProjectGetProjectV1LanguageEnum = typeof UserProjectGetProjectV1
  */
 export declare const UserProjectGetProjectV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectGetProjectV1VEnum = typeof UserProjectGetProjectV1VEnum[keyof typeof UserProjectGetProjectV1VEnum];
 /**
@@ -351,8 +343,6 @@ export type UserProjectGetUserV1LanguageEnum = typeof UserProjectGetUserV1Langua
  */
 export declare const UserProjectGetUserV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectGetUserV1VEnum = typeof UserProjectGetUserV1VEnum[keyof typeof UserProjectGetUserV1VEnum];
 /**
@@ -369,8 +359,6 @@ export type UserProjectListAccessV1LanguageEnum = typeof UserProjectListAccessV1
  */
 export declare const UserProjectListAccessV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectListAccessV1VEnum = typeof UserProjectListAccessV1VEnum[keyof typeof UserProjectListAccessV1VEnum];
 /**
@@ -387,8 +375,6 @@ export type UserProjectListV1LanguageEnum = typeof UserProjectListV1LanguageEnum
  */
 export declare const UserProjectListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectListV1VEnum = typeof UserProjectListV1VEnum[keyof typeof UserProjectListV1VEnum];
 /**
@@ -405,8 +391,6 @@ export type UserProjectSelectProjectV1LanguageEnum = typeof UserProjectSelectPro
  */
 export declare const UserProjectSelectProjectV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type UserProjectSelectProjectV1VEnum = typeof UserProjectSelectProjectV1VEnum[keyof typeof UserProjectSelectProjectV1VEnum];
 //# sourceMappingURL=ProjectApi.d.ts.map

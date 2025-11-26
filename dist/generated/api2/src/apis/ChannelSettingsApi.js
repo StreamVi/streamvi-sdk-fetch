@@ -785,9 +785,7 @@ exports.ChannelChatGetTelegramSettingV1LanguageEnum = {
  * @export
  */
 exports.ChannelChatGetTelegramSettingV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -801,9 +799,7 @@ exports.ChannelChatInitTelegramChatConnectV1LanguageEnum = {
  * @export
  */
 exports.ChannelChatInitTelegramChatConnectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -817,9 +813,7 @@ exports.ChannelChatRemoveTelegramChatV1LanguageEnum = {
  * @export
  */
 exports.ChannelChatRemoveTelegramChatV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -833,9 +827,7 @@ exports.ChannelChatSetTelegramSettingV1LanguageEnum = {
  * @export
  */
 exports.ChannelChatSetTelegramSettingV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -849,9 +841,7 @@ exports.ChannelChatTelegramPostsV1LanguageEnum = {
  * @export
  */
 exports.ChannelChatTelegramPostsV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -865,9 +855,7 @@ exports.ChannelOptionsGetPlannedV1LanguageEnum = {
  * @export
  */
 exports.ChannelOptionsGetPlannedV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -881,9 +869,7 @@ exports.ChannelOptionsGetPlayListV1LanguageEnum = {
  * @export
  */
 exports.ChannelOptionsGetPlayListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -904,9 +890,7 @@ exports.ChannelSettingUpdateTokenV1RoleEnum = {
  * @export
  */
 exports.ChannelSettingUpdateTokenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -920,7 +904,5 @@ exports.TelegramGetPostByFilterV1LanguageEnum = {
  * @export
  */
 exports.TelegramGetPostByFilterV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };

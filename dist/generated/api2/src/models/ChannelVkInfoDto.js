@@ -62,6 +62,7 @@ function ChannelVkInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         'privacyComments': json['privacyComments'] == null ? undefined : json['privacyComments'],
         'playlist': json['playlist'] == null ? undefined : (0, ChannelPlayListInfoDto_1.ChannelPlayListInfoDtoFromJSON)(json['playlist']),
         'category': json['category'] == null ? undefined : (0, ChannelVkCategoryInfoDto_1.ChannelVkCategoryInfoDtoFromJSON)(json['category']),
+        'disableAutoEnd': json['disableAutoEnd'] == null ? undefined : json['disableAutoEnd'],
     };
 }
 exports.ChannelVkInfoDtoFromJSONTyped = ChannelVkInfoDtoFromJSONTyped;
@@ -81,6 +82,7 @@ function ChannelVkInfoDtoToJSONTyped(value, ignoreDiscriminator = false) {
         'privacyComments': value['privacyComments'],
         'playlist': (0, ChannelPlayListInfoDto_1.ChannelPlayListInfoDtoToJSON)(value['playlist']),
         'category': (0, ChannelVkCategoryInfoDto_1.ChannelVkCategoryInfoDtoToJSON)(value['category']),
+        'disableAutoEnd': value['disableAutoEnd'],
     };
 }
 exports.ChannelVkInfoDtoToJSONTyped = ChannelVkInfoDtoToJSONTyped;

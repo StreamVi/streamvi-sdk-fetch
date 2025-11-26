@@ -233,9 +233,7 @@ exports.NotifyUserDelMobileTokenV1LanguageEnum = {
  * @export
  */
 exports.NotifyUserDelMobileTokenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -249,9 +247,7 @@ exports.NotifyUserGetScreenV1LanguageEnum = {
  * @export
  */
 exports.NotifyUserGetScreenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

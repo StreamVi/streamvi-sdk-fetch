@@ -73,7 +73,7 @@ export interface NotifyUserApiInterface {
      * @summary Delete mobile token from user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} token Token in mobile app
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -90,7 +90,7 @@ export interface NotifyUserApiInterface {
      * @summary Get user screen notify
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -408,9 +408,7 @@ export type NotifyUserDelMobileTokenV1LanguageEnum = typeof NotifyUserDelMobileT
  * @export
  */
 export const NotifyUserDelMobileTokenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type NotifyUserDelMobileTokenV1VEnum = typeof NotifyUserDelMobileTokenV1VEnum[keyof typeof NotifyUserDelMobileTokenV1VEnum];
 /**
@@ -426,9 +424,7 @@ export type NotifyUserGetScreenV1LanguageEnum = typeof NotifyUserGetScreenV1Lang
  * @export
  */
 export const NotifyUserGetScreenV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type NotifyUserGetScreenV1VEnum = typeof NotifyUserGetScreenV1VEnum[keyof typeof NotifyUserGetScreenV1VEnum];
 /**

@@ -34,7 +34,7 @@ exports.NotifyHistorySiteResponseCategoryEnum = {
  * Check if a given object implements the NotifyHistorySiteResponse interface.
  */
 function instanceOfNotifyHistorySiteResponse(value) {
-    if (!('id' in value) || value['id'] === undefined)
+    if (!('_id' in value) || value['_id'] === undefined)
         return false;
     if (!('project_id' in value) || value['project_id'] === undefined)
         return false;
@@ -62,9 +62,9 @@ function NotifyHistorySiteResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'id': json['id'],
+        '_id': json['_id'],
         'project_id': json['project_id'],
-        'date_create': (new Date(json['date_create'])),
+        'date_create': json['date_create'],
         'actions': json['actions'],
         'channel': json['channel'],
         'text': (json['text'].map(InternalNotifyTypeText_1.InternalNotifyTypeTextFromJSON)),
@@ -82,9 +82,9 @@ function NotifyHistorySiteResponseToJSONTyped(value, ignoreDiscriminator = false
         return value;
     }
     return {
-        'id': value['id'],
+        '_id': value['_id'],
         'project_id': value['project_id'],
-        'date_create': ((value['date_create']).toISOString()),
+        'date_create': value['date_create'],
         'actions': value['actions'],
         'channel': value['channel'],
         'text': (value['text'].map(InternalNotifyTypeText_1.InternalNotifyTypeTextToJSON)),

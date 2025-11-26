@@ -10,7 +10,86 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { MethodSetStatusChannelRequest, SiteGetShortChannelResponse, SiteSearchChannelResponse, SuccessResponse } from '../models/index';
+import type { BoostyDto, CustomDto, DeleteChannelDto, DouyuDto, FbDto, Fc2liveDto, GoodgameDto, HuyaDto, InstagramDto, KickDto, LinkedinDto, MethodSetStatusChannelRequest, NavertvDto, NimotvDto, NonoliveDto, OkDto, PlvideoDto, RutubeDto, SearchChannelItem, SiteGetShortChannelResponse, SiteSearchChannelResponse, SteamDto, SuccessResponse, TelegramDto, TiktokDto, VkDto, VliveDto, ZhanqitvDto } from '../models/index';
+export interface AddChannelMethodAddBoostyV1Request {
+    BoostyDto: BoostyDto;
+}
+export interface AddChannelMethodAddCustomV1Request {
+    CustomDto: CustomDto;
+}
+export interface AddChannelMethodAddDouyuV1Request {
+    DouyuDto: DouyuDto;
+}
+export interface AddChannelMethodAddFbV1Request {
+    FbDto: FbDto;
+}
+export interface AddChannelMethodAddFc2LiveV1Request {
+    Fc2liveDto: Fc2liveDto;
+}
+export interface AddChannelMethodAddGoodgameV1Request {
+    GoodgameDto: GoodgameDto;
+}
+export interface AddChannelMethodAddHuyaV1Request {
+    HuyaDto: HuyaDto;
+}
+export interface AddChannelMethodAddInstagramV1Request {
+    InstagramDto: InstagramDto;
+}
+export interface AddChannelMethodAddKickV1Request {
+    KickDto: KickDto;
+}
+export interface AddChannelMethodAddLinkedinV1Request {
+    LinkedinDto: LinkedinDto;
+}
+export interface AddChannelMethodAddNavertvV1Request {
+    NavertvDto: NavertvDto;
+}
+export interface AddChannelMethodAddNimotvV1Request {
+    NimotvDto: NimotvDto;
+}
+export interface AddChannelMethodAddNonoliveV1Request {
+    NonoliveDto: NonoliveDto;
+}
+export interface AddChannelMethodAddOkV1Request {
+    OkDto: OkDto;
+}
+export interface AddChannelMethodAddPlvideoV1Request {
+    PlvideoDto: PlvideoDto;
+}
+export interface AddChannelMethodAddRutubeV1Request {
+    RutubeDto: RutubeDto;
+}
+export interface AddChannelMethodAddSteamV1Request {
+    SteamDto: SteamDto;
+}
+export interface AddChannelMethodAddTelegramV1Request {
+    TelegramDto: TelegramDto;
+}
+export interface AddChannelMethodAddTiktokV1Request {
+    TiktokDto: TiktokDto;
+}
+export interface AddChannelMethodAddVkV1Request {
+    VkDto: VkDto;
+}
+export interface AddChannelMethodAddVliveV1Request {
+    VliveDto: VliveDto;
+}
+export interface AddChannelMethodAddZhanqiTvV1Request {
+    ZhanqitvDto: ZhanqitvDto;
+}
+export interface ChannelDeleteChannelV1Request {
+    DeleteChannelDto: DeleteChannelDto;
+}
+export interface ChannelGetChannelV1Request {
+    language: ChannelGetChannelV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    v?: ChannelGetChannelV1VEnum;
+}
+export interface ChannelSetDelayV1Request {
+    channel_id: number;
+    project_id: number;
+}
 export interface ChannelShortChannelListV1Request {
     language: ChannelShortChannelListV1LanguageEnum;
     project_id: number;
@@ -38,10 +117,339 @@ export interface MethodSetStatusV1Request {
 export interface ChannelApiInterface {
     /**
      *
+     * @summary Add boosty channel
+     * @param {BoostyDto} BoostyDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add boosty channel
+     */
+    addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add custom channel
+     * @param {CustomDto} CustomDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add custom channel
+     */
+    addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add douyu channel
+     * @param {DouyuDto} DouyuDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add douyu channel
+     */
+    addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add fb channel
+     * @param {FbDto} FbDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add fb channel
+     */
+    addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add fc2Live channel
+     * @param {Fc2liveDto} Fc2liveDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add fc2Live channel
+     */
+    addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add goodgame channel
+     * @param {GoodgameDto} GoodgameDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add goodgame channel
+     */
+    addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add huya channel
+     * @param {HuyaDto} HuyaDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add huya channel
+     */
+    addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add instagram channel
+     * @param {InstagramDto} InstagramDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add instagram channel
+     */
+    addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add kick channel
+     * @param {KickDto} KickDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add kick channel
+     */
+    addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add linkedin channel
+     * @param {LinkedinDto} LinkedinDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add linkedin channel
+     */
+    addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add navertv channel
+     * @param {NavertvDto} NavertvDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add navertv channel
+     */
+    addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add nimotv channel
+     * @param {NimotvDto} NimotvDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add nimotv channel
+     */
+    addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add nonolive channel
+     * @param {NonoliveDto} NonoliveDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add nonolive channel
+     */
+    addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add ok channel
+     * @param {OkDto} OkDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add ok channel
+     */
+    addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add plvideo channel
+     * @param {PlvideoDto} PlvideoDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add plvideo channel
+     */
+    addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add rutube channel
+     * @param {RutubeDto} RutubeDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add rutube channel
+     */
+    addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add steam channel
+     * @param {SteamDto} SteamDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add steam channel
+     */
+    addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add telegram channel
+     * @param {TelegramDto} TelegramDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add telegram channel
+     */
+    addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add tiktok channel
+     * @param {TiktokDto} TiktokDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add tiktok channel
+     */
+    addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add vk channel
+     * @param {VkDto} VkDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add vk channel
+     */
+    addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add vlive channel
+     * @param {VliveDto} VliveDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add vlive channel
+     */
+    addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add zhanqitv channel
+     * @param {ZhanqitvDto} ZhanqitvDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add zhanqitv channel
+     */
+    addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Delete channel
+     * @param {DeleteChannelDto} DeleteChannelDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Delete channel
+     */
+    channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
+     * @summary Get channel by id
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>>;
+    /**
+     * Get channel by id
+     */
+    channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem>;
+    /**
+     *
+     * @summary Set delay - test point
+     * @param {number} channel_id
+     * @param {number} project_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set delay - test point
+     */
+    channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
      * @summary Minimal channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -56,7 +464,7 @@ export interface ChannelApiInterface {
      * @summary Search channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {'all' | 'my' | 'available' | 'active'} [type]
      * @param {string} [platform] platform type
      * @param {string} [name] name
@@ -90,6 +498,206 @@ export interface ChannelApiInterface {
  */
 export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     /**
+     * Add boosty channel
+     */
+    addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add boosty channel
+     */
+    addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add custom channel
+     */
+    addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add custom channel
+     */
+    addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add douyu channel
+     */
+    addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add douyu channel
+     */
+    addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add fb channel
+     */
+    addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add fb channel
+     */
+    addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add fc2Live channel
+     */
+    addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add fc2Live channel
+     */
+    addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add goodgame channel
+     */
+    addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add goodgame channel
+     */
+    addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add huya channel
+     */
+    addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add huya channel
+     */
+    addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add instagram channel
+     */
+    addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add instagram channel
+     */
+    addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add kick channel
+     */
+    addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add kick channel
+     */
+    addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add linkedin channel
+     */
+    addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add linkedin channel
+     */
+    addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add navertv channel
+     */
+    addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add navertv channel
+     */
+    addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add nimotv channel
+     */
+    addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add nimotv channel
+     */
+    addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add nonolive channel
+     */
+    addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add nonolive channel
+     */
+    addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add ok channel
+     */
+    addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add ok channel
+     */
+    addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add plvideo channel
+     */
+    addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add plvideo channel
+     */
+    addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add rutube channel
+     */
+    addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add rutube channel
+     */
+    addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add steam channel
+     */
+    addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add steam channel
+     */
+    addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add telegram channel
+     */
+    addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add telegram channel
+     */
+    addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add tiktok channel
+     */
+    addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add tiktok channel
+     */
+    addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add vk channel
+     */
+    addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add vk channel
+     */
+    addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add vlive channel
+     */
+    addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add vlive channel
+     */
+    addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add zhanqitv channel
+     */
+    addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add zhanqitv channel
+     */
+    addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Delete channel
+     */
+    channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Delete channel
+     */
+    channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Get channel by id
+     */
+    channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>>;
+    /**
+     * Get channel by id
+     */
+    channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem>;
+    /**
+     * Set delay - test point
+     */
+    channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set delay - test point
+     */
+    channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
      * Minimal channel list
      */
     channelShortChannelListV1Raw(requestParameters: ChannelShortChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteGetShortChannelResponse>>;
@@ -117,6 +725,22 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
 /**
  * @export
  */
+export declare const ChannelGetChannelV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type ChannelGetChannelV1LanguageEnum = typeof ChannelGetChannelV1LanguageEnum[keyof typeof ChannelGetChannelV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const ChannelGetChannelV1VEnum: {
+    readonly _1: "1";
+};
+export type ChannelGetChannelV1VEnum = typeof ChannelGetChannelV1VEnum[keyof typeof ChannelGetChannelV1VEnum];
+/**
+ * @export
+ */
 export declare const ChannelShortChannelListV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
@@ -128,8 +752,6 @@ export type ChannelShortChannelListV1LanguageEnum = typeof ChannelShortChannelLi
  */
 export declare const ChannelShortChannelListV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type ChannelShortChannelListV1VEnum = typeof ChannelShortChannelListV1VEnum[keyof typeof ChannelShortChannelListV1VEnum];
 /**
@@ -146,8 +768,6 @@ export type MethodSearchV1LanguageEnum = typeof MethodSearchV1LanguageEnum[keyof
  */
 export declare const MethodSearchV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type MethodSearchV1VEnum = typeof MethodSearchV1VEnum[keyof typeof MethodSearchV1VEnum];
 /**

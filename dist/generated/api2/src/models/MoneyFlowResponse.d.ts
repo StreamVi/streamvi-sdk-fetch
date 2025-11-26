@@ -33,13 +33,13 @@ export interface MoneyFlowResponse {
      * @type {string}
      * @memberof MoneyFlowResponse
      */
-    currency: MoneyFlowResponseCurrencyEnum | null;
+    currency?: MoneyFlowResponseCurrencyEnum | null;
     /**
      * Date
-     * @type {Date}
+     * @type {string}
      * @memberof MoneyFlowResponse
      */
-    date: Date;
+    date: string;
     /**
      * Type
      * @type {string}
@@ -57,7 +57,7 @@ export interface MoneyFlowResponse {
      * @type {MoneyFlowDetails}
      * @memberof MoneyFlowResponse
      */
-    details: MoneyFlowDetails | null;
+    details?: MoneyFlowDetails | null;
 }
 /**
  * @export

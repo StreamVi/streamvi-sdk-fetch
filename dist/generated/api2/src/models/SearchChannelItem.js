@@ -29,7 +29,10 @@ exports.SearchChannelItemStatusEnum = {
     error: 'error',
     live: 'live',
     offline: 'offline',
-    busy: 'busy'
+    busy: 'busy',
+    wait_transcoding: 'wait_transcoding',
+    running_transcoding: 'running_transcoding',
+    error_transcoding: 'error_transcoding'
 };
 /**
  * Check if a given object implements the SearchChannelItem interface.
@@ -112,6 +115,8 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoFromJSON)(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : (json['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoFromJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoFromJSON)(json['platform']),
+        'timer': json['timer'] == null ? undefined : json['timer'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
     };
 }
 exports.SearchChannelItemFromJSONTyped = SearchChannelItemFromJSONTyped;
@@ -147,6 +152,8 @@ function SearchChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoToJSON)(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : (value['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoToJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoToJSON)(value['platform']),
+        'timer': value['timer'],
+        'delay': value['delay'],
     };
 }
 exports.SearchChannelItemToJSONTyped = SearchChannelItemToJSONTyped;

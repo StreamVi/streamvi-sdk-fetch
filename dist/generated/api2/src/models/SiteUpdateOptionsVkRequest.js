@@ -18,9 +18,7 @@ exports.SiteUpdateOptionsVkRequestToJSONTyped = exports.SiteUpdateOptionsVkReque
  * @export
  */
 exports.SiteUpdateOptionsVkRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -46,7 +44,8 @@ exports.SiteUpdateOptionsVkRequestPrivacyVideoEnum = {
     all: 'all',
     members: 'members',
     editors: 'editors',
-    nobody: 'nobody'
+    by_link: 'by_link',
+    donut: 'donut'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsVkRequest interface.
@@ -90,6 +89,7 @@ function SiteUpdateOptionsVkRequestFromJSONTyped(json, ignoreDiscriminator) {
         'privacy_comments': json['privacy_comments'] == null ? undefined : json['privacy_comments'],
         'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
         'wall': json['wall'] == null ? undefined : json['wall'],
+        'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
 exports.SiteUpdateOptionsVkRequestFromJSONTyped = SiteUpdateOptionsVkRequestFromJSONTyped;
@@ -116,6 +116,7 @@ function SiteUpdateOptionsVkRequestToJSONTyped(value, ignoreDiscriminator = fals
         'privacy_comments': value['privacy_comments'],
         'privacy_video': value['privacy_video'],
         'wall': value['wall'],
+        'disable_auto_end': value['disable_auto_end'],
     };
 }
 exports.SiteUpdateOptionsVkRequestToJSONTyped = SiteUpdateOptionsVkRequestToJSONTyped;

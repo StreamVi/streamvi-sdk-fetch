@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetTokenBroadcastV1VEnum = exports.GetTokenBroadcastV1LanguageEnum = exports.CentrifugeProjectV1VEnum = exports.CentrifugeProjectV1LanguageEnum = exports.CentrifugeApi = void 0;
+exports.GetTokenBroadcastV1VEnum = exports.GetTokenBroadcastV1LanguageEnum = exports.CentrifugeProjectV1VEnum = exports.CentrifugeProjectV1LanguageEnum = exports.CentrifugeAuthV2VEnum = exports.CentrifugeApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -51,6 +51,12 @@ class CentrifugeApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling centrifugeAuthV2().');
         }
         const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '2';
+        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
@@ -86,7 +92,7 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
-            queryParameters['v'] = '2';
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -129,14 +135,14 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['broadcast_id'] != null) {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
         else {
             queryParameters['v'] = '1';
-        }
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
         }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
@@ -163,6 +169,12 @@ exports.CentrifugeApi = CentrifugeApi;
 /**
  * @export
  */
+exports.CentrifugeAuthV2VEnum = {
+    _2: '2'
+};
+/**
+ * @export
+ */
 exports.CentrifugeProjectV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -172,9 +184,7 @@ exports.CentrifugeProjectV1LanguageEnum = {
  * @export
  */
 exports.CentrifugeProjectV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -188,7 +198,5 @@ exports.GetTokenBroadcastV1LanguageEnum = {
  * @export
  */
 exports.GetTokenBroadcastV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _2: '2'
 };

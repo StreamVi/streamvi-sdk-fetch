@@ -17,7 +17,7 @@ import * as runtime from '../runtime';
 import type {
   ErrorResponse,
   GetHelpPageResponse,
-  PaginatedResponseOfHelpPageResponse,
+  PaginatedHelpPageResponse,
   StructureHelpPageResponse,
 } from '../models/index';
 import {
@@ -25,8 +25,8 @@ import {
     ErrorResponseToJSON,
     GetHelpPageResponseFromJSON,
     GetHelpPageResponseToJSON,
-    PaginatedResponseOfHelpPageResponseFromJSON,
-    PaginatedResponseOfHelpPageResponseToJSON,
+    PaginatedHelpPageResponseFromJSON,
+    PaginatedHelpPageResponseToJSON,
     StructureHelpPageResponseFromJSON,
     StructureHelpPageResponseToJSON,
 } from '../models/index';
@@ -62,7 +62,7 @@ export interface HelpPageApiInterface {
      * @summary Get help page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} url Url of page
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -78,7 +78,7 @@ export interface HelpPageApiInterface {
      * 
      * @summary Get list of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {string} [s] String for search
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
@@ -86,18 +86,18 @@ export interface HelpPageApiInterface {
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
      */
-    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfHelpPageResponse>>;
+    helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>>;
 
     /**
      * Get list of help pages
      */
-    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfHelpPageResponse>;
+    helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse>;
 
     /**
      * 
      * @summary Get structure of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -173,7 +173,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     /**
      * Get list of help pages
      */
-    async helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfHelpPageResponse>> {
+    async helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -214,13 +214,13 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfHelpPageResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedHelpPageResponseFromJSON(jsonValue));
     }
 
     /**
      * Get list of help pages
      */
-    async helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfHelpPageResponse> {
+    async helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse> {
         const response = await this.helpPageListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -283,9 +283,7 @@ export type HelpPageGetV1LanguageEnum = typeof HelpPageGetV1LanguageEnum[keyof t
  * @export
  */
 export const HelpPageGetV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type HelpPageGetV1VEnum = typeof HelpPageGetV1VEnum[keyof typeof HelpPageGetV1VEnum];
 /**
@@ -301,9 +299,7 @@ export type HelpPageListV1LanguageEnum = typeof HelpPageListV1LanguageEnum[keyof
  * @export
  */
 export const HelpPageListV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type HelpPageListV1VEnum = typeof HelpPageListV1VEnum[keyof typeof HelpPageListV1VEnum];
 /**
@@ -319,8 +315,6 @@ export type HelpPageStructureV1LanguageEnum = typeof HelpPageStructureV1Language
  * @export
  */
 export const HelpPageStructureV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type HelpPageStructureV1VEnum = typeof HelpPageStructureV1VEnum[keyof typeof HelpPageStructureV1VEnum];

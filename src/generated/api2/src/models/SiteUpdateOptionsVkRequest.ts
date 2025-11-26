@@ -103,6 +103,12 @@ export interface SiteUpdateOptionsVkRequest {
      * @memberof SiteUpdateOptionsVkRequest
      */
     wall?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SiteUpdateOptionsVkRequest
+     */
+    disable_auto_end?: boolean;
 }
 
 
@@ -110,9 +116,7 @@ export interface SiteUpdateOptionsVkRequest {
  * @export
  */
 export const SiteUpdateOptionsVkRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type SiteUpdateOptionsVkRequestVEnum = typeof SiteUpdateOptionsVkRequestVEnum[keyof typeof SiteUpdateOptionsVkRequestVEnum];
 
@@ -144,7 +148,8 @@ export const SiteUpdateOptionsVkRequestPrivacyVideoEnum = {
     all: 'all',
     members: 'members',
     editors: 'editors',
-    nobody: 'nobody'
+    by_link: 'by_link',
+    donut: 'donut'
 } as const;
 export type SiteUpdateOptionsVkRequestPrivacyVideoEnum = typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum[keyof typeof SiteUpdateOptionsVkRequestPrivacyVideoEnum];
 
@@ -186,6 +191,7 @@ export function SiteUpdateOptionsVkRequestFromJSONTyped(json: any, ignoreDiscrim
         'privacy_comments': json['privacy_comments'] == null ? undefined : json['privacy_comments'],
         'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
         'wall': json['wall'] == null ? undefined : json['wall'],
+        'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
 
@@ -214,6 +220,7 @@ export function SiteUpdateOptionsVkRequestToJSONTyped(value?: SiteUpdateOptionsV
         'privacy_comments': value['privacy_comments'],
         'privacy_video': value['privacy_video'],
         'wall': value['wall'],
+        'disable_auto_end': value['disable_auto_end'],
     };
 }
 

@@ -23,9 +23,7 @@ const ProjectInfoRestreamResponse_1 = require("./ProjectInfoRestreamResponse");
  * @export
  */
 exports.ProjectInfoResponseVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
@@ -47,10 +45,6 @@ function instanceOfProjectInfoResponse(value) {
         return false;
     if (!('restream' in value) || value['restream'] === undefined)
         return false;
-    if (!('transcoding' in value) || value['transcoding'] === undefined)
-        return false;
-    if (!('storage' in value) || value['storage'] === undefined)
-        return false;
     if (!('access' in value) || value['access'] === undefined)
         return false;
     return true;
@@ -69,8 +63,8 @@ function ProjectInfoResponseFromJSONTyped(json, ignoreDiscriminator) {
         'language': json['language'],
         'data': (0, ProjectInfoDataResponse_1.ProjectInfoDataResponseFromJSON)(json['data']),
         'restream': (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseFromJSON)(json['restream']),
-        'transcoding': (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseFromJSON)(json['transcoding']),
-        'storage': (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseFromJSON)(json['storage']),
+        'transcoding': json['transcoding'] == null ? undefined : (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseFromJSON)(json['transcoding']),
+        'storage': json['storage'] == null ? undefined : (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseFromJSON)(json['storage']),
         'access': (0, ProjectInfoAccessResponse_1.ProjectInfoAccessResponseFromJSON)(json['access']),
     };
 }

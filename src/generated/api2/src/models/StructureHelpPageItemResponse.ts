@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
-import {
-    BlogPageSiteResponseIdFromJSON,
-    BlogPageSiteResponseIdFromJSONTyped,
-    BlogPageSiteResponseIdToJSON,
-    BlogPageSiteResponseIdToJSONTyped,
-} from './BlogPageSiteResponseId';
 import type { StructureHelpPageItemResponse2 } from './StructureHelpPageItemResponse2';
 import {
     StructureHelpPageItemResponse2FromJSON,
@@ -42,11 +35,11 @@ import {
  */
 export interface StructureHelpPageItemResponse {
     /**
-     * 
-     * @type {BlogPageSiteResponseId}
+     * id in mongodb
+     * @type {string}
      * @memberof StructureHelpPageItemResponse
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * Notion id
      * @type {string}
@@ -100,7 +93,7 @@ export interface StructureHelpPageItemResponse {
      * @type {Array<StructureHelpPageItemResponse2>}
      * @memberof StructureHelpPageItemResponse
      */
-    connections: Array<StructureHelpPageItemResponse2>;
+    connections?: Array<StructureHelpPageItemResponse2>;
 }
 
 
@@ -131,7 +124,6 @@ export function instanceOfStructureHelpPageItemResponse(value: object): value is
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('icon' in value) || value['icon'] === undefined) return false;
     if (!('priority' in value) || value['priority'] === undefined) return false;
-    if (!('connections' in value) || value['connections'] === undefined) return false;
     return true;
 }
 
@@ -145,7 +137,7 @@ export function StructureHelpPageItemResponseFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        '_id': BlogPageSiteResponseIdFromJSON(json['_id']),
+        '_id': json['_id'],
         'notion_id': json['notion_id'],
         'notion_parent_id': json['notion_parent_id'],
         'url': json['url'],
@@ -154,7 +146,7 @@ export function StructureHelpPageItemResponseFromJSONTyped(json: any, ignoreDisc
         'title': ((json['title'] as Array<any>).map(StructureHelpPageConnectionsItemLangFromJSON)),
         'icon': json['icon'],
         'priority': json['priority'],
-        'connections': ((json['connections'] as Array<any>).map(StructureHelpPageItemResponse2FromJSON)),
+        'connections': json['connections'] == null ? undefined : ((json['connections'] as Array<any>).map(StructureHelpPageItemResponse2FromJSON)),
     };
 }
 
@@ -169,7 +161,7 @@ export function StructureHelpPageItemResponseToJSONTyped(value?: StructureHelpPa
 
     return {
         
-        '_id': BlogPageSiteResponseIdToJSON(value['_id']),
+        '_id': value['_id'],
         'notion_id': value['notion_id'],
         'notion_parent_id': value['notion_parent_id'],
         'url': value['url'],
@@ -178,7 +170,7 @@ export function StructureHelpPageItemResponseToJSONTyped(value?: StructureHelpPa
         'title': ((value['title'] as Array<any>).map(StructureHelpPageConnectionsItemLangToJSON)),
         'icon': value['icon'],
         'priority': value['priority'],
-        'connections': ((value['connections'] as Array<any>).map(StructureHelpPageItemResponse2ToJSON)),
+        'connections': value['connections'] == null ? undefined : ((value['connections'] as Array<any>).map(StructureHelpPageItemResponse2ToJSON)),
     };
 }
 

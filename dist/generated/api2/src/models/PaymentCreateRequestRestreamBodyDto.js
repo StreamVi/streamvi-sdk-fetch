@@ -18,9 +18,7 @@ exports.PaymentCreateRequestRestreamBodyDtoToJSONTyped = exports.PaymentCreateRe
  * @export
  */
 exports.PaymentCreateRequestRestreamBodyDtoVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export

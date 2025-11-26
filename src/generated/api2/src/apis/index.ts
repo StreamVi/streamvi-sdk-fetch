@@ -12,6 +12,7 @@ export * from './ChannelSettingsApi';
 export * from './ChatGatewayApi';
 export * from './HelpPageApi';
 export * from './LiveApi';
+export * from './MediaServiceFilesApi';
 export * from './MoneyFlowApi';
 export * from './NotifyHistoryApi';
 export * from './NotifyUserApi';

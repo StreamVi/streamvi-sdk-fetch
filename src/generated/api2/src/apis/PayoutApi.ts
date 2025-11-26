@@ -55,7 +55,7 @@ export interface PayoutApiInterface {
      * @summary Create payout
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {PayoutCreateRequestBodyDto} PayoutCreateRequestBodyDto 
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
@@ -72,7 +72,7 @@ export interface PayoutApiInterface {
      * @summary Get payout data for create
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
@@ -213,9 +213,7 @@ export type PayoutCreateV1LanguageEnum = typeof PayoutCreateV1LanguageEnum[keyof
  * @export
  */
 export const PayoutCreateV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PayoutCreateV1VEnum = typeof PayoutCreateV1VEnum[keyof typeof PayoutCreateV1VEnum];
 /**
@@ -231,8 +229,6 @@ export type PayoutPrepareV1LanguageEnum = typeof PayoutPrepareV1LanguageEnum[key
  * @export
  */
 export const PayoutPrepareV1VEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 } as const;
 export type PayoutPrepareV1VEnum = typeof PayoutPrepareV1VEnum[keyof typeof PayoutPrepareV1VEnum];

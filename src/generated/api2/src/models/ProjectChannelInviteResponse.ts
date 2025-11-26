@@ -44,19 +44,19 @@ export interface ProjectChannelInviteResponse {
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    to_project_id: number | null;
+    to_project_id: number;
     /**
      * Access type
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    access_type: number;
+    access_type: ProjectChannelInviteResponseAccessTypeEnum;
     /**
      * Date create
-     * @type {Date}
+     * @type {string}
      * @memberof ProjectChannelInviteResponse
      */
-    date: Date;
+    date: string;
     /**
      * Secret key for link
      * @type {string}
@@ -68,25 +68,25 @@ export interface ProjectChannelInviteResponse {
      * @type {string}
      * @memberof ProjectChannelInviteResponse
      */
-    email: string | null;
+    email?: string | null;
     /**
      * If rejected request then true
      * @type {boolean}
      * @memberof ProjectChannelInviteResponse
      */
-    reject: boolean | null;
+    reject?: boolean | null;
     /**
      * The user who granted access
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    from_user_id: number | null;
+    from_user_id?: number | null;
     /**
      * from_project_id
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    from_project_id: number | null;
+    from_project_id?: number | null;
     /**
      * User info
      * @type {ProjectChannelInviteProjectResponse}
@@ -94,6 +94,19 @@ export interface ProjectChannelInviteResponse {
      */
     to_project_?: ProjectChannelInviteProjectResponse;
 }
+
+
+/**
+ * @export
+ */
+export const ProjectChannelInviteResponseAccessTypeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_12: 1,
+    NUMBER_2: 2
+} as const;
+export type ProjectChannelInviteResponseAccessTypeEnum = typeof ProjectChannelInviteResponseAccessTypeEnum[keyof typeof ProjectChannelInviteResponseAccessTypeEnum];
+
 
 /**
  * Check if a given object implements the ProjectChannelInviteResponse interface.
@@ -105,10 +118,6 @@ export function instanceOfProjectChannelInviteResponse(value: object): value is 
     if (!('access_type' in value) || value['access_type'] === undefined) return false;
     if (!('date' in value) || value['date'] === undefined) return false;
     if (!('secret' in value) || value['secret'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('reject' in value) || value['reject'] === undefined) return false;
-    if (!('from_user_id' in value) || value['from_user_id'] === undefined) return false;
-    if (!('from_project_id' in value) || value['from_project_id'] === undefined) return false;
     return true;
 }
 
@@ -126,12 +135,12 @@ export function ProjectChannelInviteResponseFromJSONTyped(json: any, ignoreDiscr
         'channel_id': json['channel_id'],
         'to_project_id': json['to_project_id'],
         'access_type': json['access_type'],
-        'date': (new Date(json['date'])),
+        'date': json['date'],
         'secret': json['secret'],
-        'email': json['email'],
-        'reject': json['reject'],
-        'from_user_id': json['from_user_id'],
-        'from_project_id': json['from_project_id'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'reject': json['reject'] == null ? undefined : json['reject'],
+        'from_user_id': json['from_user_id'] == null ? undefined : json['from_user_id'],
+        'from_project_id': json['from_project_id'] == null ? undefined : json['from_project_id'],
         'to_project_': json['to_project_'] == null ? undefined : ProjectChannelInviteProjectResponseFromJSON(json['to_project_']),
     };
 }
@@ -151,7 +160,7 @@ export function ProjectChannelInviteResponseToJSONTyped(value?: ProjectChannelIn
         'channel_id': value['channel_id'],
         'to_project_id': value['to_project_id'],
         'access_type': value['access_type'],
-        'date': ((value['date']).toISOString()),
+        'date': value['date'],
         'secret': value['secret'],
         'email': value['email'],
         'reject': value['reject'],

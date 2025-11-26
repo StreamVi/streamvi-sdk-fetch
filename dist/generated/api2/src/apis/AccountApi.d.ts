@@ -14,7 +14,7 @@ import type { SuccessResponse, UserProfileResponse } from '../models/index';
 export interface AccountGetProfileV1Request {
     language: AccountGetProfileV1LanguageEnum;
     v?: AccountGetProfileV1VEnum;
-    project_id?: number | null;
+    project_id?: number;
 }
 export interface AccountUpdateProfileV1Request {
     v: AccountUpdateProfileV1VEnum;
@@ -34,7 +34,7 @@ export interface AccountApiInterface {
      *
      * @summary Get account profile
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1' | '2' | '3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -98,8 +98,6 @@ export type AccountGetProfileV1LanguageEnum = typeof AccountGetProfileV1Language
  */
 export declare const AccountGetProfileV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AccountGetProfileV1VEnum = typeof AccountGetProfileV1VEnum[keyof typeof AccountGetProfileV1VEnum];
 /**
@@ -107,8 +105,6 @@ export type AccountGetProfileV1VEnum = typeof AccountGetProfileV1VEnum[keyof typ
  */
 export declare const AccountUpdateProfileV1VEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type AccountUpdateProfileV1VEnum = typeof AccountUpdateProfileV1VEnum[keyof typeof AccountUpdateProfileV1VEnum];
 /**

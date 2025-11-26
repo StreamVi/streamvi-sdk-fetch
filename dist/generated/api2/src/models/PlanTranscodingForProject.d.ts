@@ -21,19 +21,19 @@ export interface PlanTranscodingForProject {
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    before: PlanTranscodingItem;
+    before?: PlanTranscodingItem;
     /**
      * Current tariff transcoding
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    current: PlanTranscodingItem;
+    current?: PlanTranscodingItem;
     /**
      * Next tariff transcoding
      * @type {PlanTranscodingItem}
      * @memberof PlanTranscodingForProject
      */
-    next: PlanTranscodingItem;
+    next?: PlanTranscodingItem;
 }
 /**
  * Check if a given object implements the PlanTranscodingForProject interface.

@@ -51,8 +51,6 @@ export interface SiteSetUrlRequest {
  */
 export declare const SiteSetUrlRequestVEnum: {
     readonly _1: "1";
-    readonly _2: "2";
-    readonly _3: "3";
 };
 export type SiteSetUrlRequestVEnum = typeof SiteSetUrlRequestVEnum[keyof typeof SiteSetUrlRequestVEnum];
 /**

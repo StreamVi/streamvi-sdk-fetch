@@ -149,6 +149,12 @@ export interface PlanRestreamResponse {
      */
     index: number;
     /**
+     * Support custom channel
+     * @type {boolean}
+     * @memberof PlanRestreamResponse
+     */
+    support_custom_channel: boolean;
+    /**
      * Discount
      * @type {PlanRestreamDiscountResponse}
      * @memberof PlanRestreamResponse

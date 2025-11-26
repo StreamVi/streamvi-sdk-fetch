@@ -18,9 +18,7 @@ exports.SiteSetTranscoderRequestToJSONTyped = exports.SiteSetTranscoderRequestTo
  * @export
  */
 exports.SiteSetTranscoderRequestVEnum = {
-    _1: '1',
-    _2: '2',
-    _3: '3'
+    _1: '1'
 };
 /**
  * @export
