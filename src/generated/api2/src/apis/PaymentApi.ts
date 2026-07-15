@@ -41,13 +41,6 @@ export interface PaymentGetStatusV1Request {
     v?: PaymentGetStatusV1VEnum;
 }
 
-export interface PaymentListV1Request {
-    language: PaymentListV1LanguageEnum;
-    v?: PaymentListV1VEnum;
-    pageSize?: number;
-    page?: number;
-}
-
 /**
  * PaymentApi - interface
  * 
@@ -88,22 +81,6 @@ export interface PaymentApiInterface {
      */
     paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse>;
 
-    /**
-     * 
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [pageSize] Number of results
-     * @param {number} [page] Page number
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PaymentApiInterface
-     */
-    paymentListV1Raw(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    paymentListV1(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
 }
 
 /**
@@ -133,8 +110,6 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -144,6 +119,11 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/payment`,
@@ -192,8 +172,6 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -210,6 +188,11 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
         const response = await this.request({
             path: `/method/payment`,
             method: 'GET',
@@ -225,54 +208,6 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
     async paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse> {
         const response = await this.paymentGetStatusV1Raw(requestParameters, initOverrides);
         return await response.value();
-    }
-
-    /**
-     */
-    async paymentListV1Raw(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError(
-                'language',
-                'Required parameter "language" was null or undefined when calling paymentListV1().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['v'] != null) {
-            queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
-        }
-
-        if (requestParameters['pageSize'] != null) {
-            queryParameters['pageSize'] = requestParameters['pageSize'];
-        }
-
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/method/payment/list`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async paymentListV1(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.paymentListV1Raw(requestParameters, initOverrides);
     }
 
 }
@@ -309,19 +244,3 @@ export const PaymentGetStatusV1VEnum = {
     _1: '1'
 } as const;
 export type PaymentGetStatusV1VEnum = typeof PaymentGetStatusV1VEnum[keyof typeof PaymentGetStatusV1VEnum];
-/**
- * @export
- */
-export const PaymentListV1LanguageEnum = {
-    ru: 'ru',
-    en: 'en',
-    cn: 'cn'
-} as const;
-export type PaymentListV1LanguageEnum = typeof PaymentListV1LanguageEnum[keyof typeof PaymentListV1LanguageEnum];
-/**
- * @export
- */
-export const PaymentListV1VEnum = {
-    _1: '1'
-} as const;
-export type PaymentListV1VEnum = typeof PaymentListV1VEnum[keyof typeof PaymentListV1VEnum];

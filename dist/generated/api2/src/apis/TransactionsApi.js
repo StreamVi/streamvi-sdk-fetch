@@ -57,9 +57,6 @@ class TransactionsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -82,6 +79,10 @@ class TransactionsApi extends runtime.BaseAPI {
             queryParameters['code'] = requestParameters['code'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/transactions/list`,
             method: 'GET',

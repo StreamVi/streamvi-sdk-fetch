@@ -35,7 +35,8 @@ exports.PaymentCreateRequestTopUpBodyDtoTypeEnum = {
     restream: 'restream',
     transcoding: 'transcoding',
     storage: 'storage',
-    topup: 'topup'
+    topup: 'topup',
+    webinar: 'webinar'
 };
 /**
  * Check if a given object implements the PaymentCreateRequestTopUpBodyDto interface.

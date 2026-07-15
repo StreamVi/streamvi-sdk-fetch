@@ -93,9 +93,7 @@ export interface PlanTranscodingResponse {
  * @export
  */
 export declare const PlanTranscodingResponseTypeEnum: {
-    readonly free: "free";
     readonly paid_month: "paid_month";
-    readonly paid_minute: "paid_minute";
     readonly custom: "custom";
 };
 export type PlanTranscodingResponseTypeEnum = typeof PlanTranscodingResponseTypeEnum[keyof typeof PlanTranscodingResponseTypeEnum];

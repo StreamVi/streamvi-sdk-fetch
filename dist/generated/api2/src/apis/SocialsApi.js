@@ -48,6 +48,10 @@ class SocialsApi extends runtime.BaseAPI {
     async socialsGetListV1Raw(initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
         const response = await this.request({
             path: `/method/socials/list`,
             method: 'GET',

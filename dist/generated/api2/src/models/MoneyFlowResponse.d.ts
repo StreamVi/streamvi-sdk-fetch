@@ -10,6 +10,9 @@
  * Do not edit the class manually.
  */
 import type { MoneyFlowDetails } from './MoneyFlowDetails';
+import type { MoneyFlowPayoutDetails } from './MoneyFlowPayoutDetails';
+import type { MoneyFlowRefundDetails } from './MoneyFlowRefundDetails';
+import type { MoneyFlowPaymentDetails } from './MoneyFlowPaymentDetails';
 /**
  *
  * @export
@@ -58,6 +61,24 @@ export interface MoneyFlowResponse {
      * @memberof MoneyFlowResponse
      */
     details?: MoneyFlowDetails | null;
+    /**
+     * Payment details
+     * @type {MoneyFlowPaymentDetails}
+     * @memberof MoneyFlowResponse
+     */
+    payment_details?: MoneyFlowPaymentDetails | null;
+    /**
+     * Payout details
+     * @type {MoneyFlowPayoutDetails}
+     * @memberof MoneyFlowResponse
+     */
+    payout_details?: MoneyFlowPayoutDetails | null;
+    /**
+     * Refund details
+     * @type {MoneyFlowRefundDetails}
+     * @memberof MoneyFlowResponse
+     */
+    refund_details?: MoneyFlowRefundDetails | null;
 }
 /**
  * @export
@@ -75,6 +96,7 @@ export declare const MoneyFlowResponseTypeEnum: {
     readonly plan_restream_buy: "plan_restream_buy";
     readonly plan_transcoding_buy: "plan_transcoding_buy";
     readonly plan_storage_buy: "plan_storage_buy";
+    readonly plan_webinar_buy: "plan_webinar_buy";
     readonly channel_story_buy: "channel_story_buy";
     readonly channel_shop_sell: "channel_shop_sell";
     readonly referral_profit: "referral_profit";
@@ -83,6 +105,11 @@ export declare const MoneyFlowResponseTypeEnum: {
     readonly payout: "payout";
     readonly payout_cancel: "payout_cancel";
     readonly refund: "refund";
+    readonly refund_tariff_partial: "refund_tariff_partial";
+    readonly refund_tariff_full: "refund_tariff_full";
+    readonly refund_tariff_none: "refund_tariff_none";
+    readonly compensation: "compensation";
+    readonly compensation_reversal: "compensation_reversal";
     readonly conversion: "conversion";
     readonly withdrawal: "withdrawal";
     readonly transferred_of_old_site: "transferred_of_old_site";

@@ -348,8 +348,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -369,6 +367,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/connect`,
@@ -423,8 +426,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -448,6 +449,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/connect/vk-community`,
@@ -618,8 +624,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -631,6 +635,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/accounts`,
@@ -672,8 +681,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -689,6 +696,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/category`,
@@ -751,8 +763,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -792,6 +802,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/account/channels`,
@@ -840,8 +855,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -857,6 +870,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/logout`,
@@ -891,8 +909,6 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -935,6 +951,11 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+        }
 
         const response = await this.request({
             path: `/method/platforms/account/remove`,

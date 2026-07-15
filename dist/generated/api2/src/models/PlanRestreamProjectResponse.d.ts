@@ -61,6 +61,18 @@ export interface PlanRestreamProjectResponse {
      */
     type: PlanRestreamProjectResponseTypeEnum;
     /**
+     * Available for purchase
+     * @type {boolean}
+     * @memberof PlanRestreamProjectResponse
+     */
+    purchase_available: boolean;
+    /**
+     * Available for auto prolongation
+     * @type {boolean}
+     * @memberof PlanRestreamProjectResponse
+     */
+    prolongation_available: boolean;
+    /**
      * Maximum bitrate, kbps
      * @type {number}
      * @memberof PlanRestreamProjectResponse
@@ -126,6 +138,7 @@ export interface PlanRestreamProjectResponse {
  */
 export declare const PlanRestreamProjectResponseTypeEnum: {
     readonly free: "free";
+    readonly trial: "trial";
     readonly paid_fix: "paid_fix";
     readonly paid_flex: "paid_flex";
     readonly custom: "custom";

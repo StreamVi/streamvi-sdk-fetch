@@ -60,9 +60,6 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -73,6 +70,10 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+        }
         const response = await this.request({
             path: `/method/stream-pull-keys/check`,
             method: 'GET',
@@ -98,6 +99,10 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
             method: 'POST',
@@ -128,9 +133,6 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -138,6 +140,10 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+        }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
             method: 'GET',
@@ -170,9 +176,6 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -183,6 +186,10 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
             method: 'DELETE',
@@ -208,6 +215,10 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
             method: 'PUT',

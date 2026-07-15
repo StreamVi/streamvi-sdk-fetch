@@ -20,6 +20,28 @@ import {
     MoneyFlowDetailsToJSON,
     MoneyFlowDetailsToJSONTyped,
 } from './MoneyFlowDetails';
+import type { MoneyFlowPayoutDetails } from './MoneyFlowPayoutDetails';
+import {
+    MoneyFlowPayoutDetailsFromJSON,
+    MoneyFlowPayoutDetailsFromJSONTyped,
+    MoneyFlowPayoutDetailsToJSON,
+    MoneyFlowPayoutDetailsToJSONTyped,
+} from './MoneyFlowPayoutDetails';
+import type { MoneyFlowRefundDetails } from './MoneyFlowRefundDetails';
+import {
+    MoneyFlowRefundDetailsFromJSON,
+    MoneyFlowRefundDetailsFromJSONTyped,
+    MoneyFlowRefundDetailsToJSON,
+    MoneyFlowRefundDetailsToJSONTyped,
+} from './MoneyFlowRefundDetails';
+import type { MoneyFlowPaymentDetails } from './MoneyFlowPaymentDetails';
+import {
+    MoneyFlowPaymentDetailsFromJSON,
+    MoneyFlowPaymentDetailsFromJSONTyped,
+    MoneyFlowPaymentDetailsToJSON,
+    MoneyFlowPaymentDetailsToJSONTyped,
+} from './MoneyFlowPaymentDetails';
+
 
 /**
  * 
@@ -69,6 +91,24 @@ export interface MoneyFlowResponse {
      * @memberof MoneyFlowResponse
      */
     details?: MoneyFlowDetails | null;
+    /**
+     * Payment details
+     * @type {MoneyFlowPaymentDetails}
+     * @memberof MoneyFlowResponse
+     */
+    payment_details?: MoneyFlowPaymentDetails | null;
+    /**
+     * Payout details
+     * @type {MoneyFlowPayoutDetails}
+     * @memberof MoneyFlowResponse
+     */
+    payout_details?: MoneyFlowPayoutDetails | null;
+    /**
+     * Refund details
+     * @type {MoneyFlowRefundDetails}
+     * @memberof MoneyFlowResponse
+     */
+    refund_details?: MoneyFlowRefundDetails | null;
 }
 
 
@@ -89,6 +129,7 @@ export const MoneyFlowResponseTypeEnum = {
     plan_restream_buy: 'plan_restream_buy',
     plan_transcoding_buy: 'plan_transcoding_buy',
     plan_storage_buy: 'plan_storage_buy',
+    plan_webinar_buy: 'plan_webinar_buy',
     channel_story_buy: 'channel_story_buy',
     channel_shop_sell: 'channel_shop_sell',
     referral_profit: 'referral_profit',
@@ -97,6 +138,11 @@ export const MoneyFlowResponseTypeEnum = {
     payout: 'payout',
     payout_cancel: 'payout_cancel',
     refund: 'refund',
+    refund_tariff_partial: 'refund_tariff_partial',
+    refund_tariff_full: 'refund_tariff_full',
+    refund_tariff_none: 'refund_tariff_none',
+    compensation: 'compensation',
+    compensation_reversal: 'compensation_reversal',
     conversion: 'conversion',
     withdrawal: 'withdrawal',
     transferred_of_old_site: 'transferred_of_old_site',
@@ -139,6 +185,9 @@ export function MoneyFlowResponseFromJSONTyped(json: any, ignoreDiscriminator: b
         'type': json['type'],
         'balance': json['balance'],
         'details': json['details'] == null ? undefined : MoneyFlowDetailsFromJSON(json['details']),
+        'payment_details': json['payment_details'] == null ? undefined : MoneyFlowPaymentDetailsFromJSON(json['payment_details']),
+        'payout_details': json['payout_details'] == null ? undefined : MoneyFlowPayoutDetailsFromJSON(json['payout_details']),
+        'refund_details': json['refund_details'] == null ? undefined : MoneyFlowRefundDetailsFromJSON(json['refund_details']),
     };
 }
 
@@ -160,6 +209,9 @@ export function MoneyFlowResponseToJSONTyped(value?: MoneyFlowResponse | null, i
         'type': value['type'],
         'balance': value['balance'],
         'details': MoneyFlowDetailsToJSON(value['details']),
+        'payment_details': MoneyFlowPaymentDetailsToJSON(value['payment_details']),
+        'payout_details': MoneyFlowPayoutDetailsToJSON(value['payout_details']),
+        'refund_details': MoneyFlowRefundDetailsToJSON(value['refund_details']),
     };
 }
 

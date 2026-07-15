@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlanTranscodingTariffV1VEnum = exports.PlanTranscodingTariffV1LanguageEnum = exports.PlanTranscodingListV1VEnum = exports.PlanTranscodingListV1LanguageEnum = exports.PlanTranscodingGetDiscountV1VEnum = exports.PlanTranscodingGetDiscountV1LanguageEnum = exports.PlanTranscodingCheckV1VEnum = exports.PlanTranscodingCheckV1LanguageEnum = exports.PlanTranscodingCancelV1VEnum = exports.PlanTranscodingCancelV1LanguageEnum = exports.PlanTranscodingBuyV1VEnum = exports.PlanTranscodingBuyV1PeriodEnum = exports.PlanTranscodingBuyV1LanguageEnum = exports.PlanTranscodingApi = void 0;
+exports.PlanTranscodingTariffV1VEnum = exports.PlanTranscodingTariffV1LanguageEnum = exports.PlanTranscodingSetProlongationV1VEnum = exports.PlanTranscodingSetProlongationV1LanguageEnum = exports.PlanTranscodingListV1VEnum = exports.PlanTranscodingListV1LanguageEnum = exports.PlanTranscodingGetDiscountV1VEnum = exports.PlanTranscodingGetDiscountV1LanguageEnum = exports.PlanTranscodingCheckV1VEnum = exports.PlanTranscodingCheckV1LanguageEnum = exports.PlanTranscodingCancelV1VEnum = exports.PlanTranscodingCancelV1LanguageEnum = exports.PlanTranscodingBuyV1VEnum = exports.PlanTranscodingBuyV1PeriodEnum = exports.PlanTranscodingBuyV1LanguageEnum = exports.PlanTranscodingApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -63,9 +63,6 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -82,6 +79,10 @@ class PlanTranscodingApi extends runtime.BaseAPI {
             queryParameters['count'] = requestParameters['count'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding`,
             method: 'POST',
@@ -111,9 +112,6 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -121,6 +119,10 @@ class PlanTranscodingApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding`,
             method: 'DELETE',
@@ -150,9 +152,6 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -160,6 +159,10 @@ class PlanTranscodingApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding/check`,
             method: 'GET',
@@ -186,13 +189,14 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding/get_discount`,
             method: 'GET',
@@ -219,13 +223,14 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding/list`,
             method: 'GET',
@@ -242,6 +247,52 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Set transcoding tariff auto prolongation
+     */
+    async planTranscodingSetProlongationV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planTranscodingSetProlongationV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planTranscodingSetProlongationV1().');
+        }
+        if (requestParameters['enabled'] == null) {
+            throw new runtime.RequiredError('enabled', 'Required parameter "enabled" was null or undefined when calling planTranscodingSetProlongationV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['enabled'] != null) {
+            queryParameters['enabled'] = requestParameters['enabled'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/plan_transcoding/prolongation`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Set transcoding tariff auto prolongation
+     */
+    async planTranscodingSetProlongationV1(requestParameters, initOverrides) {
+        const response = await this.planTranscodingSetProlongationV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * Get tariff for project
      */
     async planTranscodingTariffV1Raw(requestParameters, initOverrides) {
@@ -255,9 +306,6 @@ class PlanTranscodingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -265,6 +313,10 @@ class PlanTranscodingApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_transcoding`,
             method: 'GET',
@@ -357,6 +409,20 @@ exports.PlanTranscodingListV1LanguageEnum = {
  * @export
  */
 exports.PlanTranscodingListV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlanTranscodingSetProlongationV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlanTranscodingSetProlongationV1VEnum = {
     _1: '1'
 };
 /**

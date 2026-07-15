@@ -10,7 +10,10 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BoostyDto, CustomDto, DeleteChannelDto, DouyuDto, FbDto, Fc2liveDto, GoodgameDto, HuyaDto, InstagramDto, KickDto, LinkedinDto, MethodSetStatusChannelRequest, NavertvDto, NimotvDto, NonoliveDto, OkDto, PlvideoDto, RutubeDto, SearchChannelItem, SiteGetShortChannelResponse, SiteSearchChannelResponse, SteamDto, SuccessResponse, TelegramDto, TiktokDto, VkDto, VliveDto, ZhanqitvDto } from '../models/index';
+import type { BizonDto, BoostyDto, CustomDto, DeleteChannelDto, DouyuDto, FbDto, Fc2liveDto, GetcourseDto, GoodgameDto, HuyaDto, InstagramDto, KickDto, KinescopeDto, LinkedinDto, MethodSetStatusChannelRequest, MethodSrtDto, NavertvDto, NimotvDto, NonoliveDto, OkDto, PlvideoDto, RutubeDto, SearchChannelItem, SiteGetShortChannelResponse, SiteSearchChannelResponse, SteamDto, SuccessResponse, TachidDto, TelegramDto, TiktokDto, VkDto, VliveDto, ZhanqitvDto } from '../models/index';
+export interface AddChannelMethodAddBizonV1Request {
+    BizonDto: BizonDto;
+}
 export interface AddChannelMethodAddBoostyV1Request {
     BoostyDto: BoostyDto;
 }
@@ -26,6 +29,9 @@ export interface AddChannelMethodAddFbV1Request {
 export interface AddChannelMethodAddFc2LiveV1Request {
     Fc2liveDto: Fc2liveDto;
 }
+export interface AddChannelMethodAddGetcourseV1Request {
+    GetcourseDto: GetcourseDto;
+}
 export interface AddChannelMethodAddGoodgameV1Request {
     GoodgameDto: GoodgameDto;
 }
@@ -37,6 +43,9 @@ export interface AddChannelMethodAddInstagramV1Request {
 }
 export interface AddChannelMethodAddKickV1Request {
     KickDto: KickDto;
+}
+export interface AddChannelMethodAddKinescopeV1Request {
+    KinescopeDto: KinescopeDto;
 }
 export interface AddChannelMethodAddLinkedinV1Request {
     LinkedinDto: LinkedinDto;
@@ -59,8 +68,14 @@ export interface AddChannelMethodAddPlvideoV1Request {
 export interface AddChannelMethodAddRutubeV1Request {
     RutubeDto: RutubeDto;
 }
+export interface AddChannelMethodAddSrtV1Request {
+    MethodSrtDto: MethodSrtDto;
+}
 export interface AddChannelMethodAddSteamV1Request {
     SteamDto: SteamDto;
+}
+export interface AddChannelMethodAddTachidV1Request {
+    TachidDto: TachidDto;
 }
 export interface AddChannelMethodAddTelegramV1Request {
     TelegramDto: TelegramDto;
@@ -115,6 +130,19 @@ export interface MethodSetStatusV1Request {
  * @interface ChannelApiInterface
  */
 export interface ChannelApiInterface {
+    /**
+     *
+     * @summary Add bizon channel
+     * @param {BizonDto} BizonDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add bizon channel
+     */
+    addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
      * @summary Add boosty channel
@@ -182,6 +210,19 @@ export interface ChannelApiInterface {
     addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
+     * @summary Add getcourse channel
+     * @param {GetcourseDto} GetcourseDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add getcourse channel
+     */
+    addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
      * @summary Add goodgame channel
      * @param {GoodgameDto} GoodgameDto
      * @param {*} [options] Override http request option.
@@ -232,6 +273,19 @@ export interface ChannelApiInterface {
      * Add kick channel
      */
     addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add kinescope channel
+     * @param {KinescopeDto} KinescopeDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add kinescope channel
+     */
+    addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
      * @summary Add linkedin channel
@@ -325,6 +379,19 @@ export interface ChannelApiInterface {
     addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
+     * @summary Add srt channel
+     * @param {MethodSrtDto} MethodSrtDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add srt channel
+     */
+    addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
      * @summary Add steam channel
      * @param {SteamDto} SteamDto
      * @param {*} [options] Override http request option.
@@ -336,6 +403,19 @@ export interface ChannelApiInterface {
      * Add steam channel
      */
     addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Add tach channel
+     * @param {TachidDto} TachidDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add tach channel
+     */
+    addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
      * @summary Add telegram channel
@@ -498,6 +578,14 @@ export interface ChannelApiInterface {
  */
 export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     /**
+     * Add bizon channel
+     */
+    addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add bizon channel
+     */
+    addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Add boosty channel
      */
     addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -538,6 +626,14 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
      */
     addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Add getcourse channel
+     */
+    addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add getcourse channel
+     */
+    addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Add goodgame channel
      */
     addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -569,6 +665,14 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
      * Add kick channel
      */
     addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add kinescope channel
+     */
+    addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add kinescope channel
+     */
+    addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Add linkedin channel
      */
@@ -626,6 +730,14 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
      */
     addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Add srt channel
+     */
+    addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add srt channel
+     */
+    addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
      * Add steam channel
      */
     addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
@@ -633,6 +745,14 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
      * Add steam channel
      */
     addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Add tach channel
+     */
+    addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Add tach channel
+     */
+    addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Add telegram channel
      */

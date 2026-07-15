@@ -10,6 +10,22 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
+import type { BroadcastMessageListResponse } from '../models/index';
+export interface AnalyticsTsBroadcastMessagesV1Request {
+    language: AnalyticsTsBroadcastMessagesV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: AnalyticsTsBroadcastMessagesV1VEnum;
+    offset?: number;
+    limit?: number;
+    date?: Date;
+    date_start?: Date;
+    date_end?: Date;
+    sort_by_date?: AnalyticsTsBroadcastMessagesV1SortByDateEnum;
+    platform?: string;
+    restream_id?: number;
+    text?: string;
+}
 export interface AnalyticsTsStreamBitrateV1Request {
     language: AnalyticsTsStreamBitrateV1LanguageEnum;
     project_id: number;
@@ -35,6 +51,31 @@ export interface AnalyticsTsStreamViewersV1Request {
  * @interface AnalyticsApiInterface
  */
 export interface AnalyticsApiInterface {
+    /**
+     *
+     * @summary Messages for broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id Broadcast id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {number} [offset] Offset
+     * @param {number} [limit] Limit
+     * @param {Date} [date] Exact date filter
+     * @param {Date} [date_start] Date range start
+     * @param {Date} [date_end] Date range end
+     * @param {'asc' | 'desc'} [sort_by_date] Sort by date
+     * @param {string} [platform] Platform
+     * @param {number} [restream_id] Restream id
+     * @param {string} [text] Text search
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnalyticsApiInterface
+     */
+    analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>>;
+    /**
+     * Messages for broadcast
+     */
+    analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse>;
     /**
      *
      * @summary Bitrate for stream
@@ -89,6 +130,14 @@ export interface AnalyticsApiInterface {
  */
 export declare class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterface {
     /**
+     * Messages for broadcast
+     */
+    analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>>;
+    /**
+     * Messages for broadcast
+     */
+    analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse>;
+    /**
      * Bitrate for stream
      */
     analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
@@ -113,6 +162,30 @@ export declare class AnalyticsApi extends runtime.BaseAPI implements AnalyticsAp
      */
     analyticsTsStreamViewersV1(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 }
+/**
+ * @export
+ */
+export declare const AnalyticsTsBroadcastMessagesV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type AnalyticsTsBroadcastMessagesV1LanguageEnum = typeof AnalyticsTsBroadcastMessagesV1LanguageEnum[keyof typeof AnalyticsTsBroadcastMessagesV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const AnalyticsTsBroadcastMessagesV1VEnum: {
+    readonly _1: "1";
+};
+export type AnalyticsTsBroadcastMessagesV1VEnum = typeof AnalyticsTsBroadcastMessagesV1VEnum[keyof typeof AnalyticsTsBroadcastMessagesV1VEnum];
+/**
+ * @export
+ */
+export declare const AnalyticsTsBroadcastMessagesV1SortByDateEnum: {
+    readonly asc: "asc";
+    readonly desc: "desc";
+};
+export type AnalyticsTsBroadcastMessagesV1SortByDateEnum = typeof AnalyticsTsBroadcastMessagesV1SortByDateEnum[keyof typeof AnalyticsTsBroadcastMessagesV1SortByDateEnum];
 /**
  * @export
  */

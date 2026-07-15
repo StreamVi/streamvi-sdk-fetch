@@ -66,9 +66,6 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -85,6 +82,10 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/channel/access/change`,
             method: 'POST',
@@ -120,9 +121,6 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -136,6 +134,10 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['target_project_id'] = requestParameters['target_project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/channel/access/del`,
             method: 'POST',
@@ -168,9 +170,6 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -181,6 +180,10 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
         const response = await this.request({
             path: `/method/channel/access/list`,
             method: 'GET',
@@ -216,9 +219,6 @@ class ProjectChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -232,6 +232,10 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['to_project_id'] = requestParameters['to_project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/channel/access/transfer_owner`,
             method: 'POST',

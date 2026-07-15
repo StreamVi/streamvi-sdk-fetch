@@ -13,13 +13,37 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaySystemListResponseToJSONTyped = exports.PaySystemListResponseToJSON = exports.PaySystemListResponseFromJSONTyped = exports.PaySystemListResponseFromJSON = exports.instanceOfPaySystemListResponse = exports.PaySystemListResponseCurrencyEnum = void 0;
+exports.PaySystemListResponseToJSONTyped = exports.PaySystemListResponseToJSON = exports.PaySystemListResponseFromJSONTyped = exports.PaySystemListResponseFromJSON = exports.instanceOfPaySystemListResponse = exports.PaySystemListResponseCryptoAssetTypeEnum = exports.PaySystemListResponseCryptoChainFamilyEnum = exports.PaySystemListResponseCryptoProviderEnum = exports.PaySystemListResponseCurrencyEnum = void 0;
 /**
  * @export
  */
 exports.PaySystemListResponseCurrencyEnum = {
     rub: 'rub',
     usd: 'usd'
+};
+/**
+ * @export
+ */
+exports.PaySystemListResponseCryptoProviderEnum = {
+    walletconnect: 'walletconnect',
+    tonconnect: 'tonconnect',
+    tron: 'tron'
+};
+/**
+ * @export
+ */
+exports.PaySystemListResponseCryptoChainFamilyEnum = {
+    evm: 'evm',
+    ton: 'ton',
+    tron: 'tron'
+};
+/**
+ * @export
+ */
+exports.PaySystemListResponseCryptoAssetTypeEnum = {
+    erc20: 'erc20',
+    native: 'native',
+    trc20: 'trc20'
 };
 /**
  * Check if a given object implements the PaySystemListResponse interface.
@@ -64,6 +88,10 @@ function PaySystemListResponseFromJSONTyped(json, ignoreDiscriminator) {
         'topup': json['topup'],
         'recurrent': json['recurrent'],
         'description': json['description'],
+        'crypto_provider': json['crypto_provider'] == null ? undefined : json['crypto_provider'],
+        'crypto_chain_family': json['crypto_chain_family'] == null ? undefined : json['crypto_chain_family'],
+        'crypto_asset_type': json['crypto_asset_type'] == null ? undefined : json['crypto_asset_type'],
+        'crypto_token_symbol': json['crypto_token_symbol'] == null ? undefined : json['crypto_token_symbol'],
     };
 }
 exports.PaySystemListResponseFromJSONTyped = PaySystemListResponseFromJSONTyped;
@@ -85,6 +113,10 @@ function PaySystemListResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'topup': value['topup'],
         'recurrent': value['recurrent'],
         'description': value['description'],
+        'crypto_provider': value['crypto_provider'],
+        'crypto_chain_family': value['crypto_chain_family'],
+        'crypto_asset_type': value['crypto_asset_type'],
+        'crypto_token_symbol': value['crypto_token_symbol'],
     };
 }
 exports.PaySystemListResponseToJSONTyped = PaySystemListResponseToJSONTyped;

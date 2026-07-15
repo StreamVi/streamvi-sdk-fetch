@@ -20,6 +20,7 @@ const PlanRestreamDiscountResponse_1 = require("./PlanRestreamDiscountResponse")
  */
 exports.PlanRestreamResponseTypeEnum = {
     free: 'free',
+    trial: 'trial',
     paid_fix: 'paid_fix',
     paid_flex: 'paid_flex',
     custom: 'custom'
@@ -58,6 +59,10 @@ function instanceOfPlanRestreamResponse(value) {
         return false;
     if (!('type' in value) || value['type'] === undefined)
         return false;
+    if (!('purchase_available' in value) || value['purchase_available'] === undefined)
+        return false;
+    if (!('prolongation_available' in value) || value['prolongation_available'] === undefined)
+        return false;
     if (!('price_rub' in value) || value['price_rub'] === undefined)
         return false;
     if (!('price_usd' in value) || value['price_usd'] === undefined)
@@ -92,6 +97,8 @@ function instanceOfPlanRestreamResponse(value) {
         return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined)
         return false;
+    if (!('custom_video' in value) || value['custom_video'] === undefined)
+        return false;
     if (!('discount' in value) || value['discount'] === undefined)
         return false;
     return true;
@@ -112,6 +119,8 @@ function PlanRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         'count_channel_min': json['count_channel_min'],
         'count_channel_max': json['count_channel_max'],
         'type': json['type'],
+        'purchase_available': json['purchase_available'],
+        'prolongation_available': json['prolongation_available'],
         'price_rub': json['price_rub'],
         'price_usd': json['price_usd'],
         'bitrate_max': json['bitrate_max'],
@@ -129,6 +138,7 @@ function PlanRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         'pull_link_limit': json['pull_link_limit'],
         'index': json['index'],
         'support_custom_channel': json['support_custom_channel'],
+        'custom_video': json['custom_video'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseFromJSON)(json['discount']),
     };
 }
@@ -148,6 +158,8 @@ function PlanRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'count_channel_min': value['count_channel_min'],
         'count_channel_max': value['count_channel_max'],
         'type': value['type'],
+        'purchase_available': value['purchase_available'],
+        'prolongation_available': value['prolongation_available'],
         'price_rub': value['price_rub'],
         'price_usd': value['price_usd'],
         'bitrate_max': value['bitrate_max'],
@@ -165,6 +177,7 @@ function PlanRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'pull_link_limit': value['pull_link_limit'],
         'index': value['index'],
         'support_custom_channel': value['support_custom_channel'],
+        'custom_video': value['custom_video'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseToJSON)(value['discount']),
     };
 }

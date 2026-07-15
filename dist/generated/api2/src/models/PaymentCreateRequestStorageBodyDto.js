@@ -35,7 +35,8 @@ exports.PaymentCreateRequestStorageBodyDtoTypeEnum = {
     restream: 'restream',
     transcoding: 'transcoding',
     storage: 'storage',
-    topup: 'topup'
+    topup: 'topup',
+    webinar: 'webinar'
 };
 /**
  * @export

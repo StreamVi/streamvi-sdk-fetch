@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPaySystemListResponse, PayRedirectUrlDto } from '../models/index';
+import type { ListOfPaySystemListResponse, PayRedirectUrlDto, TonConnectPaymentIntentDto, TonConnectPaymentStatusDto, TonConnectPaymentSubmitBodyDto, TronPaymentIntentDto, TronPaymentStatusDto, TronPaymentSubmitBodyDto, WalletConnectPaymentIntentDto, WalletConnectPaymentStatusDto, WalletConnectPaymentSubmitBodyDto } from '../models/index';
 export interface PaySystemCreateChallengeV1Request {
     language: PaySystemCreateChallengeV1LanguageEnum;
     payment_id: number;
@@ -25,6 +25,45 @@ export interface PaySystemCreateUnitpayV1Request {
     language: PaySystemCreateUnitpayV1LanguageEnum;
     payment_id: number;
     v?: PaySystemCreateUnitpayV1VEnum;
+}
+export interface TonConnectIntentV1Request {
+    payment_id: number;
+    payer_address: string;
+}
+export interface TonConnectStatusV1Request {
+    language: TonConnectStatusV1LanguageEnum;
+    payment_id: number;
+    v?: TonConnectStatusV1VEnum;
+}
+export interface TonConnectSubmitV1Request {
+    TonConnectPaymentSubmitBodyDto: TonConnectPaymentSubmitBodyDto;
+}
+export interface TronPaymentIntentV1Request {
+    language: TronPaymentIntentV1LanguageEnum;
+    payment_id: number;
+    v?: TronPaymentIntentV1VEnum;
+}
+export interface TronPaymentStatusV1Request {
+    language: TronPaymentStatusV1LanguageEnum;
+    payment_id: number;
+    v?: TronPaymentStatusV1VEnum;
+}
+export interface TronPaymentSubmitV1Request {
+    language: TronPaymentSubmitV1LanguageEnum;
+    TronPaymentSubmitBodyDto: TronPaymentSubmitBodyDto;
+    v?: TronPaymentSubmitV1VEnum;
+}
+export interface WalletConnectIntentV1Request {
+    payment_id: number;
+    payer_address: string;
+}
+export interface WalletConnectStatusV1Request {
+    language: WalletConnectStatusV1LanguageEnum;
+    payment_id: number;
+    v?: WalletConnectStatusV1VEnum;
+}
+export interface WalletConnectSubmitV1Request {
+    WalletConnectPaymentSubmitBodyDto: WalletConnectPaymentSubmitBodyDto;
 }
 /**
  * PaySystemApi - interface
@@ -90,6 +129,135 @@ export interface PaySystemApiInterface {
      * Load available pay systems
      */
     paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
+    /**
+     *
+     * @summary Create TonConnect payment intent
+     * @param {number} payment_id Payment id
+     * @param {string} payer_address Connected TON wallet address / payer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectIntentV1Raw(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentIntentDto>>;
+    /**
+     * Create TonConnect payment intent
+     */
+    tonConnectIntentV1(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentIntentDto>;
+    /**
+     *
+     * @summary Get TonConnect payment verification status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectStatusV1Raw(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+    /**
+     * Get TonConnect payment verification status
+     */
+    tonConnectStatusV1(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+    /**
+     *
+     * @summary Submit TonConnect payment transaction
+     * @param {TonConnectPaymentSubmitBodyDto} TonConnectPaymentSubmitBodyDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectSubmitV1Raw(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+    /**
+     * Submit TonConnect payment transaction
+     */
+    tonConnectSubmitV1(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+    /**
+     *
+     * @summary Create TRON USDT deposit payment intent
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentIntentV1Raw(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentIntentDto>>;
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    tronPaymentIntentV1(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentIntentDto>;
+    /**
+     *
+     * @summary Get TRON USDT payment status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentStatusV1Raw(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentStatusDto>>;
+    /**
+     * Get TRON USDT payment status
+     */
+    tronPaymentStatusV1(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentStatusDto>;
+    /**
+     *
+     * @summary Submit TRON USDT transaction hash (disabled)
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {TronPaymentSubmitBodyDto} TronPaymentSubmitBodyDto
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentSubmitV1Raw(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    tronPaymentSubmitV1(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     *
+     * @summary Create WalletConnect payment intent
+     * @param {number} payment_id Payment id
+     * @param {string} payer_address Connected wallet address / EVM payer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectIntentV1Raw(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentIntentDto>>;
+    /**
+     * Create WalletConnect payment intent
+     */
+    walletConnectIntentV1(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentIntentDto>;
+    /**
+     *
+     * @summary Get WalletConnect payment verification status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectStatusV1Raw(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+    /**
+     * Get WalletConnect payment verification status
+     */
+    walletConnectStatusV1(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
+    /**
+     *
+     * @summary Submit WalletConnect payment transaction hash
+     * @param {WalletConnectPaymentSubmitBodyDto} WalletConnectPaymentSubmitBodyDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectSubmitV1Raw(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    walletConnectSubmitV1(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
 }
 /**
  *
@@ -127,6 +295,78 @@ export declare class PaySystemApi extends runtime.BaseAPI implements PaySystemAp
      * Load available pay systems
      */
     paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
+    /**
+     * Create TonConnect payment intent
+     */
+    tonConnectIntentV1Raw(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentIntentDto>>;
+    /**
+     * Create TonConnect payment intent
+     */
+    tonConnectIntentV1(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentIntentDto>;
+    /**
+     * Get TonConnect payment verification status
+     */
+    tonConnectStatusV1Raw(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+    /**
+     * Get TonConnect payment verification status
+     */
+    tonConnectStatusV1(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+    /**
+     * Submit TonConnect payment transaction
+     */
+    tonConnectSubmitV1Raw(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+    /**
+     * Submit TonConnect payment transaction
+     */
+    tonConnectSubmitV1(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    tronPaymentIntentV1Raw(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentIntentDto>>;
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    tronPaymentIntentV1(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentIntentDto>;
+    /**
+     * Get TRON USDT payment status
+     */
+    tronPaymentStatusV1Raw(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentStatusDto>>;
+    /**
+     * Get TRON USDT payment status
+     */
+    tronPaymentStatusV1(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentStatusDto>;
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    tronPaymentSubmitV1Raw(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    tronPaymentSubmitV1(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    /**
+     * Create WalletConnect payment intent
+     */
+    walletConnectIntentV1Raw(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentIntentDto>>;
+    /**
+     * Create WalletConnect payment intent
+     */
+    walletConnectIntentV1(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentIntentDto>;
+    /**
+     * Get WalletConnect payment verification status
+     */
+    walletConnectStatusV1Raw(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+    /**
+     * Get WalletConnect payment verification status
+     */
+    walletConnectStatusV1(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    walletConnectSubmitV1Raw(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    walletConnectSubmitV1(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
 }
 /**
  * @export
@@ -176,4 +416,84 @@ export declare const PaySystemCreateUnitpayV1VEnum: {
     readonly _1: "1";
 };
 export type PaySystemCreateUnitpayV1VEnum = typeof PaySystemCreateUnitpayV1VEnum[keyof typeof PaySystemCreateUnitpayV1VEnum];
+/**
+ * @export
+ */
+export declare const TonConnectStatusV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type TonConnectStatusV1LanguageEnum = typeof TonConnectStatusV1LanguageEnum[keyof typeof TonConnectStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const TonConnectStatusV1VEnum: {
+    readonly _1: "1";
+};
+export type TonConnectStatusV1VEnum = typeof TonConnectStatusV1VEnum[keyof typeof TonConnectStatusV1VEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentIntentV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type TronPaymentIntentV1LanguageEnum = typeof TronPaymentIntentV1LanguageEnum[keyof typeof TronPaymentIntentV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentIntentV1VEnum: {
+    readonly _1: "1";
+};
+export type TronPaymentIntentV1VEnum = typeof TronPaymentIntentV1VEnum[keyof typeof TronPaymentIntentV1VEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentStatusV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type TronPaymentStatusV1LanguageEnum = typeof TronPaymentStatusV1LanguageEnum[keyof typeof TronPaymentStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentStatusV1VEnum: {
+    readonly _1: "1";
+};
+export type TronPaymentStatusV1VEnum = typeof TronPaymentStatusV1VEnum[keyof typeof TronPaymentStatusV1VEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentSubmitV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type TronPaymentSubmitV1LanguageEnum = typeof TronPaymentSubmitV1LanguageEnum[keyof typeof TronPaymentSubmitV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const TronPaymentSubmitV1VEnum: {
+    readonly _1: "1";
+};
+export type TronPaymentSubmitV1VEnum = typeof TronPaymentSubmitV1VEnum[keyof typeof TronPaymentSubmitV1VEnum];
+/**
+ * @export
+ */
+export declare const WalletConnectStatusV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type WalletConnectStatusV1LanguageEnum = typeof WalletConnectStatusV1LanguageEnum[keyof typeof WalletConnectStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const WalletConnectStatusV1VEnum: {
+    readonly _1: "1";
+};
+export type WalletConnectStatusV1VEnum = typeof WalletConnectStatusV1VEnum[keyof typeof WalletConnectStatusV1VEnum];
 //# sourceMappingURL=PaySystemApi.d.ts.map

@@ -70,6 +70,7 @@ export declare const PaymentCreateRequestTopUpBodyDtoTypeEnum: {
     readonly transcoding: "transcoding";
     readonly storage: "storage";
     readonly topup: "topup";
+    readonly webinar: "webinar";
 };
 export type PaymentCreateRequestTopUpBodyDtoTypeEnum = typeof PaymentCreateRequestTopUpBodyDtoTypeEnum[keyof typeof PaymentCreateRequestTopUpBodyDtoTypeEnum];
 /**

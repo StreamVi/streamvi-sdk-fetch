@@ -54,16 +54,14 @@ class AccountApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
-        if (requestParameters['project_id'] != null) {
-            queryParameters['project_id'] = requestParameters['project_id'];
-        }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
         const response = await this.request({
             path: `/method/account/profile`,
             method: 'GET',
@@ -97,6 +95,10 @@ class AccountApi extends runtime.BaseAPI {
         }
         const queryParameters = {};
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
         const consumes = [
             { contentType: 'multipart/form-data' },
         ];
@@ -114,9 +116,6 @@ class AccountApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v']);
-        }
-        else {
-            formParams.append('v', '1');
         }
         if (requestParameters['language'] != null) {
             formParams.append('language', requestParameters['language']);

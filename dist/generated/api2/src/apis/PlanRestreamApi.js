@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlanRestreamTariffV1VEnum = exports.PlanRestreamTariffV1LanguageEnum = exports.PlanRestreamRemoveV1VEnum = exports.PlanRestreamRemoveV1LanguageEnum = exports.PlanRestreamListV1VEnum = exports.PlanRestreamListV1LanguageEnum = exports.PlanRestreamListProjectV1VEnum = exports.PlanRestreamListProjectV1LanguageEnum = exports.PlanRestreamGetDiscountV1VEnum = exports.PlanRestreamGetDiscountV1LanguageEnum = exports.PlanRestreamCheck2V1VEnum = exports.PlanRestreamCheck2V1PeriodEnum = exports.PlanRestreamCheck2V1LanguageEnum = exports.PlanRestreamBuyV1VEnum = exports.PlanRestreamBuyV1PeriodEnum = exports.PlanRestreamBuyV1LanguageEnum = exports.PlanRestreamApi = void 0;
+exports.PlanRestreamTariffV1VEnum = exports.PlanRestreamTariffV1LanguageEnum = exports.PlanRestreamSetProlongationV1VEnum = exports.PlanRestreamSetProlongationV1LanguageEnum = exports.PlanRestreamRemoveV1VEnum = exports.PlanRestreamRemoveV1LanguageEnum = exports.PlanRestreamListV1VEnum = exports.PlanRestreamListV1LanguageEnum = exports.PlanRestreamListProjectV1VEnum = exports.PlanRestreamListProjectV1LanguageEnum = exports.PlanRestreamGetDiscountV1VEnum = exports.PlanRestreamGetDiscountV1LanguageEnum = exports.PlanRestreamCheck2V1VEnum = exports.PlanRestreamCheck2V1PeriodEnum = exports.PlanRestreamCheck2V1LanguageEnum = exports.PlanRestreamBuyV1VEnum = exports.PlanRestreamBuyV1PeriodEnum = exports.PlanRestreamBuyV1LanguageEnum = exports.PlanRestreamApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -63,9 +63,6 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -85,6 +82,10 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['bitrate'] = requestParameters['bitrate'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_restream`,
             method: 'POST',
@@ -123,9 +124,6 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
@@ -145,6 +143,10 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['bitrate'] = requestParameters['bitrate'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_restream/check`,
             method: 'GET',
@@ -171,13 +173,14 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_restream/get_discount`,
             method: 'GET',
@@ -207,9 +210,6 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -217,6 +217,10 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_restream/list/project`,
             method: 'GET',
@@ -243,13 +247,14 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_restream/list`,
             method: 'GET',
@@ -282,9 +287,6 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -295,6 +297,10 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['plan_restream_id'] = requestParameters['plan_restream_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_restream`,
             method: 'DELETE',
@@ -311,6 +317,52 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Set restream tariff auto prolongation
+     */
+    async planRestreamSetProlongationV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planRestreamSetProlongationV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planRestreamSetProlongationV1().');
+        }
+        if (requestParameters['enabled'] == null) {
+            throw new runtime.RequiredError('enabled', 'Required parameter "enabled" was null or undefined when calling planRestreamSetProlongationV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['enabled'] != null) {
+            queryParameters['enabled'] = requestParameters['enabled'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/plan_restream/prolongation`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Set restream tariff auto prolongation
+     */
+    async planRestreamSetProlongationV1(requestParameters, initOverrides) {
+        const response = await this.planRestreamSetProlongationV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * Get tariff for project
      */
     async planRestreamTariffV1Raw(requestParameters, initOverrides) {
@@ -324,9 +376,6 @@ class PlanRestreamApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -334,6 +383,10 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_restream`,
             method: 'GET',
@@ -447,6 +500,20 @@ exports.PlanRestreamRemoveV1LanguageEnum = {
  * @export
  */
 exports.PlanRestreamRemoveV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlanRestreamSetProlongationV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlanRestreamSetProlongationV1VEnum = {
     _1: '1'
 };
 /**

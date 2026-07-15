@@ -49,6 +49,12 @@ export interface PlanRestreamRemoveV1Request {
     plan_restream_id: number;
     v?: PlanRestreamRemoveV1VEnum;
 }
+export interface PlanRestreamSetProlongationV1Request {
+    language: PlanRestreamSetProlongationV1LanguageEnum;
+    project_id: number;
+    enabled: boolean;
+    v?: PlanRestreamSetProlongationV1VEnum;
+}
 export interface PlanRestreamTariffV1Request {
     language: PlanRestreamTariffV1LanguageEnum;
     project_id: number;
@@ -161,6 +167,22 @@ export interface PlanRestreamApiInterface {
     planRestreamRemoveV1(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      *
+     * @summary Set restream tariff auto prolongation
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {boolean} enabled Auto prolongation enabled
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlanRestreamApiInterface
+     */
+    planRestreamSetProlongationV1Raw(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set restream tariff auto prolongation
+     */
+    planRestreamSetProlongationV1(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
@@ -227,6 +249,14 @@ export declare class PlanRestreamApi extends runtime.BaseAPI implements PlanRest
      * Remove after tariff
      */
     planRestreamRemoveV1(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Set restream tariff auto prolongation
+     */
+    planRestreamSetProlongationV1Raw(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set restream tariff auto prolongation
+     */
+    planRestreamSetProlongationV1(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get tariff for project
      */
@@ -348,6 +378,22 @@ export declare const PlanRestreamRemoveV1VEnum: {
     readonly _1: "1";
 };
 export type PlanRestreamRemoveV1VEnum = typeof PlanRestreamRemoveV1VEnum[keyof typeof PlanRestreamRemoveV1VEnum];
+/**
+ * @export
+ */
+export declare const PlanRestreamSetProlongationV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type PlanRestreamSetProlongationV1LanguageEnum = typeof PlanRestreamSetProlongationV1LanguageEnum[keyof typeof PlanRestreamSetProlongationV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const PlanRestreamSetProlongationV1VEnum: {
+    readonly _1: "1";
+};
+export type PlanRestreamSetProlongationV1VEnum = typeof PlanRestreamSetProlongationV1VEnum[keyof typeof PlanRestreamSetProlongationV1VEnum];
 /**
  * @export
  */

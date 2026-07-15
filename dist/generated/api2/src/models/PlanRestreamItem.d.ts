@@ -51,7 +51,50 @@ export interface PlanRestreamItem {
      * @memberof PlanRestreamItem
      */
     custom_video: number;
+    /**
+     * Prolongation status
+     * @type {boolean}
+     * @memberof PlanRestreamItem
+     */
+    prolongation: boolean;
+    /**
+     * Title
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    title: string;
+    /**
+     * Tariff type
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    type: PlanRestreamItemTypeEnum;
+    /**
+     * Period
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    period: PlanRestreamItemPeriodEnum;
 }
+/**
+ * @export
+ */
+export declare const PlanRestreamItemTypeEnum: {
+    readonly free: "free";
+    readonly trial: "trial";
+    readonly paid_fix: "paid_fix";
+    readonly paid_flex: "paid_flex";
+    readonly custom: "custom";
+};
+export type PlanRestreamItemTypeEnum = typeof PlanRestreamItemTypeEnum[keyof typeof PlanRestreamItemTypeEnum];
+/**
+ * @export
+ */
+export declare const PlanRestreamItemPeriodEnum: {
+    readonly month: "month";
+    readonly year: "year";
+};
+export type PlanRestreamItemPeriodEnum = typeof PlanRestreamItemPeriodEnum[keyof typeof PlanRestreamItemPeriodEnum];
 /**
  * Check if a given object implements the PlanRestreamItem interface.
  */

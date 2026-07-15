@@ -138,8 +138,6 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -185,8 +183,6 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -240,8 +236,6 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

@@ -13,6 +13,7 @@ import type { ProjectInfoAccessResponse } from './ProjectInfoAccessResponse';
 import type { ProjectInfoStorageResponse } from './ProjectInfoStorageResponse';
 import type { ProjectInfoTranscodingResponse } from './ProjectInfoTranscodingResponse';
 import type { ProjectInfoDataResponse } from './ProjectInfoDataResponse';
+import type { ProjectInfoWebinarResponse } from './ProjectInfoWebinarResponse';
 import type { ProjectInfoRestreamResponse } from './ProjectInfoRestreamResponse';
 /**
  *
@@ -43,7 +44,7 @@ export interface ProjectInfoResponse {
      * @type {ProjectInfoRestreamResponse}
      * @memberof ProjectInfoResponse
      */
-    restream: ProjectInfoRestreamResponse;
+    restream?: ProjectInfoRestreamResponse;
     /**
      * Transcoding tariff
      * @type {ProjectInfoTranscodingResponse}
@@ -56,6 +57,12 @@ export interface ProjectInfoResponse {
      * @memberof ProjectInfoResponse
      */
     storage?: ProjectInfoStorageResponse | null;
+    /**
+     * Webinar tariff
+     * @type {ProjectInfoWebinarResponse}
+     * @memberof ProjectInfoResponse
+     */
+    webinar?: ProjectInfoWebinarResponse | null;
     /**
      * Project info access
      * @type {ProjectInfoAccessResponse}

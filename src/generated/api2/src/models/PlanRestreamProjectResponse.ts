@@ -35,6 +35,7 @@ import {
     PlanRestreamForProjectV2ToJSONTyped,
 } from './PlanRestreamForProjectV2';
 
+
 /**
  * 
  * @export
@@ -83,6 +84,18 @@ export interface PlanRestreamProjectResponse {
      * @memberof PlanRestreamProjectResponse
      */
     type: PlanRestreamProjectResponseTypeEnum;
+    /**
+     * Available for purchase
+     * @type {boolean}
+     * @memberof PlanRestreamProjectResponse
+     */
+    purchase_available: boolean;
+    /**
+     * Available for auto prolongation
+     * @type {boolean}
+     * @memberof PlanRestreamProjectResponse
+     */
+    prolongation_available: boolean;
     /**
      * Maximum bitrate, kbps
      * @type {number}
@@ -151,6 +164,7 @@ export interface PlanRestreamProjectResponse {
  */
 export const PlanRestreamProjectResponseTypeEnum = {
     free: 'free',
+    trial: 'trial',
     paid_fix: 'paid_fix',
     paid_flex: 'paid_flex',
     custom: 'custom'
@@ -177,6 +191,8 @@ export function instanceOfPlanRestreamProjectResponse(value: object): value is P
     if (!('active' in value) || value['active'] === undefined) return false;
     if (!('count_channel_max' in value) || value['count_channel_max'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('purchase_available' in value) || value['purchase_available'] === undefined) return false;
+    if (!('prolongation_available' in value) || value['prolongation_available'] === undefined) return false;
     if (!('bitrate_max' in value) || value['bitrate_max'] === undefined) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('price' in value) || value['price'] === undefined) return false;
@@ -205,6 +221,8 @@ export function PlanRestreamProjectResponseFromJSONTyped(json: any, ignoreDiscri
         'count_channel_max': json['count_channel_max'],
         'count_channel_step': json['count_channel_step'] == null ? undefined : json['count_channel_step'],
         'type': json['type'],
+        'purchase_available': json['purchase_available'],
+        'prolongation_available': json['prolongation_available'],
         'bitrate_max': json['bitrate_max'],
         'bitrate_min': json['bitrate_min'] == null ? undefined : json['bitrate_min'],
         'bitrate_step': json['bitrate_step'] == null ? undefined : json['bitrate_step'],
@@ -236,6 +254,8 @@ export function PlanRestreamProjectResponseToJSONTyped(value?: PlanRestreamProje
         'count_channel_max': value['count_channel_max'],
         'count_channel_step': value['count_channel_step'],
         'type': value['type'],
+        'purchase_available': value['purchase_available'],
+        'prolongation_available': value['prolongation_available'],
         'bitrate_max': value['bitrate_max'],
         'bitrate_min': value['bitrate_min'],
         'bitrate_step': value['bitrate_step'],

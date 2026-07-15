@@ -21,6 +21,7 @@ import {
     PlanRestreamItemToJSONTyped,
 } from './PlanRestreamItem';
 
+
 /**
  * 
  * @export
@@ -32,28 +33,25 @@ export interface PlanRestreamForProject {
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    before: PlanRestreamItem;
+    before?: PlanRestreamItem;
     /**
      * Current tariff restream
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    current: PlanRestreamItem;
+    current?: PlanRestreamItem;
     /**
      * Next tariff restream
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    next: PlanRestreamItem;
+    next?: PlanRestreamItem;
 }
 
 /**
  * Check if a given object implements the PlanRestreamForProject interface.
  */
 export function instanceOfPlanRestreamForProject(value: object): value is PlanRestreamForProject {
-    if (!('before' in value) || value['before'] === undefined) return false;
-    if (!('current' in value) || value['current'] === undefined) return false;
-    if (!('next' in value) || value['next'] === undefined) return false;
     return true;
 }
 
@@ -67,9 +65,9 @@ export function PlanRestreamForProjectFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'before': PlanRestreamItemFromJSON(json['before']),
-        'current': PlanRestreamItemFromJSON(json['current']),
-        'next': PlanRestreamItemFromJSON(json['next']),
+        'before': json['before'] == null ? undefined : PlanRestreamItemFromJSON(json['before']),
+        'current': json['current'] == null ? undefined : PlanRestreamItemFromJSON(json['current']),
+        'next': json['next'] == null ? undefined : PlanRestreamItemFromJSON(json['next']),
     };
 }
 

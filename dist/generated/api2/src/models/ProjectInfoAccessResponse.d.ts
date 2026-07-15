@@ -29,6 +29,7 @@ export declare const ProjectInfoAccessResponseAccessTypeEnum: {
     readonly NUMBER_0: 0;
     readonly NUMBER_1: 1;
     readonly NUMBER_2: 2;
+    readonly NUMBER_3: 3;
 };
 export type ProjectInfoAccessResponseAccessTypeEnum = typeof ProjectInfoAccessResponseAccessTypeEnum[keyof typeof ProjectInfoAccessResponseAccessTypeEnum];
 /**

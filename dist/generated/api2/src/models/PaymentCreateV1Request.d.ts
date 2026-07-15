@@ -13,12 +13,13 @@ import type { PaymentCreateRequestRestreamBodyDto } from './PaymentCreateRequest
 import type { PaymentCreateRequestStorageBodyDto } from './PaymentCreateRequestStorageBodyDto';
 import type { PaymentCreateRequestTopUpBodyDto } from './PaymentCreateRequestTopUpBodyDto';
 import type { PaymentCreateRequestTranscoderBodyDto } from './PaymentCreateRequestTranscoderBodyDto';
+import type { PaymentCreateRequestWebinarBodyDto } from './PaymentCreateRequestWebinarBodyDto';
 /**
  * @type PaymentCreateV1Request
  *
  * @export
  */
-export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto;
+export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto | PaymentCreateRequestWebinarBodyDto;
 export declare function PaymentCreateV1RequestFromJSON(json: any): PaymentCreateV1Request;
 export declare function PaymentCreateV1RequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaymentCreateV1Request;
 export declare function PaymentCreateV1RequestToJSON(json: any): any;

@@ -96,8 +96,6 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -133,6 +131,11 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project_history/list`,

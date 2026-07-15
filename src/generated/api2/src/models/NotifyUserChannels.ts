@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -30,13 +31,13 @@ export interface NotifyUserChannels {
      * @type {boolean}
      * @memberof NotifyUserChannels
      */
-    telegram: boolean;
+    telegram?: boolean;
     /**
      * Active mobile
      * @type {boolean}
      * @memberof NotifyUserChannels
      */
-    mobile: boolean;
+    mobile?: boolean;
 }
 
 /**
@@ -44,8 +45,6 @@ export interface NotifyUserChannels {
  */
 export function instanceOfNotifyUserChannels(value: object): value is NotifyUserChannels {
     if (!('cabinet' in value) || value['cabinet'] === undefined) return false;
-    if (!('telegram' in value) || value['telegram'] === undefined) return false;
-    if (!('mobile' in value) || value['mobile'] === undefined) return false;
     return true;
 }
 
@@ -60,8 +59,8 @@ export function NotifyUserChannelsFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'cabinet': json['cabinet'],
-        'telegram': json['telegram'],
-        'mobile': json['mobile'],
+        'telegram': json['telegram'] == null ? undefined : json['telegram'],
+        'mobile': json['mobile'] == null ? undefined : json['mobile'],
     };
 }
 

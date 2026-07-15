@@ -35,6 +35,7 @@ import {
     PlanRestreamNextItemToJSONTyped,
 } from './PlanRestreamNextItem';
 
+
 /**
  * 
  * @export
@@ -52,7 +53,7 @@ export interface PlanRestreamForProjectV2 {
      * @type {PlanRestreamCurrentItem}
      * @memberof PlanRestreamForProjectV2
      */
-    current: PlanRestreamCurrentItem;
+    current?: PlanRestreamCurrentItem;
     /**
      * Next tariff restream
      * @type {PlanRestreamNextItem}
@@ -65,7 +66,6 @@ export interface PlanRestreamForProjectV2 {
  * Check if a given object implements the PlanRestreamForProjectV2 interface.
  */
 export function instanceOfPlanRestreamForProjectV2(value: object): value is PlanRestreamForProjectV2 {
-    if (!('current' in value) || value['current'] === undefined) return false;
     return true;
 }
 
@@ -80,7 +80,7 @@ export function PlanRestreamForProjectV2FromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'before': json['before'] == null ? undefined : PlanRestreamBeforeItemFromJSON(json['before']),
-        'current': PlanRestreamCurrentItemFromJSON(json['current']),
+        'current': json['current'] == null ? undefined : PlanRestreamCurrentItemFromJSON(json['current']),
         'next': json['next'] == null ? undefined : PlanRestreamNextItemFromJSON(json['next']),
     };
 }

@@ -190,8 +190,6 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -211,6 +209,11 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/chat/messages/delete`,
@@ -266,8 +269,6 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -287,6 +288,11 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/chat/messages/message`,
@@ -335,8 +341,6 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -352,6 +356,11 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/chat/messages`,
@@ -407,8 +416,6 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -426,6 +433,11 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/chat/messages`,

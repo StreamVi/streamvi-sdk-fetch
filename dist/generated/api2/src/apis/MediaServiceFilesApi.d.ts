@@ -35,6 +35,7 @@ export interface MediaServiceFilesSiteListV1Request {
 }
 export interface MediaServiceFilesSiteSessionV1Request {
     language: MediaServiceFilesSiteSessionV1LanguageEnum;
+    project_id: number;
     media_id: number;
     v?: MediaServiceFilesSiteSessionV1VEnum;
 }
@@ -127,6 +128,7 @@ export interface MediaServiceFilesApiInterface {
      *
      * @summary Get session by media id
      * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
      * @param {number} media_id Media service file id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.

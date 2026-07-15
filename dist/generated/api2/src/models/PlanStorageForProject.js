@@ -19,12 +19,6 @@ const PlanStorageItem_1 = require("./PlanStorageItem");
  * Check if a given object implements the PlanStorageForProject interface.
  */
 function instanceOfPlanStorageForProject(value) {
-    if (!('before' in value) || value['before'] === undefined)
-        return false;
-    if (!('current' in value) || value['current'] === undefined)
-        return false;
-    if (!('next' in value) || value['next'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfPlanStorageForProject = instanceOfPlanStorageForProject;
@@ -37,9 +31,9 @@ function PlanStorageForProjectFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'before': (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['before']),
-        'current': (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['current']),
-        'next': (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['next']),
+        'before': json['before'] == null ? undefined : (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['before']),
+        'current': json['current'] == null ? undefined : (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['current']),
+        'next': json['next'] == null ? undefined : (0, PlanStorageItem_1.PlanStorageItemFromJSON)(json['next']),
     };
 }
 exports.PlanStorageForProjectFromJSONTyped = PlanStorageForProjectFromJSONTyped;

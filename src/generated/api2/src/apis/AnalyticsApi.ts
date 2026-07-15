@@ -15,12 +15,31 @@
 
 import * as runtime from '../runtime';
 import type {
+  BroadcastMessageListResponse,
   ErrorResponse,
 } from '../models/index';
 import {
+    BroadcastMessageListResponseFromJSON,
+    BroadcastMessageListResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models/index';
+
+export interface AnalyticsTsBroadcastMessagesV1Request {
+    language: AnalyticsTsBroadcastMessagesV1LanguageEnum;
+    project_id: number;
+    broadcast_id: number;
+    v?: AnalyticsTsBroadcastMessagesV1VEnum;
+    offset?: number;
+    limit?: number;
+    date?: Date;
+    date_start?: Date;
+    date_end?: Date;
+    sort_by_date?: AnalyticsTsBroadcastMessagesV1SortByDateEnum;
+    platform?: string;
+    restream_id?: number;
+    text?: string;
+}
 
 export interface AnalyticsTsStreamBitrateV1Request {
     language: AnalyticsTsStreamBitrateV1LanguageEnum;
@@ -50,6 +69,33 @@ export interface AnalyticsTsStreamViewersV1Request {
  * @interface AnalyticsApiInterface
  */
 export interface AnalyticsApiInterface {
+    /**
+     * 
+     * @summary Messages for broadcast
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} broadcast_id Broadcast id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {number} [offset] Offset
+     * @param {number} [limit] Limit
+     * @param {Date} [date] Exact date filter
+     * @param {Date} [date_start] Date range start
+     * @param {Date} [date_end] Date range end
+     * @param {'asc' | 'desc'} [sort_by_date] Sort by date
+     * @param {string} [platform] Platform
+     * @param {number} [restream_id] Restream id
+     * @param {string} [text] Text search
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnalyticsApiInterface
+     */
+    analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>>;
+
+    /**
+     * Messages for broadcast
+     */
+    analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse>;
+
     /**
      * 
      * @summary Bitrate for stream
@@ -112,6 +158,110 @@ export interface AnalyticsApiInterface {
 export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterface {
 
     /**
+     * Messages for broadcast
+     */
+    async analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling analyticsTsBroadcastMessagesV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling analyticsTsBroadcastMessagesV1().'
+            );
+        }
+
+        if (requestParameters['broadcast_id'] == null) {
+            throw new runtime.RequiredError(
+                'broadcast_id',
+                'Required parameter "broadcast_id" was null or undefined when calling analyticsTsBroadcastMessagesV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['broadcast_id'] != null) {
+            queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['date'] != null) {
+            queryParameters['date'] = (requestParameters['date'] as any).toISOString();
+        }
+
+        if (requestParameters['date_start'] != null) {
+            queryParameters['date_start'] = (requestParameters['date_start'] as any).toISOString();
+        }
+
+        if (requestParameters['date_end'] != null) {
+            queryParameters['date_end'] = (requestParameters['date_end'] as any).toISOString();
+        }
+
+        if (requestParameters['sort_by_date'] != null) {
+            queryParameters['sort_by_date'] = requestParameters['sort_by_date'];
+        }
+
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+
+        if (requestParameters['restream_id'] != null) {
+            queryParameters['restream_id'] = requestParameters['restream_id'];
+        }
+
+        if (requestParameters['text'] != null) {
+            queryParameters['text'] = requestParameters['text'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/analytics/broadcast/messages`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BroadcastMessageListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Messages for broadcast
+     */
+    async analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse> {
+        const response = await this.analyticsTsBroadcastMessagesV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Bitrate for stream
      */
     async analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
@@ -140,8 +290,6 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -157,6 +305,11 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+        }
 
         const response = await this.request({
             path: `/method/analytics/stream/graph/bitrate`,
@@ -205,8 +358,6 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -222,6 +373,11 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+        }
 
         const response = await this.request({
             path: `/method/analytics/stream/events`,
@@ -270,8 +426,6 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -287,6 +441,11 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+        }
 
         const response = await this.request({
             path: `/method/analytics/stream/graph/viewers`,
@@ -308,6 +467,30 @@ export class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterfa
 
 }
 
+/**
+ * @export
+ */
+export const AnalyticsTsBroadcastMessagesV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type AnalyticsTsBroadcastMessagesV1LanguageEnum = typeof AnalyticsTsBroadcastMessagesV1LanguageEnum[keyof typeof AnalyticsTsBroadcastMessagesV1LanguageEnum];
+/**
+ * @export
+ */
+export const AnalyticsTsBroadcastMessagesV1VEnum = {
+    _1: '1'
+} as const;
+export type AnalyticsTsBroadcastMessagesV1VEnum = typeof AnalyticsTsBroadcastMessagesV1VEnum[keyof typeof AnalyticsTsBroadcastMessagesV1VEnum];
+/**
+ * @export
+ */
+export const AnalyticsTsBroadcastMessagesV1SortByDateEnum = {
+    asc: 'asc',
+    desc: 'desc'
+} as const;
+export type AnalyticsTsBroadcastMessagesV1SortByDateEnum = typeof AnalyticsTsBroadcastMessagesV1SortByDateEnum[keyof typeof AnalyticsTsBroadcastMessagesV1SortByDateEnum];
 /**
  * @export
  */

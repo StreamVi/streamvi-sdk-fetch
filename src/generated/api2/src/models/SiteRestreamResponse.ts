@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -25,6 +26,12 @@ export interface SiteRestreamResponse {
      * @memberof SiteRestreamResponse
      */
     id: number;
+    /**
+     * Channel id
+     * @type {number}
+     * @memberof SiteRestreamResponse
+     */
+    channel_id: number;
     /**
      * Channel name
      * @type {string}
@@ -74,6 +81,7 @@ export interface SiteRestreamResponse {
  */
 export function instanceOfSiteRestreamResponse(value: object): value is SiteRestreamResponse {
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('photo' in value) || value['photo'] === undefined) return false;
@@ -95,6 +103,7 @@ export function SiteRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'id': json['id'],
+        'channel_id': json['channel_id'],
         'name': json['name'],
         'type': json['type'],
         'photo': json['photo'],
@@ -117,6 +126,7 @@ export function SiteRestreamResponseToJSONTyped(value?: SiteRestreamResponse | n
     return {
         
         'id': value['id'],
+        'channel_id': value['channel_id'],
         'name': value['name'],
         'type': value['type'],
         'photo': value['photo'],

@@ -136,6 +136,18 @@ export interface SearchChannelItem {
      */
     rtmp: SearchChannelRtmpDto | null;
     /**
+     * ingress_url
+     * @type {string}
+     * @memberof SearchChannelItem
+     */
+    ingress_url?: string;
+    /**
+     * ingress_protocol
+     * @type {string}
+     * @memberof SearchChannelItem
+     */
+    ingress_protocol?: string;
+    /**
      * credentials
      * @type {Array<SearchChannelCredentialsDto>}
      * @memberof SearchChannelItem

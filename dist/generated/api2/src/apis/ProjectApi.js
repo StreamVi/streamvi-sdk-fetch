@@ -36,13 +36,44 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserProjectSelectProjectV1VEnum = exports.UserProjectSelectProjectV1LanguageEnum = exports.UserProjectListV1VEnum = exports.UserProjectListV1LanguageEnum = exports.UserProjectListAccessV1VEnum = exports.UserProjectListAccessV1LanguageEnum = exports.UserProjectGetUserV1VEnum = exports.UserProjectGetUserV1LanguageEnum = exports.UserProjectGetProjectV1VEnum = exports.UserProjectGetProjectV1LanguageEnum = exports.UserProjectGetProjectInfoV1VEnum = exports.UserProjectGetProjectInfoV1LanguageEnum = exports.UserProjectDelV1VEnum = exports.UserProjectDelV1LanguageEnum = exports.UserProjectChangeAccessV1VEnum = exports.UserProjectChangeAccessV1AccessTypeEnum = exports.UserProjectChangeAccessV1LanguageEnum = exports.ProjectApi = void 0;
+exports.UserProjectSelectProjectV1VEnum = exports.UserProjectSelectProjectV1LanguageEnum = exports.UserProjectListV1VEnum = exports.UserProjectListV1LanguageEnum = exports.UserProjectListAccessV1VEnum = exports.UserProjectListAccessV1LanguageEnum = exports.UserProjectLeaveV1VEnum = exports.UserProjectLeaveV1LanguageEnum = exports.UserProjectGetUserV1VEnum = exports.UserProjectGetUserV1LanguageEnum = exports.UserProjectGetProjectV1VEnum = exports.UserProjectGetProjectV1LanguageEnum = exports.UserProjectGetProjectInfoV1VEnum = exports.UserProjectGetProjectInfoV1LanguageEnum = exports.UserProjectDeleteMemberV1VEnum = exports.UserProjectDeleteMemberV1LanguageEnum = exports.UserProjectDelV1VEnum = exports.UserProjectDelV1LanguageEnum = exports.UserProjectChangeAccessV1VEnum = exports.UserProjectChangeAccessV1AccessTypeEnum = exports.UserProjectChangeAccessV1LanguageEnum = exports.MethodProjectMeMeV1LanguageEnum = exports.MethodProjectMeMeV1VEnum = exports.ProjectApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
  *
  */
 class ProjectApi extends runtime.BaseAPI {
+    /**
+     * Get current user project
+     */
+    async methodProjectMeMeV1Raw(requestParameters, initOverrides) {
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
+        const response = await this.request({
+            path: `/method/project/me`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectMeResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get current user project
+     */
+    async methodProjectMeMeV1(requestParameters = {}, initOverrides) {
+        const response = await this.methodProjectMeMeV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
     /**
      * Change access user from project
      */
@@ -63,9 +94,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -79,6 +107,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/project/user/change_access`,
             method: 'POST',
@@ -95,7 +127,9 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * Remove user from project
+     * @deprecated
      */
     async userProjectDelV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -111,8 +145,53 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/project/user/del`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
+     * Remove user from project
+     * @deprecated
+     */
+    async userProjectDelV1(requestParameters, initOverrides) {
+        const response = await this.userProjectDelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Remove member from project
+     */
+    async userProjectDeleteMemberV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectDeleteMemberV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectDeleteMemberV1().');
+        }
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError('user_id', 'Required parameter "user_id" was null or undefined when calling userProjectDeleteMemberV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -124,8 +203,12 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['user_id'] = requestParameters['user_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
-            path: `/method/project/user/del`,
+            path: `/method/project/user/delete`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -133,10 +216,10 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Remove user from project
+     * Remove member from project
      */
-    async userProjectDelV1(requestParameters, initOverrides) {
-        const response = await this.userProjectDelV1Raw(requestParameters, initOverrides);
+    async userProjectDeleteMemberV1(requestParameters, initOverrides) {
+        const response = await this.userProjectDeleteMemberV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -153,9 +236,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -163,6 +243,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/get_project_info`,
             method: 'GET',
@@ -192,9 +276,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -202,6 +283,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_external_id'] = requestParameters['project_external_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/get_project`,
             method: 'GET',
@@ -231,9 +316,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -241,6 +323,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['user_external_id'] = requestParameters['user_external_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/get_user`,
             method: 'GET',
@@ -257,6 +343,46 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Leave project
+     */
+    async userProjectLeaveV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userProjectLeaveV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling userProjectLeaveV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/project/user/leave`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Leave project
+     */
+    async userProjectLeaveV1(requestParameters, initOverrides) {
+        const response = await this.userProjectLeaveV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * List of user in project
      */
     async userProjectListAccessV1Raw(requestParameters, initOverrides) {
@@ -270,9 +396,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -280,6 +403,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/user/list`,
             method: 'GET',
@@ -306,9 +433,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -319,6 +443,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/list`,
             method: 'GET',
@@ -348,9 +476,6 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -358,6 +483,10 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
         const response = await this.request({
             path: `/method/project/select`,
             method: 'GET',
@@ -378,6 +507,20 @@ exports.ProjectApi = ProjectApi;
 /**
  * @export
  */
+exports.MethodProjectMeMeV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.MethodProjectMeMeV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
 exports.UserProjectChangeAccessV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -389,7 +532,8 @@ exports.UserProjectChangeAccessV1LanguageEnum = {
 exports.UserProjectChangeAccessV1AccessTypeEnum = {
     NUMBER_0: 0,
     NUMBER_1: 1,
-    NUMBER_2: 2
+    NUMBER_2: 2,
+    NUMBER_3: 3
 };
 /**
  * @export
@@ -409,6 +553,20 @@ exports.UserProjectDelV1LanguageEnum = {
  * @export
  */
 exports.UserProjectDelV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.UserProjectDeleteMemberV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectDeleteMemberV1VEnum = {
     _1: '1'
 };
 /**
@@ -451,6 +609,20 @@ exports.UserProjectGetUserV1LanguageEnum = {
  * @export
  */
 exports.UserProjectGetUserV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.UserProjectLeaveV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserProjectLeaveV1VEnum = {
     _1: '1'
 };
 /**

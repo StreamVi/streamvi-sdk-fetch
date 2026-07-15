@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlanStorageTariffV1VEnum = exports.PlanStorageTariffV1LanguageEnum = exports.PlanStorageListV1VEnum = exports.PlanStorageListV1LanguageEnum = exports.PlanStorageGetDiscountV1VEnum = exports.PlanStorageGetDiscountV1LanguageEnum = exports.PlanStorageCheckV1VEnum = exports.PlanStorageCheckV1LanguageEnum = exports.PlanStorageCancelV1VEnum = exports.PlanStorageCancelV1LanguageEnum = exports.PlanStorageBuyV1VEnum = exports.PlanStorageBuyV1PeriodEnum = exports.PlanStorageBuyV1LanguageEnum = exports.PlanStorageApi = void 0;
+exports.PlanStorageTariffV1VEnum = exports.PlanStorageTariffV1LanguageEnum = exports.PlanStorageSetProlongationV1VEnum = exports.PlanStorageSetProlongationV1LanguageEnum = exports.PlanStorageListV1VEnum = exports.PlanStorageListV1LanguageEnum = exports.PlanStorageGetDiscountV1VEnum = exports.PlanStorageGetDiscountV1LanguageEnum = exports.PlanStorageCheckV1VEnum = exports.PlanStorageCheckV1LanguageEnum = exports.PlanStorageCancelV1VEnum = exports.PlanStorageCancelV1LanguageEnum = exports.PlanStorageBuyV1VEnum = exports.PlanStorageBuyV1PeriodEnum = exports.PlanStorageBuyV1LanguageEnum = exports.PlanStorageApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -63,9 +63,6 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -82,6 +79,10 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['size'] = requestParameters['size'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_storage`,
             method: 'POST',
@@ -111,9 +112,6 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -121,6 +119,10 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/plan_storage`,
             method: 'DELETE',
@@ -150,9 +152,6 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -160,6 +159,10 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_storage/check`,
             method: 'GET',
@@ -186,13 +189,14 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_storage/get_discount`,
             method: 'GET',
@@ -219,13 +223,14 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_storage/list`,
             method: 'GET',
@@ -242,6 +247,52 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Set storage tariff auto prolongation
+     */
+    async planStorageSetProlongationV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling planStorageSetProlongationV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling planStorageSetProlongationV1().');
+        }
+        if (requestParameters['enabled'] == null) {
+            throw new runtime.RequiredError('enabled', 'Required parameter "enabled" was null or undefined when calling planStorageSetProlongationV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['enabled'] != null) {
+            queryParameters['enabled'] = requestParameters['enabled'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/plan_storage/prolongation`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Set storage tariff auto prolongation
+     */
+    async planStorageSetProlongationV1(requestParameters, initOverrides) {
+        const response = await this.planStorageSetProlongationV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * Get tariff for project
      */
     async planStorageTariffV1Raw(requestParameters, initOverrides) {
@@ -255,9 +306,6 @@ class PlanStorageApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -265,6 +313,10 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/plan_storage`,
             method: 'GET',
@@ -357,6 +409,20 @@ exports.PlanStorageListV1LanguageEnum = {
  * @export
  */
 exports.PlanStorageListV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlanStorageSetProlongationV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlanStorageSetProlongationV1VEnum = {
     _1: '1'
 };
 /**

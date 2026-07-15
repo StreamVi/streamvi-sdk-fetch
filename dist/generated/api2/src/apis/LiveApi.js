@@ -65,9 +65,6 @@ class LiveApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
@@ -75,6 +72,10 @@ class LiveApi extends runtime.BaseAPI {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+        }
         const response = await this.request({
             path: `/method/live/restreams`,
             method: 'GET',

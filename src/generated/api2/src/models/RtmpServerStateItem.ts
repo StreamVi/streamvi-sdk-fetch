@@ -35,12 +35,19 @@ import {
     RtmpServerLoadingToJSONTyped,
 } from './RtmpServerLoading';
 
+
 /**
  * 
  * @export
  * @interface RtmpServerStateItem
  */
 export interface RtmpServerStateItem {
+    /**
+     * id
+     * @type {number}
+     * @memberof RtmpServerStateItem
+     */
+    id: number;
     /**
      * City
      * @type {string}
@@ -119,6 +126,7 @@ export type RtmpServerStateItemServerStatusEnum = typeof RtmpServerStateItemServ
  * Check if a given object implements the RtmpServerStateItem interface.
  */
 export function instanceOfRtmpServerStateItem(value: object): value is RtmpServerStateItem {
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('city' in value) || value['city'] === undefined) return false;
     if (!('country' in value) || value['country'] === undefined) return false;
     if (!('lat' in value) || value['lat'] === undefined) return false;
@@ -142,6 +150,7 @@ export function RtmpServerStateItemFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'id': json['id'],
         'city': json['city'],
         'country': CountryItemFromJSON(json['country']),
         'lat': json['lat'],
@@ -166,6 +175,7 @@ export function RtmpServerStateItemToJSONTyped(value?: RtmpServerStateItem | nul
 
     return {
         
+        'id': value['id'],
         'city': value['city'],
         'country': CountryItemToJSON(value['country']),
         'lat': value['lat'],

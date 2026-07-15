@@ -18,7 +18,9 @@ import type {
   ErrorResponse,
   ListOfRtmpServerLocationResponse,
   RtmpServerGraphResponse,
-  RtmpServerListV2Response,
+  RtmpServerListResponseBase,
+  RtmpServerListV3Response,
+  RtmpServerSrtLatencyResponse,
   RtmpServerStateResponse,
 } from '../models/index';
 import {
@@ -28,8 +30,12 @@ import {
     ListOfRtmpServerLocationResponseToJSON,
     RtmpServerGraphResponseFromJSON,
     RtmpServerGraphResponseToJSON,
-    RtmpServerListV2ResponseFromJSON,
-    RtmpServerListV2ResponseToJSON,
+    RtmpServerListResponseBaseFromJSON,
+    RtmpServerListResponseBaseToJSON,
+    RtmpServerListV3ResponseFromJSON,
+    RtmpServerListV3ResponseToJSON,
+    RtmpServerSrtLatencyResponseFromJSON,
+    RtmpServerSrtLatencyResponseToJSON,
     RtmpServerStateResponseFromJSON,
     RtmpServerStateResponseToJSON,
 } from '../models/index';
@@ -46,11 +52,24 @@ export interface RtmpServerGraphV1Request {
     v?: RtmpServerGraphV1VEnum;
 }
 
-export interface RtmpServerListV2Request {
-    language: RtmpServerListV2LanguageEnum;
+export interface RtmpServerListBaseV1Request {
+    language: RtmpServerListBaseV1LanguageEnum;
     project_id: number;
-    interval: RtmpServerListV2IntervalEnum;
-    v?: RtmpServerListV2VEnum;
+    v?: RtmpServerListBaseV1VEnum;
+}
+
+export interface RtmpServerListV3Request {
+    language: RtmpServerListV3LanguageEnum;
+    project_id: number;
+    v?: RtmpServerListV3VEnum;
+}
+
+export interface RtmpServerSrtLatencyV1Request {
+    language: RtmpServerSrtLatencyV1LanguageEnum;
+    src_ip: string;
+    dst_ip: string;
+    v?: RtmpServerSrtLatencyV1VEnum;
+    profile?: string;
 }
 
 export interface RtmpServerStateV1Request {
@@ -102,21 +121,56 @@ export interface RtmpServerApiInterface {
 
     /**
      * 
-     * @summary List rtmp servers
+     * @summary List rtmp servers (base info)
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
+    rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>>;
 
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
+    rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase>;
+
+    /**
+     * 
+     * @summary List rtmp servers v3
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RtmpServerApiInterface
+     */
+    rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>>;
+
+    /**
+     * List rtmp servers v3
+     */
+    rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response>;
+
+    /**
+     * 
+     * @summary Get recommended SRT latency by source and destination ip
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {string} src_ip Source IPv4 address
+     * @param {string} dst_ip Destination IPv4 address
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [profile] Recommendation profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RtmpServerApiInterface
+     */
+    rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>>;
+
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse>;
 
     /**
      * 
@@ -171,8 +225,6 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -228,8 +280,6 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -265,27 +315,77 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
     }
 
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    async rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>> {
+    async rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
-                'Required parameter "language" was null or undefined when calling rtmpServerListV2().'
+                'Required parameter "language" was null or undefined when calling rtmpServerListBaseV1().'
             );
         }
 
         if (requestParameters['project_id'] == null) {
             throw new runtime.RequiredError(
                 'project_id',
-                'Required parameter "project_id" was null or undefined when calling rtmpServerListV2().'
+                'Required parameter "project_id" was null or undefined when calling rtmpServerListBaseV1().'
             );
         }
 
-        if (requestParameters['interval'] == null) {
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/rtmp_server/base-list`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerListResponseBaseFromJSON(jsonValue));
+    }
+
+    /**
+     * List rtmp servers (base info)
+     */
+    async rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase> {
+        const response = await this.rtmpServerListBaseV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * List rtmp servers v3
+     */
+    async rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>> {
+        if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
-                'interval',
-                'Required parameter "interval" was null or undefined when calling rtmpServerListV2().'
+                'language',
+                'Required parameter "language" was null or undefined when calling rtmpServerListV3().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling rtmpServerListV3().'
             );
         }
 
@@ -297,19 +397,18 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '2';
         }
 
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
 
-        if (requestParameters['interval'] != null) {
-            queryParameters['interval'] = requestParameters['interval'];
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+        }
 
         const response = await this.request({
             path: `/method/rtmp_server/list`,
@@ -318,14 +417,81 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerListV2ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerListV3ResponseFromJSON(jsonValue));
     }
 
     /**
-     * List rtmp servers
+     * List rtmp servers v3
      */
-    async rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response> {
-        const response = await this.rtmpServerListV2Raw(requestParameters, initOverrides);
+    async rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response> {
+        const response = await this.rtmpServerListV3Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    async rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling rtmpServerSrtLatencyV1().'
+            );
+        }
+
+        if (requestParameters['src_ip'] == null) {
+            throw new runtime.RequiredError(
+                'src_ip',
+                'Required parameter "src_ip" was null or undefined when calling rtmpServerSrtLatencyV1().'
+            );
+        }
+
+        if (requestParameters['dst_ip'] == null) {
+            throw new runtime.RequiredError(
+                'dst_ip',
+                'Required parameter "dst_ip" was null or undefined when calling rtmpServerSrtLatencyV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['src_ip'] != null) {
+            queryParameters['src_ip'] = requestParameters['src_ip'];
+        }
+
+        if (requestParameters['dst_ip'] != null) {
+            queryParameters['dst_ip'] = requestParameters['dst_ip'];
+        }
+
+        if (requestParameters['profile'] != null) {
+            queryParameters['profile'] = requestParameters['profile'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/method/rtmp_server/srt-latency`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerSrtLatencyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    async rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse> {
+        const response = await this.rtmpServerSrtLatencyV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -351,8 +517,6 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -468,30 +632,51 @@ export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof 
 /**
  * @export
  */
-export const RtmpServerListV2LanguageEnum = {
+export const RtmpServerListBaseV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
 } as const;
-export type RtmpServerListV2LanguageEnum = typeof RtmpServerListV2LanguageEnum[keyof typeof RtmpServerListV2LanguageEnum];
+export type RtmpServerListBaseV1LanguageEnum = typeof RtmpServerListBaseV1LanguageEnum[keyof typeof RtmpServerListBaseV1LanguageEnum];
 /**
  * @export
  */
-export const RtmpServerListV2IntervalEnum = {
-    NUMBER_1: 1,
-    NUMBER_3: 3,
-    NUMBER_6: 6,
-    NUMBER_12: 12,
-    NUMBER_24: 24
+export const RtmpServerListBaseV1VEnum = {
+    _1: '1'
 } as const;
-export type RtmpServerListV2IntervalEnum = typeof RtmpServerListV2IntervalEnum[keyof typeof RtmpServerListV2IntervalEnum];
+export type RtmpServerListBaseV1VEnum = typeof RtmpServerListBaseV1VEnum[keyof typeof RtmpServerListBaseV1VEnum];
 /**
  * @export
  */
-export const RtmpServerListV2VEnum = {
-    _2: '2'
+export const RtmpServerListV3LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
 } as const;
-export type RtmpServerListV2VEnum = typeof RtmpServerListV2VEnum[keyof typeof RtmpServerListV2VEnum];
+export type RtmpServerListV3LanguageEnum = typeof RtmpServerListV3LanguageEnum[keyof typeof RtmpServerListV3LanguageEnum];
+/**
+ * @export
+ */
+export const RtmpServerListV3VEnum = {
+    _3: '3'
+} as const;
+export type RtmpServerListV3VEnum = typeof RtmpServerListV3VEnum[keyof typeof RtmpServerListV3VEnum];
+/**
+ * @export
+ */
+export const RtmpServerSrtLatencyV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type RtmpServerSrtLatencyV1LanguageEnum = typeof RtmpServerSrtLatencyV1LanguageEnum[keyof typeof RtmpServerSrtLatencyV1LanguageEnum];
+/**
+ * @export
+ */
+export const RtmpServerSrtLatencyV1VEnum = {
+    _1: '1'
+} as const;
+export type RtmpServerSrtLatencyV1VEnum = typeof RtmpServerSrtLatencyV1VEnum[keyof typeof RtmpServerSrtLatencyV1VEnum];
 /**
  * @export
  */

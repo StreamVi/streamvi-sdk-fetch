@@ -31,7 +31,6 @@ import {
 export interface AccountGetProfileV1Request {
     language: AccountGetProfileV1LanguageEnum;
     v?: AccountGetProfileV1VEnum;
-    project_id?: number;
 }
 
 export interface AccountUpdateProfileV1Request {
@@ -54,7 +53,6 @@ export interface AccountApiInterface {
      * @summary Get account profile
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApiInterface
@@ -107,19 +105,18 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
 
-        if (requestParameters['project_id'] != null) {
-            queryParameters['project_id'] = requestParameters['project_id'];
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
 
         const response = await this.request({
             path: `/method/account/profile`,
@@ -175,6 +172,11 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
+
         const consumes: runtime.Consume[] = [
             { contentType: 'multipart/form-data' },
         ];
@@ -193,8 +195,6 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v'] as any);
-        } else {
-            formParams.append('v', '1' as any);
         }
 
         if (requestParameters['language'] != null) {

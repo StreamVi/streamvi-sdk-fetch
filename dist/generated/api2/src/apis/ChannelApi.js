@@ -44,6 +44,35 @@ const index_1 = require("../models/index");
  */
 class ChannelApi extends runtime.BaseAPI {
     /**
+     * Add bizon channel
+     */
+    async addChannelMethodAddBizonV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['BizonDto'] == null) {
+            throw new runtime.RequiredError('BizonDto', 'Required parameter "BizonDto" was null or undefined when calling addChannelMethodAddBizonV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+        const response = await this.request({
+            path: `/method/channel/add/bizon`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.BizonDtoToJSON)(requestParameters['BizonDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add bizon channel
+     */
+    async addChannelMethodAddBizonV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddBizonV1Raw(requestParameters, initOverrides);
+    }
+    /**
      * Add boosty channel
      */
     async addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides) {
@@ -53,6 +82,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/boosty`,
             method: 'POST',
@@ -78,6 +111,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/custom`,
             method: 'POST',
@@ -103,6 +140,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/douyu`,
             method: 'POST',
@@ -128,6 +169,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/fb`,
             method: 'POST',
@@ -153,6 +198,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/fc2Live`,
             method: 'POST',
@@ -169,6 +218,35 @@ class ChannelApi extends runtime.BaseAPI {
         await this.addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Add getcourse channel
+     */
+    async addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['GetcourseDto'] == null) {
+            throw new runtime.RequiredError('GetcourseDto', 'Required parameter "GetcourseDto" was null or undefined when calling addChannelMethodAddGetcourseV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+        const response = await this.request({
+            path: `/method/channel/add/getcourse`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.GetcourseDtoToJSON)(requestParameters['GetcourseDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add getcourse channel
+     */
+    async addChannelMethodAddGetcourseV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides);
+    }
+    /**
      * Add goodgame channel
      */
     async addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides) {
@@ -178,6 +256,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/goodgame`,
             method: 'POST',
@@ -203,6 +285,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/huya`,
             method: 'POST',
@@ -228,6 +314,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/instagram`,
             method: 'POST',
@@ -253,6 +343,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/kick`,
             method: 'POST',
@@ -269,6 +363,35 @@ class ChannelApi extends runtime.BaseAPI {
         await this.addChannelMethodAddKickV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Add kinescope channel
+     */
+    async addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['KinescopeDto'] == null) {
+            throw new runtime.RequiredError('KinescopeDto', 'Required parameter "KinescopeDto" was null or undefined when calling addChannelMethodAddKinescopeV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+        const response = await this.request({
+            path: `/method/channel/add/kinescope`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.KinescopeDtoToJSON)(requestParameters['KinescopeDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add kinescope channel
+     */
+    async addChannelMethodAddKinescopeV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides);
+    }
+    /**
      * Add linkedin channel
      */
     async addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides) {
@@ -278,6 +401,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/linkedin`,
             method: 'POST',
@@ -303,6 +430,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/navertv`,
             method: 'POST',
@@ -328,6 +459,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/nimotv`,
             method: 'POST',
@@ -353,6 +488,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/nonolive`,
             method: 'POST',
@@ -378,6 +517,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/ok`,
             method: 'POST',
@@ -403,6 +546,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/plvideo`,
             method: 'POST',
@@ -428,6 +575,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/rutube`,
             method: 'POST',
@@ -444,6 +595,35 @@ class ChannelApi extends runtime.BaseAPI {
         await this.addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Add srt channel
+     */
+    async addChannelMethodAddSrtV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['MethodSrtDto'] == null) {
+            throw new runtime.RequiredError('MethodSrtDto', 'Required parameter "MethodSrtDto" was null or undefined when calling addChannelMethodAddSrtV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+        const response = await this.request({
+            path: `/method/channel/add/srt`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.MethodSrtDtoToJSON)(requestParameters['MethodSrtDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add srt channel
+     */
+    async addChannelMethodAddSrtV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddSrtV1Raw(requestParameters, initOverrides);
+    }
+    /**
      * Add steam channel
      */
     async addChannelMethodAddSteamV1Raw(requestParameters, initOverrides) {
@@ -453,6 +633,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/steam`,
             method: 'POST',
@@ -469,6 +653,35 @@ class ChannelApi extends runtime.BaseAPI {
         await this.addChannelMethodAddSteamV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Add tach channel
+     */
+    async addChannelMethodAddTachidV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['TachidDto'] == null) {
+            throw new runtime.RequiredError('TachidDto', 'Required parameter "TachidDto" was null or undefined when calling addChannelMethodAddTachidV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+        const response = await this.request({
+            path: `/method/channel/add/tachid`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.TachidDtoToJSON)(requestParameters['TachidDto']),
+        }, initOverrides);
+        return new runtime.VoidApiResponse(response);
+    }
+    /**
+     * Add tach channel
+     */
+    async addChannelMethodAddTachidV1(requestParameters, initOverrides) {
+        await this.addChannelMethodAddTachidV1Raw(requestParameters, initOverrides);
+    }
+    /**
      * Add telegram channel
      */
     async addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides) {
@@ -478,6 +691,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/telegram`,
             method: 'POST',
@@ -503,6 +720,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/tiktok`,
             method: 'POST',
@@ -528,6 +749,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/vk`,
             method: 'POST',
@@ -553,6 +778,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/vlive`,
             method: 'POST',
@@ -578,6 +807,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
         const response = await this.request({
             path: `/method/channel/add/zhanqitv`,
             method: 'POST',
@@ -603,6 +836,10 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/channel/delete`,
             method: 'POST',
@@ -636,9 +873,6 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -649,6 +883,10 @@ class ChannelApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
         const response = await this.request({
             path: `/method/channel/get`,
             method: 'GET',
@@ -682,6 +920,10 @@ class ChannelApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/channel/set-delay`,
             method: 'GET',
@@ -711,9 +953,6 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -721,6 +960,10 @@ class ChannelApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
         const response = await this.request({
             path: `/method/channel/short`,
             method: 'GET',
@@ -750,9 +993,6 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -777,6 +1017,10 @@ class ChannelApi extends runtime.BaseAPI {
         const headerParameters = {};
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel/search`,
@@ -805,6 +1049,10 @@ class ChannelApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
         }
         const response = await this.request({
             path: `/method/channel/set-status`,

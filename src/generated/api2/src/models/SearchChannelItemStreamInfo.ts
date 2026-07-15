@@ -55,6 +55,7 @@ import {
     ChannelYoutubeInfoDtoToJSON,
 } from './ChannelYoutubeInfoDto';
 
+
 /**
  * @type SearchChannelItemStreamInfo
  * streamInfo

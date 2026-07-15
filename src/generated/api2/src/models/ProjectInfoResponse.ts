@@ -41,6 +41,13 @@ import {
     ProjectInfoDataResponseToJSON,
     ProjectInfoDataResponseToJSONTyped,
 } from './ProjectInfoDataResponse';
+import type { ProjectInfoWebinarResponse } from './ProjectInfoWebinarResponse';
+import {
+    ProjectInfoWebinarResponseFromJSON,
+    ProjectInfoWebinarResponseFromJSONTyped,
+    ProjectInfoWebinarResponseToJSON,
+    ProjectInfoWebinarResponseToJSONTyped,
+} from './ProjectInfoWebinarResponse';
 import type { ProjectInfoRestreamResponse } from './ProjectInfoRestreamResponse';
 import {
     ProjectInfoRestreamResponseFromJSON,
@@ -48,6 +55,7 @@ import {
     ProjectInfoRestreamResponseToJSON,
     ProjectInfoRestreamResponseToJSONTyped,
 } from './ProjectInfoRestreamResponse';
+
 
 /**
  * 
@@ -78,7 +86,7 @@ export interface ProjectInfoResponse {
      * @type {ProjectInfoRestreamResponse}
      * @memberof ProjectInfoResponse
      */
-    restream: ProjectInfoRestreamResponse;
+    restream?: ProjectInfoRestreamResponse;
     /**
      * Transcoding tariff
      * @type {ProjectInfoTranscodingResponse}
@@ -91,6 +99,12 @@ export interface ProjectInfoResponse {
      * @memberof ProjectInfoResponse
      */
     storage?: ProjectInfoStorageResponse | null;
+    /**
+     * Webinar tariff
+     * @type {ProjectInfoWebinarResponse}
+     * @memberof ProjectInfoResponse
+     */
+    webinar?: ProjectInfoWebinarResponse | null;
     /**
      * Project info access
      * @type {ProjectInfoAccessResponse}
@@ -126,7 +140,6 @@ export function instanceOfProjectInfoResponse(value: object): value is ProjectIn
     if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('data' in value) || value['data'] === undefined) return false;
-    if (!('restream' in value) || value['restream'] === undefined) return false;
     if (!('access' in value) || value['access'] === undefined) return false;
     return true;
 }
@@ -144,9 +157,10 @@ export function ProjectInfoResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'v': json['v'],
         'language': json['language'],
         'data': ProjectInfoDataResponseFromJSON(json['data']),
-        'restream': ProjectInfoRestreamResponseFromJSON(json['restream']),
+        'restream': json['restream'] == null ? undefined : ProjectInfoRestreamResponseFromJSON(json['restream']),
         'transcoding': json['transcoding'] == null ? undefined : ProjectInfoTranscodingResponseFromJSON(json['transcoding']),
         'storage': json['storage'] == null ? undefined : ProjectInfoStorageResponseFromJSON(json['storage']),
+        'webinar': json['webinar'] == null ? undefined : ProjectInfoWebinarResponseFromJSON(json['webinar']),
         'access': ProjectInfoAccessResponseFromJSON(json['access']),
     };
 }
@@ -168,6 +182,7 @@ export function ProjectInfoResponseToJSONTyped(value?: ProjectInfoResponse | nul
         'restream': ProjectInfoRestreamResponseToJSON(value['restream']),
         'transcoding': ProjectInfoTranscodingResponseToJSON(value['transcoding']),
         'storage': ProjectInfoStorageResponseToJSON(value['storage']),
+        'webinar': ProjectInfoWebinarResponseToJSON(value['webinar']),
         'access': ProjectInfoAccessResponseToJSON(value['access']),
     };
 }

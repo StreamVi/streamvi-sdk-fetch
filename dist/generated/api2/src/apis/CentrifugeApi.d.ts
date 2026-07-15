@@ -10,10 +10,25 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { SiteAuthCentrifugeResponse } from '../models/index';
+import type { AuthCentrifugoChannelResponse, AuthCentrifugoConnectResponse, CentrifugoChannelsCatalogResponse, SiteAuthCentrifugeResponse } from '../models/index';
 export interface CentrifugeAuthV2Request {
     project_id: number;
     v?: CentrifugeAuthV2VEnum;
+}
+export interface CentrifugeChannelTokenV1Request {
+    language: CentrifugeChannelTokenV1LanguageEnum;
+    project_id: number;
+    channel_name: string;
+    v?: CentrifugeChannelTokenV1VEnum;
+}
+export interface CentrifugeChannelsCatalogV1Request {
+    language: CentrifugeChannelsCatalogV1LanguageEnum;
+    v?: CentrifugeChannelsCatalogV1VEnum;
+}
+export interface CentrifugeConnectionTokenV1Request {
+    language: CentrifugeConnectionTokenV1LanguageEnum;
+    project_id: number;
+    v?: CentrifugeConnectionTokenV1VEnum;
 }
 export interface CentrifugeProjectV1Request {
     language: CentrifugeProjectV1LanguageEnum;
@@ -34,22 +49,57 @@ export interface GetTokenBroadcastV1Request {
  */
 export interface CentrifugeApiInterface {
     /**
-     *
-     * @summary Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * @summary Auth centrifuge for project
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
     centrifugeAuthV2Raw(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
-     * @summary Auth token for project
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * @summary Get token for connect to centrifuge for channel
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {string} channel_name Channel name
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
+    centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>>;
+    /**
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get token for connect to centrifuge for channel
+     */
+    centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse>;
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * @summary List available Method API Centrifuge channels
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
+    centrifugeChannelsCatalogV1Raw(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CentrifugoChannelsCatalogResponse>>;
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    centrifugeChannelsCatalogV1(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CentrifugoChannelsCatalogResponse>;
+    /**
+     * Get token for connect to centrifuge for project
+     * @summary Get token for connect to centrifuge for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
@@ -57,27 +107,47 @@ export interface CentrifugeApiInterface {
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
+    centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>>;
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse>;
+    /**
+     * Use /method/centrifuge/auth/channel instead.
+     * @summary Auth token for project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
     centrifugeProjectV1Raw(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     centrifugeProjectV1(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * @summary Auth token for broadcast
      * @param {number} broadcast_id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
     getTokenBroadcastV1Raw(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     getTokenBroadcastV1(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 }
@@ -86,31 +156,69 @@ export interface CentrifugeApiInterface {
  */
 export declare class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInterface {
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     centrifugeAuthV2Raw(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get token for connect to centrifuge for channel
+     */
+    centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>>;
+    /**
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get token for connect to centrifuge for channel
+     */
+    centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse>;
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    centrifugeChannelsCatalogV1Raw(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CentrifugoChannelsCatalogResponse>>;
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    centrifugeChannelsCatalogV1(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CentrifugoChannelsCatalogResponse>;
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>>;
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse>;
+    /**
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     centrifugeProjectV1Raw(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     centrifugeProjectV1(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     getTokenBroadcastV1Raw(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     getTokenBroadcastV1(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 }
@@ -121,6 +229,54 @@ export declare const CentrifugeAuthV2VEnum: {
     readonly _2: "2";
 };
 export type CentrifugeAuthV2VEnum = typeof CentrifugeAuthV2VEnum[keyof typeof CentrifugeAuthV2VEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeChannelTokenV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type CentrifugeChannelTokenV1LanguageEnum = typeof CentrifugeChannelTokenV1LanguageEnum[keyof typeof CentrifugeChannelTokenV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeChannelTokenV1VEnum: {
+    readonly _1: "1";
+};
+export type CentrifugeChannelTokenV1VEnum = typeof CentrifugeChannelTokenV1VEnum[keyof typeof CentrifugeChannelTokenV1VEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeChannelsCatalogV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type CentrifugeChannelsCatalogV1LanguageEnum = typeof CentrifugeChannelsCatalogV1LanguageEnum[keyof typeof CentrifugeChannelsCatalogV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeChannelsCatalogV1VEnum: {
+    readonly _1: "1";
+};
+export type CentrifugeChannelsCatalogV1VEnum = typeof CentrifugeChannelsCatalogV1VEnum[keyof typeof CentrifugeChannelsCatalogV1VEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeConnectionTokenV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type CentrifugeConnectionTokenV1LanguageEnum = typeof CentrifugeConnectionTokenV1LanguageEnum[keyof typeof CentrifugeConnectionTokenV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const CentrifugeConnectionTokenV1VEnum: {
+    readonly _1: "1";
+};
+export type CentrifugeConnectionTokenV1VEnum = typeof CentrifugeConnectionTokenV1VEnum[keyof typeof CentrifugeConnectionTokenV1VEnum];
 /**
  * @export
  */

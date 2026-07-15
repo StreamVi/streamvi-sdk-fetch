@@ -10,7 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfUserProject2ProjectResponse, PaginatedResponseOfUserProjectResponse, ProjectInfoResponse, SuccessResponse, UserProjectGetResponse } from '../models/index';
+import type { ListOfUserProject2ProjectResponse, PaginatedResponseOfUserProjectResponse, ProjectInfoResponse, ProjectMeResponse, SuccessResponse, UserProjectGetResponse } from '../models/index';
+export interface MethodProjectMeMeV1Request {
+    v?: MethodProjectMeMeV1VEnum;
+    language?: MethodProjectMeMeV1LanguageEnum;
+}
 export interface UserProjectChangeAccessV1Request {
     language: UserProjectChangeAccessV1LanguageEnum;
     project_id: number;
@@ -23,6 +27,12 @@ export interface UserProjectDelV1Request {
     project_id: number;
     user_id: number;
     v?: UserProjectDelV1VEnum;
+}
+export interface UserProjectDeleteMemberV1Request {
+    language: UserProjectDeleteMemberV1LanguageEnum;
+    project_id: number;
+    user_id: number;
+    v?: UserProjectDeleteMemberV1VEnum;
 }
 export interface UserProjectGetProjectInfoV1Request {
     language: UserProjectGetProjectInfoV1LanguageEnum;
@@ -38,6 +48,11 @@ export interface UserProjectGetUserV1Request {
     language: UserProjectGetUserV1LanguageEnum;
     user_external_id: string;
     v?: UserProjectGetUserV1VEnum;
+}
+export interface UserProjectLeaveV1Request {
+    language: UserProjectLeaveV1LanguageEnum;
+    project_id: number;
+    v?: UserProjectLeaveV1VEnum;
 }
 export interface UserProjectListAccessV1Request {
     language: UserProjectListAccessV1LanguageEnum;
@@ -64,11 +79,25 @@ export interface UserProjectSelectProjectV1Request {
 export interface ProjectApiInterface {
     /**
      *
+     * @summary Get current user project
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'ru' | 'en' | 'cn'} [language] Current language
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>>;
+    /**
+     * Get current user project
+     */
+    methodProjectMeMeV1(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse>;
+    /**
+     *
      * @summary Change access user from project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
-     * @param {0 | 1 | 2} access_type Access type
+     * @param {0 | 1 | 2 | 3} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -80,8 +109,27 @@ export interface ProjectApiInterface {
      */
     userProjectChangeAccessV1(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * @summary Remove user from project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} user_id User id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
+     * Remove user from project
+     * @deprecated
+     */
+    userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
+     * @summary Remove member from project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
@@ -90,11 +138,11 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
-     * Remove user from project
+     * Remove member from project
      */
-    userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      *
      * @summary Get project full info
@@ -140,6 +188,21 @@ export interface ProjectApiInterface {
      * Get user by number id
      */
     userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
+    /**
+     *
+     * @summary Leave project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Leave project
+     */
+    userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      *
      * @summary List of user in project
@@ -192,6 +255,14 @@ export interface ProjectApiInterface {
  */
 export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     /**
+     * Get current user project
+     */
+    methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>>;
+    /**
+     * Get current user project
+     */
+    methodProjectMeMeV1(requestParameters?: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse>;
+    /**
      * Change access user from project
      */
     userProjectChangeAccessV1Raw(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
@@ -200,13 +271,25 @@ export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInt
      */
     userProjectChangeAccessV1(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * Remove user from project
+     * @deprecated
      */
     userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * Remove user from project
+     * @deprecated
      */
     userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Remove member from project
+     */
+    userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Remove member from project
+     */
+    userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get project full info
      */
@@ -231,6 +314,14 @@ export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInt
      * Get user by number id
      */
     userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
+    /**
+     * Leave project
+     */
+    userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Leave project
+     */
+    userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * List of user in project
      */
@@ -259,6 +350,22 @@ export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInt
 /**
  * @export
  */
+export declare const MethodProjectMeMeV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodProjectMeMeV1VEnum = typeof MethodProjectMeMeV1VEnum[keyof typeof MethodProjectMeMeV1VEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectMeMeV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodProjectMeMeV1LanguageEnum = typeof MethodProjectMeMeV1LanguageEnum[keyof typeof MethodProjectMeMeV1LanguageEnum];
+/**
+ * @export
+ */
 export declare const UserProjectChangeAccessV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
@@ -272,6 +379,7 @@ export declare const UserProjectChangeAccessV1AccessTypeEnum: {
     readonly NUMBER_0: 0;
     readonly NUMBER_1: 1;
     readonly NUMBER_2: 2;
+    readonly NUMBER_3: 3;
 };
 export type UserProjectChangeAccessV1AccessTypeEnum = typeof UserProjectChangeAccessV1AccessTypeEnum[keyof typeof UserProjectChangeAccessV1AccessTypeEnum];
 /**
@@ -297,6 +405,22 @@ export declare const UserProjectDelV1VEnum: {
     readonly _1: "1";
 };
 export type UserProjectDelV1VEnum = typeof UserProjectDelV1VEnum[keyof typeof UserProjectDelV1VEnum];
+/**
+ * @export
+ */
+export declare const UserProjectDeleteMemberV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type UserProjectDeleteMemberV1LanguageEnum = typeof UserProjectDeleteMemberV1LanguageEnum[keyof typeof UserProjectDeleteMemberV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const UserProjectDeleteMemberV1VEnum: {
+    readonly _1: "1";
+};
+export type UserProjectDeleteMemberV1VEnum = typeof UserProjectDeleteMemberV1VEnum[keyof typeof UserProjectDeleteMemberV1VEnum];
 /**
  * @export
  */
@@ -345,6 +469,22 @@ export declare const UserProjectGetUserV1VEnum: {
     readonly _1: "1";
 };
 export type UserProjectGetUserV1VEnum = typeof UserProjectGetUserV1VEnum[keyof typeof UserProjectGetUserV1VEnum];
+/**
+ * @export
+ */
+export declare const UserProjectLeaveV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type UserProjectLeaveV1LanguageEnum = typeof UserProjectLeaveV1LanguageEnum[keyof typeof UserProjectLeaveV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const UserProjectLeaveV1VEnum: {
+    readonly _1: "1";
+};
+export type UserProjectLeaveV1VEnum = typeof UserProjectLeaveV1VEnum[keyof typeof UserProjectLeaveV1VEnum];
 /**
  * @export
  */

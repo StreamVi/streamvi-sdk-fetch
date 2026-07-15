@@ -13,7 +13,24 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlanRestreamItemToJSONTyped = exports.PlanRestreamItemToJSON = exports.PlanRestreamItemFromJSONTyped = exports.PlanRestreamItemFromJSON = exports.instanceOfPlanRestreamItem = void 0;
+exports.PlanRestreamItemToJSONTyped = exports.PlanRestreamItemToJSON = exports.PlanRestreamItemFromJSONTyped = exports.PlanRestreamItemFromJSON = exports.instanceOfPlanRestreamItem = exports.PlanRestreamItemPeriodEnum = exports.PlanRestreamItemTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.PlanRestreamItemTypeEnum = {
+    free: 'free',
+    trial: 'trial',
+    paid_fix: 'paid_fix',
+    paid_flex: 'paid_flex',
+    custom: 'custom'
+};
+/**
+ * @export
+ */
+exports.PlanRestreamItemPeriodEnum = {
+    month: 'month',
+    year: 'year'
+};
 /**
  * Check if a given object implements the PlanRestreamItem interface.
  */
@@ -29,6 +46,14 @@ function instanceOfPlanRestreamItem(value) {
     if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined)
+        return false;
+    if (!('prolongation' in value) || value['prolongation'] === undefined)
+        return false;
+    if (!('title' in value) || value['title'] === undefined)
+        return false;
+    if (!('type' in value) || value['type'] === undefined)
+        return false;
+    if (!('period' in value) || value['period'] === undefined)
         return false;
     return true;
 }
@@ -48,6 +73,10 @@ function PlanRestreamItemFromJSONTyped(json, ignoreDiscriminator) {
         'support_custom_channel': json['support_custom_channel'],
         'date_end': (new Date(json['date_end'])),
         'custom_video': json['custom_video'],
+        'prolongation': json['prolongation'],
+        'title': json['title'],
+        'type': json['type'],
+        'period': json['period'],
     };
 }
 exports.PlanRestreamItemFromJSONTyped = PlanRestreamItemFromJSONTyped;
@@ -66,6 +95,10 @@ function PlanRestreamItemToJSONTyped(value, ignoreDiscriminator = false) {
         'support_custom_channel': value['support_custom_channel'],
         'date_end': ((value['date_end']).toISOString()),
         'custom_video': value['custom_video'],
+        'prolongation': value['prolongation'],
+        'title': value['title'],
+        'type': value['type'],
+        'period': value['period'],
     };
 }
 exports.PlanRestreamItemToJSONTyped = PlanRestreamItemToJSONTyped;

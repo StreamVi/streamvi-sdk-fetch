@@ -19,6 +19,12 @@ import type { RtmpServerLoading } from './RtmpServerLoading';
  */
 export interface RtmpServerStateItem {
     /**
+     * id
+     * @type {number}
+     * @memberof RtmpServerStateItem
+     */
+    id: number;
+    /**
      * City
      * @type {string}
      * @memberof RtmpServerStateItem

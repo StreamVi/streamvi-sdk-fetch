@@ -360,8 +360,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -377,6 +375,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/accept_for_project`,
@@ -432,8 +435,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -453,6 +454,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/accept_for_secret`,
@@ -515,8 +521,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -540,6 +544,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/add_by_email`,
@@ -602,8 +611,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -627,6 +634,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/add_by_id`,
@@ -675,8 +687,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -692,6 +702,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/decline_for_project`,
@@ -747,8 +762,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -768,6 +781,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/decline_for_secret`,
@@ -809,8 +827,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -822,6 +838,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/del`,
@@ -870,8 +891,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -887,6 +906,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/get_for_project`,
@@ -935,8 +959,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -952,6 +974,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/get_for_secret`,
@@ -993,8 +1020,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1006,6 +1031,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/get`,
@@ -1054,8 +1084,6 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1071,6 +1099,11 @@ export class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectC
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_invite/list`,

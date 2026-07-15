@@ -9,12 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { SiteRestreamEventServerResponse } from './SiteRestreamEventServerResponse';
 /**
  *
  * @export
  * @interface SiteRestreamEventResponse
  */
 export interface SiteRestreamEventResponse {
+    /**
+     * Event id
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    id?: string;
     /**
      * Level of event. 'info', 'warning', 'error', 'debug' only. Default is 'info
      * @type {string}
@@ -33,6 +40,24 @@ export interface SiteRestreamEventResponse {
      * @memberof SiteRestreamEventResponse
      */
     created_at: Date;
+    /**
+     * App
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    app: SiteRestreamEventResponseAppEnum;
+    /**
+     * Server location info
+     * @type {SiteRestreamEventServerResponse}
+     * @memberof SiteRestreamEventResponse
+     */
+    server: SiteRestreamEventServerResponse;
+    /**
+     * Platform
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    platform?: string;
 }
 /**
  * @export
@@ -44,6 +69,15 @@ export declare const SiteRestreamEventResponseLevelEnum: {
     readonly error: "error";
 };
 export type SiteRestreamEventResponseLevelEnum = typeof SiteRestreamEventResponseLevelEnum[keyof typeof SiteRestreamEventResponseLevelEnum];
+/**
+ * @export
+ */
+export declare const SiteRestreamEventResponseAppEnum: {
+    readonly live: "live";
+    readonly scheduler: "scheduler";
+    readonly transcoder: "transcoder";
+};
+export type SiteRestreamEventResponseAppEnum = typeof SiteRestreamEventResponseAppEnum[keyof typeof SiteRestreamEventResponseAppEnum];
 /**
  * Check if a given object implements the SiteRestreamEventResponse interface.
  */

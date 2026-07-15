@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetTokenBroadcastV1VEnum = exports.GetTokenBroadcastV1LanguageEnum = exports.CentrifugeProjectV1VEnum = exports.CentrifugeProjectV1LanguageEnum = exports.CentrifugeAuthV2VEnum = exports.CentrifugeApi = void 0;
+exports.GetTokenBroadcastV1VEnum = exports.GetTokenBroadcastV1LanguageEnum = exports.CentrifugeProjectV1VEnum = exports.CentrifugeProjectV1LanguageEnum = exports.CentrifugeConnectionTokenV1VEnum = exports.CentrifugeConnectionTokenV1LanguageEnum = exports.CentrifugeChannelsCatalogV1VEnum = exports.CentrifugeChannelsCatalogV1LanguageEnum = exports.CentrifugeChannelTokenV1VEnum = exports.CentrifugeChannelTokenV1LanguageEnum = exports.CentrifugeAuthV2VEnum = exports.CentrifugeApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,7 +44,9 @@ const index_1 = require("../models/index");
  */
 class CentrifugeApi extends runtime.BaseAPI {
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     async centrifugeAuthV2Raw(requestParameters, initOverrides) {
         if (requestParameters['project_id'] == null) {
@@ -54,13 +56,14 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '2';
-        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
         const response = await this.request({
             path: `/method/centrifuge`,
             method: 'GET',
@@ -70,15 +73,144 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteAuthCentrifugeResponseFromJSON)(jsonValue));
     }
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     async centrifugeAuthV2(requestParameters, initOverrides) {
         const response = await this.centrifugeAuthV2Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get token for connect to centrifuge for channel
+     */
+    async centrifugeChannelTokenV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling centrifugeChannelTokenV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling centrifugeChannelTokenV1().');
+        }
+        if (requestParameters['channel_name'] == null) {
+            throw new runtime.RequiredError('channel_name', 'Required parameter "channel_name" was null or undefined when calling centrifugeChannelTokenV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        if (requestParameters['channel_name'] != null) {
+            queryParameters['channel_name'] = requestParameters['channel_name'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+        const response = await this.request({
+            path: `/method/centrifuge/auth/channel`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AuthCentrifugoChannelResponseFromJSON)(jsonValue));
+    }
+    /**
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get token for connect to centrifuge for channel
+     */
+    async centrifugeChannelTokenV1(requestParameters, initOverrides) {
+        const response = await this.centrifugeChannelTokenV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    async centrifugeChannelsCatalogV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling centrifugeChannelsCatalogV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+        const response = await this.request({
+            path: `/method/centrifuge/channels`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CentrifugoChannelsCatalogResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    async centrifugeChannelsCatalogV1(requestParameters, initOverrides) {
+        const response = await this.centrifugeChannelsCatalogV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    async centrifugeConnectionTokenV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling centrifugeConnectionTokenV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling centrifugeConnectionTokenV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+        const response = await this.request({
+            path: `/method/centrifuge/auth/connect`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AuthCentrifugoConnectResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    async centrifugeConnectionTokenV1(requestParameters, initOverrides) {
+        const response = await this.centrifugeConnectionTokenV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     async centrifugeProjectV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -91,9 +223,6 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -101,6 +230,10 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
         const response = await this.request({
             path: `/method/centrifuge/auth/project`,
             method: 'GET',
@@ -110,16 +243,18 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteAuthCentrifugeResponseFromJSON)(jsonValue));
     }
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     async centrifugeProjectV1(requestParameters, initOverrides) {
         const response = await this.centrifugeProjectV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     async getTokenBroadcastV1Raw(requestParameters, initOverrides) {
         if (requestParameters['broadcast_id'] == null) {
@@ -141,13 +276,14 @@ class CentrifugeApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
         const response = await this.request({
             path: `/method/centrifuge/token/broadcast`,
             method: 'GET',
@@ -157,8 +293,9 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteAuthCentrifugeResponseFromJSON)(jsonValue));
     }
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     async getTokenBroadcastV1(requestParameters, initOverrides) {
         const response = await this.getTokenBroadcastV1Raw(requestParameters, initOverrides);
@@ -171,6 +308,48 @@ exports.CentrifugeApi = CentrifugeApi;
  */
 exports.CentrifugeAuthV2VEnum = {
     _2: '2'
+};
+/**
+ * @export
+ */
+exports.CentrifugeChannelTokenV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.CentrifugeChannelTokenV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.CentrifugeChannelsCatalogV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.CentrifugeChannelsCatalogV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.CentrifugeConnectionTokenV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.CentrifugeConnectionTokenV1VEnum = {
+    _1: '1'
 };
 /**
  * @export

@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -73,6 +74,30 @@ export interface PaySystemListResponse {
      * @memberof PaySystemListResponse
      */
     description: string;
+    /**
+     * Crypto payment provider
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_provider?: PaySystemListResponseCryptoProviderEnum | null;
+    /**
+     * Crypto chain family
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_chain_family?: PaySystemListResponseCryptoChainFamilyEnum | null;
+    /**
+     * Crypto asset type
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_asset_type?: PaySystemListResponseCryptoAssetTypeEnum | null;
+    /**
+     * Crypto token symbol
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_token_symbol?: string | null;
 }
 
 
@@ -84,6 +109,36 @@ export const PaySystemListResponseCurrencyEnum = {
     usd: 'usd'
 } as const;
 export type PaySystemListResponseCurrencyEnum = typeof PaySystemListResponseCurrencyEnum[keyof typeof PaySystemListResponseCurrencyEnum];
+
+/**
+ * @export
+ */
+export const PaySystemListResponseCryptoProviderEnum = {
+    walletconnect: 'walletconnect',
+    tonconnect: 'tonconnect',
+    tron: 'tron'
+} as const;
+export type PaySystemListResponseCryptoProviderEnum = typeof PaySystemListResponseCryptoProviderEnum[keyof typeof PaySystemListResponseCryptoProviderEnum];
+
+/**
+ * @export
+ */
+export const PaySystemListResponseCryptoChainFamilyEnum = {
+    evm: 'evm',
+    ton: 'ton',
+    tron: 'tron'
+} as const;
+export type PaySystemListResponseCryptoChainFamilyEnum = typeof PaySystemListResponseCryptoChainFamilyEnum[keyof typeof PaySystemListResponseCryptoChainFamilyEnum];
+
+/**
+ * @export
+ */
+export const PaySystemListResponseCryptoAssetTypeEnum = {
+    erc20: 'erc20',
+    native: 'native',
+    trc20: 'trc20'
+} as const;
+export type PaySystemListResponseCryptoAssetTypeEnum = typeof PaySystemListResponseCryptoAssetTypeEnum[keyof typeof PaySystemListResponseCryptoAssetTypeEnum];
 
 
 /**
@@ -121,6 +176,10 @@ export function PaySystemListResponseFromJSONTyped(json: any, ignoreDiscriminato
         'topup': json['topup'],
         'recurrent': json['recurrent'],
         'description': json['description'],
+        'crypto_provider': json['crypto_provider'] == null ? undefined : json['crypto_provider'],
+        'crypto_chain_family': json['crypto_chain_family'] == null ? undefined : json['crypto_chain_family'],
+        'crypto_asset_type': json['crypto_asset_type'] == null ? undefined : json['crypto_asset_type'],
+        'crypto_token_symbol': json['crypto_token_symbol'] == null ? undefined : json['crypto_token_symbol'],
     };
 }
 
@@ -144,6 +203,10 @@ export function PaySystemListResponseToJSONTyped(value?: PaySystemListResponse |
         'topup': value['topup'],
         'recurrent': value['recurrent'],
         'description': value['description'],
+        'crypto_provider': value['crypto_provider'],
+        'crypto_chain_family': value['crypto_chain_family'],
+        'crypto_asset_type': value['crypto_asset_type'],
+        'crypto_token_symbol': value['crypto_token_symbol'],
     };
 }
 

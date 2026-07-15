@@ -21,6 +21,7 @@ import {
     PlanRestreamDiscountResponseToJSONTyped,
 } from './PlanRestreamDiscountResponse';
 
+
 /**
  * 
  * @export
@@ -63,6 +64,18 @@ export interface PlanRestreamResponse {
      * @memberof PlanRestreamResponse
      */
     type: PlanRestreamResponseTypeEnum;
+    /**
+     * Available for purchase
+     * @type {boolean}
+     * @memberof PlanRestreamResponse
+     */
+    purchase_available: boolean;
+    /**
+     * Available for auto prolongation
+     * @type {boolean}
+     * @memberof PlanRestreamResponse
+     */
+    prolongation_available: boolean;
     /**
      * Price (RUB)
      * @type {number}
@@ -166,6 +179,12 @@ export interface PlanRestreamResponse {
      */
     support_custom_channel: boolean;
     /**
+     * Custom video
+     * @type {number}
+     * @memberof PlanRestreamResponse
+     */
+    custom_video: number;
+    /**
      * Discount
      * @type {PlanRestreamDiscountResponse}
      * @memberof PlanRestreamResponse
@@ -179,6 +198,7 @@ export interface PlanRestreamResponse {
  */
 export const PlanRestreamResponseTypeEnum = {
     free: 'free',
+    trial: 'trial',
     paid_fix: 'paid_fix',
     paid_flex: 'paid_flex',
     custom: 'custom'
@@ -218,6 +238,8 @@ export function instanceOfPlanRestreamResponse(value: object): value is PlanRest
     if (!('count_channel_min' in value) || value['count_channel_min'] === undefined) return false;
     if (!('count_channel_max' in value) || value['count_channel_max'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('purchase_available' in value) || value['purchase_available'] === undefined) return false;
+    if (!('prolongation_available' in value) || value['prolongation_available'] === undefined) return false;
     if (!('price_rub' in value) || value['price_rub'] === undefined) return false;
     if (!('price_usd' in value) || value['price_usd'] === undefined) return false;
     if (!('bitrate_max' in value) || value['bitrate_max'] === undefined) return false;
@@ -235,6 +257,7 @@ export function instanceOfPlanRestreamResponse(value: object): value is PlanRest
     if (!('pull_link_limit' in value) || value['pull_link_limit'] === undefined) return false;
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
+    if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
     if (!('discount' in value) || value['discount'] === undefined) return false;
     return true;
 }
@@ -255,6 +278,8 @@ export function PlanRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
         'count_channel_min': json['count_channel_min'],
         'count_channel_max': json['count_channel_max'],
         'type': json['type'],
+        'purchase_available': json['purchase_available'],
+        'prolongation_available': json['prolongation_available'],
         'price_rub': json['price_rub'],
         'price_usd': json['price_usd'],
         'bitrate_max': json['bitrate_max'],
@@ -272,6 +297,7 @@ export function PlanRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
         'pull_link_limit': json['pull_link_limit'],
         'index': json['index'],
         'support_custom_channel': json['support_custom_channel'],
+        'custom_video': json['custom_video'],
         'discount': PlanRestreamDiscountResponseFromJSON(json['discount']),
     };
 }
@@ -293,6 +319,8 @@ export function PlanRestreamResponseToJSONTyped(value?: PlanRestreamResponse | n
         'count_channel_min': value['count_channel_min'],
         'count_channel_max': value['count_channel_max'],
         'type': value['type'],
+        'purchase_available': value['purchase_available'],
+        'prolongation_available': value['prolongation_available'],
         'price_rub': value['price_rub'],
         'price_usd': value['price_usd'],
         'bitrate_max': value['bitrate_max'],
@@ -310,6 +338,7 @@ export function PlanRestreamResponseToJSONTyped(value?: PlanRestreamResponse | n
         'pull_link_limit': value['pull_link_limit'],
         'index': value['index'],
         'support_custom_channel': value['support_custom_channel'],
+        'custom_video': value['custom_video'],
         'discount': PlanRestreamDiscountResponseToJSON(value['discount']),
     };
 }

@@ -20,7 +20,8 @@ exports.ProjectInfoAccessResponseToJSONTyped = exports.ProjectInfoAccessResponse
 exports.ProjectInfoAccessResponseAccessTypeEnum = {
     NUMBER_0: 0,
     NUMBER_1: 1,
-    NUMBER_2: 2
+    NUMBER_2: 2,
+    NUMBER_3: 3
 };
 /**
  * Check if a given object implements the ProjectInfoAccessResponse interface.

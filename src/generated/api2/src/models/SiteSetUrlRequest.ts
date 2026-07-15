@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -44,7 +45,7 @@ export interface SiteSetUrlRequest {
      */
     channel_id: number;
     /**
-     * 
+     * Stream link
      * @type {string}
      * @memberof SiteSetUrlRequest
      */

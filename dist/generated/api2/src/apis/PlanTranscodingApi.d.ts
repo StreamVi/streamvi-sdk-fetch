@@ -37,6 +37,12 @@ export interface PlanTranscodingListV1Request {
     language: PlanTranscodingListV1LanguageEnum;
     v?: PlanTranscodingListV1VEnum;
 }
+export interface PlanTranscodingSetProlongationV1Request {
+    language: PlanTranscodingSetProlongationV1LanguageEnum;
+    project_id: number;
+    enabled: boolean;
+    v?: PlanTranscodingSetProlongationV1VEnum;
+}
 export interface PlanTranscodingTariffV1Request {
     language: PlanTranscodingTariffV1LanguageEnum;
     project_id: number;
@@ -127,6 +133,22 @@ export interface PlanTranscodingApiInterface {
     planTranscodingListV1(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingResponseDto>;
     /**
      *
+     * @summary Set transcoding tariff auto prolongation
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {boolean} enabled Auto prolongation enabled
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlanTranscodingApiInterface
+     */
+    planTranscodingSetProlongationV1Raw(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set transcoding tariff auto prolongation
+     */
+    planTranscodingSetProlongationV1(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
@@ -185,6 +207,14 @@ export declare class PlanTranscodingApi extends runtime.BaseAPI implements PlanT
      * Get list of transcoding tariffs
      */
     planTranscodingListV1(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingResponseDto>;
+    /**
+     * Set transcoding tariff auto prolongation
+     */
+    planTranscodingSetProlongationV1Raw(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set transcoding tariff auto prolongation
+     */
+    planTranscodingSetProlongationV1(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get tariff for project
      */
@@ -282,6 +312,22 @@ export declare const PlanTranscodingListV1VEnum: {
     readonly _1: "1";
 };
 export type PlanTranscodingListV1VEnum = typeof PlanTranscodingListV1VEnum[keyof typeof PlanTranscodingListV1VEnum];
+/**
+ * @export
+ */
+export declare const PlanTranscodingSetProlongationV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type PlanTranscodingSetProlongationV1LanguageEnum = typeof PlanTranscodingSetProlongationV1LanguageEnum[keyof typeof PlanTranscodingSetProlongationV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const PlanTranscodingSetProlongationV1VEnum: {
+    readonly _1: "1";
+};
+export type PlanTranscodingSetProlongationV1VEnum = typeof PlanTranscodingSetProlongationV1VEnum[keyof typeof PlanTranscodingSetProlongationV1VEnum];
 /**
  * @export
  */

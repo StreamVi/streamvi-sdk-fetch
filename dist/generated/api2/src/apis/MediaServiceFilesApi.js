@@ -53,6 +53,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/media-service-files/cancel`,
             method: 'POST',
@@ -83,9 +87,6 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -93,6 +94,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/media-service-files/add`,
             method: 'POST',
@@ -118,6 +123,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/media-service-files/delete`,
             method: 'POST',
@@ -151,9 +160,6 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -164,6 +170,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['media_id'] = requestParameters['media_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
         const response = await this.request({
             path: `/method/media-service-files/get`,
             method: 'GET',
@@ -193,9 +203,6 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -203,6 +210,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
         const response = await this.request({
             path: `/method/media-service-files/list`,
             method: 'GET',
@@ -225,6 +236,9 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling mediaServiceFilesSiteSessionV1().');
         }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling mediaServiceFilesSiteSessionV1().');
+        }
         if (requestParameters['media_id'] == null) {
             throw new runtime.RequiredError('media_id', 'Required parameter "media_id" was null or undefined when calling mediaServiceFilesSiteSessionV1().');
         }
@@ -232,16 +246,20 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
         if (requestParameters['media_id'] != null) {
             queryParameters['media_id'] = requestParameters['media_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
         const response = await this.request({
             path: `/method/media-service-files/session`,
             method: 'GET',
@@ -267,6 +285,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/media-service-files/set`,
             method: 'POST',
@@ -293,6 +315,10 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/media-service-files/update`,
             method: 'POST',

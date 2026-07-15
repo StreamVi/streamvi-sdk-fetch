@@ -179,8 +179,6 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -192,6 +190,11 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/notify_user/del_mobile_token`,
@@ -233,8 +236,6 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -246,6 +247,11 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+        }
 
         const response = await this.request({
             path: `/method/notify_user/screen`,
@@ -280,8 +286,6 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['project_id'] != null) {
@@ -289,6 +293,11 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+        }
 
         const response = await this.request({
             path: `/method/notify_user/setting`,
@@ -323,8 +332,6 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['project_id'] != null) {
@@ -332,6 +339,11 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/notify_user/screen`,
@@ -366,13 +378,16 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/notify_user/setting`,

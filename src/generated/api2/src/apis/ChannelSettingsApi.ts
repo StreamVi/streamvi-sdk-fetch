@@ -18,10 +18,12 @@ import type {
   ErrorResponse,
   ListOfPlaylistItemResponse,
   ListOfSitePlannedResponse,
+  SiteBulkUpdateChannelRequest,
   SiteChannelStatusResponse,
   SitePlannedResponse,
   SiteSetNameRequest,
   SiteSetPlannedRequest,
+  SiteSetSrtUrlRequest,
   SiteSetTranscoderRequest,
   SiteSetUrlRequest,
   SiteUpdateChatTelegramRequest,
@@ -45,6 +47,8 @@ import {
     ListOfPlaylistItemResponseToJSON,
     ListOfSitePlannedResponseFromJSON,
     ListOfSitePlannedResponseToJSON,
+    SiteBulkUpdateChannelRequestFromJSON,
+    SiteBulkUpdateChannelRequestToJSON,
     SiteChannelStatusResponseFromJSON,
     SiteChannelStatusResponseToJSON,
     SitePlannedResponseFromJSON,
@@ -53,6 +57,8 @@ import {
     SiteSetNameRequestToJSON,
     SiteSetPlannedRequestFromJSON,
     SiteSetPlannedRequestToJSON,
+    SiteSetSrtUrlRequestFromJSON,
+    SiteSetSrtUrlRequestToJSON,
     SiteSetTranscoderRequestFromJSON,
     SiteSetTranscoderRequestToJSON,
     SiteSetUrlRequestFromJSON,
@@ -167,12 +173,27 @@ export interface ChannelOptionsUpdatePlannedV1Request {
     SiteSetPlannedRequest: SiteSetPlannedRequest;
 }
 
+export interface ChannelSettingBulkUpdateV1Request {
+    SiteBulkUpdateChannelRequest: SiteBulkUpdateChannelRequest;
+}
+
+export interface ChannelSettingGetStatusV1Request {
+    language: ChannelSettingGetStatusV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    v?: ChannelSettingGetStatusV1VEnum;
+}
+
 export interface ChannelSettingSetNameV1Request {
     SiteSetNameRequest: SiteSetNameRequest;
 }
 
 export interface ChannelSettingUpdateRtmpV1Request {
     SiteSetUrlRequest: SiteSetUrlRequest;
+}
+
+export interface ChannelSettingUpdateSrtUrlV1Request {
+    SiteSetSrtUrlRequest: SiteSetSrtUrlRequest;
 }
 
 export interface ChannelSettingUpdateTokenV1Request {
@@ -451,17 +472,36 @@ export interface ChannelSettingsApiInterface {
 
     /**
      * 
-     * @summary Get status platform
+     * @summary Bulk update channel title and description. Global settings.
+     * @param {SiteBulkUpdateChannelRequest} SiteBulkUpdateChannelRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
      */
-    channelSettingGetStatusV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
+    channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Bulk update channel title and description. Global settings.
+     */
+    channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Get status platform
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
 
     /**
      * Get status platform
      */
-    channelSettingGetStatusV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
+    channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
 
     /**
      * 
@@ -492,6 +532,21 @@ export interface ChannelSettingsApiInterface {
      * Set rtmp url from channel. Global settings.
      */
     channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Set srt url from channel. Global settings.
+     * @param {SiteSetSrtUrlRequest} SiteSetSrtUrlRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
      * 
@@ -582,8 +637,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -599,6 +652,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/setting`,
@@ -647,8 +705,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -664,6 +720,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/init`,
@@ -712,8 +773,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -729,6 +788,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/disconnect`,
@@ -784,8 +848,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -803,6 +865,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/setting`,
@@ -852,8 +919,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -869,6 +934,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/posts`,
@@ -904,6 +974,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/setTelegram`,
@@ -953,8 +1028,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -970,6 +1043,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/options/getPlanned`,
@@ -1018,8 +1096,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1035,6 +1111,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/options/getPlaylist`,
@@ -1070,6 +1151,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/options/setOk`,
@@ -1107,6 +1193,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/channel_settings/options/setTrovo`,
             method: 'POST',
@@ -1142,6 +1233,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/options/setTwitch`,
@@ -1179,6 +1275,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/channel_settings/options/setVk`,
             method: 'POST',
@@ -1214,6 +1315,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/options/setVkVideoLive`,
@@ -1251,6 +1357,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/channel_settings/options/setYoutube`,
             method: 'POST',
@@ -1287,6 +1398,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/channel_settings/options/setPlanned`,
             method: 'POST',
@@ -1307,12 +1423,95 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
-     * Get status platform
+     * Bulk update channel title and description. Global settings.
      */
-    async channelSettingGetStatusV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>> {
+    async channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['SiteBulkUpdateChannelRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SiteBulkUpdateChannelRequest',
+                'Required parameter "SiteBulkUpdateChannelRequest" was null or undefined when calling channelSettingBulkUpdateV1().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel_settings/bulkUpdate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SiteBulkUpdateChannelRequestToJSON(requestParameters['SiteBulkUpdateChannelRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Bulk update channel title and description. Global settings.
+     */
+    async channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.channelSettingBulkUpdateV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get status platform
+     */
+    async channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling channelSettingGetStatusV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling channelSettingGetStatusV1().'
+            );
+        }
+
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError(
+                'channel_id',
+                'Required parameter "channel_id" was null or undefined when calling channelSettingGetStatusV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/getStatus`,
@@ -1327,8 +1526,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     /**
      * Get status platform
      */
-    async channelSettingGetStatusV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse> {
-        const response = await this.channelSettingGetStatusV1Raw(initOverrides);
+    async channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse> {
+        const response = await this.channelSettingGetStatusV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1348,6 +1547,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/setName`,
@@ -1385,6 +1589,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel_settings/setRtmp`,
             method: 'POST',
@@ -1401,6 +1610,47 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
      */
     async channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.channelSettingUpdateRtmpV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    async channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['SiteSetSrtUrlRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SiteSetSrtUrlRequest',
+                'Required parameter "SiteSetSrtUrlRequest" was null or undefined when calling channelSettingUpdateSrtUrlV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel_settings/setSrt`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SiteSetSrtUrlRequestToJSON(requestParameters['SiteSetSrtUrlRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    async channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.channelSettingUpdateSrtUrlV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1440,8 +1690,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1461,6 +1709,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/update-token`,
@@ -1495,6 +1748,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/setTranscoder`,
@@ -1551,8 +1809,6 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1572,6 +1828,11 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel_settings/chat/telegram/posts/get-by-filter`,
@@ -1705,6 +1966,22 @@ export const ChannelOptionsGetPlayListV1VEnum = {
     _1: '1'
 } as const;
 export type ChannelOptionsGetPlayListV1VEnum = typeof ChannelOptionsGetPlayListV1VEnum[keyof typeof ChannelOptionsGetPlayListV1VEnum];
+/**
+ * @export
+ */
+export const ChannelSettingGetStatusV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type ChannelSettingGetStatusV1LanguageEnum = typeof ChannelSettingGetStatusV1LanguageEnum[keyof typeof ChannelSettingGetStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export const ChannelSettingGetStatusV1VEnum = {
+    _1: '1'
+} as const;
+export type ChannelSettingGetStatusV1VEnum = typeof ChannelSettingGetStatusV1VEnum[keyof typeof ChannelSettingGetStatusV1VEnum];
 /**
  * @export
  */

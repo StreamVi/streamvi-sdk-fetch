@@ -400,8 +400,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -413,6 +411,11 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
 
         const response = await this.request({
             path: `/method/auth/app/code`,
@@ -454,8 +457,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -500,8 +501,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -509,6 +508,11 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
 
         const response = await this.request({
             path: `/method/auth/connect-telegram`,
@@ -550,8 +554,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -571,6 +573,11 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
 
         const response = await this.request({
             path: `/method/auth/connect`,
@@ -611,8 +618,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -624,6 +629,11 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
 
         const response = await this.request({
             path: `/method/auth/disconnect`,
@@ -701,8 +711,6 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

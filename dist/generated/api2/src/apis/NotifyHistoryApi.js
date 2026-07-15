@@ -54,9 +54,6 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -85,6 +82,10 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['status_read'] = requestParameters['status_read'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+        }
         const response = await this.request({
             path: `/method/notify_history/list`,
             method: 'GET',
@@ -111,13 +112,14 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+        }
         const response = await this.request({
             path: `/method/notify_history/get_status`,
             method: 'GET',
@@ -144,13 +146,14 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['_id'] != null) {
             queryParameters['_id'] = requestParameters['_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+        }
         const response = await this.request({
             path: `/method/notify_history/get`,
             method: 'GET',
@@ -180,14 +183,15 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/notify_history/read`,
             method: 'PUT',
@@ -221,9 +225,6 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['notify_history_id'] != null) {
             queryParameters['notify_history_id'] = requestParameters['notify_history_id'];
         }
@@ -234,6 +235,10 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['group_id'] = requestParameters['group_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/notify_history/run_action`,
             method: 'POST',
@@ -255,6 +260,10 @@ class NotifyHistoryApi extends runtime.BaseAPI {
     async notifyHistorySetAllCabinetReadV1Raw(initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/notify_history/set_all_cabinet_read`,
             method: 'POST',
@@ -293,6 +302,7 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     high_bitrate: 'high_bitrate',
     request_access_channel: 'request_access_channel',
     request_access_project: 'request_access_project',
+    request_access_integration: 'request_access_integration',
     promocode_test: 'promocode_test',
     stream_test: 'stream_test',
     plan_restream_expires: 'plan_restream_expires',
@@ -304,6 +314,7 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     plan_storage_expires: 'plan_storage_expires',
     plan_storage_expired: 'plan_storage_expired',
     plan_storage_renewed: 'plan_storage_renewed',
+    compensation_received: 'compensation_received',
     broadcast_unsupported_codec: 'broadcast_unsupported_codec',
     broadcast_unsupported_codec_screen: 'broadcast_unsupported_codec_screen',
     broadcast_bitrate_exceeded_screen: 'broadcast_bitrate_exceeded_screen',
@@ -381,7 +392,17 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     stop_channel_error: 'stop_channel_error',
     broadcast_user_action_stop: 'broadcast_user_action_stop',
     completed_api_channel_error: 'completed_api_channel_error',
-    transcoder_twitch_tracks: 'transcoder_twitch_tracks'
+    transcoder_twitch_tracks: 'transcoder_twitch_tracks',
+    plan_webinar_expired: 'plan_webinar_expired',
+    plan_webinar_renewed: 'plan_webinar_renewed',
+    plan_webinar_expires: 'plan_webinar_expires',
+    payout_created: 'payout_created',
+    payout_status_execution: 'payout_status_execution',
+    payout_status_success: 'payout_status_success',
+    payout_status_canceled: 'payout_status_canceled',
+    payout_status_error: 'payout_status_error',
+    plan_trial_expires: 'plan_trial_expires',
+    plan_trial_expired: 'plan_trial_expired'
 };
 /**
  * @export

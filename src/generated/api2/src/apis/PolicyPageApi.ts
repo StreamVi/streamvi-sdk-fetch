@@ -105,8 +105,6 @@ export class PolicyPageApi extends runtime.BaseAPI implements PolicyPageApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -151,8 +149,6 @@ export class PolicyPageApi extends runtime.BaseAPI implements PolicyPageApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

@@ -21,6 +21,7 @@ import {
     PlanTranscodingDiscountResponseToJSONTyped,
 } from './PlanTranscodingDiscountResponse';
 
+
 /**
  * 
  * @export
@@ -106,9 +107,7 @@ export interface PlanTranscodingResponse {
  * @export
  */
 export const PlanTranscodingResponseTypeEnum = {
-    free: 'free',
     paid_month: 'paid_month',
-    paid_minute: 'paid_minute',
     custom: 'custom'
 } as const;
 export type PlanTranscodingResponseTypeEnum = typeof PlanTranscodingResponseTypeEnum[keyof typeof PlanTranscodingResponseTypeEnum];

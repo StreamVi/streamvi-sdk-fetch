@@ -13,7 +13,31 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentCreateResponseToJSONTyped = exports.PaymentCreateResponseToJSON = exports.PaymentCreateResponseFromJSONTyped = exports.PaymentCreateResponseFromJSON = exports.instanceOfPaymentCreateResponse = void 0;
+exports.PaymentCreateResponseToJSONTyped = exports.PaymentCreateResponseToJSON = exports.PaymentCreateResponseFromJSONTyped = exports.PaymentCreateResponseFromJSON = exports.instanceOfPaymentCreateResponse = exports.PaymentCreateResponseCryptoAssetTypeEnum = exports.PaymentCreateResponseCryptoChainFamilyEnum = exports.PaymentCreateResponseCryptoProviderEnum = void 0;
+/**
+ * @export
+ */
+exports.PaymentCreateResponseCryptoProviderEnum = {
+    walletconnect: 'walletconnect',
+    tonconnect: 'tonconnect',
+    tron: 'tron'
+};
+/**
+ * @export
+ */
+exports.PaymentCreateResponseCryptoChainFamilyEnum = {
+    evm: 'evm',
+    ton: 'ton',
+    tron: 'tron'
+};
+/**
+ * @export
+ */
+exports.PaymentCreateResponseCryptoAssetTypeEnum = {
+    erc20: 'erc20',
+    native: 'native',
+    trc20: 'trc20'
+};
 /**
  * Check if a given object implements the PaymentCreateResponse interface.
  */
@@ -38,6 +62,10 @@ function PaymentCreateResponseFromJSONTyped(json, ignoreDiscriminator) {
         'pay_name': json['pay_name'],
         'pay_id': json['pay_id'] == null ? undefined : json['pay_id'],
         'pay_key': json['pay_key'] == null ? undefined : json['pay_key'],
+        'crypto_provider': json['crypto_provider'] == null ? undefined : json['crypto_provider'],
+        'crypto_chain_family': json['crypto_chain_family'] == null ? undefined : json['crypto_chain_family'],
+        'crypto_asset_type': json['crypto_asset_type'] == null ? undefined : json['crypto_asset_type'],
+        'crypto_token_symbol': json['crypto_token_symbol'] == null ? undefined : json['crypto_token_symbol'],
     };
 }
 exports.PaymentCreateResponseFromJSONTyped = PaymentCreateResponseFromJSONTyped;
@@ -54,6 +82,10 @@ function PaymentCreateResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'pay_name': value['pay_name'],
         'pay_id': value['pay_id'],
         'pay_key': value['pay_key'],
+        'crypto_provider': value['crypto_provider'],
+        'crypto_chain_family': value['crypto_chain_family'],
+        'crypto_asset_type': value['crypto_asset_type'],
+        'crypto_token_symbol': value['crypto_token_symbol'],
     };
 }
 exports.PaymentCreateResponseToJSONTyped = PaymentCreateResponseToJSONTyped;

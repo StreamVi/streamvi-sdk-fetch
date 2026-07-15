@@ -13,7 +13,21 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlanTranscodingItemToJSONTyped = exports.PlanTranscodingItemToJSON = exports.PlanTranscodingItemFromJSONTyped = exports.PlanTranscodingItemFromJSON = exports.instanceOfPlanTranscodingItem = void 0;
+exports.PlanTranscodingItemToJSONTyped = exports.PlanTranscodingItemToJSON = exports.PlanTranscodingItemFromJSONTyped = exports.PlanTranscodingItemFromJSON = exports.instanceOfPlanTranscodingItem = exports.PlanTranscodingItemPeriodEnum = exports.PlanTranscodingItemTypeEnum = void 0;
+/**
+ * @export
+ */
+exports.PlanTranscodingItemTypeEnum = {
+    paid_month: 'paid_month',
+    custom: 'custom'
+};
+/**
+ * @export
+ */
+exports.PlanTranscodingItemPeriodEnum = {
+    month: 'month',
+    year: 'year'
+};
 /**
  * Check if a given object implements the PlanTranscodingItem interface.
  */
@@ -25,6 +39,10 @@ function instanceOfPlanTranscodingItem(value) {
     if (!('date_end' in value) || value['date_end'] === undefined)
         return false;
     if (!('title' in value) || value['title'] === undefined)
+        return false;
+    if (!('prolongation' in value) || value['prolongation'] === undefined)
+        return false;
+    if (!('period' in value) || value['period'] === undefined)
         return false;
     return true;
 }
@@ -42,7 +60,9 @@ function PlanTranscodingItemFromJSONTyped(json, ignoreDiscriminator) {
         'count': json['count'],
         'date_end': (new Date(json['date_end'])),
         'title': json['title'],
-        'prolongation': json['prolongation'] == null ? undefined : json['prolongation'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'prolongation': json['prolongation'],
+        'period': json['period'],
     };
 }
 exports.PlanTranscodingItemFromJSONTyped = PlanTranscodingItemFromJSONTyped;
@@ -59,7 +79,9 @@ function PlanTranscodingItemToJSONTyped(value, ignoreDiscriminator = false) {
         'count': value['count'],
         'date_end': ((value['date_end']).toISOString()),
         'title': value['title'],
+        'type': value['type'],
         'prolongation': value['prolongation'],
+        'period': value['period'],
     };
 }
 exports.PlanTranscodingItemToJSONTyped = PlanTranscodingItemToJSONTyped;

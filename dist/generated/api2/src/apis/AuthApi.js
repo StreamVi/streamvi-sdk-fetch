@@ -129,9 +129,6 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -139,6 +136,10 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['app'] = requestParameters['app'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
         const response = await this.request({
             path: `/method/auth/app/code`,
             method: 'GET',
@@ -167,9 +168,6 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -203,13 +201,14 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
         const response = await this.request({
             path: `/method/auth/connect-telegram`,
             method: 'POST',
@@ -239,9 +238,6 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -255,6 +251,10 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['redirect'] = requestParameters['redirect'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
         const response = await this.request({
             path: `/method/auth/connect`,
             method: 'GET',
@@ -283,9 +283,6 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -293,6 +290,10 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['social_id'] = requestParameters['social_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
         const response = await this.request({
             path: `/method/auth/disconnect`,
             method: 'GET',
@@ -347,9 +348,6 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];

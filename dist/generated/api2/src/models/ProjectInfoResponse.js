@@ -18,6 +18,7 @@ const ProjectInfoAccessResponse_1 = require("./ProjectInfoAccessResponse");
 const ProjectInfoStorageResponse_1 = require("./ProjectInfoStorageResponse");
 const ProjectInfoTranscodingResponse_1 = require("./ProjectInfoTranscodingResponse");
 const ProjectInfoDataResponse_1 = require("./ProjectInfoDataResponse");
+const ProjectInfoWebinarResponse_1 = require("./ProjectInfoWebinarResponse");
 const ProjectInfoRestreamResponse_1 = require("./ProjectInfoRestreamResponse");
 /**
  * @export
@@ -43,8 +44,6 @@ function instanceOfProjectInfoResponse(value) {
         return false;
     if (!('data' in value) || value['data'] === undefined)
         return false;
-    if (!('restream' in value) || value['restream'] === undefined)
-        return false;
     if (!('access' in value) || value['access'] === undefined)
         return false;
     return true;
@@ -62,9 +61,10 @@ function ProjectInfoResponseFromJSONTyped(json, ignoreDiscriminator) {
         'v': json['v'],
         'language': json['language'],
         'data': (0, ProjectInfoDataResponse_1.ProjectInfoDataResponseFromJSON)(json['data']),
-        'restream': (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseFromJSON)(json['restream']),
+        'restream': json['restream'] == null ? undefined : (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseFromJSON)(json['restream']),
         'transcoding': json['transcoding'] == null ? undefined : (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseFromJSON)(json['transcoding']),
         'storage': json['storage'] == null ? undefined : (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseFromJSON)(json['storage']),
+        'webinar': json['webinar'] == null ? undefined : (0, ProjectInfoWebinarResponse_1.ProjectInfoWebinarResponseFromJSON)(json['webinar']),
         'access': (0, ProjectInfoAccessResponse_1.ProjectInfoAccessResponseFromJSON)(json['access']),
     };
 }
@@ -84,6 +84,7 @@ function ProjectInfoResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'restream': (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseToJSON)(value['restream']),
         'transcoding': (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseToJSON)(value['transcoding']),
         'storage': (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseToJSON)(value['storage']),
+        'webinar': (0, ProjectInfoWebinarResponse_1.ProjectInfoWebinarResponseToJSON)(value['webinar']),
         'access': (0, ProjectInfoAccessResponse_1.ProjectInfoAccessResponseToJSON)(value['access']),
     };
 }

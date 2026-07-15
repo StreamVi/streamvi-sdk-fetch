@@ -58,6 +58,11 @@ export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
+
         const response = await this.request({
             path: `/method/socials/list`,
             method: 'GET',

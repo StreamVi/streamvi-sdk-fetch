@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RtmpServerStateV1VEnum = exports.RtmpServerStateV1IntervalEnum = exports.RtmpServerStateV1LanguageEnum = exports.RtmpServerListV2VEnum = exports.RtmpServerListV2IntervalEnum = exports.RtmpServerListV2LanguageEnum = exports.RtmpServerGraphV1VEnum = exports.RtmpServerGraphV1TypeEnum = exports.RtmpServerGraphV1IntervalEnum = exports.RtmpServerGraphV1LanguageEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = exports.RtmpServerApi = void 0;
+exports.RtmpServerStateV1VEnum = exports.RtmpServerStateV1IntervalEnum = exports.RtmpServerStateV1LanguageEnum = exports.RtmpServerSrtLatencyV1VEnum = exports.RtmpServerSrtLatencyV1LanguageEnum = exports.RtmpServerListV3VEnum = exports.RtmpServerListV3LanguageEnum = exports.RtmpServerListBaseV1VEnum = exports.RtmpServerListBaseV1LanguageEnum = exports.RtmpServerGraphV1VEnum = exports.RtmpServerGraphV1TypeEnum = exports.RtmpServerGraphV1IntervalEnum = exports.RtmpServerGraphV1LanguageEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1VEnum = exports.MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum = exports.RtmpServerApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -53,9 +53,6 @@ class RtmpServerApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -93,9 +90,6 @@ class RtmpServerApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -122,17 +116,54 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    async rtmpServerListV2Raw(requestParameters, initOverrides) {
+    async rtmpServerListBaseV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListV2().');
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListBaseV1().');
         }
         if (requestParameters['project_id'] == null) {
-            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListV2().');
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListBaseV1().');
         }
-        if (requestParameters['interval'] == null) {
-            throw new runtime.RequiredError('interval', 'Required parameter "interval" was null or undefined when calling rtmpServerListV2().');
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+        }
+        const response = await this.request({
+            path: `/method/rtmp_server/base-list`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListResponseBaseFromJSON)(jsonValue));
+    }
+    /**
+     * List rtmp servers (base info)
+     */
+    async rtmpServerListBaseV1(requestParameters, initOverrides) {
+        const response = await this.rtmpServerListBaseV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * List rtmp servers v3
+     */
+    async rtmpServerListV3Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerListV3().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling rtmpServerListV3().');
         }
         const queryParameters = {};
         if (requestParameters['language'] != null) {
@@ -141,29 +172,72 @@ class RtmpServerApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '2';
-        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
-        if (requestParameters['interval'] != null) {
-            queryParameters['interval'] = requestParameters['interval'];
-        }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/list`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListV2ResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListV3ResponseFromJSON)(jsonValue));
     }
     /**
-     * List rtmp servers
+     * List rtmp servers v3
      */
-    async rtmpServerListV2(requestParameters, initOverrides) {
-        const response = await this.rtmpServerListV2Raw(requestParameters, initOverrides);
+    async rtmpServerListV3(requestParameters, initOverrides) {
+        const response = await this.rtmpServerListV3Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    async rtmpServerSrtLatencyV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling rtmpServerSrtLatencyV1().');
+        }
+        if (requestParameters['src_ip'] == null) {
+            throw new runtime.RequiredError('src_ip', 'Required parameter "src_ip" was null or undefined when calling rtmpServerSrtLatencyV1().');
+        }
+        if (requestParameters['dst_ip'] == null) {
+            throw new runtime.RequiredError('dst_ip', 'Required parameter "dst_ip" was null or undefined when calling rtmpServerSrtLatencyV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['src_ip'] != null) {
+            queryParameters['src_ip'] = requestParameters['src_ip'];
+        }
+        if (requestParameters['dst_ip'] != null) {
+            queryParameters['dst_ip'] = requestParameters['dst_ip'];
+        }
+        if (requestParameters['profile'] != null) {
+            queryParameters['profile'] = requestParameters['profile'];
+        }
+        const headerParameters = {};
+        const response = await this.request({
+            path: `/method/rtmp_server/srt-latency`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerSrtLatencyResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    async rtmpServerSrtLatencyV1(requestParameters, initOverrides) {
+        const response = await this.rtmpServerSrtLatencyV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -179,9 +253,6 @@ class RtmpServerApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -279,7 +350,7 @@ exports.RtmpServerGraphV1VEnum = {
 /**
  * @export
  */
-exports.RtmpServerListV2LanguageEnum = {
+exports.RtmpServerListBaseV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
@@ -287,18 +358,36 @@ exports.RtmpServerListV2LanguageEnum = {
 /**
  * @export
  */
-exports.RtmpServerListV2IntervalEnum = {
-    NUMBER_1: 1,
-    NUMBER_3: 3,
-    NUMBER_6: 6,
-    NUMBER_12: 12,
-    NUMBER_24: 24
+exports.RtmpServerListBaseV1VEnum = {
+    _1: '1'
 };
 /**
  * @export
  */
-exports.RtmpServerListV2VEnum = {
-    _2: '2'
+exports.RtmpServerListV3LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.RtmpServerListV3VEnum = {
+    _3: '3'
+};
+/**
+ * @export
+ */
+exports.RtmpServerSrtLatencyV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.RtmpServerSrtLatencyV1VEnum = {
+    _1: '1'
 };
 /**
  * @export

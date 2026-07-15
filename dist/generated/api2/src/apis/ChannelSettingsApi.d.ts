@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPlaylistItemResponse, ListOfSitePlannedResponse, SiteChannelStatusResponse, SitePlannedResponse, SiteSetNameRequest, SiteSetPlannedRequest, SiteSetTranscoderRequest, SiteSetUrlRequest, SiteUpdateChatTelegramRequest, SiteUpdateOptionsOkRequest, SiteUpdateOptionsTrovoRequest, SiteUpdateOptionsTwitchRequest, SiteUpdateOptionsVkRequest, SiteUpdateOptionsVkVideoLiveRequest, SiteUpdateOptionsYoutubeRequest, SuccessResponse, TelegramChatPostsItem, TelegramChatPostsResponseDto, TelegramInitConnectResponseDto, TelegramSetSettingsRequestDto, TelegramSettingsResponseDto } from '../models/index';
+import type { ListOfPlaylistItemResponse, ListOfSitePlannedResponse, SiteBulkUpdateChannelRequest, SiteChannelStatusResponse, SitePlannedResponse, SiteSetNameRequest, SiteSetPlannedRequest, SiteSetSrtUrlRequest, SiteSetTranscoderRequest, SiteSetUrlRequest, SiteUpdateChatTelegramRequest, SiteUpdateOptionsOkRequest, SiteUpdateOptionsTrovoRequest, SiteUpdateOptionsTwitchRequest, SiteUpdateOptionsVkRequest, SiteUpdateOptionsVkVideoLiveRequest, SiteUpdateOptionsYoutubeRequest, SuccessResponse, TelegramChatPostsItem, TelegramChatPostsResponseDto, TelegramInitConnectResponseDto, TelegramSetSettingsRequestDto, TelegramSettingsResponseDto } from '../models/index';
 export interface ChannelChatGetTelegramSettingV1Request {
     language: ChannelChatGetTelegramSettingV1LanguageEnum;
     project_id: number;
@@ -78,11 +78,23 @@ export interface ChannelOptionsUpdateOptionsYoutubeV1Request {
 export interface ChannelOptionsUpdatePlannedV1Request {
     SiteSetPlannedRequest: SiteSetPlannedRequest;
 }
+export interface ChannelSettingBulkUpdateV1Request {
+    SiteBulkUpdateChannelRequest: SiteBulkUpdateChannelRequest;
+}
+export interface ChannelSettingGetStatusV1Request {
+    language: ChannelSettingGetStatusV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    v?: ChannelSettingGetStatusV1VEnum;
+}
 export interface ChannelSettingSetNameV1Request {
     SiteSetNameRequest: SiteSetNameRequest;
 }
 export interface ChannelSettingUpdateRtmpV1Request {
     SiteSetUrlRequest: SiteSetUrlRequest;
+}
+export interface ChannelSettingUpdateSrtUrlV1Request {
+    SiteSetSrtUrlRequest: SiteSetSrtUrlRequest;
 }
 export interface ChannelSettingUpdateTokenV1Request {
     language: ChannelSettingUpdateTokenV1LanguageEnum;
@@ -327,16 +339,33 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdatePlannedV1(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlannedResponse>;
     /**
      *
-     * @summary Get status platform
+     * @summary Bulk update channel title and description. Global settings.
+     * @param {SiteBulkUpdateChannelRequest} SiteBulkUpdateChannelRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
      */
-    channelSettingGetStatusV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
+    channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Bulk update channel title and description. Global settings.
+     */
+    channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
+     * @summary Get status platform
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} channel_id Channel id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
     /**
      * Get status platform
      */
-    channelSettingGetStatusV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
+    channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
     /**
      *
      * @summary Set name from custom channel. Global settings.
@@ -363,6 +392,19 @@ export interface ChannelSettingsApiInterface {
      * Set rtmp url from channel. Global settings.
      */
     channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
+     * @summary Set srt url from channel. Global settings.
+     * @param {SiteSetSrtUrlRequest} SiteSetSrtUrlRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      *
      * @summary Get status platform
@@ -536,13 +578,21 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
      */
     channelOptionsUpdatePlannedV1(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlannedResponse>;
     /**
-     * Get status platform
+     * Bulk update channel title and description. Global settings.
      */
-    channelSettingGetStatusV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
+    channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Bulk update channel title and description. Global settings.
+     */
+    channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get status platform
      */
-    channelSettingGetStatusV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
+    channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
+    /**
+     * Get status platform
+     */
+    channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
     /**
      * Set name from custom channel. Global settings.
      */
@@ -559,6 +609,14 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
      * Set rtmp url from channel. Global settings.
      */
     channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set srt url from channel. Global settings.
+     */
+    channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get status platform
      */
@@ -696,6 +754,22 @@ export declare const ChannelOptionsGetPlayListV1VEnum: {
     readonly _1: "1";
 };
 export type ChannelOptionsGetPlayListV1VEnum = typeof ChannelOptionsGetPlayListV1VEnum[keyof typeof ChannelOptionsGetPlayListV1VEnum];
+/**
+ * @export
+ */
+export declare const ChannelSettingGetStatusV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type ChannelSettingGetStatusV1LanguageEnum = typeof ChannelSettingGetStatusV1LanguageEnum[keyof typeof ChannelSettingGetStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const ChannelSettingGetStatusV1VEnum: {
+    readonly _1: "1";
+};
+export type ChannelSettingGetStatusV1VEnum = typeof ChannelSettingGetStatusV1VEnum[keyof typeof ChannelSettingGetStatusV1VEnum];
 /**
  * @export
  */

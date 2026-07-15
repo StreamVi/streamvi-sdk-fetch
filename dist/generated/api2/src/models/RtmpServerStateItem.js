@@ -29,6 +29,8 @@ exports.RtmpServerStateItemServerStatusEnum = {
  * Check if a given object implements the RtmpServerStateItem interface.
  */
 function instanceOfRtmpServerStateItem(value) {
+    if (!('id' in value) || value['id'] === undefined)
+        return false;
     if (!('city' in value) || value['city'] === undefined)
         return false;
     if (!('country' in value) || value['country'] === undefined)
@@ -61,6 +63,7 @@ function RtmpServerStateItemFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'id': json['id'],
         'city': json['city'],
         'country': (0, CountryItem_1.CountryItemFromJSON)(json['country']),
         'lat': json['lat'],
@@ -83,6 +86,7 @@ function RtmpServerStateItemToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'id': value['id'],
         'city': value['city'],
         'country': (0, CountryItem_1.CountryItemToJSON)(value['country']),
         'lat': value['lat'],

@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -37,6 +38,18 @@ export interface PlanStorageItem {
      * @memberof PlanStorageItem
      */
     period: PlanStorageItemPeriodEnum;
+    /**
+     * Prolongation status
+     * @type {boolean}
+     * @memberof PlanStorageItem
+     */
+    prolongation: boolean;
+    /**
+     * Title
+     * @type {string}
+     * @memberof PlanStorageItem
+     */
+    title: string;
     /**
      * Date end tariff
      * @type {Date}
@@ -63,6 +76,8 @@ export function instanceOfPlanStorageItem(value: object): value is PlanStorageIt
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('size' in value) || value['size'] === undefined) return false;
     if (!('period' in value) || value['period'] === undefined) return false;
+    if (!('prolongation' in value) || value['prolongation'] === undefined) return false;
+    if (!('title' in value) || value['title'] === undefined) return false;
     if (!('date_end' in value) || value['date_end'] === undefined) return false;
     return true;
 }
@@ -80,6 +95,8 @@ export function PlanStorageItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'id': json['id'],
         'size': json['size'],
         'period': json['period'],
+        'prolongation': json['prolongation'],
+        'title': json['title'],
         'date_end': (new Date(json['date_end'])),
     };
 }
@@ -98,6 +115,8 @@ export function PlanStorageItemToJSONTyped(value?: PlanStorageItem | null, ignor
         'id': value['id'],
         'size': value['size'],
         'period': value['period'],
+        'prolongation': value['prolongation'],
+        'title': value['title'],
         'date_end': ((value['date_end']).toISOString()),
     };
 }

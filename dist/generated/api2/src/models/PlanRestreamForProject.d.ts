@@ -21,19 +21,19 @@ export interface PlanRestreamForProject {
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    before: PlanRestreamItem;
+    before?: PlanRestreamItem;
     /**
      * Current tariff restream
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    current: PlanRestreamItem;
+    current?: PlanRestreamItem;
     /**
      * Next tariff restream
      * @type {PlanRestreamItem}
      * @memberof PlanRestreamForProject
      */
-    next: PlanRestreamItem;
+    next?: PlanRestreamItem;
 }
 /**
  * Check if a given object implements the PlanRestreamForProject interface.

@@ -26,13 +26,13 @@ export interface NotifyUserChannels {
      * @type {boolean}
      * @memberof NotifyUserChannels
      */
-    telegram: boolean;
+    telegram?: boolean;
     /**
      * Active mobile
      * @type {boolean}
      * @memberof NotifyUserChannels
      */
-    mobile: boolean;
+    mobile?: boolean;
 }
 /**
  * Check if a given object implements the NotifyUserChannels interface.

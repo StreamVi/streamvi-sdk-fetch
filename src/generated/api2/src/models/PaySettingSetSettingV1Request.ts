@@ -27,6 +27,7 @@ import {
     PaySettingRuBodyDtoToJSON,
 } from './PaySettingRuBodyDto';
 
+
 /**
  * @type PaySettingSetSettingV1Request
  * 

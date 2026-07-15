@@ -19,9 +19,7 @@ const PlanTranscodingDiscountResponse_1 = require("./PlanTranscodingDiscountResp
  * @export
  */
 exports.PlanTranscodingResponseTypeEnum = {
-    free: 'free',
     paid_month: 'paid_month',
-    paid_minute: 'paid_minute',
     custom: 'custom'
 };
 /**

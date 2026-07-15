@@ -63,9 +63,6 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -79,6 +76,10 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/chat/messages/delete`,
             method: 'POST',
@@ -114,9 +115,6 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -130,6 +128,10 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
         const response = await this.request({
             path: `/method/chat/messages/message`,
             method: 'GET',
@@ -162,9 +164,6 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -175,6 +174,10 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+        }
         const response = await this.request({
             path: `/method/chat/messages`,
             method: 'GET',
@@ -210,9 +213,6 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -224,6 +224,10 @@ class ChatGatewayApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/chat/messages`,
             method: 'POST',

@@ -15,6 +15,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoneyFlowResponseToJSONTyped = exports.MoneyFlowResponseToJSON = exports.MoneyFlowResponseFromJSONTyped = exports.MoneyFlowResponseFromJSON = exports.instanceOfMoneyFlowResponse = exports.MoneyFlowResponseTypeEnum = exports.MoneyFlowResponseCurrencyEnum = void 0;
 const MoneyFlowDetails_1 = require("./MoneyFlowDetails");
+const MoneyFlowPayoutDetails_1 = require("./MoneyFlowPayoutDetails");
+const MoneyFlowRefundDetails_1 = require("./MoneyFlowRefundDetails");
+const MoneyFlowPaymentDetails_1 = require("./MoneyFlowPaymentDetails");
 /**
  * @export
  */
@@ -30,6 +33,7 @@ exports.MoneyFlowResponseTypeEnum = {
     plan_restream_buy: 'plan_restream_buy',
     plan_transcoding_buy: 'plan_transcoding_buy',
     plan_storage_buy: 'plan_storage_buy',
+    plan_webinar_buy: 'plan_webinar_buy',
     channel_story_buy: 'channel_story_buy',
     channel_shop_sell: 'channel_shop_sell',
     referral_profit: 'referral_profit',
@@ -38,6 +42,11 @@ exports.MoneyFlowResponseTypeEnum = {
     payout: 'payout',
     payout_cancel: 'payout_cancel',
     refund: 'refund',
+    refund_tariff_partial: 'refund_tariff_partial',
+    refund_tariff_full: 'refund_tariff_full',
+    refund_tariff_none: 'refund_tariff_none',
+    compensation: 'compensation',
+    compensation_reversal: 'compensation_reversal',
     conversion: 'conversion',
     withdrawal: 'withdrawal',
     transferred_of_old_site: 'transferred_of_old_site',
@@ -81,6 +90,9 @@ function MoneyFlowResponseFromJSONTyped(json, ignoreDiscriminator) {
         'type': json['type'],
         'balance': json['balance'],
         'details': json['details'] == null ? undefined : (0, MoneyFlowDetails_1.MoneyFlowDetailsFromJSON)(json['details']),
+        'payment_details': json['payment_details'] == null ? undefined : (0, MoneyFlowPaymentDetails_1.MoneyFlowPaymentDetailsFromJSON)(json['payment_details']),
+        'payout_details': json['payout_details'] == null ? undefined : (0, MoneyFlowPayoutDetails_1.MoneyFlowPayoutDetailsFromJSON)(json['payout_details']),
+        'refund_details': json['refund_details'] == null ? undefined : (0, MoneyFlowRefundDetails_1.MoneyFlowRefundDetailsFromJSON)(json['refund_details']),
     };
 }
 exports.MoneyFlowResponseFromJSONTyped = MoneyFlowResponseFromJSONTyped;
@@ -100,6 +112,9 @@ function MoneyFlowResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'type': value['type'],
         'balance': value['balance'],
         'details': (0, MoneyFlowDetails_1.MoneyFlowDetailsToJSON)(value['details']),
+        'payment_details': (0, MoneyFlowPaymentDetails_1.MoneyFlowPaymentDetailsToJSON)(value['payment_details']),
+        'payout_details': (0, MoneyFlowPayoutDetails_1.MoneyFlowPayoutDetailsToJSON)(value['payout_details']),
+        'refund_details': (0, MoneyFlowRefundDetails_1.MoneyFlowRefundDetailsToJSON)(value['refund_details']),
     };
 }
 exports.MoneyFlowResponseToJSONTyped = MoneyFlowResponseToJSONTyped;

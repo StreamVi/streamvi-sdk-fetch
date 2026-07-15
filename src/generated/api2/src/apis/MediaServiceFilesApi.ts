@@ -75,6 +75,7 @@ export interface MediaServiceFilesSiteListV1Request {
 
 export interface MediaServiceFilesSiteSessionV1Request {
     language: MediaServiceFilesSiteSessionV1LanguageEnum;
+    project_id: number;
     media_id: number;
     v?: MediaServiceFilesSiteSessionV1VEnum;
 }
@@ -180,6 +181,7 @@ export interface MediaServiceFilesApiInterface {
      * 
      * @summary Get session by media id
      * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
      * @param {number} media_id Media service file id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
@@ -247,6 +249,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/media-service-files/cancel`,
             method: 'POST',
@@ -288,8 +295,6 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -301,6 +306,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/add`,
@@ -336,6 +346,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/delete`,
@@ -385,8 +400,6 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -402,6 +415,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/get`,
@@ -443,8 +461,6 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -456,6 +472,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/list`,
@@ -486,6 +507,13 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
             );
         }
 
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling mediaServiceFilesSiteSessionV1().'
+            );
+        }
+
         if (requestParameters['media_id'] == null) {
             throw new runtime.RequiredError(
                 'media_id',
@@ -497,12 +525,14 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
         }
 
         if (requestParameters['media_id'] != null) {
@@ -510,6 +540,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/session`,
@@ -546,6 +581,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/media-service-files/set`,
             method: 'POST',
@@ -581,6 +621,11 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/media-service-files/update`,

@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentListV1VEnum = exports.PaymentListV1LanguageEnum = exports.PaymentGetStatusV1VEnum = exports.PaymentGetStatusV1LanguageEnum = exports.PaymentCreateV1OperationVEnum = exports.PaymentCreateV1OperationLanguageEnum = exports.PaymentApi = void 0;
+exports.PaymentGetStatusV1VEnum = exports.PaymentGetStatusV1LanguageEnum = exports.PaymentCreateV1OperationVEnum = exports.PaymentCreateV1OperationLanguageEnum = exports.PaymentApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -57,14 +57,15 @@ class PaymentApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
         const response = await this.request({
             path: `/method/payment`,
             method: 'POST',
@@ -97,9 +98,6 @@ class PaymentApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
-        else {
-            queryParameters['v'] = '1';
-        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -110,6 +108,10 @@ class PaymentApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
         const response = await this.request({
             path: `/method/payment`,
             method: 'GET',
@@ -123,42 +125,6 @@ class PaymentApi extends runtime.BaseAPI {
     async paymentGetStatusV1(requestParameters, initOverrides) {
         const response = await this.paymentGetStatusV1Raw(requestParameters, initOverrides);
         return await response.value();
-    }
-    /**
-     */
-    async paymentListV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paymentListV1().');
-        }
-        const queryParameters = {};
-        if (requestParameters['v'] != null) {
-            queryParameters['v'] = requestParameters['v'];
-        }
-        else {
-            queryParameters['v'] = '1';
-        }
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
-        }
-        if (requestParameters['pageSize'] != null) {
-            queryParameters['pageSize'] = requestParameters['pageSize'];
-        }
-        if (requestParameters['page'] != null) {
-            queryParameters['page'] = requestParameters['page'];
-        }
-        const headerParameters = {};
-        const response = await this.request({
-            path: `/method/payment/list`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     */
-    async paymentListV1(requestParameters, initOverrides) {
-        await this.paymentListV1Raw(requestParameters, initOverrides);
     }
 }
 exports.PaymentApi = PaymentApi;
@@ -188,19 +154,5 @@ exports.PaymentGetStatusV1LanguageEnum = {
  * @export
  */
 exports.PaymentGetStatusV1VEnum = {
-    _1: '1'
-};
-/**
- * @export
- */
-exports.PaymentListV1LanguageEnum = {
-    ru: 'ru',
-    en: 'en',
-    cn: 'cn'
-};
-/**
- * @export
- */
-exports.PaymentListV1VEnum = {
     _1: '1'
 };

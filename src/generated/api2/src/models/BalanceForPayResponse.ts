@@ -21,6 +21,7 @@ import {
     MoneyFlowBalanceTypeValuesResponseToJSONTyped,
 } from './MoneyFlowBalanceTypeValuesResponse';
 
+
 /**
  * 
  * @export

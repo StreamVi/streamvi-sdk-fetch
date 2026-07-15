@@ -186,6 +186,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/transcoder/add`,
             method: 'POST',
@@ -225,6 +230,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/transcoder/delete`,
@@ -267,8 +277,6 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -280,6 +288,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+        }
 
         const response = await this.request({
             path: `/method/transcoder/list`,
@@ -315,6 +328,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/transcoder/reset-delay`,
@@ -352,6 +370,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/transcoder/stop`,
             method: 'POST',
@@ -387,6 +410,11 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/transcoder/update`,

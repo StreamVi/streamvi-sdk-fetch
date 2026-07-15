@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -69,10 +70,10 @@ export interface SiteUpdateOptionsTwitchRequest {
     lang?: SiteUpdateOptionsTwitchRequestLangEnum;
     /**
      * 
-     * @type {Set<string>}
+     * @type {Array<string>}
      * @memberof SiteUpdateOptionsTwitchRequest
      */
-    tags?: Set<string>;
+    tags?: Array<string>;
     /**
      * domain
      * @type {string}
@@ -141,7 +142,7 @@ export function SiteUpdateOptionsTwitchRequestFromJSONTyped(json: any, ignoreDis
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
         'lang': json['lang'] == null ? undefined : json['lang'],
-        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'domain': json['domain'],
     };
 }
@@ -165,7 +166,7 @@ export function SiteUpdateOptionsTwitchRequestToJSONTyped(value?: SiteUpdateOpti
         'category_id': value['category_id'],
         'category_name': value['category_name'],
         'lang': value['lang'],
-        'tags': value['tags'] == null ? undefined : Array.from(value['tags'] as Set<any>),
+        'tags': value['tags'],
         'domain': value['domain'],
     };
 }

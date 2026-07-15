@@ -100,7 +100,7 @@ function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json, ignoreDiscriminator)
         'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
         'image': json['image'] == null ? undefined : json['image'],
         'lang': json['lang'] == null ? undefined : json['lang'],
-        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
@@ -128,7 +128,7 @@ function SiteUpdateOptionsYoutubeRequestToJSONTyped(value, ignoreDiscriminator =
         'privacy_video': value['privacy_video'],
         'image': value['image'],
         'lang': value['lang'],
-        'tags': value['tags'] == null ? undefined : Array.from(value['tags']),
+        'tags': value['tags'],
         'disable_auto_end': value['disable_auto_end'],
     };
 }

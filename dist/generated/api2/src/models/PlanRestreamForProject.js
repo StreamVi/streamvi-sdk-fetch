@@ -19,12 +19,6 @@ const PlanRestreamItem_1 = require("./PlanRestreamItem");
  * Check if a given object implements the PlanRestreamForProject interface.
  */
 function instanceOfPlanRestreamForProject(value) {
-    if (!('before' in value) || value['before'] === undefined)
-        return false;
-    if (!('current' in value) || value['current'] === undefined)
-        return false;
-    if (!('next' in value) || value['next'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfPlanRestreamForProject = instanceOfPlanRestreamForProject;
@@ -37,9 +31,9 @@ function PlanRestreamForProjectFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'before': (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['before']),
-        'current': (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['current']),
-        'next': (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['next']),
+        'before': json['before'] == null ? undefined : (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['before']),
+        'current': json['current'] == null ? undefined : (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['current']),
+        'next': json['next'] == null ? undefined : (0, PlanRestreamItem_1.PlanRestreamItemFromJSON)(json['next']),
     };
 }
 exports.PlanRestreamForProjectFromJSONTyped = PlanRestreamForProjectFromJSONTyped;

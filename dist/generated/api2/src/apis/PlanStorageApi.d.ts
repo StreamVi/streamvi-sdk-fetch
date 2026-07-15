@@ -37,6 +37,12 @@ export interface PlanStorageListV1Request {
     language: PlanStorageListV1LanguageEnum;
     v?: PlanStorageListV1VEnum;
 }
+export interface PlanStorageSetProlongationV1Request {
+    language: PlanStorageSetProlongationV1LanguageEnum;
+    project_id: number;
+    enabled: boolean;
+    v?: PlanStorageSetProlongationV1VEnum;
+}
 export interface PlanStorageTariffV1Request {
     language: PlanStorageTariffV1LanguageEnum;
     project_id: number;
@@ -127,6 +133,22 @@ export interface PlanStorageApiInterface {
     planStorageListV1(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageResponseDto>;
     /**
      *
+     * @summary Set storage tariff auto prolongation
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {boolean} enabled Auto prolongation enabled
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlanStorageApiInterface
+     */
+    planStorageSetProlongationV1Raw(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set storage tariff auto prolongation
+     */
+    planStorageSetProlongationV1(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
@@ -185,6 +207,14 @@ export declare class PlanStorageApi extends runtime.BaseAPI implements PlanStora
      * Get info for storage tariff
      */
     planStorageListV1(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageResponseDto>;
+    /**
+     * Set storage tariff auto prolongation
+     */
+    planStorageSetProlongationV1Raw(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Set storage tariff auto prolongation
+     */
+    planStorageSetProlongationV1(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Get tariff for project
      */
@@ -282,6 +312,22 @@ export declare const PlanStorageListV1VEnum: {
     readonly _1: "1";
 };
 export type PlanStorageListV1VEnum = typeof PlanStorageListV1VEnum[keyof typeof PlanStorageListV1VEnum];
+/**
+ * @export
+ */
+export declare const PlanStorageSetProlongationV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type PlanStorageSetProlongationV1LanguageEnum = typeof PlanStorageSetProlongationV1LanguageEnum[keyof typeof PlanStorageSetProlongationV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const PlanStorageSetProlongationV1VEnum: {
+    readonly _1: "1";
+};
+export type PlanStorageSetProlongationV1VEnum = typeof PlanStorageSetProlongationV1VEnum[keyof typeof PlanStorageSetProlongationV1VEnum];
 /**
  * @export
  */

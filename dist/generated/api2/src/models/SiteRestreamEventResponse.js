@@ -13,7 +13,8 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SiteRestreamEventResponseToJSONTyped = exports.SiteRestreamEventResponseToJSON = exports.SiteRestreamEventResponseFromJSONTyped = exports.SiteRestreamEventResponseFromJSON = exports.instanceOfSiteRestreamEventResponse = exports.SiteRestreamEventResponseLevelEnum = void 0;
+exports.SiteRestreamEventResponseToJSONTyped = exports.SiteRestreamEventResponseToJSON = exports.SiteRestreamEventResponseFromJSONTyped = exports.SiteRestreamEventResponseFromJSON = exports.instanceOfSiteRestreamEventResponse = exports.SiteRestreamEventResponseAppEnum = exports.SiteRestreamEventResponseLevelEnum = void 0;
+const SiteRestreamEventServerResponse_1 = require("./SiteRestreamEventServerResponse");
 /**
  * @export
  */
@@ -24,6 +25,14 @@ exports.SiteRestreamEventResponseLevelEnum = {
     error: 'error'
 };
 /**
+ * @export
+ */
+exports.SiteRestreamEventResponseAppEnum = {
+    live: 'live',
+    scheduler: 'scheduler',
+    transcoder: 'transcoder'
+};
+/**
  * Check if a given object implements the SiteRestreamEventResponse interface.
  */
 function instanceOfSiteRestreamEventResponse(value) {
@@ -32,6 +41,10 @@ function instanceOfSiteRestreamEventResponse(value) {
     if (!('text' in value) || value['text'] === undefined)
         return false;
     if (!('created_at' in value) || value['created_at'] === undefined)
+        return false;
+    if (!('app' in value) || value['app'] === undefined)
+        return false;
+    if (!('server' in value) || value['server'] === undefined)
         return false;
     return true;
 }
@@ -45,9 +58,13 @@ function SiteRestreamEventResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'id': json['id'] == null ? undefined : json['id'],
         'level': json['level'],
         'text': json['text'],
         'created_at': (new Date(json['created_at'])),
+        'app': json['app'],
+        'server': (0, SiteRestreamEventServerResponse_1.SiteRestreamEventServerResponseFromJSON)(json['server']),
+        'platform': json['platform'] == null ? undefined : json['platform'],
     };
 }
 exports.SiteRestreamEventResponseFromJSONTyped = SiteRestreamEventResponseFromJSONTyped;
@@ -60,9 +77,13 @@ function SiteRestreamEventResponseToJSONTyped(value, ignoreDiscriminator = false
         return value;
     }
     return {
+        'id': value['id'],
         'level': value['level'],
         'text': value['text'],
         'created_at': ((value['created_at']).toISOString()),
+        'app': value['app'],
+        'server': (0, SiteRestreamEventServerResponse_1.SiteRestreamEventServerResponseToJSON)(value['server']),
+        'platform': value['platform'],
     };
 }
 exports.SiteRestreamEventResponseToJSONTyped = SiteRestreamEventResponseToJSONTyped;

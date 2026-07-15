@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -101,7 +102,8 @@ export const PaymentCreateRequestRestreamBodyDtoTypeEnum = {
     restream: 'restream',
     transcoding: 'transcoding',
     storage: 'storage',
-    topup: 'topup'
+    topup: 'topup',
+    webinar: 'webinar'
 } as const;
 export type PaymentCreateRequestRestreamBodyDtoTypeEnum = typeof PaymentCreateRequestRestreamBodyDtoTypeEnum[keyof typeof PaymentCreateRequestRestreamBodyDtoTypeEnum];
 

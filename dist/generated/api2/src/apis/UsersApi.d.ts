@@ -11,11 +11,6 @@
  */
 import * as runtime from '../runtime';
 import type { SuccessResponse, UserProfileResponse } from '../models/index';
-export interface UserGetProfileV1Request {
-    language: UserGetProfileV1LanguageEnum;
-    v?: UserGetProfileV1VEnum;
-    project_id?: number;
-}
 export interface UserUpdateProfileV1Request {
     v: UserUpdateProfileV1VEnum;
     language: UserUpdateProfileV1LanguageEnum;
@@ -33,21 +28,18 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Get user profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
@@ -78,13 +70,13 @@ export declare class UsersApi extends runtime.BaseAPI implements UsersApiInterfa
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
      * Use /method/account/profile instead.
      * Update profile
@@ -98,22 +90,6 @@ export declare class UsersApi extends runtime.BaseAPI implements UsersApiInterfa
      */
     userUpdateProfileV1(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
-/**
- * @export
- */
-export declare const UserGetProfileV1LanguageEnum: {
-    readonly ru: "ru";
-    readonly en: "en";
-    readonly cn: "cn";
-};
-export type UserGetProfileV1LanguageEnum = typeof UserGetProfileV1LanguageEnum[keyof typeof UserGetProfileV1LanguageEnum];
-/**
- * @export
- */
-export declare const UserGetProfileV1VEnum: {
-    readonly _1: "1";
-};
-export type UserGetProfileV1VEnum = typeof UserGetProfileV1VEnum[keyof typeof UserGetProfileV1VEnum];
 /**
  * @export
  */

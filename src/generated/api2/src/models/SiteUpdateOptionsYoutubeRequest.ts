@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -105,10 +106,10 @@ export interface SiteUpdateOptionsYoutubeRequest {
     lang?: SiteUpdateOptionsYoutubeRequestLangEnum;
     /**
      * 
-     * @type {Set<string>}
+     * @type {Array<string>}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    tags?: Set<string>;
+    tags?: Array<string>;
     /**
      * 
      * @type {boolean}
@@ -212,7 +213,7 @@ export function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json: any, ignoreDi
         'privacy_video': json['privacy_video'] == null ? undefined : json['privacy_video'],
         'image': json['image'] == null ? undefined : json['image'],
         'lang': json['lang'] == null ? undefined : json['lang'],
-        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'disable_auto_end': json['disable_auto_end'] == null ? undefined : json['disable_auto_end'],
     };
 }
@@ -242,7 +243,7 @@ export function SiteUpdateOptionsYoutubeRequestToJSONTyped(value?: SiteUpdateOpt
         'privacy_video': value['privacy_video'],
         'image': value['image'],
         'lang': value['lang'],
-        'tags': value['tags'] == null ? undefined : Array.from(value['tags'] as Set<any>),
+        'tags': value['tags'],
         'disable_auto_end': value['disable_auto_end'],
     };
 }

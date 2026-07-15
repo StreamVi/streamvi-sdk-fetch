@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -55,7 +56,54 @@ export interface PlanRestreamItem {
      * @memberof PlanRestreamItem
      */
     custom_video: number;
+    /**
+     * Prolongation status
+     * @type {boolean}
+     * @memberof PlanRestreamItem
+     */
+    prolongation: boolean;
+    /**
+     * Title
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    title: string;
+    /**
+     * Tariff type
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    type: PlanRestreamItemTypeEnum;
+    /**
+     * Period
+     * @type {string}
+     * @memberof PlanRestreamItem
+     */
+    period: PlanRestreamItemPeriodEnum;
 }
+
+
+/**
+ * @export
+ */
+export const PlanRestreamItemTypeEnum = {
+    free: 'free',
+    trial: 'trial',
+    paid_fix: 'paid_fix',
+    paid_flex: 'paid_flex',
+    custom: 'custom'
+} as const;
+export type PlanRestreamItemTypeEnum = typeof PlanRestreamItemTypeEnum[keyof typeof PlanRestreamItemTypeEnum];
+
+/**
+ * @export
+ */
+export const PlanRestreamItemPeriodEnum = {
+    month: 'month',
+    year: 'year'
+} as const;
+export type PlanRestreamItemPeriodEnum = typeof PlanRestreamItemPeriodEnum[keyof typeof PlanRestreamItemPeriodEnum];
+
 
 /**
  * Check if a given object implements the PlanRestreamItem interface.
@@ -67,6 +115,10 @@ export function instanceOfPlanRestreamItem(value: object): value is PlanRestream
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('date_end' in value) || value['date_end'] === undefined) return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
+    if (!('prolongation' in value) || value['prolongation'] === undefined) return false;
+    if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('period' in value) || value['period'] === undefined) return false;
     return true;
 }
 
@@ -86,6 +138,10 @@ export function PlanRestreamItemFromJSONTyped(json: any, ignoreDiscriminator: bo
         'support_custom_channel': json['support_custom_channel'],
         'date_end': (new Date(json['date_end'])),
         'custom_video': json['custom_video'],
+        'prolongation': json['prolongation'],
+        'title': json['title'],
+        'type': json['type'],
+        'period': json['period'],
     };
 }
 
@@ -106,6 +162,10 @@ export function PlanRestreamItemToJSONTyped(value?: PlanRestreamItem | null, ign
         'support_custom_channel': value['support_custom_channel'],
         'date_end': ((value['date_end']).toISOString()),
         'custom_video': value['custom_video'],
+        'prolongation': value['prolongation'],
+        'title': value['title'],
+        'type': value['type'],
+        'period': value['period'],
     };
 }
 

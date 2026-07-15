@@ -17,12 +17,39 @@ import * as runtime from '../runtime';
 import type {
   ListOfPaySystemListResponse,
   PayRedirectUrlDto,
+  TonConnectPaymentIntentDto,
+  TonConnectPaymentStatusDto,
+  TonConnectPaymentSubmitBodyDto,
+  TronPaymentIntentDto,
+  TronPaymentStatusDto,
+  TronPaymentSubmitBodyDto,
+  WalletConnectPaymentIntentDto,
+  WalletConnectPaymentStatusDto,
+  WalletConnectPaymentSubmitBodyDto,
 } from '../models/index';
 import {
     ListOfPaySystemListResponseFromJSON,
     ListOfPaySystemListResponseToJSON,
     PayRedirectUrlDtoFromJSON,
     PayRedirectUrlDtoToJSON,
+    TonConnectPaymentIntentDtoFromJSON,
+    TonConnectPaymentIntentDtoToJSON,
+    TonConnectPaymentStatusDtoFromJSON,
+    TonConnectPaymentStatusDtoToJSON,
+    TonConnectPaymentSubmitBodyDtoFromJSON,
+    TonConnectPaymentSubmitBodyDtoToJSON,
+    TronPaymentIntentDtoFromJSON,
+    TronPaymentIntentDtoToJSON,
+    TronPaymentStatusDtoFromJSON,
+    TronPaymentStatusDtoToJSON,
+    TronPaymentSubmitBodyDtoFromJSON,
+    TronPaymentSubmitBodyDtoToJSON,
+    WalletConnectPaymentIntentDtoFromJSON,
+    WalletConnectPaymentIntentDtoToJSON,
+    WalletConnectPaymentStatusDtoFromJSON,
+    WalletConnectPaymentStatusDtoToJSON,
+    WalletConnectPaymentSubmitBodyDtoFromJSON,
+    WalletConnectPaymentSubmitBodyDtoToJSON,
 } from '../models/index';
 
 export interface PaySystemCreateChallengeV1Request {
@@ -41,6 +68,54 @@ export interface PaySystemCreateUnitpayV1Request {
     language: PaySystemCreateUnitpayV1LanguageEnum;
     payment_id: number;
     v?: PaySystemCreateUnitpayV1VEnum;
+}
+
+export interface TonConnectIntentV1Request {
+    payment_id: number;
+    payer_address: string;
+}
+
+export interface TonConnectStatusV1Request {
+    language: TonConnectStatusV1LanguageEnum;
+    payment_id: number;
+    v?: TonConnectStatusV1VEnum;
+}
+
+export interface TonConnectSubmitV1Request {
+    TonConnectPaymentSubmitBodyDto: TonConnectPaymentSubmitBodyDto;
+}
+
+export interface TronPaymentIntentV1Request {
+    language: TronPaymentIntentV1LanguageEnum;
+    payment_id: number;
+    v?: TronPaymentIntentV1VEnum;
+}
+
+export interface TronPaymentStatusV1Request {
+    language: TronPaymentStatusV1LanguageEnum;
+    payment_id: number;
+    v?: TronPaymentStatusV1VEnum;
+}
+
+export interface TronPaymentSubmitV1Request {
+    language: TronPaymentSubmitV1LanguageEnum;
+    TronPaymentSubmitBodyDto: TronPaymentSubmitBodyDto;
+    v?: TronPaymentSubmitV1VEnum;
+}
+
+export interface WalletConnectIntentV1Request {
+    payment_id: number;
+    payer_address: string;
+}
+
+export interface WalletConnectStatusV1Request {
+    language: WalletConnectStatusV1LanguageEnum;
+    payment_id: number;
+    v?: WalletConnectStatusV1VEnum;
+}
+
+export interface WalletConnectSubmitV1Request {
+    WalletConnectPaymentSubmitBodyDto: WalletConnectPaymentSubmitBodyDto;
 }
 
 /**
@@ -115,6 +190,153 @@ export interface PaySystemApiInterface {
      */
     paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
 
+    /**
+     * 
+     * @summary Create TonConnect payment intent
+     * @param {number} payment_id Payment id
+     * @param {string} payer_address Connected TON wallet address / payer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectIntentV1Raw(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentIntentDto>>;
+
+    /**
+     * Create TonConnect payment intent
+     */
+    tonConnectIntentV1(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentIntentDto>;
+
+    /**
+     * 
+     * @summary Get TonConnect payment verification status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectStatusV1Raw(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+
+    /**
+     * Get TonConnect payment verification status
+     */
+    tonConnectStatusV1(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+
+    /**
+     * 
+     * @summary Submit TonConnect payment transaction
+     * @param {TonConnectPaymentSubmitBodyDto} TonConnectPaymentSubmitBodyDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tonConnectSubmitV1Raw(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>>;
+
+    /**
+     * Submit TonConnect payment transaction
+     */
+    tonConnectSubmitV1(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto>;
+
+    /**
+     * 
+     * @summary Create TRON USDT deposit payment intent
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentIntentV1Raw(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentIntentDto>>;
+
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    tronPaymentIntentV1(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentIntentDto>;
+
+    /**
+     * 
+     * @summary Get TRON USDT payment status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentStatusV1Raw(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentStatusDto>>;
+
+    /**
+     * Get TRON USDT payment status
+     */
+    tronPaymentStatusV1(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentStatusDto>;
+
+    /**
+     * 
+     * @summary Submit TRON USDT transaction hash (disabled)
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {TronPaymentSubmitBodyDto} TronPaymentSubmitBodyDto 
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    tronPaymentSubmitV1Raw(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    tronPaymentSubmitV1(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Create WalletConnect payment intent
+     * @param {number} payment_id Payment id
+     * @param {string} payer_address Connected wallet address / EVM payer
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectIntentV1Raw(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentIntentDto>>;
+
+    /**
+     * Create WalletConnect payment intent
+     */
+    walletConnectIntentV1(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentIntentDto>;
+
+    /**
+     * 
+     * @summary Get WalletConnect payment verification status
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} payment_id Payment id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectStatusV1Raw(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+
+    /**
+     * Get WalletConnect payment verification status
+     */
+    walletConnectStatusV1(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
+
+    /**
+     * 
+     * @summary Submit WalletConnect payment transaction hash
+     * @param {WalletConnectPaymentSubmitBodyDto} WalletConnectPaymentSubmitBodyDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PaySystemApiInterface
+     */
+    walletConnectSubmitV1Raw(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>>;
+
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    walletConnectSubmitV1(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto>;
+
 }
 
 /**
@@ -144,8 +366,6 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -198,8 +418,6 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -252,8 +470,6 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -292,6 +508,11 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
         const response = await this.request({
             path: `/method/pay-system/list`,
             method: 'GET',
@@ -307,6 +528,477 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
      */
     async paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse> {
         const response = await this.paySystemListV1Raw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create TonConnect payment intent
+     */
+    async tonConnectIntentV1Raw(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentIntentDto>> {
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling tonConnectIntentV1().'
+            );
+        }
+
+        if (requestParameters['payer_address'] == null) {
+            throw new runtime.RequiredError(
+                'payer_address',
+                'Required parameter "payer_address" was null or undefined when calling tonConnectIntentV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        if (requestParameters['payer_address'] != null) {
+            queryParameters['payer_address'] = requestParameters['payer_address'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tonconnect/intent`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TonConnectPaymentIntentDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Create TonConnect payment intent
+     */
+    async tonConnectIntentV1(requestParameters: TonConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentIntentDto> {
+        const response = await this.tonConnectIntentV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get TonConnect payment verification status
+     */
+    async tonConnectStatusV1Raw(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling tonConnectStatusV1().'
+            );
+        }
+
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling tonConnectStatusV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tonconnect/status`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TonConnectPaymentStatusDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get TonConnect payment verification status
+     */
+    async tonConnectStatusV1(requestParameters: TonConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto> {
+        const response = await this.tonConnectStatusV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Submit TonConnect payment transaction
+     */
+    async tonConnectSubmitV1Raw(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TonConnectPaymentStatusDto>> {
+        if (requestParameters['TonConnectPaymentSubmitBodyDto'] == null) {
+            throw new runtime.RequiredError(
+                'TonConnectPaymentSubmitBodyDto',
+                'Required parameter "TonConnectPaymentSubmitBodyDto" was null or undefined when calling tonConnectSubmitV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tonconnect/submit`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TonConnectPaymentSubmitBodyDtoToJSON(requestParameters['TonConnectPaymentSubmitBodyDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TonConnectPaymentStatusDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Submit TonConnect payment transaction
+     */
+    async tonConnectSubmitV1(requestParameters: TonConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TonConnectPaymentStatusDto> {
+        const response = await this.tonConnectSubmitV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    async tronPaymentIntentV1Raw(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentIntentDto>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling tronPaymentIntentV1().'
+            );
+        }
+
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling tronPaymentIntentV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tron/intent`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TronPaymentIntentDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Create TRON USDT deposit payment intent
+     */
+    async tronPaymentIntentV1(requestParameters: TronPaymentIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentIntentDto> {
+        const response = await this.tronPaymentIntentV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get TRON USDT payment status
+     */
+    async tronPaymentStatusV1Raw(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TronPaymentStatusDto>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling tronPaymentStatusV1().'
+            );
+        }
+
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling tronPaymentStatusV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tron/status`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TronPaymentStatusDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get TRON USDT payment status
+     */
+    async tronPaymentStatusV1(requestParameters: TronPaymentStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TronPaymentStatusDto> {
+        const response = await this.tronPaymentStatusV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    async tronPaymentSubmitV1Raw(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling tronPaymentSubmitV1().'
+            );
+        }
+
+        if (requestParameters['TronPaymentSubmitBodyDto'] == null) {
+            throw new runtime.RequiredError(
+                'TronPaymentSubmitBodyDto',
+                'Required parameter "TronPaymentSubmitBodyDto" was null or undefined when calling tronPaymentSubmitV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/tron/submit`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TronPaymentSubmitBodyDtoToJSON(requestParameters['TronPaymentSubmitBodyDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Submit TRON USDT transaction hash (disabled)
+     */
+    async tronPaymentSubmitV1(requestParameters: TronPaymentSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.tronPaymentSubmitV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Create WalletConnect payment intent
+     */
+    async walletConnectIntentV1Raw(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentIntentDto>> {
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling walletConnectIntentV1().'
+            );
+        }
+
+        if (requestParameters['payer_address'] == null) {
+            throw new runtime.RequiredError(
+                'payer_address',
+                'Required parameter "payer_address" was null or undefined when calling walletConnectIntentV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        if (requestParameters['payer_address'] != null) {
+            queryParameters['payer_address'] = requestParameters['payer_address'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/walletconnect/intent`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletConnectPaymentIntentDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Create WalletConnect payment intent
+     */
+    async walletConnectIntentV1(requestParameters: WalletConnectIntentV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentIntentDto> {
+        const response = await this.walletConnectIntentV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get WalletConnect payment verification status
+     */
+    async walletConnectStatusV1Raw(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling walletConnectStatusV1().'
+            );
+        }
+
+        if (requestParameters['payment_id'] == null) {
+            throw new runtime.RequiredError(
+                'payment_id',
+                'Required parameter "payment_id" was null or undefined when calling walletConnectStatusV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['payment_id'] != null) {
+            queryParameters['payment_id'] = requestParameters['payment_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/walletconnect/status`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletConnectPaymentStatusDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get WalletConnect payment verification status
+     */
+    async walletConnectStatusV1(requestParameters: WalletConnectStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto> {
+        const response = await this.walletConnectStatusV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    async walletConnectSubmitV1Raw(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletConnectPaymentStatusDto>> {
+        if (requestParameters['WalletConnectPaymentSubmitBodyDto'] == null) {
+            throw new runtime.RequiredError(
+                'WalletConnectPaymentSubmitBodyDto',
+                'Required parameter "WalletConnectPaymentSubmitBodyDto" was null or undefined when calling walletConnectSubmitV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/pay-system/walletconnect/submit`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: WalletConnectPaymentSubmitBodyDtoToJSON(requestParameters['WalletConnectPaymentSubmitBodyDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletConnectPaymentStatusDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Submit WalletConnect payment transaction hash
+     */
+    async walletConnectSubmitV1(requestParameters: WalletConnectSubmitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletConnectPaymentStatusDto> {
+        const response = await this.walletConnectSubmitV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -360,3 +1052,83 @@ export const PaySystemCreateUnitpayV1VEnum = {
     _1: '1'
 } as const;
 export type PaySystemCreateUnitpayV1VEnum = typeof PaySystemCreateUnitpayV1VEnum[keyof typeof PaySystemCreateUnitpayV1VEnum];
+/**
+ * @export
+ */
+export const TonConnectStatusV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type TonConnectStatusV1LanguageEnum = typeof TonConnectStatusV1LanguageEnum[keyof typeof TonConnectStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export const TonConnectStatusV1VEnum = {
+    _1: '1'
+} as const;
+export type TonConnectStatusV1VEnum = typeof TonConnectStatusV1VEnum[keyof typeof TonConnectStatusV1VEnum];
+/**
+ * @export
+ */
+export const TronPaymentIntentV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type TronPaymentIntentV1LanguageEnum = typeof TronPaymentIntentV1LanguageEnum[keyof typeof TronPaymentIntentV1LanguageEnum];
+/**
+ * @export
+ */
+export const TronPaymentIntentV1VEnum = {
+    _1: '1'
+} as const;
+export type TronPaymentIntentV1VEnum = typeof TronPaymentIntentV1VEnum[keyof typeof TronPaymentIntentV1VEnum];
+/**
+ * @export
+ */
+export const TronPaymentStatusV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type TronPaymentStatusV1LanguageEnum = typeof TronPaymentStatusV1LanguageEnum[keyof typeof TronPaymentStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export const TronPaymentStatusV1VEnum = {
+    _1: '1'
+} as const;
+export type TronPaymentStatusV1VEnum = typeof TronPaymentStatusV1VEnum[keyof typeof TronPaymentStatusV1VEnum];
+/**
+ * @export
+ */
+export const TronPaymentSubmitV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type TronPaymentSubmitV1LanguageEnum = typeof TronPaymentSubmitV1LanguageEnum[keyof typeof TronPaymentSubmitV1LanguageEnum];
+/**
+ * @export
+ */
+export const TronPaymentSubmitV1VEnum = {
+    _1: '1'
+} as const;
+export type TronPaymentSubmitV1VEnum = typeof TronPaymentSubmitV1VEnum[keyof typeof TronPaymentSubmitV1VEnum];
+/**
+ * @export
+ */
+export const WalletConnectStatusV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type WalletConnectStatusV1LanguageEnum = typeof WalletConnectStatusV1LanguageEnum[keyof typeof WalletConnectStatusV1LanguageEnum];
+/**
+ * @export
+ */
+export const WalletConnectStatusV1VEnum = {
+    _1: '1'
+} as const;
+export type WalletConnectStatusV1VEnum = typeof WalletConnectStatusV1VEnum[keyof typeof WalletConnectStatusV1VEnum];

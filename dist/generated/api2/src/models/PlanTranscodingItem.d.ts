@@ -40,12 +40,40 @@ export interface PlanTranscodingItem {
      */
     title: string;
     /**
-     * Prolongation
-     * @type {number}
+     * Tariff type
+     * @type {string}
      * @memberof PlanTranscodingItem
      */
-    prolongation?: number;
+    type?: PlanTranscodingItemTypeEnum;
+    /**
+     * Prolongation status
+     * @type {boolean}
+     * @memberof PlanTranscodingItem
+     */
+    prolongation: boolean;
+    /**
+     * Period
+     * @type {string}
+     * @memberof PlanTranscodingItem
+     */
+    period: PlanTranscodingItemPeriodEnum;
 }
+/**
+ * @export
+ */
+export declare const PlanTranscodingItemTypeEnum: {
+    readonly paid_month: "paid_month";
+    readonly custom: "custom";
+};
+export type PlanTranscodingItemTypeEnum = typeof PlanTranscodingItemTypeEnum[keyof typeof PlanTranscodingItemTypeEnum];
+/**
+ * @export
+ */
+export declare const PlanTranscodingItemPeriodEnum: {
+    readonly month: "month";
+    readonly year: "year";
+};
+export type PlanTranscodingItemPeriodEnum = typeof PlanTranscodingItemPeriodEnum[keyof typeof PlanTranscodingItemPeriodEnum];
 /**
  * Check if a given object implements the PlanTranscodingItem interface.
  */

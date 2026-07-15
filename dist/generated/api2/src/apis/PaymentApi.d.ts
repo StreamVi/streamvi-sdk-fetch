@@ -22,12 +22,6 @@ export interface PaymentGetStatusV1Request {
     project_id: number;
     v?: PaymentGetStatusV1VEnum;
 }
-export interface PaymentListV1Request {
-    language: PaymentListV1LanguageEnum;
-    v?: PaymentListV1VEnum;
-    pageSize?: number;
-    page?: number;
-}
 /**
  * PaymentApi - interface
  *
@@ -64,20 +58,6 @@ export interface PaymentApiInterface {
     /**
      */
     paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse>;
-    /**
-     *
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [pageSize] Number of results
-     * @param {number} [page] Page number
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PaymentApiInterface
-     */
-    paymentListV1Raw(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    paymentListV1(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  *
@@ -97,12 +77,6 @@ export declare class PaymentApi extends runtime.BaseAPI implements PaymentApiInt
     /**
      */
     paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse>;
-    /**
-     */
-    paymentListV1Raw(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     */
-    paymentListV1(requestParameters: PaymentListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  * @export
@@ -136,20 +110,4 @@ export declare const PaymentGetStatusV1VEnum: {
     readonly _1: "1";
 };
 export type PaymentGetStatusV1VEnum = typeof PaymentGetStatusV1VEnum[keyof typeof PaymentGetStatusV1VEnum];
-/**
- * @export
- */
-export declare const PaymentListV1LanguageEnum: {
-    readonly ru: "ru";
-    readonly en: "en";
-    readonly cn: "cn";
-};
-export type PaymentListV1LanguageEnum = typeof PaymentListV1LanguageEnum[keyof typeof PaymentListV1LanguageEnum];
-/**
- * @export
- */
-export declare const PaymentListV1VEnum: {
-    readonly _1: "1";
-};
-export type PaymentListV1VEnum = typeof PaymentListV1VEnum[keyof typeof PaymentListV1VEnum];
 //# sourceMappingURL=PaymentApi.d.ts.map

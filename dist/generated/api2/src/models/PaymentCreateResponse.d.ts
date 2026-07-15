@@ -39,7 +39,58 @@ export interface PaymentCreateResponse {
      * @memberof PaymentCreateResponse
      */
     pay_key?: string;
+    /**
+     * Crypto payment provider
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_provider?: PaymentCreateResponseCryptoProviderEnum | null;
+    /**
+     * Crypto chain family
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_chain_family?: PaymentCreateResponseCryptoChainFamilyEnum | null;
+    /**
+     * Crypto asset type
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_asset_type?: PaymentCreateResponseCryptoAssetTypeEnum | null;
+    /**
+     * Crypto token symbol
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_token_symbol?: string | null;
 }
+/**
+ * @export
+ */
+export declare const PaymentCreateResponseCryptoProviderEnum: {
+    readonly walletconnect: "walletconnect";
+    readonly tonconnect: "tonconnect";
+    readonly tron: "tron";
+};
+export type PaymentCreateResponseCryptoProviderEnum = typeof PaymentCreateResponseCryptoProviderEnum[keyof typeof PaymentCreateResponseCryptoProviderEnum];
+/**
+ * @export
+ */
+export declare const PaymentCreateResponseCryptoChainFamilyEnum: {
+    readonly evm: "evm";
+    readonly ton: "ton";
+    readonly tron: "tron";
+};
+export type PaymentCreateResponseCryptoChainFamilyEnum = typeof PaymentCreateResponseCryptoChainFamilyEnum[keyof typeof PaymentCreateResponseCryptoChainFamilyEnum];
+/**
+ * @export
+ */
+export declare const PaymentCreateResponseCryptoAssetTypeEnum: {
+    readonly erc20: "erc20";
+    readonly native: "native";
+    readonly trc20: "trc20";
+};
+export type PaymentCreateResponseCryptoAssetTypeEnum = typeof PaymentCreateResponseCryptoAssetTypeEnum[keyof typeof PaymentCreateResponseCryptoAssetTypeEnum];
 /**
  * Check if a given object implements the PaymentCreateResponse interface.
  */

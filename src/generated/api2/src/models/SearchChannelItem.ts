@@ -56,6 +56,7 @@ import {
     SearchChannelPlatformDtoToJSONTyped,
 } from './SearchChannelPlatformDto';
 
+
 /**
  * 
  * @export
@@ -177,6 +178,18 @@ export interface SearchChannelItem {
      */
     rtmp: SearchChannelRtmpDto | null;
     /**
+     * ingress_url
+     * @type {string}
+     * @memberof SearchChannelItem
+     */
+    ingress_url?: string;
+    /**
+     * ingress_protocol
+     * @type {string}
+     * @memberof SearchChannelItem
+     */
+    ingress_protocol?: string;
+    /**
      * credentials
      * @type {Array<SearchChannelCredentialsDto>}
      * @memberof SearchChannelItem
@@ -289,6 +302,8 @@ export function SearchChannelItemFromJSONTyped(json: any, ignoreDiscriminator: b
         'threads': json['threads'],
         'streamInfo': SearchChannelItemStreamInfoFromJSON(json['streamInfo']),
         'rtmp': SearchChannelRtmpDtoFromJSON(json['rtmp']),
+        'ingress_url': json['ingress_url'] == null ? undefined : json['ingress_url'],
+        'ingress_protocol': json['ingress_protocol'] == null ? undefined : json['ingress_protocol'],
         'credentials': (json['credentials'] == null ? null : (json['credentials'] as Array<any>).map(SearchChannelCredentialsDtoFromJSON)),
         'tokens': SearchChannelCredentialDtoFromJSON(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : ((json['live_users'] as Array<any>).map(SearchChannelLiveUserDtoFromJSON)),
@@ -328,6 +343,8 @@ export function SearchChannelItemToJSONTyped(value?: SearchChannelItem | null, i
         'threads': value['threads'],
         'streamInfo': SearchChannelItemStreamInfoToJSON(value['streamInfo']),
         'rtmp': SearchChannelRtmpDtoToJSON(value['rtmp']),
+        'ingress_url': value['ingress_url'],
+        'ingress_protocol': value['ingress_protocol'],
         'credentials': (value['credentials'] == null ? null : (value['credentials'] as Array<any>).map(SearchChannelCredentialsDtoToJSON)),
         'tokens': SearchChannelCredentialDtoToJSON(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : ((value['live_users'] as Array<any>).map(SearchChannelLiveUserDtoToJSON)),

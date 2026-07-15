@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -43,7 +44,63 @@ export interface PaymentCreateResponse {
      * @memberof PaymentCreateResponse
      */
     pay_key?: string;
+    /**
+     * Crypto payment provider
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_provider?: PaymentCreateResponseCryptoProviderEnum | null;
+    /**
+     * Crypto chain family
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_chain_family?: PaymentCreateResponseCryptoChainFamilyEnum | null;
+    /**
+     * Crypto asset type
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_asset_type?: PaymentCreateResponseCryptoAssetTypeEnum | null;
+    /**
+     * Crypto token symbol
+     * @type {string}
+     * @memberof PaymentCreateResponse
+     */
+    crypto_token_symbol?: string | null;
 }
+
+
+/**
+ * @export
+ */
+export const PaymentCreateResponseCryptoProviderEnum = {
+    walletconnect: 'walletconnect',
+    tonconnect: 'tonconnect',
+    tron: 'tron'
+} as const;
+export type PaymentCreateResponseCryptoProviderEnum = typeof PaymentCreateResponseCryptoProviderEnum[keyof typeof PaymentCreateResponseCryptoProviderEnum];
+
+/**
+ * @export
+ */
+export const PaymentCreateResponseCryptoChainFamilyEnum = {
+    evm: 'evm',
+    ton: 'ton',
+    tron: 'tron'
+} as const;
+export type PaymentCreateResponseCryptoChainFamilyEnum = typeof PaymentCreateResponseCryptoChainFamilyEnum[keyof typeof PaymentCreateResponseCryptoChainFamilyEnum];
+
+/**
+ * @export
+ */
+export const PaymentCreateResponseCryptoAssetTypeEnum = {
+    erc20: 'erc20',
+    native: 'native',
+    trc20: 'trc20'
+} as const;
+export type PaymentCreateResponseCryptoAssetTypeEnum = typeof PaymentCreateResponseCryptoAssetTypeEnum[keyof typeof PaymentCreateResponseCryptoAssetTypeEnum];
+
 
 /**
  * Check if a given object implements the PaymentCreateResponse interface.
@@ -68,6 +125,10 @@ export function PaymentCreateResponseFromJSONTyped(json: any, ignoreDiscriminato
         'pay_name': json['pay_name'],
         'pay_id': json['pay_id'] == null ? undefined : json['pay_id'],
         'pay_key': json['pay_key'] == null ? undefined : json['pay_key'],
+        'crypto_provider': json['crypto_provider'] == null ? undefined : json['crypto_provider'],
+        'crypto_chain_family': json['crypto_chain_family'] == null ? undefined : json['crypto_chain_family'],
+        'crypto_asset_type': json['crypto_asset_type'] == null ? undefined : json['crypto_asset_type'],
+        'crypto_token_symbol': json['crypto_token_symbol'] == null ? undefined : json['crypto_token_symbol'],
     };
 }
 
@@ -86,6 +147,10 @@ export function PaymentCreateResponseToJSONTyped(value?: PaymentCreateResponse |
         'pay_name': value['pay_name'],
         'pay_id': value['pay_id'],
         'pay_key': value['pay_key'],
+        'crypto_provider': value['crypto_provider'],
+        'crypto_chain_family': value['crypto_chain_family'],
+        'crypto_asset_type': value['crypto_asset_type'],
+        'crypto_token_symbol': value['crypto_token_symbol'],
     };
 }
 

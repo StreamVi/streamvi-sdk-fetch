@@ -18,6 +18,7 @@ const PaymentCreateRequestRestreamBodyDto_1 = require("./PaymentCreateRequestRes
 const PaymentCreateRequestStorageBodyDto_1 = require("./PaymentCreateRequestStorageBodyDto");
 const PaymentCreateRequestTopUpBodyDto_1 = require("./PaymentCreateRequestTopUpBodyDto");
 const PaymentCreateRequestTranscoderBodyDto_1 = require("./PaymentCreateRequestTranscoderBodyDto");
+const PaymentCreateRequestWebinarBodyDto_1 = require("./PaymentCreateRequestWebinarBodyDto");
 function PaymentCreateV1RequestFromJSON(json) {
     return PaymentCreateV1RequestFromJSONTyped(json, false);
 }
@@ -40,6 +41,9 @@ function PaymentCreateV1RequestFromJSONTyped(json, ignoreDiscriminator) {
     }
     if ((0, PaymentCreateRequestTranscoderBodyDto_1.instanceOfPaymentCreateRequestTranscoderBodyDto)(json)) {
         return (0, PaymentCreateRequestTranscoderBodyDto_1.PaymentCreateRequestTranscoderBodyDtoFromJSONTyped)(json, true);
+    }
+    if ((0, PaymentCreateRequestWebinarBodyDto_1.instanceOfPaymentCreateRequestWebinarBodyDto)(json)) {
+        return (0, PaymentCreateRequestWebinarBodyDto_1.PaymentCreateRequestWebinarBodyDtoFromJSONTyped)(json, true);
     }
     return {};
 }
@@ -66,6 +70,9 @@ function PaymentCreateV1RequestToJSONTyped(value, ignoreDiscriminator = false) {
     }
     if ((0, PaymentCreateRequestTranscoderBodyDto_1.instanceOfPaymentCreateRequestTranscoderBodyDto)(value)) {
         return (0, PaymentCreateRequestTranscoderBodyDto_1.PaymentCreateRequestTranscoderBodyDtoToJSON)(value);
+    }
+    if ((0, PaymentCreateRequestWebinarBodyDto_1.instanceOfPaymentCreateRequestWebinarBodyDto)(value)) {
+        return (0, PaymentCreateRequestWebinarBodyDto_1.PaymentCreateRequestWebinarBodyDtoToJSON)(value);
     }
     return {};
 }

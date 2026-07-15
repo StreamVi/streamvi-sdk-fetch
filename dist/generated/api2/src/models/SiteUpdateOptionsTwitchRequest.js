@@ -71,7 +71,7 @@ function SiteUpdateOptionsTwitchRequestFromJSONTyped(json, ignoreDiscriminator) 
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
         'lang': json['lang'] == null ? undefined : json['lang'],
-        'tags': json['tags'] == null ? undefined : new Set(json['tags']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
         'domain': json['domain'],
     };
 }
@@ -93,7 +93,7 @@ function SiteUpdateOptionsTwitchRequestToJSONTyped(value, ignoreDiscriminator = 
         'category_id': value['category_id'],
         'category_name': value['category_name'],
         'lang': value['lang'],
-        'tags': value['tags'] == null ? undefined : Array.from(value['tags']),
+        'tags': value['tags'],
         'domain': value['domain'],
     };
 }

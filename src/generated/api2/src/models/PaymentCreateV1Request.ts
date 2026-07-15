@@ -40,13 +40,21 @@ import {
     PaymentCreateRequestTranscoderBodyDtoFromJSONTyped,
     PaymentCreateRequestTranscoderBodyDtoToJSON,
 } from './PaymentCreateRequestTranscoderBodyDto';
+import type { PaymentCreateRequestWebinarBodyDto } from './PaymentCreateRequestWebinarBodyDto';
+import {
+    instanceOfPaymentCreateRequestWebinarBodyDto,
+    PaymentCreateRequestWebinarBodyDtoFromJSON,
+    PaymentCreateRequestWebinarBodyDtoFromJSONTyped,
+    PaymentCreateRequestWebinarBodyDtoToJSON,
+} from './PaymentCreateRequestWebinarBodyDto';
+
 
 /**
  * @type PaymentCreateV1Request
  * 
  * @export
  */
-export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto;
+export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto | PaymentCreateRequestWebinarBodyDto;
 
 export function PaymentCreateV1RequestFromJSON(json: any): PaymentCreateV1Request {
     return PaymentCreateV1RequestFromJSONTyped(json, false);
@@ -70,6 +78,9 @@ export function PaymentCreateV1RequestFromJSONTyped(json: any, ignoreDiscriminat
     }
     if (instanceOfPaymentCreateRequestTranscoderBodyDto(json)) {
         return PaymentCreateRequestTranscoderBodyDtoFromJSONTyped(json, true);
+    }
+    if (instanceOfPaymentCreateRequestWebinarBodyDto(json)) {
+        return PaymentCreateRequestWebinarBodyDtoFromJSONTyped(json, true);
     }
 
     return {} as any;
@@ -97,6 +108,9 @@ export function PaymentCreateV1RequestToJSONTyped(value?: PaymentCreateV1Request
     }
     if (instanceOfPaymentCreateRequestTranscoderBodyDto(value)) {
         return PaymentCreateRequestTranscoderBodyDtoToJSON(value as PaymentCreateRequestTranscoderBodyDto);
+    }
+    if (instanceOfPaymentCreateRequestWebinarBodyDto(value)) {
+        return PaymentCreateRequestWebinarBodyDtoToJSON(value as PaymentCreateRequestWebinarBodyDto);
     }
 
     return {};

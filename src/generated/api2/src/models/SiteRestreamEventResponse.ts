@@ -13,12 +13,27 @@
  */
 
 import { mapValues } from '../runtime';
+import type { SiteRestreamEventServerResponse } from './SiteRestreamEventServerResponse';
+import {
+    SiteRestreamEventServerResponseFromJSON,
+    SiteRestreamEventServerResponseFromJSONTyped,
+    SiteRestreamEventServerResponseToJSON,
+    SiteRestreamEventServerResponseToJSONTyped,
+} from './SiteRestreamEventServerResponse';
+
+
 /**
  * 
  * @export
  * @interface SiteRestreamEventResponse
  */
 export interface SiteRestreamEventResponse {
+    /**
+     * Event id
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    id?: string;
     /**
      * Level of event. 'info', 'warning', 'error', 'debug' only. Default is 'info
      * @type {string}
@@ -37,6 +52,24 @@ export interface SiteRestreamEventResponse {
      * @memberof SiteRestreamEventResponse
      */
     created_at: Date;
+    /**
+     * App
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    app: SiteRestreamEventResponseAppEnum;
+    /**
+     * Server location info
+     * @type {SiteRestreamEventServerResponse}
+     * @memberof SiteRestreamEventResponse
+     */
+    server: SiteRestreamEventServerResponse;
+    /**
+     * Platform
+     * @type {string}
+     * @memberof SiteRestreamEventResponse
+     */
+    platform?: string;
 }
 
 
@@ -51,6 +84,16 @@ export const SiteRestreamEventResponseLevelEnum = {
 } as const;
 export type SiteRestreamEventResponseLevelEnum = typeof SiteRestreamEventResponseLevelEnum[keyof typeof SiteRestreamEventResponseLevelEnum];
 
+/**
+ * @export
+ */
+export const SiteRestreamEventResponseAppEnum = {
+    live: 'live',
+    scheduler: 'scheduler',
+    transcoder: 'transcoder'
+} as const;
+export type SiteRestreamEventResponseAppEnum = typeof SiteRestreamEventResponseAppEnum[keyof typeof SiteRestreamEventResponseAppEnum];
+
 
 /**
  * Check if a given object implements the SiteRestreamEventResponse interface.
@@ -59,6 +102,8 @@ export function instanceOfSiteRestreamEventResponse(value: object): value is Sit
     if (!('level' in value) || value['level'] === undefined) return false;
     if (!('text' in value) || value['text'] === undefined) return false;
     if (!('created_at' in value) || value['created_at'] === undefined) return false;
+    if (!('app' in value) || value['app'] === undefined) return false;
+    if (!('server' in value) || value['server'] === undefined) return false;
     return true;
 }
 
@@ -72,9 +117,13 @@ export function SiteRestreamEventResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'id': json['id'] == null ? undefined : json['id'],
         'level': json['level'],
         'text': json['text'],
         'created_at': (new Date(json['created_at'])),
+        'app': json['app'],
+        'server': SiteRestreamEventServerResponseFromJSON(json['server']),
+        'platform': json['platform'] == null ? undefined : json['platform'],
     };
 }
 
@@ -89,9 +138,13 @@ export function SiteRestreamEventResponseToJSONTyped(value?: SiteRestreamEventRe
 
     return {
         
+        'id': value['id'],
         'level': value['level'],
         'text': value['text'],
         'created_at': ((value['created_at']).toISOString()),
+        'app': value['app'],
+        'server': SiteRestreamEventServerResponseToJSON(value['server']),
+        'platform': value['platform'],
     };
 }
 

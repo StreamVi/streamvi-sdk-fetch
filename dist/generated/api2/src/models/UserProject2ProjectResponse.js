@@ -27,7 +27,8 @@ exports.UserProject2ProjectResponseTypeEnum = {
 exports.UserProject2ProjectResponseAccessTypeEnum = {
     NUMBER_0: 0,
     NUMBER_1: 1,
-    NUMBER_2: 2
+    NUMBER_2: 2,
+    NUMBER_3: 3
 };
 /**
  * Check if a given object implements the UserProject2ProjectResponse interface.

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfRtmpServerLocationResponse, RtmpServerGraphResponse, RtmpServerListV2Response, RtmpServerStateResponse } from '../models/index';
+import type { ListOfRtmpServerLocationResponse, RtmpServerGraphResponse, RtmpServerListResponseBase, RtmpServerListV3Response, RtmpServerSrtLatencyResponse, RtmpServerStateResponse } from '../models/index';
 export interface MethodRtmpServerListLocationsUnauthorizedV1Request {
     language: MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum;
     v?: MethodRtmpServerListLocationsUnauthorizedV1VEnum;
@@ -21,11 +21,22 @@ export interface RtmpServerGraphV1Request {
     type: RtmpServerGraphV1TypeEnum;
     v?: RtmpServerGraphV1VEnum;
 }
-export interface RtmpServerListV2Request {
-    language: RtmpServerListV2LanguageEnum;
+export interface RtmpServerListBaseV1Request {
+    language: RtmpServerListBaseV1LanguageEnum;
     project_id: number;
-    interval: RtmpServerListV2IntervalEnum;
-    v?: RtmpServerListV2VEnum;
+    v?: RtmpServerListBaseV1VEnum;
+}
+export interface RtmpServerListV3Request {
+    language: RtmpServerListV3LanguageEnum;
+    project_id: number;
+    v?: RtmpServerListV3VEnum;
+}
+export interface RtmpServerSrtLatencyV1Request {
+    language: RtmpServerSrtLatencyV1LanguageEnum;
+    src_ip: string;
+    dst_ip: string;
+    v?: RtmpServerSrtLatencyV1VEnum;
+    profile?: string;
 }
 export interface RtmpServerStateV1Request {
     language: RtmpServerStateV1LanguageEnum;
@@ -71,20 +82,51 @@ export interface RtmpServerApiInterface {
     rtmpServerGraphV1(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerGraphResponse>;
     /**
      *
-     * @summary List rtmp servers
+     * @summary List rtmp servers (base info)
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
+    rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>>;
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
+    rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase>;
+    /**
+     *
+     * @summary List rtmp servers v3
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RtmpServerApiInterface
+     */
+    rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>>;
+    /**
+     * List rtmp servers v3
+     */
+    rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response>;
+    /**
+     *
+     * @summary Get recommended SRT latency by source and destination ip
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {string} src_ip Source IPv4 address
+     * @param {string} dst_ip Destination IPv4 address
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {string} [profile] Recommendation profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RtmpServerApiInterface
+     */
+    rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>>;
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse>;
     /**
      *
      * @summary State of rtmp servers
@@ -134,13 +176,29 @@ export declare class RtmpServerApi extends runtime.BaseAPI implements RtmpServer
      */
     rtmpServerGraphV1(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerGraphResponse>;
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    rtmpServerListV2Raw(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV2Response>>;
+    rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>>;
     /**
-     * List rtmp servers
+     * List rtmp servers (base info)
      */
-    rtmpServerListV2(requestParameters: RtmpServerListV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV2Response>;
+    rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase>;
+    /**
+     * List rtmp servers v3
+     */
+    rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>>;
+    /**
+     * List rtmp servers v3
+     */
+    rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response>;
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>>;
+    /**
+     * Get recommended SRT latency by source and destination ip
+     */
+    rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse>;
     /**
      * State of rtmp servers
      */
@@ -215,30 +273,51 @@ export type RtmpServerGraphV1VEnum = typeof RtmpServerGraphV1VEnum[keyof typeof 
 /**
  * @export
  */
-export declare const RtmpServerListV2LanguageEnum: {
+export declare const RtmpServerListBaseV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
-export type RtmpServerListV2LanguageEnum = typeof RtmpServerListV2LanguageEnum[keyof typeof RtmpServerListV2LanguageEnum];
+export type RtmpServerListBaseV1LanguageEnum = typeof RtmpServerListBaseV1LanguageEnum[keyof typeof RtmpServerListBaseV1LanguageEnum];
 /**
  * @export
  */
-export declare const RtmpServerListV2IntervalEnum: {
-    readonly NUMBER_1: 1;
-    readonly NUMBER_3: 3;
-    readonly NUMBER_6: 6;
-    readonly NUMBER_12: 12;
-    readonly NUMBER_24: 24;
+export declare const RtmpServerListBaseV1VEnum: {
+    readonly _1: "1";
 };
-export type RtmpServerListV2IntervalEnum = typeof RtmpServerListV2IntervalEnum[keyof typeof RtmpServerListV2IntervalEnum];
+export type RtmpServerListBaseV1VEnum = typeof RtmpServerListBaseV1VEnum[keyof typeof RtmpServerListBaseV1VEnum];
 /**
  * @export
  */
-export declare const RtmpServerListV2VEnum: {
-    readonly _2: "2";
+export declare const RtmpServerListV3LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
 };
-export type RtmpServerListV2VEnum = typeof RtmpServerListV2VEnum[keyof typeof RtmpServerListV2VEnum];
+export type RtmpServerListV3LanguageEnum = typeof RtmpServerListV3LanguageEnum[keyof typeof RtmpServerListV3LanguageEnum];
+/**
+ * @export
+ */
+export declare const RtmpServerListV3VEnum: {
+    readonly _3: "3";
+};
+export type RtmpServerListV3VEnum = typeof RtmpServerListV3VEnum[keyof typeof RtmpServerListV3VEnum];
+/**
+ * @export
+ */
+export declare const RtmpServerSrtLatencyV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type RtmpServerSrtLatencyV1LanguageEnum = typeof RtmpServerSrtLatencyV1LanguageEnum[keyof typeof RtmpServerSrtLatencyV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const RtmpServerSrtLatencyV1VEnum: {
+    readonly _1: "1";
+};
+export type RtmpServerSrtLatencyV1VEnum = typeof RtmpServerSrtLatencyV1VEnum[keyof typeof RtmpServerSrtLatencyV1VEnum];
 /**
  * @export
  */

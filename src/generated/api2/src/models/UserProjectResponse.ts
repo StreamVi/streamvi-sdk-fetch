@@ -21,6 +21,7 @@ import {
     UserProject2ProjectResponseToJSONTyped,
 } from './UserProject2ProjectResponse';
 
+
 /**
  * 
  * @export
@@ -72,7 +73,8 @@ export interface UserProjectResponse {
 export const UserProjectResponseAccessTypeEnum = {
     NUMBER_0: 0,
     NUMBER_1: 1,
-    NUMBER_2: 2
+    NUMBER_2: 2,
+    NUMBER_3: 3
 } as const;
 export type UserProjectResponseAccessTypeEnum = typeof UserProjectResponseAccessTypeEnum[keyof typeof UserProjectResponseAccessTypeEnum];
 

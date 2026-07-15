@@ -28,12 +28,6 @@ import {
     UserProfileResponseToJSON,
 } from '../models/index';
 
-export interface UserGetProfileV1Request {
-    language: UserGetProfileV1LanguageEnum;
-    v?: UserGetProfileV1VEnum;
-    project_id?: number;
-}
-
 export interface UserUpdateProfileV1Request {
     v: UserUpdateProfileV1VEnum;
     language: UserUpdateProfileV1LanguageEnum;
@@ -52,22 +46,19 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Get user profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
 
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
 
     /**
      * Use /method/account/profile instead.
@@ -103,31 +94,15 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
-        if (requestParameters['language'] == null) {
-            throw new runtime.RequiredError(
-                'language',
-                'Required parameter "language" was null or undefined when calling userGetProfileV1().'
-            );
-        }
-
+    async userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters['v'] != null) {
-            queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
-        }
-
-        if (requestParameters['language'] != null) {
-            queryParameters['language'] = requestParameters['language'];
-        }
-
-        if (requestParameters['project_id'] != null) {
-            queryParameters['project_id'] = requestParameters['project_id'];
-        }
-
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+        }
 
         const response = await this.request({
             path: `/method/users/profile`,
@@ -144,8 +119,8 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
-        const response = await this.userGetProfileV1Raw(requestParameters, initOverrides);
+    async userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
+        const response = await this.userGetProfileV1Raw(initOverrides);
         return await response.value();
     }
 
@@ -187,6 +162,11 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+        }
+
         const consumes: runtime.Consume[] = [
             { contentType: 'multipart/form-data' },
         ];
@@ -205,8 +185,6 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v'] as any);
-        } else {
-            formParams.append('v', '1' as any);
         }
 
         if (requestParameters['language'] != null) {
@@ -248,22 +226,6 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
 }
 
-/**
- * @export
- */
-export const UserGetProfileV1LanguageEnum = {
-    ru: 'ru',
-    en: 'en',
-    cn: 'cn'
-} as const;
-export type UserGetProfileV1LanguageEnum = typeof UserGetProfileV1LanguageEnum[keyof typeof UserGetProfileV1LanguageEnum];
-/**
- * @export
- */
-export const UserGetProfileV1VEnum = {
-    _1: '1'
-} as const;
-export type UserGetProfileV1VEnum = typeof UserGetProfileV1VEnum[keyof typeof UserGetProfileV1VEnum];
 /**
  * @export
  */

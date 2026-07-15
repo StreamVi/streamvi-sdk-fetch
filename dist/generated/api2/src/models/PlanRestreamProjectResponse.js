@@ -22,6 +22,7 @@ const PlanRestreamForProjectV2_1 = require("./PlanRestreamForProjectV2");
  */
 exports.PlanRestreamProjectResponseTypeEnum = {
     free: 'free',
+    trial: 'trial',
     paid_fix: 'paid_fix',
     paid_flex: 'paid_flex',
     custom: 'custom'
@@ -47,6 +48,10 @@ function instanceOfPlanRestreamProjectResponse(value) {
     if (!('count_channel_max' in value) || value['count_channel_max'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
+        return false;
+    if (!('purchase_available' in value) || value['purchase_available'] === undefined)
+        return false;
+    if (!('prolongation_available' in value) || value['prolongation_available'] === undefined)
         return false;
     if (!('bitrate_max' in value) || value['bitrate_max'] === undefined)
         return false;
@@ -83,6 +88,8 @@ function PlanRestreamProjectResponseFromJSONTyped(json, ignoreDiscriminator) {
         'count_channel_max': json['count_channel_max'],
         'count_channel_step': json['count_channel_step'] == null ? undefined : json['count_channel_step'],
         'type': json['type'],
+        'purchase_available': json['purchase_available'],
+        'prolongation_available': json['prolongation_available'],
         'bitrate_max': json['bitrate_max'],
         'bitrate_min': json['bitrate_min'] == null ? undefined : json['bitrate_min'],
         'bitrate_step': json['bitrate_step'] == null ? undefined : json['bitrate_step'],
@@ -112,6 +119,8 @@ function PlanRestreamProjectResponseToJSONTyped(value, ignoreDiscriminator = fal
         'count_channel_max': value['count_channel_max'],
         'count_channel_step': value['count_channel_step'],
         'type': value['type'],
+        'purchase_available': value['purchase_available'],
+        'prolongation_available': value['prolongation_available'],
         'bitrate_max': value['bitrate_max'],
         'bitrate_min': value['bitrate_min'],
         'bitrate_step': value['bitrate_step'],

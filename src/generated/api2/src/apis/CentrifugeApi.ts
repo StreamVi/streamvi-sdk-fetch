@@ -15,10 +15,19 @@
 
 import * as runtime from '../runtime';
 import type {
+  AuthCentrifugoChannelResponse,
+  AuthCentrifugoConnectResponse,
+  CentrifugoChannelsCatalogResponse,
   ErrorResponse,
   SiteAuthCentrifugeResponse,
 } from '../models/index';
 import {
+    AuthCentrifugoChannelResponseFromJSON,
+    AuthCentrifugoChannelResponseToJSON,
+    AuthCentrifugoConnectResponseFromJSON,
+    AuthCentrifugoConnectResponseToJSON,
+    CentrifugoChannelsCatalogResponseFromJSON,
+    CentrifugoChannelsCatalogResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     SiteAuthCentrifugeResponseFromJSON,
@@ -28,6 +37,24 @@ import {
 export interface CentrifugeAuthV2Request {
     project_id: number;
     v?: CentrifugeAuthV2VEnum;
+}
+
+export interface CentrifugeChannelTokenV1Request {
+    language: CentrifugeChannelTokenV1LanguageEnum;
+    project_id: number;
+    channel_name: string;
+    v?: CentrifugeChannelTokenV1VEnum;
+}
+
+export interface CentrifugeChannelsCatalogV1Request {
+    language: CentrifugeChannelsCatalogV1LanguageEnum;
+    v?: CentrifugeChannelsCatalogV1VEnum;
+}
+
+export interface CentrifugeConnectionTokenV1Request {
+    language: CentrifugeConnectionTokenV1LanguageEnum;
+    project_id: number;
+    v?: CentrifugeConnectionTokenV1VEnum;
 }
 
 export interface CentrifugeProjectV1Request {
@@ -51,24 +78,63 @@ export interface GetTokenBroadcastV1Request {
  */
 export interface CentrifugeApiInterface {
     /**
-     * 
-     * @summary Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * @summary Auth centrifuge for project
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
     centrifugeAuthV2Raw(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
 
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor     
-     * @summary Auth token for project
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * @summary Get token for connect to centrifuge for channel
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {string} channel_name Channel name
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
+    centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>>;
+
+    /**
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get token for connect to centrifuge for channel
+     */
+    centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse>;
+
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * @summary List available Method API Centrifuge channels
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
+    centrifugeChannelsCatalogV1Raw(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CentrifugoChannelsCatalogResponse>>;
+
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    centrifugeChannelsCatalogV1(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CentrifugoChannelsCatalogResponse>;
+
+    /**
+     * Get token for connect to centrifuge for project
+     * @summary Get token for connect to centrifuge for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
@@ -76,30 +142,52 @@ export interface CentrifugeApiInterface {
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
+    centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>>;
+
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse>;
+
+    /**
+     * Use /method/centrifuge/auth/channel instead.
+     * @summary Auth token for project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof CentrifugeApiInterface
+     */
     centrifugeProjectV1Raw(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
 
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor     
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     centrifugeProjectV1(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min     
+     * Use /method/centrifuge/auth/channel instead.
      * @summary Auth token for broadcast
      * @param {number} broadcast_id 
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
+     * @deprecated
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
      */
     getTokenBroadcastV1Raw(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>>;
 
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min     
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     getTokenBroadcastV1(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 
@@ -111,7 +199,9 @@ export interface CentrifugeApiInterface {
 export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInterface {
 
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     async centrifugeAuthV2Raw(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>> {
         if (requestParameters['project_id'] == null) {
@@ -125,8 +215,6 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '2';
         }
 
         if (requestParameters['project_id'] != null) {
@@ -134,6 +222,11 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
 
         const response = await this.request({
             path: `/method/centrifuge`,
@@ -146,7 +239,9 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     * Auth centrifuge
+     * Use /method/centrifuge/auth/connect instead.
+     * Auth centrifuge for project
+     * @deprecated
      */
     async centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse> {
         const response = await this.centrifugeAuthV2Raw(requestParameters, initOverrides);
@@ -154,8 +249,186 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor     
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get token for connect to centrifuge for channel
+     */
+    async centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling centrifugeChannelTokenV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling centrifugeChannelTokenV1().'
+            );
+        }
+
+        if (requestParameters['channel_name'] == null) {
+            throw new runtime.RequiredError(
+                'channel_name',
+                'Required parameter "channel_name" was null or undefined when calling centrifugeChannelTokenV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['channel_name'] != null) {
+            queryParameters['channel_name'] = requestParameters['channel_name'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/centrifuge/auth/channel`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthCentrifugoChannelResponseFromJSON(jsonValue));
+    }
+
+    /**
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get token for connect to centrifuge for channel
+     */
+    async centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse> {
+        const response = await this.centrifugeChannelTokenV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    async centrifugeChannelsCatalogV1Raw(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CentrifugoChannelsCatalogResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling centrifugeChannelsCatalogV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/centrifuge/channels`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CentrifugoChannelsCatalogResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns supported channel_type values, required params, events, and response schema names.
+     * List available Method API Centrifuge channels
+     */
+    async centrifugeChannelsCatalogV1(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CentrifugoChannelsCatalogResponse> {
+        const response = await this.centrifugeChannelsCatalogV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    async centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling centrifugeConnectionTokenV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling centrifugeConnectionTokenV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/centrifuge/auth/connect`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthCentrifugoConnectResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get token for connect to centrifuge for project
+     * Get token for connect to centrifuge for project
+     */
+    async centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse> {
+        const response = await this.centrifugeConnectionTokenV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     async centrifugeProjectV1Raw(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>> {
         if (requestParameters['language'] == null) {
@@ -176,8 +449,6 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -190,6 +461,11 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
+
         const response = await this.request({
             path: `/method/centrifuge/auth/project`,
             method: 'GET',
@@ -201,8 +477,9 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        channel - \"$project_channels:{project_id}\"       expiresIn - 30min       project access min - editor     
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for project
+     * @deprecated
      */
     async centrifugeProjectV1(requestParameters: CentrifugeProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse> {
         const response = await this.centrifugeProjectV1Raw(requestParameters, initOverrides);
@@ -210,8 +487,9 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min     
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     async getTokenBroadcastV1Raw(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteAuthCentrifugeResponse>> {
         if (requestParameters['broadcast_id'] == null) {
@@ -247,8 +525,6 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['project_id'] != null) {
@@ -256,6 +532,11 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+        }
 
         const response = await this.request({
             path: `/method/centrifuge/token/broadcast`,
@@ -268,8 +549,9 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        channel - \"$broadcast:{broadcast_id}\"       expiresIn - 30min     
+     * Use /method/centrifuge/auth/channel instead.
      * Auth token for broadcast
+     * @deprecated
      */
     async getTokenBroadcastV1(requestParameters: GetTokenBroadcastV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse> {
         const response = await this.getTokenBroadcastV1Raw(requestParameters, initOverrides);
@@ -285,6 +567,54 @@ export const CentrifugeAuthV2VEnum = {
     _2: '2'
 } as const;
 export type CentrifugeAuthV2VEnum = typeof CentrifugeAuthV2VEnum[keyof typeof CentrifugeAuthV2VEnum];
+/**
+ * @export
+ */
+export const CentrifugeChannelTokenV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type CentrifugeChannelTokenV1LanguageEnum = typeof CentrifugeChannelTokenV1LanguageEnum[keyof typeof CentrifugeChannelTokenV1LanguageEnum];
+/**
+ * @export
+ */
+export const CentrifugeChannelTokenV1VEnum = {
+    _1: '1'
+} as const;
+export type CentrifugeChannelTokenV1VEnum = typeof CentrifugeChannelTokenV1VEnum[keyof typeof CentrifugeChannelTokenV1VEnum];
+/**
+ * @export
+ */
+export const CentrifugeChannelsCatalogV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type CentrifugeChannelsCatalogV1LanguageEnum = typeof CentrifugeChannelsCatalogV1LanguageEnum[keyof typeof CentrifugeChannelsCatalogV1LanguageEnum];
+/**
+ * @export
+ */
+export const CentrifugeChannelsCatalogV1VEnum = {
+    _1: '1'
+} as const;
+export type CentrifugeChannelsCatalogV1VEnum = typeof CentrifugeChannelsCatalogV1VEnum[keyof typeof CentrifugeChannelsCatalogV1VEnum];
+/**
+ * @export
+ */
+export const CentrifugeConnectionTokenV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type CentrifugeConnectionTokenV1LanguageEnum = typeof CentrifugeConnectionTokenV1LanguageEnum[keyof typeof CentrifugeConnectionTokenV1LanguageEnum];
+/**
+ * @export
+ */
+export const CentrifugeConnectionTokenV1VEnum = {
+    _1: '1'
+} as const;
+export type CentrifugeConnectionTokenV1VEnum = typeof CentrifugeConnectionTokenV1VEnum[keyof typeof CentrifugeConnectionTokenV1VEnum];
 /**
  * @export
  */

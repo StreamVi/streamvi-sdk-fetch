@@ -69,6 +69,30 @@ export interface PaySystemListResponse {
      * @memberof PaySystemListResponse
      */
     description: string;
+    /**
+     * Crypto payment provider
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_provider?: PaySystemListResponseCryptoProviderEnum | null;
+    /**
+     * Crypto chain family
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_chain_family?: PaySystemListResponseCryptoChainFamilyEnum | null;
+    /**
+     * Crypto asset type
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_asset_type?: PaySystemListResponseCryptoAssetTypeEnum | null;
+    /**
+     * Crypto token symbol
+     * @type {string}
+     * @memberof PaySystemListResponse
+     */
+    crypto_token_symbol?: string | null;
 }
 /**
  * @export
@@ -78,6 +102,33 @@ export declare const PaySystemListResponseCurrencyEnum: {
     readonly usd: "usd";
 };
 export type PaySystemListResponseCurrencyEnum = typeof PaySystemListResponseCurrencyEnum[keyof typeof PaySystemListResponseCurrencyEnum];
+/**
+ * @export
+ */
+export declare const PaySystemListResponseCryptoProviderEnum: {
+    readonly walletconnect: "walletconnect";
+    readonly tonconnect: "tonconnect";
+    readonly tron: "tron";
+};
+export type PaySystemListResponseCryptoProviderEnum = typeof PaySystemListResponseCryptoProviderEnum[keyof typeof PaySystemListResponseCryptoProviderEnum];
+/**
+ * @export
+ */
+export declare const PaySystemListResponseCryptoChainFamilyEnum: {
+    readonly evm: "evm";
+    readonly ton: "ton";
+    readonly tron: "tron";
+};
+export type PaySystemListResponseCryptoChainFamilyEnum = typeof PaySystemListResponseCryptoChainFamilyEnum[keyof typeof PaySystemListResponseCryptoChainFamilyEnum];
+/**
+ * @export
+ */
+export declare const PaySystemListResponseCryptoAssetTypeEnum: {
+    readonly erc20: "erc20";
+    readonly native: "native";
+    readonly trc20: "trc20";
+};
+export type PaySystemListResponseCryptoAssetTypeEnum = typeof PaySystemListResponseCryptoAssetTypeEnum[keyof typeof PaySystemListResponseCryptoAssetTypeEnum];
 /**
  * Check if a given object implements the PaySystemListResponse interface.
  */

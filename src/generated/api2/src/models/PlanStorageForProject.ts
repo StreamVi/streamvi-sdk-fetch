@@ -21,6 +21,7 @@ import {
     PlanStorageItemToJSONTyped,
 } from './PlanStorageItem';
 
+
 /**
  * 
  * @export
@@ -32,28 +33,25 @@ export interface PlanStorageForProject {
      * @type {PlanStorageItem}
      * @memberof PlanStorageForProject
      */
-    before: PlanStorageItem;
+    before?: PlanStorageItem;
     /**
      * Current tariff restream
      * @type {PlanStorageItem}
      * @memberof PlanStorageForProject
      */
-    current: PlanStorageItem;
+    current?: PlanStorageItem;
     /**
      * Next tariff restream
      * @type {PlanStorageItem}
      * @memberof PlanStorageForProject
      */
-    next: PlanStorageItem;
+    next?: PlanStorageItem;
 }
 
 /**
  * Check if a given object implements the PlanStorageForProject interface.
  */
 export function instanceOfPlanStorageForProject(value: object): value is PlanStorageForProject {
-    if (!('before' in value) || value['before'] === undefined) return false;
-    if (!('current' in value) || value['current'] === undefined) return false;
-    if (!('next' in value) || value['next'] === undefined) return false;
     return true;
 }
 
@@ -67,9 +65,9 @@ export function PlanStorageForProjectFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'before': PlanStorageItemFromJSON(json['before']),
-        'current': PlanStorageItemFromJSON(json['current']),
-        'next': PlanStorageItemFromJSON(json['next']),
+        'before': json['before'] == null ? undefined : PlanStorageItemFromJSON(json['before']),
+        'current': json['current'] == null ? undefined : PlanStorageItemFromJSON(json['current']),
+        'next': json['next'] == null ? undefined : PlanStorageItemFromJSON(json['next']),
     };
 }
 

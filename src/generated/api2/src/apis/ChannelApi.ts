@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  BizonDto,
   BoostyDto,
   CustomDto,
   DeleteChannelDto,
@@ -22,12 +23,15 @@ import type {
   ErrorResponse,
   FbDto,
   Fc2liveDto,
+  GetcourseDto,
   GoodgameDto,
   HuyaDto,
   InstagramDto,
   KickDto,
+  KinescopeDto,
   LinkedinDto,
   MethodSetStatusChannelRequest,
+  MethodSrtDto,
   NavertvDto,
   NimotvDto,
   NonoliveDto,
@@ -39,6 +43,7 @@ import type {
   SiteSearchChannelResponse,
   SteamDto,
   SuccessResponse,
+  TachidDto,
   TelegramDto,
   TiktokDto,
   VkDto,
@@ -46,6 +51,8 @@ import type {
   ZhanqitvDto,
 } from '../models/index';
 import {
+    BizonDtoFromJSON,
+    BizonDtoToJSON,
     BoostyDtoFromJSON,
     BoostyDtoToJSON,
     CustomDtoFromJSON,
@@ -60,6 +67,8 @@ import {
     FbDtoToJSON,
     Fc2liveDtoFromJSON,
     Fc2liveDtoToJSON,
+    GetcourseDtoFromJSON,
+    GetcourseDtoToJSON,
     GoodgameDtoFromJSON,
     GoodgameDtoToJSON,
     HuyaDtoFromJSON,
@@ -68,10 +77,14 @@ import {
     InstagramDtoToJSON,
     KickDtoFromJSON,
     KickDtoToJSON,
+    KinescopeDtoFromJSON,
+    KinescopeDtoToJSON,
     LinkedinDtoFromJSON,
     LinkedinDtoToJSON,
     MethodSetStatusChannelRequestFromJSON,
     MethodSetStatusChannelRequestToJSON,
+    MethodSrtDtoFromJSON,
+    MethodSrtDtoToJSON,
     NavertvDtoFromJSON,
     NavertvDtoToJSON,
     NimotvDtoFromJSON,
@@ -94,6 +107,8 @@ import {
     SteamDtoToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
+    TachidDtoFromJSON,
+    TachidDtoToJSON,
     TelegramDtoFromJSON,
     TelegramDtoToJSON,
     TiktokDtoFromJSON,
@@ -105,6 +120,10 @@ import {
     ZhanqitvDtoFromJSON,
     ZhanqitvDtoToJSON,
 } from '../models/index';
+
+export interface AddChannelMethodAddBizonV1Request {
+    BizonDto: BizonDto;
+}
 
 export interface AddChannelMethodAddBoostyV1Request {
     BoostyDto: BoostyDto;
@@ -126,6 +145,10 @@ export interface AddChannelMethodAddFc2LiveV1Request {
     Fc2liveDto: Fc2liveDto;
 }
 
+export interface AddChannelMethodAddGetcourseV1Request {
+    GetcourseDto: GetcourseDto;
+}
+
 export interface AddChannelMethodAddGoodgameV1Request {
     GoodgameDto: GoodgameDto;
 }
@@ -140,6 +163,10 @@ export interface AddChannelMethodAddInstagramV1Request {
 
 export interface AddChannelMethodAddKickV1Request {
     KickDto: KickDto;
+}
+
+export interface AddChannelMethodAddKinescopeV1Request {
+    KinescopeDto: KinescopeDto;
 }
 
 export interface AddChannelMethodAddLinkedinV1Request {
@@ -170,8 +197,16 @@ export interface AddChannelMethodAddRutubeV1Request {
     RutubeDto: RutubeDto;
 }
 
+export interface AddChannelMethodAddSrtV1Request {
+    MethodSrtDto: MethodSrtDto;
+}
+
 export interface AddChannelMethodAddSteamV1Request {
     SteamDto: SteamDto;
+}
+
+export interface AddChannelMethodAddTachidV1Request {
+    TachidDto: TachidDto;
 }
 
 export interface AddChannelMethodAddTelegramV1Request {
@@ -238,6 +273,21 @@ export interface MethodSetStatusV1Request {
  * @interface ChannelApiInterface
  */
 export interface ChannelApiInterface {
+    /**
+     * 
+     * @summary Add bizon channel
+     * @param {BizonDto} BizonDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add bizon channel
+     */
+    addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
     /**
      * 
      * @summary Add boosty channel
@@ -315,6 +365,21 @@ export interface ChannelApiInterface {
 
     /**
      * 
+     * @summary Add getcourse channel
+     * @param {GetcourseDto} GetcourseDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add getcourse channel
+     */
+    addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
      * @summary Add goodgame channel
      * @param {GoodgameDto} GoodgameDto 
      * @param {*} [options] Override http request option.
@@ -372,6 +437,21 @@ export interface ChannelApiInterface {
      * Add kick channel
      */
     addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add kinescope channel
+     * @param {KinescopeDto} KinescopeDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add kinescope channel
+     */
+    addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -480,6 +560,21 @@ export interface ChannelApiInterface {
 
     /**
      * 
+     * @summary Add srt channel
+     * @param {MethodSrtDto} MethodSrtDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add srt channel
+     */
+    addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
      * @summary Add steam channel
      * @param {SteamDto} SteamDto 
      * @param {*} [options] Override http request option.
@@ -492,6 +587,21 @@ export interface ChannelApiInterface {
      * Add steam channel
      */
     addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Add tach channel
+     * @param {TachidDto} TachidDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Add tach channel
+     */
+    addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -679,6 +789,46 @@ export interface ChannelApiInterface {
 export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
     /**
+     * Add bizon channel
+     */
+    async addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['BizonDto'] == null) {
+            throw new runtime.RequiredError(
+                'BizonDto',
+                'Required parameter "BizonDto" was null or undefined when calling addChannelMethodAddBizonV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/add/bizon`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: BizonDtoToJSON(requestParameters['BizonDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add bizon channel
+     */
+    async addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddBizonV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
      * Add boosty channel
      */
     async addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -694,6 +844,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/boosty`,
@@ -730,6 +885,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/custom`,
             method: 'POST',
@@ -764,6 +924,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/douyu`,
@@ -800,6 +965,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/fb`,
             method: 'POST',
@@ -835,6 +1005,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/fc2Live`,
             method: 'POST',
@@ -854,6 +1029,46 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Add getcourse channel
+     */
+    async addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['GetcourseDto'] == null) {
+            throw new runtime.RequiredError(
+                'GetcourseDto',
+                'Required parameter "GetcourseDto" was null or undefined when calling addChannelMethodAddGetcourseV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/add/getcourse`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GetcourseDtoToJSON(requestParameters['GetcourseDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add getcourse channel
+     */
+    async addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
      * Add goodgame channel
      */
     async addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -869,6 +1084,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/goodgame`,
@@ -905,6 +1125,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/huya`,
             method: 'POST',
@@ -939,6 +1164,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/instagram`,
@@ -975,6 +1205,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/kick`,
             method: 'POST',
@@ -994,6 +1229,46 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Add kinescope channel
+     */
+    async addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['KinescopeDto'] == null) {
+            throw new runtime.RequiredError(
+                'KinescopeDto',
+                'Required parameter "KinescopeDto" was null or undefined when calling addChannelMethodAddKinescopeV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/add/kinescope`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: KinescopeDtoToJSON(requestParameters['KinescopeDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add kinescope channel
+     */
+    async addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
      * Add linkedin channel
      */
     async addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -1009,6 +1284,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/linkedin`,
@@ -1045,6 +1325,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/navertv`,
             method: 'POST',
@@ -1079,6 +1364,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/nimotv`,
@@ -1115,6 +1405,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/nonolive`,
             method: 'POST',
@@ -1149,6 +1444,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/ok`,
@@ -1185,6 +1485,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/plvideo`,
             method: 'POST',
@@ -1220,6 +1525,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/rutube`,
             method: 'POST',
@@ -1239,6 +1549,46 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Add srt channel
+     */
+    async addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['MethodSrtDto'] == null) {
+            throw new runtime.RequiredError(
+                'MethodSrtDto',
+                'Required parameter "MethodSrtDto" was null or undefined when calling addChannelMethodAddSrtV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/add/srt`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MethodSrtDtoToJSON(requestParameters['MethodSrtDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add srt channel
+     */
+    async addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddSrtV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
      * Add steam channel
      */
     async addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -1254,6 +1604,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/steam`,
@@ -1274,6 +1629,46 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Add tach channel
+     */
+    async addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['TachidDto'] == null) {
+            throw new runtime.RequiredError(
+                'TachidDto',
+                'Required parameter "TachidDto" was null or undefined when calling addChannelMethodAddTachidV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/add/tachid`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TachidDtoToJSON(requestParameters['TachidDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Add tach channel
+     */
+    async addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.addChannelMethodAddTachidV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
      * Add telegram channel
      */
     async addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -1289,6 +1684,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/telegram`,
@@ -1325,6 +1725,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/tiktok`,
             method: 'POST',
@@ -1359,6 +1764,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/add/vk`,
@@ -1395,6 +1805,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/vlive`,
             method: 'POST',
@@ -1430,6 +1845,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+        }
+
         const response = await this.request({
             path: `/method/channel/add/zhanqitv`,
             method: 'POST',
@@ -1464,6 +1884,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         const headerParameters: runtime.HTTPHeaders = {};
 
         headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
 
         const response = await this.request({
             path: `/method/channel/delete`,
@@ -1513,8 +1938,6 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1530,6 +1953,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/get`,
@@ -1579,6 +2007,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/channel/set-delay`,
             method: 'GET',
@@ -1619,8 +2052,6 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1632,6 +2063,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+        }
 
         const response = await this.request({
             path: `/method/channel/short`,
@@ -1673,8 +2109,6 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1709,6 +2143,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -1748,6 +2187,11 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (this.configuration && this.configuration.apiKey) {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
         }
 
         const response = await this.request({

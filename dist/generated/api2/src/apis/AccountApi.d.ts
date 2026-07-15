@@ -14,7 +14,6 @@ import type { SuccessResponse, UserProfileResponse } from '../models/index';
 export interface AccountGetProfileV1Request {
     language: AccountGetProfileV1LanguageEnum;
     v?: AccountGetProfileV1VEnum;
-    project_id?: number;
 }
 export interface AccountUpdateProfileV1Request {
     v: AccountUpdateProfileV1VEnum;
@@ -35,7 +34,6 @@ export interface AccountApiInterface {
      * @summary Get account profile
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
-     * @param {number} [project_id] Project id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApiInterface

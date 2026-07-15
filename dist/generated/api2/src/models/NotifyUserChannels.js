@@ -20,10 +20,6 @@ exports.NotifyUserChannelsToJSONTyped = exports.NotifyUserChannelsToJSON = expor
 function instanceOfNotifyUserChannels(value) {
     if (!('cabinet' in value) || value['cabinet'] === undefined)
         return false;
-    if (!('telegram' in value) || value['telegram'] === undefined)
-        return false;
-    if (!('mobile' in value) || value['mobile'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfNotifyUserChannels = instanceOfNotifyUserChannels;
@@ -37,8 +33,8 @@ function NotifyUserChannelsFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'cabinet': json['cabinet'],
-        'telegram': json['telegram'],
-        'mobile': json['mobile'],
+        'telegram': json['telegram'] == null ? undefined : json['telegram'],
+        'mobile': json['mobile'] == null ? undefined : json['mobile'],
     };
 }
 exports.NotifyUserChannelsFromJSONTyped = NotifyUserChannelsFromJSONTyped;

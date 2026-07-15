@@ -13,6 +13,7 @@
  */
 
 import { mapValues } from '../runtime';
+
 /**
  * 
  * @export
@@ -44,12 +45,44 @@ export interface PlanTranscodingItem {
      */
     title: string;
     /**
-     * Prolongation
-     * @type {number}
+     * Tariff type
+     * @type {string}
      * @memberof PlanTranscodingItem
      */
-    prolongation?: number;
+    type?: PlanTranscodingItemTypeEnum;
+    /**
+     * Prolongation status
+     * @type {boolean}
+     * @memberof PlanTranscodingItem
+     */
+    prolongation: boolean;
+    /**
+     * Period
+     * @type {string}
+     * @memberof PlanTranscodingItem
+     */
+    period: PlanTranscodingItemPeriodEnum;
 }
+
+
+/**
+ * @export
+ */
+export const PlanTranscodingItemTypeEnum = {
+    paid_month: 'paid_month',
+    custom: 'custom'
+} as const;
+export type PlanTranscodingItemTypeEnum = typeof PlanTranscodingItemTypeEnum[keyof typeof PlanTranscodingItemTypeEnum];
+
+/**
+ * @export
+ */
+export const PlanTranscodingItemPeriodEnum = {
+    month: 'month',
+    year: 'year'
+} as const;
+export type PlanTranscodingItemPeriodEnum = typeof PlanTranscodingItemPeriodEnum[keyof typeof PlanTranscodingItemPeriodEnum];
+
 
 /**
  * Check if a given object implements the PlanTranscodingItem interface.
@@ -59,6 +92,8 @@ export function instanceOfPlanTranscodingItem(value: object): value is PlanTrans
     if (!('count' in value) || value['count'] === undefined) return false;
     if (!('date_end' in value) || value['date_end'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('prolongation' in value) || value['prolongation'] === undefined) return false;
+    if (!('period' in value) || value['period'] === undefined) return false;
     return true;
 }
 
@@ -76,7 +111,9 @@ export function PlanTranscodingItemFromJSONTyped(json: any, ignoreDiscriminator:
         'count': json['count'],
         'date_end': (new Date(json['date_end'])),
         'title': json['title'],
-        'prolongation': json['prolongation'] == null ? undefined : json['prolongation'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'prolongation': json['prolongation'],
+        'period': json['period'],
     };
 }
 
@@ -95,7 +132,9 @@ export function PlanTranscodingItemToJSONTyped(value?: PlanTranscodingItem | nul
         'count': value['count'],
         'date_end': ((value['date_end']).toISOString()),
         'title': value['title'],
+        'type': value['type'],
         'prolongation': value['prolongation'],
+        'period': value['period'],
     };
 }
 

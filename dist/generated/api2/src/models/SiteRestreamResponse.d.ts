@@ -22,6 +22,12 @@ export interface SiteRestreamResponse {
      */
     id: number;
     /**
+     * Channel id
+     * @type {number}
+     * @memberof SiteRestreamResponse
+     */
+    channel_id: number;
+    /**
      * Channel name
      * @type {string}
      * @memberof SiteRestreamResponse

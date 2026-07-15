@@ -96,8 +96,6 @@ export class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -133,6 +131,11 @@ export class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterfa
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        }
 
         const response = await this.request({
             path: `/method/money_flow/list`,

@@ -19,6 +19,7 @@ import type {
   ListOfUserProject2ProjectResponse,
   PaginatedResponseOfUserProjectResponse,
   ProjectInfoResponse,
+  ProjectMeResponse,
   SuccessResponse,
   UserProjectGetResponse,
 } from '../models/index';
@@ -31,11 +32,18 @@ import {
     PaginatedResponseOfUserProjectResponseToJSON,
     ProjectInfoResponseFromJSON,
     ProjectInfoResponseToJSON,
+    ProjectMeResponseFromJSON,
+    ProjectMeResponseToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
     UserProjectGetResponseFromJSON,
     UserProjectGetResponseToJSON,
 } from '../models/index';
+
+export interface MethodProjectMeMeV1Request {
+    v?: MethodProjectMeMeV1VEnum;
+    language?: MethodProjectMeMeV1LanguageEnum;
+}
 
 export interface UserProjectChangeAccessV1Request {
     language: UserProjectChangeAccessV1LanguageEnum;
@@ -50,6 +58,13 @@ export interface UserProjectDelV1Request {
     project_id: number;
     user_id: number;
     v?: UserProjectDelV1VEnum;
+}
+
+export interface UserProjectDeleteMemberV1Request {
+    language: UserProjectDeleteMemberV1LanguageEnum;
+    project_id: number;
+    user_id: number;
+    v?: UserProjectDeleteMemberV1VEnum;
 }
 
 export interface UserProjectGetProjectInfoV1Request {
@@ -68,6 +83,12 @@ export interface UserProjectGetUserV1Request {
     language: UserProjectGetUserV1LanguageEnum;
     user_external_id: string;
     v?: UserProjectGetUserV1VEnum;
+}
+
+export interface UserProjectLeaveV1Request {
+    language: UserProjectLeaveV1LanguageEnum;
+    project_id: number;
+    v?: UserProjectLeaveV1VEnum;
 }
 
 export interface UserProjectListAccessV1Request {
@@ -98,11 +119,27 @@ export interface UserProjectSelectProjectV1Request {
 export interface ProjectApiInterface {
     /**
      * 
+     * @summary Get current user project
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'ru' | 'en' | 'cn'} [language] Current language
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>>;
+
+    /**
+     * Get current user project
+     */
+    methodProjectMeMeV1(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse>;
+
+    /**
+     * 
      * @summary Change access user from project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
-     * @param {0 | 1 | 2} access_type Access type
+     * @param {0 | 1 | 2 | 3} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -116,8 +153,29 @@ export interface ProjectApiInterface {
     userProjectChangeAccessV1(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * @summary Remove user from project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {number} user_id User id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
+     * Remove user from project
+     * @deprecated
+     */
+    userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Remove member from project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
@@ -126,12 +184,12 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Remove user from project
+     * Remove member from project
      */
-    userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
      * 
@@ -183,6 +241,23 @@ export interface ProjectApiInterface {
      * Get user by number id
      */
     userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
+
+    /**
+     * 
+     * @summary Leave project
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Leave project
+     */
+    userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
      * 
@@ -244,6 +319,45 @@ export interface ProjectApiInterface {
 export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
     /**
+     * Get current user project
+     */
+    async methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/project/me`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ProjectMeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get current user project
+     */
+    async methodProjectMeMeV1(requestParameters: MethodProjectMeMeV1Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse> {
+        const response = await this.methodProjectMeMeV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Change access user from project
      */
     async userProjectChangeAccessV1Raw(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -279,8 +393,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -301,6 +413,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/project/user/change_access`,
             method: 'POST',
@@ -320,7 +437,9 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     }
 
     /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * Remove user from project
+     * @deprecated
      */
     async userProjectDelV1Raw(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['language'] == null) {
@@ -348,8 +467,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -366,6 +483,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
         const response = await this.request({
             path: `/method/project/user/del`,
             method: 'POST',
@@ -377,10 +499,80 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     }
 
     /**
+     * Use /site/project/user/leave or /site/project/user/delete instead.
      * Remove user from project
+     * @deprecated
      */
     async userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.userProjectDelV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove member from project
+     */
+    async userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling userProjectDeleteMemberV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling userProjectDeleteMemberV1().'
+            );
+        }
+
+        if (requestParameters['user_id'] == null) {
+            throw new runtime.RequiredError(
+                'user_id',
+                'Required parameter "user_id" was null or undefined when calling userProjectDeleteMemberV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['user_id'] != null) {
+            queryParameters['user_id'] = requestParameters['user_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
+        const response = await this.request({
+            path: `/method/project/user/delete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove member from project
+     */
+    async userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.userProjectDeleteMemberV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -406,8 +598,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -419,6 +609,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/get_project_info`,
@@ -460,8 +655,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -473,6 +666,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/get_project`,
@@ -514,8 +712,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -527,6 +723,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/get_user`,
@@ -543,6 +744,63 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
      */
     async userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse> {
         const response = await this.userProjectGetUserV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Leave project
+     */
+    async userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling userProjectLeaveV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling userProjectLeaveV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
+        const response = await this.request({
+            path: `/method/project/user/leave`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Leave project
+     */
+    async userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.userProjectLeaveV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -568,8 +826,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -581,6 +837,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/user/list`,
@@ -615,8 +876,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -632,6 +891,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/list`,
@@ -673,8 +937,6 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
-        } else {
-            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -686,6 +948,11 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+        }
 
         const response = await this.request({
             path: `/method/project/select`,
@@ -710,6 +977,22 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
 /**
  * @export
  */
+export const MethodProjectMeMeV1VEnum = {
+    _1: '1'
+} as const;
+export type MethodProjectMeMeV1VEnum = typeof MethodProjectMeMeV1VEnum[keyof typeof MethodProjectMeMeV1VEnum];
+/**
+ * @export
+ */
+export const MethodProjectMeMeV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type MethodProjectMeMeV1LanguageEnum = typeof MethodProjectMeMeV1LanguageEnum[keyof typeof MethodProjectMeMeV1LanguageEnum];
+/**
+ * @export
+ */
 export const UserProjectChangeAccessV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -722,7 +1005,8 @@ export type UserProjectChangeAccessV1LanguageEnum = typeof UserProjectChangeAcce
 export const UserProjectChangeAccessV1AccessTypeEnum = {
     NUMBER_0: 0,
     NUMBER_1: 1,
-    NUMBER_2: 2
+    NUMBER_2: 2,
+    NUMBER_3: 3
 } as const;
 export type UserProjectChangeAccessV1AccessTypeEnum = typeof UserProjectChangeAccessV1AccessTypeEnum[keyof typeof UserProjectChangeAccessV1AccessTypeEnum];
 /**
@@ -748,6 +1032,22 @@ export const UserProjectDelV1VEnum = {
     _1: '1'
 } as const;
 export type UserProjectDelV1VEnum = typeof UserProjectDelV1VEnum[keyof typeof UserProjectDelV1VEnum];
+/**
+ * @export
+ */
+export const UserProjectDeleteMemberV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type UserProjectDeleteMemberV1LanguageEnum = typeof UserProjectDeleteMemberV1LanguageEnum[keyof typeof UserProjectDeleteMemberV1LanguageEnum];
+/**
+ * @export
+ */
+export const UserProjectDeleteMemberV1VEnum = {
+    _1: '1'
+} as const;
+export type UserProjectDeleteMemberV1VEnum = typeof UserProjectDeleteMemberV1VEnum[keyof typeof UserProjectDeleteMemberV1VEnum];
 /**
  * @export
  */
@@ -796,6 +1096,22 @@ export const UserProjectGetUserV1VEnum = {
     _1: '1'
 } as const;
 export type UserProjectGetUserV1VEnum = typeof UserProjectGetUserV1VEnum[keyof typeof UserProjectGetUserV1VEnum];
+/**
+ * @export
+ */
+export const UserProjectLeaveV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type UserProjectLeaveV1LanguageEnum = typeof UserProjectLeaveV1LanguageEnum[keyof typeof UserProjectLeaveV1LanguageEnum];
+/**
+ * @export
+ */
+export const UserProjectLeaveV1VEnum = {
+    _1: '1'
+} as const;
+export type UserProjectLeaveV1VEnum = typeof UserProjectLeaveV1VEnum[keyof typeof UserProjectLeaveV1VEnum];
 /**
  * @export
  */

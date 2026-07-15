@@ -28,6 +28,7 @@ import {
     SearchChannelItemToJSONTyped,
 } from './SearchChannelItem';
 
+
 /**
  * 
  * @export

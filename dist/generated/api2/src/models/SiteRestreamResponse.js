@@ -20,6 +20,8 @@ exports.SiteRestreamResponseToJSONTyped = exports.SiteRestreamResponseToJSON = e
 function instanceOfSiteRestreamResponse(value) {
     if (!('id' in value) || value['id'] === undefined)
         return false;
+    if (!('channel_id' in value) || value['channel_id'] === undefined)
+        return false;
     if (!('name' in value) || value['name'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
@@ -47,6 +49,7 @@ function SiteRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
+        'channel_id': json['channel_id'],
         'name': json['name'],
         'type': json['type'],
         'photo': json['photo'],
@@ -67,6 +70,7 @@ function SiteRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'id': value['id'],
+        'channel_id': value['channel_id'],
         'name': value['name'],
         'type': value['type'],
         'photo': value['photo'],
