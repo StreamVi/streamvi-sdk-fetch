@@ -35,7 +35,7 @@ export class StreamViSdkConfig {
   get configuration() {
     return new Configuration({
       basePath: this._basePath,
-      accessToken: this._accessToken,
+      accessToken: `oauth ${this._accessToken}`,
       headers: {
         Authorization: `oauth ${this._accessToken}`
       }

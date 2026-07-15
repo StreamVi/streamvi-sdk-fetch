@@ -21,7 +21,6 @@ import {
     CentrifugoBroadcastRestreamStartedPayloadToJSONTyped,
 } from './CentrifugoBroadcastRestreamStartedPayload';
 
-
 /**
  * 
  * @export

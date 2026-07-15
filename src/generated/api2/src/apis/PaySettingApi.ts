@@ -64,7 +64,7 @@ export interface PaySettingApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} country_id country id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
@@ -81,7 +81,7 @@ export interface PaySettingApiInterface {
      * @summary Get pay settings for profile v3
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
@@ -144,6 +144,8 @@ export class PaySettingApi extends runtime.BaseAPI implements PaySettingApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -213,6 +215,8 @@ export class PaySettingApi extends runtime.BaseAPI implements PaySettingApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '3';
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -267,7 +271,7 @@ export class PaySettingApi extends runtime.BaseAPI implements PaySettingApiInter
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PaySettingSetSettingV1RequestToJSON(requestParameters['PaySettingSetSettingV1Request']),
+            body: PaySettingSetSettingV1RequestToJSON({ ...requestParameters['PaySettingSetSettingV1Request'], v: requestParameters['PaySettingSetSettingV1Request'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

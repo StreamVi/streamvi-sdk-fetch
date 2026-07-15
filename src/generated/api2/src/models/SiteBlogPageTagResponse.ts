@@ -21,7 +21,6 @@ import {
     BlogPageSiteResponseIdToJSONTyped,
 } from './BlogPageSiteResponseId';
 
-
 /**
  * 
  * @export

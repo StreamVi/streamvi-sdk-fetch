@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface WebinarStreamStartDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof WebinarStreamStartDto
      */
-    v: WebinarStreamStartDtoVEnum;
+    v?: WebinarStreamStartDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type WebinarStreamStartDtoLanguageEnum = typeof WebinarStreamStartDtoLang
  * Check if a given object implements the WebinarStreamStartDto interface.
  */
 export function instanceOfWebinarStreamStartDto(value: object): value is WebinarStreamStartDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('room_id' in value) || value['room_id'] === undefined) return false;
     if (!('client_id' in value) || value['client_id'] === undefined) return false;
@@ -87,7 +85,7 @@ export function WebinarStreamStartDtoFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],

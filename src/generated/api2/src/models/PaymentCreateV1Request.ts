@@ -48,7 +48,6 @@ import {
     PaymentCreateRequestWebinarBodyDtoToJSON,
 } from './PaymentCreateRequestWebinarBodyDto';
 
-
 /**
  * @type PaymentCreateV1Request
  * 

@@ -21,7 +21,6 @@ import {
     InternalNotifyTypeTextToJSONTyped,
 } from './InternalNotifyTypeText';
 
-
 /**
  * 
  * @export

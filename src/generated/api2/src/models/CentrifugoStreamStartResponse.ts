@@ -21,7 +21,6 @@ import {
     CentrifugoStreamStartPayloadToJSONTyped,
 } from './CentrifugoStreamStartPayload';
 
-
 /**
  * 
  * @export

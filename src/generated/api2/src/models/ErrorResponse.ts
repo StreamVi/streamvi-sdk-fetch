@@ -21,7 +21,6 @@ import {
     ErrorDataToJSONTyped,
 } from './ErrorData';
 
-
 /**
  * 
  * @export

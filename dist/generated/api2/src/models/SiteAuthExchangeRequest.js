@@ -41,8 +41,6 @@ exports.SiteAuthExchangeRequestAppEnum = {
  * Check if a given object implements the SiteAuthExchangeRequest interface.
  */
 function instanceOfSiteAuthExchangeRequest(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('code' in value) || value['code'] === undefined)
@@ -63,7 +61,7 @@ function SiteAuthExchangeRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'code': json['code'],
         'userAgent': json['userAgent'],

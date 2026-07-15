@@ -39,8 +39,6 @@ exports.WebinarUpdateStreamSettingDtoFpsEnum = {
  * Check if a given object implements the WebinarUpdateStreamSettingDto interface.
  */
 function instanceOfWebinarUpdateStreamSettingDto(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('client_id' in value) || value['client_id'] === undefined)
@@ -67,7 +65,7 @@ function WebinarUpdateStreamSettingDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'client_id': json['client_id'],
         'room_id': json['room_id'],

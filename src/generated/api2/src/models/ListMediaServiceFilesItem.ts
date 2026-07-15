@@ -21,7 +21,6 @@ import {
     MediaServiceFilesStatusToJSONTyped,
 } from './MediaServiceFilesStatus';
 
-
 /**
  * 
  * @export

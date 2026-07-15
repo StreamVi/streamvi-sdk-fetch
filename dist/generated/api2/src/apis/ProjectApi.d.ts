@@ -80,7 +80,7 @@ export interface ProjectApiInterface {
     /**
      *
      * @summary Get current user project
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'ru' | 'en' | 'cn'} [language] Current language
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -98,7 +98,7 @@ export interface ProjectApiInterface {
      * @param {number} project_id Project id
      * @param {number} user_id User id
      * @param {0 | 1 | 2 | 3} access_type Access type
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -114,7 +114,7 @@ export interface ProjectApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -133,7 +133,7 @@ export interface ProjectApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} user_id User id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -148,7 +148,7 @@ export interface ProjectApiInterface {
      * @summary Get project full info
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -163,7 +163,7 @@ export interface ProjectApiInterface {
      * @summary Get project by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} project_external_id Project external id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -178,7 +178,7 @@ export interface ProjectApiInterface {
      * @summary Get user by number id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} user_external_id User external id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -193,7 +193,7 @@ export interface ProjectApiInterface {
      * @summary Leave project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -208,7 +208,7 @@ export interface ProjectApiInterface {
      * @summary List of user in project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
@@ -222,7 +222,7 @@ export interface ProjectApiInterface {
      *
      * @summary List of project for current user
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {*} [options] Override http request option.
@@ -239,7 +239,7 @@ export interface ProjectApiInterface {
      * @summary Select user for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Project internal id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface

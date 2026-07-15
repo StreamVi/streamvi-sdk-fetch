@@ -47,6 +47,7 @@ class PaymentApi extends runtime.BaseAPI {
      * Create payment item for pay system
      */
     async paymentCreateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paymentCreateV1().');
         }
@@ -56,6 +57,9 @@ class PaymentApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -71,7 +75,7 @@ class PaymentApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PaymentCreateV1RequestToJSON)(requestParameters['PaymentCreateV1Request']),
+            body: (0, index_1.PaymentCreateV1RequestToJSON)({ ...requestParameters['PaymentCreateV1Request'], v: (_a = requestParameters['PaymentCreateV1Request'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaymentCreateResponseFromJSON)(jsonValue));
     }
@@ -97,6 +101,9 @@ class PaymentApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];

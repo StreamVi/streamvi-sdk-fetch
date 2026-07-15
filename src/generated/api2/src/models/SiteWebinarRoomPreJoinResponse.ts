@@ -21,7 +21,6 @@ import {
     SiteWebinarRoomPreJoinParticipantResponseToJSONTyped,
 } from './SiteWebinarRoomPreJoinParticipantResponse';
 
-
 /**
  * 
  * @export

@@ -34,7 +34,7 @@ export interface PaymentApiInterface {
      * @summary Create payment item for pay system
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {PaymentCreateV1Request} PaymentCreateV1Request
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
@@ -49,7 +49,7 @@ export interface PaymentApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payId Pay order id
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface

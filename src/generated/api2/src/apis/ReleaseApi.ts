@@ -42,7 +42,7 @@ export interface ReleaseApiInterface {
      * 
      * @summary Get current version app
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'cabinet'} [app] Apps
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -77,6 +77,8 @@ export class ReleaseApi extends runtime.BaseAPI implements ReleaseApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

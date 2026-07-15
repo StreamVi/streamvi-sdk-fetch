@@ -21,7 +21,6 @@ import {
     NotifyHistorySiteResponseToJSONTyped,
 } from './NotifyHistorySiteResponse';
 
-
 /**
  * 
  * @export

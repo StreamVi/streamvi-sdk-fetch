@@ -699,7 +699,7 @@ export interface ChannelApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -732,7 +732,7 @@ export interface ChannelApiInterface {
      * @summary Minimal channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -749,7 +749,7 @@ export interface ChannelApiInterface {
      * @summary Search channel list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'all' | 'my' | 'available' | 'active'} [type] 
      * @param {string} [platform] platform type
      * @param {string} [name] name
@@ -815,7 +815,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: BizonDtoToJSON(requestParameters['BizonDto']),
+            body: BizonDtoToJSON({ ...requestParameters['BizonDto'], v: requestParameters['BizonDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -855,7 +855,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: BoostyDtoToJSON(requestParameters['BoostyDto']),
+            body: BoostyDtoToJSON({ ...requestParameters['BoostyDto'], v: requestParameters['BoostyDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -895,7 +895,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CustomDtoToJSON(requestParameters['CustomDto']),
+            body: CustomDtoToJSON({ ...requestParameters['CustomDto'], v: requestParameters['CustomDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -935,7 +935,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: DouyuDtoToJSON(requestParameters['DouyuDto']),
+            body: DouyuDtoToJSON({ ...requestParameters['DouyuDto'], v: requestParameters['DouyuDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -975,7 +975,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: FbDtoToJSON(requestParameters['FbDto']),
+            body: FbDtoToJSON({ ...requestParameters['FbDto'], v: requestParameters['FbDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1015,7 +1015,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: Fc2liveDtoToJSON(requestParameters['Fc2liveDto']),
+            body: Fc2liveDtoToJSON({ ...requestParameters['Fc2liveDto'], v: requestParameters['Fc2liveDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1055,7 +1055,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GetcourseDtoToJSON(requestParameters['GetcourseDto']),
+            body: GetcourseDtoToJSON({ ...requestParameters['GetcourseDto'], v: requestParameters['GetcourseDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1095,7 +1095,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GoodgameDtoToJSON(requestParameters['GoodgameDto']),
+            body: GoodgameDtoToJSON({ ...requestParameters['GoodgameDto'], v: requestParameters['GoodgameDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1135,7 +1135,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: HuyaDtoToJSON(requestParameters['HuyaDto']),
+            body: HuyaDtoToJSON({ ...requestParameters['HuyaDto'], v: requestParameters['HuyaDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1175,7 +1175,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: InstagramDtoToJSON(requestParameters['InstagramDto']),
+            body: InstagramDtoToJSON({ ...requestParameters['InstagramDto'], v: requestParameters['InstagramDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1215,7 +1215,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: KickDtoToJSON(requestParameters['KickDto']),
+            body: KickDtoToJSON({ ...requestParameters['KickDto'], v: requestParameters['KickDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1255,7 +1255,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: KinescopeDtoToJSON(requestParameters['KinescopeDto']),
+            body: KinescopeDtoToJSON({ ...requestParameters['KinescopeDto'], v: requestParameters['KinescopeDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1295,7 +1295,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: LinkedinDtoToJSON(requestParameters['LinkedinDto']),
+            body: LinkedinDtoToJSON({ ...requestParameters['LinkedinDto'], v: requestParameters['LinkedinDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1335,7 +1335,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: NavertvDtoToJSON(requestParameters['NavertvDto']),
+            body: NavertvDtoToJSON({ ...requestParameters['NavertvDto'], v: requestParameters['NavertvDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1375,7 +1375,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: NimotvDtoToJSON(requestParameters['NimotvDto']),
+            body: NimotvDtoToJSON({ ...requestParameters['NimotvDto'], v: requestParameters['NimotvDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1415,7 +1415,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: NonoliveDtoToJSON(requestParameters['NonoliveDto']),
+            body: NonoliveDtoToJSON({ ...requestParameters['NonoliveDto'], v: requestParameters['NonoliveDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1455,7 +1455,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: OkDtoToJSON(requestParameters['OkDto']),
+            body: OkDtoToJSON({ ...requestParameters['OkDto'], v: requestParameters['OkDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1495,7 +1495,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlvideoDtoToJSON(requestParameters['PlvideoDto']),
+            body: PlvideoDtoToJSON({ ...requestParameters['PlvideoDto'], v: requestParameters['PlvideoDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1535,7 +1535,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RutubeDtoToJSON(requestParameters['RutubeDto']),
+            body: RutubeDtoToJSON({ ...requestParameters['RutubeDto'], v: requestParameters['RutubeDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1575,7 +1575,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: MethodSrtDtoToJSON(requestParameters['MethodSrtDto']),
+            body: MethodSrtDtoToJSON({ ...requestParameters['MethodSrtDto'], v: requestParameters['MethodSrtDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1615,7 +1615,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SteamDtoToJSON(requestParameters['SteamDto']),
+            body: SteamDtoToJSON({ ...requestParameters['SteamDto'], v: requestParameters['SteamDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1655,7 +1655,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TachidDtoToJSON(requestParameters['TachidDto']),
+            body: TachidDtoToJSON({ ...requestParameters['TachidDto'], v: requestParameters['TachidDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1695,7 +1695,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TelegramDtoToJSON(requestParameters['TelegramDto']),
+            body: TelegramDtoToJSON({ ...requestParameters['TelegramDto'], v: requestParameters['TelegramDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1735,7 +1735,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TiktokDtoToJSON(requestParameters['TiktokDto']),
+            body: TiktokDtoToJSON({ ...requestParameters['TiktokDto'], v: requestParameters['TiktokDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1775,7 +1775,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: VkDtoToJSON(requestParameters['VkDto']),
+            body: VkDtoToJSON({ ...requestParameters['VkDto'], v: requestParameters['VkDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1815,7 +1815,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: VliveDtoToJSON(requestParameters['VliveDto']),
+            body: VliveDtoToJSON({ ...requestParameters['VliveDto'], v: requestParameters['VliveDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1855,7 +1855,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ZhanqitvDtoToJSON(requestParameters['ZhanqitvDto']),
+            body: ZhanqitvDtoToJSON({ ...requestParameters['ZhanqitvDto'], v: requestParameters['ZhanqitvDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1895,7 +1895,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: DeleteChannelDtoToJSON(requestParameters['DeleteChannelDto']),
+            body: DeleteChannelDtoToJSON({ ...requestParameters['DeleteChannelDto'], v: requestParameters['DeleteChannelDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1938,6 +1938,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -2052,6 +2054,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -2109,6 +2113,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -2199,7 +2205,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: MethodSetStatusChannelRequestToJSON(requestParameters['MethodSetStatusChannelRequest']),
+            body: MethodSetStatusChannelRequestToJSON({ ...requestParameters['MethodSetStatusChannelRequest'], v: requestParameters['MethodSetStatusChannelRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

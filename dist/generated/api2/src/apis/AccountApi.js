@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccountUpdateProfileV1LanguageEnum = exports.AccountUpdateProfileV1VEnum = exports.AccountGetProfileV1VEnum = exports.AccountGetProfileV1LanguageEnum = exports.AccountApi = void 0;
+exports.AccountUpdateProfileV1VEnum = exports.AccountUpdateProfileV1LanguageEnum = exports.AccountGetProfileV1VEnum = exports.AccountGetProfileV1LanguageEnum = exports.AccountApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -53,6 +53,9 @@ class AccountApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -81,9 +84,6 @@ class AccountApi extends runtime.BaseAPI {
      * Update account profile
      */
     async accountUpdateProfileV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['v'] == null) {
-            throw new runtime.RequiredError('v', 'Required parameter "v" was null or undefined when calling accountUpdateProfileV1().');
-        }
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling accountUpdateProfileV1().');
         }
@@ -116,6 +116,9 @@ class AccountApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v']);
+        }
+        else {
+            formParams.append('v', '1');
         }
         if (requestParameters['language'] != null) {
             formParams.append('language', requestParameters['language']);
@@ -164,14 +167,14 @@ exports.AccountGetProfileV1VEnum = {
 /**
  * @export
  */
-exports.AccountUpdateProfileV1VEnum = {
-    _1: '1'
-};
-/**
- * @export
- */
 exports.AccountUpdateProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.AccountUpdateProfileV1VEnum = {
+    _1: '1'
 };

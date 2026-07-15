@@ -46,8 +46,6 @@ exports.TranscoderCreateDtoVideoCodecEnum = {
  * Check if a given object implements the TranscoderCreateDto interface.
  */
 function instanceOfTranscoderCreateDto(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('project_id' in value) || value['project_id'] === undefined)
@@ -68,7 +66,7 @@ function TranscoderCreateDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'mode': json['mode'] == null ? undefined : json['mode'],

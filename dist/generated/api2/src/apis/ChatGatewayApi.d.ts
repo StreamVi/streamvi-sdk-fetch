@@ -52,7 +52,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -69,7 +69,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -85,7 +85,7 @@ export interface ChatGatewayApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -102,7 +102,7 @@ export interface ChatGatewayApiInterface {
      * @param {string} key Key
      * @param {number} broadcast_id
      * @param {MethodChatSendMessageRequestDto} MethodChatSendMessageRequestDto
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface

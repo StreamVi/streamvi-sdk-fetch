@@ -21,7 +21,6 @@ import {
     PlanRestreamDiscountResponseToJSONTyped,
 } from './PlanRestreamDiscountResponse';
 
-
 /**
  * 
  * @export

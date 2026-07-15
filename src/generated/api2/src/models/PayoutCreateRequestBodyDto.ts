@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PayoutCreateRequestBodyDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof PayoutCreateRequestBodyDto
      */
-    v: PayoutCreateRequestBodyDtoVEnum;
+    v?: PayoutCreateRequestBodyDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type PayoutCreateRequestBodyDtoLanguageEnum = typeof PayoutCreateRequestB
  * Check if a given object implements the PayoutCreateRequestBodyDto interface.
  */
 export function instanceOfPayoutCreateRequestBodyDto(value: object): value is PayoutCreateRequestBodyDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('payout_system_account_id' in value) || value['payout_system_account_id'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
@@ -101,7 +99,7 @@ export function PayoutCreateRequestBodyDtoFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'payout_system_account_id': json['payout_system_account_id'],
         'project_id': json['project_id'],

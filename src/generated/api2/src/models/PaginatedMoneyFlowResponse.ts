@@ -21,7 +21,6 @@ import {
     MoneyFlowResponseToJSONTyped,
 } from './MoneyFlowResponse';
 
-
 /**
  * 
  * @export

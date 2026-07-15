@@ -21,7 +21,6 @@ import {
     MessageRestreamResponseDtoToJSONTyped,
 } from './MessageRestreamResponseDto';
 
-
 /**
  * 
  * @export

@@ -112,7 +112,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room name
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -153,7 +153,7 @@ export interface WebinarApiInterface {
      * @summary List of webinar rooms
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -169,7 +169,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room id
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -224,7 +224,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} client_id Client ID
      * @param {string} room_id Room id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -240,7 +240,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room id
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface

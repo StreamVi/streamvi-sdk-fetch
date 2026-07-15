@@ -21,7 +21,6 @@ import {
     BroadcastLiveStatusRestreamToJSONTyped,
 } from './BroadcastLiveStatusRestream';
 
-
 /**
  * 
  * @export

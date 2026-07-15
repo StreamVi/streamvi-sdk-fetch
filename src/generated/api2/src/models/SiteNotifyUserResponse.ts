@@ -28,7 +28,6 @@ import {
     NotifyUserRelationToJSONTyped,
 } from './NotifyUserRelation';
 
-
 /**
  * 
  * @export

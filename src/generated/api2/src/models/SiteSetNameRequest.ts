@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteSetNameRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteSetNameRequest
      */
-    v: SiteSetNameRequestVEnum;
+    v?: SiteSetNameRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type SiteSetNameRequestLanguageEnum = typeof SiteSetNameRequestLanguageEn
  * Check if a given object implements the SiteSetNameRequest interface.
  */
 export function instanceOfSiteSetNameRequest(value: object): value is SiteSetNameRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -94,7 +92,7 @@ export function SiteSetNameRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

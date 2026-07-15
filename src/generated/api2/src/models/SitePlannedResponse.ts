@@ -21,7 +21,6 @@ import {
     PlannedItemResponseToJSONTyped,
 } from './PlannedItemResponse';
 
-
 /**
  * 
  * @export

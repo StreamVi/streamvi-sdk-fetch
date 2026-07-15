@@ -64,7 +64,7 @@ export interface PlanWebinarApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_webinar_id Webinar plan id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
@@ -79,7 +79,7 @@ export interface PlanWebinarApiInterface {
      * @summary Remove after tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
@@ -96,7 +96,7 @@ export interface PlanWebinarApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_webinar_id Webinar plan id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [use_balance] Is select balance
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -111,7 +111,7 @@ export interface PlanWebinarApiInterface {
      *
      * @summary Get discount webinar
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
@@ -125,7 +125,7 @@ export interface PlanWebinarApiInterface {
      *
      * @summary Get list of webinar tariffs
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
@@ -141,7 +141,7 @@ export interface PlanWebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
@@ -156,7 +156,7 @@ export interface PlanWebinarApiInterface {
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface

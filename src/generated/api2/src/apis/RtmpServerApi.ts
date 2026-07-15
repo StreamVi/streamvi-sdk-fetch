@@ -89,7 +89,7 @@ export interface RtmpServerApiInterface {
      * 
      * @summary Rtmp locations server list example for unauthorized
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -107,7 +107,7 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
      * @param {'performance' | 'network' | 'cpu' | 'ram' | 'deliveredPackages'} type Type graph
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -124,7 +124,7 @@ export interface RtmpServerApiInterface {
      * @summary List rtmp servers (base info)
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -141,7 +141,7 @@ export interface RtmpServerApiInterface {
      * @summary List rtmp servers v3
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'3'} [v] Version (automatically defaults to 3 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -159,7 +159,7 @@ export interface RtmpServerApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} src_ip Source IPv4 address
      * @param {string} dst_ip Destination IPv4 address
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [profile] Recommendation profile
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -177,7 +177,7 @@ export interface RtmpServerApiInterface {
      * @summary State of rtmp servers
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
@@ -225,6 +225,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -280,6 +282,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -336,6 +340,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -397,6 +403,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '3';
         }
 
         if (requestParameters['project_id'] != null) {
@@ -457,6 +465,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -517,6 +527,8 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

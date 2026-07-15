@@ -44,8 +44,6 @@ exports.RemoveAccountQueryPlatformEnum = {
  * Check if a given object implements the RemoveAccountQuery interface.
  */
 function instanceOfRemoveAccountQuery(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('platform' in value) || value['platform'] === undefined)
@@ -64,7 +62,7 @@ function RemoveAccountQueryFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'platform': json['platform'],
         'id': json['id'],

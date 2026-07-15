@@ -52,7 +52,7 @@ export interface CentrifugeApiInterface {
      * Use /method/centrifuge/auth/connect instead.
      * @summary Auth centrifuge for project
      * @param {number} project_id Project id
-     * @param {'2'} [v] Version (automatically defaults to 2 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -71,7 +71,7 @@ export interface CentrifugeApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {string} channel_name Channel name
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -86,7 +86,7 @@ export interface CentrifugeApiInterface {
      * Returns supported channel_type values, required params, events, and response schema names.
      * @summary List available Method API Centrifuge channels
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -102,7 +102,7 @@ export interface CentrifugeApiInterface {
      * @summary Get token for connect to centrifuge for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -118,7 +118,7 @@ export interface CentrifugeApiInterface {
      * @summary Auth token for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -137,7 +137,7 @@ export interface CentrifugeApiInterface {
      * @param {number} broadcast_id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}

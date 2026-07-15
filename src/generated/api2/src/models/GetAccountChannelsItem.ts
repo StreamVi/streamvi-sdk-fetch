@@ -21,7 +21,6 @@ import {
     GetAccountChannelsAccountItemToJSONTyped,
 } from './GetAccountChannelsAccountItem';
 
-
 /**
  * 
  * @export

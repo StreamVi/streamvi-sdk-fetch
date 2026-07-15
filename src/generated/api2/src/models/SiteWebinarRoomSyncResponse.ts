@@ -28,7 +28,6 @@ import {
     SiteWebinarRoomSyncFocusTrackResponseToJSONTyped,
 } from './SiteWebinarRoomSyncFocusTrackResponse';
 
-
 /**
  * 
  * @export

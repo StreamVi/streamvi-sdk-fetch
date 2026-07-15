@@ -45,7 +45,7 @@ export interface NotifyUserApiInterface {
      * @summary Delete mobile token from user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} token Token in mobile app
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -60,7 +60,7 @@ export interface NotifyUserApiInterface {
      * @summary Get user screen notify
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -74,7 +74,7 @@ export interface NotifyUserApiInterface {
      *
      * @summary Get user notify settings
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -88,7 +88,7 @@ export interface NotifyUserApiInterface {
      *
      * @summary Remove user screen notify
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -102,7 +102,7 @@ export interface NotifyUserApiInterface {
      *
      * @summary Set user notify settings
      * @param {SiteSetNotifyUserRequest} SiteSetNotifyUserRequest Set user notify settings
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface

@@ -21,7 +21,6 @@ import {
     PlanTranscodingDiscountResponseToJSONTyped,
 } from './PlanTranscodingDiscountResponse';
 
-
 /**
  * 
  * @export

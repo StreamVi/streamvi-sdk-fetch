@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface TelegramDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof TelegramDto
      */
-    v: TelegramDtoVEnum;
+    v?: TelegramDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type TelegramDtoLanguageEnum = typeof TelegramDtoLanguageEnum[keyof typeo
  * Check if a given object implements the TelegramDto interface.
  */
 export function instanceOfTelegramDto(value: object): value is TelegramDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
@@ -101,7 +99,7 @@ export function TelegramDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'name': json['name'],

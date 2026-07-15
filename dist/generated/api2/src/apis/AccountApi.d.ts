@@ -16,10 +16,10 @@ export interface AccountGetProfileV1Request {
     v?: AccountGetProfileV1VEnum;
 }
 export interface AccountUpdateProfileV1Request {
-    v: AccountUpdateProfileV1VEnum;
     language: AccountUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
+    v?: AccountUpdateProfileV1VEnum;
     avatar?: Blob;
 }
 /**
@@ -33,7 +33,7 @@ export interface AccountApiInterface {
      *
      * @summary Get account profile
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApiInterface
@@ -46,10 +46,10 @@ export interface AccountApiInterface {
     /**
      *
      * @summary Update account profile
-     * @param {string} v Version
      * @param {string} language Current language
      * @param {string} first_name First name
      * @param {string} last_name Last name
+     * @param {string} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -101,17 +101,17 @@ export type AccountGetProfileV1VEnum = typeof AccountGetProfileV1VEnum[keyof typ
 /**
  * @export
  */
-export declare const AccountUpdateProfileV1VEnum: {
-    readonly _1: "1";
-};
-export type AccountUpdateProfileV1VEnum = typeof AccountUpdateProfileV1VEnum[keyof typeof AccountUpdateProfileV1VEnum];
-/**
- * @export
- */
 export declare const AccountUpdateProfileV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
 export type AccountUpdateProfileV1LanguageEnum = typeof AccountUpdateProfileV1LanguageEnum[keyof typeof AccountUpdateProfileV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const AccountUpdateProfileV1VEnum: {
+    readonly _1: "1";
+};
+export type AccountUpdateProfileV1VEnum = typeof AccountUpdateProfileV1VEnum[keyof typeof AccountUpdateProfileV1VEnum];
 //# sourceMappingURL=AccountApi.d.ts.map

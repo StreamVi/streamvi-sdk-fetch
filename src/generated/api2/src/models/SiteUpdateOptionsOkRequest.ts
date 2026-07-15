@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteUpdateOptionsOkRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteUpdateOptionsOkRequest
      */
-    v: SiteUpdateOptionsOkRequestVEnum;
+    v?: SiteUpdateOptionsOkRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type SiteUpdateOptionsOkRequestLanguageEnum = typeof SiteUpdateOptionsOkR
  * Check if a given object implements the SiteUpdateOptionsOkRequest interface.
  */
 export function instanceOfSiteUpdateOptionsOkRequest(value: object): value is SiteUpdateOptionsOkRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -101,7 +99,7 @@ export function SiteUpdateOptionsOkRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

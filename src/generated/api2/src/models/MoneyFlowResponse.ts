@@ -42,7 +42,6 @@ import {
     MoneyFlowPaymentDetailsToJSONTyped,
 } from './MoneyFlowPaymentDetails';
 
-
 /**
  * 
  * @export

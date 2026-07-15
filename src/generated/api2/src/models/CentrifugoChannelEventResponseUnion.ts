@@ -21,7 +21,6 @@ import {
     CentrifugoChannelEventResponseUnionEventToJSONTyped,
 } from './CentrifugoChannelEventResponseUnionEvent';
 
-
 /**
  * 
  * @export

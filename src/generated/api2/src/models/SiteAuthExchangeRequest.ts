@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteAuthExchangeRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteAuthExchangeRequest
      */
-    v: SiteAuthExchangeRequestVEnum;
+    v?: SiteAuthExchangeRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -93,7 +92,6 @@ export type SiteAuthExchangeRequestAppEnum = typeof SiteAuthExchangeRequestAppEn
  * Check if a given object implements the SiteAuthExchangeRequest interface.
  */
 export function instanceOfSiteAuthExchangeRequest(value: object): value is SiteAuthExchangeRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('code' in value) || value['code'] === undefined) return false;
     if (!('userAgent' in value) || value['userAgent'] === undefined) return false;
@@ -111,7 +109,7 @@ export function SiteAuthExchangeRequestFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'code': json['code'],
         'userAgent': json['userAgent'],

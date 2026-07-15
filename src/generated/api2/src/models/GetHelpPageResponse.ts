@@ -21,7 +21,6 @@ import {
     HelpPageResponseToJSONTyped,
 } from './HelpPageResponse';
 
-
 /**
  * 
  * @export

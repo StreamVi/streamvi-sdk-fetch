@@ -125,7 +125,7 @@ export interface PlatformsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [sub_id] Sub id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -145,7 +145,7 @@ export interface PlatformsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel external id
      * @param {string} account_id Id account on platform
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [sub_id] Sub id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -209,7 +209,7 @@ export interface PlatformsApiInterface {
      * @summary Get accounts
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -226,7 +226,7 @@ export interface PlatformsApiInterface {
      * @summary Get category from the platform
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'vk' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} type Category search bar
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [q] Category search bar
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -247,7 +247,7 @@ export interface PlatformsApiInterface {
      * @param {Array<number>} ids Id accounts
      * @param {number} project_id Project id
      * @param {string} request_id Request id (for cache)
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [q] Search
      * @param {'asc' | 'desc'} [sort] Sort by asc or desc (default asc)
      * @param {number} [limit] Limit
@@ -269,7 +269,7 @@ export interface PlatformsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} id Category search bar
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -285,7 +285,7 @@ export interface PlatformsApiInterface {
      * 
      * @summary Supported platforms
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
@@ -348,6 +348,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -426,6 +428,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -624,6 +628,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -681,6 +687,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -763,6 +771,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -855,6 +865,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -909,6 +921,8 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -962,7 +976,7 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RemoveAccountQueryToJSON(requestParameters['RemoveAccountQuery']),
+            body: RemoveAccountQueryToJSON({ ...requestParameters['RemoveAccountQuery'], v: requestParameters['RemoveAccountQuery'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

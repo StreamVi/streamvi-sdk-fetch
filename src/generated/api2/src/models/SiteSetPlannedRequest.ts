@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteSetPlannedRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteSetPlannedRequest
      */
-    v: SiteSetPlannedRequestVEnum;
+    v?: SiteSetPlannedRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type SiteSetPlannedRequestLanguageEnum = typeof SiteSetPlannedRequestLang
  * Check if a given object implements the SiteSetPlannedRequest interface.
  */
 export function instanceOfSiteSetPlannedRequest(value: object): value is SiteSetPlannedRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -93,7 +91,7 @@ export function SiteSetPlannedRequestFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

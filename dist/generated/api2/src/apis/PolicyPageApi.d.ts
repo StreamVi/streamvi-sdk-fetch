@@ -32,7 +32,7 @@ export interface PolicyPageApiInterface {
      * @summary Get policy page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'refund' | 'terms-of-use' | 'using-cookie' | 'acceptable-use' | 'privacy-notice'} file_name Policy file name
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface
@@ -46,7 +46,7 @@ export interface PolicyPageApiInterface {
      *
      * @summary Get policy structure
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface

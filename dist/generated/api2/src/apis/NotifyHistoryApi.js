@@ -54,6 +54,9 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -112,6 +115,9 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -145,6 +151,9 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['_id'] != null) {
             queryParameters['_id'] = requestParameters['_id'];
@@ -182,6 +191,9 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -224,6 +236,9 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['notify_history_id'] != null) {
             queryParameters['notify_history_id'] = requestParameters['notify_history_id'];

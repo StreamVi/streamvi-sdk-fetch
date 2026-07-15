@@ -32,8 +32,6 @@ exports.GetcourseDtoLanguageEnum = {
  * Check if a given object implements the GetcourseDto interface.
  */
 function instanceOfGetcourseDto(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('project_id' in value) || value['project_id'] === undefined)
@@ -56,7 +54,7 @@ function GetcourseDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'name': json['name'],

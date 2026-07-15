@@ -57,6 +57,9 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -97,6 +100,9 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -134,6 +140,9 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
@@ -168,6 +177,9 @@ class NotifyUserApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['project_id'] != null) {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
@@ -201,6 +213,9 @@ class NotifyUserApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';

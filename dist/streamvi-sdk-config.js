@@ -33,7 +33,7 @@ class StreamViSdkConfig {
     get configuration() {
         return new runtime_1.Configuration({
             basePath: this._basePath,
-            accessToken: this._accessToken,
+            accessToken: `oauth ${this._accessToken}`,
             headers: {
                 Authorization: `oauth ${this._accessToken}`
             }

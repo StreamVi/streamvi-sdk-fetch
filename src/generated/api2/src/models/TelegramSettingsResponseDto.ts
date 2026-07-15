@@ -21,7 +21,6 @@ import {
     TelegramSettingsDtoToJSONTyped,
 } from './TelegramSettingsDto';
 
-
 /**
  * 
  * @export

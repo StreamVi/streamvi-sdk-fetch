@@ -21,7 +21,6 @@ import {
     GetShortChannelItemToJSONTyped,
 } from './GetShortChannelItem';
 
-
 /**
  * 
  * @export

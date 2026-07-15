@@ -47,6 +47,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add bizon channel
      */
     async addChannelMethodAddBizonV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['BizonDto'] == null) {
             throw new runtime.RequiredError('BizonDto', 'Required parameter "BizonDto" was null or undefined when calling addChannelMethodAddBizonV1().');
         }
@@ -62,7 +63,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.BizonDtoToJSON)(requestParameters['BizonDto']),
+            body: (0, index_1.BizonDtoToJSON)({ ...requestParameters['BizonDto'], v: (_a = requestParameters['BizonDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -76,6 +77,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add boosty channel
      */
     async addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['BoostyDto'] == null) {
             throw new runtime.RequiredError('BoostyDto', 'Required parameter "BoostyDto" was null or undefined when calling addChannelMethodAddBoostyV1().');
         }
@@ -91,7 +93,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.BoostyDtoToJSON)(requestParameters['BoostyDto']),
+            body: (0, index_1.BoostyDtoToJSON)({ ...requestParameters['BoostyDto'], v: (_a = requestParameters['BoostyDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -105,6 +107,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add custom channel
      */
     async addChannelMethodAddCustomV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['CustomDto'] == null) {
             throw new runtime.RequiredError('CustomDto', 'Required parameter "CustomDto" was null or undefined when calling addChannelMethodAddCustomV1().');
         }
@@ -120,7 +123,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.CustomDtoToJSON)(requestParameters['CustomDto']),
+            body: (0, index_1.CustomDtoToJSON)({ ...requestParameters['CustomDto'], v: (_a = requestParameters['CustomDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -134,6 +137,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add douyu channel
      */
     async addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['DouyuDto'] == null) {
             throw new runtime.RequiredError('DouyuDto', 'Required parameter "DouyuDto" was null or undefined when calling addChannelMethodAddDouyuV1().');
         }
@@ -149,7 +153,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.DouyuDtoToJSON)(requestParameters['DouyuDto']),
+            body: (0, index_1.DouyuDtoToJSON)({ ...requestParameters['DouyuDto'], v: (_a = requestParameters['DouyuDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -163,6 +167,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add fb channel
      */
     async addChannelMethodAddFbV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['FbDto'] == null) {
             throw new runtime.RequiredError('FbDto', 'Required parameter "FbDto" was null or undefined when calling addChannelMethodAddFbV1().');
         }
@@ -178,7 +183,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.FbDtoToJSON)(requestParameters['FbDto']),
+            body: (0, index_1.FbDtoToJSON)({ ...requestParameters['FbDto'], v: (_a = requestParameters['FbDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -192,6 +197,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add fc2Live channel
      */
     async addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['Fc2liveDto'] == null) {
             throw new runtime.RequiredError('Fc2liveDto', 'Required parameter "Fc2liveDto" was null or undefined when calling addChannelMethodAddFc2LiveV1().');
         }
@@ -207,7 +213,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.Fc2liveDtoToJSON)(requestParameters['Fc2liveDto']),
+            body: (0, index_1.Fc2liveDtoToJSON)({ ...requestParameters['Fc2liveDto'], v: (_a = requestParameters['Fc2liveDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -221,6 +227,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add getcourse channel
      */
     async addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['GetcourseDto'] == null) {
             throw new runtime.RequiredError('GetcourseDto', 'Required parameter "GetcourseDto" was null or undefined when calling addChannelMethodAddGetcourseV1().');
         }
@@ -236,7 +243,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.GetcourseDtoToJSON)(requestParameters['GetcourseDto']),
+            body: (0, index_1.GetcourseDtoToJSON)({ ...requestParameters['GetcourseDto'], v: (_a = requestParameters['GetcourseDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -250,6 +257,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add goodgame channel
      */
     async addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['GoodgameDto'] == null) {
             throw new runtime.RequiredError('GoodgameDto', 'Required parameter "GoodgameDto" was null or undefined when calling addChannelMethodAddGoodgameV1().');
         }
@@ -265,7 +273,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.GoodgameDtoToJSON)(requestParameters['GoodgameDto']),
+            body: (0, index_1.GoodgameDtoToJSON)({ ...requestParameters['GoodgameDto'], v: (_a = requestParameters['GoodgameDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -279,6 +287,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add huya channel
      */
     async addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['HuyaDto'] == null) {
             throw new runtime.RequiredError('HuyaDto', 'Required parameter "HuyaDto" was null or undefined when calling addChannelMethodAddHuyaV1().');
         }
@@ -294,7 +303,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.HuyaDtoToJSON)(requestParameters['HuyaDto']),
+            body: (0, index_1.HuyaDtoToJSON)({ ...requestParameters['HuyaDto'], v: (_a = requestParameters['HuyaDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -308,6 +317,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add instagram channel
      */
     async addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['InstagramDto'] == null) {
             throw new runtime.RequiredError('InstagramDto', 'Required parameter "InstagramDto" was null or undefined when calling addChannelMethodAddInstagramV1().');
         }
@@ -323,7 +333,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.InstagramDtoToJSON)(requestParameters['InstagramDto']),
+            body: (0, index_1.InstagramDtoToJSON)({ ...requestParameters['InstagramDto'], v: (_a = requestParameters['InstagramDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -337,6 +347,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add kick channel
      */
     async addChannelMethodAddKickV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['KickDto'] == null) {
             throw new runtime.RequiredError('KickDto', 'Required parameter "KickDto" was null or undefined when calling addChannelMethodAddKickV1().');
         }
@@ -352,7 +363,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.KickDtoToJSON)(requestParameters['KickDto']),
+            body: (0, index_1.KickDtoToJSON)({ ...requestParameters['KickDto'], v: (_a = requestParameters['KickDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -366,6 +377,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add kinescope channel
      */
     async addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['KinescopeDto'] == null) {
             throw new runtime.RequiredError('KinescopeDto', 'Required parameter "KinescopeDto" was null or undefined when calling addChannelMethodAddKinescopeV1().');
         }
@@ -381,7 +393,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.KinescopeDtoToJSON)(requestParameters['KinescopeDto']),
+            body: (0, index_1.KinescopeDtoToJSON)({ ...requestParameters['KinescopeDto'], v: (_a = requestParameters['KinescopeDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -395,6 +407,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add linkedin channel
      */
     async addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['LinkedinDto'] == null) {
             throw new runtime.RequiredError('LinkedinDto', 'Required parameter "LinkedinDto" was null or undefined when calling addChannelMethodAddLinkedinV1().');
         }
@@ -410,7 +423,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.LinkedinDtoToJSON)(requestParameters['LinkedinDto']),
+            body: (0, index_1.LinkedinDtoToJSON)({ ...requestParameters['LinkedinDto'], v: (_a = requestParameters['LinkedinDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -424,6 +437,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add navertv channel
      */
     async addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['NavertvDto'] == null) {
             throw new runtime.RequiredError('NavertvDto', 'Required parameter "NavertvDto" was null or undefined when calling addChannelMethodAddNavertvV1().');
         }
@@ -439,7 +453,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.NavertvDtoToJSON)(requestParameters['NavertvDto']),
+            body: (0, index_1.NavertvDtoToJSON)({ ...requestParameters['NavertvDto'], v: (_a = requestParameters['NavertvDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -453,6 +467,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add nimotv channel
      */
     async addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['NimotvDto'] == null) {
             throw new runtime.RequiredError('NimotvDto', 'Required parameter "NimotvDto" was null or undefined when calling addChannelMethodAddNimotvV1().');
         }
@@ -468,7 +483,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.NimotvDtoToJSON)(requestParameters['NimotvDto']),
+            body: (0, index_1.NimotvDtoToJSON)({ ...requestParameters['NimotvDto'], v: (_a = requestParameters['NimotvDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -482,6 +497,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add nonolive channel
      */
     async addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['NonoliveDto'] == null) {
             throw new runtime.RequiredError('NonoliveDto', 'Required parameter "NonoliveDto" was null or undefined when calling addChannelMethodAddNonoliveV1().');
         }
@@ -497,7 +513,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.NonoliveDtoToJSON)(requestParameters['NonoliveDto']),
+            body: (0, index_1.NonoliveDtoToJSON)({ ...requestParameters['NonoliveDto'], v: (_a = requestParameters['NonoliveDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -511,6 +527,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add ok channel
      */
     async addChannelMethodAddOkV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['OkDto'] == null) {
             throw new runtime.RequiredError('OkDto', 'Required parameter "OkDto" was null or undefined when calling addChannelMethodAddOkV1().');
         }
@@ -526,7 +543,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.OkDtoToJSON)(requestParameters['OkDto']),
+            body: (0, index_1.OkDtoToJSON)({ ...requestParameters['OkDto'], v: (_a = requestParameters['OkDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -540,6 +557,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add plvideo channel
      */
     async addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['PlvideoDto'] == null) {
             throw new runtime.RequiredError('PlvideoDto', 'Required parameter "PlvideoDto" was null or undefined when calling addChannelMethodAddPlvideoV1().');
         }
@@ -555,7 +573,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PlvideoDtoToJSON)(requestParameters['PlvideoDto']),
+            body: (0, index_1.PlvideoDtoToJSON)({ ...requestParameters['PlvideoDto'], v: (_a = requestParameters['PlvideoDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -569,6 +587,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add rutube channel
      */
     async addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['RutubeDto'] == null) {
             throw new runtime.RequiredError('RutubeDto', 'Required parameter "RutubeDto" was null or undefined when calling addChannelMethodAddRutubeV1().');
         }
@@ -584,7 +603,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.RutubeDtoToJSON)(requestParameters['RutubeDto']),
+            body: (0, index_1.RutubeDtoToJSON)({ ...requestParameters['RutubeDto'], v: (_a = requestParameters['RutubeDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -598,6 +617,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add srt channel
      */
     async addChannelMethodAddSrtV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['MethodSrtDto'] == null) {
             throw new runtime.RequiredError('MethodSrtDto', 'Required parameter "MethodSrtDto" was null or undefined when calling addChannelMethodAddSrtV1().');
         }
@@ -613,7 +633,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.MethodSrtDtoToJSON)(requestParameters['MethodSrtDto']),
+            body: (0, index_1.MethodSrtDtoToJSON)({ ...requestParameters['MethodSrtDto'], v: (_a = requestParameters['MethodSrtDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -627,6 +647,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add steam channel
      */
     async addChannelMethodAddSteamV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SteamDto'] == null) {
             throw new runtime.RequiredError('SteamDto', 'Required parameter "SteamDto" was null or undefined when calling addChannelMethodAddSteamV1().');
         }
@@ -642,7 +663,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SteamDtoToJSON)(requestParameters['SteamDto']),
+            body: (0, index_1.SteamDtoToJSON)({ ...requestParameters['SteamDto'], v: (_a = requestParameters['SteamDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -656,6 +677,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add tach channel
      */
     async addChannelMethodAddTachidV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['TachidDto'] == null) {
             throw new runtime.RequiredError('TachidDto', 'Required parameter "TachidDto" was null or undefined when calling addChannelMethodAddTachidV1().');
         }
@@ -671,7 +693,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TachidDtoToJSON)(requestParameters['TachidDto']),
+            body: (0, index_1.TachidDtoToJSON)({ ...requestParameters['TachidDto'], v: (_a = requestParameters['TachidDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -685,6 +707,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add telegram channel
      */
     async addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['TelegramDto'] == null) {
             throw new runtime.RequiredError('TelegramDto', 'Required parameter "TelegramDto" was null or undefined when calling addChannelMethodAddTelegramV1().');
         }
@@ -700,7 +723,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TelegramDtoToJSON)(requestParameters['TelegramDto']),
+            body: (0, index_1.TelegramDtoToJSON)({ ...requestParameters['TelegramDto'], v: (_a = requestParameters['TelegramDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -714,6 +737,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add tiktok channel
      */
     async addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['TiktokDto'] == null) {
             throw new runtime.RequiredError('TiktokDto', 'Required parameter "TiktokDto" was null or undefined when calling addChannelMethodAddTiktokV1().');
         }
@@ -729,7 +753,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.TiktokDtoToJSON)(requestParameters['TiktokDto']),
+            body: (0, index_1.TiktokDtoToJSON)({ ...requestParameters['TiktokDto'], v: (_a = requestParameters['TiktokDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -743,6 +767,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add vk channel
      */
     async addChannelMethodAddVkV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['VkDto'] == null) {
             throw new runtime.RequiredError('VkDto', 'Required parameter "VkDto" was null or undefined when calling addChannelMethodAddVkV1().');
         }
@@ -758,7 +783,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.VkDtoToJSON)(requestParameters['VkDto']),
+            body: (0, index_1.VkDtoToJSON)({ ...requestParameters['VkDto'], v: (_a = requestParameters['VkDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -772,6 +797,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add vlive channel
      */
     async addChannelMethodAddVliveV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['VliveDto'] == null) {
             throw new runtime.RequiredError('VliveDto', 'Required parameter "VliveDto" was null or undefined when calling addChannelMethodAddVliveV1().');
         }
@@ -787,7 +813,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.VliveDtoToJSON)(requestParameters['VliveDto']),
+            body: (0, index_1.VliveDtoToJSON)({ ...requestParameters['VliveDto'], v: (_a = requestParameters['VliveDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -801,6 +827,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Add zhanqitv channel
      */
     async addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['ZhanqitvDto'] == null) {
             throw new runtime.RequiredError('ZhanqitvDto', 'Required parameter "ZhanqitvDto" was null or undefined when calling addChannelMethodAddZhanqiTvV1().');
         }
@@ -816,7 +843,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.ZhanqitvDtoToJSON)(requestParameters['ZhanqitvDto']),
+            body: (0, index_1.ZhanqitvDtoToJSON)({ ...requestParameters['ZhanqitvDto'], v: (_a = requestParameters['ZhanqitvDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.VoidApiResponse(response);
     }
@@ -830,6 +857,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Delete channel
      */
     async channelDeleteChannelV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['DeleteChannelDto'] == null) {
             throw new runtime.RequiredError('DeleteChannelDto', 'Required parameter "DeleteChannelDto" was null or undefined when calling channelDeleteChannelV1().');
         }
@@ -845,7 +873,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.DeleteChannelDtoToJSON)(requestParameters['DeleteChannelDto']),
+            body: (0, index_1.DeleteChannelDtoToJSON)({ ...requestParameters['DeleteChannelDto'], v: (_a = requestParameters['DeleteChannelDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -872,6 +900,9 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -953,6 +984,9 @@ class ChannelApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -992,6 +1026,9 @@ class ChannelApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -1041,6 +1078,7 @@ class ChannelApi extends runtime.BaseAPI {
      * Get live status
      */
     async methodSetStatusV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['MethodSetStatusChannelRequest'] == null) {
             throw new runtime.RequiredError('MethodSetStatusChannelRequest', 'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusV1().');
         }
@@ -1059,7 +1097,7 @@ class ChannelApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.MethodSetStatusChannelRequestToJSON)(requestParameters['MethodSetStatusChannelRequest']),
+            body: (0, index_1.MethodSetStatusChannelRequestToJSON)({ ...requestParameters['MethodSetStatusChannelRequest'], v: (_a = requestParameters['MethodSetStatusChannelRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

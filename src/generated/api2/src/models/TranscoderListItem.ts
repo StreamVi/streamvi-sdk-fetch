@@ -28,7 +28,6 @@ import {
     TranscoderChannelItemToJSONTyped,
 } from './TranscoderChannelItem';
 
-
 /**
  * 
  * @export

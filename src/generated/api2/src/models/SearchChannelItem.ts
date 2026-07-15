@@ -56,7 +56,6 @@ import {
     SearchChannelPlatformDtoToJSONTyped,
 } from './SearchChannelPlatformDto';
 
-
 /**
  * 
  * @export

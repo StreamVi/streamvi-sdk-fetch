@@ -21,7 +21,6 @@ import {
     PlaylistItemResponseToJSONTyped,
 } from './PlaylistItemResponse';
 
-
 /**
  * 
  * @export

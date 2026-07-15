@@ -95,7 +95,7 @@ export interface PlanStorageApiInterface {
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_storage_id Storage plan id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [size] Size
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -113,7 +113,7 @@ export interface PlanStorageApiInterface {
      * @summary Remove next tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -130,7 +130,7 @@ export interface PlanStorageApiInterface {
      * @summary Check storage tariff before buy
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -146,7 +146,7 @@ export interface PlanStorageApiInterface {
      * 
      * @summary Get discount of storage
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -162,7 +162,7 @@ export interface PlanStorageApiInterface {
      * 
      * @summary Get info for storage tariff
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -180,7 +180,7 @@ export interface PlanStorageApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -197,7 +197,7 @@ export interface PlanStorageApiInterface {
      * @summary Get tariff for project
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
@@ -252,6 +252,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -321,6 +323,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -378,6 +382,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -428,6 +434,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -474,6 +482,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -534,6 +544,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -595,6 +607,8 @@ export class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

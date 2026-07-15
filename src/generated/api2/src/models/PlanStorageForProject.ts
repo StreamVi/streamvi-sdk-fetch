@@ -21,7 +21,6 @@ import {
     PlanStorageItemToJSONTyped,
 } from './PlanStorageItem';
 
-
 /**
  * 
  * @export

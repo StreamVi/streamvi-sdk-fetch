@@ -47,6 +47,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
      * Cancel service video
      */
     async mediaServiceFilesSiteCancelV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['CancelMediaServiceFileRequest'] == null) {
             throw new runtime.RequiredError('CancelMediaServiceFileRequest', 'Required parameter "CancelMediaServiceFileRequest" was null or undefined when calling mediaServiceFilesSiteCancelV1().');
         }
@@ -62,7 +63,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.CancelMediaServiceFileRequestToJSON)(requestParameters['CancelMediaServiceFileRequest']),
+            body: (0, index_1.CancelMediaServiceFileRequestToJSON)({ ...requestParameters['CancelMediaServiceFileRequest'], v: (_a = requestParameters['CancelMediaServiceFileRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -86,6 +87,9 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -117,6 +121,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
      * Delete service video
      */
     async mediaServiceFilesSiteDeleteV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['DeleteMediaServiceFileRequest'] == null) {
             throw new runtime.RequiredError('DeleteMediaServiceFileRequest', 'Required parameter "DeleteMediaServiceFileRequest" was null or undefined when calling mediaServiceFilesSiteDeleteV1().');
         }
@@ -132,7 +137,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.DeleteMediaServiceFileRequestToJSON)(requestParameters['DeleteMediaServiceFileRequest']),
+            body: (0, index_1.DeleteMediaServiceFileRequestToJSON)({ ...requestParameters['DeleteMediaServiceFileRequest'], v: (_a = requestParameters['DeleteMediaServiceFileRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -159,6 +164,9 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -203,6 +211,9 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -246,6 +257,9 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -279,6 +293,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
      * Set service video
      */
     async mediaServiceFilesSiteSetV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SetMediaServiceFileRequest'] == null) {
             throw new runtime.RequiredError('SetMediaServiceFileRequest', 'Required parameter "SetMediaServiceFileRequest" was null or undefined when calling mediaServiceFilesSiteSetV1().');
         }
@@ -294,7 +309,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SetMediaServiceFileRequestToJSON)(requestParameters['SetMediaServiceFileRequest']),
+            body: (0, index_1.SetMediaServiceFileRequestToJSON)({ ...requestParameters['SetMediaServiceFileRequest'], v: (_a = requestParameters['SetMediaServiceFileRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -309,6 +324,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
      * Update service video
      */
     async mediaServiceFilesSiteUpdateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['UpdateMediaServiceFileRequest'] == null) {
             throw new runtime.RequiredError('UpdateMediaServiceFileRequest', 'Required parameter "UpdateMediaServiceFileRequest" was null or undefined when calling mediaServiceFilesSiteUpdateV1().');
         }
@@ -324,7 +340,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.UpdateMediaServiceFileRequestToJSON)(requestParameters['UpdateMediaServiceFileRequest']),
+            body: (0, index_1.UpdateMediaServiceFileRequestToJSON)({ ...requestParameters['UpdateMediaServiceFileRequest'], v: (_a = requestParameters['UpdateMediaServiceFileRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

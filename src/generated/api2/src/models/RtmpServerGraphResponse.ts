@@ -21,7 +21,6 @@ import {
     TCountryChartDataToJSONTyped,
 } from './TCountryChartData';
 
-
 /**
  * 
  * @export

@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserUpdateProfileV1LanguageEnum = exports.UserUpdateProfileV1VEnum = exports.UsersApi = void 0;
+exports.UserUpdateProfileV1VEnum = exports.UserUpdateProfileV1LanguageEnum = exports.UsersApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -78,9 +78,6 @@ class UsersApi extends runtime.BaseAPI {
      * @deprecated
      */
     async userUpdateProfileV1Raw(requestParameters, initOverrides) {
-        if (requestParameters['v'] == null) {
-            throw new runtime.RequiredError('v', 'Required parameter "v" was null or undefined when calling userUpdateProfileV1().');
-        }
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling userUpdateProfileV1().');
         }
@@ -113,6 +110,9 @@ class UsersApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v']);
+        }
+        else {
+            formParams.append('v', '1');
         }
         if (requestParameters['language'] != null) {
             formParams.append('language', requestParameters['language']);
@@ -149,14 +149,14 @@ exports.UsersApi = UsersApi;
 /**
  * @export
  */
-exports.UserUpdateProfileV1VEnum = {
-    _1: '1'
-};
-/**
- * @export
- */
 exports.UserUpdateProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.UserUpdateProfileV1VEnum = {
+    _1: '1'
 };

@@ -21,7 +21,6 @@ import {
     MethodBroadcastRestreamItemResponseToJSONTyped,
 } from './MethodBroadcastRestreamItemResponse';
 
-
 /**
  * 
  * @export

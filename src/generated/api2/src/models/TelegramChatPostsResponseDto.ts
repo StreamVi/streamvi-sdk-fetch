@@ -21,7 +21,6 @@ import {
     TelegramChatPostsItemToJSONTyped,
 } from './TelegramChatPostsItem';
 
-
 /**
  * 
  * @export

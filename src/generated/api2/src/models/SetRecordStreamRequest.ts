@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SetRecordStreamRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SetRecordStreamRequest
      */
-    v: SetRecordStreamRequestVEnum;
+    v?: SetRecordStreamRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type SetRecordStreamRequestLanguageEnum = typeof SetRecordStreamRequestLa
  * Check if a given object implements the SetRecordStreamRequest interface.
  */
 export function instanceOfSetRecordStreamRequest(value: object): value is SetRecordStreamRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('record' in value) || value['record'] === undefined) return false;
@@ -87,7 +85,7 @@ export function SetRecordStreamRequestFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'record': json['record'],

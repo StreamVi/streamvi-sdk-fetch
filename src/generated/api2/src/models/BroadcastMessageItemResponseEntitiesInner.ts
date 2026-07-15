@@ -27,7 +27,6 @@ import {
     BroadcastMessageItemResponseEntitiesInnerOneOf1ToJSON,
 } from './BroadcastMessageItemResponseEntitiesInnerOneOf1';
 
-
 /**
  * @type BroadcastMessageItemResponseEntitiesInner
  * 

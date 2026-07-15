@@ -21,7 +21,6 @@ import {
     RtmpServerListItemBaseToJSONTyped,
 } from './RtmpServerListItemBase';
 
-
 /**
  * 
  * @export

@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface TranscoderCreateDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof TranscoderCreateDto
      */
-    v: TranscoderCreateDtoVEnum;
+    v?: TranscoderCreateDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -160,7 +159,6 @@ export type TranscoderCreateDtoVideoCodecEnum = typeof TranscoderCreateDtoVideoC
  * Check if a given object implements the TranscoderCreateDto interface.
  */
 export function instanceOfTranscoderCreateDto(value: object): value is TranscoderCreateDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
@@ -178,7 +176,7 @@ export function TranscoderCreateDtoFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'mode': json['mode'] == null ? undefined : json['mode'],

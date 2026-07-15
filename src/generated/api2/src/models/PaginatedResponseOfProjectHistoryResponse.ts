@@ -21,7 +21,6 @@ import {
     ProjectHistoryResponseToJSONTyped,
 } from './ProjectHistoryResponse';
 
-
 /**
  * 
  * @export

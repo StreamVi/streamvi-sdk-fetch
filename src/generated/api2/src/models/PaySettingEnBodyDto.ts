@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PaySettingEnBodyDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof PaySettingEnBodyDto
      */
-    v: PaySettingEnBodyDtoVEnum;
+    v?: PaySettingEnBodyDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -130,7 +129,6 @@ export type PaySettingEnBodyDtoLanguageEnum = typeof PaySettingEnBodyDtoLanguage
  * Check if a given object implements the PaySettingEnBodyDto interface.
  */
 export function instanceOfPaySettingEnBodyDto(value: object): value is PaySettingEnBodyDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('countrie_id' in value) || value['countrie_id'] === undefined) return false;
@@ -154,7 +152,7 @@ export function PaySettingEnBodyDtoFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'countrie_id': json['countrie_id'],

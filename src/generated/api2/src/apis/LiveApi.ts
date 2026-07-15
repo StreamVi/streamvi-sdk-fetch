@@ -45,7 +45,7 @@ export interface LiveApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
-     * @param {'2'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -102,6 +102,8 @@ export class LiveApi extends runtime.BaseAPI implements LiveApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '2';
         }
 
         if (requestParameters['project_id'] != null) {

@@ -32,8 +32,6 @@ exports.MethodSetStatusChannelRequestLanguageEnum = {
  * Check if a given object implements the MethodSetStatusChannelRequest interface.
  */
 function instanceOfMethodSetStatusChannelRequest(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined)
         return false;
     if (!('status' in value) || value['status'] === undefined)
@@ -50,7 +48,7 @@ function MethodSetStatusChannelRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'] == null ? undefined : json['language'],
         'channel_id': json['channel_id'],
         'status': json['status'],

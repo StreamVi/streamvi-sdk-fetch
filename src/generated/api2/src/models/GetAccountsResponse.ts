@@ -21,7 +21,6 @@ import {
     GetAccountsResponseItemToJSONTyped,
 } from './GetAccountsResponseItem';
 
-
 /**
  * 
  * @export

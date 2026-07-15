@@ -21,7 +21,6 @@ import {
     CentrifugoProjectImportantEventPayloadToJSONTyped,
 } from './CentrifugoProjectImportantEventPayload';
 
-
 /**
  * 
  * @export

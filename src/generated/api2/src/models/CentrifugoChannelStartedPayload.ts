@@ -21,7 +21,6 @@ import {
     CentrifugoChannelStartedUserToJSONTyped,
 } from './CentrifugoChannelStartedUser';
 
-
 /**
  * 
  * @export

@@ -32,8 +32,6 @@ exports.WebinarRoomJoinAnonymousDtoLanguageEnum = {
  * Check if a given object implements the WebinarRoomJoinAnonymousDto interface.
  */
 function instanceOfWebinarRoomJoinAnonymousDto(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('room_id' in value) || value['room_id'] === undefined)
@@ -54,7 +52,7 @@ function WebinarRoomJoinAnonymousDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'participant_name': json['participant_name'],

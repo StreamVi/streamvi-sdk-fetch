@@ -53,7 +53,7 @@ export interface NotifyHistoryApiInterface {
      *
      * @summary Get list of my notifications
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {number} [project_id] Project id
@@ -75,7 +75,7 @@ export interface NotifyHistoryApiInterface {
      *
      * @summary Get my status unread message for user
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
@@ -89,7 +89,7 @@ export interface NotifyHistoryApiInterface {
      *
      * @summary Get my NotifyHistory item by id
      * @param {string} _id Id of page in mongodb
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
@@ -104,7 +104,7 @@ export interface NotifyHistoryApiInterface {
      * @summary Set notification in cabinet as read
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {SiteMarkReadHistoryRequest} SiteMarkReadHistoryRequest
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
@@ -120,7 +120,7 @@ export interface NotifyHistoryApiInterface {
      * @param {string} notify_history_id Id of page in mongodb
      * @param {string} action_name Action name
      * @param {string} group_id Group id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface

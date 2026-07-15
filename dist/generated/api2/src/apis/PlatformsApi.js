@@ -60,6 +60,9 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -110,6 +113,9 @@ class PlatformsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -258,6 +264,9 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -297,6 +306,9 @@ class PlatformsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -349,6 +361,9 @@ class PlatformsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -414,6 +429,9 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -454,6 +472,9 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -477,6 +498,7 @@ class PlatformsApi extends runtime.BaseAPI {
      * Remove account
      */
     async platformsRemoveAccountV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['RemoveAccountQuery'] == null) {
             throw new runtime.RequiredError('RemoveAccountQuery', 'Required parameter "RemoveAccountQuery" was null or undefined when calling platformsRemoveAccountV1().');
         }
@@ -492,7 +514,7 @@ class PlatformsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.RemoveAccountQueryToJSON)(requestParameters['RemoveAccountQuery']),
+            body: (0, index_1.RemoveAccountQueryToJSON)({ ...requestParameters['RemoveAccountQuery'], v: (_a = requestParameters['RemoveAccountQuery'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

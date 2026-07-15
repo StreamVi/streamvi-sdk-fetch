@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface WebinarRoomDeleteDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof WebinarRoomDeleteDto
      */
-    v: WebinarRoomDeleteDtoVEnum;
+    v?: WebinarRoomDeleteDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type WebinarRoomDeleteDtoLanguageEnum = typeof WebinarRoomDeleteDtoLangua
  * Check if a given object implements the WebinarRoomDeleteDto interface.
  */
 export function instanceOfWebinarRoomDeleteDto(value: object): value is WebinarRoomDeleteDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('room_id' in value) || value['room_id'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
@@ -87,7 +85,7 @@ export function WebinarRoomDeleteDtoFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'project_id': json['project_id'],

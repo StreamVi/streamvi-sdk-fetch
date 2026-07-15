@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface GetcourseDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof GetcourseDto
      */
-    v: GetcourseDtoVEnum;
+    v?: GetcourseDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type GetcourseDtoLanguageEnum = typeof GetcourseDtoLanguageEnum[keyof typ
  * Check if a given object implements the GetcourseDto interface.
  */
 export function instanceOfGetcourseDto(value: object): value is GetcourseDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
@@ -101,7 +99,7 @@ export function GetcourseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'name': json['name'],

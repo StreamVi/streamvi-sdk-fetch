@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteUpdateOptionsVkVideoLiveRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
-    v: SiteUpdateOptionsVkVideoLiveRequestVEnum;
+    v?: SiteUpdateOptionsVkVideoLiveRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -88,7 +87,6 @@ export type SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = typeof SiteUpdateO
  * Check if a given object implements the SiteUpdateOptionsVkVideoLiveRequest interface.
  */
 export function instanceOfSiteUpdateOptionsVkVideoLiveRequest(value: object): value is SiteUpdateOptionsVkVideoLiveRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -106,7 +104,7 @@ export function SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped(json: any, igno
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

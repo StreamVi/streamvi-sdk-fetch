@@ -105,7 +105,7 @@ export interface TranscodersApiInterface {
      * @summary List of transcoder
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -196,7 +196,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TranscoderCreateDtoToJSON(requestParameters['TranscoderCreateDto']),
+            body: TranscoderCreateDtoToJSON({ ...requestParameters['TranscoderCreateDto'], v: requestParameters['TranscoderCreateDto'].v ?? '1' }),
         }, initOverrides);
 
         if (this.isJsonMime(response.headers.get('content-type'))) {
@@ -241,7 +241,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TranscoderItemDtoToJSON(requestParameters['TranscoderItemDto']),
+            body: TranscoderItemDtoToJSON({ ...requestParameters['TranscoderItemDto'], v: requestParameters['TranscoderItemDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -277,6 +277,8 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -339,7 +341,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TranscoderItemDtoToJSON(requestParameters['TranscoderItemDto']),
+            body: TranscoderItemDtoToJSON({ ...requestParameters['TranscoderItemDto'], v: requestParameters['TranscoderItemDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -380,7 +382,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TranscoderItemDtoToJSON(requestParameters['TranscoderItemDto']),
+            body: TranscoderItemDtoToJSON({ ...requestParameters['TranscoderItemDto'], v: requestParameters['TranscoderItemDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -421,7 +423,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TranscoderUpdateDtoToJSON(requestParameters['TranscoderUpdateDto']),
+            body: TranscoderUpdateDtoToJSON({ ...requestParameters['TranscoderUpdateDto'], v: requestParameters['TranscoderUpdateDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

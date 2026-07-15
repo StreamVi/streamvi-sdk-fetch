@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface RutubeDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof RutubeDto
      */
-    v: RutubeDtoVEnum;
+    v?: RutubeDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type RutubeDtoLanguageEnum = typeof RutubeDtoLanguageEnum[keyof typeof Ru
  * Check if a given object implements the RutubeDto interface.
  */
 export function instanceOfRutubeDto(value: object): value is RutubeDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_url' in value) || value['channel_url'] === undefined) return false;
@@ -101,7 +99,7 @@ export function RutubeDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_url': json['channel_url'],

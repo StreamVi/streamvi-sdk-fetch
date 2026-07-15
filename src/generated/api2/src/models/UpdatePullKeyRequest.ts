@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface UpdatePullKeyRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof UpdatePullKeyRequest
      */
-    v: UpdatePullKeyRequestVEnum;
+    v?: UpdatePullKeyRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type UpdatePullKeyRequestLanguageEnum = typeof UpdatePullKeyRequestLangua
  * Check if a given object implements the UpdatePullKeyRequest interface.
  */
 export function instanceOfUpdatePullKeyRequest(value: object): value is UpdatePullKeyRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('key' in value) || value['key'] === undefined) return false;
@@ -94,7 +92,7 @@ export function UpdatePullKeyRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'key': json['key'],

@@ -32,8 +32,6 @@ exports.SiteWebinarRoomSetSyncBodyRequestLanguageEnum = {
  * Check if a given object implements the SiteWebinarRoomSetSyncBodyRequest interface.
  */
 function instanceOfSiteWebinarRoomSetSyncBodyRequest(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('room_id' in value) || value['room_id'] === undefined)
@@ -52,7 +50,7 @@ function SiteWebinarRoomSetSyncBodyRequestFromJSONTyped(json, ignoreDiscriminato
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],

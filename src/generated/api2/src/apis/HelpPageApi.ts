@@ -62,7 +62,7 @@ export interface HelpPageApiInterface {
      * @summary Get help page
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} url Url of page
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -78,7 +78,7 @@ export interface HelpPageApiInterface {
      * 
      * @summary Get list of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [s] String for search
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
@@ -97,7 +97,7 @@ export interface HelpPageApiInterface {
      * 
      * @summary Get structure of help pages
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -138,6 +138,8 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -183,6 +185,8 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -236,6 +240,8 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

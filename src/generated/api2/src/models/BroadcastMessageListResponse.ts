@@ -21,7 +21,6 @@ import {
     BroadcastMessageItemResponseToJSONTyped,
 } from './BroadcastMessageItemResponse';
 
-
 /**
  * 
  * @export

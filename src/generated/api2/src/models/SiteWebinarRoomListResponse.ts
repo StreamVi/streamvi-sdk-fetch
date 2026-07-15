@@ -21,7 +21,6 @@ import {
     SiteWebinarRoomItemResponseToJSONTyped,
 } from './SiteWebinarRoomItemResponse';
 
-
 /**
  * 
  * @export

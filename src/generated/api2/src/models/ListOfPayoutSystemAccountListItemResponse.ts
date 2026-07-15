@@ -21,7 +21,6 @@ import {
     PayoutSystemAccountListItemResponseToJSONTyped,
 } from './PayoutSystemAccountListItemResponse';
 
-
 /**
  * 
  * @export

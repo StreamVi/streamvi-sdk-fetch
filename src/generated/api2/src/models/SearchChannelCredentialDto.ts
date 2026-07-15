@@ -21,7 +21,6 @@ import {
     SearchChannelTokensDtoToJSONTyped,
 } from './SearchChannelTokensDto';
 
-
 /**
  * 
  * @export

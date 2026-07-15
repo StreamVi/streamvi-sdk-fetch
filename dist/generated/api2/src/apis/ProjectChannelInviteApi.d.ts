@@ -94,7 +94,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -111,7 +111,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -129,7 +129,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} channel_id Channel id
      * @param {string} email Email
      * @param {0 | 1 | 1 | 2} access_type Access type
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -147,7 +147,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} channel_id Channel id
      * @param {0 | 1 | 1 | 2} access_type Access type
      * @param {string} to_project_external_id Project for get access by external id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -163,7 +163,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Channel id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -180,7 +180,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} project_id The project to which you want to add a channel
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -195,7 +195,7 @@ export interface ProjectChannelInviteApiInterface {
      * @summary Del channel invite item for my channel for another user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Unique id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -211,7 +211,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Current project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -227,7 +227,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} channel_id Channel id
      * @param {string} secret Secret
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -242,7 +242,7 @@ export interface ProjectChannelInviteApiInterface {
      * @summary Get channel invite item for my channel for another user
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} id Channel request id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
@@ -258,7 +258,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface

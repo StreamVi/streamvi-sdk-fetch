@@ -21,7 +21,6 @@ import {
     CentrifugoChannelCatalogItemResponseToJSONTyped,
 } from './CentrifugoChannelCatalogItemResponse';
 
-
 /**
  * 
  * @export

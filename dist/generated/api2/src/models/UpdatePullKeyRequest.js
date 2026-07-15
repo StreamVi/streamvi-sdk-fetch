@@ -32,8 +32,6 @@ exports.UpdatePullKeyRequestLanguageEnum = {
  * Check if a given object implements the UpdatePullKeyRequest interface.
  */
 function instanceOfUpdatePullKeyRequest(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('project_id' in value) || value['project_id'] === undefined)
@@ -54,7 +52,7 @@ function UpdatePullKeyRequestFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'key': json['key'],

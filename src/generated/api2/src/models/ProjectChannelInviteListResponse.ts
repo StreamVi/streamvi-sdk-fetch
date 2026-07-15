@@ -21,7 +21,6 @@ import {
     ProjectChannelInviteResponseToJSONTyped,
 } from './ProjectChannelInviteResponse';
 
-
 /**
  * 
  * @export

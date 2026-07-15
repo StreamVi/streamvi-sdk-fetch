@@ -21,7 +21,6 @@ import {
     PlanRestreamItemToJSONTyped,
 } from './PlanRestreamItem';
 
-
 /**
  * 
  * @export

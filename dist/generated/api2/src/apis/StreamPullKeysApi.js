@@ -60,6 +60,9 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -93,6 +96,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
      * Create key
      */
     async streamPullKeysSiteCreateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['CreatePullKeyRequest'] == null) {
             throw new runtime.RequiredError('CreatePullKeyRequest', 'Required parameter "CreatePullKeyRequest" was null or undefined when calling streamPullKeysSiteCreateV1().');
         }
@@ -108,7 +112,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.CreatePullKeyRequestToJSON)(requestParameters['CreatePullKeyRequest']),
+            body: (0, index_1.CreatePullKeyRequestToJSON)({ ...requestParameters['CreatePullKeyRequest'], v: (_a = requestParameters['CreatePullKeyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreatePullKeyResponseFromJSON)(jsonValue));
     }
@@ -132,6 +136,9 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -176,6 +183,9 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -209,6 +219,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
      * Update key
      */
     async streamPullKeysSiteUpdateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['UpdatePullKeyRequest'] == null) {
             throw new runtime.RequiredError('UpdatePullKeyRequest', 'Required parameter "UpdatePullKeyRequest" was null or undefined when calling streamPullKeysSiteUpdateV1().');
         }
@@ -224,7 +235,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.UpdatePullKeyRequestToJSON)(requestParameters['UpdatePullKeyRequest']),
+            body: (0, index_1.UpdatePullKeyRequestToJSON)({ ...requestParameters['UpdatePullKeyRequest'], v: (_a = requestParameters['UpdatePullKeyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

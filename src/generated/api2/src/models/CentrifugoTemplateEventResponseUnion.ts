@@ -21,7 +21,6 @@ import {
     CentrifugoWidgetTemplatePayloadResponseToJSONTyped,
 } from './CentrifugoWidgetTemplatePayloadResponse';
 
-
 /**
  * 
  * @export

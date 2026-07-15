@@ -32,8 +32,6 @@ exports.PayoutCreateRequestBodyDtoLanguageEnum = {
  * Check if a given object implements the PayoutCreateRequestBodyDto interface.
  */
 function instanceOfPayoutCreateRequestBodyDto(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('payout_system_account_id' in value) || value['payout_system_account_id'] === undefined)
@@ -56,7 +54,7 @@ function PayoutCreateRequestBodyDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'payout_system_account_id': json['payout_system_account_id'],
         'project_id': json['project_id'],

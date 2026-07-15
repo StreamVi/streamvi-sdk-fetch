@@ -21,7 +21,6 @@ import {
     SiteRestreamItemResponseToJSONTyped,
 } from './SiteRestreamItemResponse';
 
-
 /**
  * 
  * @export

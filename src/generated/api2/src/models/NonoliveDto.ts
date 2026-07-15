@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface NonoliveDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof NonoliveDto
      */
-    v: NonoliveDtoVEnum;
+    v?: NonoliveDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type NonoliveDtoLanguageEnum = typeof NonoliveDtoLanguageEnum[keyof typeo
  * Check if a given object implements the NonoliveDto interface.
  */
 export function instanceOfNonoliveDto(value: object): value is NonoliveDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
@@ -101,7 +99,7 @@ export function NonoliveDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'name': json['name'],

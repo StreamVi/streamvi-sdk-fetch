@@ -56,7 +56,6 @@ import {
     ProjectInfoRestreamResponseToJSONTyped,
 } from './ProjectInfoRestreamResponse';
 
-
 /**
  * 
  * @export

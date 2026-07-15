@@ -47,6 +47,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Create a new webinar room
      */
     async webinarRoomSiteCreateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarRoomCreateDto'] == null) {
             throw new runtime.RequiredError('WebinarRoomCreateDto', 'Required parameter "WebinarRoomCreateDto" was null or undefined when calling webinarRoomSiteCreateV1().');
         }
@@ -62,7 +63,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarRoomCreateDtoToJSON)(requestParameters['WebinarRoomCreateDto']),
+            body: (0, index_1.WebinarRoomCreateDtoToJSON)({ ...requestParameters['WebinarRoomCreateDto'], v: (_a = requestParameters['WebinarRoomCreateDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomCreateResponseFromJSON)(jsonValue));
     }
@@ -77,6 +78,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Delete a webinar room
      */
     async webinarRoomSiteDeleteV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarRoomDeleteDto'] == null) {
             throw new runtime.RequiredError('WebinarRoomDeleteDto', 'Required parameter "WebinarRoomDeleteDto" was null or undefined when calling webinarRoomSiteDeleteV1().');
         }
@@ -92,7 +94,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarRoomDeleteDtoToJSON)(requestParameters['WebinarRoomDeleteDto']),
+            body: (0, index_1.WebinarRoomDeleteDtoToJSON)({ ...requestParameters['WebinarRoomDeleteDto'], v: (_a = requestParameters['WebinarRoomDeleteDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomDeleteResponseFromJSON)(jsonValue));
     }
@@ -119,6 +121,9 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -153,6 +158,7 @@ class WebinarApi extends runtime.BaseAPI {
      * join in room anonymously
      */
     async webinarRoomSiteJoinAnonymousV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarRoomJoinAnonymousDto'] == null) {
             throw new runtime.RequiredError('WebinarRoomJoinAnonymousDto', 'Required parameter "WebinarRoomJoinAnonymousDto" was null or undefined when calling webinarRoomSiteJoinAnonymousV1().');
         }
@@ -168,7 +174,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarRoomJoinAnonymousDtoToJSON)(requestParameters['WebinarRoomJoinAnonymousDto']),
+            body: (0, index_1.WebinarRoomJoinAnonymousDtoToJSON)({ ...requestParameters['WebinarRoomJoinAnonymousDto'], v: (_a = requestParameters['WebinarRoomJoinAnonymousDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomJoinResponseFromJSON)(jsonValue));
     }
@@ -183,6 +189,7 @@ class WebinarApi extends runtime.BaseAPI {
      * join in room
      */
     async webinarRoomSiteJoinV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarRoomJoinDto'] == null) {
             throw new runtime.RequiredError('WebinarRoomJoinDto', 'Required parameter "WebinarRoomJoinDto" was null or undefined when calling webinarRoomSiteJoinV1().');
         }
@@ -198,7 +205,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarRoomJoinDtoToJSON)(requestParameters['WebinarRoomJoinDto']),
+            body: (0, index_1.WebinarRoomJoinDtoToJSON)({ ...requestParameters['WebinarRoomJoinDto'], v: (_a = requestParameters['WebinarRoomJoinDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomJoinResponseFromJSON)(jsonValue));
     }
@@ -222,6 +229,9 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -266,6 +276,9 @@ class WebinarApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -299,6 +312,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Sync a webinar room
      */
     async webinarRoomSiteSyncV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteWebinarRoomSetSyncBodyRequest'] == null) {
             throw new runtime.RequiredError('SiteWebinarRoomSetSyncBodyRequest', 'Required parameter "SiteWebinarRoomSetSyncBodyRequest" was null or undefined when calling webinarRoomSiteSyncV1().');
         }
@@ -314,7 +328,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteWebinarRoomSetSyncBodyRequestToJSON)(requestParameters['SiteWebinarRoomSetSyncBodyRequest']),
+            body: (0, index_1.SiteWebinarRoomSetSyncBodyRequestToJSON)({ ...requestParameters['SiteWebinarRoomSetSyncBodyRequest'], v: (_a = requestParameters['SiteWebinarRoomSetSyncBodyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -329,6 +343,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Update a webinar room
      */
     async webinarRoomSiteUpdateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarRoomUpdateDto'] == null) {
             throw new runtime.RequiredError('WebinarRoomUpdateDto', 'Required parameter "WebinarRoomUpdateDto" was null or undefined when calling webinarRoomSiteUpdateV1().');
         }
@@ -344,7 +359,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarRoomUpdateDtoToJSON)(requestParameters['WebinarRoomUpdateDto']),
+            body: (0, index_1.WebinarRoomUpdateDtoToJSON)({ ...requestParameters['WebinarRoomUpdateDto'], v: (_a = requestParameters['WebinarRoomUpdateDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomUpdateResponseFromJSON)(jsonValue));
     }
@@ -359,6 +374,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Start a webinar stream
      */
     async webinarStreamSiteCreateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarStreamStartDto'] == null) {
             throw new runtime.RequiredError('WebinarStreamStartDto', 'Required parameter "WebinarStreamStartDto" was null or undefined when calling webinarStreamSiteCreateV1().');
         }
@@ -374,7 +390,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarStreamStartDtoToJSON)(requestParameters['WebinarStreamStartDto']),
+            body: (0, index_1.WebinarStreamStartDtoToJSON)({ ...requestParameters['WebinarStreamStartDto'], v: (_a = requestParameters['WebinarStreamStartDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -401,6 +417,9 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -448,6 +467,9 @@ class WebinarApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -481,6 +503,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Pause a webinar stream
      */
     async webinarStreamSitePauseV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarStreamPauseDto'] == null) {
             throw new runtime.RequiredError('WebinarStreamPauseDto', 'Required parameter "WebinarStreamPauseDto" was null or undefined when calling webinarStreamSitePauseV1().');
         }
@@ -496,7 +519,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarStreamPauseDtoToJSON)(requestParameters['WebinarStreamPauseDto']),
+            body: (0, index_1.WebinarStreamPauseDtoToJSON)({ ...requestParameters['WebinarStreamPauseDto'], v: (_a = requestParameters['WebinarStreamPauseDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -511,6 +534,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Play after pause
      */
     async webinarStreamSitePlayV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarStreamPlayDto'] == null) {
             throw new runtime.RequiredError('WebinarStreamPlayDto', 'Required parameter "WebinarStreamPlayDto" was null or undefined when calling webinarStreamSitePlayV1().');
         }
@@ -526,7 +550,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarStreamPlayDtoToJSON)(requestParameters['WebinarStreamPlayDto']),
+            body: (0, index_1.WebinarStreamPlayDtoToJSON)({ ...requestParameters['WebinarStreamPlayDto'], v: (_a = requestParameters['WebinarStreamPlayDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -541,6 +565,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Setting a webinar stream
      */
     async webinarStreamSiteSettingStreamV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarUpdateStreamSettingDto'] == null) {
             throw new runtime.RequiredError('WebinarUpdateStreamSettingDto', 'Required parameter "WebinarUpdateStreamSettingDto" was null or undefined when calling webinarStreamSiteSettingStreamV1().');
         }
@@ -556,7 +581,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarUpdateStreamSettingDtoToJSON)(requestParameters['WebinarUpdateStreamSettingDto']),
+            body: (0, index_1.WebinarUpdateStreamSettingDtoToJSON)({ ...requestParameters['WebinarUpdateStreamSettingDto'], v: (_a = requestParameters['WebinarUpdateStreamSettingDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -571,6 +596,7 @@ class WebinarApi extends runtime.BaseAPI {
      * Stop a webinar stream
      */
     async webinarStreamSiteUpdateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['WebinarStreamStopDto'] == null) {
             throw new runtime.RequiredError('WebinarStreamStopDto', 'Required parameter "WebinarStreamStopDto" was null or undefined when calling webinarStreamSiteUpdateV1().');
         }
@@ -586,7 +612,7 @@ class WebinarApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.WebinarStreamStopDtoToJSON)(requestParameters['WebinarStreamStopDto']),
+            body: (0, index_1.WebinarStreamStopDtoToJSON)({ ...requestParameters['WebinarStreamStopDto'], v: (_a = requestParameters['WebinarStreamStopDto'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

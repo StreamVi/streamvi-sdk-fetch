@@ -77,7 +77,7 @@ export interface PaySystemApiInterface {
      * @summary Create payoneer payment challenge redirect url
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -92,7 +92,7 @@ export interface PaySystemApiInterface {
      * @summary Create t-bank payment challenge redirect url
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -107,7 +107,7 @@ export interface PaySystemApiInterface {
      * @summary Create unitpay payment challenge redirect url
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -148,7 +148,7 @@ export interface PaySystemApiInterface {
      * @summary Get TonConnect payment verification status
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -176,7 +176,7 @@ export interface PaySystemApiInterface {
      * @summary Create TRON USDT deposit payment intent
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -191,7 +191,7 @@ export interface PaySystemApiInterface {
      * @summary Get TRON USDT payment status
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -206,7 +206,7 @@ export interface PaySystemApiInterface {
      * @summary Submit TRON USDT transaction hash (disabled)
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {TronPaymentSubmitBodyDto} TronPaymentSubmitBodyDto
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
@@ -235,7 +235,7 @@ export interface PaySystemApiInterface {
      * @summary Get WalletConnect payment verification status
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payment_id Payment id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface

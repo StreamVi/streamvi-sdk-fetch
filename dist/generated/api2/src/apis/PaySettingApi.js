@@ -60,6 +60,9 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -109,6 +112,9 @@ class PaySettingApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '3';
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -133,6 +139,7 @@ class PaySettingApi extends runtime.BaseAPI {
      * Set pay settings for profile
      */
     async paySettingSetSettingV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['PaySettingSetSettingV1Request'] == null) {
             throw new runtime.RequiredError('PaySettingSetSettingV1Request', 'Required parameter "PaySettingSetSettingV1Request" was null or undefined when calling paySettingSetSettingV1().');
         }
@@ -148,7 +155,7 @@ class PaySettingApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.PaySettingSetSettingV1RequestToJSON)(requestParameters['PaySettingSetSettingV1Request']),
+            body: (0, index_1.PaySettingSetSettingV1RequestToJSON)({ ...requestParameters['PaySettingSetSettingV1Request'], v: (_a = requestParameters['PaySettingSetSettingV1Request'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

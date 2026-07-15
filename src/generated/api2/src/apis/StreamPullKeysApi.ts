@@ -81,7 +81,7 @@ export interface StreamPullKeysApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {string} key Key
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -113,7 +113,7 @@ export interface StreamPullKeysApiInterface {
      * @summary List keys
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -131,7 +131,7 @@ export interface StreamPullKeysApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {string} key Key
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -194,6 +194,8 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -260,7 +262,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreatePullKeyRequestToJSON(requestParameters['CreatePullKeyRequest']),
+            body: CreatePullKeyRequestToJSON({ ...requestParameters['CreatePullKeyRequest'], v: requestParameters['CreatePullKeyRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreatePullKeyResponseFromJSON(jsonValue));
@@ -296,6 +298,8 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -360,6 +364,8 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -426,7 +432,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdatePullKeyRequestToJSON(requestParameters['UpdatePullKeyRequest']),
+            body: UpdatePullKeyRequestToJSON({ ...requestParameters['UpdatePullKeyRequest'], v: requestParameters['UpdatePullKeyRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

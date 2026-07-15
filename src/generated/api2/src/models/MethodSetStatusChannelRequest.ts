@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface MethodSetStatusChannelRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof MethodSetStatusChannelRequest
      */
-    v: MethodSetStatusChannelRequestVEnum;
+    v?: MethodSetStatusChannelRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type MethodSetStatusChannelRequestLanguageEnum = typeof MethodSetStatusCh
  * Check if a given object implements the MethodSetStatusChannelRequest interface.
  */
 export function instanceOfMethodSetStatusChannelRequest(value: object): value is MethodSetStatusChannelRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
@@ -86,7 +84,7 @@ export function MethodSetStatusChannelRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'] == null ? undefined : json['language'],
         'channel_id': json['channel_id'],
         'status': json['status'],

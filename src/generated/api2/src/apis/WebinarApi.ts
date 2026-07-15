@@ -206,7 +206,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room name
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -253,7 +253,7 @@ export interface WebinarApiInterface {
      * @summary List of webinar rooms
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -271,7 +271,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room id
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -334,7 +334,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} client_id Client ID
      * @param {string} room_id Room id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -352,7 +352,7 @@ export interface WebinarApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} room_id Room id
      * @param {string} client_id Client ID
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebinarApiInterface
@@ -458,7 +458,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarRoomCreateDtoToJSON(requestParameters['WebinarRoomCreateDto']),
+            body: WebinarRoomCreateDtoToJSON({ ...requestParameters['WebinarRoomCreateDto'], v: requestParameters['WebinarRoomCreateDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SiteWebinarRoomCreateResponseFromJSON(jsonValue));
@@ -499,7 +499,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarRoomDeleteDtoToJSON(requestParameters['WebinarRoomDeleteDto']),
+            body: WebinarRoomDeleteDtoToJSON({ ...requestParameters['WebinarRoomDeleteDto'], v: requestParameters['WebinarRoomDeleteDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SiteWebinarRoomDeleteResponseFromJSON(jsonValue));
@@ -542,6 +542,8 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -608,7 +610,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarRoomJoinAnonymousDtoToJSON(requestParameters['WebinarRoomJoinAnonymousDto']),
+            body: WebinarRoomJoinAnonymousDtoToJSON({ ...requestParameters['WebinarRoomJoinAnonymousDto'], v: requestParameters['WebinarRoomJoinAnonymousDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SiteWebinarRoomJoinResponseFromJSON(jsonValue));
@@ -649,7 +651,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarRoomJoinDtoToJSON(requestParameters['WebinarRoomJoinDto']),
+            body: WebinarRoomJoinDtoToJSON({ ...requestParameters['WebinarRoomJoinDto'], v: requestParameters['WebinarRoomJoinDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SiteWebinarRoomJoinResponseFromJSON(jsonValue));
@@ -685,6 +687,8 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -749,6 +753,8 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -815,7 +821,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteWebinarRoomSetSyncBodyRequestToJSON(requestParameters['SiteWebinarRoomSetSyncBodyRequest']),
+            body: SiteWebinarRoomSetSyncBodyRequestToJSON({ ...requestParameters['SiteWebinarRoomSetSyncBodyRequest'], v: requestParameters['SiteWebinarRoomSetSyncBodyRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -856,7 +862,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarRoomUpdateDtoToJSON(requestParameters['WebinarRoomUpdateDto']),
+            body: WebinarRoomUpdateDtoToJSON({ ...requestParameters['WebinarRoomUpdateDto'], v: requestParameters['WebinarRoomUpdateDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SiteWebinarRoomUpdateResponseFromJSON(jsonValue));
@@ -897,7 +903,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarStreamStartDtoToJSON(requestParameters['WebinarStreamStartDto']),
+            body: WebinarStreamStartDtoToJSON({ ...requestParameters['WebinarStreamStartDto'], v: requestParameters['WebinarStreamStartDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -940,6 +946,8 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1008,6 +1016,8 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1074,7 +1084,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarStreamPauseDtoToJSON(requestParameters['WebinarStreamPauseDto']),
+            body: WebinarStreamPauseDtoToJSON({ ...requestParameters['WebinarStreamPauseDto'], v: requestParameters['WebinarStreamPauseDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1115,7 +1125,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarStreamPlayDtoToJSON(requestParameters['WebinarStreamPlayDto']),
+            body: WebinarStreamPlayDtoToJSON({ ...requestParameters['WebinarStreamPlayDto'], v: requestParameters['WebinarStreamPlayDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1156,7 +1166,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarUpdateStreamSettingDtoToJSON(requestParameters['WebinarUpdateStreamSettingDto']),
+            body: WebinarUpdateStreamSettingDtoToJSON({ ...requestParameters['WebinarUpdateStreamSettingDto'], v: requestParameters['WebinarUpdateStreamSettingDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1197,7 +1207,7 @@ export class WebinarApi extends runtime.BaseAPI implements WebinarApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: WebinarStreamStopDtoToJSON(requestParameters['WebinarStreamStopDto']),
+            body: WebinarStreamStopDtoToJSON({ ...requestParameters['WebinarStreamStopDto'], v: requestParameters['WebinarStreamStopDto'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

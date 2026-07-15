@@ -21,7 +21,6 @@ import {
     CategorySubListItemResponseToJSONTyped,
 } from './CategorySubListItemResponse';
 
-
 /**
  * 
  * @export

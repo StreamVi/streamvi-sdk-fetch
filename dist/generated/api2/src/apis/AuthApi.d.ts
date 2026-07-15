@@ -105,7 +105,7 @@ export interface AuthApiInterface {
      * @summary Get code for auth
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} app Create auth code for app
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -120,7 +120,7 @@ export interface AuthApiInterface {
      * @summary CallBack for connect social
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} message Result message for connect
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -134,7 +134,7 @@ export interface AuthApiInterface {
      *
      * @summary Connect telegram in account
      * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -149,7 +149,7 @@ export interface AuthApiInterface {
      * @summary Connected social account
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
      * @param {string} [redirect] Redirect url
      * @param {*} [options] Override http request option.
@@ -166,7 +166,7 @@ export interface AuthApiInterface {
      * @summary Disconnected social account
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} social_id Social id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -194,7 +194,7 @@ export interface AuthApiInterface {
      * @summary Get url for start oauth
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
      * @param {string} [redirect] Redirect url
      * @param {string} [refId] Referal id

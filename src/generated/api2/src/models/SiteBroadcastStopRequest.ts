@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteBroadcastStopRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteBroadcastStopRequest
      */
-    v: SiteBroadcastStopRequestVEnum;
+    v?: SiteBroadcastStopRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type SiteBroadcastStopRequestLanguageEnum = typeof SiteBroadcastStopReque
  * Check if a given object implements the SiteBroadcastStopRequest interface.
  */
 export function instanceOfSiteBroadcastStopRequest(value: object): value is SiteBroadcastStopRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('broadcast_id' in value) || value['broadcast_id'] === undefined) return false;
@@ -87,7 +85,7 @@ export function SiteBroadcastStopRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'broadcast_id': json['broadcast_id'],

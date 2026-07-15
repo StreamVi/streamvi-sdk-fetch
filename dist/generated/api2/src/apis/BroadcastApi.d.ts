@@ -109,7 +109,7 @@ export interface BroadcastApiInterface {
      * @summary Get credentials
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -125,7 +125,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} id Event id
      * @param {Date} date Event date
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -153,7 +153,7 @@ export interface BroadcastApiInterface {
      * @param {'asc' | 'desc'} [sort_by_date] Sort order by created_at
      * @param {string} [cursor_id] Cursor event id
      * @param {Date} [cursor_datetime] Cursor event datetime
-     * @param {'4'} [v] Version (automatically defaults to 4 based on method version, can be overridden)
+     * @param {'4'} [v] Version (automatically defaults to 4 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -169,7 +169,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
-     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -185,7 +185,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
-     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -201,7 +201,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
-     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -219,7 +219,7 @@ export interface BroadcastApiInterface {
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {'asc' | 'desc'} [order] order
-     * @param {'3'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -261,7 +261,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} broadcast_id broadcast id
      * @param {string} key Chat token
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -277,7 +277,7 @@ export interface BroadcastApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -292,7 +292,7 @@ export interface BroadcastApiInterface {
      * @summary Live status info by project id
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -320,7 +320,7 @@ export interface BroadcastApiInterface {
      * @summary Connect channel, long polling
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} key
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface

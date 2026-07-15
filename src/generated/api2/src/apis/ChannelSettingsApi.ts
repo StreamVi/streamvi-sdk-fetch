@@ -229,7 +229,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -247,7 +247,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -265,7 +265,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -284,7 +284,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {TelegramSetSettingsRequestDto} TelegramSetSettingsRequestDto 
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -302,7 +302,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -335,7 +335,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -353,7 +353,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -491,7 +491,7 @@ export interface ChannelSettingsApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -555,7 +555,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {'account' | 'group'} role Token role
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -589,7 +589,7 @@ export interface ChannelSettingsApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} filter_mode 
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -637,6 +637,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -705,6 +707,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -773,6 +777,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -848,6 +854,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -919,6 +927,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -985,7 +995,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateChatTelegramRequestToJSON(requestParameters['SiteUpdateChatTelegramRequest']),
+            body: SiteUpdateChatTelegramRequestToJSON({ ...requestParameters['SiteUpdateChatTelegramRequest'], v: requestParameters['SiteUpdateChatTelegramRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1028,6 +1038,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1096,6 +1108,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1162,7 +1176,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsOkRequestToJSON(requestParameters['SiteUpdateOptionsOkRequest']),
+            body: SiteUpdateOptionsOkRequestToJSON({ ...requestParameters['SiteUpdateOptionsOkRequest'], v: requestParameters['SiteUpdateOptionsOkRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1203,7 +1217,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsTrovoRequestToJSON(requestParameters['SiteUpdateOptionsTrovoRequest']),
+            body: SiteUpdateOptionsTrovoRequestToJSON({ ...requestParameters['SiteUpdateOptionsTrovoRequest'], v: requestParameters['SiteUpdateOptionsTrovoRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1244,7 +1258,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsTwitchRequestToJSON(requestParameters['SiteUpdateOptionsTwitchRequest']),
+            body: SiteUpdateOptionsTwitchRequestToJSON({ ...requestParameters['SiteUpdateOptionsTwitchRequest'], v: requestParameters['SiteUpdateOptionsTwitchRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1285,7 +1299,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsVkRequestToJSON(requestParameters['SiteUpdateOptionsVkRequest']),
+            body: SiteUpdateOptionsVkRequestToJSON({ ...requestParameters['SiteUpdateOptionsVkRequest'], v: requestParameters['SiteUpdateOptionsVkRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1326,7 +1340,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsVkVideoLiveRequestToJSON(requestParameters['SiteUpdateOptionsVkVideoLiveRequest']),
+            body: SiteUpdateOptionsVkVideoLiveRequestToJSON({ ...requestParameters['SiteUpdateOptionsVkVideoLiveRequest'], v: requestParameters['SiteUpdateOptionsVkVideoLiveRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1367,7 +1381,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteUpdateOptionsYoutubeRequestToJSON(requestParameters['SiteUpdateOptionsYoutubeRequest']),
+            body: SiteUpdateOptionsYoutubeRequestToJSON({ ...requestParameters['SiteUpdateOptionsYoutubeRequest'], v: requestParameters['SiteUpdateOptionsYoutubeRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1408,7 +1422,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteSetPlannedRequestToJSON(requestParameters['SiteSetPlannedRequest']),
+            body: SiteSetPlannedRequestToJSON({ ...requestParameters['SiteSetPlannedRequest'], v: requestParameters['SiteSetPlannedRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SitePlannedResponseFromJSON(jsonValue));
@@ -1449,7 +1463,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteBulkUpdateChannelRequestToJSON(requestParameters['SiteBulkUpdateChannelRequest']),
+            body: SiteBulkUpdateChannelRequestToJSON({ ...requestParameters['SiteBulkUpdateChannelRequest'], v: requestParameters['SiteBulkUpdateChannelRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1492,6 +1506,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1558,7 +1574,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteSetNameRequestToJSON(requestParameters['SiteSetNameRequest']),
+            body: SiteSetNameRequestToJSON({ ...requestParameters['SiteSetNameRequest'], v: requestParameters['SiteSetNameRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1599,7 +1615,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteSetUrlRequestToJSON(requestParameters['SiteSetUrlRequest']),
+            body: SiteSetUrlRequestToJSON({ ...requestParameters['SiteSetUrlRequest'], v: requestParameters['SiteSetUrlRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1640,7 +1656,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteSetSrtUrlRequestToJSON(requestParameters['SiteSetSrtUrlRequest']),
+            body: SiteSetSrtUrlRequestToJSON({ ...requestParameters['SiteSetSrtUrlRequest'], v: requestParameters['SiteSetSrtUrlRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1690,6 +1706,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -1759,7 +1777,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SiteSetTranscoderRequestToJSON(requestParameters['SiteSetTranscoderRequest']),
+            body: SiteSetTranscoderRequestToJSON({ ...requestParameters['SiteSetTranscoderRequest'], v: requestParameters['SiteSetTranscoderRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -1809,6 +1827,8 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

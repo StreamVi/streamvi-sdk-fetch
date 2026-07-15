@@ -21,7 +21,6 @@ import {
     CentrifugoPaymentUpdatePayloadToJSONTyped,
 } from './CentrifugoPaymentUpdatePayload';
 
-
 /**
  * 
  * @export

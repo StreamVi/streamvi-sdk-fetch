@@ -21,7 +21,6 @@ import {
     BroadcastMessageItemResponseEntitiesInnerToJSONTyped,
 } from './BroadcastMessageItemResponseEntitiesInner';
 
-
 /**
  * 
  * @export

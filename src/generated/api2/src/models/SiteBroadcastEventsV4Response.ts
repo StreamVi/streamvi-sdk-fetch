@@ -21,7 +21,6 @@ import {
     SiteRestreamEventV4ResponseToJSONTyped,
 } from './SiteRestreamEventV4Response';
 
-
 /**
  * 
  * @export

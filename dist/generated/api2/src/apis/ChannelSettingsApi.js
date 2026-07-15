@@ -60,6 +60,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -106,6 +109,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -151,6 +157,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -201,6 +210,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -249,6 +261,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -282,6 +297,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for telegram
      */
     async channelChatUpdateOptionsTelegramV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateChatTelegramRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateChatTelegramRequest', 'Required parameter "SiteUpdateChatTelegramRequest" was null or undefined when calling channelChatUpdateOptionsTelegramV1().');
         }
@@ -297,7 +313,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateChatTelegramRequestToJSON)(requestParameters['SiteUpdateChatTelegramRequest']),
+            body: (0, index_1.SiteUpdateChatTelegramRequestToJSON)({ ...requestParameters['SiteUpdateChatTelegramRequest'], v: (_a = requestParameters['SiteUpdateChatTelegramRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -324,6 +340,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -371,6 +390,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -404,6 +426,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for ok. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsOkV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsOkRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsOkRequest', 'Required parameter "SiteUpdateOptionsOkRequest" was null or undefined when calling channelOptionsUpdateOptionsOkV1().');
         }
@@ -419,7 +442,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsOkRequestToJSON)(requestParameters['SiteUpdateOptionsOkRequest']),
+            body: (0, index_1.SiteUpdateOptionsOkRequestToJSON)({ ...requestParameters['SiteUpdateOptionsOkRequest'], v: (_a = requestParameters['SiteUpdateOptionsOkRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -434,6 +457,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for trovo. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTrovoV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsTrovoRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsTrovoRequest', 'Required parameter "SiteUpdateOptionsTrovoRequest" was null or undefined when calling channelOptionsUpdateOptionsTrovoV1().');
         }
@@ -449,7 +473,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsTrovoRequestToJSON)(requestParameters['SiteUpdateOptionsTrovoRequest']),
+            body: (0, index_1.SiteUpdateOptionsTrovoRequestToJSON)({ ...requestParameters['SiteUpdateOptionsTrovoRequest'], v: (_a = requestParameters['SiteUpdateOptionsTrovoRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -464,6 +488,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for twitch. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTwitchV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsTwitchRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsTwitchRequest', 'Required parameter "SiteUpdateOptionsTwitchRequest" was null or undefined when calling channelOptionsUpdateOptionsTwitchV1().');
         }
@@ -479,7 +504,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsTwitchRequestToJSON)(requestParameters['SiteUpdateOptionsTwitchRequest']),
+            body: (0, index_1.SiteUpdateOptionsTwitchRequestToJSON)({ ...requestParameters['SiteUpdateOptionsTwitchRequest'], v: (_a = requestParameters['SiteUpdateOptionsTwitchRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -494,6 +519,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for vk. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsVkRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsVkRequest', 'Required parameter "SiteUpdateOptionsVkRequest" was null or undefined when calling channelOptionsUpdateOptionsVkV1().');
         }
@@ -509,7 +535,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsVkRequestToJSON)(requestParameters['SiteUpdateOptionsVkRequest']),
+            body: (0, index_1.SiteUpdateOptionsVkRequestToJSON)({ ...requestParameters['SiteUpdateOptionsVkRequest'], v: (_a = requestParameters['SiteUpdateOptionsVkRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -524,6 +550,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for vk video live. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkVideoLiveV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsVkVideoLiveRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsVkVideoLiveRequest', 'Required parameter "SiteUpdateOptionsVkVideoLiveRequest" was null or undefined when calling channelOptionsUpdateOptionsVkVideoLiveV1().');
         }
@@ -539,7 +566,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsVkVideoLiveRequestToJSON)(requestParameters['SiteUpdateOptionsVkVideoLiveRequest']),
+            body: (0, index_1.SiteUpdateOptionsVkVideoLiveRequestToJSON)({ ...requestParameters['SiteUpdateOptionsVkVideoLiveRequest'], v: (_a = requestParameters['SiteUpdateOptionsVkVideoLiveRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -554,6 +581,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Optional settings for youtube. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsYoutubeV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteUpdateOptionsYoutubeRequest'] == null) {
             throw new runtime.RequiredError('SiteUpdateOptionsYoutubeRequest', 'Required parameter "SiteUpdateOptionsYoutubeRequest" was null or undefined when calling channelOptionsUpdateOptionsYoutubeV1().');
         }
@@ -569,7 +597,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteUpdateOptionsYoutubeRequestToJSON)(requestParameters['SiteUpdateOptionsYoutubeRequest']),
+            body: (0, index_1.SiteUpdateOptionsYoutubeRequestToJSON)({ ...requestParameters['SiteUpdateOptionsYoutubeRequest'], v: (_a = requestParameters['SiteUpdateOptionsYoutubeRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -584,6 +612,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set planned id. Depends on the tariff.
      */
     async channelOptionsUpdatePlannedV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteSetPlannedRequest'] == null) {
             throw new runtime.RequiredError('SiteSetPlannedRequest', 'Required parameter "SiteSetPlannedRequest" was null or undefined when calling channelOptionsUpdatePlannedV1().');
         }
@@ -599,7 +628,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetPlannedRequestToJSON)(requestParameters['SiteSetPlannedRequest']),
+            body: (0, index_1.SiteSetPlannedRequestToJSON)({ ...requestParameters['SiteSetPlannedRequest'], v: (_a = requestParameters['SiteSetPlannedRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SitePlannedResponseFromJSON)(jsonValue));
     }
@@ -614,6 +643,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Bulk update channel title and description. Global settings.
      */
     async channelSettingBulkUpdateV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteBulkUpdateChannelRequest'] == null) {
             throw new runtime.RequiredError('SiteBulkUpdateChannelRequest', 'Required parameter "SiteBulkUpdateChannelRequest" was null or undefined when calling channelSettingBulkUpdateV1().');
         }
@@ -629,7 +659,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteBulkUpdateChannelRequestToJSON)(requestParameters['SiteBulkUpdateChannelRequest']),
+            body: (0, index_1.SiteBulkUpdateChannelRequestToJSON)({ ...requestParameters['SiteBulkUpdateChannelRequest'], v: (_a = requestParameters['SiteBulkUpdateChannelRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -656,6 +686,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -690,6 +723,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set name from custom channel. Global settings.
      */
     async channelSettingSetNameV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteSetNameRequest'] == null) {
             throw new runtime.RequiredError('SiteSetNameRequest', 'Required parameter "SiteSetNameRequest" was null or undefined when calling channelSettingSetNameV1().');
         }
@@ -705,7 +739,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetNameRequestToJSON)(requestParameters['SiteSetNameRequest']),
+            body: (0, index_1.SiteSetNameRequestToJSON)({ ...requestParameters['SiteSetNameRequest'], v: (_a = requestParameters['SiteSetNameRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -720,6 +754,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set rtmp url from channel. Global settings.
      */
     async channelSettingUpdateRtmpV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteSetUrlRequest'] == null) {
             throw new runtime.RequiredError('SiteSetUrlRequest', 'Required parameter "SiteSetUrlRequest" was null or undefined when calling channelSettingUpdateRtmpV1().');
         }
@@ -735,7 +770,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetUrlRequestToJSON)(requestParameters['SiteSetUrlRequest']),
+            body: (0, index_1.SiteSetUrlRequestToJSON)({ ...requestParameters['SiteSetUrlRequest'], v: (_a = requestParameters['SiteSetUrlRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -750,6 +785,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set srt url from channel. Global settings.
      */
     async channelSettingUpdateSrtUrlV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteSetSrtUrlRequest'] == null) {
             throw new runtime.RequiredError('SiteSetSrtUrlRequest', 'Required parameter "SiteSetSrtUrlRequest" was null or undefined when calling channelSettingUpdateSrtUrlV1().');
         }
@@ -765,7 +801,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetSrtUrlRequestToJSON)(requestParameters['SiteSetSrtUrlRequest']),
+            body: (0, index_1.SiteSetSrtUrlRequestToJSON)({ ...requestParameters['SiteSetSrtUrlRequest'], v: (_a = requestParameters['SiteSetSrtUrlRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -795,6 +831,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -831,6 +870,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
      * Set transcoder from channel. Personal settings.
      */
     async channelSettingUpdateTranscoderV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteSetTranscoderRequest'] == null) {
             throw new runtime.RequiredError('SiteSetTranscoderRequest', 'Required parameter "SiteSetTranscoderRequest" was null or undefined when calling channelSettingUpdateTranscoderV1().');
         }
@@ -846,7 +886,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteSetTranscoderRequestToJSON)(requestParameters['SiteSetTranscoderRequest']),
+            body: (0, index_1.SiteSetTranscoderRequestToJSON)({ ...requestParameters['SiteSetTranscoderRequest'], v: (_a = requestParameters['SiteSetTranscoderRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -876,6 +916,9 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];

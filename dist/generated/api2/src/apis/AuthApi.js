@@ -129,6 +129,9 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -169,6 +172,9 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -200,6 +206,9 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -237,6 +246,9 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -283,6 +295,9 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -313,6 +328,7 @@ class AuthApi extends runtime.BaseAPI {
      * Code exchange
      */
     async authExchangeV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteAuthExchangeRequest'] == null) {
             throw new runtime.RequiredError('SiteAuthExchangeRequest', 'Required parameter "SiteAuthExchangeRequest" was null or undefined when calling authExchangeV1().');
         }
@@ -324,7 +340,7 @@ class AuthApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteAuthExchangeRequestToJSON)(requestParameters['SiteAuthExchangeRequest']),
+            body: (0, index_1.SiteAuthExchangeRequestToJSON)({ ...requestParameters['SiteAuthExchangeRequest'], v: (_a = requestParameters['SiteAuthExchangeRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RefreshAuthResponseFromJSON)(jsonValue));
     }
@@ -348,6 +364,9 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];

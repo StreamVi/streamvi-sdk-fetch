@@ -21,7 +21,6 @@ import {
     StructureHelpPageItemResponseToJSONTyped,
 } from './StructureHelpPageItemResponse';
 
-
 /**
  * 
  * @export

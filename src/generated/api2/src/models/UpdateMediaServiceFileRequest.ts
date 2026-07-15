@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface UpdateMediaServiceFileRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof UpdateMediaServiceFileRequest
      */
-    v: UpdateMediaServiceFileRequestVEnum;
+    v?: UpdateMediaServiceFileRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type UpdateMediaServiceFileRequestLanguageEnum = typeof UpdateMediaServic
  * Check if a given object implements the UpdateMediaServiceFileRequest interface.
  */
 export function instanceOfUpdateMediaServiceFileRequest(value: object): value is UpdateMediaServiceFileRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('media_id' in value) || value['media_id'] === undefined) return false;
@@ -94,7 +92,7 @@ export function UpdateMediaServiceFileRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'media_id': json['media_id'],

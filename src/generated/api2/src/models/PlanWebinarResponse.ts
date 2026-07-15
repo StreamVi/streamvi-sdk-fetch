@@ -21,7 +21,6 @@ import {
     PlanWebinarDiscountResponseToJSONTyped,
 } from './PlanWebinarDiscountResponse';
 
-
 /**
  * 
  * @export

@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PaymentCreateRequestTopUpBodyDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof PaymentCreateRequestTopUpBodyDto
      */
-    v: PaymentCreateRequestTopUpBodyDtoVEnum;
+    v?: PaymentCreateRequestTopUpBodyDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -88,7 +87,6 @@ export type PaymentCreateRequestTopUpBodyDtoTypeEnum = typeof PaymentCreateReque
  * Check if a given object implements the PaymentCreateRequestTopUpBodyDto interface.
  */
 export function instanceOfPaymentCreateRequestTopUpBodyDto(value: object): value is PaymentCreateRequestTopUpBodyDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
@@ -106,7 +104,7 @@ export function PaymentCreateRequestTopUpBodyDtoFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'type': json['type'],

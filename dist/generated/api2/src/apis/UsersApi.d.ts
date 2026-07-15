@@ -12,10 +12,10 @@
 import * as runtime from '../runtime';
 import type { SuccessResponse, UserProfileResponse } from '../models/index';
 export interface UserUpdateProfileV1Request {
-    v: UserUpdateProfileV1VEnum;
     language: UserUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
+    v?: UserUpdateProfileV1VEnum;
     avatar?: Blob;
 }
 /**
@@ -43,10 +43,10 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
-     * @param {string} v Version
      * @param {string} language Current language
      * @param {string} first_name First name
      * @param {string} last_name Last name
+     * @param {string} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -93,17 +93,17 @@ export declare class UsersApi extends runtime.BaseAPI implements UsersApiInterfa
 /**
  * @export
  */
-export declare const UserUpdateProfileV1VEnum: {
-    readonly _1: "1";
-};
-export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];
-/**
- * @export
- */
 export declare const UserUpdateProfileV1LanguageEnum: {
     readonly ru: "ru";
     readonly en: "en";
     readonly cn: "cn";
 };
 export type UserUpdateProfileV1LanguageEnum = typeof UserUpdateProfileV1LanguageEnum[keyof typeof UserUpdateProfileV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const UserUpdateProfileV1VEnum: {
+    readonly _1: "1";
+};
+export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];
 //# sourceMappingURL=UsersApi.d.ts.map

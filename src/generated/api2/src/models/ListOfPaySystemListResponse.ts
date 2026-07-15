@@ -21,7 +21,6 @@ import {
     PaySystemListResponseToJSONTyped,
 } from './PaySystemListResponse';
 
-
 /**
  * 
  * @export

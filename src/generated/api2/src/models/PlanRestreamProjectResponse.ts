@@ -35,7 +35,6 @@ import {
     PlanRestreamForProjectV2ToJSONTyped,
 } from './PlanRestreamForProjectV2';
 
-
 /**
  * 
  * @export

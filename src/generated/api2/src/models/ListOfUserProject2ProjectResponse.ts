@@ -21,7 +21,6 @@ import {
     UserProject2ProjectResponseToJSONTyped,
 } from './UserProject2ProjectResponse';
 
-
 /**
  * 
  * @export

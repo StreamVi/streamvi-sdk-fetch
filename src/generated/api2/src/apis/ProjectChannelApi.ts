@@ -75,7 +75,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
      * @param {0 | 1 | 1 | 2} access_type Access type
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -94,7 +94,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} target_project_id Target project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -112,7 +112,7 @@ export interface ProjectChannelApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -131,7 +131,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -193,6 +193,8 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -276,6 +278,8 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -348,6 +352,8 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -423,6 +429,8 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

@@ -21,7 +21,6 @@ import {
     LiveRestreamCentrifugeItemV2ToJSONTyped,
 } from './LiveRestreamCentrifugeItemV2';
 
-
 /**
  * 
  * @export

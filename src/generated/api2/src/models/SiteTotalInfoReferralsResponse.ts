@@ -21,7 +21,6 @@ import {
     TotalInfoReferralsProfitToJSONTyped,
 } from './TotalInfoReferralsProfit';
 
-
 /**
  * 
  * @export

@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteUpdateOptionsYoutubeRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteUpdateOptionsYoutubeRequest
      */
-    v: SiteUpdateOptionsYoutubeRequestVEnum;
+    v?: SiteUpdateOptionsYoutubeRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -180,7 +179,6 @@ export type SiteUpdateOptionsYoutubeRequestLangEnum = typeof SiteUpdateOptionsYo
  * Check if a given object implements the SiteUpdateOptionsYoutubeRequest interface.
  */
 export function instanceOfSiteUpdateOptionsYoutubeRequest(value: object): value is SiteUpdateOptionsYoutubeRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -199,7 +197,7 @@ export function SiteUpdateOptionsYoutubeRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

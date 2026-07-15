@@ -21,7 +21,6 @@ import {
     CentrifugoAppReleaseResponseToJSONTyped,
 } from './CentrifugoAppReleaseResponse';
 
-
 /**
  * 
  * @export

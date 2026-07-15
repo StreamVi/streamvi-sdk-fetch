@@ -41,7 +41,6 @@ import {
     SiteBroadcastStatusTranscodingResponseToJSON,
 } from './SiteBroadcastStatusTranscodingResponse';
 
-
 /**
  * @type BroadcastStatusV1200Response
  * 

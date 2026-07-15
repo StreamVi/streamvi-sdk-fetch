@@ -115,7 +115,7 @@ export interface MediaServiceFilesApiInterface {
      * @summary Create service video
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
@@ -148,7 +148,7 @@ export interface MediaServiceFilesApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} media_id Media service file id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
@@ -165,7 +165,7 @@ export interface MediaServiceFilesApiInterface {
      * @summary Get service video list
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
@@ -183,7 +183,7 @@ export interface MediaServiceFilesApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} media_id Media service file id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
@@ -259,7 +259,7 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CancelMediaServiceFileRequestToJSON(requestParameters['CancelMediaServiceFileRequest']),
+            body: CancelMediaServiceFileRequestToJSON({ ...requestParameters['CancelMediaServiceFileRequest'], v: requestParameters['CancelMediaServiceFileRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -295,6 +295,8 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -357,7 +359,7 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: DeleteMediaServiceFileRequestToJSON(requestParameters['DeleteMediaServiceFileRequest']),
+            body: DeleteMediaServiceFileRequestToJSON({ ...requestParameters['DeleteMediaServiceFileRequest'], v: requestParameters['DeleteMediaServiceFileRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -400,6 +402,8 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -461,6 +465,8 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -525,6 +531,8 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -591,7 +599,7 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SetMediaServiceFileRequestToJSON(requestParameters['SetMediaServiceFileRequest']),
+            body: SetMediaServiceFileRequestToJSON({ ...requestParameters['SetMediaServiceFileRequest'], v: requestParameters['SetMediaServiceFileRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
@@ -632,7 +640,7 @@ export class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServic
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateMediaServiceFileRequestToJSON(requestParameters['UpdateMediaServiceFileRequest']),
+            body: UpdateMediaServiceFileRequestToJSON({ ...requestParameters['UpdateMediaServiceFileRequest'], v: requestParameters['UpdateMediaServiceFileRequest'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));

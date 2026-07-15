@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteWebinarRoomSetSyncBodyRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteWebinarRoomSetSyncBodyRequest
      */
-    v: SiteWebinarRoomSetSyncBodyRequestVEnum;
+    v?: SiteWebinarRoomSetSyncBodyRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -88,7 +87,6 @@ export type SiteWebinarRoomSetSyncBodyRequestLanguageEnum = typeof SiteWebinarRo
  * Check if a given object implements the SiteWebinarRoomSetSyncBodyRequest interface.
  */
 export function instanceOfSiteWebinarRoomSetSyncBodyRequest(value: object): value is SiteWebinarRoomSetSyncBodyRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('room_id' in value) || value['room_id'] === undefined) return false;
     if (!('client_id' in value) || value['client_id'] === undefined) return false;
@@ -105,7 +103,7 @@ export function SiteWebinarRoomSetSyncBodyRequestFromJSONTyped(json: any, ignore
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],

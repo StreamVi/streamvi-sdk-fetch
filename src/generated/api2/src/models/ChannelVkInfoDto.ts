@@ -28,7 +28,6 @@ import {
     ChannelVkCategoryInfoDtoToJSONTyped,
 } from './ChannelVkCategoryInfoDto';
 
-
 /**
  * 
  * @export

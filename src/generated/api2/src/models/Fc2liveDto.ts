@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface Fc2liveDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof Fc2liveDto
      */
-    v: Fc2liveDtoVEnum;
+    v?: Fc2liveDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type Fc2liveDtoLanguageEnum = typeof Fc2liveDtoLanguageEnum[keyof typeof 
  * Check if a given object implements the Fc2liveDto interface.
  */
 export function instanceOfFc2liveDto(value: object): value is Fc2liveDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
@@ -101,7 +99,7 @@ export function Fc2liveDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'name': json['name'],

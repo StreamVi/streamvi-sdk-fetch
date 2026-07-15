@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteSetTranscoderRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteSetTranscoderRequest
      */
-    v: SiteSetTranscoderRequestVEnum;
+    v?: SiteSetTranscoderRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type SiteSetTranscoderRequestLanguageEnum = typeof SiteSetTranscoderReque
  * Check if a given object implements the SiteSetTranscoderRequest interface.
  */
 export function instanceOfSiteSetTranscoderRequest(value: object): value is SiteSetTranscoderRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -93,7 +91,7 @@ export function SiteSetTranscoderRequestFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

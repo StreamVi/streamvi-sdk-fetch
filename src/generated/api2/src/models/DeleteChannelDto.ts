@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface DeleteChannelDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof DeleteChannelDto
      */
-    v: DeleteChannelDtoVEnum;
+    v?: DeleteChannelDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -70,7 +69,6 @@ export type DeleteChannelDtoLanguageEnum = typeof DeleteChannelDtoLanguageEnum[k
  * Check if a given object implements the DeleteChannelDto interface.
  */
 export function instanceOfDeleteChannelDto(value: object): value is DeleteChannelDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('channel_id' in value) || value['channel_id'] === undefined) return false;
@@ -87,7 +85,7 @@ export function DeleteChannelDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],

@@ -28,7 +28,6 @@ import {
     PlanRestreamResponseToJSONTyped,
 } from './PlanRestreamResponse';
 
-
 /**
  * 
  * @export

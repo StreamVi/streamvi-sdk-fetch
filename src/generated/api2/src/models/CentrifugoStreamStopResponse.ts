@@ -21,7 +21,6 @@ import {
     CentrifugoStreamStopPayloadToJSONTyped,
 } from './CentrifugoStreamStopPayload';
 
-
 /**
  * 
  * @export

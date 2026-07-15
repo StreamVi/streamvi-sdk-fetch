@@ -57,6 +57,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -108,6 +111,9 @@ class BroadcastApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
@@ -191,6 +197,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '4';
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -236,6 +245,9 @@ class BroadcastApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '3';
         }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
@@ -283,6 +295,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '3';
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -328,6 +343,9 @@ class BroadcastApi extends runtime.BaseAPI {
         }
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '3';
         }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
@@ -378,6 +396,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '3';
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -402,6 +423,7 @@ class BroadcastApi extends runtime.BaseAPI {
      * Pause stream
      */
     async broadcastPauseV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteBroadcastPauseRequest'] == null) {
             throw new runtime.RequiredError('SiteBroadcastPauseRequest', 'Required parameter "SiteBroadcastPauseRequest" was null or undefined when calling broadcastPauseV1().');
         }
@@ -417,7 +439,7 @@ class BroadcastApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteBroadcastPauseRequestToJSON)(requestParameters['SiteBroadcastPauseRequest']),
+            body: (0, index_1.SiteBroadcastPauseRequestToJSON)({ ...requestParameters['SiteBroadcastPauseRequest'], v: (_a = requestParameters['SiteBroadcastPauseRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -432,6 +454,7 @@ class BroadcastApi extends runtime.BaseAPI {
      * Play stream
      */
     async broadcastPlayV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteBroadcastPlayRequest'] == null) {
             throw new runtime.RequiredError('SiteBroadcastPlayRequest', 'Required parameter "SiteBroadcastPlayRequest" was null or undefined when calling broadcastPlayV1().');
         }
@@ -447,7 +470,7 @@ class BroadcastApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteBroadcastPlayRequestToJSON)(requestParameters['SiteBroadcastPlayRequest']),
+            body: (0, index_1.SiteBroadcastPlayRequestToJSON)({ ...requestParameters['SiteBroadcastPlayRequest'], v: (_a = requestParameters['SiteBroadcastPlayRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -474,6 +497,9 @@ class BroadcastApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
@@ -530,6 +556,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -564,6 +593,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -594,6 +626,7 @@ class BroadcastApi extends runtime.BaseAPI {
      * Stop stream
      */
     async broadcastStopV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SiteBroadcastStopRequest'] == null) {
             throw new runtime.RequiredError('SiteBroadcastStopRequest', 'Required parameter "SiteBroadcastStopRequest" was null or undefined when calling broadcastStopV1().');
         }
@@ -609,7 +642,7 @@ class BroadcastApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SiteBroadcastStopRequestToJSON)(requestParameters['SiteBroadcastStopRequest']),
+            body: (0, index_1.SiteBroadcastStopRequestToJSON)({ ...requestParameters['SiteBroadcastStopRequest'], v: (_a = requestParameters['SiteBroadcastStopRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
@@ -633,6 +666,9 @@ class BroadcastApi extends runtime.BaseAPI {
         const queryParameters = {};
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
         }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];

@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface SiteBulkUpdateChannelRequest {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof SiteBulkUpdateChannelRequest
      */
-    v: SiteBulkUpdateChannelRequestVEnum;
+    v?: SiteBulkUpdateChannelRequestVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type SiteBulkUpdateChannelRequestLanguageEnum = typeof SiteBulkUpdateChan
  * Check if a given object implements the SiteBulkUpdateChannelRequest interface.
  */
 export function instanceOfSiteBulkUpdateChannelRequest(value: object): value is SiteBulkUpdateChannelRequest {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
@@ -94,7 +92,7 @@ export function SiteBulkUpdateChannelRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'title': json['title'],

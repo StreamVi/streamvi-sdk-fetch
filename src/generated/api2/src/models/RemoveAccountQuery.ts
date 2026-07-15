@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface RemoveAccountQuery {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof RemoveAccountQuery
      */
-    v: RemoveAccountQueryVEnum;
+    v?: RemoveAccountQueryVEnum;
     /**
      * Current language
      * @type {string}
@@ -84,7 +83,6 @@ export type RemoveAccountQueryPlatformEnum = typeof RemoveAccountQueryPlatformEn
  * Check if a given object implements the RemoveAccountQuery interface.
  */
 export function instanceOfRemoveAccountQuery(value: object): value is RemoveAccountQuery {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('platform' in value) || value['platform'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
@@ -101,7 +99,7 @@ export function RemoveAccountQueryFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'platform': json['platform'],
         'id': json['id'],

@@ -21,7 +21,6 @@ import {
     CentrifugoChannelStoppedPayloadToJSONTyped,
 } from './CentrifugoChannelStoppedPayload';
 
-
 /**
  * 
  * @export

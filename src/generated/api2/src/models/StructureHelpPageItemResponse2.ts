@@ -28,7 +28,6 @@ import {
     StructureHelpPageConnectionsItemLangToJSONTyped,
 } from './StructureHelpPageConnectionsItemLang';
 
-
 /**
  * 
  * @export

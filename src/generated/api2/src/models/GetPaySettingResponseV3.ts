@@ -21,7 +21,6 @@ import {
     PaySettingResponseV3ToJSONTyped,
 } from './PaySettingResponseV3';
 
-
 /**
  * 
  * @export

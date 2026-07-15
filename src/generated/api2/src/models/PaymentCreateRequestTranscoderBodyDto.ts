@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface PaymentCreateRequestTranscoderBodyDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof PaymentCreateRequestTranscoderBodyDto
      */
-    v: PaymentCreateRequestTranscoderBodyDtoVEnum;
+    v?: PaymentCreateRequestTranscoderBodyDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -115,7 +114,6 @@ export type PaymentCreateRequestTranscoderBodyDtoPlanPeriodEnum = typeof Payment
  * Check if a given object implements the PaymentCreateRequestTranscoderBodyDto interface.
  */
 export function instanceOfPaymentCreateRequestTranscoderBodyDto(value: object): value is PaymentCreateRequestTranscoderBodyDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('project_id' in value) || value['project_id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
@@ -136,7 +134,7 @@ export function PaymentCreateRequestTranscoderBodyDtoFromJSONTyped(json: any, ig
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'project_id': json['project_id'],
         'type': json['type'],

@@ -53,7 +53,7 @@ export interface PaymentApiInterface {
      * @summary Create payment item for pay system
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {PaymentCreateV1Request} PaymentCreateV1Request 
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
@@ -70,7 +70,7 @@ export interface PaymentApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} payId Pay order id
      * @param {number} project_id Project id
-     * @param {'1'} [v] Version (automatically defaults to 1 based on method version, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
@@ -110,6 +110,8 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {
@@ -130,7 +132,7 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PaymentCreateV1RequestToJSON(requestParameters['PaymentCreateV1Request']),
+            body: PaymentCreateV1RequestToJSON({ ...requestParameters['PaymentCreateV1Request'], v: requestParameters['PaymentCreateV1Request'].v ?? '1' }),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PaymentCreateResponseFromJSON(jsonValue));
@@ -172,6 +174,8 @@ export class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
 
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
         }
 
         if (requestParameters['language'] != null) {

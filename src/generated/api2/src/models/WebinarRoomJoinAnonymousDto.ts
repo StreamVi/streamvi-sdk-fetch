@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface WebinarRoomJoinAnonymousDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof WebinarRoomJoinAnonymousDto
      */
-    v: WebinarRoomJoinAnonymousDtoVEnum;
+    v?: WebinarRoomJoinAnonymousDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -82,7 +81,6 @@ export type WebinarRoomJoinAnonymousDtoLanguageEnum = typeof WebinarRoomJoinAnon
  * Check if a given object implements the WebinarRoomJoinAnonymousDto interface.
  */
 export function instanceOfWebinarRoomJoinAnonymousDto(value: object): value is WebinarRoomJoinAnonymousDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('room_id' in value) || value['room_id'] === undefined) return false;
     if (!('participant_name' in value) || value['participant_name'] === undefined) return false;
@@ -100,7 +98,7 @@ export function WebinarRoomJoinAnonymousDtoFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'participant_name': json['participant_name'],

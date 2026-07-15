@@ -57,6 +57,9 @@ class StreamKeyApi extends runtime.BaseAPI {
         if (requestParameters['v'] != null) {
             queryParameters['v'] = requestParameters['v'];
         }
+        else {
+            queryParameters['v'] = '1';
+        }
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
@@ -87,6 +90,7 @@ class StreamKeyApi extends runtime.BaseAPI {
      * Update record
      */
     async streamKeysUpdateRecordV1Raw(requestParameters, initOverrides) {
+        var _a;
         if (requestParameters['SetRecordStreamRequest'] == null) {
             throw new runtime.RequiredError('SetRecordStreamRequest', 'Required parameter "SetRecordStreamRequest" was null or undefined when calling streamKeysUpdateRecordV1().');
         }
@@ -102,7 +106,7 @@ class StreamKeyApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: (0, index_1.SetRecordStreamRequestToJSON)(requestParameters['SetRecordStreamRequest']),
+            body: (0, index_1.SetRecordStreamRequestToJSON)({ ...requestParameters['SetRecordStreamRequest'], v: (_a = requestParameters['SetRecordStreamRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
         }, initOverrides);
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }

@@ -29,10 +29,10 @@ import {
 } from '../models/index';
 
 export interface UserUpdateProfileV1Request {
-    v: UserUpdateProfileV1VEnum;
     language: UserUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
+    v?: UserUpdateProfileV1VEnum;
     avatar?: Blob;
 }
 
@@ -63,10 +63,10 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
-     * @param {string} v Version
      * @param {string} language Current language
      * @param {string} first_name First name
      * @param {string} last_name Last name
+     * @param {string} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -130,13 +130,6 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
      * @deprecated
      */
     async userUpdateProfileV1Raw(requestParameters: UserUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
-        if (requestParameters['v'] == null) {
-            throw new runtime.RequiredError(
-                'v',
-                'Required parameter "v" was null or undefined when calling userUpdateProfileV1().'
-            );
-        }
-
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -185,6 +178,8 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
         if (requestParameters['v'] != null) {
             formParams.append('v', requestParameters['v'] as any);
+        } else {
+            formParams.append('v', '1' as any);
         }
 
         if (requestParameters['language'] != null) {
@@ -229,16 +224,16 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 /**
  * @export
  */
-export const UserUpdateProfileV1VEnum = {
-    _1: '1'
-} as const;
-export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];
-/**
- * @export
- */
 export const UserUpdateProfileV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
 } as const;
 export type UserUpdateProfileV1LanguageEnum = typeof UserUpdateProfileV1LanguageEnum[keyof typeof UserUpdateProfileV1LanguageEnum];
+/**
+ * @export
+ */
+export const UserUpdateProfileV1VEnum = {
+    _1: '1'
+} as const;
+export type UserUpdateProfileV1VEnum = typeof UserUpdateProfileV1VEnum[keyof typeof UserUpdateProfileV1VEnum];

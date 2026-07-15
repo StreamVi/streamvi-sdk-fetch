@@ -21,7 +21,6 @@ import {
     VideoItemResponseToJSONTyped,
 } from './VideoItemResponse';
 
-
 /**
  * 
  * @export

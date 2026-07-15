@@ -13,7 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-
 /**
  * 
  * @export
@@ -21,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface WebinarRoomJoinDto {
     /**
-     * Version
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @type {string}
      * @memberof WebinarRoomJoinDto
      */
-    v: WebinarRoomJoinDtoVEnum;
+    v?: WebinarRoomJoinDtoVEnum;
     /**
      * Current language
      * @type {string}
@@ -76,7 +75,6 @@ export type WebinarRoomJoinDtoLanguageEnum = typeof WebinarRoomJoinDtoLanguageEn
  * Check if a given object implements the WebinarRoomJoinDto interface.
  */
 export function instanceOfWebinarRoomJoinDto(value: object): value is WebinarRoomJoinDto {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('room_id' in value) || value['room_id'] === undefined) return false;
     if (!('client_id' in value) || value['client_id'] === undefined) return false;
@@ -93,7 +91,7 @@ export function WebinarRoomJoinDtoFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'v': json['v'],
+        'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
         'room_id': json['room_id'],
         'region': json['region'] == null ? undefined : json['region'],
