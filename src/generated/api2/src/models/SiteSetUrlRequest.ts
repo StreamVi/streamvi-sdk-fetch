@@ -49,6 +49,12 @@ export interface SiteSetUrlRequest {
      * @memberof SiteSetUrlRequest
      */
     url: string;
+    /**
+     * Stream key
+     * @type {string}
+     * @memberof SiteSetUrlRequest
+     */
+    stream_key?: string;
 }
 
 
@@ -97,6 +103,7 @@ export function SiteSetUrlRequestFromJSONTyped(json: any, ignoreDiscriminator: b
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'url': json['url'],
+        'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
     };
 }
 
@@ -116,6 +123,7 @@ export function SiteSetUrlRequestToJSONTyped(value?: SiteSetUrlRequest | null, i
         'project_id': value['project_id'],
         'channel_id': value['channel_id'],
         'url': value['url'],
+        'stream_key': value['stream_key'],
     };
 }
 

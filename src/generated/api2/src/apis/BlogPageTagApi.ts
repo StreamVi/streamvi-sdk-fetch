@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  PaginatedResponseOfSiteBlogPageTagResponse,
+  PaginatedBlogPageTagResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    PaginatedResponseOfSiteBlogPageTagResponseFromJSON,
-    PaginatedResponseOfSiteBlogPageTagResponseToJSON,
+    PaginatedBlogPageTagResponseFromJSON,
+    PaginatedBlogPageTagResponseToJSON,
 } from '../models/index';
 
 export interface BlogPageTagListV1Request {
@@ -52,12 +52,12 @@ export interface BlogPageTagApiInterface {
      * @throws {RequiredError}
      * @memberof BlogPageTagApiInterface
      */
-    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfSiteBlogPageTagResponse>>;
+    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>>;
 
     /**
      * Get list of blog pages
      */
-    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfSiteBlogPageTagResponse>;
+    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse>;
 
 }
 
@@ -69,7 +69,7 @@ export class BlogPageTagApi extends runtime.BaseAPI implements BlogPageTagApiInt
     /**
      * Get list of blog pages
      */
-    async blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfSiteBlogPageTagResponse>> {
+    async blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -110,13 +110,13 @@ export class BlogPageTagApi extends runtime.BaseAPI implements BlogPageTagApiInt
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfSiteBlogPageTagResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedBlogPageTagResponseFromJSON(jsonValue));
     }
 
     /**
      * Get list of blog pages
      */
-    async blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfSiteBlogPageTagResponse> {
+    async blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse> {
         const response = await this.blogPageTagListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

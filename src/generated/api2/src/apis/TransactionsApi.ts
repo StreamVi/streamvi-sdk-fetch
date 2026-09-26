@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  PaginatedResponseOfTransactionResponse,
+  PaginatedTransactionResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    PaginatedResponseOfTransactionResponseFromJSON,
-    PaginatedResponseOfTransactionResponseToJSON,
+    PaginatedTransactionResponseFromJSON,
+    PaginatedTransactionResponseToJSON,
 } from '../models/index';
 
 export interface TransactionsListV1Request {
@@ -58,12 +58,12 @@ export interface TransactionsApiInterface {
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
      */
-    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfTransactionResponse>>;
+    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>>;
 
     /**
      * Transaction list for frontend
      */
-    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfTransactionResponse>;
+    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse>;
 
 }
 
@@ -75,7 +75,7 @@ export class TransactionsApi extends runtime.BaseAPI implements TransactionsApiI
     /**
      * Transaction list for frontend
      */
-    async transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfTransactionResponse>> {
+    async transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -140,13 +140,13 @@ export class TransactionsApi extends runtime.BaseAPI implements TransactionsApiI
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfTransactionResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedTransactionResponseFromJSON(jsonValue));
     }
 
     /**
      * Transaction list for frontend
      */
-    async transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfTransactionResponse> {
+    async transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse> {
         const response = await this.transactionsListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

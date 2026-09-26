@@ -24,14 +24,13 @@ export interface ChannelDefaultInfoDto {
      * @type {string}
      * @memberof ChannelDefaultInfoDto
      */
-    title: string;
+    title?: string;
 }
 
 /**
  * Check if a given object implements the ChannelDefaultInfoDto interface.
  */
 export function instanceOfChannelDefaultInfoDto(value: object): value is ChannelDefaultInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function ChannelDefaultInfoDtoFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
     };
 }
 

@@ -16,26 +16,26 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  ListOfUserProject2ProjectResponse,
-  PaginatedResponseOfUserProjectResponse,
+  PaginatedUserProjectResponse,
   ProjectInfoResponse,
   ProjectMeResponse,
   SuccessResponse,
+  UserProject2ProjectListResponse,
   UserProjectGetResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ListOfUserProject2ProjectResponseFromJSON,
-    ListOfUserProject2ProjectResponseToJSON,
-    PaginatedResponseOfUserProjectResponseFromJSON,
-    PaginatedResponseOfUserProjectResponseToJSON,
+    PaginatedUserProjectResponseFromJSON,
+    PaginatedUserProjectResponseToJSON,
     ProjectInfoResponseFromJSON,
     ProjectInfoResponseToJSON,
     ProjectMeResponseFromJSON,
     ProjectMeResponseToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
+    UserProject2ProjectListResponseFromJSON,
+    UserProject2ProjectListResponseToJSON,
     UserProjectGetResponseFromJSON,
     UserProjectGetResponseToJSON,
 } from '../models/index';
@@ -269,12 +269,12 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfUserProject2ProjectResponse>>;
+    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>>;
 
     /**
      * List of user in project
      */
-    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfUserProject2ProjectResponse>;
+    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse>;
 
     /**
      * 
@@ -287,12 +287,12 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfUserProjectResponse>>;
+    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>>;
 
     /**
      * List of project for current user
      */
-    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfUserProjectResponse>;
+    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse>;
 
     /**
      * 
@@ -823,7 +823,7 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     /**
      * List of user in project
      */
-    async userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfUserProject2ProjectResponse>> {
+    async userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -868,13 +868,13 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfUserProject2ProjectResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserProject2ProjectListResponseFromJSON(jsonValue));
     }
 
     /**
      * List of user in project
      */
-    async userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfUserProject2ProjectResponse> {
+    async userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse> {
         const response = await this.userProjectListAccessV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -882,7 +882,7 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     /**
      * List of project for current user
      */
-    async userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfUserProjectResponse>> {
+    async userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -924,13 +924,13 @@ export class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfUserProjectResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedUserProjectResponseFromJSON(jsonValue));
     }
 
     /**
      * List of project for current user
      */
-    async userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfUserProjectResponse> {
+    async userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse> {
         const response = await this.userProjectListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

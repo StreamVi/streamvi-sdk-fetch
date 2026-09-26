@@ -70,7 +70,7 @@ export interface PlanRestreamProjectResponse {
      * @type {number}
      * @memberof PlanRestreamProjectResponse
      */
-    count_channel_max: number;
+    count_channel_max: number | null;
     /**
      * Step channel
      * @type {number}
@@ -150,6 +150,12 @@ export interface PlanRestreamProjectResponse {
      */
     custom_video: number;
     /**
+     * Maximum disconnect protection time in minutes
+     * @type {number}
+     * @memberof PlanRestreamProjectResponse
+     */
+    disconnect_protection_max_minutes: number;
+    /**
      * Tariff project
      * @type {PlanRestreamForProjectV2}
      * @memberof PlanRestreamProjectResponse
@@ -199,6 +205,7 @@ export function instanceOfPlanRestreamProjectResponse(value: object): value is P
     if (!('feature' in value) || value['feature'] === undefined) return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined) return false;
     if (!('own_tariff' in value) || value['own_tariff'] === undefined) return false;
     return true;
 }
@@ -231,6 +238,7 @@ export function PlanRestreamProjectResponseFromJSONTyped(json: any, ignoreDiscri
         'feature': ((json['feature'] as Array<any>).map(PlanRestreamFeatureItemV2FromJSON)),
         'support_custom_channel': json['support_custom_channel'],
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
         'own_tariff': PlanRestreamForProjectV2FromJSON(json['own_tariff']),
     };
 }
@@ -264,6 +272,7 @@ export function PlanRestreamProjectResponseToJSONTyped(value?: PlanRestreamProje
         'feature': ((value['feature'] as Array<any>).map(PlanRestreamFeatureItemV2ToJSON)),
         'support_custom_channel': value['support_custom_channel'],
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
         'own_tariff': PlanRestreamForProjectV2ToJSON(value['own_tariff']),
     };
 }

@@ -42,8 +42,8 @@ function SiteBroadcastItemResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'id': json['id'],
-        'created_at': (new Date(json['created_at'])),
-        'finish_at': (new Date(json['finish_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
+        'finish_at': (json['finish_at'] == null ? null : new Date(json['finish_at'])),
         'reconnects': json['reconnects'],
         'restreams': (json['restreams'].map(SiteRestreamItemResponse_1.SiteRestreamItemResponseFromJSON)),
     };
@@ -59,8 +59,8 @@ function SiteBroadcastItemResponseToJSONTyped(value, ignoreDiscriminator = false
     }
     return {
         'id': value['id'],
-        'created_at': ((value['created_at']).toISOString()),
-        'finish_at': ((value['finish_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : value['created_at'].toISOString()),
+        'finish_at': (value['finish_at'] == null ? null : value['finish_at'].toISOString()),
         'reconnects': value['reconnects'],
         'restreams': (value['restreams'].map(SiteRestreamItemResponse_1.SiteRestreamItemResponseToJSON)),
     };

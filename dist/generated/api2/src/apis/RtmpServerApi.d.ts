@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfRtmpServerLocationResponse, RtmpServerGraphResponse, RtmpServerListResponseBase, RtmpServerListV3Response, RtmpServerSrtLatencyResponse, RtmpServerStateResponse } from '../models/index';
+import type { RtmpServerGraphResponse, RtmpServerListResponseBase, RtmpServerListV3Response, RtmpServerLocationsResponse, RtmpServerSrtLatencyResponse, RtmpServerStateResponse } from '../models/index';
 export interface MethodRtmpServerListLocationsUnauthorizedV1Request {
     language: MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum;
     v?: MethodRtmpServerListLocationsUnauthorizedV1VEnum;
@@ -59,11 +59,11 @@ export interface RtmpServerApiInterface {
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfRtmpServerLocationResponse>>;
+    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>>;
     /**
      * Rtmp locations server list example for unauthorized
      */
-    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfRtmpServerLocationResponse>;
+    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse>;
     /**
      *
      * @summary Graph of rtmp servers
@@ -162,11 +162,11 @@ export declare class RtmpServerApi extends runtime.BaseAPI implements RtmpServer
     /**
      * Rtmp locations server list example for unauthorized
      */
-    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfRtmpServerLocationResponse>>;
+    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>>;
     /**
      * Rtmp locations server list example for unauthorized
      */
-    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfRtmpServerLocationResponse>;
+    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse>;
     /**
      * Graph of rtmp servers
      */

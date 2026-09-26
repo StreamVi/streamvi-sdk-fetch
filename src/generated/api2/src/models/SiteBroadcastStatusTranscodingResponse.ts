@@ -32,7 +32,7 @@ export interface SiteBroadcastStatusTranscodingResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
-    broadcast_id: number;
+    broadcast_id: number | null;
     /**
      * Stream id
      * @type {number}
@@ -50,7 +50,7 @@ export interface SiteBroadcastStatusTranscodingResponse {
      * @type {Date}
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
-    date_start: Date;
+    date_start: Date | null;
     /**
      * Stream resolution
      * @type {string}
@@ -62,13 +62,13 @@ export interface SiteBroadcastStatusTranscodingResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
-    fps: number;
+    fps: number | null;
     /**
      * Bitrate
      * @type {number}
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
-    bitrate: number;
+    bitrate: number | null;
     /**
      * Key frame
      * @type {number}
@@ -81,6 +81,12 @@ export interface SiteBroadcastStatusTranscodingResponse {
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
     status: SiteBroadcastStatusTranscodingResponseStatusEnum;
+    /**
+     * Restream action state
+     * @type {string}
+     * @memberof SiteBroadcastStatusTranscodingResponse
+     */
+    action: SiteBroadcastStatusTranscodingResponseActionEnum;
     /**
      * Broadcast url
      * @type {string}
@@ -99,6 +105,12 @@ export interface SiteBroadcastStatusTranscodingResponse {
      * @memberof SiteBroadcastStatusTranscodingResponse
      */
     restreams: Array<BroadcastLiveStatusRestream>;
+    /**
+     * Broadcast status response kind
+     * @type {string}
+     * @memberof SiteBroadcastStatusTranscodingResponse
+     */
+    kind: SiteBroadcastStatusTranscodingResponseKindEnum;
     /**
      * App name (transcoding)
      * @type {string}
@@ -122,6 +134,23 @@ export type SiteBroadcastStatusTranscodingResponseStatusEnum = typeof SiteBroadc
 /**
  * @export
  */
+export const SiteBroadcastStatusTranscodingResponseActionEnum = {
+    active: 'active',
+    stopped: 'stopped'
+} as const;
+export type SiteBroadcastStatusTranscodingResponseActionEnum = typeof SiteBroadcastStatusTranscodingResponseActionEnum[keyof typeof SiteBroadcastStatusTranscodingResponseActionEnum];
+
+/**
+ * @export
+ */
+export const SiteBroadcastStatusTranscodingResponseKindEnum = {
+    transcoding: 'transcoding'
+} as const;
+export type SiteBroadcastStatusTranscodingResponseKindEnum = typeof SiteBroadcastStatusTranscodingResponseKindEnum[keyof typeof SiteBroadcastStatusTranscodingResponseKindEnum];
+
+/**
+ * @export
+ */
 export const SiteBroadcastStatusTranscodingResponseAppEnum = {
     transcoding: 'transcoding'
 } as const;
@@ -140,9 +169,11 @@ export function instanceOfSiteBroadcastStatusTranscodingResponse(value: object):
     if (!('fps' in value) || value['fps'] === undefined) return false;
     if (!('bitrate' in value) || value['bitrate'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('action' in value) || value['action'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     if (!('video_codec_name' in value) || value['video_codec_name'] === undefined) return false;
     if (!('restreams' in value) || value['restreams'] === undefined) return false;
+    if (!('kind' in value) || value['kind'] === undefined) return false;
     if (!('app' in value) || value['app'] === undefined) return false;
     return true;
 }
@@ -160,15 +191,17 @@ export function SiteBroadcastStatusTranscodingResponseFromJSONTyped(json: any, i
         'broadcast_id': json['broadcast_id'],
         'stream_id': json['stream_id'],
         'reconnects': json['reconnects'],
-        'date_start': (new Date(json['date_start'])),
+        'date_start': (json['date_start'] == null ? null : new Date(json['date_start'])),
         'resolution': json['resolution'],
         'fps': json['fps'],
         'bitrate': json['bitrate'],
         'key_frame': json['key_frame'] == null ? undefined : json['key_frame'],
         'status': json['status'],
+        'action': json['action'],
         'url': json['url'],
         'video_codec_name': json['video_codec_name'],
         'restreams': ((json['restreams'] as Array<any>).map(BroadcastLiveStatusRestreamFromJSON)),
+        'kind': json['kind'],
         'app': json['app'],
     };
 }
@@ -187,15 +220,17 @@ export function SiteBroadcastStatusTranscodingResponseToJSONTyped(value?: SiteBr
         'broadcast_id': value['broadcast_id'],
         'stream_id': value['stream_id'],
         'reconnects': value['reconnects'],
-        'date_start': ((value['date_start']).toISOString()),
+        'date_start': (value['date_start'] == null ? null : (value['date_start'] as any).toISOString()),
         'resolution': value['resolution'],
         'fps': value['fps'],
         'bitrate': value['bitrate'],
         'key_frame': value['key_frame'],
         'status': value['status'],
+        'action': value['action'],
         'url': value['url'],
         'video_codec_name': value['video_codec_name'],
         'restreams': ((value['restreams'] as Array<any>).map(BroadcastLiveStatusRestreamToJSON)),
+        'kind': value['kind'],
         'app': value['app'],
     };
 }

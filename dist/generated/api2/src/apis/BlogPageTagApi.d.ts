@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedResponseOfSiteBlogPageTagResponse } from '../models/index';
+import type { PaginatedBlogPageTagResponse } from '../models/index';
 export interface BlogPageTagListV1Request {
     language: BlogPageTagListV1LanguageEnum;
     v?: BlogPageTagListV1VEnum;
@@ -37,11 +37,11 @@ export interface BlogPageTagApiInterface {
      * @throws {RequiredError}
      * @memberof BlogPageTagApiInterface
      */
-    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfSiteBlogPageTagResponse>>;
+    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>>;
     /**
      * Get list of blog pages
      */
-    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfSiteBlogPageTagResponse>;
+    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse>;
 }
 /**
  *
@@ -50,11 +50,11 @@ export declare class BlogPageTagApi extends runtime.BaseAPI implements BlogPageT
     /**
      * Get list of blog pages
      */
-    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfSiteBlogPageTagResponse>>;
+    blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>>;
     /**
      * Get list of blog pages
      */
-    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfSiteBlogPageTagResponse>;
+    blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse>;
 }
 /**
  * @export

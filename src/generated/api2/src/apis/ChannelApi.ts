@@ -30,6 +30,7 @@ import type {
   KickDto,
   KinescopeDto,
   LinkedinDto,
+  MethodChannelStatusRequest,
   MethodSetStatusChannelRequest,
   MethodSrtDto,
   NavertvDto,
@@ -81,6 +82,8 @@ import {
     KinescopeDtoToJSON,
     LinkedinDtoFromJSON,
     LinkedinDtoToJSON,
+    MethodChannelStatusRequestFromJSON,
+    MethodChannelStatusRequestToJSON,
     MethodSetStatusChannelRequestFromJSON,
     MethodSetStatusChannelRequestToJSON,
     MethodSrtDtoFromJSON,
@@ -262,8 +265,12 @@ export interface MethodSearchV1Request {
     offset?: number;
 }
 
-export interface MethodSetStatusV1Request {
+export interface MethodSetStatusLegacyV1Request {
     MethodSetStatusChannelRequest: MethodSetStatusChannelRequest;
+}
+
+export interface MethodSetStatusV1Request {
+    MethodChannelStatusRequest: MethodChannelStatusRequest;
 }
 
 /**
@@ -767,9 +774,27 @@ export interface ChannelApiInterface {
     methodSearchV1(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchChannelResponse>;
 
     /**
-     * 
-     * @summary Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * @summary Set desired channel state
      * @param {MethodSetStatusChannelRequest} MethodSetStatusChannelRequest 
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    methodSetStatusLegacyV1Raw(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    methodSetStatusLegacyV1(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+
+    /**
+     * 
+     * @summary Set desired channel state
+     * @param {MethodChannelStatusRequest} MethodChannelStatusRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -777,7 +802,7 @@ export interface ChannelApiInterface {
     methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Get live status
+     * Set desired channel state
      */
     methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
@@ -2175,13 +2200,15 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
      */
-    async methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+    async methodSetStatusLegacyV1Raw(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['MethodSetStatusChannelRequest'] == null) {
             throw new runtime.RequiredError(
                 'MethodSetStatusChannelRequest',
-                'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusV1().'
+                'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusLegacyV1().'
             );
         }
 
@@ -2212,7 +2239,54 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    async methodSetStatusLegacyV1(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.methodSetStatusLegacyV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Set desired channel state
+     */
+    async methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['MethodChannelStatusRequest'] == null) {
+            throw new runtime.RequiredError(
+                'MethodChannelStatusRequest',
+                'Required parameter "MethodChannelStatusRequest" was null or undefined when calling methodSetStatusV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
+        const response = await this.request({
+            path: `/method/channel/status`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: MethodChannelStatusRequestToJSON({ ...requestParameters['MethodChannelStatusRequest'], v: requestParameters['MethodChannelStatusRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Set desired channel state
      */
     async methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.methodSetStatusV1Raw(requestParameters, initOverrides);

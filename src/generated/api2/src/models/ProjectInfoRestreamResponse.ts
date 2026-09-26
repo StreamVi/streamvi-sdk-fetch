@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PlanRestream2UserItemResponse } from './PlanRestream2UserItemResponse';
+import type { ProjectInfoRestreamDataResponse } from './ProjectInfoRestreamDataResponse';
 import {
-    PlanRestream2UserItemResponseFromJSON,
-    PlanRestream2UserItemResponseFromJSONTyped,
-    PlanRestream2UserItemResponseToJSON,
-    PlanRestream2UserItemResponseToJSONTyped,
-} from './PlanRestream2UserItemResponse';
-import type { PlanRestreamResponse } from './PlanRestreamResponse';
+    ProjectInfoRestreamDataResponseFromJSON,
+    ProjectInfoRestreamDataResponseFromJSONTyped,
+    ProjectInfoRestreamDataResponseToJSON,
+    ProjectInfoRestreamDataResponseToJSONTyped,
+} from './ProjectInfoRestreamDataResponse';
+import type { ProjectInfoRestreamPeriodResponse } from './ProjectInfoRestreamPeriodResponse';
 import {
-    PlanRestreamResponseFromJSON,
-    PlanRestreamResponseFromJSONTyped,
-    PlanRestreamResponseToJSON,
-    PlanRestreamResponseToJSONTyped,
-} from './PlanRestreamResponse';
+    ProjectInfoRestreamPeriodResponseFromJSON,
+    ProjectInfoRestreamPeriodResponseFromJSONTyped,
+    ProjectInfoRestreamPeriodResponseToJSON,
+    ProjectInfoRestreamPeriodResponseToJSONTyped,
+} from './ProjectInfoRestreamPeriodResponse';
 
 /**
  * 
@@ -36,16 +36,16 @@ import {
 export interface ProjectInfoRestreamResponse {
     /**
      * Plan restream to user
-     * @type {PlanRestream2UserItemResponse}
+     * @type {ProjectInfoRestreamPeriodResponse}
      * @memberof ProjectInfoRestreamResponse
      */
-    plan2user: PlanRestream2UserItemResponse;
+    plan2user: ProjectInfoRestreamPeriodResponse;
     /**
      * Plan restream data
-     * @type {PlanRestreamResponse}
+     * @type {ProjectInfoRestreamDataResponse}
      * @memberof ProjectInfoRestreamResponse
      */
-    data: PlanRestreamResponse;
+    data: ProjectInfoRestreamDataResponse;
 }
 
 /**
@@ -67,8 +67,8 @@ export function ProjectInfoRestreamResponseFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
-        'plan2user': PlanRestream2UserItemResponseFromJSON(json['plan2user']),
-        'data': PlanRestreamResponseFromJSON(json['data']),
+        'plan2user': ProjectInfoRestreamPeriodResponseFromJSON(json['plan2user']),
+        'data': ProjectInfoRestreamDataResponseFromJSON(json['data']),
     };
 }
 
@@ -83,8 +83,8 @@ export function ProjectInfoRestreamResponseToJSONTyped(value?: ProjectInfoRestre
 
     return {
         
-        'plan2user': PlanRestream2UserItemResponseToJSON(value['plan2user']),
-        'data': PlanRestreamResponseToJSON(value['data']),
+        'plan2user': ProjectInfoRestreamPeriodResponseToJSON(value['plan2user']),
+        'data': ProjectInfoRestreamDataResponseToJSON(value['data']),
     };
 }
 

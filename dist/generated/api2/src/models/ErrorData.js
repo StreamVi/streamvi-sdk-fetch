@@ -14,14 +14,14 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ErrorDataToJSONTyped = exports.ErrorDataToJSON = exports.ErrorDataFromJSONTyped = exports.ErrorDataFromJSON = exports.instanceOfErrorData = void 0;
+const ErrorDataName_1 = require("./ErrorDataName");
+const ErrorDataData_1 = require("./ErrorDataData");
 const ValidationErrorDto_1 = require("./ValidationErrorDto");
 /**
  * Check if a given object implements the ErrorData interface.
  */
 function instanceOfErrorData(value) {
     if (!('name' in value) || value['name'] === undefined)
-        return false;
-    if (!('msg' in value) || value['msg'] === undefined)
         return false;
     if (!('options' in value) || value['options'] === undefined)
         return false;
@@ -39,11 +39,11 @@ function ErrorDataFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'name': json['name'],
-        'msg': json['msg'],
+        'name': (0, ErrorDataName_1.ErrorDataNameFromJSON)(json['name']),
+        'msg': json['msg'] == null ? undefined : json['msg'],
         'validator_error': json['validator_error'] == null ? undefined : (json['validator_error'].map(ValidationErrorDto_1.ValidationErrorDtoFromJSON)),
         'options': json['options'],
-        'data': json['data'],
+        'data': (0, ErrorDataData_1.ErrorDataDataFromJSON)(json['data']),
     };
 }
 exports.ErrorDataFromJSONTyped = ErrorDataFromJSONTyped;
@@ -56,11 +56,11 @@ function ErrorDataToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'name': value['name'],
+        'name': (0, ErrorDataName_1.ErrorDataNameToJSON)(value['name']),
         'msg': value['msg'],
         'validator_error': value['validator_error'] == null ? undefined : (value['validator_error'].map(ValidationErrorDto_1.ValidationErrorDtoToJSON)),
         'options': value['options'],
-        'data': value['data'],
+        'data': (0, ErrorDataData_1.ErrorDataDataToJSON)(value['data']),
     };
 }
 exports.ErrorDataToJSONTyped = ErrorDataToJSONTyped;

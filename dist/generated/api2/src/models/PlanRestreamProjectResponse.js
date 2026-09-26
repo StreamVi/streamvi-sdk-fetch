@@ -67,6 +67,8 @@ function instanceOfPlanRestreamProjectResponse(value) {
         return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined)
         return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined)
+        return false;
     if (!('own_tariff' in value) || value['own_tariff'] === undefined)
         return false;
     return true;
@@ -99,6 +101,7 @@ function PlanRestreamProjectResponseFromJSONTyped(json, ignoreDiscriminator) {
         'feature': (json['feature'].map(PlanRestreamFeatureItemV2_1.PlanRestreamFeatureItemV2FromJSON)),
         'support_custom_channel': json['support_custom_channel'],
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
         'own_tariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2FromJSON)(json['own_tariff']),
     };
 }
@@ -130,6 +133,7 @@ function PlanRestreamProjectResponseToJSONTyped(value, ignoreDiscriminator = fal
         'feature': (value['feature'].map(PlanRestreamFeatureItemV2_1.PlanRestreamFeatureItemV2ToJSON)),
         'support_custom_channel': value['support_custom_channel'],
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
         'own_tariff': (0, PlanRestreamForProjectV2_1.PlanRestreamForProjectV2ToJSON)(value['own_tariff']),
     };
 }

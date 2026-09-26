@@ -28,6 +28,7 @@ import type {
   SiteBroadcastPlayRequest,
   SiteBroadcastRestreamsInfoResponse,
   SiteBroadcastStopRequest,
+  SiteBroadcastTemplateResponse,
   SiteRestreamEventResponse,
   SuccessResponse,
 } from '../models/index';
@@ -58,6 +59,8 @@ import {
     SiteBroadcastRestreamsInfoResponseToJSON,
     SiteBroadcastStopRequestFromJSON,
     SiteBroadcastStopRequestToJSON,
+    SiteBroadcastTemplateResponseFromJSON,
+    SiteBroadcastTemplateResponseToJSON,
     SiteRestreamEventResponseFromJSON,
     SiteRestreamEventResponseToJSON,
     SuccessResponseFromJSON,
@@ -101,6 +104,12 @@ export interface BroadcastFindV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastFindV1VEnum;
+}
+
+export interface BroadcastGetTemplateV1Request {
+    language: BroadcastGetTemplateV1LanguageEnum;
+    project_id: number;
+    v?: BroadcastGetTemplateV1VEnum;
 }
 
 export interface BroadcastGraphBitrateV1Request {
@@ -253,6 +262,23 @@ export interface BroadcastApiInterface {
      * Get one broadcast
      */
     broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
+
+    /**
+     * 
+     * @summary Get broadcast title and description template
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>>;
+
+    /**
+     * Get broadcast title and description template
+     */
+    broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse>;
 
     /**
      * 
@@ -746,6 +772,65 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
      */
     async broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse> {
         const response = await this.broadcastFindV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get broadcast title and description template
+     */
+    async broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling broadcastGetTemplateV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling broadcastGetTemplateV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/broadcast/template`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SiteBroadcastTemplateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get broadcast title and description template
+     */
+    async broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse> {
+        const response = await this.broadcastGetTemplateV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1432,6 +1517,22 @@ export const BroadcastFindV1VEnum = {
     _3: '3'
 } as const;
 export type BroadcastFindV1VEnum = typeof BroadcastFindV1VEnum[keyof typeof BroadcastFindV1VEnum];
+/**
+ * @export
+ */
+export const BroadcastGetTemplateV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type BroadcastGetTemplateV1LanguageEnum = typeof BroadcastGetTemplateV1LanguageEnum[keyof typeof BroadcastGetTemplateV1LanguageEnum];
+/**
+ * @export
+ */
+export const BroadcastGetTemplateV1VEnum = {
+    _1: '1'
+} as const;
+export type BroadcastGetTemplateV1VEnum = typeof BroadcastGetTemplateV1VEnum[keyof typeof BroadcastGetTemplateV1VEnum];
 /**
  * @export
  */

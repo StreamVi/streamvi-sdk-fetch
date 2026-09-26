@@ -10,6 +10,11 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
+import type { SiteSocialListResponse } from '../models/index';
+export interface SocialsGetListV1Request {
+    language: SocialsGetListV1LanguageEnum;
+    v?: SocialsGetListV1VEnum;
+}
 /**
  * SocialsApi - interface
  *
@@ -20,15 +25,17 @@ export interface SocialsApiInterface {
     /**
      *
      * @summary Social list for user
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SocialsApiInterface
      */
-    socialsGetListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>>;
     /**
      * Social list for user
      */
-    socialsGetListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse>;
 }
 /**
  *
@@ -37,10 +44,26 @@ export declare class SocialsApi extends runtime.BaseAPI implements SocialsApiInt
     /**
      * Social list for user
      */
-    socialsGetListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>>;
     /**
      * Social list for user
      */
-    socialsGetListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse>;
 }
+/**
+ * @export
+ */
+export declare const SocialsGetListV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type SocialsGetListV1LanguageEnum = typeof SocialsGetListV1LanguageEnum[keyof typeof SocialsGetListV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const SocialsGetListV1VEnum: {
+    readonly _1: "1";
+};
+export type SocialsGetListV1VEnum = typeof SocialsGetListV1VEnum[keyof typeof SocialsGetListV1VEnum];
 //# sourceMappingURL=SocialsApi.d.ts.map

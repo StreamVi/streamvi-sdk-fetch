@@ -15,6 +15,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SiteRestreamEventResponseToJSONTyped = exports.SiteRestreamEventResponseToJSON = exports.SiteRestreamEventResponseFromJSONTyped = exports.SiteRestreamEventResponseFromJSON = exports.instanceOfSiteRestreamEventResponse = exports.SiteRestreamEventResponseAppEnum = exports.SiteRestreamEventResponseLevelEnum = void 0;
 const SiteRestreamEventServerResponse_1 = require("./SiteRestreamEventServerResponse");
+const SiteRestreamEventChannelResponse_1 = require("./SiteRestreamEventChannelResponse");
 /**
  * @export
  */
@@ -65,6 +66,7 @@ function SiteRestreamEventResponseFromJSONTyped(json, ignoreDiscriminator) {
         'app': json['app'],
         'server': (0, SiteRestreamEventServerResponse_1.SiteRestreamEventServerResponseFromJSON)(json['server']),
         'platform': json['platform'] == null ? undefined : json['platform'],
+        'channel': json['channel'] == null ? undefined : (0, SiteRestreamEventChannelResponse_1.SiteRestreamEventChannelResponseFromJSON)(json['channel']),
     };
 }
 exports.SiteRestreamEventResponseFromJSONTyped = SiteRestreamEventResponseFromJSONTyped;
@@ -84,6 +86,7 @@ function SiteRestreamEventResponseToJSONTyped(value, ignoreDiscriminator = false
         'app': value['app'],
         'server': (0, SiteRestreamEventServerResponse_1.SiteRestreamEventServerResponseToJSON)(value['server']),
         'platform': value['platform'],
+        'channel': (0, SiteRestreamEventChannelResponse_1.SiteRestreamEventChannelResponseToJSON)(value['channel']),
     };
 }
 exports.SiteRestreamEventResponseToJSONTyped = SiteRestreamEventResponseToJSONTyped;

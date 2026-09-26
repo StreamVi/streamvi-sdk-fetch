@@ -42,6 +42,8 @@ function instanceOfSearchChannelItem(value) {
         return false;
     if (!('id' in value) || value['id'] === undefined)
         return false;
+    if (!('transcoderId' in value) || value['transcoderId'] === undefined)
+        return false;
     if (!('group_id' in value) || value['group_id'] === undefined)
         return false;
     if (!('type' in value) || value['type'] === undefined)
@@ -94,7 +96,7 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'name': json['name'],
         'id': json['id'],
-        'transcoderId': json['transcoderId'] == null ? undefined : json['transcoderId'],
+        'transcoderId': json['transcoderId'],
         'group_id': json['group_id'],
         'type': json['type'],
         'photo_default': json['photo_default'],
@@ -113,6 +115,7 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         'rtmp': (0, SearchChannelRtmpDto_1.SearchChannelRtmpDtoFromJSON)(json['rtmp']),
         'ingress_url': json['ingress_url'] == null ? undefined : json['ingress_url'],
         'ingress_protocol': json['ingress_protocol'] == null ? undefined : json['ingress_protocol'],
+        'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
         'credentials': (json['credentials'] == null ? null : json['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoFromJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoFromJSON)(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : (json['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoFromJSON)),
@@ -152,6 +155,7 @@ function SearchChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         'rtmp': (0, SearchChannelRtmpDto_1.SearchChannelRtmpDtoToJSON)(value['rtmp']),
         'ingress_url': value['ingress_url'],
         'ingress_protocol': value['ingress_protocol'],
+        'stream_key': value['stream_key'],
         'credentials': (value['credentials'] == null ? null : value['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoToJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoToJSON)(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : (value['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoToJSON)),

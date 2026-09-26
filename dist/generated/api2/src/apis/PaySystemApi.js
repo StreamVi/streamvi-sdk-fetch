@@ -176,7 +176,7 @@ class PaySystemApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfPaySystemListResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaySystemsResponseFromJSON)(jsonValue));
     }
     /**
      * Load available pay systems

@@ -48,7 +48,7 @@ export interface SiteRestreamResponse {
      * @type {string}
      * @memberof SiteRestreamResponse
      */
-    photo: string;
+    photo: string | null;
     /**
      * Channel video url
      * @type {string}
@@ -72,7 +72,7 @@ export interface SiteRestreamResponse {
      * @type {Date}
      * @memberof SiteRestreamResponse
      */
-    created_at: Date;
+    created_at: Date | null;
 }
 
 /**
@@ -109,7 +109,7 @@ export function SiteRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
         'video': json['video'],
         'viewers': json['viewers'],
         'message': json['message'],
-        'created_at': (new Date(json['created_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
     };
 }
 
@@ -132,7 +132,7 @@ export function SiteRestreamResponseToJSONTyped(value?: SiteRestreamResponse | n
         'video': value['video'],
         'viewers': value['viewers'],
         'message': value['message'],
-        'created_at': ((value['created_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : (value['created_at'] as any).toISOString()),
     };
 }
 

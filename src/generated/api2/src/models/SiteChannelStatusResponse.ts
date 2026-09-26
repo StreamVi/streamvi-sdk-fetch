@@ -24,14 +24,13 @@ export interface SiteChannelStatusResponse {
      * @type {string}
      * @memberof SiteChannelStatusResponse
      */
-    message: string | null;
+    message?: string | null;
 }
 
 /**
  * Check if a given object implements the SiteChannelStatusResponse interface.
  */
 export function instanceOfSiteChannelStatusResponse(value: object): value is SiteChannelStatusResponse {
-    if (!('message' in value) || value['message'] === undefined) return false;
     return true;
 }
 
@@ -45,7 +44,7 @@ export function SiteChannelStatusResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'message': json['message'],
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 

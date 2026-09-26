@@ -13,6 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ErrorDataName } from './ErrorDataName';
+import {
+    ErrorDataNameFromJSON,
+    ErrorDataNameFromJSONTyped,
+    ErrorDataNameToJSON,
+    ErrorDataNameToJSONTyped,
+} from './ErrorDataName';
+import type { ErrorDataData } from './ErrorDataData';
+import {
+    ErrorDataDataFromJSON,
+    ErrorDataDataFromJSONTyped,
+    ErrorDataDataToJSON,
+    ErrorDataDataToJSONTyped,
+} from './ErrorDataData';
 import type { ValidationErrorDto } from './ValidationErrorDto';
 import {
     ValidationErrorDtoFromJSON,
@@ -28,17 +42,17 @@ import {
  */
 export interface ErrorData {
     /**
-     * Error name
-     * @type {string}
+     * 
+     * @type {ErrorDataName}
      * @memberof ErrorData
      */
-    name: string;
+    name: ErrorDataName;
     /**
      * Error message
      * @type {string}
      * @memberof ErrorData
      */
-    msg: string;
+    msg?: string;
     /**
      * Validator error array if name="I18nValidationException"
      * @type {Array<ValidationErrorDto>}
@@ -52,11 +66,11 @@ export interface ErrorData {
      */
     options: object;
     /**
-     * Custom object for error
-     * @type {object}
+     * 
+     * @type {ErrorDataData}
      * @memberof ErrorData
      */
-    data: object;
+    data: ErrorDataData;
 }
 
 /**
@@ -64,7 +78,6 @@ export interface ErrorData {
  */
 export function instanceOfErrorData(value: object): value is ErrorData {
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('msg' in value) || value['msg'] === undefined) return false;
     if (!('options' in value) || value['options'] === undefined) return false;
     if (!('data' in value) || value['data'] === undefined) return false;
     return true;
@@ -80,11 +93,11 @@ export function ErrorDataFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
-        'name': json['name'],
-        'msg': json['msg'],
+        'name': ErrorDataNameFromJSON(json['name']),
+        'msg': json['msg'] == null ? undefined : json['msg'],
         'validator_error': json['validator_error'] == null ? undefined : ((json['validator_error'] as Array<any>).map(ValidationErrorDtoFromJSON)),
         'options': json['options'],
-        'data': json['data'],
+        'data': ErrorDataDataFromJSON(json['data']),
     };
 }
 
@@ -99,11 +112,11 @@ export function ErrorDataToJSONTyped(value?: ErrorData | null, ignoreDiscriminat
 
     return {
         
-        'name': value['name'],
+        'name': ErrorDataNameToJSON(value['name']),
         'msg': value['msg'],
         'validator_error': value['validator_error'] == null ? undefined : ((value['validator_error'] as Array<any>).map(ValidationErrorDtoToJSON)),
         'options': value['options'],
-        'data': value['data'],
+        'data': ErrorDataDataToJSON(value['data']),
     };
 }
 

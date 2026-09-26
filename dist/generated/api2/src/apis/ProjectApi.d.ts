@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfUserProject2ProjectResponse, PaginatedResponseOfUserProjectResponse, ProjectInfoResponse, ProjectMeResponse, SuccessResponse, UserProjectGetResponse } from '../models/index';
+import type { PaginatedUserProjectResponse, ProjectInfoResponse, ProjectMeResponse, SuccessResponse, UserProject2ProjectListResponse, UserProjectGetResponse } from '../models/index';
 export interface MethodProjectMeMeV1Request {
     v?: MethodProjectMeMeV1VEnum;
     language?: MethodProjectMeMeV1LanguageEnum;
@@ -213,11 +213,11 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfUserProject2ProjectResponse>>;
+    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>>;
     /**
      * List of user in project
      */
-    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfUserProject2ProjectResponse>;
+    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse>;
     /**
      *
      * @summary List of project for current user
@@ -229,11 +229,11 @@ export interface ProjectApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
-    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfUserProjectResponse>>;
+    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>>;
     /**
      * List of project for current user
      */
-    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfUserProjectResponse>;
+    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse>;
     /**
      *
      * @summary Select user for project
@@ -325,19 +325,19 @@ export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInt
     /**
      * List of user in project
      */
-    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfUserProject2ProjectResponse>>;
+    userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>>;
     /**
      * List of user in project
      */
-    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfUserProject2ProjectResponse>;
+    userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse>;
     /**
      * List of project for current user
      */
-    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfUserProjectResponse>>;
+    userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>>;
     /**
      * List of project for current user
      */
-    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfUserProjectResponse>;
+    userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse>;
     /**
      * Select user for project
      */

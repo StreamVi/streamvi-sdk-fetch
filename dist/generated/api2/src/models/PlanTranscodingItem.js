@@ -36,8 +36,6 @@ function instanceOfPlanTranscodingItem(value) {
         return false;
     if (!('count' in value) || value['count'] === undefined)
         return false;
-    if (!('date_end' in value) || value['date_end'] === undefined)
-        return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
     if (!('prolongation' in value) || value['prolongation'] === undefined)
@@ -58,7 +56,7 @@ function PlanTranscodingItemFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'id': json['id'],
         'count': json['count'],
-        'date_end': (new Date(json['date_end'])),
+        'date_end': json['date_end'] == null ? undefined : (new Date(json['date_end'])),
         'title': json['title'],
         'type': json['type'] == null ? undefined : json['type'],
         'prolongation': json['prolongation'],
@@ -77,7 +75,7 @@ function PlanTranscodingItemToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'id': value['id'],
         'count': value['count'],
-        'date_end': ((value['date_end']).toISOString()),
+        'date_end': value['date_end'] == null ? undefined : ((value['date_end']).toISOString()),
         'title': value['title'],
         'type': value['type'],
         'prolongation': value['prolongation'],

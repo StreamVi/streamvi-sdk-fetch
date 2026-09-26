@@ -55,6 +55,12 @@ export interface PlanRestreamNextItem {
      * @memberof PlanRestreamNextItem
      */
     custom_video: number;
+    /**
+     * Maximum disconnect protection time for this purchased period, in minutes
+     * @type {number}
+     * @memberof PlanRestreamNextItem
+     */
+    disconnect_protection_max_minutes: number;
 }
 
 /**
@@ -65,6 +71,7 @@ export function instanceOfPlanRestreamNextItem(value: object): value is PlanRest
     if (!('date_start' in value) || value['date_start'] === undefined) return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined) return false;
     return true;
 }
 
@@ -84,6 +91,7 @@ export function PlanRestreamNextItemFromJSONTyped(json: any, ignoreDiscriminator
         'date_start': (new Date(json['date_start'])),
         'support_custom_channel': json['support_custom_channel'],
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
     };
 }
 
@@ -104,6 +112,7 @@ export function PlanRestreamNextItemToJSONTyped(value?: PlanRestreamNextItem | n
         'date_start': ((value['date_start']).toISOString()),
         'support_custom_channel': value['support_custom_channel'],
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
     };
 }
 

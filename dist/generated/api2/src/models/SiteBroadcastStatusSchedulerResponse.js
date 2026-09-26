@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SiteBroadcastStatusSchedulerResponseToJSONTyped = exports.SiteBroadcastStatusSchedulerResponseToJSON = exports.SiteBroadcastStatusSchedulerResponseFromJSONTyped = exports.SiteBroadcastStatusSchedulerResponseFromJSON = exports.instanceOfSiteBroadcastStatusSchedulerResponse = exports.SiteBroadcastStatusSchedulerResponseAppEnum = exports.SiteBroadcastStatusSchedulerResponseStatusEnum = void 0;
+exports.SiteBroadcastStatusSchedulerResponseToJSONTyped = exports.SiteBroadcastStatusSchedulerResponseToJSON = exports.SiteBroadcastStatusSchedulerResponseFromJSONTyped = exports.SiteBroadcastStatusSchedulerResponseFromJSON = exports.instanceOfSiteBroadcastStatusSchedulerResponse = exports.SiteBroadcastStatusSchedulerResponseAppEnum = exports.SiteBroadcastStatusSchedulerResponseKindEnum = exports.SiteBroadcastStatusSchedulerResponseActionEnum = exports.SiteBroadcastStatusSchedulerResponseStatusEnum = void 0;
 const BroadcastLiveStatusRestream_1 = require("./BroadcastLiveStatusRestream");
 /**
  * @export
@@ -23,6 +23,19 @@ exports.SiteBroadcastStatusSchedulerResponseStatusEnum = {
     pause: 'pause',
     lost: 'lost',
     done: 'done'
+};
+/**
+ * @export
+ */
+exports.SiteBroadcastStatusSchedulerResponseActionEnum = {
+    active: 'active',
+    stopped: 'stopped'
+};
+/**
+ * @export
+ */
+exports.SiteBroadcastStatusSchedulerResponseKindEnum = {
+    scheduler: 'scheduler'
 };
 /**
  * @export
@@ -50,21 +63,17 @@ function instanceOfSiteBroadcastStatusSchedulerResponse(value) {
         return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
+    if (!('action' in value) || value['action'] === undefined)
+        return false;
     if (!('url' in value) || value['url'] === undefined)
         return false;
     if (!('video_codec_name' in value) || value['video_codec_name'] === undefined)
         return false;
     if (!('restreams' in value) || value['restreams'] === undefined)
         return false;
+    if (!('kind' in value) || value['kind'] === undefined)
+        return false;
     if (!('app' in value) || value['app'] === undefined)
-        return false;
-    if (!('schedulerId' in value) || value['schedulerId'] === undefined)
-        return false;
-    if (!('video_id' in value) || value['video_id'] === undefined)
-        return false;
-    if (!('name' in value) || value['name'] === undefined)
-        return false;
-    if (!('duration' in value) || value['duration'] === undefined)
         return false;
     return true;
 }
@@ -81,20 +90,22 @@ function SiteBroadcastStatusSchedulerResponseFromJSONTyped(json, ignoreDiscrimin
         'broadcast_id': json['broadcast_id'],
         'stream_id': json['stream_id'],
         'reconnects': json['reconnects'],
-        'date_start': (new Date(json['date_start'])),
+        'date_start': (json['date_start'] == null ? null : new Date(json['date_start'])),
         'resolution': json['resolution'],
         'fps': json['fps'],
         'bitrate': json['bitrate'],
         'key_frame': json['key_frame'] == null ? undefined : json['key_frame'],
         'status': json['status'],
+        'action': json['action'],
         'url': json['url'],
         'video_codec_name': json['video_codec_name'],
         'restreams': (json['restreams'].map(BroadcastLiveStatusRestream_1.BroadcastLiveStatusRestreamFromJSON)),
+        'kind': json['kind'],
         'app': json['app'],
-        'schedulerId': json['schedulerId'],
-        'video_id': json['video_id'],
-        'name': json['name'],
-        'duration': json['duration'],
+        'schedulerId': json['schedulerId'] == null ? undefined : json['schedulerId'],
+        'video_id': json['video_id'] == null ? undefined : json['video_id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
     };
 }
 exports.SiteBroadcastStatusSchedulerResponseFromJSONTyped = SiteBroadcastStatusSchedulerResponseFromJSONTyped;
@@ -110,15 +121,17 @@ function SiteBroadcastStatusSchedulerResponseToJSONTyped(value, ignoreDiscrimina
         'broadcast_id': value['broadcast_id'],
         'stream_id': value['stream_id'],
         'reconnects': value['reconnects'],
-        'date_start': ((value['date_start']).toISOString()),
+        'date_start': (value['date_start'] == null ? null : value['date_start'].toISOString()),
         'resolution': value['resolution'],
         'fps': value['fps'],
         'bitrate': value['bitrate'],
         'key_frame': value['key_frame'],
         'status': value['status'],
+        'action': value['action'],
         'url': value['url'],
         'video_codec_name': value['video_codec_name'],
         'restreams': (value['restreams'].map(BroadcastLiveStatusRestream_1.BroadcastLiveStatusRestreamToJSON)),
+        'kind': value['kind'],
         'app': value['app'],
         'schedulerId': value['schedulerId'],
         'video_id': value['video_id'],

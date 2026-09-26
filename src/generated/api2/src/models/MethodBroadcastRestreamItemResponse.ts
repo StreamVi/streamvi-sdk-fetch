@@ -42,7 +42,7 @@ export interface MethodBroadcastRestreamItemResponse {
      * @type {string}
      * @memberof MethodBroadcastRestreamItemResponse
      */
-    image: string;
+    image: string | null;
     /**
      * Platform type
      * @type {string}

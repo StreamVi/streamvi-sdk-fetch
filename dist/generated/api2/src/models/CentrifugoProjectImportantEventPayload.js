@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CentrifugoProjectImportantEventPayloadToJSONTyped = exports.CentrifugoProjectImportantEventPayloadToJSON = exports.CentrifugoProjectImportantEventPayloadFromJSONTyped = exports.CentrifugoProjectImportantEventPayloadFromJSON = exports.instanceOfCentrifugoProjectImportantEventPayload = exports.CentrifugoProjectImportantEventPayloadContentTypeEnum = exports.CentrifugoProjectImportantEventPayloadTypeEnum = void 0;
+const InternalNotifyTypeAction_1 = require("./InternalNotifyTypeAction");
 /**
  * @export
  */
@@ -42,8 +43,6 @@ function instanceOfCentrifugoProjectImportantEventPayload(value) {
         return false;
     if (!('content_text' in value) || value['content_text'] === undefined)
         return false;
-    if (!('content_actions' in value) || value['content_actions'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfCentrifugoProjectImportantEventPayload = instanceOfCentrifugoProjectImportantEventPayload;
@@ -60,7 +59,7 @@ function CentrifugoProjectImportantEventPayloadFromJSONTyped(json, ignoreDiscrim
         'content_type': json['content_type'],
         'content_title': json['content_title'],
         'content_text': json['content_text'],
-        'content_actions': json['content_actions'],
+        'content_actions': json['content_actions'] == null ? undefined : (json['content_actions'].map(InternalNotifyTypeAction_1.InternalNotifyTypeActionFromJSON)),
     };
 }
 exports.CentrifugoProjectImportantEventPayloadFromJSONTyped = CentrifugoProjectImportantEventPayloadFromJSONTyped;
@@ -77,7 +76,7 @@ function CentrifugoProjectImportantEventPayloadToJSONTyped(value, ignoreDiscrimi
         'content_type': value['content_type'],
         'content_title': value['content_title'],
         'content_text': value['content_text'],
-        'content_actions': value['content_actions'],
+        'content_actions': value['content_actions'] == null ? undefined : (value['content_actions'].map(InternalNotifyTypeAction_1.InternalNotifyTypeActionToJSON)),
     };
 }
 exports.CentrifugoProjectImportantEventPayloadToJSONTyped = CentrifugoProjectImportantEventPayloadToJSONTyped;

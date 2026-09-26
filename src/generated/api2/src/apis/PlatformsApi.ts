@@ -15,15 +15,20 @@
 
 import * as runtime from '../runtime';
 import type {
+  CategoryListResponse,
   ErrorResponse,
   GetAccountChannelsResponse,
   GetAccountsResponse,
   ListOfCategoryItemResponse,
+  PlatformCategoryDetailsResponse,
+  PlatformCategoryNotFoundResponse,
   RemoveAccountQuery,
   SitePlatformsSupportedResponse,
   SuccessResponse,
 } from '../models/index';
 import {
+    CategoryListResponseFromJSON,
+    CategoryListResponseToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     GetAccountChannelsResponseFromJSON,
@@ -32,6 +37,10 @@ import {
     GetAccountsResponseToJSON,
     ListOfCategoryItemResponseFromJSON,
     ListOfCategoryItemResponseToJSON,
+    PlatformCategoryDetailsResponseFromJSON,
+    PlatformCategoryDetailsResponseToJSON,
+    PlatformCategoryNotFoundResponseFromJSON,
+    PlatformCategoryNotFoundResponseToJSON,
     RemoveAccountQueryFromJSON,
     RemoveAccountQueryToJSON,
     SitePlatformsSupportedResponseFromJSON,
@@ -39,6 +48,14 @@ import {
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
 } from '../models/index';
+
+export interface PlatformCategoryDetailsGetCategoryDetailsV1Request {
+    language: PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum;
+    platform: PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum;
+    scope: PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum;
+    id: string;
+    v?: PlatformCategoryDetailsGetCategoryDetailsV1VEnum;
+}
 
 export interface PlatformsAddAccountV1Request {
     language: PlatformsAddAccountV1LanguageEnum;
@@ -112,6 +129,14 @@ export interface PlatformsRemoveAccountV1Request {
     RemoveAccountQuery: RemoveAccountQuery;
 }
 
+export interface PlatformsVkVideoLiveCategoryV1Request {
+    language: PlatformsVkVideoLiveCategoryV1LanguageEnum;
+    type: PlatformsVkVideoLiveCategoryV1TypeEnum;
+    v?: PlatformsVkVideoLiveCategoryV1VEnum;
+    offset?: number;
+    q?: string;
+}
+
 /**
  * PlatformsApi - interface
  * 
@@ -119,6 +144,25 @@ export interface PlatformsRemoveAccountV1Request {
  * @interface PlatformsApiInterface
  */
 export interface PlatformsApiInterface {
+    /**
+     * 
+     * @summary Get a saved platform category by its external identifier
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'vkvideolive'} platform 
+     * @param {'game' | 'irl' | 'sport'} scope 
+     * @param {string} id Opaque external category identifier; passed through unchanged
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlatformCategoryDetailsResponse>>;
+
+    /**
+     * Get a saved platform category by its external identifier
+     */
+    platformCategoryDetailsGetCategoryDetailsV1(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlatformCategoryDetailsResponse>;
+
     /**
      * 
      * @summary Get url for start oauth
@@ -232,12 +276,12 @@ export interface PlatformsApiInterface {
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
-    platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfCategoryItemResponse>>;
+    platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
 
     /**
      * Get category from the platform
      */
-    platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfCategoryItemResponse>;
+    platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
 
     /**
      * 
@@ -312,12 +356,112 @@ export interface PlatformsApiInterface {
      */
     platformsRemoveAccountV1(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
+    /**
+     * 
+     * @summary Search VK Video Live categories in the saved catalog
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'irl' | 'game' | 'sport'} type Category type
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [offset] Category offset (for pagination)
+     * @param {string} [q] Category name prefix
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PlatformsApiInterface
+     */
+    platformsVkVideoLiveCategoryV1Raw(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
+
+    /**
+     * Search VK Video Live categories in the saved catalog
+     */
+    platformsVkVideoLiveCategoryV1(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
+
 }
 
 /**
  * 
  */
 export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterface {
+
+    /**
+     * Get a saved platform category by its external identifier
+     */
+    async platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlatformCategoryDetailsResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().'
+            );
+        }
+
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError(
+                'platform',
+                'Required parameter "platform" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().'
+            );
+        }
+
+        if (requestParameters['scope'] == null) {
+            throw new runtime.RequiredError(
+                'scope',
+                'Required parameter "scope" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().'
+            );
+        }
+
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+
+        if (requestParameters['scope'] != null) {
+            queryParameters['scope'] = requestParameters['scope'];
+        }
+
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/platforms/category/details`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PlatformCategoryDetailsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a saved platform category by its external identifier
+     */
+    async platformCategoryDetailsGetCategoryDetailsV1(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlatformCategoryDetailsResponse> {
+        const response = await this.platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Get url for start oauth
@@ -668,7 +812,7 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
     /**
      * Get category from the platform
      */
-    async platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfCategoryItemResponse>> {
+    async platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -717,13 +861,13 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfCategoryItemResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CategoryListResponseFromJSON(jsonValue));
     }
 
     /**
      * Get category from the platform
      */
-    async platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfCategoryItemResponse> {
+    async platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse> {
         const response = await this.platformsGetCategoryV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -990,8 +1134,107 @@ export class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterfa
         return await response.value();
     }
 
+    /**
+     * Search VK Video Live categories in the saved catalog
+     */
+    async platformsVkVideoLiveCategoryV1Raw(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling platformsVkVideoLiveCategoryV1().'
+            );
+        }
+
+        if (requestParameters['type'] == null) {
+            throw new runtime.RequiredError(
+                'type',
+                'Required parameter "type" was null or undefined when calling platformsVkVideoLiveCategoryV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['type'] != null) {
+            queryParameters['type'] = requestParameters['type'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
+
+        const response = await this.request({
+            path: `/method/platforms/category/vkvideolive`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CategoryListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Search VK Video Live categories in the saved catalog
+     */
+    async platformsVkVideoLiveCategoryV1(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse> {
+        const response = await this.platformsVkVideoLiveCategoryV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
 }
 
+/**
+ * @export
+ */
+export const PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = typeof PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum[keyof typeof PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum];
+/**
+ * @export
+ */
+export const PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = {
+    vkvideolive: 'vkvideolive'
+} as const;
+export type PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = typeof PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum[keyof typeof PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum];
+/**
+ * @export
+ */
+export const PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = {
+    game: 'game',
+    irl: 'irl',
+    sport: 'sport'
+} as const;
+export type PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = typeof PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum[keyof typeof PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum];
+/**
+ * @export
+ */
+export const PlatformCategoryDetailsGetCategoryDetailsV1VEnum = {
+    _1: '1'
+} as const;
+export type PlatformCategoryDetailsGetCategoryDetailsV1VEnum = typeof PlatformCategoryDetailsGetCategoryDetailsV1VEnum[keyof typeof PlatformCategoryDetailsGetCategoryDetailsV1VEnum];
 /**
  * @export
  */
@@ -1183,3 +1426,28 @@ export const PlatformsPlatformListV1VEnum = {
     _1: '1'
 } as const;
 export type PlatformsPlatformListV1VEnum = typeof PlatformsPlatformListV1VEnum[keyof typeof PlatformsPlatformListV1VEnum];
+/**
+ * @export
+ */
+export const PlatformsVkVideoLiveCategoryV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PlatformsVkVideoLiveCategoryV1LanguageEnum = typeof PlatformsVkVideoLiveCategoryV1LanguageEnum[keyof typeof PlatformsVkVideoLiveCategoryV1LanguageEnum];
+/**
+ * @export
+ */
+export const PlatformsVkVideoLiveCategoryV1TypeEnum = {
+    irl: 'irl',
+    game: 'game',
+    sport: 'sport'
+} as const;
+export type PlatformsVkVideoLiveCategoryV1TypeEnum = typeof PlatformsVkVideoLiveCategoryV1TypeEnum[keyof typeof PlatformsVkVideoLiveCategoryV1TypeEnum];
+/**
+ * @export
+ */
+export const PlatformsVkVideoLiveCategoryV1VEnum = {
+    _1: '1'
+} as const;
+export type PlatformsVkVideoLiveCategoryV1VEnum = typeof PlatformsVkVideoLiveCategoryV1VEnum[keyof typeof PlatformsVkVideoLiveCategoryV1VEnum];

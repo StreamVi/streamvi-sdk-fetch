@@ -26,22 +26,18 @@ function BroadcastStatusV1200ResponseFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['kind']) {
+        case 'inactive':
+            return Object.assign({}, (0, SiteBroadcastStatusInactiveResponse_1.SiteBroadcastStatusInactiveResponseFromJSONTyped)(json, true), { kind: 'inactive' });
+        case 'live':
+            return Object.assign({}, (0, SiteBroadcastStatusLiveResponse_1.SiteBroadcastStatusLiveResponseFromJSONTyped)(json, true), { kind: 'live' });
+        case 'scheduler':
+            return Object.assign({}, (0, SiteBroadcastStatusSchedulerResponse_1.SiteBroadcastStatusSchedulerResponseFromJSONTyped)(json, true), { kind: 'scheduler' });
+        case 'transcoding':
+            return Object.assign({}, (0, SiteBroadcastStatusTranscodingResponse_1.SiteBroadcastStatusTranscodingResponseFromJSONTyped)(json, true), { kind: 'transcoding' });
+        default:
+            return json;
     }
-    if ((0, SiteBroadcastStatusInactiveResponse_1.instanceOfSiteBroadcastStatusInactiveResponse)(json)) {
-        return (0, SiteBroadcastStatusInactiveResponse_1.SiteBroadcastStatusInactiveResponseFromJSONTyped)(json, true);
-    }
-    if ((0, SiteBroadcastStatusLiveResponse_1.instanceOfSiteBroadcastStatusLiveResponse)(json)) {
-        return (0, SiteBroadcastStatusLiveResponse_1.SiteBroadcastStatusLiveResponseFromJSONTyped)(json, true);
-    }
-    if ((0, SiteBroadcastStatusSchedulerResponse_1.instanceOfSiteBroadcastStatusSchedulerResponse)(json)) {
-        return (0, SiteBroadcastStatusSchedulerResponse_1.SiteBroadcastStatusSchedulerResponseFromJSONTyped)(json, true);
-    }
-    if ((0, SiteBroadcastStatusTranscodingResponse_1.instanceOfSiteBroadcastStatusTranscodingResponse)(json)) {
-        return (0, SiteBroadcastStatusTranscodingResponse_1.SiteBroadcastStatusTranscodingResponseFromJSONTyped)(json, true);
-    }
-    return {};
 }
 exports.BroadcastStatusV1200ResponseFromJSONTyped = BroadcastStatusV1200ResponseFromJSONTyped;
 function BroadcastStatusV1200ResponseToJSON(json) {
@@ -52,21 +48,17 @@ function BroadcastStatusV1200ResponseToJSONTyped(value, ignoreDiscriminator = fa
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['kind']) {
+        case 'inactive':
+            return Object.assign({}, (0, SiteBroadcastStatusInactiveResponse_1.SiteBroadcastStatusInactiveResponseToJSON)(value), { kind: 'inactive' });
+        case 'live':
+            return Object.assign({}, (0, SiteBroadcastStatusLiveResponse_1.SiteBroadcastStatusLiveResponseToJSON)(value), { kind: 'live' });
+        case 'scheduler':
+            return Object.assign({}, (0, SiteBroadcastStatusSchedulerResponse_1.SiteBroadcastStatusSchedulerResponseToJSON)(value), { kind: 'scheduler' });
+        case 'transcoding':
+            return Object.assign({}, (0, SiteBroadcastStatusTranscodingResponse_1.SiteBroadcastStatusTranscodingResponseToJSON)(value), { kind: 'transcoding' });
+        default:
+            return value;
     }
-    if ((0, SiteBroadcastStatusInactiveResponse_1.instanceOfSiteBroadcastStatusInactiveResponse)(value)) {
-        return (0, SiteBroadcastStatusInactiveResponse_1.SiteBroadcastStatusInactiveResponseToJSON)(value);
-    }
-    if ((0, SiteBroadcastStatusLiveResponse_1.instanceOfSiteBroadcastStatusLiveResponse)(value)) {
-        return (0, SiteBroadcastStatusLiveResponse_1.SiteBroadcastStatusLiveResponseToJSON)(value);
-    }
-    if ((0, SiteBroadcastStatusSchedulerResponse_1.instanceOfSiteBroadcastStatusSchedulerResponse)(value)) {
-        return (0, SiteBroadcastStatusSchedulerResponse_1.SiteBroadcastStatusSchedulerResponseToJSON)(value);
-    }
-    if ((0, SiteBroadcastStatusTranscodingResponse_1.instanceOfSiteBroadcastStatusTranscodingResponse)(value)) {
-        return (0, SiteBroadcastStatusTranscodingResponse_1.SiteBroadcastStatusTranscodingResponseToJSON)(value);
-    }
-    return {};
 }
 exports.BroadcastStatusV1200ResponseToJSONTyped = BroadcastStatusV1200ResponseToJSONTyped;

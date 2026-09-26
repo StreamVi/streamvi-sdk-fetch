@@ -20,11 +20,17 @@ import { mapValues } from '../runtime';
  */
 export interface GetStreamKeyResponse {
     /**
-     * Seconds the stream guard
+     * Disconnect protection wait time in minutes
      * @type {number}
      * @memberof GetStreamKeyResponse
      */
-    wait: number;
+    wait: number | null;
+    /**
+     * Maximum disconnect protection wait time for the active purchased tariff, in minutes
+     * @type {number}
+     * @memberof GetStreamKeyResponse
+     */
+    wait_max_minutes: number;
     /**
      * Is recordable stream
      * @type {boolean}
@@ -56,6 +62,7 @@ export interface GetStreamKeyResponse {
  */
 export function instanceOfGetStreamKeyResponse(value: object): value is GetStreamKeyResponse {
     if (!('wait' in value) || value['wait'] === undefined) return false;
+    if (!('wait_max_minutes' in value) || value['wait_max_minutes'] === undefined) return false;
     if (!('record' in value) || value['record'] === undefined) return false;
     if (!('key' in value) || value['key'] === undefined) return false;
     if (!('pause_media_service_file_id' in value) || value['pause_media_service_file_id'] === undefined) return false;
@@ -74,6 +81,7 @@ export function GetStreamKeyResponseFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'wait': json['wait'],
+        'wait_max_minutes': json['wait_max_minutes'],
         'record': json['record'],
         'key': json['key'],
         'pause_media_service_file_id': json['pause_media_service_file_id'],
@@ -93,6 +101,7 @@ export function GetStreamKeyResponseToJSONTyped(value?: GetStreamKeyResponse | n
     return {
         
         'wait': value['wait'],
+        'wait_max_minutes': value['wait_max_minutes'],
         'record': value['record'],
         'key': value['key'],
         'pause_media_service_file_id': value['pause_media_service_file_id'],

@@ -16,11 +16,14 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
+  SiteChatKeyRequest,
   SiteChatKeyResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SiteChatKeyRequestFromJSON,
+    SiteChatKeyRequestToJSON,
     SiteChatKeyResponseFromJSON,
     SiteChatKeyResponseToJSON,
 } from '../models/index';
@@ -29,6 +32,10 @@ export interface ChatGatewayKeyV1Request {
     language: ChatGatewayKeyV1LanguageEnum;
     project_id: number;
     v?: ChatGatewayKeyV1VEnum;
+}
+
+export interface ChatGatewayRotateKeyV1Request {
+    SiteChatKeyRequest: SiteChatKeyRequest;
 }
 
 /**
@@ -54,6 +61,21 @@ export interface ChatApiInterface {
      * Get chat key
      */
     chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
+
+    /**
+     * 
+     * @summary Rotate chat key
+     * @param {SiteChatKeyRequest} SiteChatKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChatApiInterface
+     */
+    chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>>;
+
+    /**
+     * Rotate chat key
+     */
+    chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
 
 }
 
@@ -118,6 +140,47 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
      */
     async chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse> {
         const response = await this.chatGatewayKeyV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Rotate chat key
+     */
+    async chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>> {
+        if (requestParameters['SiteChatKeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SiteChatKeyRequest',
+                'Required parameter "SiteChatKeyRequest" was null or undefined when calling chatGatewayRotateKeyV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+
+        const response = await this.request({
+            path: `/method/chat/key`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SiteChatKeyRequestToJSON({ ...requestParameters['SiteChatKeyRequest'], v: requestParameters['SiteChatKeyRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SiteChatKeyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Rotate chat key
+     */
+    async chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse> {
+        const response = await this.chatGatewayRotateKeyV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

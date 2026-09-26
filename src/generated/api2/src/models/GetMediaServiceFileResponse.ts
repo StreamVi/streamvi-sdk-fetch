@@ -98,7 +98,7 @@ export interface GetMediaServiceFileResponse {
      * @type {Date}
      * @memberof GetMediaServiceFileResponse
      */
-    created_at: Date;
+    created_at: Date | null;
     /**
      * Event channel for connect to centrifuge
      * @type {string}
@@ -148,7 +148,7 @@ export function GetMediaServiceFileResponseFromJSONTyped(json: any, ignoreDiscri
         'isDisabled': json['isDisabled'],
         'status': MediaServiceFilesStatusFromJSON(json['status']),
         'error': json['error'] == null ? undefined : json['error'],
-        'created_at': (new Date(json['created_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
         'event_channel': json['event_channel'] == null ? undefined : json['event_channel'],
     };
 }
@@ -175,7 +175,7 @@ export function GetMediaServiceFileResponseToJSONTyped(value?: GetMediaServiceFi
         'isDisabled': value['isDisabled'],
         'status': MediaServiceFilesStatusToJSON(value['status']),
         'error': value['error'],
-        'created_at': ((value['created_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : (value['created_at'] as any).toISOString()),
         'event_channel': value['event_channel'],
     };
 }

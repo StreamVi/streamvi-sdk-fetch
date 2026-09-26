@@ -10,11 +10,17 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetStreamKeyResponse, SetRecordStreamRequest, SuccessResponse } from '../models/index';
+import type { GetStreamKeyResponse, RotateStreamKeyRequest, RotateStreamKeyResponse, SetRecordStreamRequest, SetWaitStreamKeyRequest, SuccessResponse } from '../models/index';
 export interface StreamKeysKeyV1Request {
     language: StreamKeysKeyV1LanguageEnum;
     project_id: number;
     v?: StreamKeysKeyV1VEnum;
+}
+export interface StreamKeysRotateV1Request {
+    RotateStreamKeyRequest: RotateStreamKeyRequest;
+}
+export interface StreamKeysSetWaitV1Request {
+    SetWaitStreamKeyRequest: SetWaitStreamKeyRequest;
 }
 export interface StreamKeysUpdateRecordV1Request {
     SetRecordStreamRequest: SetRecordStreamRequest;
@@ -43,6 +49,32 @@ export interface StreamKeyApiInterface {
     streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse>;
     /**
      *
+     * @summary Rotate stream key
+     * @param {RotateStreamKeyRequest} RotateStreamKeyRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StreamKeyApiInterface
+     */
+    streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>>;
+    /**
+     * Rotate stream key
+     */
+    streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse>;
+    /**
+     *
+     * @summary Update disconnect protection wait
+     * @param {SetWaitStreamKeyRequest} SetWaitStreamKeyRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StreamKeyApiInterface
+     */
+    streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Update disconnect protection wait
+     */
+    streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
      * @summary Update record
      * @param {SetRecordStreamRequest} SetRecordStreamRequest
      * @param {*} [options] Override http request option.
@@ -67,6 +99,22 @@ export declare class StreamKeyApi extends runtime.BaseAPI implements StreamKeyAp
      * Get stream credentials
      */
     streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse>;
+    /**
+     * Rotate stream key
+     */
+    streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>>;
+    /**
+     * Rotate stream key
+     */
+    streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse>;
+    /**
+     * Update disconnect protection wait
+     */
+    streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Update disconnect protection wait
+     */
+    streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Update record
      */

@@ -48,7 +48,7 @@ export interface SiteSetPlannedRequest {
      * @type {string}
      * @memberof SiteSetPlannedRequest
      */
-    id?: string;
+    id?: string | null;
 }
 
 

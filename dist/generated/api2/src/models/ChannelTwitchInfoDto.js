@@ -26,8 +26,6 @@ exports.ChannelTwitchInfoDtoLangEnum = {
  * Check if a given object implements the ChannelTwitchInfoDto interface.
  */
 function instanceOfChannelTwitchInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfChannelTwitchInfoDto = instanceOfChannelTwitchInfoDto;
@@ -40,7 +38,7 @@ function ChannelTwitchInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'category': json['category'] == null ? undefined : (0, ChannelCategoryInfoDto_1.ChannelCategoryInfoDtoFromJSON)(json['category']),

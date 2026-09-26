@@ -99,6 +99,8 @@ function instanceOfPlanRestreamResponse(value) {
         return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined)
         return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined)
+        return false;
     if (!('discount' in value) || value['discount'] === undefined)
         return false;
     return true;
@@ -139,6 +141,7 @@ function PlanRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         'index': json['index'],
         'support_custom_channel': json['support_custom_channel'],
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseFromJSON)(json['discount']),
     };
 }
@@ -178,6 +181,7 @@ function PlanRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'index': value['index'],
         'support_custom_channel': value['support_custom_channel'],
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
         'discount': (0, PlanRestreamDiscountResponse_1.PlanRestreamDiscountResponseToJSON)(value['discount']),
     };
 }

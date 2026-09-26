@@ -27,8 +27,8 @@ import {
 
 export interface ReleaseAppCabinetV1Request {
     language: ReleaseAppCabinetV1LanguageEnum;
+    app: ReleaseAppCabinetV1AppEnum;
     v?: ReleaseAppCabinetV1VEnum;
-    app?: ReleaseAppCabinetV1AppEnum;
 }
 
 /**
@@ -42,8 +42,8 @@ export interface ReleaseApiInterface {
      * 
      * @summary Get current version app
      * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'cabinet'} app Apps
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {'cabinet'} [app] Apps
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReleaseApiInterface
@@ -70,6 +70,13 @@ export class ReleaseApi extends runtime.BaseAPI implements ReleaseApiInterface {
             throw new runtime.RequiredError(
                 'language',
                 'Required parameter "language" was null or undefined when calling releaseAppCabinetV1().'
+            );
+        }
+
+        if (requestParameters['app'] == null) {
+            throw new runtime.RequiredError(
+                'app',
+                'Required parameter "app" was null or undefined when calling releaseAppCabinetV1().'
             );
         }
 
@@ -123,14 +130,14 @@ export type ReleaseAppCabinetV1LanguageEnum = typeof ReleaseAppCabinetV1Language
 /**
  * @export
  */
-export const ReleaseAppCabinetV1VEnum = {
-    _1: '1'
-} as const;
-export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typeof ReleaseAppCabinetV1VEnum];
-/**
- * @export
- */
 export const ReleaseAppCabinetV1AppEnum = {
     cabinet: 'cabinet'
 } as const;
 export type ReleaseAppCabinetV1AppEnum = typeof ReleaseAppCabinetV1AppEnum[keyof typeof ReleaseAppCabinetV1AppEnum];
+/**
+ * @export
+ */
+export const ReleaseAppCabinetV1VEnum = {
+    _1: '1'
+} as const;
+export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typeof ReleaseAppCabinetV1VEnum];

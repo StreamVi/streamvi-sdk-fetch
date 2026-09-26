@@ -18,8 +18,6 @@ exports.ChannelOkInfoDtoToJSONTyped = exports.ChannelOkInfoDtoToJSON = exports.C
  * Check if a given object implements the ChannelOkInfoDto interface.
  */
 function instanceOfChannelOkInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
     return true;
@@ -34,7 +32,7 @@ function ChannelOkInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
     };
 }

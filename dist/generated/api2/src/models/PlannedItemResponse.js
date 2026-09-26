@@ -22,8 +22,6 @@ function instanceOfPlannedItemResponse(value) {
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
     if (!('date' in value) || value['date'] === undefined)
         return false;
     return true;
@@ -40,7 +38,7 @@ function PlannedItemResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'id': json['id'],
         'title': json['title'],
-        'description': json['description'],
+        'description': json['description'] == null ? undefined : json['description'],
         'date': (new Date(json['date'])),
     };
 }

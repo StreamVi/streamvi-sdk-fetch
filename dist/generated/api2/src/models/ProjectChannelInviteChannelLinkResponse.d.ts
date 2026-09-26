@@ -32,7 +32,7 @@ export interface ProjectChannelInviteChannelLinkResponse {
      * @type {string}
      * @memberof ProjectChannelInviteChannelLinkResponse
      */
-    photo_50: string;
+    photo_50: string | null;
 }
 /**
  * Check if a given object implements the ProjectChannelInviteChannelLinkResponse interface.

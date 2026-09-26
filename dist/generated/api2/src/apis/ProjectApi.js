@@ -440,7 +440,7 @@ class ProjectApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfUserProject2ProjectResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProject2ProjectListResponseFromJSON)(jsonValue));
     }
     /**
      * List of user in project
@@ -483,7 +483,7 @@ class ProjectApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfUserProjectResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedUserProjectResponseFromJSON)(jsonValue));
     }
     /**
      * List of project for current user

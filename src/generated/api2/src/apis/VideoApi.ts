@@ -19,11 +19,11 @@ import type {
   ListVideoResponse,
   SuccessResponse,
   UpdateVideoRequest,
+  VideoCreateSuccessResponse,
   VideoDownloadResponse,
   VideoItemResponse,
   VideoLimitsResponse,
   VideoProgressChannelResponse,
-  VideoSiteCreateV1200Response,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
@@ -34,6 +34,8 @@ import {
     SuccessResponseToJSON,
     UpdateVideoRequestFromJSON,
     UpdateVideoRequestToJSON,
+    VideoCreateSuccessResponseFromJSON,
+    VideoCreateSuccessResponseToJSON,
     VideoDownloadResponseFromJSON,
     VideoDownloadResponseToJSON,
     VideoItemResponseFromJSON,
@@ -42,8 +44,6 @@ import {
     VideoLimitsResponseToJSON,
     VideoProgressChannelResponseFromJSON,
     VideoProgressChannelResponseToJSON,
-    VideoSiteCreateV1200ResponseFromJSON,
-    VideoSiteCreateV1200ResponseToJSON,
 } from '../models/index';
 
 export interface VideoSiteCreateV1Request {
@@ -114,12 +114,12 @@ export interface VideoApiInterface {
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
-    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoSiteCreateV1200Response>>;
+    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>>;
 
     /**
      * Create upload session
      */
-    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoSiteCreateV1200Response>;
+    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse>;
 
     /**
      * 
@@ -213,7 +213,7 @@ export interface VideoApiInterface {
 
     /**
      * 
-     * @summary Get upload progress channel for centrifuge
+     * @summary Get upload progress channels for centrifuge
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
@@ -221,12 +221,12 @@ export interface VideoApiInterface {
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
-    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoProgressChannelResponse>>;
+    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>>;
 
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoProgressChannelResponse>;
+    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>>;
 
     /**
      * 
@@ -253,7 +253,7 @@ export class VideoApi extends runtime.BaseAPI implements VideoApiInterface {
     /**
      * Create upload session
      */
-    async videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoSiteCreateV1200Response>> {
+    async videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -298,13 +298,13 @@ export class VideoApi extends runtime.BaseAPI implements VideoApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VideoSiteCreateV1200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => VideoCreateSuccessResponseFromJSON(jsonValue));
     }
 
     /**
      * Create upload session
      */
-    async videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoSiteCreateV1200Response> {
+    async videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse> {
         const response = await this.videoSiteCreateV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -646,9 +646,9 @@ export class VideoApi extends runtime.BaseAPI implements VideoApiInterface {
     }
 
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    async videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoProgressChannelResponse>> {
+    async videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -693,13 +693,13 @@ export class VideoApi extends runtime.BaseAPI implements VideoApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => VideoProgressChannelResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(VideoProgressChannelResponseFromJSON));
     }
 
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    async videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoProgressChannelResponse> {
+    async videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>> {
         const response = await this.videoSiteProgressChannelV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

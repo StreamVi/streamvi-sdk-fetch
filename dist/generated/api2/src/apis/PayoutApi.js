@@ -120,7 +120,7 @@ class PayoutApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfPayoutSystemAccountListItemResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayoutSystemAccountListResponseFromJSON)(jsonValue));
     }
     /**
      * Get payout data for create

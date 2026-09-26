@@ -10,11 +10,14 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { SiteChatKeyResponse } from '../models/index';
+import type { SiteChatKeyRequest, SiteChatKeyResponse } from '../models/index';
 export interface ChatGatewayKeyV1Request {
     language: ChatGatewayKeyV1LanguageEnum;
     project_id: number;
     v?: ChatGatewayKeyV1VEnum;
+}
+export interface ChatGatewayRotateKeyV1Request {
+    SiteChatKeyRequest: SiteChatKeyRequest;
 }
 /**
  * ChatApi - interface
@@ -38,6 +41,19 @@ export interface ChatApiInterface {
      * Get chat key
      */
     chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
+    /**
+     *
+     * @summary Rotate chat key
+     * @param {SiteChatKeyRequest} SiteChatKeyRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChatApiInterface
+     */
+    chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>>;
+    /**
+     * Rotate chat key
+     */
+    chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
 }
 /**
  *
@@ -51,6 +67,14 @@ export declare class ChatApi extends runtime.BaseAPI implements ChatApiInterface
      * Get chat key
      */
     chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
+    /**
+     * Rotate chat key
+     */
+    chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>>;
+    /**
+     * Rotate chat key
+     */
+    chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
 }
 /**
  * @export

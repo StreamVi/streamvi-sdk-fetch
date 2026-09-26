@@ -44,7 +44,7 @@ export interface ProjectChannelMemberInfoResponse {
      * @type {string}
      * @memberof ProjectChannelMemberInfoResponse
      */
-    ref_id: string;
+    ref_id: string | null;
 }
 /**
  * Check if a given object implements the ProjectChannelMemberInfoResponse interface.

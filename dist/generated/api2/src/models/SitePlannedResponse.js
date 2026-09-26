@@ -14,7 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SitePlannedResponseToJSONTyped = exports.SitePlannedResponseToJSON = exports.SitePlannedResponseFromJSONTyped = exports.SitePlannedResponseFromJSON = exports.instanceOfSitePlannedResponse = void 0;
-const PlannedItemResponse_1 = require("./PlannedItemResponse");
+const SelectedPlannedItemResponse_1 = require("./SelectedPlannedItemResponse");
 /**
  * Check if a given object implements the SitePlannedResponse interface.
  */
@@ -31,7 +31,7 @@ function SitePlannedResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'planned': json['planned'] == null ? undefined : (0, PlannedItemResponse_1.PlannedItemResponseFromJSON)(json['planned']),
+        'planned': json['planned'] == null ? undefined : (0, SelectedPlannedItemResponse_1.SelectedPlannedItemResponseFromJSON)(json['planned']),
     };
 }
 exports.SitePlannedResponseFromJSONTyped = SitePlannedResponseFromJSONTyped;
@@ -44,7 +44,7 @@ function SitePlannedResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'planned': (0, PlannedItemResponse_1.PlannedItemResponseToJSON)(value['planned']),
+        'planned': (0, SelectedPlannedItemResponse_1.SelectedPlannedItemResponseToJSON)(value['planned']),
     };
 }
 exports.SitePlannedResponseToJSONTyped = SitePlannedResponseToJSONTyped;

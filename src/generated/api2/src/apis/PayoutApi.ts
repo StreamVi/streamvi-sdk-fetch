@@ -16,17 +16,17 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  ListOfPayoutSystemAccountListItemResponse,
   PayoutCreateRequestBodyDto,
+  PayoutSystemAccountListResponse,
   SuccessResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ListOfPayoutSystemAccountListItemResponseFromJSON,
-    ListOfPayoutSystemAccountListItemResponseToJSON,
     PayoutCreateRequestBodyDtoFromJSON,
     PayoutCreateRequestBodyDtoToJSON,
+    PayoutSystemAccountListResponseFromJSON,
+    PayoutSystemAccountListResponseToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
 } from '../models/index';
@@ -77,12 +77,12 @@ export interface PayoutApiInterface {
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
      */
-    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPayoutSystemAccountListItemResponse>>;
+    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>>;
 
     /**
      * Get payout data for create
      */
-    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPayoutSystemAccountListItemResponse>;
+    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse>;
 
 }
 
@@ -152,7 +152,7 @@ export class PayoutApi extends runtime.BaseAPI implements PayoutApiInterface {
     /**
      * Get payout data for create
      */
-    async payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPayoutSystemAccountListItemResponse>> {
+    async payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -197,13 +197,13 @@ export class PayoutApi extends runtime.BaseAPI implements PayoutApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfPayoutSystemAccountListItemResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PayoutSystemAccountListResponseFromJSON(jsonValue));
     }
 
     /**
      * Get payout data for create
      */
-    async payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPayoutSystemAccountListItemResponse> {
+    async payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse> {
         const response = await this.payoutPrepareV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

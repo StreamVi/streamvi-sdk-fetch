@@ -32,7 +32,7 @@ export interface PlanStorageItem {
      * @type {string}
      * @memberof PlanStorageItem
      */
-    period: PlanStorageItemPeriodEnum;
+    period: PlanStorageItemPeriodEnum | null;
     /**
      * Prolongation status
      * @type {boolean}
@@ -50,7 +50,7 @@ export interface PlanStorageItem {
      * @type {Date}
      * @memberof PlanStorageItem
      */
-    date_end: Date;
+    date_end?: Date;
 }
 /**
  * @export

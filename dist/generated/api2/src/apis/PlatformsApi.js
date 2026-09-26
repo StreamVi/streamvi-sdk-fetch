@@ -36,13 +36,68 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetChannelsV1SortEnum = exports.PlatformsGetChannelsV1VEnum = exports.PlatformsGetChannelsV1PlatformEnum = exports.PlatformsGetChannelsV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsGetAccountsV1VEnum = exports.PlatformsGetAccountsV1PlatformEnum = exports.PlatformsGetAccountsV1LanguageEnum = exports.PlatformsCallbackV1ProviderEnum = exports.PlatformsAddAccountVkCommunityV1VEnum = exports.PlatformsAddAccountVkCommunityV1LanguageEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformsApi = void 0;
+exports.PlatformsVkVideoLiveCategoryV1VEnum = exports.PlatformsVkVideoLiveCategoryV1TypeEnum = exports.PlatformsVkVideoLiveCategoryV1LanguageEnum = exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetChannelsV1SortEnum = exports.PlatformsGetChannelsV1VEnum = exports.PlatformsGetChannelsV1PlatformEnum = exports.PlatformsGetChannelsV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsGetAccountsV1VEnum = exports.PlatformsGetAccountsV1PlatformEnum = exports.PlatformsGetAccountsV1LanguageEnum = exports.PlatformsCallbackV1ProviderEnum = exports.PlatformsAddAccountVkCommunityV1VEnum = exports.PlatformsAddAccountVkCommunityV1LanguageEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1VEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = exports.PlatformsApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
  *
  */
 class PlatformsApi extends runtime.BaseAPI {
+    /**
+     * Get a saved platform category by its external identifier
+     */
+    async platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().');
+        }
+        if (requestParameters['platform'] == null) {
+            throw new runtime.RequiredError('platform', 'Required parameter "platform" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().');
+        }
+        if (requestParameters['scope'] == null) {
+            throw new runtime.RequiredError('scope', 'Required parameter "scope" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().');
+        }
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling platformCategoryDetailsGetCategoryDetailsV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['platform'] != null) {
+            queryParameters['platform'] = requestParameters['platform'];
+        }
+        if (requestParameters['scope'] != null) {
+            queryParameters['scope'] = requestParameters['scope'];
+        }
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
+        const response = await this.request({
+            path: `/method/platforms/category/details`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlatformCategoryDetailsResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get a saved platform category by its external identifier
+     */
+    async platformCategoryDetailsGetCategoryDetailsV1(requestParameters, initOverrides) {
+        const response = await this.platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
     /**
      * Get url for start oauth
      */
@@ -330,7 +385,7 @@ class PlatformsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfCategoryItemResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CategoryListResponseFromJSON)(jsonValue));
     }
     /**
      * Get category from the platform
@@ -525,8 +580,85 @@ class PlatformsApi extends runtime.BaseAPI {
         const response = await this.platformsRemoveAccountV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
+    /**
+     * Search VK Video Live categories in the saved catalog
+     */
+    async platformsVkVideoLiveCategoryV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling platformsVkVideoLiveCategoryV1().');
+        }
+        if (requestParameters['type'] == null) {
+            throw new runtime.RequiredError('type', 'Required parameter "type" was null or undefined when calling platformsVkVideoLiveCategoryV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['type'] != null) {
+            queryParameters['type'] = requestParameters['type'];
+        }
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+        if (requestParameters['q'] != null) {
+            queryParameters['q'] = requestParameters['q'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+        }
+        const response = await this.request({
+            path: `/method/platforms/category/vkvideolive`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CategoryListResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Search VK Video Live categories in the saved catalog
+     */
+    async platformsVkVideoLiveCategoryV1(requestParameters, initOverrides) {
+        const response = await this.platformsVkVideoLiveCategoryV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
 }
 exports.PlatformsApi = PlatformsApi;
+/**
+ * @export
+ */
+exports.PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = {
+    vkvideolive: 'vkvideolive'
+};
+/**
+ * @export
+ */
+exports.PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = {
+    game: 'game',
+    irl: 'irl',
+    sport: 'sport'
+};
+/**
+ * @export
+ */
+exports.PlatformCategoryDetailsGetCategoryDetailsV1VEnum = {
+    _1: '1'
+};
 /**
  * @export
  */
@@ -695,5 +827,27 @@ exports.PlatformsPlatformListV1LanguageEnum = {
  * @export
  */
 exports.PlatformsPlatformListV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsVkVideoLiveCategoryV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PlatformsVkVideoLiveCategoryV1TypeEnum = {
+    irl: 'irl',
+    game: 'game',
+    sport: 'sport'
+};
+/**
+ * @export
+ */
+exports.PlatformsVkVideoLiveCategoryV1VEnum = {
     _1: '1'
 };

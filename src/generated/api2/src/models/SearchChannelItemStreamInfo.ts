@@ -12,55 +12,225 @@
  * Do not edit the class manually.
  */
 
-import type { ChannelDefaultInfoDto } from './ChannelDefaultInfoDto';
-import {
-    instanceOfChannelDefaultInfoDto,
-    ChannelDefaultInfoDtoFromJSON,
-    ChannelDefaultInfoDtoFromJSONTyped,
-    ChannelDefaultInfoDtoToJSON,
-} from './ChannelDefaultInfoDto';
-import type { ChannelOkInfoDto } from './ChannelOkInfoDto';
-import {
-    instanceOfChannelOkInfoDto,
-    ChannelOkInfoDtoFromJSON,
-    ChannelOkInfoDtoFromJSONTyped,
-    ChannelOkInfoDtoToJSON,
-} from './ChannelOkInfoDto';
-import type { ChannelTrovoInfoDto } from './ChannelTrovoInfoDto';
-import {
-    instanceOfChannelTrovoInfoDto,
-    ChannelTrovoInfoDtoFromJSON,
-    ChannelTrovoInfoDtoFromJSONTyped,
-    ChannelTrovoInfoDtoToJSON,
-} from './ChannelTrovoInfoDto';
-import type { ChannelTwitchInfoDto } from './ChannelTwitchInfoDto';
-import {
-    instanceOfChannelTwitchInfoDto,
-    ChannelTwitchInfoDtoFromJSON,
-    ChannelTwitchInfoDtoFromJSONTyped,
-    ChannelTwitchInfoDtoToJSON,
-} from './ChannelTwitchInfoDto';
+import { mapValues } from '../runtime';
 import type { ChannelVkInfoDto } from './ChannelVkInfoDto';
 import {
-    instanceOfChannelVkInfoDto,
     ChannelVkInfoDtoFromJSON,
     ChannelVkInfoDtoFromJSONTyped,
     ChannelVkInfoDtoToJSON,
+    ChannelVkInfoDtoToJSONTyped,
 } from './ChannelVkInfoDto';
+import type { ChannelTwitchInfoDto } from './ChannelTwitchInfoDto';
+import {
+    ChannelTwitchInfoDtoFromJSON,
+    ChannelTwitchInfoDtoFromJSONTyped,
+    ChannelTwitchInfoDtoToJSON,
+    ChannelTwitchInfoDtoToJSONTyped,
+} from './ChannelTwitchInfoDto';
+import type { ChannelVkVideoLiveCategoryInfoDto } from './ChannelVkVideoLiveCategoryInfoDto';
+import {
+    ChannelVkVideoLiveCategoryInfoDtoFromJSON,
+    ChannelVkVideoLiveCategoryInfoDtoFromJSONTyped,
+    ChannelVkVideoLiveCategoryInfoDtoToJSON,
+    ChannelVkVideoLiveCategoryInfoDtoToJSONTyped,
+} from './ChannelVkVideoLiveCategoryInfoDto';
 import type { ChannelYoutubeInfoDto } from './ChannelYoutubeInfoDto';
 import {
-    instanceOfChannelYoutubeInfoDto,
     ChannelYoutubeInfoDtoFromJSON,
     ChannelYoutubeInfoDtoFromJSONTyped,
     ChannelYoutubeInfoDtoToJSON,
+    ChannelYoutubeInfoDtoToJSONTyped,
 } from './ChannelYoutubeInfoDto';
+import type { ChannelPlayListInfoDto } from './ChannelPlayListInfoDto';
+import {
+    ChannelPlayListInfoDtoFromJSON,
+    ChannelPlayListInfoDtoFromJSONTyped,
+    ChannelPlayListInfoDtoToJSON,
+    ChannelPlayListInfoDtoToJSONTyped,
+} from './ChannelPlayListInfoDto';
+import type { ChannelTrovoInfoDto } from './ChannelTrovoInfoDto';
+import {
+    ChannelTrovoInfoDtoFromJSON,
+    ChannelTrovoInfoDtoFromJSONTyped,
+    ChannelTrovoInfoDtoToJSON,
+    ChannelTrovoInfoDtoToJSONTyped,
+} from './ChannelTrovoInfoDto';
+import type { ChannelOkInfoDto } from './ChannelOkInfoDto';
+import {
+    ChannelOkInfoDtoFromJSON,
+    ChannelOkInfoDtoFromJSONTyped,
+    ChannelOkInfoDtoToJSON,
+    ChannelOkInfoDtoToJSONTyped,
+} from './ChannelOkInfoDto';
+import type { ChannelVkVideoLiveInfoDto } from './ChannelVkVideoLiveInfoDto';
+import {
+    ChannelVkVideoLiveInfoDtoFromJSON,
+    ChannelVkVideoLiveInfoDtoFromJSONTyped,
+    ChannelVkVideoLiveInfoDtoToJSON,
+    ChannelVkVideoLiveInfoDtoToJSONTyped,
+} from './ChannelVkVideoLiveInfoDto';
+import type { ChannelDefaultInfoDto } from './ChannelDefaultInfoDto';
+import {
+    ChannelDefaultInfoDtoFromJSON,
+    ChannelDefaultInfoDtoFromJSONTyped,
+    ChannelDefaultInfoDtoToJSON,
+    ChannelDefaultInfoDtoToJSONTyped,
+} from './ChannelDefaultInfoDto';
 
 /**
- * @type SearchChannelItemStreamInfo
  * streamInfo
  * @export
+ * @interface SearchChannelItemStreamInfo
  */
-export type SearchChannelItemStreamInfo = ChannelDefaultInfoDto | ChannelOkInfoDto | ChannelTrovoInfoDto | ChannelTwitchInfoDto | ChannelVkInfoDto | ChannelYoutubeInfoDto;
+export interface SearchChannelItemStreamInfo {
+    /**
+     * Title of the channel
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    title: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    description: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    lang?: SearchChannelItemStreamInfoLangEnum;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {ChannelVkVideoLiveCategoryInfoDto}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    category?: ChannelVkVideoLiveCategoryInfoDto;
+    /**
+     * 
+     * @type {ChannelPlayListInfoDto}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    playlist?: ChannelPlayListInfoDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    privacyVideo?: SearchChannelItemStreamInfoPrivacyVideoEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    latency?: SearchChannelItemStreamInfoLatencyEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    audience?: SearchChannelItemStreamInfoAudienceEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    image?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    disableAutoEnd?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    wall?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    privacyComments?: SearchChannelItemStreamInfoPrivacyCommentsEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    domain?: string;
+}
+
+
+/**
+ * @export
+ */
+export const SearchChannelItemStreamInfoLangEnum = {
+    ru: 'ru',
+    en: 'en'
+} as const;
+export type SearchChannelItemStreamInfoLangEnum = typeof SearchChannelItemStreamInfoLangEnum[keyof typeof SearchChannelItemStreamInfoLangEnum];
+
+/**
+ * @export
+ */
+export const SearchChannelItemStreamInfoPrivacyVideoEnum = {
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    by_link: 'by_link',
+    donut: 'donut'
+} as const;
+export type SearchChannelItemStreamInfoPrivacyVideoEnum = typeof SearchChannelItemStreamInfoPrivacyVideoEnum[keyof typeof SearchChannelItemStreamInfoPrivacyVideoEnum];
+
+/**
+ * @export
+ */
+export const SearchChannelItemStreamInfoLatencyEnum = {
+    normal: 'normal',
+    low: 'low',
+    ultraLow: 'ultraLow'
+} as const;
+export type SearchChannelItemStreamInfoLatencyEnum = typeof SearchChannelItemStreamInfoLatencyEnum[keyof typeof SearchChannelItemStreamInfoLatencyEnum];
+
+/**
+ * @export
+ */
+export const SearchChannelItemStreamInfoAudienceEnum = {
+    CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: 'CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY',
+    CHANNEL_AUDIENCE_TYPE_TEEN: 'CHANNEL_AUDIENCE_TYPE_TEEN',
+    CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: 'CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS'
+} as const;
+export type SearchChannelItemStreamInfoAudienceEnum = typeof SearchChannelItemStreamInfoAudienceEnum[keyof typeof SearchChannelItemStreamInfoAudienceEnum];
+
+/**
+ * @export
+ */
+export const SearchChannelItemStreamInfoPrivacyCommentsEnum = {
+    all: 'all',
+    members: 'members',
+    editors: 'editors',
+    nobody: 'nobody'
+} as const;
+export type SearchChannelItemStreamInfoPrivacyCommentsEnum = typeof SearchChannelItemStreamInfoPrivacyCommentsEnum[keyof typeof SearchChannelItemStreamInfoPrivacyCommentsEnum];
+
+
+/**
+ * Check if a given object implements the SearchChannelItemStreamInfo interface.
+ */
+export function instanceOfSearchChannelItemStreamInfo(value: object): value is SearchChannelItemStreamInfo {
+    if (!('title' in value) || value['title'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    return true;
+}
 
 export function SearchChannelItemStreamInfoFromJSON(json: any): SearchChannelItemStreamInfo {
     return SearchChannelItemStreamInfoFromJSONTyped(json, false);
@@ -70,32 +240,26 @@ export function SearchChannelItemStreamInfoFromJSONTyped(json: any, ignoreDiscri
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
-    }
-    if (instanceOfChannelDefaultInfoDto(json)) {
-        return ChannelDefaultInfoDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfChannelOkInfoDto(json)) {
-        return ChannelOkInfoDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfChannelTrovoInfoDto(json)) {
-        return ChannelTrovoInfoDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfChannelTwitchInfoDto(json)) {
-        return ChannelTwitchInfoDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfChannelVkInfoDto(json)) {
-        return ChannelVkInfoDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfChannelYoutubeInfoDto(json)) {
-        return ChannelYoutubeInfoDtoFromJSONTyped(json, true);
-    }
-
-    return {} as any;
+    return {
+        
+        'title': json['title'],
+        'description': json['description'],
+        'lang': json['lang'] == null ? undefined : json['lang'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'category': json['category'] == null ? undefined : ChannelVkVideoLiveCategoryInfoDtoFromJSON(json['category']),
+        'playlist': json['playlist'] == null ? undefined : ChannelPlayListInfoDtoFromJSON(json['playlist']),
+        'privacyVideo': json['privacyVideo'] == null ? undefined : json['privacyVideo'],
+        'latency': json['latency'] == null ? undefined : json['latency'],
+        'audience': json['audience'] == null ? undefined : json['audience'],
+        'image': json['image'] == null ? undefined : json['image'],
+        'disableAutoEnd': json['disableAutoEnd'] == null ? undefined : json['disableAutoEnd'],
+        'wall': json['wall'] == null ? undefined : json['wall'],
+        'privacyComments': json['privacyComments'] == null ? undefined : json['privacyComments'],
+        'domain': json['domain'] == null ? undefined : json['domain'],
+    };
 }
 
-export function SearchChannelItemStreamInfoToJSON(json: any): any {
+export function SearchChannelItemStreamInfoToJSON(json: any): SearchChannelItemStreamInfo {
     return SearchChannelItemStreamInfoToJSONTyped(json, false);
 }
 
@@ -103,28 +267,23 @@ export function SearchChannelItemStreamInfoToJSONTyped(value?: SearchChannelItem
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
-    if (instanceOfChannelDefaultInfoDto(value)) {
-        return ChannelDefaultInfoDtoToJSON(value as ChannelDefaultInfoDto);
-    }
-    if (instanceOfChannelOkInfoDto(value)) {
-        return ChannelOkInfoDtoToJSON(value as ChannelOkInfoDto);
-    }
-    if (instanceOfChannelTrovoInfoDto(value)) {
-        return ChannelTrovoInfoDtoToJSON(value as ChannelTrovoInfoDto);
-    }
-    if (instanceOfChannelTwitchInfoDto(value)) {
-        return ChannelTwitchInfoDtoToJSON(value as ChannelTwitchInfoDto);
-    }
-    if (instanceOfChannelVkInfoDto(value)) {
-        return ChannelVkInfoDtoToJSON(value as ChannelVkInfoDto);
-    }
-    if (instanceOfChannelYoutubeInfoDto(value)) {
-        return ChannelYoutubeInfoDtoToJSON(value as ChannelYoutubeInfoDto);
-    }
 
-    return {};
+    return {
+        
+        'title': value['title'],
+        'description': value['description'],
+        'lang': value['lang'],
+        'tags': value['tags'],
+        'category': ChannelVkVideoLiveCategoryInfoDtoToJSON(value['category']),
+        'playlist': ChannelPlayListInfoDtoToJSON(value['playlist']),
+        'privacyVideo': value['privacyVideo'],
+        'latency': value['latency'],
+        'audience': value['audience'],
+        'image': value['image'],
+        'disableAutoEnd': value['disableAutoEnd'],
+        'wall': value['wall'],
+        'privacyComments': value['privacyComments'],
+        'domain': value['domain'],
+    };
 }
 

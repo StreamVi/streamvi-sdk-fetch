@@ -9,16 +9,24 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { SiteBroadcastStatusInactiveResponse } from './SiteBroadcastStatusInactiveResponse';
-import type { SiteBroadcastStatusLiveResponse } from './SiteBroadcastStatusLiveResponse';
-import type { SiteBroadcastStatusSchedulerResponse } from './SiteBroadcastStatusSchedulerResponse';
-import type { SiteBroadcastStatusTranscodingResponse } from './SiteBroadcastStatusTranscodingResponse';
+import { SiteBroadcastStatusInactiveResponse } from './SiteBroadcastStatusInactiveResponse';
+import { SiteBroadcastStatusLiveResponse } from './SiteBroadcastStatusLiveResponse';
+import { SiteBroadcastStatusSchedulerResponse } from './SiteBroadcastStatusSchedulerResponse';
+import { SiteBroadcastStatusTranscodingResponse } from './SiteBroadcastStatusTranscodingResponse';
 /**
  * @type BroadcastStatusV1200Response
  *
  * @export
  */
-export type BroadcastStatusV1200Response = SiteBroadcastStatusInactiveResponse | SiteBroadcastStatusLiveResponse | SiteBroadcastStatusSchedulerResponse | SiteBroadcastStatusTranscodingResponse;
+export type BroadcastStatusV1200Response = {
+    kind: 'inactive';
+} & SiteBroadcastStatusInactiveResponse | {
+    kind: 'live';
+} & SiteBroadcastStatusLiveResponse | {
+    kind: 'scheduler';
+} & SiteBroadcastStatusSchedulerResponse | {
+    kind: 'transcoding';
+} & SiteBroadcastStatusTranscodingResponse;
 export declare function BroadcastStatusV1200ResponseFromJSON(json: any): BroadcastStatusV1200Response;
 export declare function BroadcastStatusV1200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BroadcastStatusV1200Response;
 export declare function BroadcastStatusV1200ResponseToJSON(json: any): any;

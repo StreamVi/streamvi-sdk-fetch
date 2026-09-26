@@ -38,25 +38,25 @@ export interface SiteBroadcastFindResponse {
      * @type {number}
      * @memberof SiteBroadcastFindResponse
      */
-    bitrate: number;
+    bitrate: number | null;
     /**
      * Fps
      * @type {number}
      * @memberof SiteBroadcastFindResponse
      */
-    fps: number;
+    fps: number | null;
     /**
      * width
      * @type {number}
      * @memberof SiteBroadcastFindResponse
      */
-    width: number;
+    width: number | null;
     /**
      * height
      * @type {number}
      * @memberof SiteBroadcastFindResponse
      */
-    height: number;
+    height: number | null;
     /**
      * Location
      * @type {string}
@@ -68,25 +68,25 @@ export interface SiteBroadcastFindResponse {
      * @type {string}
      * @memberof SiteBroadcastFindResponse
      */
-    encoder: string;
+    encoder: string | null;
     /**
      * IP address
      * @type {string}
      * @memberof SiteBroadcastFindResponse
      */
-    ip: string;
+    ip: string | null;
     /**
      * Create time
      * @type {Date}
      * @memberof SiteBroadcastFindResponse
      */
-    created_at: Date;
+    created_at: Date | null;
     /**
      * Finish time
      * @type {Date}
      * @memberof SiteBroadcastFindResponse
      */
-    finish_at: Date;
+    finish_at: Date | null;
     /**
      * Count viewers
      * @type {number}
@@ -152,8 +152,8 @@ export function SiteBroadcastFindResponseFromJSONTyped(json: any, ignoreDiscrimi
         'location': json['location'],
         'encoder': json['encoder'],
         'ip': json['ip'],
-        'created_at': (new Date(json['created_at'])),
-        'finish_at': (new Date(json['finish_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
+        'finish_at': (json['finish_at'] == null ? null : new Date(json['finish_at'])),
         'viewers': json['viewers'],
         'reconnects': json['reconnects'],
         'message': json['message'],
@@ -180,8 +180,8 @@ export function SiteBroadcastFindResponseToJSONTyped(value?: SiteBroadcastFindRe
         'location': value['location'],
         'encoder': value['encoder'],
         'ip': value['ip'],
-        'created_at': ((value['created_at']).toISOString()),
-        'finish_at': ((value['finish_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : (value['created_at'] as any).toISOString()),
+        'finish_at': (value['finish_at'] == null ? null : (value['finish_at'] as any).toISOString()),
         'viewers': value['viewers'],
         'reconnects': value['reconnects'],
         'message': value['message'],

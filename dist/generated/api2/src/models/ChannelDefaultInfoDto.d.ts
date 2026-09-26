@@ -20,7 +20,7 @@ export interface ChannelDefaultInfoDto {
      * @type {string}
      * @memberof ChannelDefaultInfoDto
      */
-    title: string;
+    title?: string;
 }
 /**
  * Check if a given object implements the ChannelDefaultInfoDto interface.

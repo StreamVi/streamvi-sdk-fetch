@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReleaseAppCabinetV1AppEnum = exports.ReleaseAppCabinetV1VEnum = exports.ReleaseAppCabinetV1LanguageEnum = exports.ReleaseApi = void 0;
+exports.ReleaseAppCabinetV1VEnum = exports.ReleaseAppCabinetV1AppEnum = exports.ReleaseAppCabinetV1LanguageEnum = exports.ReleaseApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -49,6 +49,9 @@ class ReleaseApi extends runtime.BaseAPI {
     async releaseAppCabinetV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling releaseAppCabinetV1().');
+        }
+        if (requestParameters['app'] == null) {
+            throw new runtime.RequiredError('app', 'Required parameter "app" was null or undefined when calling releaseAppCabinetV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -92,12 +95,12 @@ exports.ReleaseAppCabinetV1LanguageEnum = {
 /**
  * @export
  */
-exports.ReleaseAppCabinetV1VEnum = {
-    _1: '1'
+exports.ReleaseAppCabinetV1AppEnum = {
+    cabinet: 'cabinet'
 };
 /**
  * @export
  */
-exports.ReleaseAppCabinetV1AppEnum = {
-    cabinet: 'cabinet'
+exports.ReleaseAppCabinetV1VEnum = {
+    _1: '1'
 };

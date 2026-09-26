@@ -35,6 +35,12 @@ import {
  */
 export interface PullServerListItem {
     /**
+     * Stable speed-test target key
+     * @type {string}
+     * @memberof PullServerListItem
+     */
+    targetKey: string;
+    /**
      * City
      * @type {string}
      * @memberof PullServerListItem
@@ -64,6 +70,7 @@ export interface PullServerListItem {
  * Check if a given object implements the PullServerListItem interface.
  */
 export function instanceOfPullServerListItem(value: object): value is PullServerListItem {
+    if (!('targetKey' in value) || value['targetKey'] === undefined) return false;
     if (!('city' in value) || value['city'] === undefined) return false;
     if (!('pingHost' in value) || value['pingHost'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
@@ -81,6 +88,7 @@ export function PullServerListItemFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'targetKey': json['targetKey'],
         'city': json['city'],
         'pingHost': json['pingHost'],
         'url': PullServerTransportsFromJSON(json['url']),
@@ -99,6 +107,7 @@ export function PullServerListItemToJSONTyped(value?: PullServerListItem | null,
 
     return {
         
+        'targetKey': value['targetKey'],
         'city': value['city'],
         'pingHost': value['pingHost'],
         'url': PullServerTransportsToJSON(value['url']),

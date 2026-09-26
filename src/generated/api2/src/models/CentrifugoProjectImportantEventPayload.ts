@@ -52,11 +52,11 @@ export interface CentrifugoProjectImportantEventPayload {
      */
     content_text: string;
     /**
-     * 
-     * @type {Array<Array<InternalNotifyTypeAction>>}
+     * Action
+     * @type {Array<InternalNotifyTypeAction>}
      * @memberof CentrifugoProjectImportantEventPayload
      */
-    content_actions: Array<Array<InternalNotifyTypeAction>>;
+    content_actions?: Array<InternalNotifyTypeAction>;
 }
 
 
@@ -89,7 +89,6 @@ export function instanceOfCentrifugoProjectImportantEventPayload(value: object):
     if (!('content_type' in value) || value['content_type'] === undefined) return false;
     if (!('content_title' in value) || value['content_title'] === undefined) return false;
     if (!('content_text' in value) || value['content_text'] === undefined) return false;
-    if (!('content_actions' in value) || value['content_actions'] === undefined) return false;
     return true;
 }
 
@@ -107,7 +106,7 @@ export function CentrifugoProjectImportantEventPayloadFromJSONTyped(json: any, i
         'content_type': json['content_type'],
         'content_title': json['content_title'],
         'content_text': json['content_text'],
-        'content_actions': json['content_actions'],
+        'content_actions': json['content_actions'] == null ? undefined : ((json['content_actions'] as Array<any>).map(InternalNotifyTypeActionFromJSON)),
     };
 }
 
@@ -126,7 +125,7 @@ export function CentrifugoProjectImportantEventPayloadToJSONTyped(value?: Centri
         'content_type': value['content_type'],
         'content_title': value['content_title'],
         'content_text': value['content_text'],
-        'content_actions': value['content_actions'],
+        'content_actions': value['content_actions'] == null ? undefined : ((value['content_actions'] as Array<any>).map(InternalNotifyTypeActionToJSON)),
     };
 }
 

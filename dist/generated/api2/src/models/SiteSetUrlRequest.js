@@ -57,6 +57,7 @@ function SiteSetUrlRequestFromJSONTyped(json, ignoreDiscriminator) {
         'project_id': json['project_id'],
         'channel_id': json['channel_id'],
         'url': json['url'],
+        'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
     };
 }
 exports.SiteSetUrlRequestFromJSONTyped = SiteSetUrlRequestFromJSONTyped;
@@ -74,6 +75,7 @@ function SiteSetUrlRequestToJSONTyped(value, ignoreDiscriminator = false) {
         'project_id': value['project_id'],
         'channel_id': value['channel_id'],
         'url': value['url'],
+        'stream_key': value['stream_key'],
     };
 }
 exports.SiteSetUrlRequestToJSONTyped = SiteSetUrlRequestToJSONTyped;

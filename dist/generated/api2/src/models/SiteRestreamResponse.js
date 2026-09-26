@@ -56,7 +56,7 @@ function SiteRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         'video': json['video'],
         'viewers': json['viewers'],
         'message': json['message'],
-        'created_at': (new Date(json['created_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
     };
 }
 exports.SiteRestreamResponseFromJSONTyped = SiteRestreamResponseFromJSONTyped;
@@ -77,7 +77,7 @@ function SiteRestreamResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'video': value['video'],
         'viewers': value['viewers'],
         'message': value['message'],
-        'created_at': ((value['created_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : value['created_at'].toISOString()),
     };
 }
 exports.SiteRestreamResponseToJSONTyped = SiteRestreamResponseToJSONTyped;

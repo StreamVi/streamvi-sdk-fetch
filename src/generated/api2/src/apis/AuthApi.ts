@@ -85,6 +85,7 @@ export interface AuthGetAuthUrlV1Request {
     redirect?: string;
     refId?: string;
     country?: string;
+    visitorId?: string;
 }
 
 /**
@@ -249,6 +250,7 @@ export interface AuthApiInterface {
      * @param {string} [redirect] Redirect url
      * @param {string} [refId] Referal id
      * @param {string} [country] Country code
+     * @param {string} [visitorId] Anonymous landing visitor UUID v4
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
@@ -747,6 +749,10 @@ export class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
 
         if (requestParameters['country'] != null) {
             queryParameters['country'] = requestParameters['country'];
+        }
+
+        if (requestParameters['visitorId'] != null) {
+            queryParameters['visitorId'] = requestParameters['visitorId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -33,7 +33,7 @@ export interface ProjectChannelInviteResponse {
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    to_project_id: number;
+    to_project_id: number | null;
     /**
      * Access type
      * @type {number}
@@ -42,10 +42,10 @@ export interface ProjectChannelInviteResponse {
     access_type: ProjectChannelInviteResponseAccessTypeEnum;
     /**
      * Date create
-     * @type {string}
+     * @type {Date}
      * @memberof ProjectChannelInviteResponse
      */
-    date: string;
+    date: Date;
     /**
      * Secret key for link
      * @type {string}
@@ -81,7 +81,7 @@ export interface ProjectChannelInviteResponse {
      * @type {ProjectChannelInviteProjectResponse}
      * @memberof ProjectChannelInviteResponse
      */
-    to_project_?: ProjectChannelInviteProjectResponse;
+    to_project_?: ProjectChannelInviteProjectResponse | null;
 }
 /**
  * @export

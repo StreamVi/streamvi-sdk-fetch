@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PlannedItemResponse } from './PlannedItemResponse';
+import type { SelectedPlannedItemResponse } from './SelectedPlannedItemResponse';
 import {
-    PlannedItemResponseFromJSON,
-    PlannedItemResponseFromJSONTyped,
-    PlannedItemResponseToJSON,
-    PlannedItemResponseToJSONTyped,
-} from './PlannedItemResponse';
+    SelectedPlannedItemResponseFromJSON,
+    SelectedPlannedItemResponseFromJSONTyped,
+    SelectedPlannedItemResponseToJSON,
+    SelectedPlannedItemResponseToJSONTyped,
+} from './SelectedPlannedItemResponse';
 
 /**
  * 
@@ -29,10 +29,10 @@ import {
 export interface SitePlannedResponse {
     /**
      * Planned item
-     * @type {PlannedItemResponse}
+     * @type {SelectedPlannedItemResponse}
      * @memberof SitePlannedResponse
      */
-    planned?: PlannedItemResponse;
+    planned?: SelectedPlannedItemResponse;
 }
 
 /**
@@ -52,7 +52,7 @@ export function SitePlannedResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'planned': json['planned'] == null ? undefined : PlannedItemResponseFromJSON(json['planned']),
+        'planned': json['planned'] == null ? undefined : SelectedPlannedItemResponseFromJSON(json['planned']),
     };
 }
 
@@ -67,7 +67,7 @@ export function SitePlannedResponseToJSONTyped(value?: SitePlannedResponse | nul
 
     return {
         
-        'planned': PlannedItemResponseToJSON(value['planned']),
+        'planned': SelectedPlannedItemResponseToJSON(value['planned']),
     };
 }
 

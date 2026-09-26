@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import type { SiteRestreamEventServerResponse } from './SiteRestreamEventServerResponse';
+import type { SiteRestreamEventChannelResponse } from './SiteRestreamEventChannelResponse';
 /**
  *
  * @export
@@ -58,6 +59,12 @@ export interface SiteRestreamEventResponse {
      * @memberof SiteRestreamEventResponse
      */
     platform?: string;
+    /**
+     * Channel
+     * @type {SiteRestreamEventChannelResponse}
+     * @memberof SiteRestreamEventResponse
+     */
+    channel?: SiteRestreamEventChannelResponse;
 }
 /**
  * @export

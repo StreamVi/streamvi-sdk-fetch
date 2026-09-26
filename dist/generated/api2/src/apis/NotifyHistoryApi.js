@@ -169,7 +169,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.NotifyHistorySiteResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.NotifyHistoryFromJSON)(jsonValue));
     }
     /**
      * Get my NotifyHistory item by id
@@ -260,7 +260,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.NotifyHistorySiteResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response);
     }
     /**
      * Run action in my notify item
@@ -351,6 +351,11 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     publisher_connected: 'publisher_connected',
     publisher_initializing: 'publisher_initializing',
     publisher_close: 'publisher_close',
+    publisher_connection_interrupted: 'publisher_connection_interrupted',
+    publisher_connection_timeout: 'publisher_connection_timeout',
+    publisher_protocol_error: 'publisher_protocol_error',
+    publisher_start_failed: 'publisher_start_failed',
+    publisher_reconnect_failed: 'publisher_reconnect_failed',
     broadcast_connected_start: 'broadcast_connected_start',
     broadcast_connected_end: 'broadcast_connected_end',
     broadcast_connecting_stream: 'broadcast_connecting_stream',
@@ -361,6 +366,9 @@ exports.NotifyHistoryGetListMyV1NameEnum = {
     broadcast_video_pause_start: 'broadcast_video_pause_start',
     broadcast_video_pause_end: 'broadcast_video_pause_end',
     broadcast_init_restream: 'broadcast_init_restream',
+    broadcast_placeholder_ready: 'broadcast_placeholder_ready',
+    broadcast_placeholder_failed: 'broadcast_placeholder_failed',
+    broadcast_placeholder_fallback_used: 'broadcast_placeholder_fallback_used',
     start_stream: 'start_stream',
     create_reader: 'create_reader',
     start_channel: 'start_channel',

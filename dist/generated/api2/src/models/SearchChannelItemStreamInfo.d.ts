@@ -9,20 +9,152 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ChannelDefaultInfoDto } from './ChannelDefaultInfoDto';
-import type { ChannelOkInfoDto } from './ChannelOkInfoDto';
-import type { ChannelTrovoInfoDto } from './ChannelTrovoInfoDto';
-import type { ChannelTwitchInfoDto } from './ChannelTwitchInfoDto';
-import type { ChannelVkInfoDto } from './ChannelVkInfoDto';
-import type { ChannelYoutubeInfoDto } from './ChannelYoutubeInfoDto';
+import type { ChannelVkVideoLiveCategoryInfoDto } from './ChannelVkVideoLiveCategoryInfoDto';
+import type { ChannelPlayListInfoDto } from './ChannelPlayListInfoDto';
 /**
- * @type SearchChannelItemStreamInfo
  * streamInfo
  * @export
+ * @interface SearchChannelItemStreamInfo
  */
-export type SearchChannelItemStreamInfo = ChannelDefaultInfoDto | ChannelOkInfoDto | ChannelTrovoInfoDto | ChannelTwitchInfoDto | ChannelVkInfoDto | ChannelYoutubeInfoDto;
+export interface SearchChannelItemStreamInfo {
+    /**
+     * Title of the channel
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    title: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    description: string;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    lang?: SearchChannelItemStreamInfoLangEnum;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    tags?: Array<string>;
+    /**
+     *
+     * @type {ChannelVkVideoLiveCategoryInfoDto}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    category?: ChannelVkVideoLiveCategoryInfoDto;
+    /**
+     *
+     * @type {ChannelPlayListInfoDto}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    playlist?: ChannelPlayListInfoDto;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    privacyVideo?: SearchChannelItemStreamInfoPrivacyVideoEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    latency?: SearchChannelItemStreamInfoLatencyEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    audience?: SearchChannelItemStreamInfoAudienceEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    image?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    disableAutoEnd?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    wall?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    privacyComments?: SearchChannelItemStreamInfoPrivacyCommentsEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof SearchChannelItemStreamInfo
+     */
+    domain?: string;
+}
+/**
+ * @export
+ */
+export declare const SearchChannelItemStreamInfoLangEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+};
+export type SearchChannelItemStreamInfoLangEnum = typeof SearchChannelItemStreamInfoLangEnum[keyof typeof SearchChannelItemStreamInfoLangEnum];
+/**
+ * @export
+ */
+export declare const SearchChannelItemStreamInfoPrivacyVideoEnum: {
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly by_link: "by_link";
+    readonly donut: "donut";
+};
+export type SearchChannelItemStreamInfoPrivacyVideoEnum = typeof SearchChannelItemStreamInfoPrivacyVideoEnum[keyof typeof SearchChannelItemStreamInfoPrivacyVideoEnum];
+/**
+ * @export
+ */
+export declare const SearchChannelItemStreamInfoLatencyEnum: {
+    readonly normal: "normal";
+    readonly low: "low";
+    readonly ultraLow: "ultraLow";
+};
+export type SearchChannelItemStreamInfoLatencyEnum = typeof SearchChannelItemStreamInfoLatencyEnum[keyof typeof SearchChannelItemStreamInfoLatencyEnum];
+/**
+ * @export
+ */
+export declare const SearchChannelItemStreamInfoAudienceEnum: {
+    readonly CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY: "CHANNEL_AUDIENCE_TYPE_FAMILYFRIENDLY";
+    readonly CHANNEL_AUDIENCE_TYPE_TEEN: "CHANNEL_AUDIENCE_TYPE_TEEN";
+    readonly CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS: "CHANNEL_AUDIENCE_TYPE_EIGHTEENPLUS";
+};
+export type SearchChannelItemStreamInfoAudienceEnum = typeof SearchChannelItemStreamInfoAudienceEnum[keyof typeof SearchChannelItemStreamInfoAudienceEnum];
+/**
+ * @export
+ */
+export declare const SearchChannelItemStreamInfoPrivacyCommentsEnum: {
+    readonly all: "all";
+    readonly members: "members";
+    readonly editors: "editors";
+    readonly nobody: "nobody";
+};
+export type SearchChannelItemStreamInfoPrivacyCommentsEnum = typeof SearchChannelItemStreamInfoPrivacyCommentsEnum[keyof typeof SearchChannelItemStreamInfoPrivacyCommentsEnum];
+/**
+ * Check if a given object implements the SearchChannelItemStreamInfo interface.
+ */
+export declare function instanceOfSearchChannelItemStreamInfo(value: object): value is SearchChannelItemStreamInfo;
 export declare function SearchChannelItemStreamInfoFromJSON(json: any): SearchChannelItemStreamInfo;
 export declare function SearchChannelItemStreamInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchChannelItemStreamInfo;
-export declare function SearchChannelItemStreamInfoToJSON(json: any): any;
+export declare function SearchChannelItemStreamInfoToJSON(json: any): SearchChannelItemStreamInfo;
 export declare function SearchChannelItemStreamInfoToJSONTyped(value?: SearchChannelItemStreamInfo | null, ignoreDiscriminator?: boolean): any;
 //# sourceMappingURL=SearchChannelItemStreamInfo.d.ts.map

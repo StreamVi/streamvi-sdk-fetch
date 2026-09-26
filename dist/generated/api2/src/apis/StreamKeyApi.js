@@ -87,6 +87,68 @@ class StreamKeyApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Rotate stream key
+     */
+    async streamKeysRotateV1Raw(requestParameters, initOverrides) {
+        var _a;
+        if (requestParameters['RotateStreamKeyRequest'] == null) {
+            throw new runtime.RequiredError('RotateStreamKeyRequest', 'Required parameter "RotateStreamKeyRequest" was null or undefined when calling streamKeysRotateV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+        }
+        const response = await this.request({
+            path: `/method/stream-keys/rotate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.RotateStreamKeyRequestToJSON)({ ...requestParameters['RotateStreamKeyRequest'], v: (_a = requestParameters['RotateStreamKeyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RotateStreamKeyResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Rotate stream key
+     */
+    async streamKeysRotateV1(requestParameters, initOverrides) {
+        const response = await this.streamKeysRotateV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Update disconnect protection wait
+     */
+    async streamKeysSetWaitV1Raw(requestParameters, initOverrides) {
+        var _a;
+        if (requestParameters['SetWaitStreamKeyRequest'] == null) {
+            throw new runtime.RequiredError('SetWaitStreamKeyRequest', 'Required parameter "SetWaitStreamKeyRequest" was null or undefined when calling streamKeysSetWaitV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+        }
+        const response = await this.request({
+            path: `/method/stream-keys/wait`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.SetWaitStreamKeyRequestToJSON)({ ...requestParameters['SetWaitStreamKeyRequest'], v: (_a = requestParameters['SetWaitStreamKeyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Update disconnect protection wait
+     */
+    async streamKeysSetWaitV1(requestParameters, initOverrides) {
+        const response = await this.streamKeysSetWaitV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
      * Update record
      */
     async streamKeysUpdateRecordV1Raw(requestParameters, initOverrides) {

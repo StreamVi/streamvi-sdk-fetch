@@ -16,7 +16,7 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  NotifyHistorySiteResponse,
+  NotifyHistory,
   NotifyHistoryStatusUserResponse,
   PaginatedResponseOfNotifyHistorySiteResponse,
   SiteMarkReadHistoryRequest,
@@ -26,8 +26,8 @@ import type {
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    NotifyHistorySiteResponseFromJSON,
-    NotifyHistorySiteResponseToJSON,
+    NotifyHistoryFromJSON,
+    NotifyHistoryToJSON,
     NotifyHistoryStatusUserResponseFromJSON,
     NotifyHistoryStatusUserResponseToJSON,
     PaginatedResponseOfNotifyHistorySiteResponseFromJSON,
@@ -91,7 +91,7 @@ export interface NotifyHistoryApiInterface {
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
      * @param {number} [project_id] Project id
-     * @param {'high_bitrate' | 'request_access_channel' | 'request_access_project' | 'request_access_integration' | 'promocode_test' | 'stream_test' | 'plan_restream_expires' | 'plan_restream_expired' | 'plan_restream_renewed' | 'plan_transcoder_expires' | 'plan_transcoder_expired' | 'plan_transcoder_renewed' | 'plan_storage_expires' | 'plan_storage_expired' | 'plan_storage_renewed' | 'compensation_received' | 'broadcast_unsupported_codec' | 'broadcast_unsupported_codec_screen' | 'broadcast_bitrate_exceeded_screen' | 'rtmp_connect_old_server_screen' | 'broadcast_not_audio' | 'broadcast_bitrate_exceeded' | 'broadcast_started' | 'broadcast_stopped' | 'restream_check_twitch_bitrate_1' | 'api_pause_start' | 'api_pause_end' | 'api_wait_edit' | 'api_restream_start' | 'api_restream_stop' | 'api_drop_broadcast' | 'api_drop_broadcast_remove_company' | 'api_drop_broadcast_update_key' | 'publisher_disconnected' | 'publisher_connected' | 'publisher_initializing' | 'publisher_close' | 'broadcast_connected_start' | 'broadcast_connected_end' | 'broadcast_connecting_stream' | 'broadcast_started_new_stream' | 'broadcast_connecting_lost' | 'broadcast_video_lost_start' | 'broadcast_video_lost_end' | 'broadcast_video_pause_start' | 'broadcast_video_pause_end' | 'broadcast_init_restream' | 'start_stream' | 'create_reader' | 'start_channel' | 'stop_channel' | 'stop_stream_video_timeout' | 'stop_stream_no_start_video' | 'stop_stream' | 'delete_reader' | 'transcoder_start' | 'transcoder_stop' | 'start_channel_failed' | 'start_channel_success' | 'api_channel_initializing_start' | 'api_channel_initializing_failed' | 'api_channel_initializing_success' | 'channel_api_update_settings_success' | 'channel_api_update_settings_error' | 'channel_api_update_playlist_success' | 'channel_api_update_playlist_error' | 'channel_api_update_chat_error' | 'channel_api_stream_key_success' | 'channel_api_stream_key_error' | 'channel_api_auto_stop_disable_success' | 'channel_api_auto_stop_disable_error' | 'channel_api_unbinding_stream_key_error' | 'channel_api_create_broadcast_success' | 'channel_api_create_broadcast_error' | 'channel_api_set_planned_success' | 'channel_api_set_planned_error' | 'channel_api_set_thumbnail_success' | 'channel_api_set_thumbnail_error' | 'channel_token_error' | 'channel_api_group_failed' | 'no_audio_reader' | 'restream_check_twitch_bitrate_2' | 'transcoder_support_error_screen' | 'transcoder_tariff_end_screen' | 'transcoder_count_flow_screen' | 'transcoder_resolution_screen' | 'stream_key_banned' | 'broadcast_change_codec' | 'broadcast_change_region' | 'video_upload_error' | 'stop_channel_error' | 'broadcast_user_action_stop' | 'completed_api_channel_error' | 'transcoder_twitch_tracks' | 'plan_webinar_expired' | 'plan_webinar_renewed' | 'plan_webinar_expires' | 'payout_created' | 'payout_status_execution' | 'payout_status_success' | 'payout_status_canceled' | 'payout_status_error' | 'plan_trial_expires' | 'plan_trial_expired'} [name] Name
+     * @param {'high_bitrate' | 'request_access_channel' | 'request_access_project' | 'request_access_integration' | 'promocode_test' | 'stream_test' | 'plan_restream_expires' | 'plan_restream_expired' | 'plan_restream_renewed' | 'plan_transcoder_expires' | 'plan_transcoder_expired' | 'plan_transcoder_renewed' | 'plan_storage_expires' | 'plan_storage_expired' | 'plan_storage_renewed' | 'compensation_received' | 'broadcast_unsupported_codec' | 'broadcast_unsupported_codec_screen' | 'broadcast_bitrate_exceeded_screen' | 'rtmp_connect_old_server_screen' | 'broadcast_not_audio' | 'broadcast_bitrate_exceeded' | 'broadcast_started' | 'broadcast_stopped' | 'restream_check_twitch_bitrate_1' | 'api_pause_start' | 'api_pause_end' | 'api_wait_edit' | 'api_restream_start' | 'api_restream_stop' | 'api_drop_broadcast' | 'api_drop_broadcast_remove_company' | 'api_drop_broadcast_update_key' | 'publisher_disconnected' | 'publisher_connected' | 'publisher_initializing' | 'publisher_close' | 'publisher_connection_interrupted' | 'publisher_connection_timeout' | 'publisher_protocol_error' | 'publisher_start_failed' | 'publisher_reconnect_failed' | 'broadcast_connected_start' | 'broadcast_connected_end' | 'broadcast_connecting_stream' | 'broadcast_started_new_stream' | 'broadcast_connecting_lost' | 'broadcast_video_lost_start' | 'broadcast_video_lost_end' | 'broadcast_video_pause_start' | 'broadcast_video_pause_end' | 'broadcast_init_restream' | 'broadcast_placeholder_ready' | 'broadcast_placeholder_failed' | 'broadcast_placeholder_fallback_used' | 'start_stream' | 'create_reader' | 'start_channel' | 'stop_channel' | 'stop_stream_video_timeout' | 'stop_stream_no_start_video' | 'stop_stream' | 'delete_reader' | 'transcoder_start' | 'transcoder_stop' | 'start_channel_failed' | 'start_channel_success' | 'api_channel_initializing_start' | 'api_channel_initializing_failed' | 'api_channel_initializing_success' | 'channel_api_update_settings_success' | 'channel_api_update_settings_error' | 'channel_api_update_playlist_success' | 'channel_api_update_playlist_error' | 'channel_api_update_chat_error' | 'channel_api_stream_key_success' | 'channel_api_stream_key_error' | 'channel_api_auto_stop_disable_success' | 'channel_api_auto_stop_disable_error' | 'channel_api_unbinding_stream_key_error' | 'channel_api_create_broadcast_success' | 'channel_api_create_broadcast_error' | 'channel_api_set_planned_success' | 'channel_api_set_planned_error' | 'channel_api_set_thumbnail_success' | 'channel_api_set_thumbnail_error' | 'channel_token_error' | 'channel_api_group_failed' | 'no_audio_reader' | 'restream_check_twitch_bitrate_2' | 'transcoder_support_error_screen' | 'transcoder_tariff_end_screen' | 'transcoder_count_flow_screen' | 'transcoder_resolution_screen' | 'stream_key_banned' | 'broadcast_change_codec' | 'broadcast_change_region' | 'video_upload_error' | 'stop_channel_error' | 'broadcast_user_action_stop' | 'completed_api_channel_error' | 'transcoder_twitch_tracks' | 'plan_webinar_expired' | 'plan_webinar_renewed' | 'plan_webinar_expires' | 'payout_created' | 'payout_status_execution' | 'payout_status_success' | 'payout_status_canceled' | 'payout_status_error' | 'plan_trial_expires' | 'plan_trial_expired'} [name] Name
      * @param {'telegram' | 'cabinet' | 'mobile'} [channel] Channel
      * @param {Date} [date_from] Date from
      * @param {Date} [date_to] Date to
@@ -132,12 +132,12 @@ export interface NotifyHistoryApiInterface {
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
-    notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistorySiteResponse>>;
+    notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistory>>;
 
     /**
      * Get my NotifyHistory item by id
      */
-    notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistorySiteResponse>;
+    notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistory>;
 
     /**
      * 
@@ -167,12 +167,12 @@ export interface NotifyHistoryApiInterface {
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
-    notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistorySiteResponse>>;
+    notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
 
     /**
      * Run action in my notify item
      */
-    notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistorySiteResponse>;
+    notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
      * 
@@ -326,7 +326,7 @@ export class NotifyHistoryApi extends runtime.BaseAPI implements NotifyHistoryAp
     /**
      * Get my NotifyHistory item by id
      */
-    async notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistorySiteResponse>> {
+    async notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistory>> {
         if (requestParameters['_id'] == null) {
             throw new runtime.RequiredError(
                 '_id',
@@ -360,13 +360,13 @@ export class NotifyHistoryApi extends runtime.BaseAPI implements NotifyHistoryAp
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => NotifyHistorySiteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => NotifyHistoryFromJSON(jsonValue));
     }
 
     /**
      * Get my NotifyHistory item by id
      */
-    async notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistorySiteResponse> {
+    async notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistory> {
         const response = await this.notifyHistoryGetV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -432,7 +432,7 @@ export class NotifyHistoryApi extends runtime.BaseAPI implements NotifyHistoryAp
     /**
      * Run action in my notify item
      */
-    async notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistorySiteResponse>> {
+    async notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['notify_history_id'] == null) {
             throw new runtime.RequiredError(
                 'notify_history_id',
@@ -488,13 +488,13 @@ export class NotifyHistoryApi extends runtime.BaseAPI implements NotifyHistoryAp
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => NotifyHistorySiteResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * Run action in my notify item
      */
-    async notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistorySiteResponse> {
+    async notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.notifyHistoryRunActionV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -589,6 +589,11 @@ export const NotifyHistoryGetListMyV1NameEnum = {
     publisher_connected: 'publisher_connected',
     publisher_initializing: 'publisher_initializing',
     publisher_close: 'publisher_close',
+    publisher_connection_interrupted: 'publisher_connection_interrupted',
+    publisher_connection_timeout: 'publisher_connection_timeout',
+    publisher_protocol_error: 'publisher_protocol_error',
+    publisher_start_failed: 'publisher_start_failed',
+    publisher_reconnect_failed: 'publisher_reconnect_failed',
     broadcast_connected_start: 'broadcast_connected_start',
     broadcast_connected_end: 'broadcast_connected_end',
     broadcast_connecting_stream: 'broadcast_connecting_stream',
@@ -599,6 +604,9 @@ export const NotifyHistoryGetListMyV1NameEnum = {
     broadcast_video_pause_start: 'broadcast_video_pause_start',
     broadcast_video_pause_end: 'broadcast_video_pause_end',
     broadcast_init_restream: 'broadcast_init_restream',
+    broadcast_placeholder_ready: 'broadcast_placeholder_ready',
+    broadcast_placeholder_failed: 'broadcast_placeholder_failed',
+    broadcast_placeholder_fallback_used: 'broadcast_placeholder_fallback_used',
     start_stream: 'start_stream',
     create_reader: 'create_reader',
     start_channel: 'start_channel',

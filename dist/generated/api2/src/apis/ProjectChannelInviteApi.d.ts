@@ -128,7 +128,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {string} email Email
-     * @param {0 | 1 | 1 | 2} access_type Access type
+     * @param {1 | 2} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -145,7 +145,7 @@ export interface ProjectChannelInviteApiInterface {
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
-     * @param {0 | 1 | 1 | 2} access_type Access type
+     * @param {1 | 2} access_type Access type
      * @param {string} to_project_external_id Project for get access by external id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
@@ -407,9 +407,7 @@ export type ProjectChannelInviteAddByEmailV1LanguageEnum = typeof ProjectChannel
  * @export
  */
 export declare const ProjectChannelInviteAddByEmailV1AccessTypeEnum: {
-    readonly NUMBER_0: 0;
     readonly NUMBER_1: 1;
-    readonly NUMBER_12: 1;
     readonly NUMBER_2: 2;
 };
 export type ProjectChannelInviteAddByEmailV1AccessTypeEnum = typeof ProjectChannelInviteAddByEmailV1AccessTypeEnum[keyof typeof ProjectChannelInviteAddByEmailV1AccessTypeEnum];
@@ -433,9 +431,7 @@ export type ProjectChannelInviteAddByIdV1LanguageEnum = typeof ProjectChannelInv
  * @export
  */
 export declare const ProjectChannelInviteAddByIdV1AccessTypeEnum: {
-    readonly NUMBER_0: 0;
     readonly NUMBER_1: 1;
-    readonly NUMBER_12: 1;
     readonly NUMBER_2: 2;
 };
 export type ProjectChannelInviteAddByIdV1AccessTypeEnum = typeof ProjectChannelInviteAddByIdV1AccessTypeEnum[keyof typeof ProjectChannelInviteAddByIdV1AccessTypeEnum];

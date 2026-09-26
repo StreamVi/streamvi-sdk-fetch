@@ -24,7 +24,7 @@ export interface ChannelOkInfoDto {
      * @type {string}
      * @memberof ChannelOkInfoDto
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -37,7 +37,6 @@ export interface ChannelOkInfoDto {
  * Check if a given object implements the ChannelOkInfoDto interface.
  */
 export function instanceOfChannelOkInfoDto(value: object): value is ChannelOkInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     return true;
 }
@@ -52,7 +51,7 @@ export function ChannelOkInfoDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
     };
 }

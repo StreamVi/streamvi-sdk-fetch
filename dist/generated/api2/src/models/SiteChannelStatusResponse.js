@@ -18,8 +18,6 @@ exports.SiteChannelStatusResponseToJSONTyped = exports.SiteChannelStatusResponse
  * Check if a given object implements the SiteChannelStatusResponse interface.
  */
 function instanceOfSiteChannelStatusResponse(value) {
-    if (!('message' in value) || value['message'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfSiteChannelStatusResponse = instanceOfSiteChannelStatusResponse;
@@ -32,7 +30,7 @@ function SiteChannelStatusResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'message': json['message'],
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 exports.SiteChannelStatusResponseFromJSONTyped = SiteChannelStatusResponseFromJSONTyped;

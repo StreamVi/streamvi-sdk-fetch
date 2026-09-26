@@ -44,7 +44,7 @@ export interface SiteRestreamResponse {
      * @type {string}
      * @memberof SiteRestreamResponse
      */
-    photo: string;
+    photo: string | null;
     /**
      * Channel video url
      * @type {string}
@@ -68,7 +68,7 @@ export interface SiteRestreamResponse {
      * @type {Date}
      * @memberof SiteRestreamResponse
      */
-    created_at: Date;
+    created_at: Date | null;
 }
 /**
  * Check if a given object implements the SiteRestreamResponse interface.

@@ -51,7 +51,7 @@ export interface SiteNotifyUserResponse {
      * @type {NotifyUserRelation}
      * @memberof SiteNotifyUserResponse
      */
-    relation: NotifyUserRelation;
+    relation?: NotifyUserRelation;
 }
 
 /**
@@ -60,7 +60,6 @@ export interface SiteNotifyUserResponse {
 export function instanceOfSiteNotifyUserResponse(value: object): value is SiteNotifyUserResponse {
     if (!('user_id' in value) || value['user_id'] === undefined) return false;
     if (!('channels' in value) || value['channels'] === undefined) return false;
-    if (!('relation' in value) || value['relation'] === undefined) return false;
     return true;
 }
 
@@ -76,7 +75,7 @@ export function SiteNotifyUserResponseFromJSONTyped(json: any, ignoreDiscriminat
         
         'user_id': json['user_id'],
         'channels': NotifyUserChannelsFromJSON(json['channels']),
-        'relation': NotifyUserRelationFromJSON(json['relation']),
+        'relation': json['relation'] == null ? undefined : NotifyUserRelationFromJSON(json['relation']),
     };
 }
 

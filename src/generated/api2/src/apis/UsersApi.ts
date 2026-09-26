@@ -63,10 +63,10 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
-     * @param {string} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} first_name First name
      * @param {string} last_name Last name
-     * @param {string} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -153,6 +153,16 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
         const queryParameters: any = {};
 
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -174,16 +184,6 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
             formParams = new FormData();
         } else {
             formParams = new URLSearchParams();
-        }
-
-        if (requestParameters['v'] != null) {
-            formParams.append('v', requestParameters['v'] as any);
-        } else {
-            formParams.append('v', '1' as any);
-        }
-
-        if (requestParameters['language'] != null) {
-            formParams.append('language', requestParameters['language'] as any);
         }
 
         if (requestParameters['first_name'] != null) {

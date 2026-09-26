@@ -95,7 +95,7 @@ class ProjectHistoryApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfProjectHistoryResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedProjectHistoryResponseFromJSON)(jsonValue));
     }
     /**
      * Get project history of actions

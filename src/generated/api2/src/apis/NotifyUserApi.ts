@@ -17,7 +17,6 @@ import * as runtime from '../runtime';
 import type {
   ErrorResponse,
   SiteNotifyUserResponse,
-  SiteScreenNotifyUserResponse,
   SiteSetNotifyUserRequest,
   SuccessResponse,
 } from '../models/index';
@@ -26,8 +25,6 @@ import {
     ErrorResponseToJSON,
     SiteNotifyUserResponseFromJSON,
     SiteNotifyUserResponseToJSON,
-    SiteScreenNotifyUserResponseFromJSON,
-    SiteScreenNotifyUserResponseToJSON,
     SiteSetNotifyUserRequestFromJSON,
     SiteSetNotifyUserRequestToJSON,
     SuccessResponseFromJSON,
@@ -95,12 +92,12 @@ export interface NotifyUserApiInterface {
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
      */
-    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteScreenNotifyUserResponse>>;
+    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
 
     /**
      * Get user screen notify
      */
-    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteScreenNotifyUserResponse>;
+    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
      * 
@@ -219,7 +216,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     /**
      * Get user screen notify
      */
-    async notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteScreenNotifyUserResponse>> {
+    async notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -264,13 +261,13 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SiteScreenNotifyUserResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse<any>(response);
     }
 
     /**
      * Get user screen notify
      */
-    async notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteScreenNotifyUserResponse> {
+    async notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
         const response = await this.notifyUserGetScreenV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -88,7 +88,7 @@ export interface TranscoderListItem {
      * @type {string}
      * @memberof TranscoderListItem
      */
-    videoCodec: TranscoderListItemVideoCodecEnum;
+    videoCodec: string;
     /**
      * B-Frames
      * @type {Array<TranscoderChannelItem>}
@@ -100,13 +100,13 @@ export interface TranscoderListItem {
      * @type {number}
      * @memberof TranscoderListItem
      */
-    delay: number;
+    delay?: number;
     /**
      * Preset
      * @type {string}
      * @memberof TranscoderListItem
      */
-    preset: string;
+    preset?: string;
     /**
      * State
      * @type {TranscoderState}
@@ -128,14 +128,6 @@ export declare const TranscoderListItemStatusEnum: {
     readonly inactive: "inactive";
 };
 export type TranscoderListItemStatusEnum = typeof TranscoderListItemStatusEnum[keyof typeof TranscoderListItemStatusEnum];
-/**
- * @export
- */
-export declare const TranscoderListItemVideoCodecEnum: {
-    readonly h264: "h264";
-    readonly hevc: "hevc";
-};
-export type TranscoderListItemVideoCodecEnum = typeof TranscoderListItemVideoCodecEnum[keyof typeof TranscoderListItemVideoCodecEnum];
 /**
  * @export
  */

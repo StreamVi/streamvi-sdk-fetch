@@ -76,7 +76,7 @@ class BlogPageTagApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfSiteBlogPageTagResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedBlogPageTagResponseFromJSON)(jsonValue));
     }
     /**
      * Get list of blog pages

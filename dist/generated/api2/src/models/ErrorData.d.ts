@@ -9,6 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import type { ErrorDataName } from './ErrorDataName';
+import type { ErrorDataData } from './ErrorDataData';
 import type { ValidationErrorDto } from './ValidationErrorDto';
 /**
  *
@@ -17,17 +19,17 @@ import type { ValidationErrorDto } from './ValidationErrorDto';
  */
 export interface ErrorData {
     /**
-     * Error name
-     * @type {string}
+     *
+     * @type {ErrorDataName}
      * @memberof ErrorData
      */
-    name: string;
+    name: ErrorDataName;
     /**
      * Error message
      * @type {string}
      * @memberof ErrorData
      */
-    msg: string;
+    msg?: string;
     /**
      * Validator error array if name="I18nValidationException"
      * @type {Array<ValidationErrorDto>}
@@ -41,11 +43,11 @@ export interface ErrorData {
      */
     options: object;
     /**
-     * Custom object for error
-     * @type {object}
+     *
+     * @type {ErrorDataData}
      * @memberof ErrorData
      */
-    data: object;
+    data: ErrorDataData;
 }
 /**
  * Check if a given object implements the ErrorData interface.

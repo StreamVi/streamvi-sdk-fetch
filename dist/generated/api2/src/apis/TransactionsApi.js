@@ -92,7 +92,7 @@ class TransactionsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfTransactionResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedTransactionResponseFromJSON)(jsonValue));
     }
     /**
      * Transaction list for frontend

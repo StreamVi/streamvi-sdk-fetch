@@ -39,7 +39,7 @@ export interface ChannelVkInfoDto {
      * @type {string}
      * @memberof ChannelVkInfoDto
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -113,7 +113,6 @@ export type ChannelVkInfoDtoPrivacyCommentsEnum = typeof ChannelVkInfoDtoPrivacy
  * Check if a given object implements the ChannelVkInfoDto interface.
  */
 export function instanceOfChannelVkInfoDto(value: object): value is ChannelVkInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     return true;
 }
@@ -128,7 +127,7 @@ export function ChannelVkInfoDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
         'wall': json['wall'] == null ? undefined : json['wall'],
         'privacyVideo': json['privacyVideo'] == null ? undefined : json['privacyVideo'],

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListVideoResponse, SuccessResponse, UpdateVideoRequest, VideoDownloadResponse, VideoItemResponse, VideoLimitsResponse, VideoProgressChannelResponse, VideoSiteCreateV1200Response } from '../models/index';
+import type { ListVideoResponse, SuccessResponse, UpdateVideoRequest, VideoCreateSuccessResponse, VideoDownloadResponse, VideoItemResponse, VideoLimitsResponse, VideoProgressChannelResponse } from '../models/index';
 export interface VideoSiteCreateV1Request {
     language: VideoSiteCreateV1LanguageEnum;
     project_id: number;
@@ -71,11 +71,11 @@ export interface VideoApiInterface {
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
-    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoSiteCreateV1200Response>>;
+    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>>;
     /**
      * Create upload session
      */
-    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoSiteCreateV1200Response>;
+    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse>;
     /**
      *
      * @summary Delete video
@@ -158,7 +158,7 @@ export interface VideoApiInterface {
     videoSiteListV1(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListVideoResponse>;
     /**
      *
-     * @summary Get upload progress channel for centrifuge
+     * @summary Get upload progress channels for centrifuge
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
@@ -166,11 +166,11 @@ export interface VideoApiInterface {
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
-    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoProgressChannelResponse>>;
+    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>>;
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoProgressChannelResponse>;
+    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>>;
     /**
      *
      * @summary Update video
@@ -192,11 +192,11 @@ export declare class VideoApi extends runtime.BaseAPI implements VideoApiInterfa
     /**
      * Create upload session
      */
-    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoSiteCreateV1200Response>>;
+    videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>>;
     /**
      * Create upload session
      */
-    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoSiteCreateV1200Response>;
+    videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse>;
     /**
      * Delete video
      */
@@ -238,13 +238,13 @@ export declare class VideoApi extends runtime.BaseAPI implements VideoApiInterfa
      */
     videoSiteListV1(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListVideoResponse>;
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoProgressChannelResponse>>;
+    videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>>;
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
-    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoProgressChannelResponse>;
+    videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>>;
     /**
      * Update video
      */

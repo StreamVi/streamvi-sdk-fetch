@@ -34,7 +34,7 @@ export interface SiteNotifyUserResponse {
      * @type {NotifyUserRelation}
      * @memberof SiteNotifyUserResponse
      */
-    relation: NotifyUserRelation;
+    relation?: NotifyUserRelation;
 }
 /**
  * Check if a given object implements the SiteNotifyUserResponse interface.

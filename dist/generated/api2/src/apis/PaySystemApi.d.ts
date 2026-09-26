@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPaySystemListResponse, PayRedirectUrlDto, TonConnectPaymentIntentDto, TonConnectPaymentStatusDto, TonConnectPaymentSubmitBodyDto, TronPaymentIntentDto, TronPaymentStatusDto, TronPaymentSubmitBodyDto, WalletConnectPaymentIntentDto, WalletConnectPaymentStatusDto, WalletConnectPaymentSubmitBodyDto } from '../models/index';
+import type { PayRedirectUrlDto, PaySystemsResponse, TonConnectPaymentIntentDto, TonConnectPaymentStatusDto, TonConnectPaymentSubmitBodyDto, TronPaymentIntentDto, TronPaymentStatusDto, TronPaymentSubmitBodyDto, WalletConnectPaymentIntentDto, WalletConnectPaymentStatusDto, WalletConnectPaymentSubmitBodyDto } from '../models/index';
 export interface PaySystemCreateChallengeV1Request {
     language: PaySystemCreateChallengeV1LanguageEnum;
     payment_id: number;
@@ -124,11 +124,11 @@ export interface PaySystemApiInterface {
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
      */
-    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPaySystemListResponse>>;
+    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaySystemsResponse>>;
     /**
      * Load available pay systems
      */
-    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
+    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaySystemsResponse>;
     /**
      *
      * @summary Create TonConnect payment intent
@@ -290,11 +290,11 @@ export declare class PaySystemApi extends runtime.BaseAPI implements PaySystemAp
     /**
      * Load available pay systems
      */
-    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPaySystemListResponse>>;
+    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaySystemsResponse>>;
     /**
      * Load available pay systems
      */
-    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
+    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaySystemsResponse>;
     /**
      * Create TonConnect payment intent
      */

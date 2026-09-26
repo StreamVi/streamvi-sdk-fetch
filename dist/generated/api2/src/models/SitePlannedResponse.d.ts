@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PlannedItemResponse } from './PlannedItemResponse';
+import type { SelectedPlannedItemResponse } from './SelectedPlannedItemResponse';
 /**
  *
  * @export
@@ -18,10 +18,10 @@ import type { PlannedItemResponse } from './PlannedItemResponse';
 export interface SitePlannedResponse {
     /**
      * Planned item
-     * @type {PlannedItemResponse}
+     * @type {SelectedPlannedItemResponse}
      * @memberof SitePlannedResponse
      */
-    planned?: PlannedItemResponse;
+    planned?: SelectedPlannedItemResponse;
 }
 /**
  * Check if a given object implements the SitePlannedResponse interface.

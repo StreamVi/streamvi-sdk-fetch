@@ -30,7 +30,7 @@ export interface SiteWebinarRoomStreamLastResponse {
      * @type {string}
      * @memberof SiteWebinarRoomStreamLastResponse
      */
-    status: SiteWebinarRoomStreamLastResponseStatusEnum;
+    status?: SiteWebinarRoomStreamLastResponseStatusEnum;
     /**
      * Start at
      * @type {string}
@@ -77,7 +77,6 @@ export type SiteWebinarRoomStreamLastResponseStatusEnum = typeof SiteWebinarRoom
  * Check if a given object implements the SiteWebinarRoomStreamLastResponse interface.
  */
 export function instanceOfSiteWebinarRoomStreamLastResponse(value: object): value is SiteWebinarRoomStreamLastResponse {
-    if (!('status' in value) || value['status'] === undefined) return false;
     if (!('is_current_room' in value) || value['is_current_room'] === undefined) return false;
     if (!('is_webinar_room' in value) || value['is_webinar_room'] === undefined) return false;
     return true;
@@ -94,7 +93,7 @@ export function SiteWebinarRoomStreamLastResponseFromJSONTyped(json: any, ignore
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'status': json['status'],
+        'status': json['status'] == null ? undefined : json['status'],
         'start_at': json['start_at'] == null ? undefined : json['start_at'],
         'end_at': json['end_at'] == null ? undefined : json['end_at'],
         'is_current_room': json['is_current_room'],

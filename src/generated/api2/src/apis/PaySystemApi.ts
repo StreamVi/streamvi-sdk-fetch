@@ -15,8 +15,8 @@
 
 import * as runtime from '../runtime';
 import type {
-  ListOfPaySystemListResponse,
   PayRedirectUrlDto,
+  PaySystemsResponse,
   TonConnectPaymentIntentDto,
   TonConnectPaymentStatusDto,
   TonConnectPaymentSubmitBodyDto,
@@ -28,10 +28,10 @@ import type {
   WalletConnectPaymentSubmitBodyDto,
 } from '../models/index';
 import {
-    ListOfPaySystemListResponseFromJSON,
-    ListOfPaySystemListResponseToJSON,
     PayRedirectUrlDtoFromJSON,
     PayRedirectUrlDtoToJSON,
+    PaySystemsResponseFromJSON,
+    PaySystemsResponseToJSON,
     TonConnectPaymentIntentDtoFromJSON,
     TonConnectPaymentIntentDtoToJSON,
     TonConnectPaymentStatusDtoFromJSON,
@@ -183,12 +183,12 @@ export interface PaySystemApiInterface {
      * @throws {RequiredError}
      * @memberof PaySystemApiInterface
      */
-    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPaySystemListResponse>>;
+    paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaySystemsResponse>>;
 
     /**
      * Load available pay systems
      */
-    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse>;
+    paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaySystemsResponse>;
 
     /**
      * 
@@ -509,7 +509,7 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
     /**
      * Load available pay systems
      */
-    async paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPaySystemListResponse>> {
+    async paySystemListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaySystemsResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -526,13 +526,13 @@ export class PaySystemApi extends runtime.BaseAPI implements PaySystemApiInterfa
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfPaySystemListResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaySystemsResponseFromJSON(jsonValue));
     }
 
     /**
      * Load available pay systems
      */
-    async paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPaySystemListResponse> {
+    async paySystemListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaySystemsResponse> {
         const response = await this.paySystemListV1Raw(initOverrides);
         return await response.value();
     }

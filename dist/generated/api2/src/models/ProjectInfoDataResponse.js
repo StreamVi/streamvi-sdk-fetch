@@ -24,7 +24,10 @@ exports.ProjectInfoDataResponseTypeEnum = {
 /**
  * @export
  */
-exports.ProjectInfoDataResponseCurrencyEnum = {};
+exports.ProjectInfoDataResponseCurrencyEnum = {
+    rub: 'rub',
+    usd: 'usd'
+};
 /**
  * Check if a given object implements the ProjectInfoDataResponse interface.
  */

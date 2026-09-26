@@ -21,7 +21,7 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    broadcast_id: number;
+    broadcast_id: number | null;
     /**
      * Stream id
      * @type {number}
@@ -39,7 +39,7 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {Date}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    date_start: Date;
+    date_start: Date | null;
     /**
      * Stream resolution
      * @type {string}
@@ -51,13 +51,13 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    fps: number;
+    fps: number | null;
     /**
      * Bitrate
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    bitrate: number;
+    bitrate: number | null;
     /**
      * Key frame
      * @type {number}
@@ -70,6 +70,12 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
     status: SiteBroadcastStatusSchedulerResponseStatusEnum;
+    /**
+     * Restream action state
+     * @type {string}
+     * @memberof SiteBroadcastStatusSchedulerResponse
+     */
+    action: SiteBroadcastStatusSchedulerResponseActionEnum;
     /**
      * Broadcast url
      * @type {string}
@@ -89,6 +95,12 @@ export interface SiteBroadcastStatusSchedulerResponse {
      */
     restreams: Array<BroadcastLiveStatusRestream>;
     /**
+     * Broadcast status response kind
+     * @type {string}
+     * @memberof SiteBroadcastStatusSchedulerResponse
+     */
+    kind: SiteBroadcastStatusSchedulerResponseKindEnum;
+    /**
      * App name (scheduler)
      * @type {string}
      * @memberof SiteBroadcastStatusSchedulerResponse
@@ -99,25 +111,25 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    schedulerId: number;
+    schedulerId?: number;
     /**
      * Video id
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    video_id: number;
+    video_id?: number;
     /**
      * Video name
      * @type {string}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    name: string;
+    name?: string;
     /**
      * Video duration
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    duration: number;
+    duration?: number;
 }
 /**
  * @export
@@ -129,6 +141,21 @@ export declare const SiteBroadcastStatusSchedulerResponseStatusEnum: {
     readonly done: "done";
 };
 export type SiteBroadcastStatusSchedulerResponseStatusEnum = typeof SiteBroadcastStatusSchedulerResponseStatusEnum[keyof typeof SiteBroadcastStatusSchedulerResponseStatusEnum];
+/**
+ * @export
+ */
+export declare const SiteBroadcastStatusSchedulerResponseActionEnum: {
+    readonly active: "active";
+    readonly stopped: "stopped";
+};
+export type SiteBroadcastStatusSchedulerResponseActionEnum = typeof SiteBroadcastStatusSchedulerResponseActionEnum[keyof typeof SiteBroadcastStatusSchedulerResponseActionEnum];
+/**
+ * @export
+ */
+export declare const SiteBroadcastStatusSchedulerResponseKindEnum: {
+    readonly scheduler: "scheduler";
+};
+export type SiteBroadcastStatusSchedulerResponseKindEnum = typeof SiteBroadcastStatusSchedulerResponseKindEnum[keyof typeof SiteBroadcastStatusSchedulerResponseKindEnum];
 /**
  * @export
  */

@@ -46,10 +46,10 @@ export interface AccountApiInterface {
     /**
      *
      * @summary Update account profile
-     * @param {string} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {string} first_name First name
      * @param {string} last_name Last name
-     * @param {string} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

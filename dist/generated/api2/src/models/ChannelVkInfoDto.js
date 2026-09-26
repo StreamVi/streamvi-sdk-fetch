@@ -39,8 +39,6 @@ exports.ChannelVkInfoDtoPrivacyCommentsEnum = {
  * Check if a given object implements the ChannelVkInfoDto interface.
  */
 function instanceOfChannelVkInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
     return true;
@@ -55,7 +53,7 @@ function ChannelVkInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
         'wall': json['wall'] == null ? undefined : json['wall'],
         'privacyVideo': json['privacyVideo'] == null ? undefined : json['privacyVideo'],

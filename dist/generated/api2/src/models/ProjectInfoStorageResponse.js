@@ -14,8 +14,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectInfoStorageResponseToJSONTyped = exports.ProjectInfoStorageResponseToJSON = exports.ProjectInfoStorageResponseFromJSONTyped = exports.ProjectInfoStorageResponseFromJSON = exports.instanceOfProjectInfoStorageResponse = void 0;
-const PlanStorage2UserItemResponse_1 = require("./PlanStorage2UserItemResponse");
-const PlanTranscodingResponse_1 = require("./PlanTranscodingResponse");
+const ProjectInfoStoragePeriodResponse_1 = require("./ProjectInfoStoragePeriodResponse");
+const PlanStorageResponse_1 = require("./PlanStorageResponse");
 /**
  * Check if a given object implements the ProjectInfoStorageResponse interface.
  */
@@ -36,8 +36,8 @@ function ProjectInfoStorageResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'plan2user': (0, PlanStorage2UserItemResponse_1.PlanStorage2UserItemResponseFromJSON)(json['plan2user']),
-        'data': (0, PlanTranscodingResponse_1.PlanTranscodingResponseFromJSON)(json['data']),
+        'plan2user': (0, ProjectInfoStoragePeriodResponse_1.ProjectInfoStoragePeriodResponseFromJSON)(json['plan2user']),
+        'data': (0, PlanStorageResponse_1.PlanStorageResponseFromJSON)(json['data']),
     };
 }
 exports.ProjectInfoStorageResponseFromJSONTyped = ProjectInfoStorageResponseFromJSONTyped;
@@ -50,8 +50,8 @@ function ProjectInfoStorageResponseToJSONTyped(value, ignoreDiscriminator = fals
         return value;
     }
     return {
-        'plan2user': (0, PlanStorage2UserItemResponse_1.PlanStorage2UserItemResponseToJSON)(value['plan2user']),
-        'data': (0, PlanTranscodingResponse_1.PlanTranscodingResponseToJSON)(value['data']),
+        'plan2user': (0, ProjectInfoStoragePeriodResponse_1.ProjectInfoStoragePeriodResponseToJSON)(value['plan2user']),
+        'data': (0, PlanStorageResponse_1.PlanStorageResponseToJSON)(value['data']),
     };
 }
 exports.ProjectInfoStorageResponseToJSONTyped = ProjectInfoStorageResponseToJSONTyped;

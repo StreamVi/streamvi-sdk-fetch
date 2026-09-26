@@ -30,6 +30,7 @@ exports.ProjectMeResponseScopesEnum = {
     channel_write: 'channel:write',
     channel_delete: 'channel:delete',
     channel_access_write: 'channel-access:write',
+    diagnostics_run: 'diagnostics:run',
     media_files_read: 'media-files:read',
     media_files_write: 'media-files:write',
     notification_read: 'notification:read',

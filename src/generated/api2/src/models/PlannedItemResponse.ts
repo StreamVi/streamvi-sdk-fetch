@@ -36,7 +36,7 @@ export interface PlannedItemResponse {
      * @type {string}
      * @memberof PlannedItemResponse
      */
-    description: string;
+    description?: string | null;
     /**
      * date
      * @type {Date}
@@ -51,7 +51,6 @@ export interface PlannedItemResponse {
 export function instanceOfPlannedItemResponse(value: object): value is PlannedItemResponse {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
     if (!('date' in value) || value['date'] === undefined) return false;
     return true;
 }
@@ -68,7 +67,7 @@ export function PlannedItemResponseFromJSONTyped(json: any, ignoreDiscriminator:
         
         'id': json['id'],
         'title': json['title'],
-        'description': json['description'],
+        'description': json['description'] == null ? undefined : json['description'],
         'date': (new Date(json['date'])),
     };
 }

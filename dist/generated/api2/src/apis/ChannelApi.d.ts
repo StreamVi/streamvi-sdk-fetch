@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BizonDto, BoostyDto, CustomDto, DeleteChannelDto, DouyuDto, FbDto, Fc2liveDto, GetcourseDto, GoodgameDto, HuyaDto, InstagramDto, KickDto, KinescopeDto, LinkedinDto, MethodSetStatusChannelRequest, MethodSrtDto, NavertvDto, NimotvDto, NonoliveDto, OkDto, PlvideoDto, RutubeDto, SearchChannelItem, SiteGetShortChannelResponse, SiteSearchChannelResponse, SteamDto, SuccessResponse, TachidDto, TelegramDto, TiktokDto, VkDto, VliveDto, ZhanqitvDto } from '../models/index';
+import type { BizonDto, BoostyDto, CustomDto, DeleteChannelDto, DouyuDto, FbDto, Fc2liveDto, GetcourseDto, GoodgameDto, HuyaDto, InstagramDto, KickDto, KinescopeDto, LinkedinDto, MethodChannelStatusRequest, MethodSetStatusChannelRequest, MethodSrtDto, NavertvDto, NimotvDto, NonoliveDto, OkDto, PlvideoDto, RutubeDto, SearchChannelItem, SiteGetShortChannelResponse, SiteSearchChannelResponse, SteamDto, SuccessResponse, TachidDto, TelegramDto, TiktokDto, VkDto, VliveDto, ZhanqitvDto } from '../models/index';
 export interface AddChannelMethodAddBizonV1Request {
     BizonDto: BizonDto;
 }
@@ -120,8 +120,11 @@ export interface MethodSearchV1Request {
     limit?: number;
     offset?: number;
 }
-export interface MethodSetStatusV1Request {
+export interface MethodSetStatusLegacyV1Request {
     MethodSetStatusChannelRequest: MethodSetStatusChannelRequest;
+}
+export interface MethodSetStatusV1Request {
+    MethodChannelStatusRequest: MethodChannelStatusRequest;
 }
 /**
  * ChannelApi - interface
@@ -560,16 +563,32 @@ export interface ChannelApiInterface {
      */
     methodSearchV1(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchChannelResponse>;
     /**
-     *
-     * @summary Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * @summary Set desired channel state
      * @param {MethodSetStatusChannelRequest} MethodSetStatusChannelRequest
+     * @param {*} [options] Override http request option.
+     * @deprecated
+     * @throws {RequiredError}
+     * @memberof ChannelApiInterface
+     */
+    methodSetStatusLegacyV1Raw(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    methodSetStatusLegacyV1(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     *
+     * @summary Set desired channel state
+     * @param {MethodChannelStatusRequest} MethodChannelStatusRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
     methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
-     * Get live status
+     * Set desired channel state
      */
     methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
@@ -834,11 +853,23 @@ export declare class ChannelApi extends runtime.BaseAPI implements ChannelApiInt
      */
     methodSearchV1(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchChannelResponse>;
     /**
-     * Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    methodSetStatusLegacyV1Raw(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    methodSetStatusLegacyV1(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Set desired channel state
      */
     methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
-     * Get live status
+     * Set desired channel state
      */
     methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }

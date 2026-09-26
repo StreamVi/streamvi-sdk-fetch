@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SiteUpdateOptionsVkVideoLiveRequestToJSONTyped = exports.SiteUpdateOptionsVkVideoLiveRequestToJSON = exports.SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped = exports.SiteUpdateOptionsVkVideoLiveRequestFromJSON = exports.instanceOfSiteUpdateOptionsVkVideoLiveRequest = exports.SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = exports.SiteUpdateOptionsVkVideoLiveRequestVEnum = void 0;
+exports.SiteUpdateOptionsVkVideoLiveRequestToJSONTyped = exports.SiteUpdateOptionsVkVideoLiveRequestToJSON = exports.SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped = exports.SiteUpdateOptionsVkVideoLiveRequestFromJSON = exports.instanceOfSiteUpdateOptionsVkVideoLiveRequest = exports.SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum = exports.SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = exports.SiteUpdateOptionsVkVideoLiveRequestVEnum = void 0;
 /**
  * @export
  */
@@ -27,6 +27,14 @@ exports.SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum = {
+    irl: 'irl',
+    game: 'game',
+    sport: 'sport'
 };
 /**
  * Check if a given object implements the SiteUpdateOptionsVkVideoLiveRequest interface.
@@ -59,6 +67,7 @@ function SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped(json, ignoreDiscrimina
         'title': json['title'],
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'category_type': json['category_type'] == null ? undefined : json['category_type'],
     };
 }
 exports.SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped = SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped;
@@ -78,6 +87,7 @@ function SiteUpdateOptionsVkVideoLiveRequestToJSONTyped(value, ignoreDiscriminat
         'title': value['title'],
         'category_id': value['category_id'],
         'category_name': value['category_name'],
+        'category_type': value['category_type'],
     };
 }
 exports.SiteUpdateOptionsVkVideoLiveRequestToJSONTyped = SiteUpdateOptionsVkVideoLiveRequestToJSONTyped;

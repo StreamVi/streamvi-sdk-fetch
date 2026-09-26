@@ -53,6 +53,7 @@ __exportStar(require("./PullServersApi"), exports);
 __exportStar(require("./ReferralsApi"), exports);
 __exportStar(require("./ReleaseApi"), exports);
 __exportStar(require("./RtmpServerApi"), exports);
+__exportStar(require("./SchedulerApi"), exports);
 __exportStar(require("./SocialsApi"), exports);
 __exportStar(require("./StreamKeyApi"), exports);
 __exportStar(require("./StreamPullKeysApi"), exports);

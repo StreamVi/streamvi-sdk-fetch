@@ -13,7 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SiteBroadcastStatusInactiveResponseToJSONTyped = exports.SiteBroadcastStatusInactiveResponseToJSON = exports.SiteBroadcastStatusInactiveResponseFromJSONTyped = exports.SiteBroadcastStatusInactiveResponseFromJSON = exports.instanceOfSiteBroadcastStatusInactiveResponse = exports.SiteBroadcastStatusInactiveResponseStatusEnum = void 0;
+exports.SiteBroadcastStatusInactiveResponseToJSONTyped = exports.SiteBroadcastStatusInactiveResponseToJSON = exports.SiteBroadcastStatusInactiveResponseFromJSONTyped = exports.SiteBroadcastStatusInactiveResponseFromJSON = exports.instanceOfSiteBroadcastStatusInactiveResponse = exports.SiteBroadcastStatusInactiveResponseStatusEnum = exports.SiteBroadcastStatusInactiveResponseKindEnum = void 0;
+/**
+ * @export
+ */
+exports.SiteBroadcastStatusInactiveResponseKindEnum = {
+    inactive: 'inactive'
+};
 /**
  * @export
  */
@@ -24,6 +30,8 @@ exports.SiteBroadcastStatusInactiveResponseStatusEnum = {
  * Check if a given object implements the SiteBroadcastStatusInactiveResponse interface.
  */
 function instanceOfSiteBroadcastStatusInactiveResponse(value) {
+    if (!('kind' in value) || value['kind'] === undefined)
+        return false;
     if (!('status' in value) || value['status'] === undefined)
         return false;
     return true;
@@ -38,6 +46,7 @@ function SiteBroadcastStatusInactiveResponseFromJSONTyped(json, ignoreDiscrimina
         return json;
     }
     return {
+        'kind': json['kind'],
         'status': json['status'],
     };
 }
@@ -51,6 +60,7 @@ function SiteBroadcastStatusInactiveResponseToJSONTyped(value, ignoreDiscriminat
         return value;
     }
     return {
+        'kind': value['kind'],
         'status': value['status'],
     };
 }

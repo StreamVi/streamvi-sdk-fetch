@@ -13,19 +13,13 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectInfoResponseToJSONTyped = exports.ProjectInfoResponseToJSON = exports.ProjectInfoResponseFromJSONTyped = exports.ProjectInfoResponseFromJSON = exports.instanceOfProjectInfoResponse = exports.ProjectInfoResponseLanguageEnum = exports.ProjectInfoResponseVEnum = void 0;
+exports.ProjectInfoResponseToJSONTyped = exports.ProjectInfoResponseToJSON = exports.ProjectInfoResponseFromJSONTyped = exports.ProjectInfoResponseFromJSON = exports.instanceOfProjectInfoResponse = exports.ProjectInfoResponseLanguageEnum = void 0;
 const ProjectInfoAccessResponse_1 = require("./ProjectInfoAccessResponse");
 const ProjectInfoStorageResponse_1 = require("./ProjectInfoStorageResponse");
 const ProjectInfoTranscodingResponse_1 = require("./ProjectInfoTranscodingResponse");
 const ProjectInfoDataResponse_1 = require("./ProjectInfoDataResponse");
 const ProjectInfoWebinarResponse_1 = require("./ProjectInfoWebinarResponse");
 const ProjectInfoRestreamResponse_1 = require("./ProjectInfoRestreamResponse");
-/**
- * @export
- */
-exports.ProjectInfoResponseVEnum = {
-    _1: '1'
-};
 /**
  * @export
  */
@@ -38,11 +32,15 @@ exports.ProjectInfoResponseLanguageEnum = {
  * Check if a given object implements the ProjectInfoResponse interface.
  */
 function instanceOfProjectInfoResponse(value) {
-    if (!('v' in value) || value['v'] === undefined)
-        return false;
     if (!('language' in value) || value['language'] === undefined)
         return false;
     if (!('data' in value) || value['data'] === undefined)
+        return false;
+    if (!('transcoding' in value) || value['transcoding'] === undefined)
+        return false;
+    if (!('storage' in value) || value['storage'] === undefined)
+        return false;
+    if (!('webinar' in value) || value['webinar'] === undefined)
         return false;
     if (!('access' in value) || value['access'] === undefined)
         return false;
@@ -58,13 +56,12 @@ function ProjectInfoResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'v': json['v'],
         'language': json['language'],
         'data': (0, ProjectInfoDataResponse_1.ProjectInfoDataResponseFromJSON)(json['data']),
         'restream': json['restream'] == null ? undefined : (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseFromJSON)(json['restream']),
-        'transcoding': json['transcoding'] == null ? undefined : (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseFromJSON)(json['transcoding']),
-        'storage': json['storage'] == null ? undefined : (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseFromJSON)(json['storage']),
-        'webinar': json['webinar'] == null ? undefined : (0, ProjectInfoWebinarResponse_1.ProjectInfoWebinarResponseFromJSON)(json['webinar']),
+        'transcoding': (0, ProjectInfoTranscodingResponse_1.ProjectInfoTranscodingResponseFromJSON)(json['transcoding']),
+        'storage': (0, ProjectInfoStorageResponse_1.ProjectInfoStorageResponseFromJSON)(json['storage']),
+        'webinar': (0, ProjectInfoWebinarResponse_1.ProjectInfoWebinarResponseFromJSON)(json['webinar']),
         'access': (0, ProjectInfoAccessResponse_1.ProjectInfoAccessResponseFromJSON)(json['access']),
     };
 }
@@ -78,7 +75,6 @@ function ProjectInfoResponseToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
-        'v': value['v'],
         'language': value['language'],
         'data': (0, ProjectInfoDataResponse_1.ProjectInfoDataResponseToJSON)(value['data']),
         'restream': (0, ProjectInfoRestreamResponse_1.ProjectInfoRestreamResponseToJSON)(value['restream']),

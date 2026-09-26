@@ -32,7 +32,7 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    broadcast_id: number;
+    broadcast_id: number | null;
     /**
      * Stream id
      * @type {number}
@@ -50,7 +50,7 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {Date}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    date_start: Date;
+    date_start: Date | null;
     /**
      * Stream resolution
      * @type {string}
@@ -62,13 +62,13 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    fps: number;
+    fps: number | null;
     /**
      * Bitrate
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    bitrate: number;
+    bitrate: number | null;
     /**
      * Key frame
      * @type {number}
@@ -81,6 +81,12 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
     status: SiteBroadcastStatusSchedulerResponseStatusEnum;
+    /**
+     * Restream action state
+     * @type {string}
+     * @memberof SiteBroadcastStatusSchedulerResponse
+     */
+    action: SiteBroadcastStatusSchedulerResponseActionEnum;
     /**
      * Broadcast url
      * @type {string}
@@ -100,6 +106,12 @@ export interface SiteBroadcastStatusSchedulerResponse {
      */
     restreams: Array<BroadcastLiveStatusRestream>;
     /**
+     * Broadcast status response kind
+     * @type {string}
+     * @memberof SiteBroadcastStatusSchedulerResponse
+     */
+    kind: SiteBroadcastStatusSchedulerResponseKindEnum;
+    /**
      * App name (scheduler)
      * @type {string}
      * @memberof SiteBroadcastStatusSchedulerResponse
@@ -110,25 +122,25 @@ export interface SiteBroadcastStatusSchedulerResponse {
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    schedulerId: number;
+    schedulerId?: number;
     /**
      * Video id
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    video_id: number;
+    video_id?: number;
     /**
      * Video name
      * @type {string}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    name: string;
+    name?: string;
     /**
      * Video duration
      * @type {number}
      * @memberof SiteBroadcastStatusSchedulerResponse
      */
-    duration: number;
+    duration?: number;
 }
 
 
@@ -142,6 +154,23 @@ export const SiteBroadcastStatusSchedulerResponseStatusEnum = {
     done: 'done'
 } as const;
 export type SiteBroadcastStatusSchedulerResponseStatusEnum = typeof SiteBroadcastStatusSchedulerResponseStatusEnum[keyof typeof SiteBroadcastStatusSchedulerResponseStatusEnum];
+
+/**
+ * @export
+ */
+export const SiteBroadcastStatusSchedulerResponseActionEnum = {
+    active: 'active',
+    stopped: 'stopped'
+} as const;
+export type SiteBroadcastStatusSchedulerResponseActionEnum = typeof SiteBroadcastStatusSchedulerResponseActionEnum[keyof typeof SiteBroadcastStatusSchedulerResponseActionEnum];
+
+/**
+ * @export
+ */
+export const SiteBroadcastStatusSchedulerResponseKindEnum = {
+    scheduler: 'scheduler'
+} as const;
+export type SiteBroadcastStatusSchedulerResponseKindEnum = typeof SiteBroadcastStatusSchedulerResponseKindEnum[keyof typeof SiteBroadcastStatusSchedulerResponseKindEnum];
 
 /**
  * @export
@@ -164,14 +193,12 @@ export function instanceOfSiteBroadcastStatusSchedulerResponse(value: object): v
     if (!('fps' in value) || value['fps'] === undefined) return false;
     if (!('bitrate' in value) || value['bitrate'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('action' in value) || value['action'] === undefined) return false;
     if (!('url' in value) || value['url'] === undefined) return false;
     if (!('video_codec_name' in value) || value['video_codec_name'] === undefined) return false;
     if (!('restreams' in value) || value['restreams'] === undefined) return false;
+    if (!('kind' in value) || value['kind'] === undefined) return false;
     if (!('app' in value) || value['app'] === undefined) return false;
-    if (!('schedulerId' in value) || value['schedulerId'] === undefined) return false;
-    if (!('video_id' in value) || value['video_id'] === undefined) return false;
-    if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('duration' in value) || value['duration'] === undefined) return false;
     return true;
 }
 
@@ -188,20 +215,22 @@ export function SiteBroadcastStatusSchedulerResponseFromJSONTyped(json: any, ign
         'broadcast_id': json['broadcast_id'],
         'stream_id': json['stream_id'],
         'reconnects': json['reconnects'],
-        'date_start': (new Date(json['date_start'])),
+        'date_start': (json['date_start'] == null ? null : new Date(json['date_start'])),
         'resolution': json['resolution'],
         'fps': json['fps'],
         'bitrate': json['bitrate'],
         'key_frame': json['key_frame'] == null ? undefined : json['key_frame'],
         'status': json['status'],
+        'action': json['action'],
         'url': json['url'],
         'video_codec_name': json['video_codec_name'],
         'restreams': ((json['restreams'] as Array<any>).map(BroadcastLiveStatusRestreamFromJSON)),
+        'kind': json['kind'],
         'app': json['app'],
-        'schedulerId': json['schedulerId'],
-        'video_id': json['video_id'],
-        'name': json['name'],
-        'duration': json['duration'],
+        'schedulerId': json['schedulerId'] == null ? undefined : json['schedulerId'],
+        'video_id': json['video_id'] == null ? undefined : json['video_id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'duration': json['duration'] == null ? undefined : json['duration'],
     };
 }
 
@@ -219,15 +248,17 @@ export function SiteBroadcastStatusSchedulerResponseToJSONTyped(value?: SiteBroa
         'broadcast_id': value['broadcast_id'],
         'stream_id': value['stream_id'],
         'reconnects': value['reconnects'],
-        'date_start': ((value['date_start']).toISOString()),
+        'date_start': (value['date_start'] == null ? null : (value['date_start'] as any).toISOString()),
         'resolution': value['resolution'],
         'fps': value['fps'],
         'bitrate': value['bitrate'],
         'key_frame': value['key_frame'],
         'status': value['status'],
+        'action': value['action'],
         'url': value['url'],
         'video_codec_name': value['video_codec_name'],
         'restreams': ((value['restreams'] as Array<any>).map(BroadcastLiveStatusRestreamToJSON)),
+        'kind': value['kind'],
         'app': value['app'],
         'schedulerId': value['schedulerId'],
         'video_id': value['video_id'],

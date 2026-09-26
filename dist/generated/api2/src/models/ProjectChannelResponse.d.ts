@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ProjectChannelMemberStreamInfoResponse } from './ProjectChannelMemberStreamInfoResponse';
+import type { ProjectChannelResponseStreamInfo } from './ProjectChannelResponseStreamInfo';
 import type { ProjectChannelMemberInfoResponse } from './ProjectChannelMemberInfoResponse';
 /**
  *
@@ -25,10 +25,10 @@ export interface ProjectChannelResponse {
     access_type: ProjectChannelResponseAccessTypeEnum;
     /**
      *
-     * @type {number}
+     * @type {boolean}
      * @memberof ProjectChannelResponse
      */
-    active: number;
+    active: boolean;
     /**
      * Channel id
      * @type {number}
@@ -90,11 +90,11 @@ export interface ProjectChannelResponse {
      */
     project_?: ProjectChannelMemberInfoResponse;
     /**
-     * Stream info
-     * @type {ProjectChannelMemberStreamInfoResponse}
+     *
+     * @type {ProjectChannelResponseStreamInfo}
      * @memberof ProjectChannelResponse
      */
-    streamInfo: ProjectChannelMemberStreamInfoResponse;
+    streamInfo: ProjectChannelResponseStreamInfo | null;
 }
 /**
  * @export

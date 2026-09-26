@@ -32,13 +32,13 @@ export interface PlanTranscodingItem {
      * @type {Date}
      * @memberof PlanTranscodingItem
      */
-    date_end: Date;
+    date_end?: Date;
     /**
      * Plan title
      * @type {string}
      * @memberof PlanTranscodingItem
      */
-    title: string;
+    title: string | null;
     /**
      * Tariff type
      * @type {string}
@@ -56,7 +56,7 @@ export interface PlanTranscodingItem {
      * @type {string}
      * @memberof PlanTranscodingItem
      */
-    period: PlanTranscodingItemPeriodEnum;
+    period: PlanTranscodingItemPeriodEnum | null;
 }
 /**
  * @export

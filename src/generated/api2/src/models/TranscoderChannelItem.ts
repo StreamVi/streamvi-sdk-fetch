@@ -48,7 +48,7 @@ export interface TranscoderChannelItem {
      * @type {string}
      * @memberof TranscoderChannelItem
      */
-    photo_default: string;
+    photo_default: string | null;
     /**
      * 
      * @type {number}
@@ -66,13 +66,13 @@ export interface TranscoderChannelItem {
      * @type {number}
      * @memberof TranscoderChannelItem
      */
-    user_id: number;
+    user_id: number | null;
     /**
      * 
      * @type {number}
      * @memberof TranscoderChannelItem
      */
-    transcoderId: number;
+    transcoderId: number | null;
 }
 
 /**

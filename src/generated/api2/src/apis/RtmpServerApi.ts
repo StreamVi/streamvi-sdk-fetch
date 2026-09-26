@@ -16,24 +16,24 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  ListOfRtmpServerLocationResponse,
   RtmpServerGraphResponse,
   RtmpServerListResponseBase,
   RtmpServerListV3Response,
+  RtmpServerLocationsResponse,
   RtmpServerSrtLatencyResponse,
   RtmpServerStateResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    ListOfRtmpServerLocationResponseFromJSON,
-    ListOfRtmpServerLocationResponseToJSON,
     RtmpServerGraphResponseFromJSON,
     RtmpServerGraphResponseToJSON,
     RtmpServerListResponseBaseFromJSON,
     RtmpServerListResponseBaseToJSON,
     RtmpServerListV3ResponseFromJSON,
     RtmpServerListV3ResponseToJSON,
+    RtmpServerLocationsResponseFromJSON,
+    RtmpServerLocationsResponseToJSON,
     RtmpServerSrtLatencyResponseFromJSON,
     RtmpServerSrtLatencyResponseToJSON,
     RtmpServerStateResponseFromJSON,
@@ -94,12 +94,12 @@ export interface RtmpServerApiInterface {
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfRtmpServerLocationResponse>>;
+    methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>>;
 
     /**
      * Rtmp locations server list example for unauthorized
      */
-    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfRtmpServerLocationResponse>;
+    methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse>;
 
     /**
      * 
@@ -213,7 +213,7 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
     /**
      * Rtmp locations server list example for unauthorized
      */
-    async methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfRtmpServerLocationResponse>> {
+    async methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -242,13 +242,13 @@ export class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListOfRtmpServerLocationResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RtmpServerLocationsResponseFromJSON(jsonValue));
     }
 
     /**
      * Rtmp locations server list example for unauthorized
      */
-    async methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfRtmpServerLocationResponse> {
+    async methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse> {
         const response = await this.methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

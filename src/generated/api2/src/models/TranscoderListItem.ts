@@ -105,7 +105,7 @@ export interface TranscoderListItem {
      * @type {string}
      * @memberof TranscoderListItem
      */
-    videoCodec: TranscoderListItemVideoCodecEnum;
+    videoCodec: string;
     /**
      * B-Frames
      * @type {Array<TranscoderChannelItem>}
@@ -117,13 +117,13 @@ export interface TranscoderListItem {
      * @type {number}
      * @memberof TranscoderListItem
      */
-    delay: number;
+    delay?: number;
     /**
      * Preset
      * @type {string}
      * @memberof TranscoderListItem
      */
-    preset: string;
+    preset?: string;
     /**
      * State
      * @type {TranscoderState}
@@ -151,15 +151,6 @@ export type TranscoderListItemStatusEnum = typeof TranscoderListItemStatusEnum[k
 /**
  * @export
  */
-export const TranscoderListItemVideoCodecEnum = {
-    h264: 'h264',
-    hevc: 'hevc'
-} as const;
-export type TranscoderListItemVideoCodecEnum = typeof TranscoderListItemVideoCodecEnum[keyof typeof TranscoderListItemVideoCodecEnum];
-
-/**
- * @export
- */
 export const TranscoderListItemModeEnum = {
     custom: 'custom',
     twitch: 'twitch'
@@ -177,8 +168,6 @@ export function instanceOfTranscoderListItem(value: object): value is Transcoder
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('videoCodec' in value) || value['videoCodec'] === undefined) return false;
     if (!('channels' in value) || value['channels'] === undefined) return false;
-    if (!('delay' in value) || value['delay'] === undefined) return false;
-    if (!('preset' in value) || value['preset'] === undefined) return false;
     if (!('mode' in value) || value['mode'] === undefined) return false;
     return true;
 }
@@ -206,8 +195,8 @@ export function TranscoderListItemFromJSONTyped(json: any, ignoreDiscriminator: 
         'status': json['status'],
         'videoCodec': json['videoCodec'],
         'channels': ((json['channels'] as Array<any>).map(TranscoderChannelItemFromJSON)),
-        'delay': json['delay'],
-        'preset': json['preset'],
+        'delay': json['delay'] == null ? undefined : json['delay'],
+        'preset': json['preset'] == null ? undefined : json['preset'],
         'state': json['state'] == null ? undefined : TranscoderStateFromJSON(json['state']),
         'mode': json['mode'],
     };

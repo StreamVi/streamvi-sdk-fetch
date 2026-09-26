@@ -35,8 +35,6 @@ function instanceOfPlanStorageItem(value) {
         return false;
     if (!('title' in value) || value['title'] === undefined)
         return false;
-    if (!('date_end' in value) || value['date_end'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfPlanStorageItem = instanceOfPlanStorageItem;
@@ -54,7 +52,7 @@ function PlanStorageItemFromJSONTyped(json, ignoreDiscriminator) {
         'period': json['period'],
         'prolongation': json['prolongation'],
         'title': json['title'],
-        'date_end': (new Date(json['date_end'])),
+        'date_end': json['date_end'] == null ? undefined : (new Date(json['date_end'])),
     };
 }
 exports.PlanStorageItemFromJSONTyped = PlanStorageItemFromJSONTyped;
@@ -72,7 +70,7 @@ function PlanStorageItemToJSONTyped(value, ignoreDiscriminator = false) {
         'period': value['period'],
         'prolongation': value['prolongation'],
         'title': value['title'],
-        'date_end': ((value['date_end']).toISOString()),
+        'date_end': value['date_end'] == null ? undefined : ((value['date_end']).toISOString()),
     };
 }
 exports.PlanStorageItemToJSONTyped = PlanStorageItemToJSONTyped;

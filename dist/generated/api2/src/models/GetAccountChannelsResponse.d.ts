@@ -45,7 +45,7 @@ export interface GetAccountChannelsResponse {
      * @type {number}
      * @memberof GetAccountChannelsResponse
      */
-    nextPage: number;
+    nextPage: number | null;
 }
 /**
  * Check if a given object implements the GetAccountChannelsResponse interface.

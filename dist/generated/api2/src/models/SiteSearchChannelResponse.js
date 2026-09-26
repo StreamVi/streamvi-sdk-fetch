@@ -22,13 +22,13 @@ const SearchChannelItem_1 = require("./SearchChannelItem");
 function instanceOfSiteSearchChannelResponse(value) {
     if (!('results' in value) || value['results'] === undefined)
         return false;
-    if (!('platforms' in value) || value['platforms'] === undefined)
-        return false;
     if (!('limit' in value) || value['limit'] === undefined)
         return false;
     if (!('offset' in value) || value['offset'] === undefined)
         return false;
     if (!('total' in value) || value['total'] === undefined)
+        return false;
+    if (!('platforms' in value) || value['platforms'] === undefined)
         return false;
     return true;
 }
@@ -43,10 +43,10 @@ function SiteSearchChannelResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'results': (json['results'].map(SearchChannelItem_1.SearchChannelItemFromJSON)),
-        'platforms': (json['platforms'].map(SearchChannelPlatformsDto_1.SearchChannelPlatformsDtoFromJSON)),
         'limit': json['limit'],
         'offset': json['offset'],
         'total': json['total'],
+        'platforms': (json['platforms'].map(SearchChannelPlatformsDto_1.SearchChannelPlatformsDtoFromJSON)),
     };
 }
 exports.SiteSearchChannelResponseFromJSONTyped = SiteSearchChannelResponseFromJSONTyped;
@@ -60,10 +60,10 @@ function SiteSearchChannelResponseToJSONTyped(value, ignoreDiscriminator = false
     }
     return {
         'results': (value['results'].map(SearchChannelItem_1.SearchChannelItemToJSON)),
-        'platforms': (value['platforms'].map(SearchChannelPlatformsDto_1.SearchChannelPlatformsDtoToJSON)),
         'limit': value['limit'],
         'offset': value['offset'],
         'total': value['total'],
+        'platforms': (value['platforms'].map(SearchChannelPlatformsDto_1.SearchChannelPlatformsDtoToJSON)),
     };
 }
 exports.SiteSearchChannelResponseToJSONTyped = SiteSearchChannelResponseToJSONTyped;

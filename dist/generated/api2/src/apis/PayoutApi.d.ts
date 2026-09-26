@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPayoutSystemAccountListItemResponse, PayoutCreateRequestBodyDto, SuccessResponse } from '../models/index';
+import type { PayoutCreateRequestBodyDto, PayoutSystemAccountListResponse, SuccessResponse } from '../models/index';
 export interface PayoutCreateV1Request {
     language: PayoutCreateV1LanguageEnum;
     PayoutCreateRequestBodyDto: PayoutCreateRequestBodyDto;
@@ -53,11 +53,11 @@ export interface PayoutApiInterface {
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
      */
-    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPayoutSystemAccountListItemResponse>>;
+    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>>;
     /**
      * Get payout data for create
      */
-    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPayoutSystemAccountListItemResponse>;
+    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse>;
 }
 /**
  *
@@ -74,11 +74,11 @@ export declare class PayoutApi extends runtime.BaseAPI implements PayoutApiInter
     /**
      * Get payout data for create
      */
-    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPayoutSystemAccountListItemResponse>>;
+    payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>>;
     /**
      * Get payout data for create
      */
-    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPayoutSystemAccountListItemResponse>;
+    payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse>;
 }
 /**
  * @export

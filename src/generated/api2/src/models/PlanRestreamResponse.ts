@@ -184,6 +184,12 @@ export interface PlanRestreamResponse {
      */
     custom_video: number;
     /**
+     * Maximum disconnect protection time in minutes
+     * @type {number}
+     * @memberof PlanRestreamResponse
+     */
+    disconnect_protection_max_minutes: number;
+    /**
      * Discount
      * @type {PlanRestreamDiscountResponse}
      * @memberof PlanRestreamResponse
@@ -257,6 +263,7 @@ export function instanceOfPlanRestreamResponse(value: object): value is PlanRest
     if (!('index' in value) || value['index'] === undefined) return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined) return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined) return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined) return false;
     if (!('discount' in value) || value['discount'] === undefined) return false;
     return true;
 }
@@ -297,6 +304,7 @@ export function PlanRestreamResponseFromJSONTyped(json: any, ignoreDiscriminator
         'index': json['index'],
         'support_custom_channel': json['support_custom_channel'],
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
         'discount': PlanRestreamDiscountResponseFromJSON(json['discount']),
     };
 }
@@ -338,6 +346,7 @@ export function PlanRestreamResponseToJSONTyped(value?: PlanRestreamResponse | n
         'index': value['index'],
         'support_custom_channel': value['support_custom_channel'],
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
         'discount': PlanRestreamDiscountResponseToJSON(value['discount']),
     };
 }

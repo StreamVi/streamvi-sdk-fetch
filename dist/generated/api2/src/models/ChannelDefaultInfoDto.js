@@ -18,8 +18,6 @@ exports.ChannelDefaultInfoDtoToJSONTyped = exports.ChannelDefaultInfoDtoToJSON =
  * Check if a given object implements the ChannelDefaultInfoDto interface.
  */
 function instanceOfChannelDefaultInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfChannelDefaultInfoDto = instanceOfChannelDefaultInfoDto;
@@ -32,7 +30,7 @@ function ChannelDefaultInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
     };
 }
 exports.ChannelDefaultInfoDtoFromJSONTyped = ChannelDefaultInfoDtoFromJSONTyped;

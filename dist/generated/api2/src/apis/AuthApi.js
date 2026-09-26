@@ -386,6 +386,9 @@ class AuthApi extends runtime.BaseAPI {
         if (requestParameters['country'] != null) {
             queryParameters['country'] = requestParameters['country'];
         }
+        if (requestParameters['visitorId'] != null) {
+            queryParameters['visitorId'] = requestParameters['visitorId'];
+        }
         const headerParameters = {};
         const response = await this.request({
             path: `/method/auth/redirect-url`,

@@ -32,7 +32,7 @@ export interface ChannelTrovoInfoDto {
      * @type {string}
      * @memberof ChannelTrovoInfoDto
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -78,7 +78,6 @@ export type ChannelTrovoInfoDtoAudienceEnum = typeof ChannelTrovoInfoDtoAudience
  * Check if a given object implements the ChannelTrovoInfoDto interface.
  */
 export function instanceOfChannelTrovoInfoDto(value: object): value is ChannelTrovoInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     return true;
 }
 
@@ -92,7 +91,7 @@ export function ChannelTrovoInfoDtoFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'audience': json['audience'] == null ? undefined : json['audience'],
         'category': json['category'] == null ? undefined : ChannelCategoryInfoDtoFromJSON(json['category']),

@@ -50,8 +50,6 @@ exports.ChannelYoutubeInfoDtoAudienceEnum = {
  * Check if a given object implements the ChannelYoutubeInfoDto interface.
  */
 function instanceOfChannelYoutubeInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     if (!('description' in value) || value['description'] === undefined)
         return false;
     return true;
@@ -66,7 +64,7 @@ function ChannelYoutubeInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : json['tags'],

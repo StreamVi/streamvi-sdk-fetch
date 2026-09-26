@@ -36,8 +36,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SocialsApi = void 0;
+exports.SocialsGetListV1VEnum = exports.SocialsGetListV1LanguageEnum = exports.SocialsApi = void 0;
 const runtime = __importStar(require("../runtime"));
+const index_1 = require("../models/index");
 /**
  *
  */
@@ -45,8 +46,20 @@ class SocialsApi extends runtime.BaseAPI {
     /**
      * Social list for user
      */
-    async socialsGetListV1Raw(initOverrides) {
+    async socialsGetListV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling socialsGetListV1().');
+        }
         const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -58,13 +71,28 @@ class SocialsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteSocialListResponseFromJSON)(jsonValue));
     }
     /**
      * Social list for user
      */
-    async socialsGetListV1(initOverrides) {
-        await this.socialsGetListV1Raw(initOverrides);
+    async socialsGetListV1(requestParameters, initOverrides) {
+        const response = await this.socialsGetListV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 }
 exports.SocialsApi = SocialsApi;
+/**
+ * @export
+ */
+exports.SocialsGetListV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.SocialsGetListV1VEnum = {
+    _1: '1'
+};

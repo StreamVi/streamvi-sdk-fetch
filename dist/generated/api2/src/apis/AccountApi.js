@@ -94,6 +94,15 @@ class AccountApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('last_name', 'Required parameter "last_name" was null or undefined when calling accountUpdateProfileV1().');
         }
         const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         const headerParameters = {};
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -113,15 +122,6 @@ class AccountApi extends runtime.BaseAPI {
         }
         else {
             formParams = new URLSearchParams();
-        }
-        if (requestParameters['v'] != null) {
-            formParams.append('v', requestParameters['v']);
-        }
-        else {
-            formParams.append('v', '1');
-        }
-        if (requestParameters['language'] != null) {
-            formParams.append('language', requestParameters['language']);
         }
         if (requestParameters['first_name'] != null) {
             formParams.append('first_name', requestParameters['first_name']);

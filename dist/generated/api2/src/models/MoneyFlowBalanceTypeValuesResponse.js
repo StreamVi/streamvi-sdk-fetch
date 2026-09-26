@@ -18,12 +18,6 @@ exports.MoneyFlowBalanceTypeValuesResponseToJSONTyped = exports.MoneyFlowBalance
  * Check if a given object implements the MoneyFlowBalanceTypeValuesResponse interface.
  */
 function instanceOfMoneyFlowBalanceTypeValuesResponse(value) {
-    if (!('bonus' in value) || value['bonus'] === undefined)
-        return false;
-    if (!('payment' in value) || value['payment'] === undefined)
-        return false;
-    if (!('profit' in value) || value['profit'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfMoneyFlowBalanceTypeValuesResponse = instanceOfMoneyFlowBalanceTypeValuesResponse;
@@ -36,9 +30,9 @@ function MoneyFlowBalanceTypeValuesResponseFromJSONTyped(json, ignoreDiscriminat
         return json;
     }
     return {
-        'bonus': json['bonus'],
-        'payment': json['payment'],
-        'profit': json['profit'],
+        'bonus': json['bonus'] == null ? undefined : json['bonus'],
+        'payment': json['payment'] == null ? undefined : json['payment'],
+        'profit': json['profit'] == null ? undefined : json['profit'],
     };
 }
 exports.MoneyFlowBalanceTypeValuesResponseFromJSONTyped = MoneyFlowBalanceTypeValuesResponseFromJSONTyped;

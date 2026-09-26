@@ -14,7 +14,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SiteBlogPageTagResponseToJSONTyped = exports.SiteBlogPageTagResponseToJSON = exports.SiteBlogPageTagResponseFromJSONTyped = exports.SiteBlogPageTagResponseFromJSON = exports.instanceOfSiteBlogPageTagResponse = exports.SiteBlogPageTagResponseLanguageIsoEnum = exports.SiteBlogPageTagResponseLanguageEnum = void 0;
-const BlogPageSiteResponseId_1 = require("./BlogPageSiteResponseId");
 /**
  * @export
  */
@@ -57,7 +56,7 @@ function SiteBlogPageTagResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdFromJSON)(json['_id']),
+        '_id': json['_id'],
         'language': json['language'],
         'language_iso': json['language_iso'],
         'title': json['title'],
@@ -74,7 +73,7 @@ function SiteBlogPageTagResponseToJSONTyped(value, ignoreDiscriminator = false) 
         return value;
     }
     return {
-        '_id': (0, BlogPageSiteResponseId_1.BlogPageSiteResponseIdToJSON)(value['_id']),
+        '_id': value['_id'],
         'language': value['language'],
         'language_iso': value['language_iso'],
         'title': value['title'],

@@ -42,12 +42,6 @@ export interface SiteSearchChannelResponse {
     results: Array<SearchChannelItem>;
     /**
      * 
-     * @type {Array<SearchChannelPlatformsDto>}
-     * @memberof SiteSearchChannelResponse
-     */
-    platforms: Array<SearchChannelPlatformsDto>;
-    /**
-     * 
      * @type {number}
      * @memberof SiteSearchChannelResponse
      */
@@ -64,6 +58,12 @@ export interface SiteSearchChannelResponse {
      * @memberof SiteSearchChannelResponse
      */
     total: number;
+    /**
+     * 
+     * @type {Array<SearchChannelPlatformsDto>}
+     * @memberof SiteSearchChannelResponse
+     */
+    platforms: Array<SearchChannelPlatformsDto>;
 }
 
 /**
@@ -71,10 +71,10 @@ export interface SiteSearchChannelResponse {
  */
 export function instanceOfSiteSearchChannelResponse(value: object): value is SiteSearchChannelResponse {
     if (!('results' in value) || value['results'] === undefined) return false;
-    if (!('platforms' in value) || value['platforms'] === undefined) return false;
     if (!('limit' in value) || value['limit'] === undefined) return false;
     if (!('offset' in value) || value['offset'] === undefined) return false;
     if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('platforms' in value) || value['platforms'] === undefined) return false;
     return true;
 }
 
@@ -89,10 +89,10 @@ export function SiteSearchChannelResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'results': ((json['results'] as Array<any>).map(SearchChannelItemFromJSON)),
-        'platforms': ((json['platforms'] as Array<any>).map(SearchChannelPlatformsDtoFromJSON)),
         'limit': json['limit'],
         'offset': json['offset'],
         'total': json['total'],
+        'platforms': ((json['platforms'] as Array<any>).map(SearchChannelPlatformsDtoFromJSON)),
     };
 }
 
@@ -108,10 +108,10 @@ export function SiteSearchChannelResponseToJSONTyped(value?: SiteSearchChannelRe
     return {
         
         'results': ((value['results'] as Array<any>).map(SearchChannelItemToJSON)),
-        'platforms': ((value['platforms'] as Array<any>).map(SearchChannelPlatformsDtoToJSON)),
         'limit': value['limit'],
         'offset': value['offset'],
         'total': value['total'],
+        'platforms': ((value['platforms'] as Array<any>).map(SearchChannelPlatformsDtoToJSON)),
     };
 }
 

@@ -43,9 +43,9 @@ function instanceOfPlanRestreamItem(value) {
         return false;
     if (!('support_custom_channel' in value) || value['support_custom_channel'] === undefined)
         return false;
-    if (!('date_end' in value) || value['date_end'] === undefined)
-        return false;
     if (!('custom_video' in value) || value['custom_video'] === undefined)
+        return false;
+    if (!('disconnect_protection_max_minutes' in value) || value['disconnect_protection_max_minutes'] === undefined)
         return false;
     if (!('prolongation' in value) || value['prolongation'] === undefined)
         return false;
@@ -71,8 +71,9 @@ function PlanRestreamItemFromJSONTyped(json, ignoreDiscriminator) {
         'channel_max': json['channel_max'],
         'bitrate_max': json['bitrate_max'],
         'support_custom_channel': json['support_custom_channel'],
-        'date_end': (new Date(json['date_end'])),
+        'date_end': json['date_end'] == null ? undefined : (new Date(json['date_end'])),
         'custom_video': json['custom_video'],
+        'disconnect_protection_max_minutes': json['disconnect_protection_max_minutes'],
         'prolongation': json['prolongation'],
         'title': json['title'],
         'type': json['type'],
@@ -93,8 +94,9 @@ function PlanRestreamItemToJSONTyped(value, ignoreDiscriminator = false) {
         'channel_max': value['channel_max'],
         'bitrate_max': value['bitrate_max'],
         'support_custom_channel': value['support_custom_channel'],
-        'date_end': ((value['date_end']).toISOString()),
+        'date_end': value['date_end'] == null ? undefined : ((value['date_end']).toISOString()),
         'custom_video': value['custom_video'],
+        'disconnect_protection_max_minutes': value['disconnect_protection_max_minutes'],
         'prolongation': value['prolongation'],
         'title': value['title'],
         'type': value['type'],

@@ -44,7 +44,7 @@ export interface ProjectChannelInviteResponse {
      * @type {number}
      * @memberof ProjectChannelInviteResponse
      */
-    to_project_id: number;
+    to_project_id: number | null;
     /**
      * Access type
      * @type {number}
@@ -53,10 +53,10 @@ export interface ProjectChannelInviteResponse {
     access_type: ProjectChannelInviteResponseAccessTypeEnum;
     /**
      * Date create
-     * @type {string}
+     * @type {Date}
      * @memberof ProjectChannelInviteResponse
      */
-    date: string;
+    date: Date;
     /**
      * Secret key for link
      * @type {string}
@@ -92,7 +92,7 @@ export interface ProjectChannelInviteResponse {
      * @type {ProjectChannelInviteProjectResponse}
      * @memberof ProjectChannelInviteResponse
      */
-    to_project_?: ProjectChannelInviteProjectResponse;
+    to_project_?: ProjectChannelInviteProjectResponse | null;
 }
 
 
@@ -135,7 +135,7 @@ export function ProjectChannelInviteResponseFromJSONTyped(json: any, ignoreDiscr
         'channel_id': json['channel_id'],
         'to_project_id': json['to_project_id'],
         'access_type': json['access_type'],
-        'date': json['date'],
+        'date': (new Date(json['date'])),
         'secret': json['secret'],
         'email': json['email'] == null ? undefined : json['email'],
         'reject': json['reject'] == null ? undefined : json['reject'],
@@ -160,7 +160,7 @@ export function ProjectChannelInviteResponseToJSONTyped(value?: ProjectChannelIn
         'channel_id': value['channel_id'],
         'to_project_id': value['to_project_id'],
         'access_type': value['access_type'],
-        'date': value['date'],
+        'date': ((value['date']).toISOString()),
         'secret': value['secret'],
         'email': value['email'],
         'reject': value['reject'],

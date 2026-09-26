@@ -77,7 +77,7 @@ class VideoApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoSiteCreateV1200ResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoCreateSuccessResponseFromJSON)(jsonValue));
     }
     /**
      * Create upload session
@@ -326,7 +326,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
     async videoSiteProgressChannelV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -359,10 +359,10 @@ class VideoApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoProgressChannelResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.VideoProgressChannelResponseFromJSON));
     }
     /**
-     * Get upload progress channel for centrifuge
+     * Get upload progress channels for centrifuge
      */
     async videoSiteProgressChannelV1(requestParameters, initOverrides) {
         const response = await this.videoSiteProgressChannelV1Raw(requestParameters, initOverrides);

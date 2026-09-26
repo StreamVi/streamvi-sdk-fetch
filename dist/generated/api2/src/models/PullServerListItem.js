@@ -20,6 +20,8 @@ const CountryItem_1 = require("./CountryItem");
  * Check if a given object implements the PullServerListItem interface.
  */
 function instanceOfPullServerListItem(value) {
+    if (!('targetKey' in value) || value['targetKey'] === undefined)
+        return false;
     if (!('city' in value) || value['city'] === undefined)
         return false;
     if (!('pingHost' in value) || value['pingHost'] === undefined)
@@ -40,6 +42,7 @@ function PullServerListItemFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
+        'targetKey': json['targetKey'],
         'city': json['city'],
         'pingHost': json['pingHost'],
         'url': (0, PullServerTransports_1.PullServerTransportsFromJSON)(json['url']),
@@ -56,6 +59,7 @@ function PullServerListItemToJSONTyped(value, ignoreDiscriminator = false) {
         return value;
     }
     return {
+        'targetKey': value['targetKey'],
         'city': value['city'],
         'pingHost': value['pingHost'],
         'url': (0, PullServerTransports_1.PullServerTransportsToJSON)(value['url']),

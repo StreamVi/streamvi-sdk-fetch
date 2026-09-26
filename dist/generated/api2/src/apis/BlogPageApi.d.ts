@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedResponseOfBlogPageSiteResponse } from '../models/index';
+import type { GetBlogPageResponse, PaginatedBlogPageSiteResponse } from '../models/index';
 export interface BlogPageGetV1Request {
     language: BlogPageGetV1LanguageEnum;
     url: string;
@@ -40,11 +40,11 @@ export interface BlogPageApiInterface {
      * @throws {RequiredError}
      * @memberof BlogPageApiInterface
      */
-    blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfBlogPageSiteResponse>>;
+    blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBlogPageResponse>>;
     /**
      * Get blog page
      */
-    blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfBlogPageSiteResponse>;
+    blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBlogPageResponse>;
     /**
      *
      * @summary Get list of blog pages
@@ -57,11 +57,11 @@ export interface BlogPageApiInterface {
      * @throws {RequiredError}
      * @memberof BlogPageApiInterface
      */
-    blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfBlogPageSiteResponse>>;
+    blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageSiteResponse>>;
     /**
      * Get list of blog pages
      */
-    blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfBlogPageSiteResponse>;
+    blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageSiteResponse>;
 }
 /**
  *
@@ -70,19 +70,19 @@ export declare class BlogPageApi extends runtime.BaseAPI implements BlogPageApiI
     /**
      * Get blog page
      */
-    blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfBlogPageSiteResponse>>;
+    blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBlogPageResponse>>;
     /**
      * Get blog page
      */
-    blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfBlogPageSiteResponse>;
+    blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBlogPageResponse>;
     /**
      * Get list of blog pages
      */
-    blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfBlogPageSiteResponse>>;
+    blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageSiteResponse>>;
     /**
      * Get list of blog pages
      */
-    blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfBlogPageSiteResponse>;
+    blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageSiteResponse>;
 }
 /**
  * @export

@@ -97,7 +97,7 @@ export interface CentrifugeApiInterface {
     centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
      * @summary Get token for connect to centrifuge for channel
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
@@ -110,7 +110,7 @@ export interface CentrifugeApiInterface {
     centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>>;
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
      * Get token for connect to centrifuge for channel
      */
     centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse>;
@@ -251,7 +251,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>> {
@@ -314,7 +314,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse> {

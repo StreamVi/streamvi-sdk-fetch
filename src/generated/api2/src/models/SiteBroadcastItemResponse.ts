@@ -38,13 +38,13 @@ export interface SiteBroadcastItemResponse {
      * @type {Date}
      * @memberof SiteBroadcastItemResponse
      */
-    created_at: Date;
+    created_at: Date | null;
     /**
      * Finish time
      * @type {Date}
      * @memberof SiteBroadcastItemResponse
      */
-    finish_at: Date;
+    finish_at: Date | null;
     /**
      * Count reconnects
      * @type {number}
@@ -82,8 +82,8 @@ export function SiteBroadcastItemResponseFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'id': json['id'],
-        'created_at': (new Date(json['created_at'])),
-        'finish_at': (new Date(json['finish_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
+        'finish_at': (json['finish_at'] == null ? null : new Date(json['finish_at'])),
         'reconnects': json['reconnects'],
         'restreams': ((json['restreams'] as Array<any>).map(SiteRestreamItemResponseFromJSON)),
     };
@@ -101,8 +101,8 @@ export function SiteBroadcastItemResponseToJSONTyped(value?: SiteBroadcastItemRe
     return {
         
         'id': value['id'],
-        'created_at': ((value['created_at']).toISOString()),
-        'finish_at': ((value['finish_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : (value['created_at'] as any).toISOString()),
+        'finish_at': (value['finish_at'] == null ? null : (value['finish_at'] as any).toISOString()),
         'reconnects': value['reconnects'],
         'restreams': ((value['restreams'] as Array<any>).map(SiteRestreamItemResponseToJSON)),
     };

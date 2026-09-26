@@ -14,7 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectChannelResponseToJSONTyped = exports.ProjectChannelResponseToJSON = exports.ProjectChannelResponseFromJSONTyped = exports.ProjectChannelResponseFromJSON = exports.instanceOfProjectChannelResponse = exports.ProjectChannelResponseUsageTypeEnum = exports.ProjectChannelResponseAccessTypeEnum = void 0;
-const ProjectChannelMemberStreamInfoResponse_1 = require("./ProjectChannelMemberStreamInfoResponse");
+const ProjectChannelResponseStreamInfo_1 = require("./ProjectChannelResponseStreamInfo");
 const ProjectChannelMemberInfoResponse_1 = require("./ProjectChannelMemberInfoResponse");
 /**
  * @export
@@ -79,7 +79,7 @@ function ProjectChannelResponseFromJSONTyped(json, ignoreDiscriminator) {
         'usageType': json['usageType'],
         'project_id': json['project_id'],
         'project_': json['project_'] == null ? undefined : (0, ProjectChannelMemberInfoResponse_1.ProjectChannelMemberInfoResponseFromJSON)(json['project_']),
-        'streamInfo': (0, ProjectChannelMemberStreamInfoResponse_1.ProjectChannelMemberStreamInfoResponseFromJSON)(json['streamInfo']),
+        'streamInfo': (0, ProjectChannelResponseStreamInfo_1.ProjectChannelResponseStreamInfoFromJSON)(json['streamInfo']),
     };
 }
 exports.ProjectChannelResponseFromJSONTyped = ProjectChannelResponseFromJSONTyped;
@@ -104,7 +104,7 @@ function ProjectChannelResponseToJSONTyped(value, ignoreDiscriminator = false) {
         'usageType': value['usageType'],
         'project_id': value['project_id'],
         'project_': (0, ProjectChannelMemberInfoResponse_1.ProjectChannelMemberInfoResponseToJSON)(value['project_']),
-        'streamInfo': (0, ProjectChannelMemberStreamInfoResponse_1.ProjectChannelMemberStreamInfoResponseToJSON)(value['streamInfo']),
+        'streamInfo': (0, ProjectChannelResponseStreamInfo_1.ProjectChannelResponseStreamInfoToJSON)(value['streamInfo']),
     };
 }
 exports.ProjectChannelResponseToJSONTyped = ProjectChannelResponseToJSONTyped;

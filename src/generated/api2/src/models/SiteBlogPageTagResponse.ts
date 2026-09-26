@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BlogPageSiteResponseId } from './BlogPageSiteResponseId';
-import {
-    BlogPageSiteResponseIdFromJSON,
-    BlogPageSiteResponseIdFromJSONTyped,
-    BlogPageSiteResponseIdToJSON,
-    BlogPageSiteResponseIdToJSONTyped,
-} from './BlogPageSiteResponseId';
-
 /**
  * 
  * @export
@@ -28,11 +20,11 @@ import {
  */
 export interface SiteBlogPageTagResponse {
     /**
-     * 
-     * @type {BlogPageSiteResponseId}
+     * Id of page in mongodb
+     * @type {string}
      * @memberof SiteBlogPageTagResponse
      */
-    _id: BlogPageSiteResponseId;
+    _id: string;
     /**
      * Language for indexing
      * @type {string}
@@ -103,7 +95,7 @@ export function SiteBlogPageTagResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        '_id': BlogPageSiteResponseIdFromJSON(json['_id']),
+        '_id': json['_id'],
         'language': json['language'],
         'language_iso': json['language_iso'],
         'title': json['title'],
@@ -122,7 +114,7 @@ export function SiteBlogPageTagResponseToJSONTyped(value?: SiteBlogPageTagRespon
 
     return {
         
-        '_id': BlogPageSiteResponseIdToJSON(value['_id']),
+        '_id': value['_id'],
         'language': value['language'],
         'language_iso': value['language_iso'],
         'title': value['title'],

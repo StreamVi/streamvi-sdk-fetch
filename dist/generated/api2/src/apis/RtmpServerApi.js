@@ -67,7 +67,7 @@ class RtmpServerApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfRtmpServerLocationResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerLocationsResponseFromJSON)(jsonValue));
     }
     /**
      * Rtmp locations server list example for unauthorized

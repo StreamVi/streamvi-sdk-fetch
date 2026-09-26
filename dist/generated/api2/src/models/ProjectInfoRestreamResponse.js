@@ -14,8 +14,8 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProjectInfoRestreamResponseToJSONTyped = exports.ProjectInfoRestreamResponseToJSON = exports.ProjectInfoRestreamResponseFromJSONTyped = exports.ProjectInfoRestreamResponseFromJSON = exports.instanceOfProjectInfoRestreamResponse = void 0;
-const PlanRestream2UserItemResponse_1 = require("./PlanRestream2UserItemResponse");
-const PlanRestreamResponse_1 = require("./PlanRestreamResponse");
+const ProjectInfoRestreamDataResponse_1 = require("./ProjectInfoRestreamDataResponse");
+const ProjectInfoRestreamPeriodResponse_1 = require("./ProjectInfoRestreamPeriodResponse");
 /**
  * Check if a given object implements the ProjectInfoRestreamResponse interface.
  */
@@ -36,8 +36,8 @@ function ProjectInfoRestreamResponseFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'plan2user': (0, PlanRestream2UserItemResponse_1.PlanRestream2UserItemResponseFromJSON)(json['plan2user']),
-        'data': (0, PlanRestreamResponse_1.PlanRestreamResponseFromJSON)(json['data']),
+        'plan2user': (0, ProjectInfoRestreamPeriodResponse_1.ProjectInfoRestreamPeriodResponseFromJSON)(json['plan2user']),
+        'data': (0, ProjectInfoRestreamDataResponse_1.ProjectInfoRestreamDataResponseFromJSON)(json['data']),
     };
 }
 exports.ProjectInfoRestreamResponseFromJSONTyped = ProjectInfoRestreamResponseFromJSONTyped;
@@ -50,8 +50,8 @@ function ProjectInfoRestreamResponseToJSONTyped(value, ignoreDiscriminator = fal
         return value;
     }
     return {
-        'plan2user': (0, PlanRestream2UserItemResponse_1.PlanRestream2UserItemResponseToJSON)(value['plan2user']),
-        'data': (0, PlanRestreamResponse_1.PlanRestreamResponseToJSON)(value['data']),
+        'plan2user': (0, ProjectInfoRestreamPeriodResponse_1.ProjectInfoRestreamPeriodResponseToJSON)(value['plan2user']),
+        'data': (0, ProjectInfoRestreamDataResponse_1.ProjectInfoRestreamDataResponseToJSON)(value['data']),
     };
 }
 exports.ProjectInfoRestreamResponseToJSONTyped = ProjectInfoRestreamResponseToJSONTyped;

@@ -13,20 +13,20 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PlanStorage2UserItemResponse } from './PlanStorage2UserItemResponse';
+import type { ProjectInfoStoragePeriodResponse } from './ProjectInfoStoragePeriodResponse';
 import {
-    PlanStorage2UserItemResponseFromJSON,
-    PlanStorage2UserItemResponseFromJSONTyped,
-    PlanStorage2UserItemResponseToJSON,
-    PlanStorage2UserItemResponseToJSONTyped,
-} from './PlanStorage2UserItemResponse';
-import type { PlanTranscodingResponse } from './PlanTranscodingResponse';
+    ProjectInfoStoragePeriodResponseFromJSON,
+    ProjectInfoStoragePeriodResponseFromJSONTyped,
+    ProjectInfoStoragePeriodResponseToJSON,
+    ProjectInfoStoragePeriodResponseToJSONTyped,
+} from './ProjectInfoStoragePeriodResponse';
+import type { PlanStorageResponse } from './PlanStorageResponse';
 import {
-    PlanTranscodingResponseFromJSON,
-    PlanTranscodingResponseFromJSONTyped,
-    PlanTranscodingResponseToJSON,
-    PlanTranscodingResponseToJSONTyped,
-} from './PlanTranscodingResponse';
+    PlanStorageResponseFromJSON,
+    PlanStorageResponseFromJSONTyped,
+    PlanStorageResponseToJSON,
+    PlanStorageResponseToJSONTyped,
+} from './PlanStorageResponse';
 
 /**
  * 
@@ -36,16 +36,16 @@ import {
 export interface ProjectInfoStorageResponse {
     /**
      * Plan storage to user
-     * @type {PlanStorage2UserItemResponse}
+     * @type {ProjectInfoStoragePeriodResponse}
      * @memberof ProjectInfoStorageResponse
      */
-    plan2user: PlanStorage2UserItemResponse;
+    plan2user: ProjectInfoStoragePeriodResponse;
     /**
      * Plan storage data
-     * @type {PlanTranscodingResponse}
+     * @type {PlanStorageResponse}
      * @memberof ProjectInfoStorageResponse
      */
-    data: PlanTranscodingResponse;
+    data: PlanStorageResponse;
 }
 
 /**
@@ -67,8 +67,8 @@ export function ProjectInfoStorageResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'plan2user': PlanStorage2UserItemResponseFromJSON(json['plan2user']),
-        'data': PlanTranscodingResponseFromJSON(json['data']),
+        'plan2user': ProjectInfoStoragePeriodResponseFromJSON(json['plan2user']),
+        'data': PlanStorageResponseFromJSON(json['data']),
     };
 }
 
@@ -83,8 +83,8 @@ export function ProjectInfoStorageResponseToJSONTyped(value?: ProjectInfoStorage
 
     return {
         
-        'plan2user': PlanStorage2UserItemResponseToJSON(value['plan2user']),
-        'data': PlanTranscodingResponseToJSON(value['data']),
+        'plan2user': ProjectInfoStoragePeriodResponseToJSON(value['plan2user']),
+        'data': PlanStorageResponseToJSON(value['data']),
     };
 }
 

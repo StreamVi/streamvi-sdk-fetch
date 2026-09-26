@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedResponseOfProjectHistoryResponse } from '../models/index';
+import type { PaginatedProjectHistoryResponse } from '../models/index';
 export interface ProjectHistoryListV1Request {
     language: ProjectHistoryListV1LanguageEnum;
     project_id: number;
@@ -45,11 +45,11 @@ export interface ProjectHistoryApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectHistoryApiInterface
      */
-    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfProjectHistoryResponse>>;
+    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>>;
     /**
      * Get project history of actions
      */
-    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfProjectHistoryResponse>;
+    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse>;
 }
 /**
  *
@@ -58,11 +58,11 @@ export declare class ProjectHistoryApi extends runtime.BaseAPI implements Projec
     /**
      * Get project history of actions
      */
-    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfProjectHistoryResponse>>;
+    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>>;
     /**
      * Get project history of actions
      */
-    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfProjectHistoryResponse>;
+    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse>;
 }
 /**
  * @export

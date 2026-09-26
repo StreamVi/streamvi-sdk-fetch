@@ -57,6 +57,12 @@ export interface SiteUpdateOptionsVkVideoLiveRequest {
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
     category_name?: string;
+    /**
+     * category type
+     * @type {string}
+     * @memberof SiteUpdateOptionsVkVideoLiveRequest
+     */
+    category_type?: SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum;
 }
 /**
  * @export
@@ -74,6 +80,15 @@ export declare const SiteUpdateOptionsVkVideoLiveRequestLanguageEnum: {
     readonly cn: "cn";
 };
 export type SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum[keyof typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum];
+/**
+ * @export
+ */
+export declare const SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum: {
+    readonly irl: "irl";
+    readonly game: "game";
+    readonly sport: "sport";
+};
+export type SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum = typeof SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum[keyof typeof SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum];
 /**
  * Check if a given object implements the SiteUpdateOptionsVkVideoLiveRequest interface.
  */

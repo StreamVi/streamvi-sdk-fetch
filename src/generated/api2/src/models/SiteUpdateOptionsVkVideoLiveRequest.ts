@@ -61,6 +61,12 @@ export interface SiteUpdateOptionsVkVideoLiveRequest {
      * @memberof SiteUpdateOptionsVkVideoLiveRequest
      */
     category_name?: string;
+    /**
+     * category type
+     * @type {string}
+     * @memberof SiteUpdateOptionsVkVideoLiveRequest
+     */
+    category_type?: SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum;
 }
 
 
@@ -81,6 +87,16 @@ export const SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = {
     cn: 'cn'
 } as const;
 export type SiteUpdateOptionsVkVideoLiveRequestLanguageEnum = typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum[keyof typeof SiteUpdateOptionsVkVideoLiveRequestLanguageEnum];
+
+/**
+ * @export
+ */
+export const SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum = {
+    irl: 'irl',
+    game: 'game',
+    sport: 'sport'
+} as const;
+export type SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum = typeof SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum[keyof typeof SiteUpdateOptionsVkVideoLiveRequestCategoryTypeEnum];
 
 
 /**
@@ -111,6 +127,7 @@ export function SiteUpdateOptionsVkVideoLiveRequestFromJSONTyped(json: any, igno
         'title': json['title'],
         'category_id': json['category_id'] == null ? undefined : json['category_id'],
         'category_name': json['category_name'] == null ? undefined : json['category_name'],
+        'category_type': json['category_type'] == null ? undefined : json['category_type'],
     };
 }
 
@@ -132,6 +149,7 @@ export function SiteUpdateOptionsVkVideoLiveRequestToJSONTyped(value?: SiteUpdat
         'title': value['title'],
         'category_id': value['category_id'],
         'category_name': value['category_name'],
+        'category_type': value['category_type'],
     };
 }
 

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { BroadcastStatusV1200Response, MethodBroadcastRestreamsResponse, MethodCurrentBroadcastResponse, SiteBroadcastCredentialsResponse, SiteBroadcastEventsV4Response, SiteBroadcastFindResponse, SiteBroadcastGraphResponse, SiteBroadcastListResponse, SiteBroadcastPauseRequest, SiteBroadcastPlayRequest, SiteBroadcastRestreamsInfoResponse, SiteBroadcastStopRequest, SiteRestreamEventResponse, SuccessResponse } from '../models/index';
+import type { BroadcastStatusV1200Response, MethodBroadcastRestreamsResponse, MethodCurrentBroadcastResponse, SiteBroadcastCredentialsResponse, SiteBroadcastEventsV4Response, SiteBroadcastFindResponse, SiteBroadcastGraphResponse, SiteBroadcastListResponse, SiteBroadcastPauseRequest, SiteBroadcastPlayRequest, SiteBroadcastRestreamsInfoResponse, SiteBroadcastStopRequest, SiteBroadcastTemplateResponse, SiteRestreamEventResponse, SuccessResponse } from '../models/index';
 export interface BroadcastCredentialsV1Request {
     language: BroadcastCredentialsV1LanguageEnum;
     project_id: number;
@@ -45,6 +45,11 @@ export interface BroadcastFindV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastFindV1VEnum;
+}
+export interface BroadcastGetTemplateV1Request {
+    language: BroadcastGetTemplateV1LanguageEnum;
+    project_id: number;
+    v?: BroadcastGetTemplateV1VEnum;
 }
 export interface BroadcastGraphBitrateV1Request {
     language: BroadcastGraphBitrateV1LanguageEnum;
@@ -179,6 +184,21 @@ export interface BroadcastApiInterface {
      * Get one broadcast
      */
     broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
+    /**
+     *
+     * @summary Get broadcast title and description template
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BroadcastApiInterface
+     */
+    broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>>;
+    /**
+     * Get broadcast title and description template
+     */
+    broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse>;
     /**
      *
      * @summary Bitrate from broadcast
@@ -368,6 +388,14 @@ export declare class BroadcastApi extends runtime.BaseAPI implements BroadcastAp
      */
     broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
     /**
+     * Get broadcast title and description template
+     */
+    broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>>;
+    /**
+     * Get broadcast title and description template
+     */
+    broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse>;
+    /**
      * Bitrate from broadcast
      */
     broadcastGraphBitrateV1Raw(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
@@ -530,6 +558,22 @@ export declare const BroadcastFindV1VEnum: {
     readonly _3: "3";
 };
 export type BroadcastFindV1VEnum = typeof BroadcastFindV1VEnum[keyof typeof BroadcastFindV1VEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGetTemplateV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type BroadcastGetTemplateV1LanguageEnum = typeof BroadcastGetTemplateV1LanguageEnum[keyof typeof BroadcastGetTemplateV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const BroadcastGetTemplateV1VEnum: {
+    readonly _1: "1";
+};
+export type BroadcastGetTemplateV1VEnum = typeof BroadcastGetTemplateV1VEnum[keyof typeof BroadcastGetTemplateV1VEnum];
 /**
  * @export
  */

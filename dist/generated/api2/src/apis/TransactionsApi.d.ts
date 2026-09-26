@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedResponseOfTransactionResponse } from '../models/index';
+import type { PaginatedTransactionResponse } from '../models/index';
 export interface TransactionsListV1Request {
     language: TransactionsListV1LanguageEnum;
     project_id: number;
@@ -43,11 +43,11 @@ export interface TransactionsApiInterface {
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
      */
-    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfTransactionResponse>>;
+    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>>;
     /**
      * Transaction list for frontend
      */
-    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfTransactionResponse>;
+    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse>;
 }
 /**
  *
@@ -56,11 +56,11 @@ export declare class TransactionsApi extends runtime.BaseAPI implements Transact
     /**
      * Transaction list for frontend
      */
-    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfTransactionResponse>>;
+    transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>>;
     /**
      * Transaction list for frontend
      */
-    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfTransactionResponse>;
+    transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse>;
 }
 /**
  * @export

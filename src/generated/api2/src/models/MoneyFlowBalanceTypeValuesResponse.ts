@@ -24,28 +24,25 @@ export interface MoneyFlowBalanceTypeValuesResponse {
      * @type {number}
      * @memberof MoneyFlowBalanceTypeValuesResponse
      */
-    bonus: number;
+    bonus?: number;
     /**
      * Payment balance
      * @type {number}
      * @memberof MoneyFlowBalanceTypeValuesResponse
      */
-    payment: number;
+    payment?: number;
     /**
      * Profit balance
      * @type {number}
      * @memberof MoneyFlowBalanceTypeValuesResponse
      */
-    profit: number;
+    profit?: number;
 }
 
 /**
  * Check if a given object implements the MoneyFlowBalanceTypeValuesResponse interface.
  */
 export function instanceOfMoneyFlowBalanceTypeValuesResponse(value: object): value is MoneyFlowBalanceTypeValuesResponse {
-    if (!('bonus' in value) || value['bonus'] === undefined) return false;
-    if (!('payment' in value) || value['payment'] === undefined) return false;
-    if (!('profit' in value) || value['profit'] === undefined) return false;
     return true;
 }
 
@@ -59,9 +56,9 @@ export function MoneyFlowBalanceTypeValuesResponseFromJSONTyped(json: any, ignor
     }
     return {
         
-        'bonus': json['bonus'],
-        'payment': json['payment'],
-        'profit': json['profit'],
+        'bonus': json['bonus'] == null ? undefined : json['bonus'],
+        'payment': json['payment'] == null ? undefined : json['payment'],
+        'profit': json['profit'] == null ? undefined : json['profit'],
     };
 }
 

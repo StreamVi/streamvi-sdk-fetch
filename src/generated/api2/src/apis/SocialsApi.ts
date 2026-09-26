@@ -16,11 +16,19 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
+  SiteSocialListResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SiteSocialListResponseFromJSON,
+    SiteSocialListResponseToJSON,
 } from '../models/index';
+
+export interface SocialsGetListV1Request {
+    language: SocialsGetListV1LanguageEnum;
+    v?: SocialsGetListV1VEnum;
+}
 
 /**
  * SocialsApi - interface
@@ -32,16 +40,18 @@ export interface SocialsApiInterface {
     /**
      * 
      * @summary Social list for user
+     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SocialsApiInterface
      */
-    socialsGetListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>>;
 
     /**
      * Social list for user
      */
-    socialsGetListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse>;
 
 }
 
@@ -53,8 +63,25 @@ export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
     /**
      * Social list for user
      */
-    async socialsGetListV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling socialsGetListV1().'
+            );
+        }
+
         const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -70,14 +97,32 @@ export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SiteSocialListResponseFromJSON(jsonValue));
     }
 
     /**
      * Social list for user
      */
-    async socialsGetListV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.socialsGetListV1Raw(initOverrides);
+    async socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse> {
+        const response = await this.socialsGetListV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }
+
+/**
+ * @export
+ */
+export const SocialsGetListV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type SocialsGetListV1LanguageEnum = typeof SocialsGetListV1LanguageEnum[keyof typeof SocialsGetListV1LanguageEnum];
+/**
+ * @export
+ */
+export const SocialsGetListV1VEnum = {
+    _1: '1'
+} as const;
+export type SocialsGetListV1VEnum = typeof SocialsGetListV1VEnum[keyof typeof SocialsGetListV1VEnum];

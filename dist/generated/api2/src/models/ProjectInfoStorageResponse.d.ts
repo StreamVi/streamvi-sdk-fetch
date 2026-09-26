@@ -9,8 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PlanStorage2UserItemResponse } from './PlanStorage2UserItemResponse';
-import type { PlanTranscodingResponse } from './PlanTranscodingResponse';
+import type { ProjectInfoStoragePeriodResponse } from './ProjectInfoStoragePeriodResponse';
+import type { PlanStorageResponse } from './PlanStorageResponse';
 /**
  *
  * @export
@@ -19,16 +19,16 @@ import type { PlanTranscodingResponse } from './PlanTranscodingResponse';
 export interface ProjectInfoStorageResponse {
     /**
      * Plan storage to user
-     * @type {PlanStorage2UserItemResponse}
+     * @type {ProjectInfoStoragePeriodResponse}
      * @memberof ProjectInfoStorageResponse
      */
-    plan2user: PlanStorage2UserItemResponse;
+    plan2user: ProjectInfoStoragePeriodResponse;
     /**
      * Plan storage data
-     * @type {PlanTranscodingResponse}
+     * @type {PlanStorageResponse}
      * @memberof ProjectInfoStorageResponse
      */
-    data: PlanTranscodingResponse;
+    data: PlanStorageResponse;
 }
 /**
  * Check if a given object implements the ProjectInfoStorageResponse interface.

@@ -16,12 +16,25 @@
  */
 export interface SiteBroadcastStatusInactiveResponse {
     /**
+     * Broadcast status response kind
+     * @type {string}
+     * @memberof SiteBroadcastStatusInactiveResponse
+     */
+    kind: SiteBroadcastStatusInactiveResponseKindEnum;
+    /**
      * Stream status
      * @type {string}
      * @memberof SiteBroadcastStatusInactiveResponse
      */
     status: SiteBroadcastStatusInactiveResponseStatusEnum;
 }
+/**
+ * @export
+ */
+export declare const SiteBroadcastStatusInactiveResponseKindEnum: {
+    readonly inactive: "inactive";
+};
+export type SiteBroadcastStatusInactiveResponseKindEnum = typeof SiteBroadcastStatusInactiveResponseKindEnum[keyof typeof SiteBroadcastStatusInactiveResponseKindEnum];
 /**
  * @export
  */

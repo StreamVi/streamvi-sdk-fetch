@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { SiteNotifyUserResponse, SiteScreenNotifyUserResponse, SiteSetNotifyUserRequest, SuccessResponse } from '../models/index';
+import type { SiteNotifyUserResponse, SiteSetNotifyUserRequest, SuccessResponse } from '../models/index';
 export interface NotifyUserDelMobileTokenV1Request {
     language: NotifyUserDelMobileTokenV1LanguageEnum;
     token: string;
@@ -65,11 +65,11 @@ export interface NotifyUserApiInterface {
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
      */
-    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteScreenNotifyUserResponse>>;
+    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
      * Get user screen notify
      */
-    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteScreenNotifyUserResponse>;
+    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
     /**
      *
      * @summary Get user notify settings
@@ -128,11 +128,11 @@ export declare class NotifyUserApi extends runtime.BaseAPI implements NotifyUser
     /**
      * Get user screen notify
      */
-    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteScreenNotifyUserResponse>>;
+    notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
      * Get user screen notify
      */
-    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteScreenNotifyUserResponse>;
+    notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
     /**
      * Get user notify settings
      */

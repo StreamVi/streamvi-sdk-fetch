@@ -39,7 +39,7 @@ export interface ChannelYoutubeInfoDto {
      * @type {string}
      * @memberof ChannelYoutubeInfoDto
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -146,7 +146,6 @@ export type ChannelYoutubeInfoDtoAudienceEnum = typeof ChannelYoutubeInfoDtoAudi
  * Check if a given object implements the ChannelYoutubeInfoDto interface.
  */
 export function instanceOfChannelYoutubeInfoDto(value: object): value is ChannelYoutubeInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     return true;
 }
@@ -161,7 +160,7 @@ export function ChannelYoutubeInfoDtoFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'description': json['description'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : json['tags'],

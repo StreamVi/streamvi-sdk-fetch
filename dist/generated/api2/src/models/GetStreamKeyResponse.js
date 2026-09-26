@@ -20,6 +20,8 @@ exports.GetStreamKeyResponseToJSONTyped = exports.GetStreamKeyResponseToJSON = e
 function instanceOfGetStreamKeyResponse(value) {
     if (!('wait' in value) || value['wait'] === undefined)
         return false;
+    if (!('wait_max_minutes' in value) || value['wait_max_minutes'] === undefined)
+        return false;
     if (!('record' in value) || value['record'] === undefined)
         return false;
     if (!('key' in value) || value['key'] === undefined)
@@ -41,6 +43,7 @@ function GetStreamKeyResponseFromJSONTyped(json, ignoreDiscriminator) {
     }
     return {
         'wait': json['wait'],
+        'wait_max_minutes': json['wait_max_minutes'],
         'record': json['record'],
         'key': json['key'],
         'pause_media_service_file_id': json['pause_media_service_file_id'],
@@ -58,6 +61,7 @@ function GetStreamKeyResponseToJSONTyped(value, ignoreDiscriminator = false) {
     }
     return {
         'wait': value['wait'],
+        'wait_max_minutes': value['wait_max_minutes'],
         'record': value['record'],
         'key': value['key'],
         'pause_media_service_file_id': value['pause_media_service_file_id'],

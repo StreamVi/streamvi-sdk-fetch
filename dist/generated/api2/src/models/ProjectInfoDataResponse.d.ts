@@ -50,7 +50,7 @@ export interface ProjectInfoDataResponse {
      * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    external_id: string;
+    external_id: string | null;
     /**
      * Project type
      * @type {number}
@@ -77,10 +77,10 @@ export interface ProjectInfoDataResponse {
     balance_profit: number;
     /**
      * Currency
-     * @type {number}
+     * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    currency: ProjectInfoDataResponseCurrencyEnum | null;
+    currency: ProjectInfoDataResponseCurrencyEnum;
     /**
      * Country id
      * @type {number}
@@ -99,7 +99,10 @@ export type ProjectInfoDataResponseTypeEnum = typeof ProjectInfoDataResponseType
 /**
  * @export
  */
-export declare const ProjectInfoDataResponseCurrencyEnum: {};
+export declare const ProjectInfoDataResponseCurrencyEnum: {
+    readonly rub: "rub";
+    readonly usd: "usd";
+};
 export type ProjectInfoDataResponseCurrencyEnum = typeof ProjectInfoDataResponseCurrencyEnum[keyof typeof ProjectInfoDataResponseCurrencyEnum];
 /**
  * Check if a given object implements the ProjectInfoDataResponse interface.

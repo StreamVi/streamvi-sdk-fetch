@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   ErrorResponse,
-  PaginatedResponseOfProjectHistoryResponse,
+  PaginatedProjectHistoryResponse,
 } from '../models/index';
 import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
-    PaginatedResponseOfProjectHistoryResponseFromJSON,
-    PaginatedResponseOfProjectHistoryResponseToJSON,
+    PaginatedProjectHistoryResponseFromJSON,
+    PaginatedProjectHistoryResponseToJSON,
 } from '../models/index';
 
 export interface ProjectHistoryListV1Request {
@@ -60,12 +60,12 @@ export interface ProjectHistoryApiInterface {
      * @throws {RequiredError}
      * @memberof ProjectHistoryApiInterface
      */
-    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfProjectHistoryResponse>>;
+    projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>>;
 
     /**
      * Get project history of actions
      */
-    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfProjectHistoryResponse>;
+    projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse>;
 
 }
 
@@ -77,7 +77,7 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
     /**
      * Get project history of actions
      */
-    async projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfProjectHistoryResponse>> {
+    async projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
@@ -146,13 +146,13 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedResponseOfProjectHistoryResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginatedProjectHistoryResponseFromJSON(jsonValue));
     }
 
     /**
      * Get project history of actions
      */
-    async projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfProjectHistoryResponse> {
+    async projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse> {
         const response = await this.projectHistoryListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }

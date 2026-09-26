@@ -34,8 +34,6 @@ exports.ChannelTrovoInfoDtoAudienceEnum = {
  * Check if a given object implements the ChannelTrovoInfoDto interface.
  */
 function instanceOfChannelTrovoInfoDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfChannelTrovoInfoDto = instanceOfChannelTrovoInfoDto;
@@ -48,7 +46,7 @@ function ChannelTrovoInfoDtoFromJSONTyped(json, ignoreDiscriminator) {
         return json;
     }
     return {
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'audience': json['audience'] == null ? undefined : json['audience'],
         'category': json['category'] == null ? undefined : (0, ChannelCategoryInfoDto_1.ChannelCategoryInfoDtoFromJSON)(json['category']),

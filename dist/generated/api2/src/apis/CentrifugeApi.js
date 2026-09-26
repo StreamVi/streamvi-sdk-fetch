@@ -85,7 +85,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1Raw(requestParameters, initOverrides) {
@@ -128,7 +128,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AuthCentrifugoChannelResponseFromJSON)(jsonValue));
     }
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name              Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1(requestParameters, initOverrides) {

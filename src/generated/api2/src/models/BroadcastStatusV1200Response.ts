@@ -12,41 +12,18 @@
  * Do not edit the class manually.
  */
 
-import type { SiteBroadcastStatusInactiveResponse } from './SiteBroadcastStatusInactiveResponse';
-import {
-    instanceOfSiteBroadcastStatusInactiveResponse,
-    SiteBroadcastStatusInactiveResponseFromJSON,
-    SiteBroadcastStatusInactiveResponseFromJSONTyped,
-    SiteBroadcastStatusInactiveResponseToJSON,
-} from './SiteBroadcastStatusInactiveResponse';
-import type { SiteBroadcastStatusLiveResponse } from './SiteBroadcastStatusLiveResponse';
-import {
-    instanceOfSiteBroadcastStatusLiveResponse,
-    SiteBroadcastStatusLiveResponseFromJSON,
-    SiteBroadcastStatusLiveResponseFromJSONTyped,
-    SiteBroadcastStatusLiveResponseToJSON,
-} from './SiteBroadcastStatusLiveResponse';
-import type { SiteBroadcastStatusSchedulerResponse } from './SiteBroadcastStatusSchedulerResponse';
-import {
-    instanceOfSiteBroadcastStatusSchedulerResponse,
-    SiteBroadcastStatusSchedulerResponseFromJSON,
-    SiteBroadcastStatusSchedulerResponseFromJSONTyped,
-    SiteBroadcastStatusSchedulerResponseToJSON,
-} from './SiteBroadcastStatusSchedulerResponse';
-import type { SiteBroadcastStatusTranscodingResponse } from './SiteBroadcastStatusTranscodingResponse';
-import {
-    instanceOfSiteBroadcastStatusTranscodingResponse,
-    SiteBroadcastStatusTranscodingResponseFromJSON,
-    SiteBroadcastStatusTranscodingResponseFromJSONTyped,
-    SiteBroadcastStatusTranscodingResponseToJSON,
-} from './SiteBroadcastStatusTranscodingResponse';
+
+import { SiteBroadcastStatusInactiveResponse, SiteBroadcastStatusInactiveResponseFromJSONTyped, SiteBroadcastStatusInactiveResponseToJSON } from './SiteBroadcastStatusInactiveResponse';
+import { SiteBroadcastStatusLiveResponse, SiteBroadcastStatusLiveResponseFromJSONTyped, SiteBroadcastStatusLiveResponseToJSON } from './SiteBroadcastStatusLiveResponse';
+import { SiteBroadcastStatusSchedulerResponse, SiteBroadcastStatusSchedulerResponseFromJSONTyped, SiteBroadcastStatusSchedulerResponseToJSON } from './SiteBroadcastStatusSchedulerResponse';
+import { SiteBroadcastStatusTranscodingResponse, SiteBroadcastStatusTranscodingResponseFromJSONTyped, SiteBroadcastStatusTranscodingResponseToJSON } from './SiteBroadcastStatusTranscodingResponse';
 
 /**
  * @type BroadcastStatusV1200Response
  * 
  * @export
  */
-export type BroadcastStatusV1200Response = SiteBroadcastStatusInactiveResponse | SiteBroadcastStatusLiveResponse | SiteBroadcastStatusSchedulerResponse | SiteBroadcastStatusTranscodingResponse;
+export type BroadcastStatusV1200Response = { kind: 'inactive' } & SiteBroadcastStatusInactiveResponse | { kind: 'live' } & SiteBroadcastStatusLiveResponse | { kind: 'scheduler' } & SiteBroadcastStatusSchedulerResponse | { kind: 'transcoding' } & SiteBroadcastStatusTranscodingResponse;
 
 export function BroadcastStatusV1200ResponseFromJSON(json: any): BroadcastStatusV1200Response {
     return BroadcastStatusV1200ResponseFromJSONTyped(json, false);
@@ -56,23 +33,18 @@ export function BroadcastStatusV1200ResponseFromJSONTyped(json: any, ignoreDiscr
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
+    switch (json['kind']) {
+        case 'inactive':
+            return Object.assign({}, SiteBroadcastStatusInactiveResponseFromJSONTyped(json, true), { kind: 'inactive' } as const);
+        case 'live':
+            return Object.assign({}, SiteBroadcastStatusLiveResponseFromJSONTyped(json, true), { kind: 'live' } as const);
+        case 'scheduler':
+            return Object.assign({}, SiteBroadcastStatusSchedulerResponseFromJSONTyped(json, true), { kind: 'scheduler' } as const);
+        case 'transcoding':
+            return Object.assign({}, SiteBroadcastStatusTranscodingResponseFromJSONTyped(json, true), { kind: 'transcoding' } as const);
+        default:
+            return json;
     }
-    if (instanceOfSiteBroadcastStatusInactiveResponse(json)) {
-        return SiteBroadcastStatusInactiveResponseFromJSONTyped(json, true);
-    }
-    if (instanceOfSiteBroadcastStatusLiveResponse(json)) {
-        return SiteBroadcastStatusLiveResponseFromJSONTyped(json, true);
-    }
-    if (instanceOfSiteBroadcastStatusSchedulerResponse(json)) {
-        return SiteBroadcastStatusSchedulerResponseFromJSONTyped(json, true);
-    }
-    if (instanceOfSiteBroadcastStatusTranscodingResponse(json)) {
-        return SiteBroadcastStatusTranscodingResponseFromJSONTyped(json, true);
-    }
-
-    return {} as any;
 }
 
 export function BroadcastStatusV1200ResponseToJSON(json: any): any {
@@ -83,22 +55,17 @@ export function BroadcastStatusV1200ResponseToJSONTyped(value?: BroadcastStatusV
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
+    switch (value['kind']) {
+        case 'inactive':
+            return Object.assign({}, SiteBroadcastStatusInactiveResponseToJSON(value), { kind: 'inactive' } as const);
+        case 'live':
+            return Object.assign({}, SiteBroadcastStatusLiveResponseToJSON(value), { kind: 'live' } as const);
+        case 'scheduler':
+            return Object.assign({}, SiteBroadcastStatusSchedulerResponseToJSON(value), { kind: 'scheduler' } as const);
+        case 'transcoding':
+            return Object.assign({}, SiteBroadcastStatusTranscodingResponseToJSON(value), { kind: 'transcoding' } as const);
+        default:
+            return value;
     }
-    if (instanceOfSiteBroadcastStatusInactiveResponse(value)) {
-        return SiteBroadcastStatusInactiveResponseToJSON(value as SiteBroadcastStatusInactiveResponse);
-    }
-    if (instanceOfSiteBroadcastStatusLiveResponse(value)) {
-        return SiteBroadcastStatusLiveResponseToJSON(value as SiteBroadcastStatusLiveResponse);
-    }
-    if (instanceOfSiteBroadcastStatusSchedulerResponse(value)) {
-        return SiteBroadcastStatusSchedulerResponseToJSON(value as SiteBroadcastStatusSchedulerResponse);
-    }
-    if (instanceOfSiteBroadcastStatusTranscodingResponse(value)) {
-        return SiteBroadcastStatusTranscodingResponseToJSON(value as SiteBroadcastStatusTranscodingResponse);
-    }
-
-    return {};
 }
 

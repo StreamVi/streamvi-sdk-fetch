@@ -26,7 +26,7 @@ export interface PlanWebinarItem {
      * @type {Date}
      * @memberof PlanWebinarItem
      */
-    date_end: Date;
+    date_end?: Date;
     /**
      * Plan title
      * @type {string}
@@ -50,7 +50,7 @@ export interface PlanWebinarItem {
      * @type {string}
      * @memberof PlanWebinarItem
      */
-    period: PlanWebinarItemPeriodEnum;
+    period: PlanWebinarItemPeriodEnum | null;
 }
 /**
  * @export

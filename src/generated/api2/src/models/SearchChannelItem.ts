@@ -79,7 +79,7 @@ export interface SearchChannelItem {
      * @type {number}
      * @memberof SearchChannelItem
      */
-    transcoderId?: number;
+    transcoderId: number | null;
     /**
      * group_id
      * @type {number}
@@ -97,7 +97,7 @@ export interface SearchChannelItem {
      * @type {string}
      * @memberof SearchChannelItem
      */
-    photo_default: string;
+    photo_default: string | null;
     /**
      * sell
      * @type {boolean}
@@ -109,7 +109,7 @@ export interface SearchChannelItem {
      * @type {number}
      * @memberof SearchChannelItem
      */
-    price: number;
+    price: number | null;
     /**
      * live
      * @type {boolean}
@@ -127,7 +127,7 @@ export interface SearchChannelItem {
      * @type {number}
      * @memberof SearchChannelItem
      */
-    user_id: number;
+    user_id: number | null;
     /**
      * active
      * @type {boolean}
@@ -169,7 +169,7 @@ export interface SearchChannelItem {
      * @type {SearchChannelItemStreamInfo}
      * @memberof SearchChannelItem
      */
-    streamInfo: SearchChannelItemStreamInfo;
+    streamInfo: SearchChannelItemStreamInfo | null;
     /**
      * rtmp
      * @type {SearchChannelRtmpDto}
@@ -177,7 +177,7 @@ export interface SearchChannelItem {
      */
     rtmp: SearchChannelRtmpDto | null;
     /**
-     * ingress_url
+     * RTMP endpoint without stream key or complete ingress URI for protocols without a separate key
      * @type {string}
      * @memberof SearchChannelItem
      */
@@ -188,6 +188,12 @@ export interface SearchChannelItem {
      * @memberof SearchChannelItem
      */
     ingress_protocol?: string;
+    /**
+     * RTMP stream key
+     * @type {string}
+     * @memberof SearchChannelItem
+     */
+    stream_key?: string;
     /**
      * credentials
      * @type {Array<SearchChannelCredentialsDto>}
@@ -250,6 +256,7 @@ export type SearchChannelItemStatusEnum = typeof SearchChannelItemStatusEnum[key
 export function instanceOfSearchChannelItem(value: object): value is SearchChannelItem {
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('transcoderId' in value) || value['transcoderId'] === undefined) return false;
     if (!('group_id' in value) || value['group_id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('photo_default' in value) || value['photo_default'] === undefined) return false;
@@ -284,7 +291,7 @@ export function SearchChannelItemFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'name': json['name'],
         'id': json['id'],
-        'transcoderId': json['transcoderId'] == null ? undefined : json['transcoderId'],
+        'transcoderId': json['transcoderId'],
         'group_id': json['group_id'],
         'type': json['type'],
         'photo_default': json['photo_default'],
@@ -303,6 +310,7 @@ export function SearchChannelItemFromJSONTyped(json: any, ignoreDiscriminator: b
         'rtmp': SearchChannelRtmpDtoFromJSON(json['rtmp']),
         'ingress_url': json['ingress_url'] == null ? undefined : json['ingress_url'],
         'ingress_protocol': json['ingress_protocol'] == null ? undefined : json['ingress_protocol'],
+        'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
         'credentials': (json['credentials'] == null ? null : (json['credentials'] as Array<any>).map(SearchChannelCredentialsDtoFromJSON)),
         'tokens': SearchChannelCredentialDtoFromJSON(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : ((json['live_users'] as Array<any>).map(SearchChannelLiveUserDtoFromJSON)),
@@ -344,6 +352,7 @@ export function SearchChannelItemToJSONTyped(value?: SearchChannelItem | null, i
         'rtmp': SearchChannelRtmpDtoToJSON(value['rtmp']),
         'ingress_url': value['ingress_url'],
         'ingress_protocol': value['ingress_protocol'],
+        'stream_key': value['stream_key'],
         'credentials': (value['credentials'] == null ? null : (value['credentials'] as Array<any>).map(SearchChannelCredentialsDtoToJSON)),
         'tokens': SearchChannelCredentialDtoToJSON(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : ((value['live_users'] as Array<any>).map(SearchChannelLiveUserDtoToJSON)),

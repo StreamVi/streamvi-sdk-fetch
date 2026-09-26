@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface SiteBroadcastStatusInactiveResponse {
     /**
+     * Broadcast status response kind
+     * @type {string}
+     * @memberof SiteBroadcastStatusInactiveResponse
+     */
+    kind: SiteBroadcastStatusInactiveResponseKindEnum;
+    /**
      * Stream status
      * @type {string}
      * @memberof SiteBroadcastStatusInactiveResponse
@@ -27,6 +33,14 @@ export interface SiteBroadcastStatusInactiveResponse {
     status: SiteBroadcastStatusInactiveResponseStatusEnum;
 }
 
+
+/**
+ * @export
+ */
+export const SiteBroadcastStatusInactiveResponseKindEnum = {
+    inactive: 'inactive'
+} as const;
+export type SiteBroadcastStatusInactiveResponseKindEnum = typeof SiteBroadcastStatusInactiveResponseKindEnum[keyof typeof SiteBroadcastStatusInactiveResponseKindEnum];
 
 /**
  * @export
@@ -41,6 +55,7 @@ export type SiteBroadcastStatusInactiveResponseStatusEnum = typeof SiteBroadcast
  * Check if a given object implements the SiteBroadcastStatusInactiveResponse interface.
  */
 export function instanceOfSiteBroadcastStatusInactiveResponse(value: object): value is SiteBroadcastStatusInactiveResponse {
+    if (!('kind' in value) || value['kind'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     return true;
 }
@@ -55,6 +70,7 @@ export function SiteBroadcastStatusInactiveResponseFromJSONTyped(json: any, igno
     }
     return {
         
+        'kind': json['kind'],
         'status': json['status'],
     };
 }
@@ -70,6 +86,7 @@ export function SiteBroadcastStatusInactiveResponseToJSONTyped(value?: SiteBroad
 
     return {
         
+        'kind': value['kind'],
         'status': value['status'],
     };
 }

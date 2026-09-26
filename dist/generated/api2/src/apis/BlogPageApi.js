@@ -73,7 +73,7 @@ class BlogPageApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfBlogPageSiteResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetBlogPageResponseFromJSON)(jsonValue));
     }
     /**
      * Get blog page
@@ -115,7 +115,7 @@ class BlogPageApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfBlogPageSiteResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedBlogPageSiteResponseFromJSON)(jsonValue));
     }
     /**
      * Get list of blog pages

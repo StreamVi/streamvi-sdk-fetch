@@ -24,8 +24,6 @@ function instanceOfSiteNotifyUserResponse(value) {
         return false;
     if (!('channels' in value) || value['channels'] === undefined)
         return false;
-    if (!('relation' in value) || value['relation'] === undefined)
-        return false;
     return true;
 }
 exports.instanceOfSiteNotifyUserResponse = instanceOfSiteNotifyUserResponse;
@@ -40,7 +38,7 @@ function SiteNotifyUserResponseFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'user_id': json['user_id'],
         'channels': (0, NotifyUserChannels_1.NotifyUserChannelsFromJSON)(json['channels']),
-        'relation': (0, NotifyUserRelation_1.NotifyUserRelationFromJSON)(json['relation']),
+        'relation': json['relation'] == null ? undefined : (0, NotifyUserRelation_1.NotifyUserRelationFromJSON)(json['relation']),
     };
 }
 exports.SiteNotifyUserResponseFromJSONTyped = SiteNotifyUserResponseFromJSONTyped;

@@ -64,7 +64,7 @@ function ListMediaServiceFilesItemFromJSONTyped(json, ignoreDiscriminator) {
         'isDisabled': json['isDisabled'],
         'status': (0, MediaServiceFilesStatus_1.MediaServiceFilesStatusFromJSON)(json['status']),
         'error': json['error'] == null ? undefined : json['error'],
-        'created_at': (new Date(json['created_at'])),
+        'created_at': (json['created_at'] == null ? null : new Date(json['created_at'])),
         'event_channel': json['event_channel'] == null ? undefined : json['event_channel'],
     };
 }
@@ -89,7 +89,7 @@ function ListMediaServiceFilesItemToJSONTyped(value, ignoreDiscriminator = false
         'isDisabled': value['isDisabled'],
         'status': (0, MediaServiceFilesStatus_1.MediaServiceFilesStatusToJSON)(value['status']),
         'error': value['error'],
-        'created_at': ((value['created_at']).toISOString()),
+        'created_at': (value['created_at'] == null ? null : value['created_at'].toISOString()),
         'event_channel': value['event_channel'],
     };
 }

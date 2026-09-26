@@ -53,7 +53,7 @@ export interface ProjectChannelApiInterface {
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
      * @param {number} to_project_id Target project id
-     * @param {0 | 1 | 1 | 2} access_type Access type
+     * @param {1 | 2} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -165,9 +165,7 @@ export type ProjectChannelChangeAccessV1LanguageEnum = typeof ProjectChannelChan
  * @export
  */
 export declare const ProjectChannelChangeAccessV1AccessTypeEnum: {
-    readonly NUMBER_0: 0;
     readonly NUMBER_1: 1;
-    readonly NUMBER_12: 1;
     readonly NUMBER_2: 2;
 };
 export type ProjectChannelChangeAccessV1AccessTypeEnum = typeof ProjectChannelChangeAccessV1AccessTypeEnum[keyof typeof ProjectChannelChangeAccessV1AccessTypeEnum];

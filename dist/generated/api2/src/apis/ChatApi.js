@@ -86,6 +86,37 @@ class ChatApi extends runtime.BaseAPI {
         const response = await this.chatGatewayKeyV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
+    /**
+     * Rotate chat key
+     */
+    async chatGatewayRotateKeyV1Raw(requestParameters, initOverrides) {
+        var _a;
+        if (requestParameters['SiteChatKeyRequest'] == null) {
+            throw new runtime.RequiredError('SiteChatKeyRequest', 'Required parameter "SiteChatKeyRequest" was null or undefined when calling chatGatewayRotateKeyV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/chat/key`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.SiteChatKeyRequestToJSON)({ ...requestParameters['SiteChatKeyRequest'], v: (_a = requestParameters['SiteChatKeyRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteChatKeyResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Rotate chat key
+     */
+    async chatGatewayRotateKeyV1(requestParameters, initOverrides) {
+        const response = await this.chatGatewayRotateKeyV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
 }
 exports.ChatApi = ChatApi;
 /**

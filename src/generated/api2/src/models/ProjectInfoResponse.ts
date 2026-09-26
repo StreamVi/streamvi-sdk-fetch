@@ -63,12 +63,6 @@ import {
  */
 export interface ProjectInfoResponse {
     /**
-     * Version
-     * @type {string}
-     * @memberof ProjectInfoResponse
-     */
-    v: ProjectInfoResponseVEnum;
-    /**
      * Current language
      * @type {string}
      * @memberof ProjectInfoResponse
@@ -91,19 +85,19 @@ export interface ProjectInfoResponse {
      * @type {ProjectInfoTranscodingResponse}
      * @memberof ProjectInfoResponse
      */
-    transcoding?: ProjectInfoTranscodingResponse | null;
+    transcoding: ProjectInfoTranscodingResponse | null;
     /**
      * Storage tariff
      * @type {ProjectInfoStorageResponse}
      * @memberof ProjectInfoResponse
      */
-    storage?: ProjectInfoStorageResponse | null;
+    storage: ProjectInfoStorageResponse | null;
     /**
      * Webinar tariff
      * @type {ProjectInfoWebinarResponse}
      * @memberof ProjectInfoResponse
      */
-    webinar?: ProjectInfoWebinarResponse | null;
+    webinar: ProjectInfoWebinarResponse | null;
     /**
      * Project info access
      * @type {ProjectInfoAccessResponse}
@@ -112,14 +106,6 @@ export interface ProjectInfoResponse {
     access: ProjectInfoAccessResponse;
 }
 
-
-/**
- * @export
- */
-export const ProjectInfoResponseVEnum = {
-    _1: '1'
-} as const;
-export type ProjectInfoResponseVEnum = typeof ProjectInfoResponseVEnum[keyof typeof ProjectInfoResponseVEnum];
 
 /**
  * @export
@@ -136,9 +122,11 @@ export type ProjectInfoResponseLanguageEnum = typeof ProjectInfoResponseLanguage
  * Check if a given object implements the ProjectInfoResponse interface.
  */
 export function instanceOfProjectInfoResponse(value: object): value is ProjectInfoResponse {
-    if (!('v' in value) || value['v'] === undefined) return false;
     if (!('language' in value) || value['language'] === undefined) return false;
     if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('transcoding' in value) || value['transcoding'] === undefined) return false;
+    if (!('storage' in value) || value['storage'] === undefined) return false;
+    if (!('webinar' in value) || value['webinar'] === undefined) return false;
     if (!('access' in value) || value['access'] === undefined) return false;
     return true;
 }
@@ -153,13 +141,12 @@ export function ProjectInfoResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'v': json['v'],
         'language': json['language'],
         'data': ProjectInfoDataResponseFromJSON(json['data']),
         'restream': json['restream'] == null ? undefined : ProjectInfoRestreamResponseFromJSON(json['restream']),
-        'transcoding': json['transcoding'] == null ? undefined : ProjectInfoTranscodingResponseFromJSON(json['transcoding']),
-        'storage': json['storage'] == null ? undefined : ProjectInfoStorageResponseFromJSON(json['storage']),
-        'webinar': json['webinar'] == null ? undefined : ProjectInfoWebinarResponseFromJSON(json['webinar']),
+        'transcoding': ProjectInfoTranscodingResponseFromJSON(json['transcoding']),
+        'storage': ProjectInfoStorageResponseFromJSON(json['storage']),
+        'webinar': ProjectInfoWebinarResponseFromJSON(json['webinar']),
         'access': ProjectInfoAccessResponseFromJSON(json['access']),
     };
 }
@@ -175,7 +162,6 @@ export function ProjectInfoResponseToJSONTyped(value?: ProjectInfoResponse | nul
 
     return {
         
-        'v': value['v'],
         'language': value['language'],
         'data': ProjectInfoDataResponseToJSON(value['data']),
         'restream': ProjectInfoRestreamResponseToJSON(value['restream']),

@@ -32,7 +32,7 @@ export interface ChannelTwitchInfoDto {
      * @type {string}
      * @memberof ChannelTwitchInfoDto
      */
-    title: string;
+    title?: string;
     /**
      * 
      * @type {string}
@@ -74,7 +74,6 @@ export type ChannelTwitchInfoDtoLangEnum = typeof ChannelTwitchInfoDtoLangEnum[k
  * Check if a given object implements the ChannelTwitchInfoDto interface.
  */
 export function instanceOfChannelTwitchInfoDto(value: object): value is ChannelTwitchInfoDto {
-    if (!('title' in value) || value['title'] === undefined) return false;
     return true;
 }
 
@@ -88,7 +87,7 @@ export function ChannelTwitchInfoDtoFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'title': json['title'],
+        'title': json['title'] == null ? undefined : json['title'],
         'lang': json['lang'] == null ? undefined : json['lang'],
         'tags': json['tags'] == null ? undefined : json['tags'],
         'category': json['category'] == null ? undefined : ChannelCategoryInfoDtoFromJSON(json['category']),

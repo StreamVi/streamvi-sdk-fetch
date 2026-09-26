@@ -20,7 +20,7 @@ export interface SiteChannelStatusResponse {
      * @type {string}
      * @memberof SiteChannelStatusResponse
      */
-    message: string | null;
+    message?: string | null;
 }
 /**
  * Check if a given object implements the SiteChannelStatusResponse interface.

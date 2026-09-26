@@ -54,7 +54,7 @@ export interface ProjectInfoDataResponse {
      * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    external_id: string;
+    external_id: string | null;
     /**
      * Project type
      * @type {number}
@@ -81,10 +81,10 @@ export interface ProjectInfoDataResponse {
     balance_profit: number;
     /**
      * Currency
-     * @type {number}
+     * @type {string}
      * @memberof ProjectInfoDataResponse
      */
-    currency: ProjectInfoDataResponseCurrencyEnum | null;
+    currency: ProjectInfoDataResponseCurrencyEnum;
     /**
      * Country id
      * @type {number}
@@ -107,6 +107,8 @@ export type ProjectInfoDataResponseTypeEnum = typeof ProjectInfoDataResponseType
  * @export
  */
 export const ProjectInfoDataResponseCurrencyEnum = {
+    rub: 'rub',
+    usd: 'usd'
 } as const;
 export type ProjectInfoDataResponseCurrencyEnum = typeof ProjectInfoDataResponseCurrencyEnum[keyof typeof ProjectInfoDataResponseCurrencyEnum];
 

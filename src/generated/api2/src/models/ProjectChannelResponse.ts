@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProjectChannelMemberStreamInfoResponse } from './ProjectChannelMemberStreamInfoResponse';
+import type { ProjectChannelResponseStreamInfo } from './ProjectChannelResponseStreamInfo';
 import {
-    ProjectChannelMemberStreamInfoResponseFromJSON,
-    ProjectChannelMemberStreamInfoResponseFromJSONTyped,
-    ProjectChannelMemberStreamInfoResponseToJSON,
-    ProjectChannelMemberStreamInfoResponseToJSONTyped,
-} from './ProjectChannelMemberStreamInfoResponse';
+    ProjectChannelResponseStreamInfoFromJSON,
+    ProjectChannelResponseStreamInfoFromJSONTyped,
+    ProjectChannelResponseStreamInfoToJSON,
+    ProjectChannelResponseStreamInfoToJSONTyped,
+} from './ProjectChannelResponseStreamInfo';
 import type { ProjectChannelMemberInfoResponse } from './ProjectChannelMemberInfoResponse';
 import {
     ProjectChannelMemberInfoResponseFromJSON,
@@ -42,10 +42,10 @@ export interface ProjectChannelResponse {
     access_type: ProjectChannelResponseAccessTypeEnum;
     /**
      * 
-     * @type {number}
+     * @type {boolean}
      * @memberof ProjectChannelResponse
      */
-    active: number;
+    active: boolean;
     /**
      * Channel id
      * @type {number}
@@ -107,11 +107,11 @@ export interface ProjectChannelResponse {
      */
     project_?: ProjectChannelMemberInfoResponse;
     /**
-     * Stream info
-     * @type {ProjectChannelMemberStreamInfoResponse}
+     * 
+     * @type {ProjectChannelResponseStreamInfo}
      * @memberof ProjectChannelResponse
      */
-    streamInfo: ProjectChannelMemberStreamInfoResponse;
+    streamInfo: ProjectChannelResponseStreamInfo | null;
 }
 
 
@@ -175,7 +175,7 @@ export function ProjectChannelResponseFromJSONTyped(json: any, ignoreDiscriminat
         'usageType': json['usageType'],
         'project_id': json['project_id'],
         'project_': json['project_'] == null ? undefined : ProjectChannelMemberInfoResponseFromJSON(json['project_']),
-        'streamInfo': ProjectChannelMemberStreamInfoResponseFromJSON(json['streamInfo']),
+        'streamInfo': ProjectChannelResponseStreamInfoFromJSON(json['streamInfo']),
     };
 }
 
@@ -202,7 +202,7 @@ export function ProjectChannelResponseToJSONTyped(value?: ProjectChannelResponse
         'usageType': value['usageType'],
         'project_id': value['project_id'],
         'project_': ProjectChannelMemberInfoResponseToJSON(value['project_']),
-        'streamInfo': ProjectChannelMemberStreamInfoResponseToJSON(value['streamInfo']),
+        'streamInfo': ProjectChannelResponseStreamInfoToJSON(value['streamInfo']),
     };
 }
 

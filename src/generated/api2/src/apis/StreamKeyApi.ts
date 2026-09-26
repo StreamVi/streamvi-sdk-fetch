@@ -17,7 +17,10 @@ import * as runtime from '../runtime';
 import type {
   ErrorResponse,
   GetStreamKeyResponse,
+  RotateStreamKeyRequest,
+  RotateStreamKeyResponse,
   SetRecordStreamRequest,
+  SetWaitStreamKeyRequest,
   SuccessResponse,
 } from '../models/index';
 import {
@@ -25,8 +28,14 @@ import {
     ErrorResponseToJSON,
     GetStreamKeyResponseFromJSON,
     GetStreamKeyResponseToJSON,
+    RotateStreamKeyRequestFromJSON,
+    RotateStreamKeyRequestToJSON,
+    RotateStreamKeyResponseFromJSON,
+    RotateStreamKeyResponseToJSON,
     SetRecordStreamRequestFromJSON,
     SetRecordStreamRequestToJSON,
+    SetWaitStreamKeyRequestFromJSON,
+    SetWaitStreamKeyRequestToJSON,
     SuccessResponseFromJSON,
     SuccessResponseToJSON,
 } from '../models/index';
@@ -35,6 +44,14 @@ export interface StreamKeysKeyV1Request {
     language: StreamKeysKeyV1LanguageEnum;
     project_id: number;
     v?: StreamKeysKeyV1VEnum;
+}
+
+export interface StreamKeysRotateV1Request {
+    RotateStreamKeyRequest: RotateStreamKeyRequest;
+}
+
+export interface StreamKeysSetWaitV1Request {
+    SetWaitStreamKeyRequest: SetWaitStreamKeyRequest;
 }
 
 export interface StreamKeysUpdateRecordV1Request {
@@ -64,6 +81,36 @@ export interface StreamKeyApiInterface {
      * Get stream credentials
      */
     streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse>;
+
+    /**
+     * 
+     * @summary Rotate stream key
+     * @param {RotateStreamKeyRequest} RotateStreamKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StreamKeyApiInterface
+     */
+    streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>>;
+
+    /**
+     * Rotate stream key
+     */
+    streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse>;
+
+    /**
+     * 
+     * @summary Update disconnect protection wait
+     * @param {SetWaitStreamKeyRequest} SetWaitStreamKeyRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StreamKeyApiInterface
+     */
+    streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+
+    /**
+     * Update disconnect protection wait
+     */
+    streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
      * 
@@ -143,6 +190,88 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
      */
     async streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse> {
         const response = await this.streamKeysKeyV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Rotate stream key
+     */
+    async streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>> {
+        if (requestParameters['RotateStreamKeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'RotateStreamKeyRequest',
+                'Required parameter "RotateStreamKeyRequest" was null or undefined when calling streamKeysRotateV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/stream-keys/rotate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RotateStreamKeyRequestToJSON({ ...requestParameters['RotateStreamKeyRequest'], v: requestParameters['RotateStreamKeyRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RotateStreamKeyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Rotate stream key
+     */
+    async streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse> {
+        const response = await this.streamKeysRotateV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update disconnect protection wait
+     */
+    async streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
+        if (requestParameters['SetWaitStreamKeyRequest'] == null) {
+            throw new runtime.RequiredError(
+                'SetWaitStreamKeyRequest',
+                'Required parameter "SetWaitStreamKeyRequest" was null or undefined when calling streamKeysSetWaitV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/stream-keys/wait`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SetWaitStreamKeyRequestToJSON({ ...requestParameters['SetWaitStreamKeyRequest'], v: requestParameters['SetWaitStreamKeyRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SuccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update disconnect protection wait
+     */
+    async streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
+        const response = await this.streamKeysSetWaitV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

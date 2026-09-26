@@ -13,8 +13,8 @@ import * as runtime from '../runtime';
 import type { GetVersionAppResponse } from '../models/index';
 export interface ReleaseAppCabinetV1Request {
     language: ReleaseAppCabinetV1LanguageEnum;
+    app: ReleaseAppCabinetV1AppEnum;
     v?: ReleaseAppCabinetV1VEnum;
-    app?: ReleaseAppCabinetV1AppEnum;
 }
 /**
  * ReleaseApi - interface
@@ -27,8 +27,8 @@ export interface ReleaseApiInterface {
      *
      * @summary Get current version app
      * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'cabinet'} app Apps
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {'cabinet'} [app] Apps
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReleaseApiInterface
@@ -64,15 +64,15 @@ export type ReleaseAppCabinetV1LanguageEnum = typeof ReleaseAppCabinetV1Language
 /**
  * @export
  */
-export declare const ReleaseAppCabinetV1VEnum: {
-    readonly _1: "1";
-};
-export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typeof ReleaseAppCabinetV1VEnum];
-/**
- * @export
- */
 export declare const ReleaseAppCabinetV1AppEnum: {
     readonly cabinet: "cabinet";
 };
 export type ReleaseAppCabinetV1AppEnum = typeof ReleaseAppCabinetV1AppEnum[keyof typeof ReleaseAppCabinetV1AppEnum];
+/**
+ * @export
+ */
+export declare const ReleaseAppCabinetV1VEnum: {
+    readonly _1: "1";
+};
+export type ReleaseAppCabinetV1VEnum = typeof ReleaseAppCabinetV1VEnum[keyof typeof ReleaseAppCabinetV1VEnum];
 //# sourceMappingURL=ReleaseApi.d.ts.map

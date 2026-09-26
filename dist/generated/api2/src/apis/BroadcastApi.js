@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BroadcastTokenChannelV1VEnum = exports.BroadcastTokenChannelV1LanguageEnum = exports.BroadcastStatusV1VEnum = exports.BroadcastStatusV1LanguageEnum = exports.BroadcastRestreamsV1VEnum = exports.BroadcastRestreamsV1LanguageEnum = exports.BroadcastRestreamChatV1VEnum = exports.BroadcastRestreamChatV1LanguageEnum = exports.BroadcastListV1VEnum = exports.BroadcastListV1OrderEnum = exports.BroadcastListV1LanguageEnum = exports.BroadcastGraphViewersV1VEnum = exports.BroadcastGraphViewersV1LanguageEnum = exports.BroadcastGraphBitrateV1VEnum = exports.BroadcastGraphBitrateV1LanguageEnum = exports.BroadcastFindV1VEnum = exports.BroadcastFindV1LanguageEnum = exports.BroadcastEventsV4VEnum = exports.BroadcastEventsV4SortByDateEnum = exports.BroadcastEventsV4LevelEnum = exports.BroadcastEventsV4LanguageEnum = exports.BroadcastEventItemV1VEnum = exports.BroadcastEventItemV1LanguageEnum = exports.BroadcastCredentialsV1VEnum = exports.BroadcastCredentialsV1LanguageEnum = exports.BroadcastApi = void 0;
+exports.BroadcastTokenChannelV1VEnum = exports.BroadcastTokenChannelV1LanguageEnum = exports.BroadcastStatusV1VEnum = exports.BroadcastStatusV1LanguageEnum = exports.BroadcastRestreamsV1VEnum = exports.BroadcastRestreamsV1LanguageEnum = exports.BroadcastRestreamChatV1VEnum = exports.BroadcastRestreamChatV1LanguageEnum = exports.BroadcastListV1VEnum = exports.BroadcastListV1OrderEnum = exports.BroadcastListV1LanguageEnum = exports.BroadcastGraphViewersV1VEnum = exports.BroadcastGraphViewersV1LanguageEnum = exports.BroadcastGraphBitrateV1VEnum = exports.BroadcastGraphBitrateV1LanguageEnum = exports.BroadcastGetTemplateV1VEnum = exports.BroadcastGetTemplateV1LanguageEnum = exports.BroadcastFindV1VEnum = exports.BroadcastFindV1LanguageEnum = exports.BroadcastEventsV4VEnum = exports.BroadcastEventsV4SortByDateEnum = exports.BroadcastEventsV4LevelEnum = exports.BroadcastEventsV4LanguageEnum = exports.BroadcastEventItemV1VEnum = exports.BroadcastEventItemV1LanguageEnum = exports.BroadcastCredentialsV1VEnum = exports.BroadcastCredentialsV1LanguageEnum = exports.BroadcastApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -267,6 +267,49 @@ class BroadcastApi extends runtime.BaseAPI {
      */
     async broadcastFindV1(requestParameters, initOverrides) {
         const response = await this.broadcastFindV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Get broadcast title and description template
+     */
+    async broadcastGetTemplateV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling broadcastGetTemplateV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling broadcastGetTemplateV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+        }
+        const response = await this.request({
+            path: `/method/broadcast/template`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastTemplateResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Get broadcast title and description template
+     */
+    async broadcastGetTemplateV1(requestParameters, initOverrides) {
+        const response = await this.broadcastGetTemplateV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -776,6 +819,20 @@ exports.BroadcastFindV1LanguageEnum = {
  */
 exports.BroadcastFindV1VEnum = {
     _3: '3'
+};
+/**
+ * @export
+ */
+exports.BroadcastGetTemplateV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.BroadcastGetTemplateV1VEnum = {
+    _1: '1'
 };
 /**
  * @export

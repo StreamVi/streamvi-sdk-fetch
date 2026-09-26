@@ -35,6 +35,7 @@ export * from './PullServersApi';
 export * from './ReferralsApi';
 export * from './ReleaseApi';
 export * from './RtmpServerApi';
+export * from './SchedulerApi';
 export * from './SocialsApi';
 export * from './StreamKeyApi';
 export * from './StreamPullKeysApi';

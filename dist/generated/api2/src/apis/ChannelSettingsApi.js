@@ -181,14 +181,13 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+        return new runtime.VoidApiResponse(response);
     }
     /**
      * Disconnect telegram chat
      */
     async channelChatRemoveTelegramChatV1(requestParameters, initOverrides) {
-        const response = await this.channelChatRemoveTelegramChatV1Raw(requestParameters, initOverrides);
-        return await response.value();
+        await this.channelChatRemoveTelegramChatV1Raw(requestParameters, initOverrides);
     }
     /**
      * Set telegram settings
@@ -364,7 +363,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfSitePlannedResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlannedListResponseFromJSON)(jsonValue));
     }
     /**
      * Get planned list
@@ -413,7 +412,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfPlaylistItemResponseFromJSON)(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlaylistResponseFromJSON)(jsonValue));
     }
     /**
      * Get playlists from the platform
@@ -813,7 +812,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get status platform
+     * Redirect to OAuth for updating a channel token
      */
     async channelSettingUpdateTokenV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -861,7 +860,7 @@ class ChannelSettingsApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
-     * Get status platform
+     * Redirect to OAuth for updating a channel token
      */
     async channelSettingUpdateTokenV1(requestParameters, initOverrides) {
         await this.channelSettingUpdateTokenV1Raw(requestParameters, initOverrides);

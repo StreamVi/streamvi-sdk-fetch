@@ -20,6 +20,13 @@ import {
     SiteRestreamEventServerResponseToJSON,
     SiteRestreamEventServerResponseToJSONTyped,
 } from './SiteRestreamEventServerResponse';
+import type { SiteRestreamEventChannelResponse } from './SiteRestreamEventChannelResponse';
+import {
+    SiteRestreamEventChannelResponseFromJSON,
+    SiteRestreamEventChannelResponseFromJSONTyped,
+    SiteRestreamEventChannelResponseToJSON,
+    SiteRestreamEventChannelResponseToJSONTyped,
+} from './SiteRestreamEventChannelResponse';
 
 /**
  * 
@@ -69,6 +76,12 @@ export interface SiteRestreamEventV4Response {
      * @memberof SiteRestreamEventV4Response
      */
     platform?: string;
+    /**
+     * Channel
+     * @type {SiteRestreamEventChannelResponse}
+     * @memberof SiteRestreamEventV4Response
+     */
+    channel?: SiteRestreamEventChannelResponse;
 }
 
 
@@ -124,6 +137,7 @@ export function SiteRestreamEventV4ResponseFromJSONTyped(json: any, ignoreDiscri
         'app': json['app'],
         'server': SiteRestreamEventServerResponseFromJSON(json['server']),
         'platform': json['platform'] == null ? undefined : json['platform'],
+        'channel': json['channel'] == null ? undefined : SiteRestreamEventChannelResponseFromJSON(json['channel']),
     };
 }
 
@@ -145,6 +159,7 @@ export function SiteRestreamEventV4ResponseToJSONTyped(value?: SiteRestreamEvent
         'app': value['app'],
         'server': SiteRestreamEventServerResponseToJSON(value['server']),
         'platform': value['platform'],
+        'channel': SiteRestreamEventChannelResponseToJSON(value['channel']),
     };
 }
 

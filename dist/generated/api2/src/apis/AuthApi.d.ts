@@ -54,6 +54,7 @@ export interface AuthGetAuthUrlV1Request {
     redirect?: string;
     refId?: string;
     country?: string;
+    visitorId?: string;
 }
 /**
  * AuthApi - interface
@@ -199,6 +200,7 @@ export interface AuthApiInterface {
      * @param {string} [redirect] Redirect url
      * @param {string} [refId] Referal id
      * @param {string} [country] Country code
+     * @param {string} [visitorId] Anonymous landing visitor UUID v4
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface

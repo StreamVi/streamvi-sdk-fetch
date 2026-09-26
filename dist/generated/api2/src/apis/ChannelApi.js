@@ -1075,12 +1075,14 @@ class ChannelApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
      */
-    async methodSetStatusV1Raw(requestParameters, initOverrides) {
+    async methodSetStatusLegacyV1Raw(requestParameters, initOverrides) {
         var _a;
         if (requestParameters['MethodSetStatusChannelRequest'] == null) {
-            throw new runtime.RequiredError('MethodSetStatusChannelRequest', 'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusV1().');
+            throw new runtime.RequiredError('MethodSetStatusChannelRequest', 'Required parameter "MethodSetStatusChannelRequest" was null or undefined when calling methodSetStatusLegacyV1().');
         }
         const queryParameters = {};
         const headerParameters = {};
@@ -1102,7 +1104,43 @@ class ChannelApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Get live status
+     * Deprecated. Use PUT /method/channel/status with the active field instead of status.
+     * Set desired channel state
+     * @deprecated
+     */
+    async methodSetStatusLegacyV1(requestParameters, initOverrides) {
+        const response = await this.methodSetStatusLegacyV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Set desired channel state
+     */
+    async methodSetStatusV1Raw(requestParameters, initOverrides) {
+        var _a;
+        if (requestParameters['MethodChannelStatusRequest'] == null) {
+            throw new runtime.RequiredError('MethodChannelStatusRequest', 'Required parameter "MethodChannelStatusRequest" was null or undefined when calling methodSetStatusV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+        }
+        const response = await this.request({
+            path: `/method/channel/status`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.MethodChannelStatusRequestToJSON)({ ...requestParameters['MethodChannelStatusRequest'], v: (_a = requestParameters['MethodChannelStatusRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Set desired channel state
      */
     async methodSetStatusV1(requestParameters, initOverrides) {
         const response = await this.methodSetStatusV1Raw(requestParameters, initOverrides);

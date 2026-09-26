@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { ListOfPlaylistItemResponse, ListOfSitePlannedResponse, SiteBulkUpdateChannelRequest, SiteChannelStatusResponse, SitePlannedResponse, SiteSetNameRequest, SiteSetPlannedRequest, SiteSetSrtUrlRequest, SiteSetTranscoderRequest, SiteSetUrlRequest, SiteUpdateChatTelegramRequest, SiteUpdateOptionsOkRequest, SiteUpdateOptionsTrovoRequest, SiteUpdateOptionsTwitchRequest, SiteUpdateOptionsVkRequest, SiteUpdateOptionsVkVideoLiveRequest, SiteUpdateOptionsYoutubeRequest, SuccessResponse, TelegramChatPostsItem, TelegramChatPostsResponseDto, TelegramInitConnectResponseDto, TelegramSetSettingsRequestDto, TelegramSettingsResponseDto } from '../models/index';
+import type { PlannedListResponse, PlaylistResponse, SiteBulkUpdateChannelRequest, SiteChannelStatusResponse, SitePlannedResponse, SiteSetNameRequest, SiteSetPlannedRequest, SiteSetSrtUrlRequest, SiteSetTranscoderRequest, SiteSetUrlRequest, SiteUpdateChatTelegramRequest, SiteUpdateOptionsOkRequest, SiteUpdateOptionsTrovoRequest, SiteUpdateOptionsTwitchRequest, SiteUpdateOptionsVkRequest, SiteUpdateOptionsVkVideoLiveRequest, SiteUpdateOptionsYoutubeRequest, SuccessResponse, TelegramChatPostsItem, TelegramChatPostsResponseDto, TelegramInitConnectResponseDto, TelegramSetSettingsRequestDto, TelegramSettingsResponseDto } from '../models/index';
 export interface ChannelChatGetTelegramSettingV1Request {
     language: ChannelChatGetTelegramSettingV1LanguageEnum;
     project_id: number;
@@ -163,11 +163,11 @@ export interface ChannelSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
      */
-    channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Disconnect telegram chat
      */
-    channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      *
      * @summary Set telegram settings
@@ -225,11 +225,11 @@ export interface ChannelSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
      */
-    channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfSitePlannedResponse>>;
+    channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlannedListResponse>>;
     /**
      * Get planned list
      */
-    channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfSitePlannedResponse>;
+    channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlannedListResponse>;
     /**
      *
      * @summary Get playlists from the platform
@@ -241,11 +241,11 @@ export interface ChannelSettingsApiInterface {
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
      */
-    channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPlaylistItemResponse>>;
+    channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaylistResponse>>;
     /**
      * Get playlists from the platform
      */
-    channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPlaylistItemResponse>;
+    channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlaylistResponse>;
     /**
      *
      * @summary Optional settings for ok. Depends on the tariff.
@@ -407,7 +407,7 @@ export interface ChannelSettingsApiInterface {
     channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      *
-     * @summary Get status platform
+     * @summary Redirect to OAuth for updating a channel token
      * @param {'ru' | 'en' | 'cn'} language Current language
      * @param {number} project_id Project id
      * @param {number} channel_id Channel id
@@ -419,7 +419,7 @@ export interface ChannelSettingsApiInterface {
      */
     channelSettingUpdateTokenV1Raw(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Get status platform
+     * Redirect to OAuth for updating a channel token
      */
     channelSettingUpdateTokenV1(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
@@ -476,11 +476,11 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
     /**
      * Disconnect telegram chat
      */
-    channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
      * Disconnect telegram chat
      */
-    channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
      * Set telegram settings
      */
@@ -508,19 +508,19 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
     /**
      * Get planned list
      */
-    channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfSitePlannedResponse>>;
+    channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlannedListResponse>>;
     /**
      * Get planned list
      */
-    channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfSitePlannedResponse>;
+    channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlannedListResponse>;
     /**
      * Get playlists from the platform
      */
-    channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfPlaylistItemResponse>>;
+    channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaylistResponse>>;
     /**
      * Get playlists from the platform
      */
-    channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfPlaylistItemResponse>;
+    channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlaylistResponse>;
     /**
      * Optional settings for ok. Depends on the tariff.
      */
@@ -618,11 +618,11 @@ export declare class ChannelSettingsApi extends runtime.BaseAPI implements Chann
      */
     channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     * Get status platform
+     * Redirect to OAuth for updating a channel token
      */
     channelSettingUpdateTokenV1Raw(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
-     * Get status platform
+     * Redirect to OAuth for updating a channel token
      */
     channelSettingUpdateTokenV1(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
