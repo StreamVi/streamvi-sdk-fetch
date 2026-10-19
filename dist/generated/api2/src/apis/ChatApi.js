@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class ChatApi extends runtime.BaseAPI {
     /**
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * Get chat key
      */
     async chatGatewayKeyV1Raw(requestParameters, initOverrides) {
@@ -67,9 +68,16 @@ class ChatApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
         const response = await this.request({
             path: `/method/chat/key`,
@@ -80,6 +88,7 @@ class ChatApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteChatKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * Get chat key
      */
     async chatGatewayKeyV1(requestParameters, initOverrides) {
@@ -87,6 +96,7 @@ class ChatApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * Rotate chat key
      */
     async chatGatewayRotateKeyV1Raw(requestParameters, initOverrides) {
@@ -97,9 +107,16 @@ class ChatApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
         const response = await this.request({
             path: `/method/chat/key`,
@@ -111,6 +128,7 @@ class ChatApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteChatKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * Rotate chat key
      */
     async chatGatewayRotateKeyV1(requestParameters, initOverrides) {

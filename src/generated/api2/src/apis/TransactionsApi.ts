@@ -34,6 +34,7 @@ export interface TransactionsListV1Request {
     date_from?: Date;
     date_to?: Date;
     code?: string;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -44,9 +45,9 @@ export interface TransactionsListV1Request {
  */
 export interface TransactionsApiInterface {
     /**
-     * 
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * @summary Transaction list for frontend
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [limit] Number of results
@@ -54,6 +55,7 @@ export interface TransactionsApiInterface {
      * @param {Date} [date_from] Date from
      * @param {Date} [date_to] Date to
      * @param {string} [code] Filter code transaction. example 1 or 1,2,3
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TransactionsApiInterface
@@ -61,6 +63,7 @@ export interface TransactionsApiInterface {
     transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>>;
 
     /**
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * Transaction list for frontend
      */
     transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse>;
@@ -73,6 +76,7 @@ export interface TransactionsApiInterface {
 export class TransactionsApi extends runtime.BaseAPI implements TransactionsApiInterface {
 
     /**
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * Transaction list for frontend
      */
     async transactionsListV1Raw(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedTransactionResponse>> {
@@ -128,9 +132,18 @@ export class TransactionsApi extends runtime.BaseAPI implements TransactionsApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -144,6 +157,7 @@ export class TransactionsApi extends runtime.BaseAPI implements TransactionsApiI
     }
 
     /**
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * Transaction list for frontend
      */
     async transactionsListV1(requestParameters: TransactionsListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedTransactionResponse> {

@@ -13,6 +13,9 @@
  */
 
 
+import { AccessChangedResponse, AccessChangedResponseFromJSONTyped, AccessChangedResponseToJSON } from './AccessChangedResponse';
+import { ActivityChangedResponse, ActivityChangedResponseFromJSONTyped, ActivityChangedResponseToJSON } from './ActivityChangedResponse';
+import { ActivityRecordedResponse, ActivityRecordedResponseFromJSONTyped, ActivityRecordedResponseToJSON } from './ActivityRecordedResponse';
 import { CentrifugoPaymentUpdateResponse, CentrifugoPaymentUpdateResponseFromJSONTyped, CentrifugoPaymentUpdateResponseToJSON } from './CentrifugoPaymentUpdateResponse';
 import { CentrifugoProjectImportantEventResponse, CentrifugoProjectImportantEventResponseFromJSONTyped, CentrifugoProjectImportantEventResponseToJSON } from './CentrifugoProjectImportantEventResponse';
 import { CentrifugoProjectNotificationResponse, CentrifugoProjectNotificationResponseFromJSONTyped, CentrifugoProjectNotificationResponseToJSON } from './CentrifugoProjectNotificationResponse';
@@ -25,7 +28,7 @@ import { CentrifugoStreamStopResponse, CentrifugoStreamStopResponseFromJSONTyped
  * Centrifugo project event response
  * @export
  */
-export type CentrifugoProjectEventResponseUnionEvent = { event: 'important-event' } & CentrifugoProjectImportantEventResponse | { event: 'notification' } & CentrifugoProjectNotificationResponse | { event: 'payment-update' } & CentrifugoPaymentUpdateResponse | { event: 'project-update' } & CentrifugoProjectUpdateResponse | { event: 'stream-end' } & CentrifugoStreamStopResponse | { event: 'stream-start' } & CentrifugoStreamStartResponse;
+export type CentrifugoProjectEventResponseUnionEvent = { event: 'access.changed' } & AccessChangedResponse | { event: 'activity.changed' } & ActivityChangedResponse | { event: 'activity.recorded' } & ActivityRecordedResponse | { event: 'important-event' } & CentrifugoProjectImportantEventResponse | { event: 'notification' } & CentrifugoProjectNotificationResponse | { event: 'payment-update' } & CentrifugoPaymentUpdateResponse | { event: 'project-update' } & CentrifugoProjectUpdateResponse | { event: 'stream-end' } & CentrifugoStreamStopResponse | { event: 'stream-start' } & CentrifugoStreamStartResponse;
 
 export function CentrifugoProjectEventResponseUnionEventFromJSON(json: any): CentrifugoProjectEventResponseUnionEvent {
     return CentrifugoProjectEventResponseUnionEventFromJSONTyped(json, false);
@@ -36,6 +39,12 @@ export function CentrifugoProjectEventResponseUnionEventFromJSONTyped(json: any,
         return json;
     }
     switch (json['event']) {
+        case 'access.changed':
+            return Object.assign({}, AccessChangedResponseFromJSONTyped(json, true), { event: 'access.changed' } as const);
+        case 'activity.changed':
+            return Object.assign({}, ActivityChangedResponseFromJSONTyped(json, true), { event: 'activity.changed' } as const);
+        case 'activity.recorded':
+            return Object.assign({}, ActivityRecordedResponseFromJSONTyped(json, true), { event: 'activity.recorded' } as const);
         case 'important-event':
             return Object.assign({}, CentrifugoProjectImportantEventResponseFromJSONTyped(json, true), { event: 'important-event' } as const);
         case 'notification':
@@ -62,6 +71,12 @@ export function CentrifugoProjectEventResponseUnionEventToJSONTyped(value?: Cent
         return value;
     }
     switch (value['event']) {
+        case 'access.changed':
+            return Object.assign({}, AccessChangedResponseToJSON(value), { event: 'access.changed' } as const);
+        case 'activity.changed':
+            return Object.assign({}, ActivityChangedResponseToJSON(value), { event: 'activity.changed' } as const);
+        case 'activity.recorded':
+            return Object.assign({}, ActivityRecordedResponseToJSON(value), { event: 'activity.recorded' } as const);
         case 'important-event':
             return Object.assign({}, CentrifugoProjectImportantEventResponseToJSON(value), { event: 'important-event' } as const);
         case 'notification':

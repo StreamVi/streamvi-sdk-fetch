@@ -12,27 +12,150 @@
  * Do not edit the class manually.
  */
 
+import { mapValues } from '../runtime';
 import type { PaySettingEnBodyDto } from './PaySettingEnBodyDto';
 import {
-    instanceOfPaySettingEnBodyDto,
     PaySettingEnBodyDtoFromJSON,
     PaySettingEnBodyDtoFromJSONTyped,
     PaySettingEnBodyDtoToJSON,
+    PaySettingEnBodyDtoToJSONTyped,
 } from './PaySettingEnBodyDto';
 import type { PaySettingRuBodyDto } from './PaySettingRuBodyDto';
 import {
-    instanceOfPaySettingRuBodyDto,
     PaySettingRuBodyDtoFromJSON,
     PaySettingRuBodyDtoFromJSONTyped,
     PaySettingRuBodyDtoToJSON,
+    PaySettingRuBodyDtoToJSONTyped,
 } from './PaySettingRuBodyDto';
 
 /**
- * @type PaySettingSetSettingV1Request
  * 
  * @export
+ * @interface PaySettingSetSettingV1Request
  */
-export type PaySettingSetSettingV1Request = PaySettingEnBodyDto | PaySettingRuBodyDto;
+export interface PaySettingSetSettingV1Request {
+    /**
+     * Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    v?: PaySettingSetSettingV1RequestVEnum;
+    /**
+     * Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    language: PaySettingSetSettingV1RequestLanguageEnum;
+    /**
+     * Project id
+     * @type {number}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    project_id: number;
+    /**
+     * Countrie id
+     * @type {number}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    countrie_id: number;
+    /**
+     * Organization
+     * @type {number}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    organization_id?: number;
+    /**
+     * Pay system id
+     * @type {number}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    pay_system_id: number;
+    /**
+     * E-mail
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    email: string;
+    /**
+     * Additional information about the payment
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    description?: string;
+    /**
+     * Street
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    street: string;
+    /**
+     * House number
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    house_number: string;
+    /**
+     * Postal code
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    zip: string;
+    /**
+     * City
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    city: string;
+    /**
+     * State ot region
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    state: string;
+    /**
+     * Company name
+     * @type {string}
+     * @memberof PaySettingSetSettingV1Request
+     */
+    company_name?: string;
+}
+
+
+/**
+ * @export
+ */
+export const PaySettingSetSettingV1RequestVEnum = {
+    _1: '1'
+} as const;
+export type PaySettingSetSettingV1RequestVEnum = typeof PaySettingSetSettingV1RequestVEnum[keyof typeof PaySettingSetSettingV1RequestVEnum];
+
+/**
+ * @export
+ */
+export const PaySettingSetSettingV1RequestLanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type PaySettingSetSettingV1RequestLanguageEnum = typeof PaySettingSetSettingV1RequestLanguageEnum[keyof typeof PaySettingSetSettingV1RequestLanguageEnum];
+
+
+/**
+ * Check if a given object implements the PaySettingSetSettingV1Request interface.
+ */
+export function instanceOfPaySettingSetSettingV1Request(value: object): value is PaySettingSetSettingV1Request {
+    if (!('language' in value) || value['language'] === undefined) return false;
+    if (!('project_id' in value) || value['project_id'] === undefined) return false;
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined) return false;
+    if (!('pay_system_id' in value) || value['pay_system_id'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('street' in value) || value['street'] === undefined) return false;
+    if (!('house_number' in value) || value['house_number'] === undefined) return false;
+    if (!('zip' in value) || value['zip'] === undefined) return false;
+    if (!('city' in value) || value['city'] === undefined) return false;
+    if (!('state' in value) || value['state'] === undefined) return false;
+    return true;
+}
 
 export function PaySettingSetSettingV1RequestFromJSON(json: any): PaySettingSetSettingV1Request {
     return PaySettingSetSettingV1RequestFromJSONTyped(json, false);
@@ -42,20 +165,26 @@ export function PaySettingSetSettingV1RequestFromJSONTyped(json: any, ignoreDisc
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
-    }
-    if (instanceOfPaySettingEnBodyDto(json)) {
-        return PaySettingEnBodyDtoFromJSONTyped(json, true);
-    }
-    if (instanceOfPaySettingRuBodyDto(json)) {
-        return PaySettingRuBodyDtoFromJSONTyped(json, true);
-    }
-
-    return {} as any;
+    return {
+        
+        'v': json['v'] == null ? undefined : json['v'],
+        'language': json['language'],
+        'project_id': json['project_id'],
+        'countrie_id': json['countrie_id'],
+        'organization_id': json['organization_id'] == null ? undefined : json['organization_id'],
+        'pay_system_id': json['pay_system_id'],
+        'email': json['email'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'street': json['street'],
+        'house_number': json['house_number'],
+        'zip': json['zip'],
+        'city': json['city'],
+        'state': json['state'],
+        'company_name': json['company_name'] == null ? undefined : json['company_name'],
+    };
 }
 
-export function PaySettingSetSettingV1RequestToJSON(json: any): any {
+export function PaySettingSetSettingV1RequestToJSON(json: any): PaySettingSetSettingV1Request {
     return PaySettingSetSettingV1RequestToJSONTyped(json, false);
 }
 
@@ -63,16 +192,23 @@ export function PaySettingSetSettingV1RequestToJSONTyped(value?: PaySettingSetSe
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
-    if (instanceOfPaySettingEnBodyDto(value)) {
-        return PaySettingEnBodyDtoToJSON(value as PaySettingEnBodyDto);
-    }
-    if (instanceOfPaySettingRuBodyDto(value)) {
-        return PaySettingRuBodyDtoToJSON(value as PaySettingRuBodyDto);
-    }
 
-    return {};
+    return {
+        
+        'v': value['v'],
+        'language': value['language'],
+        'project_id': value['project_id'],
+        'countrie_id': value['countrie_id'],
+        'organization_id': value['organization_id'],
+        'pay_system_id': value['pay_system_id'],
+        'email': value['email'],
+        'description': value['description'],
+        'street': value['street'],
+        'house_number': value['house_number'],
+        'zip': value['zip'],
+        'city': value['city'],
+        'state': value['state'],
+        'company_name': value['company_name'],
+    };
 }
 

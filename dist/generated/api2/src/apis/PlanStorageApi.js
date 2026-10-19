@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PlanStorageApi extends runtime.BaseAPI {
     /**
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy storage tariff
      */
     async planStorageBuyV1Raw(requestParameters, initOverrides) {
@@ -58,6 +59,9 @@ class PlanStorageApi extends runtime.BaseAPI {
         }
         if (requestParameters['plan_storage_id'] == null) {
             throw new runtime.RequiredError('plan_storage_id', 'Required parameter "plan_storage_id" was null or undefined when calling planStorageBuyV1().');
+        }
+        if (requestParameters['size'] == null) {
+            throw new runtime.RequiredError('size', 'Required parameter "size" was null or undefined when calling planStorageBuyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -82,9 +86,16 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['size'] = requestParameters['size'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_storage`,
@@ -95,6 +106,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy storage tariff
      */
     async planStorageBuyV1(requestParameters, initOverrides) {
@@ -102,6 +114,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * Remove next tariff
      */
     async planStorageCancelV1Raw(requestParameters, initOverrides) {
@@ -125,9 +138,16 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_storage`,
@@ -138,6 +158,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * Remove next tariff
      */
     async planStorageCancelV1(requestParameters, initOverrides) {
@@ -145,6 +166,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check storage tariff before buy
      */
     async planStorageCheckV1Raw(requestParameters, initOverrides) {
@@ -168,9 +190,16 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_storage/check`,
@@ -181,6 +210,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanStorageCheckResponseFromJSON)(jsonValue));
     }
     /**
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check storage tariff before buy
      */
     async planStorageCheckV1(requestParameters, initOverrides) {
@@ -188,6 +218,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount of storage
      */
     async planStorageGetDiscountV1Raw(requestParameters, initOverrides) {
@@ -205,9 +236,8 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_storage/get_discount`,
@@ -218,6 +248,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanStorageDiscountResponseFromJSON)(jsonValue));
     }
     /**
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount of storage
      */
     async planStorageGetDiscountV1(requestParameters, initOverrides) {
@@ -225,6 +256,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get info for storage tariff
      */
     async planStorageListV1Raw(requestParameters, initOverrides) {
@@ -242,9 +274,8 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_storage/list`,
@@ -255,6 +286,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanStorageResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get info for storage tariff
      */
     async planStorageListV1(requestParameters, initOverrides) {
@@ -262,6 +294,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set storage tariff auto prolongation
      */
     async planStorageSetProlongationV1Raw(requestParameters, initOverrides) {
@@ -291,9 +324,16 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['enabled'] = requestParameters['enabled'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_storage/prolongation`,
@@ -304,6 +344,7 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set storage tariff auto prolongation
      */
     async planStorageSetProlongationV1(requestParameters, initOverrides) {
@@ -311,7 +352,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get tariff for project
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project storage tariff
      */
     async planStorageTariffV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -334,9 +376,16 @@ class PlanStorageApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_storage`,
@@ -347,7 +396,8 @@ class PlanStorageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanStorageForProjectFromJSON)(jsonValue));
     }
     /**
-     * Get tariff for project
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project storage tariff
      */
     async planStorageTariffV1(requestParameters, initOverrides) {
         const response = await this.planStorageTariffV1Raw(requestParameters, initOverrides);

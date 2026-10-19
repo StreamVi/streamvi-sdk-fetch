@@ -45,9 +45,10 @@ export interface PlanRestreamBuyV1Request {
     project_id: number;
     period: PlanRestreamBuyV1PeriodEnum;
     plan_restream_id: number;
+    count_channel: number;
+    bitrate: number;
     v?: PlanRestreamBuyV1VEnum;
-    count_channel?: number;
-    bitrate?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamCheck2V1Request {
@@ -55,26 +56,30 @@ export interface PlanRestreamCheck2V1Request {
     project_id: number;
     period: PlanRestreamCheck2V1PeriodEnum;
     plan_restream_id: number;
+    use_balance: number;
     v?: PlanRestreamCheck2V1VEnum;
-    use_balance?: number;
     channels?: number;
     bitrate?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamGetDiscountV1Request {
     language: PlanRestreamGetDiscountV1LanguageEnum;
     v?: PlanRestreamGetDiscountV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamListProjectV1Request {
     language: PlanRestreamListProjectV1LanguageEnum;
     project_id: number;
     v?: PlanRestreamListProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamListV1Request {
     language: PlanRestreamListV1LanguageEnum;
     v?: PlanRestreamListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamRemoveV1Request {
@@ -82,6 +87,7 @@ export interface PlanRestreamRemoveV1Request {
     project_id: number;
     plan_restream_id: number;
     v?: PlanRestreamRemoveV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamSetProlongationV1Request {
@@ -89,12 +95,14 @@ export interface PlanRestreamSetProlongationV1Request {
     project_id: number;
     enabled: boolean;
     v?: PlanRestreamSetProlongationV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanRestreamTariffV1Request {
     language: PlanRestreamTariffV1LanguageEnum;
     project_id: number;
     v?: PlanRestreamTariffV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -105,15 +113,16 @@ export interface PlanRestreamTariffV1Request {
  */
 export interface PlanRestreamApiInterface {
     /**
-     * 
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * @summary Buy restream tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_restream_id Restream plan id
+     * @param {number} count_channel Channel count
+     * @param {number} bitrate Bitrate, kbps
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [count_channel] Channel count
-     * @param {number} [bitrate] Bitrate, kbps
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -121,21 +130,23 @@ export interface PlanRestreamApiInterface {
     planRestreamBuyV1Raw(requestParameters: PlanRestreamBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy restream tariff
      */
     planRestreamBuyV1(requestParameters: PlanRestreamBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Load data for show card the tariffs v2
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * @summary Preview project restream tariff purchase
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_restream_id Restream plan id
+     * @param {number} use_balance Is select balance
      * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
-     * @param {number} [use_balance] Is select balance
      * @param {number} [channels] Channels count
      * @param {number} [bitrate] Bitrate, kbps
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -143,15 +154,17 @@ export interface PlanRestreamApiInterface {
     planRestreamCheck2V1Raw(requestParameters: PlanRestreamCheck2V1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamCheckV2Response>>;
 
     /**
-     * Load data for show card the tariffs v2
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * Preview project restream tariff purchase
      */
     planRestreamCheck2V1(requestParameters: PlanRestreamCheck2V1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamCheckV2Response>;
 
     /**
-     * 
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * @summary Get discount restream
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -159,16 +172,18 @@ export interface PlanRestreamApiInterface {
     planRestreamGetDiscountV1Raw(requestParameters: PlanRestreamGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamDiscountResponse>>;
 
     /**
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount restream
      */
     planRestreamGetDiscountV1(requestParameters: PlanRestreamGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamDiscountResponse>;
 
     /**
-     * 
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * @summary Get list of restream tariffs for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -176,15 +191,17 @@ export interface PlanRestreamApiInterface {
     planRestreamListProjectV1Raw(requestParameters: PlanRestreamListProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamProjectResponseDto>>;
 
     /**
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * Get list of restream tariffs for project
      */
     planRestreamListProjectV1(requestParameters: PlanRestreamListProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamProjectResponseDto>;
 
     /**
-     * 
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * @summary Get list of restream tariffs
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -192,17 +209,19 @@ export interface PlanRestreamApiInterface {
     planRestreamListV1Raw(requestParameters: PlanRestreamListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamResponseDto>>;
 
     /**
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of restream tariffs
      */
     planRestreamListV1(requestParameters: PlanRestreamListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamResponseDto>;
 
     /**
-     * 
-     * @summary Remove after tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * @summary Cancel the next project restream tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} plan_restream_id Restream plan id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -210,17 +229,19 @@ export interface PlanRestreamApiInterface {
     planRestreamRemoveV1Raw(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Remove after tariff
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project restream tariff
      */
     planRestreamRemoveV1(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * @summary Set restream tariff auto prolongation
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -228,16 +249,18 @@ export interface PlanRestreamApiInterface {
     planRestreamSetProlongationV1Raw(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set restream tariff auto prolongation
      */
     planRestreamSetProlongationV1(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Get tariff for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * @summary Get current and next project restream tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanRestreamApiInterface
@@ -245,7 +268,8 @@ export interface PlanRestreamApiInterface {
     planRestreamTariffV1Raw(requestParameters: PlanRestreamTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamForProject>>;
 
     /**
-     * Get tariff for project
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project restream tariff
      */
     planRestreamTariffV1(requestParameters: PlanRestreamTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamForProject>;
 
@@ -257,6 +281,7 @@ export interface PlanRestreamApiInterface {
 export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiInterface {
 
     /**
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy restream tariff
      */
     async planRestreamBuyV1Raw(requestParameters: PlanRestreamBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -285,6 +310,20 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
             throw new runtime.RequiredError(
                 'plan_restream_id',
                 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamBuyV1().'
+            );
+        }
+
+        if (requestParameters['count_channel'] == null) {
+            throw new runtime.RequiredError(
+                'count_channel',
+                'Required parameter "count_channel" was null or undefined when calling planRestreamBuyV1().'
+            );
+        }
+
+        if (requestParameters['bitrate'] == null) {
+            throw new runtime.RequiredError(
+                'bitrate',
+                'Required parameter "bitrate" was null or undefined when calling planRestreamBuyV1().'
             );
         }
 
@@ -322,9 +361,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -338,6 +386,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy restream tariff
      */
     async planRestreamBuyV1(requestParameters: PlanRestreamBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -346,7 +395,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Load data for show card the tariffs v2
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * Preview project restream tariff purchase
      */
     async planRestreamCheck2V1Raw(requestParameters: PlanRestreamCheck2V1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamCheckV2Response>> {
         if (requestParameters['language'] == null) {
@@ -374,6 +424,13 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
             throw new runtime.RequiredError(
                 'plan_restream_id',
                 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamCheck2V1().'
+            );
+        }
+
+        if (requestParameters['use_balance'] == null) {
+            throw new runtime.RequiredError(
+                'use_balance',
+                'Required parameter "use_balance" was null or undefined when calling planRestreamCheck2V1().'
             );
         }
 
@@ -415,9 +472,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -431,7 +497,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Load data for show card the tariffs v2
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * Preview project restream tariff purchase
      */
     async planRestreamCheck2V1(requestParameters: PlanRestreamCheck2V1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamCheckV2Response> {
         const response = await this.planRestreamCheck2V1Raw(requestParameters, initOverrides);
@@ -439,6 +506,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount restream
      */
     async planRestreamGetDiscountV1Raw(requestParameters: PlanRestreamGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamDiscountResponse>> {
@@ -463,9 +531,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         const response = await this.request({
@@ -479,6 +546,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount restream
      */
     async planRestreamGetDiscountV1(requestParameters: PlanRestreamGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamDiscountResponse> {
@@ -487,6 +555,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * Get list of restream tariffs for project
      */
     async planRestreamListProjectV1Raw(requestParameters: PlanRestreamListProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamProjectResponseDto>> {
@@ -522,9 +591,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -538,6 +616,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * Get list of restream tariffs for project
      */
     async planRestreamListProjectV1(requestParameters: PlanRestreamListProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamProjectResponseDto> {
@@ -546,6 +625,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of restream tariffs
      */
     async planRestreamListV1Raw(requestParameters: PlanRestreamListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamResponseDto>> {
@@ -570,9 +650,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         const response = await this.request({
@@ -586,6 +665,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of restream tariffs
      */
     async planRestreamListV1(requestParameters: PlanRestreamListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamResponseDto> {
@@ -594,7 +674,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Remove after tariff
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project restream tariff
      */
     async planRestreamRemoveV1Raw(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['language'] == null) {
@@ -640,9 +721,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -656,7 +746,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Remove after tariff
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project restream tariff
      */
     async planRestreamRemoveV1(requestParameters: PlanRestreamRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.planRestreamRemoveV1Raw(requestParameters, initOverrides);
@@ -664,6 +755,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set restream tariff auto prolongation
      */
     async planRestreamSetProlongationV1Raw(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -710,9 +802,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -726,6 +827,7 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set restream tariff auto prolongation
      */
     async planRestreamSetProlongationV1(requestParameters: PlanRestreamSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -734,7 +836,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Get tariff for project
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project restream tariff
      */
     async planRestreamTariffV1Raw(requestParameters: PlanRestreamTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanRestreamForProject>> {
         if (requestParameters['language'] == null) {
@@ -769,9 +872,18 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -785,7 +897,8 @@ export class PlanRestreamApi extends runtime.BaseAPI implements PlanRestreamApiI
     }
 
     /**
-     * Get tariff for project
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project restream tariff
      */
     async planRestreamTariffV1(requestParameters: PlanRestreamTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanRestreamForProject> {
         const response = await this.planRestreamTariffV1Raw(requestParameters, initOverrides);

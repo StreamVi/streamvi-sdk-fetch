@@ -28,19 +28,19 @@ import {
  */
 export interface PaginatedBlogPageSiteResponse {
     /**
-     * Общее количество элементов вообще
+     * Total number of all items
      * @type {number}
      * @memberof PaginatedBlogPageSiteResponse
      */
     total: number;
     /**
-     * Размер запрашиваемой страницы
+     * Requested page size
      * @type {number}
      * @memberof PaginatedBlogPageSiteResponse
      */
     limit: number;
     /**
-     * С какого элемента включительно делать запрос
+     * Element to start the request from, inclusive
      * @type {number}
      * @memberof PaginatedBlogPageSiteResponse
      */

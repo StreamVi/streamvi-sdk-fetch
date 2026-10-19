@@ -67,6 +67,7 @@ function WebinarUpdateStreamSettingDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'client_id': json['client_id'],
         'room_id': json['room_id'],
         'width': json['width'],
@@ -87,6 +88,7 @@ function WebinarUpdateStreamSettingDtoToJSONTyped(value, ignoreDiscriminator = f
     return {
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'client_id': value['client_id'],
         'room_id': value['room_id'],
         'width': value['width'],

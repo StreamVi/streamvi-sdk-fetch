@@ -15,10 +15,12 @@ export interface PolicyPageGetItemV1Request {
     language: PolicyPageGetItemV1LanguageEnum;
     file_name: PolicyPageGetItemV1FileNameEnum;
     v?: PolicyPageGetItemV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PolicyPageGetStructureV1Request {
     language: PolicyPageGetStructureV1LanguageEnum;
     v?: PolicyPageGetStructureV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PolicyPageApi - interface
@@ -28,31 +30,35 @@ export interface PolicyPageGetStructureV1Request {
  */
 export interface PolicyPageApiInterface {
     /**
-     *
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * @summary Get policy page
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'refund' | 'terms-of-use' | 'using-cookie' | 'acceptable-use' | 'privacy-notice'} file_name Policy file name
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface
      */
-    policyPageGetItemV1Raw(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    policyPageGetItemV1Raw(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * Get policy page
      */
-    policyPageGetItemV1(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    policyPageGetItemV1(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
-     *
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * @summary Get policy structure
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PolicyPageApiInterface
      */
     policyPageGetStructureV1Raw(requestParameters: PolicyPageGetStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPolicyStructureDto>>;
     /**
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * Get policy structure
      */
     policyPageGetStructureV1(requestParameters: PolicyPageGetStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPolicyStructureDto>;
@@ -62,18 +68,22 @@ export interface PolicyPageApiInterface {
  */
 export declare class PolicyPageApi extends runtime.BaseAPI implements PolicyPageApiInterface {
     /**
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * Get policy page
      */
-    policyPageGetItemV1Raw(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    policyPageGetItemV1Raw(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * Get policy page
      */
-    policyPageGetItemV1(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    policyPageGetItemV1(requestParameters: PolicyPageGetItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * Get policy structure
      */
     policyPageGetStructureV1Raw(requestParameters: PolicyPageGetStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPolicyStructureDto>>;
     /**
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * Get policy structure
      */
     policyPageGetStructureV1(requestParameters: PolicyPageGetStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPolicyStructureDto>;

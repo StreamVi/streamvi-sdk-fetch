@@ -28,25 +28,25 @@ import {
  */
 export interface PaginatedHelpPageResponse {
     /**
-     * Общее количество элементов вообще
+     * Total number of all items
      * @type {number}
      * @memberof PaginatedHelpPageResponse
      */
     total: number;
     /**
-     * Размер запрашиваемой страницы
+     * Requested page size
      * @type {number}
      * @memberof PaginatedHelpPageResponse
      */
     limit: number;
     /**
-     * С какого элемента включительно делать запрос
+     * Element to start the request from, inclusive
      * @type {number}
      * @memberof PaginatedHelpPageResponse
      */
     offset: number;
     /**
-     * Результаты поиска с пагинацией
+     * Paginated search results
      * @type {Array<HelpPageResponse>}
      * @memberof PaginatedHelpPageResponse
      */

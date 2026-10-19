@@ -15,13 +15,15 @@ export interface BlogPageGetV1Request {
     language: BlogPageGetV1LanguageEnum;
     url: string;
     v?: BlogPageGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface BlogPageListV1Request {
     language: BlogPageListV1LanguageEnum;
+    limit: number;
+    offset: number;
     v?: BlogPageListV1VEnum;
     s?: string;
-    limit?: number;
-    offset?: number;
+    X_Client_Request_Id?: string;
 }
 /**
  * BlogPageApi - interface
@@ -31,34 +33,38 @@ export interface BlogPageListV1Request {
  */
 export interface BlogPageApiInterface {
     /**
-     *
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * @summary Get blog page
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} url Url of page
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlogPageApiInterface
      */
     blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBlogPageResponse>>;
     /**
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * Get blog page
      */
     blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBlogPageResponse>;
     /**
-     *
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * @summary Get list of blog pages
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} limit Number of results
+     * @param {number} offset Page offset number
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [s] String for search
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlogPageApiInterface
      */
     blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageSiteResponse>>;
     /**
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * Get list of blog pages
      */
     blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageSiteResponse>;
@@ -68,18 +74,22 @@ export interface BlogPageApiInterface {
  */
 export declare class BlogPageApi extends runtime.BaseAPI implements BlogPageApiInterface {
     /**
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * Get blog page
      */
     blogPageGetV1Raw(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBlogPageResponse>>;
     /**
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * Get blog page
      */
     blogPageGetV1(requestParameters: BlogPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBlogPageResponse>;
     /**
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * Get list of blog pages
      */
     blogPageListV1Raw(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageSiteResponse>>;
     /**
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * Get list of blog pages
      */
     blogPageListV1(requestParameters: BlogPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageSiteResponse>;

@@ -52,6 +52,7 @@ function WebinarStreamPauseDtoFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],
     };
@@ -68,6 +69,7 @@ function WebinarStreamPauseDtoToJSONTyped(value, ignoreDiscriminator = false) {
     return {
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'room_id': value['room_id'],
         'client_id': value['client_id'],
     };

@@ -12,48 +12,48 @@
  * Do not edit the class manually.
  */
 
-import type { PaymentCreateRequestRestreamBodyDto } from './PaymentCreateRequestRestreamBodyDto';
+import type { PaymentCreateV1RequestOneOf } from './PaymentCreateV1RequestOneOf';
 import {
-    instanceOfPaymentCreateRequestRestreamBodyDto,
-    PaymentCreateRequestRestreamBodyDtoFromJSON,
-    PaymentCreateRequestRestreamBodyDtoFromJSONTyped,
-    PaymentCreateRequestRestreamBodyDtoToJSON,
-} from './PaymentCreateRequestRestreamBodyDto';
-import type { PaymentCreateRequestStorageBodyDto } from './PaymentCreateRequestStorageBodyDto';
+    instanceOfPaymentCreateV1RequestOneOf,
+    PaymentCreateV1RequestOneOfFromJSON,
+    PaymentCreateV1RequestOneOfFromJSONTyped,
+    PaymentCreateV1RequestOneOfToJSON,
+} from './PaymentCreateV1RequestOneOf';
+import type { PaymentCreateV1RequestOneOf1 } from './PaymentCreateV1RequestOneOf1';
 import {
-    instanceOfPaymentCreateRequestStorageBodyDto,
-    PaymentCreateRequestStorageBodyDtoFromJSON,
-    PaymentCreateRequestStorageBodyDtoFromJSONTyped,
-    PaymentCreateRequestStorageBodyDtoToJSON,
-} from './PaymentCreateRequestStorageBodyDto';
-import type { PaymentCreateRequestTopUpBodyDto } from './PaymentCreateRequestTopUpBodyDto';
+    instanceOfPaymentCreateV1RequestOneOf1,
+    PaymentCreateV1RequestOneOf1FromJSON,
+    PaymentCreateV1RequestOneOf1FromJSONTyped,
+    PaymentCreateV1RequestOneOf1ToJSON,
+} from './PaymentCreateV1RequestOneOf1';
+import type { PaymentCreateV1RequestOneOf2 } from './PaymentCreateV1RequestOneOf2';
 import {
-    instanceOfPaymentCreateRequestTopUpBodyDto,
-    PaymentCreateRequestTopUpBodyDtoFromJSON,
-    PaymentCreateRequestTopUpBodyDtoFromJSONTyped,
-    PaymentCreateRequestTopUpBodyDtoToJSON,
-} from './PaymentCreateRequestTopUpBodyDto';
-import type { PaymentCreateRequestTranscoderBodyDto } from './PaymentCreateRequestTranscoderBodyDto';
+    instanceOfPaymentCreateV1RequestOneOf2,
+    PaymentCreateV1RequestOneOf2FromJSON,
+    PaymentCreateV1RequestOneOf2FromJSONTyped,
+    PaymentCreateV1RequestOneOf2ToJSON,
+} from './PaymentCreateV1RequestOneOf2';
+import type { PaymentCreateV1RequestOneOf3 } from './PaymentCreateV1RequestOneOf3';
 import {
-    instanceOfPaymentCreateRequestTranscoderBodyDto,
-    PaymentCreateRequestTranscoderBodyDtoFromJSON,
-    PaymentCreateRequestTranscoderBodyDtoFromJSONTyped,
-    PaymentCreateRequestTranscoderBodyDtoToJSON,
-} from './PaymentCreateRequestTranscoderBodyDto';
-import type { PaymentCreateRequestWebinarBodyDto } from './PaymentCreateRequestWebinarBodyDto';
+    instanceOfPaymentCreateV1RequestOneOf3,
+    PaymentCreateV1RequestOneOf3FromJSON,
+    PaymentCreateV1RequestOneOf3FromJSONTyped,
+    PaymentCreateV1RequestOneOf3ToJSON,
+} from './PaymentCreateV1RequestOneOf3';
+import type { PaymentCreateV1RequestOneOf4 } from './PaymentCreateV1RequestOneOf4';
 import {
-    instanceOfPaymentCreateRequestWebinarBodyDto,
-    PaymentCreateRequestWebinarBodyDtoFromJSON,
-    PaymentCreateRequestWebinarBodyDtoFromJSONTyped,
-    PaymentCreateRequestWebinarBodyDtoToJSON,
-} from './PaymentCreateRequestWebinarBodyDto';
+    instanceOfPaymentCreateV1RequestOneOf4,
+    PaymentCreateV1RequestOneOf4FromJSON,
+    PaymentCreateV1RequestOneOf4FromJSONTyped,
+    PaymentCreateV1RequestOneOf4ToJSON,
+} from './PaymentCreateV1RequestOneOf4';
 
 /**
  * @type PaymentCreateV1Request
  * 
  * @export
  */
-export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto | PaymentCreateRequestWebinarBodyDto;
+export type PaymentCreateV1Request = PaymentCreateV1RequestOneOf | PaymentCreateV1RequestOneOf1 | PaymentCreateV1RequestOneOf2 | PaymentCreateV1RequestOneOf3 | PaymentCreateV1RequestOneOf4;
 
 export function PaymentCreateV1RequestFromJSON(json: any): PaymentCreateV1Request {
     return PaymentCreateV1RequestFromJSONTyped(json, false);
@@ -66,20 +66,20 @@ export function PaymentCreateV1RequestFromJSONTyped(json: any, ignoreDiscriminat
     if (typeof json !== 'object') {
         return json;
     }
-    if (instanceOfPaymentCreateRequestRestreamBodyDto(json)) {
-        return PaymentCreateRequestRestreamBodyDtoFromJSONTyped(json, true);
+    if (instanceOfPaymentCreateV1RequestOneOf(json)) {
+        return PaymentCreateV1RequestOneOfFromJSONTyped(json, true);
     }
-    if (instanceOfPaymentCreateRequestStorageBodyDto(json)) {
-        return PaymentCreateRequestStorageBodyDtoFromJSONTyped(json, true);
+    if (instanceOfPaymentCreateV1RequestOneOf1(json)) {
+        return PaymentCreateV1RequestOneOf1FromJSONTyped(json, true);
     }
-    if (instanceOfPaymentCreateRequestTopUpBodyDto(json)) {
-        return PaymentCreateRequestTopUpBodyDtoFromJSONTyped(json, true);
+    if (instanceOfPaymentCreateV1RequestOneOf2(json)) {
+        return PaymentCreateV1RequestOneOf2FromJSONTyped(json, true);
     }
-    if (instanceOfPaymentCreateRequestTranscoderBodyDto(json)) {
-        return PaymentCreateRequestTranscoderBodyDtoFromJSONTyped(json, true);
+    if (instanceOfPaymentCreateV1RequestOneOf3(json)) {
+        return PaymentCreateV1RequestOneOf3FromJSONTyped(json, true);
     }
-    if (instanceOfPaymentCreateRequestWebinarBodyDto(json)) {
-        return PaymentCreateRequestWebinarBodyDtoFromJSONTyped(json, true);
+    if (instanceOfPaymentCreateV1RequestOneOf4(json)) {
+        return PaymentCreateV1RequestOneOf4FromJSONTyped(json, true);
     }
 
     return {} as any;
@@ -96,20 +96,20 @@ export function PaymentCreateV1RequestToJSONTyped(value?: PaymentCreateV1Request
     if (typeof value !== 'object') {
         return value;
     }
-    if (instanceOfPaymentCreateRequestRestreamBodyDto(value)) {
-        return PaymentCreateRequestRestreamBodyDtoToJSON(value as PaymentCreateRequestRestreamBodyDto);
+    if (instanceOfPaymentCreateV1RequestOneOf(value)) {
+        return PaymentCreateV1RequestOneOfToJSON(value as PaymentCreateV1RequestOneOf);
     }
-    if (instanceOfPaymentCreateRequestStorageBodyDto(value)) {
-        return PaymentCreateRequestStorageBodyDtoToJSON(value as PaymentCreateRequestStorageBodyDto);
+    if (instanceOfPaymentCreateV1RequestOneOf1(value)) {
+        return PaymentCreateV1RequestOneOf1ToJSON(value as PaymentCreateV1RequestOneOf1);
     }
-    if (instanceOfPaymentCreateRequestTopUpBodyDto(value)) {
-        return PaymentCreateRequestTopUpBodyDtoToJSON(value as PaymentCreateRequestTopUpBodyDto);
+    if (instanceOfPaymentCreateV1RequestOneOf2(value)) {
+        return PaymentCreateV1RequestOneOf2ToJSON(value as PaymentCreateV1RequestOneOf2);
     }
-    if (instanceOfPaymentCreateRequestTranscoderBodyDto(value)) {
-        return PaymentCreateRequestTranscoderBodyDtoToJSON(value as PaymentCreateRequestTranscoderBodyDto);
+    if (instanceOfPaymentCreateV1RequestOneOf3(value)) {
+        return PaymentCreateV1RequestOneOf3ToJSON(value as PaymentCreateV1RequestOneOf3);
     }
-    if (instanceOfPaymentCreateRequestWebinarBodyDto(value)) {
-        return PaymentCreateRequestWebinarBodyDtoToJSON(value as PaymentCreateRequestWebinarBodyDto);
+    if (instanceOfPaymentCreateV1RequestOneOf4(value)) {
+        return PaymentCreateV1RequestOneOf4ToJSON(value as PaymentCreateV1RequestOneOf4);
     }
 
     return {};

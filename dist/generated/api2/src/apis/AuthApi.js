@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class AuthApi extends runtime.BaseAPI {
     /**
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth google
      */
     async authCallbackGoogleV1Raw(requestParameters, initOverrides) {
@@ -55,6 +56,9 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['state'] = requestParameters['state'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/callback/google`,
             method: 'GET',
@@ -64,12 +68,14 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth google
      */
     async authCallbackGoogleV1(requestParameters, initOverrides) {
         await this.authCallbackGoogleV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * Internal request of auth new vk
      */
     async authCallbackVkIdV1Raw(requestParameters, initOverrides) {
@@ -81,6 +87,9 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['state'] = requestParameters['state'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/callback/vk-id`,
             method: 'GET',
@@ -90,17 +99,22 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * Internal request of auth new vk
      */
     async authCallbackVkIdV1(requestParameters, initOverrides) {
         await this.authCallbackVkIdV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth old vk
      */
-    async authCallbackVkV1Raw(initOverrides) {
+    async authCallbackVkV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/callback/vk`,
             method: 'GET',
@@ -110,12 +124,14 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth old vk
      */
-    async authCallbackVkV1(initOverrides) {
-        await this.authCallbackVkV1Raw(initOverrides);
+    async authCallbackVkV1(requestParameters = {}, initOverrides) {
+        await this.authCallbackVkV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * Get code for auth
      */
     async authCodeV1Raw(requestParameters, initOverrides) {
@@ -139,9 +155,15 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['app'] = requestParameters['app'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearer", []);
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
         }
         const response = await this.request({
             path: `/method/auth/app/code`,
@@ -152,6 +174,7 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CodeAppAuthResponseFromJSON)(jsonValue));
     }
     /**
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * Get code for auth
      */
     async authCodeV1(requestParameters, initOverrides) {
@@ -159,6 +182,7 @@ class AuthApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * CallBack for connect social
      */
     async authConnectResultV1Raw(requestParameters, initOverrides) {
@@ -182,6 +206,9 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['message'] = requestParameters['message'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/connect/callback`,
             method: 'GET',
@@ -191,12 +218,14 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * CallBack for connect social
      */
     async authConnectResultV1(requestParameters, initOverrides) {
         await this.authConnectResultV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * Connect telegram in account
      */
     async authConnectTelegramV1Raw(requestParameters, initOverrides) {
@@ -214,9 +243,12 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
         const response = await this.request({
             path: `/method/auth/connect-telegram`,
@@ -227,6 +259,7 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * Connect telegram in account
      */
     async authConnectTelegramV1(requestParameters, initOverrides) {
@@ -234,6 +267,7 @@ class AuthApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * Connected social account
      */
     async authConnectV1Raw(requestParameters, initOverrides) {
@@ -263,9 +297,12 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['redirect'] = requestParameters['redirect'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
         const response = await this.request({
             path: `/method/auth/connect`,
@@ -276,12 +313,14 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * Connected social account
      */
     async authConnectV1(requestParameters, initOverrides) {
         await this.authConnectV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * Disconnected social account
      */
     async authDisconnectV1Raw(requestParameters, initOverrides) {
@@ -305,9 +344,12 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['social_id'] = requestParameters['social_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
         const response = await this.request({
             path: `/method/auth/disconnect`,
@@ -318,6 +360,7 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * Disconnected social account
      */
     async authDisconnectV1(requestParameters, initOverrides) {
@@ -325,6 +368,7 @@ class AuthApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * Code exchange
      */
     async authExchangeV1Raw(requestParameters, initOverrides) {
@@ -335,6 +379,9 @@ class AuthApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/app/exchange`,
             method: 'POST',
@@ -345,6 +392,7 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RefreshAuthResponseFromJSON)(jsonValue));
     }
     /**
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * Code exchange
      */
     async authExchangeV1(requestParameters, initOverrides) {
@@ -352,6 +400,7 @@ class AuthApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * Get url for start oauth
      */
     async authGetAuthUrlV1Raw(requestParameters, initOverrides) {
@@ -390,6 +439,9 @@ class AuthApi extends runtime.BaseAPI {
             queryParameters['visitorId'] = requestParameters['visitorId'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/redirect-url`,
             method: 'GET',
@@ -399,17 +451,22 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * Get url for start oauth
      */
     async authGetAuthUrlV1(requestParameters, initOverrides) {
         await this.authGetAuthUrlV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * Get client configuration
      */
-    async authGetClientConfigurationV1Raw(initOverrides) {
+    async authGetClientConfigurationV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/auth/GetClientConfiguration`,
             method: 'POST',
@@ -419,10 +476,11 @@ class AuthApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * Get client configuration
      */
-    async authGetClientConfigurationV1(initOverrides) {
-        await this.authGetClientConfigurationV1Raw(initOverrides);
+    async authGetClientConfigurationV1(requestParameters = {}, initOverrides) {
+        await this.authGetClientConfigurationV1Raw(requestParameters, initOverrides);
     }
 }
 exports.AuthApi = AuthApi;

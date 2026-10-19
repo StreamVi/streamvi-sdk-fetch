@@ -44,11 +44,18 @@ const index_1 = require("../models/index");
  */
 class BlogPageTagApi extends runtime.BaseAPI {
     /**
-     * Get list of blog pages
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * List blog tags
      */
     async blogPageTagListV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling blogPageTagListV1().');
+        }
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling blogPageTagListV1().');
+        }
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling blogPageTagListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -70,6 +77,9 @@ class BlogPageTagApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/blog/tag/list`,
             method: 'GET',
@@ -79,7 +89,8 @@ class BlogPageTagApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedBlogPageTagResponseFromJSON)(jsonValue));
     }
     /**
-     * Get list of blog pages
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * List blog tags
      */
     async blogPageTagListV1(requestParameters, initOverrides) {
         const response = await this.blogPageTagListV1Raw(requestParameters, initOverrides);

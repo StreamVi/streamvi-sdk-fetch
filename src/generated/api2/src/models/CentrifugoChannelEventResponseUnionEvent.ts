@@ -13,6 +13,7 @@
  */
 
 
+import { CentrifugoChannelConnectionsResponse, CentrifugoChannelConnectionsResponseFromJSONTyped, CentrifugoChannelConnectionsResponseToJSON } from './CentrifugoChannelConnectionsResponse';
 import { CentrifugoChannelStartedResponse, CentrifugoChannelStartedResponseFromJSONTyped, CentrifugoChannelStartedResponseToJSON } from './CentrifugoChannelStartedResponse';
 import { CentrifugoChannelStatusResponse, CentrifugoChannelStatusResponseFromJSONTyped, CentrifugoChannelStatusResponseToJSON } from './CentrifugoChannelStatusResponse';
 import { CentrifugoChannelStoppedResponse, CentrifugoChannelStoppedResponseFromJSONTyped, CentrifugoChannelStoppedResponseToJSON } from './CentrifugoChannelStoppedResponse';
@@ -22,7 +23,7 @@ import { CentrifugoChannelStoppedResponse, CentrifugoChannelStoppedResponseFromJ
  * Centrifugo channel event response
  * @export
  */
-export type CentrifugoChannelEventResponseUnionEvent = { event: 'channel-started' } & CentrifugoChannelStartedResponse | { event: 'channel-status' } & CentrifugoChannelStatusResponse | { event: 'channel-stopped' } & CentrifugoChannelStoppedResponse;
+export type CentrifugoChannelEventResponseUnionEvent = { event: 'channel-connections-changed' } & CentrifugoChannelConnectionsResponse | { event: 'channel-started' } & CentrifugoChannelStartedResponse | { event: 'channel-status' } & CentrifugoChannelStatusResponse | { event: 'channel-stopped' } & CentrifugoChannelStoppedResponse;
 
 export function CentrifugoChannelEventResponseUnionEventFromJSON(json: any): CentrifugoChannelEventResponseUnionEvent {
     return CentrifugoChannelEventResponseUnionEventFromJSONTyped(json, false);
@@ -33,6 +34,8 @@ export function CentrifugoChannelEventResponseUnionEventFromJSONTyped(json: any,
         return json;
     }
     switch (json['event']) {
+        case 'channel-connections-changed':
+            return Object.assign({}, CentrifugoChannelConnectionsResponseFromJSONTyped(json, true), { event: 'channel-connections-changed' } as const);
         case 'channel-started':
             return Object.assign({}, CentrifugoChannelStartedResponseFromJSONTyped(json, true), { event: 'channel-started' } as const);
         case 'channel-status':
@@ -53,6 +56,8 @@ export function CentrifugoChannelEventResponseUnionEventToJSONTyped(value?: Cent
         return value;
     }
     switch (value['event']) {
+        case 'channel-connections-changed':
+            return Object.assign({}, CentrifugoChannelConnectionsResponseToJSON(value), { event: 'channel-connections-changed' } as const);
         case 'channel-started':
             return Object.assign({}, CentrifugoChannelStartedResponseToJSON(value), { event: 'channel-started' } as const);
         case 'channel-status':

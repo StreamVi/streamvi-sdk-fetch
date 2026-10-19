@@ -9,6 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AccessChangedResponse } from './AccessChangedResponse';
+import { ActivityChangedResponse } from './ActivityChangedResponse';
+import { ActivityRecordedResponse } from './ActivityRecordedResponse';
 import { CentrifugoPaymentUpdateResponse } from './CentrifugoPaymentUpdateResponse';
 import { CentrifugoProjectImportantEventResponse } from './CentrifugoProjectImportantEventResponse';
 import { CentrifugoProjectNotificationResponse } from './CentrifugoProjectNotificationResponse';
@@ -21,6 +24,12 @@ import { CentrifugoStreamStopResponse } from './CentrifugoStreamStopResponse';
  * @export
  */
 export type CentrifugoProjectEventResponseUnionEvent = {
+    event: 'access.changed';
+} & AccessChangedResponse | {
+    event: 'activity.changed';
+} & ActivityChangedResponse | {
+    event: 'activity.recorded';
+} & ActivityRecordedResponse | {
     event: 'important-event';
 } & CentrifugoProjectImportantEventResponse | {
     event: 'notification';

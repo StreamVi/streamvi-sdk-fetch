@@ -1,5 +1,9 @@
 # StreamVi SDK (Fetch-based)
 
+## Версия 3.0.0
+
+Клиент обновлён по схеме действующего API: 354 операции, в том числе 73 новых. Перед обновлением с 2.x прочитайте [изменения и порядок перехода](CHANGELOG.md). У некоторых методов изменились аргументы.
+
 Библиотека для работы с API StreamVi вместе с примером авторизации через OAuth с помощью библиотеки [passport-streamvi](https://www.npmjs.com/package/passport-streamvi).
 
 Это версия StreamVi SDK на основе fetch API. Оригинальная версия на основе axios доступна по адресу: [https://github.com/StreamVi/streamvi-sdk](https://github.com/StreamVi/streamvi-sdk)
@@ -23,7 +27,7 @@ npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git
 ### Установка определённой версии/тега
 
 ```bash
-npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git#v1.0.1
+npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git#v3.0.0
 ```
 
 ### Установка для разработки (клонирование репозитория)
@@ -159,47 +163,7 @@ console.log(projectInfo.data);
 
 После генерации доступны следующие API-клиенты:
 
-- [AccountApi](src/generated/api2/docs/AccountApi.md)
-- [AnalyticsApi](src/generated/api2/docs/AnalyticsApi.md)
-- [AuthApi](src/generated/api2/docs/AuthApi.md)
-- [BlogPageApi](src/generated/api2/docs/BlogPageApi.md)
-- [BlogPageTagApi](src/generated/api2/docs/BlogPageTagApi.md)
-- [BroadcastApi](src/generated/api2/docs/BroadcastApi.md)
-- [CentrifugeApi](src/generated/api2/docs/CentrifugeApi.md)
-- [ChannelApi](src/generated/api2/docs/ChannelApi.md)
-- [ChannelSettingsApi](src/generated/api2/docs/ChannelSettingsApi.md)
-- [ChatGatewayApi](src/generated/api2/docs/ChatGatewayApi.md)
-- [HelpPageApi](src/generated/api2/docs/HelpPageApi.md)
-- [LiveApi](src/generated/api2/docs/LiveApi.md)
-- [MoneyFlowApi](src/generated/api2/docs/MoneyFlowApi.md)
-- [NotifyHistoryApi](src/generated/api2/docs/NotifyHistoryApi.md)
-- [NotifyUserApi](src/generated/api2/docs/NotifyUserApi.md)
-- [PaySettingApi](src/generated/api2/docs/PaySettingApi.md)
-- [PaymentApi](src/generated/api2/docs/PaymentApi.md)
-- [PaySystemApi](src/generated/api2/docs/PaySystemApi.md)
-- [PayoutApi](src/generated/api2/docs/PayoutApi.md)
-- [PlanRestreamApi](src/generated/api2/docs/PlanRestreamApi.md)
-- [PlanStorageApi](src/generated/api2/docs/PlanStorageApi.md)
-- [PlanTranscodingApi](src/generated/api2/docs/PlanTranscodingApi.md)
-- [PlatformsApi](src/generated/api2/docs/PlatformsApi.md)
-- [PolicyPageApi](src/generated/api2/docs/PolicyPageApi.md)
-- [ProjectApi](src/generated/api2/docs/ProjectApi.md)
-- [ProjectChannelApi](src/generated/api2/docs/ProjectChannelApi.md)
-- [ProjectChannelInviteApi](src/generated/api2/docs/ProjectChannelInviteApi.md)
-- [ProjectHistoryApi](src/generated/api2/docs/ProjectHistoryApi.md)
-- [PromoApi](src/generated/api2/docs/PromoApi.md)
-- [PullServersApi](src/generated/api2/docs/PullServersApi.md)
-- [ReferralsApi](src/generated/api2/docs/ReferralsApi.md)
-- [ReleaseApi](src/generated/api2/docs/ReleaseApi.md)
-- [RtmpServerApi](src/generated/api2/docs/RtmpServerApi.md)
-- [SocialsApi](src/generated/api2/docs/SocialsApi.md)
-- [StreamKeyApi](src/generated/api2/docs/StreamKeyApi.md)
-- [StreamPullKeysApi](src/generated/api2/docs/StreamPullKeysApi.md)
-- [TranscodersApi](src/generated/api2/docs/TranscodersApi.md)
-- [TransactionsApi](src/generated/api2/docs/TransactionsApi.md)
-- [UsersApi](src/generated/api2/docs/UsersApi.md)
-
-Список также доступен в `src/generated/api2/api.ts`
+Список классов доступен в [экспортах сгенерированного клиента](src/generated/api2/src/apis/index.ts). В соответствующем файле класса находятся сигнатуры, параметры и типы ответов.
 
 ## Структура проекта
 
@@ -268,32 +232,17 @@ example/
 - **Ошибки сессий** — обрабатывает уничтожение и пересоздание сессий
 - **Сетевые ошибки** — корректная обработка проблем с сетью
 
-## Миграция с axios на fetch
+## Переход с Axios на Fetch
 
-Начиная с версии 2.0, SDK использует нативный fetch API вместо axios. Это изменение приносит несколько преимуществ:
+`streamvi-sdk` и `streamvi-sdk-fetch` являются отдельными пакетами. При смене транспорта обновите импорты, константы языка и обработку ответов и ошибок:
 
-- **Отсутствие внешних зависимостей** - уменьшает размер бандла
-- **Лучшая совместимость с браузерами** - fetch нативно поддерживается в современных браузерах
-- **Улучшенная производительность** - нет дополнительных накладных расходов HTTP-клиента
+- Axios возвращает `AxiosResponse`, где `.data` содержит тело HTTP-ответа. Fetch возвращает разобранное тело сразу. Поле `data`, предусмотренное самим API, сохраняется.
+- Неуспешный HTTP-ответ вызывает `ResponseError` со статусом `error.response.status`. Сетевые ошибки и отсутствие обязательных параметров имеют другие типы.
+- Константы языка у Fetch называются `ru` и `en`, у Axios: `Ru` и `En`.
+- Параметры транспорта соответствуют `RequestInit`, например `signal`, вместо параметров Axios, таких как `timeout`.
+- Необязательное поле идентификатора запроса у Fetch называется `X_Client_Request_Id`, у Axios: `'X-Client-Request-Id'`.
 
-### Ключевые изменения:
-
-1. **Структура ответов остается прежней** - ответы API по-прежнему содержат ту же структуру данных
-2. **Обработка ошибок** - ошибки теперь являются нативными ошибками fetch вместо ошибок axios
-3. **Конфигурация** - тот же интерфейс StreamViSdkConfig, но внутренне использует fetch
-
-### Миграция кода:
-
-Никаких изменений в существующем коде не требуется! API интерфейс остается идентичным:
-
-```typescript
-// Этот код работает так же, как и раньше
-const response = await projectApi.userProjectGetProjectInfoV1({
-  language: language,
-  project_id: projectId
-});
-// Доступ к данным через response.data.name, response.data.photo_100 и т.д.
-```
+Изменения при обновлении SDK с 2.x до 3.0.0 описаны в [заметках к выпуску](CHANGELOG.md).
 
 ## Генерация API-клиента
 

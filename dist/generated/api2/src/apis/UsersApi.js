@@ -48,12 +48,15 @@ class UsersApi extends runtime.BaseAPI {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1Raw(initOverrides) {
+    async userGetProfileV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
         const response = await this.request({
             path: `/method/users/profile`,
@@ -68,8 +71,8 @@ class UsersApi extends runtime.BaseAPI {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1(initOverrides) {
-        const response = await this.userGetProfileV1Raw(initOverrides);
+    async userGetProfileV1(requestParameters = {}, initOverrides) {
+        const response = await this.userGetProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
@@ -98,9 +101,12 @@ class UsersApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
         const consumes = [
             { contentType: 'multipart/form-data' },

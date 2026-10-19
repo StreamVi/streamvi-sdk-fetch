@@ -10,10 +10,45 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { PaginatedUserProjectResponse, ProjectInfoResponse, ProjectMeResponse, SuccessResponse, UserProject2ProjectListResponse, UserProjectGetResponse } from '../models/index';
+import type { MethodResolveProjectResponse, MethodResolveUserResponse, PaginatedUserProjectResponse, ProjectInfoResponse, ProjectMeResponse, ProjectMutationResponse, SuccessResponse, UserProject2ProjectListResponse, UserProjectGetResponse } from '../models/index';
+export interface MethodProjectManagementCreateV1Request {
+    language: MethodProjectManagementCreateV1LanguageEnum;
+    name: string;
+    v?: MethodProjectManagementCreateV1VEnum;
+    X_Client_Request_Id?: string;
+    avatar?: Blob;
+}
+export interface MethodProjectManagementDeleteV1Request {
+    language: MethodProjectManagementDeleteV1LanguageEnum;
+    project_id: number;
+    v?: MethodProjectManagementDeleteV1VEnum;
+    X_Client_Request_Id?: string;
+}
+export interface MethodProjectManagementUpdateV1Request {
+    language: MethodProjectManagementUpdateV1LanguageEnum;
+    name: string;
+    v?: MethodProjectManagementUpdateV1VEnum;
+    X_Client_Request_Id?: string;
+    project_id?: number;
+    avatar?: Blob;
+}
 export interface MethodProjectMeMeV1Request {
     v?: MethodProjectMeMeV1VEnum;
     language?: MethodProjectMeMeV1LanguageEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
+}
+export interface MethodResolveProjectV1Request {
+    language: MethodResolveProjectV1LanguageEnum;
+    project_external_id: string;
+    v?: MethodResolveProjectV1VEnum;
+    X_Client_Request_Id?: string;
+}
+export interface MethodResolveUserV1Request {
+    language: MethodResolveUserV1LanguageEnum;
+    user_external_id: string;
+    v?: MethodResolveUserV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectChangeAccessV1Request {
     language: UserProjectChangeAccessV1LanguageEnum;
@@ -21,54 +56,64 @@ export interface UserProjectChangeAccessV1Request {
     user_id: number;
     access_type: UserProjectChangeAccessV1AccessTypeEnum;
     v?: UserProjectChangeAccessV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectDelV1Request {
     language: UserProjectDelV1LanguageEnum;
     project_id: number;
     user_id: number;
     v?: UserProjectDelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectDeleteMemberV1Request {
     language: UserProjectDeleteMemberV1LanguageEnum;
     project_id: number;
     user_id: number;
     v?: UserProjectDeleteMemberV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectGetProjectInfoV1Request {
     language: UserProjectGetProjectInfoV1LanguageEnum;
     project_id: number;
     v?: UserProjectGetProjectInfoV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectGetProjectV1Request {
     language: UserProjectGetProjectV1LanguageEnum;
     project_external_id: string;
     v?: UserProjectGetProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectGetUserV1Request {
     language: UserProjectGetUserV1LanguageEnum;
     user_external_id: string;
     v?: UserProjectGetUserV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectLeaveV1Request {
     language: UserProjectLeaveV1LanguageEnum;
     project_id: number;
     v?: UserProjectLeaveV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectListAccessV1Request {
     language: UserProjectListAccessV1LanguageEnum;
     project_id: number;
     v?: UserProjectListAccessV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectListV1Request {
     language: UserProjectListV1LanguageEnum;
     v?: UserProjectListV1VEnum;
     limit?: number;
     offset?: number;
+    X_Client_Request_Id?: string;
 }
 export interface UserProjectSelectProjectV1Request {
     language: UserProjectSelectProjectV1LanguageEnum;
     id: number;
     v?: UserProjectSelectProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * ProjectApi - interface
@@ -78,43 +123,137 @@ export interface UserProjectSelectProjectV1Request {
  */
 export interface ProjectApiInterface {
     /**
-     *
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * @summary Create project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {string} name Project name
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {Blob} [avatar] Project avatar file, max size 2 MiB, format: jpeg, jpg, png
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodProjectManagementCreateV1Raw(requestParameters: MethodProjectManagementCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMutationResponse>>;
+    /**
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * Create project
+     */
+    methodProjectManagementCreateV1(requestParameters: MethodProjectManagementCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMutationResponse>;
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * @summary Delete project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} project_id Project id
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodProjectManagementDeleteV1Raw(requestParameters: MethodProjectManagementDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * Delete project
+     */
+    methodProjectManagementDeleteV1(requestParameters: MethodProjectManagementDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * @summary Update project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {string} name Project name
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {number} [project_id] Target project ID. When omitted in every request source, the account personal project is used.
+     * @param {Blob} [avatar] Project avatar file, max size 2 MiB, format: jpeg, jpg, png
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodProjectManagementUpdateV1Raw(requestParameters: MethodProjectManagementUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMutationResponse>>;
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * Update project
+     */
+    methodProjectManagementUpdateV1(requestParameters: MethodProjectManagementUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMutationResponse>;
+    /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * @summary Get current user project
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {'ru' | 'en' | 'cn'} [language] Current language
+     * @param {'ru' | 'en' | 'cn'} [language] Language of localized messages and results; en is used when omitted. Allowed values are defined by enum.
+     * @param {number} [project_id] Target project ID. Account tokens fall back to the personal project when omitted in every request source; pass the intended accessible project explicitly; project tokens determine the project automatically.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>>;
     /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * Get current user project
      */
     methodProjectMeMeV1(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse>;
     /**
-     *
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * @summary Find a project by its text ID or short code
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {string} project_external_id Text project ID / short code shown in the cabinet: external_id (ref_id), for example DJ84kgD. Pass unchanged, preserving letter case and leading zeros. This is not the numeric project_id. Returns the corresponding internal_id for later calls.
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodResolveProjectV1Raw(requestParameters: MethodResolveProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodResolveProjectResponse>>;
+    /**
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * Find a project by its text ID or short code
+     */
+    methodResolveProjectV1(requestParameters: MethodResolveProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodResolveProjectResponse>;
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * @summary Resolve an invitation recipient external ID
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {string} user_external_id Recipient external reference ID, never its numeric internal ID
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectApiInterface
+     */
+    methodResolveUserV1Raw(requestParameters: MethodResolveUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodResolveUserResponse>>;
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * Resolve an invitation recipient external ID
+     */
+    methodResolveUserV1(requestParameters: MethodResolveUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodResolveUserResponse>;
+    /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * @summary Change access user from project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} user_id User id
      * @param {0 | 1 | 2 | 3} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectChangeAccessV1Raw(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * Change access user from project
      */
     userProjectChangeAccessV1(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
      * Use /site/project/user/leave or /site/project/user/delete instead.
      * @summary Remove user from project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} user_id User id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -128,124 +267,140 @@ export interface ProjectApiInterface {
      */
     userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * @summary Remove member from project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} user_id User id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * Remove member from project
      */
     userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * @summary Get project full info
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectGetProjectInfoV1Raw(requestParameters: UserProjectGetProjectInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectInfoResponse>>;
     /**
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * Get project full info
      */
     userProjectGetProjectInfoV1(requestParameters: UserProjectGetProjectInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectInfoResponse>;
     /**
-     *
-     * @summary Get project by number id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * @summary Get a project by its external text code
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} project_external_id Project external id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectGetProjectV1Raw(requestParameters: UserProjectGetProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
-     * Get project by number id
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * Get a project by its external text code
      */
     userProjectGetProjectV1(requestParameters: UserProjectGetProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
     /**
-     *
-     * @summary Get user by number id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * @summary Get a user by the external text code
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} user_external_id User external id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectGetUserV1Raw(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
-     * Get user by number id
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * Get a user by the external text code
      */
     userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
     /**
-     *
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * @summary Leave project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * Leave project
      */
     userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * @summary List of user in project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>>;
     /**
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * List of user in project
      */
     userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse>;
     /**
-     *
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * @summary List of project for current user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [limit] Number of results
      * @param {number} [offset] Page offset number
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>>;
     /**
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * List of project for current user
      */
     userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse>;
     /**
-     *
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * @summary Select user for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} id Project internal id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectApiInterface
      */
     userProjectSelectProjectV1Raw(requestParameters: UserProjectSelectProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * Select user for project
      */
     userProjectSelectProjectV1(requestParameters: UserProjectSelectProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
@@ -255,18 +410,72 @@ export interface ProjectApiInterface {
  */
 export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInterface {
     /**
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * Create project
+     */
+    methodProjectManagementCreateV1Raw(requestParameters: MethodProjectManagementCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMutationResponse>>;
+    /**
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * Create project
+     */
+    methodProjectManagementCreateV1(requestParameters: MethodProjectManagementCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMutationResponse>;
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * Delete project
+     */
+    methodProjectManagementDeleteV1Raw(requestParameters: MethodProjectManagementDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * Delete project
+     */
+    methodProjectManagementDeleteV1(requestParameters: MethodProjectManagementDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * Update project
+     */
+    methodProjectManagementUpdateV1Raw(requestParameters: MethodProjectManagementUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMutationResponse>>;
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * Update project
+     */
+    methodProjectManagementUpdateV1(requestParameters: MethodProjectManagementUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMutationResponse>;
+    /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * Get current user project
      */
     methodProjectMeMeV1Raw(requestParameters: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectMeResponse>>;
     /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * Get current user project
      */
     methodProjectMeMeV1(requestParameters?: MethodProjectMeMeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectMeResponse>;
     /**
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * Find a project by its text ID or short code
+     */
+    methodResolveProjectV1Raw(requestParameters: MethodResolveProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodResolveProjectResponse>>;
+    /**
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * Find a project by its text ID or short code
+     */
+    methodResolveProjectV1(requestParameters: MethodResolveProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodResolveProjectResponse>;
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * Resolve an invitation recipient external ID
+     */
+    methodResolveUserV1Raw(requestParameters: MethodResolveUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodResolveUserResponse>>;
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * Resolve an invitation recipient external ID
+     */
+    methodResolveUserV1(requestParameters: MethodResolveUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodResolveUserResponse>;
+    /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * Change access user from project
      */
     userProjectChangeAccessV1Raw(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * Change access user from project
      */
     userProjectChangeAccessV1(requestParameters: UserProjectChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -283,70 +492,134 @@ export declare class ProjectApi extends runtime.BaseAPI implements ProjectApiInt
      */
     userProjectDelV1(requestParameters: UserProjectDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * Remove member from project
      */
     userProjectDeleteMemberV1Raw(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * Remove member from project
      */
     userProjectDeleteMemberV1(requestParameters: UserProjectDeleteMemberV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * Get project full info
      */
     userProjectGetProjectInfoV1Raw(requestParameters: UserProjectGetProjectInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectInfoResponse>>;
     /**
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * Get project full info
      */
     userProjectGetProjectInfoV1(requestParameters: UserProjectGetProjectInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectInfoResponse>;
     /**
-     * Get project by number id
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * Get a project by its external text code
      */
     userProjectGetProjectV1Raw(requestParameters: UserProjectGetProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
-     * Get project by number id
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * Get a project by its external text code
      */
     userProjectGetProjectV1(requestParameters: UserProjectGetProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
     /**
-     * Get user by number id
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * Get a user by the external text code
      */
     userProjectGetUserV1Raw(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
-     * Get user by number id
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * Get a user by the external text code
      */
     userProjectGetUserV1(requestParameters: UserProjectGetUserV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
     /**
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * Leave project
      */
     userProjectLeaveV1Raw(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * Leave project
      */
     userProjectLeaveV1(requestParameters: UserProjectLeaveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * List of user in project
      */
     userProjectListAccessV1Raw(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProject2ProjectListResponse>>;
     /**
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * List of user in project
      */
     userProjectListAccessV1(requestParameters: UserProjectListAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProject2ProjectListResponse>;
     /**
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * List of project for current user
      */
     userProjectListV1Raw(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedUserProjectResponse>>;
     /**
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * List of project for current user
      */
     userProjectListV1(requestParameters: UserProjectListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedUserProjectResponse>;
     /**
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * Select user for project
      */
     userProjectSelectProjectV1Raw(requestParameters: UserProjectSelectProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProjectGetResponse>>;
     /**
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * Select user for project
      */
     userProjectSelectProjectV1(requestParameters: UserProjectSelectProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProjectGetResponse>;
 }
+/**
+ * @export
+ */
+export declare const MethodProjectManagementCreateV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodProjectManagementCreateV1LanguageEnum = typeof MethodProjectManagementCreateV1LanguageEnum[keyof typeof MethodProjectManagementCreateV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectManagementCreateV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodProjectManagementCreateV1VEnum = typeof MethodProjectManagementCreateV1VEnum[keyof typeof MethodProjectManagementCreateV1VEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectManagementDeleteV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodProjectManagementDeleteV1LanguageEnum = typeof MethodProjectManagementDeleteV1LanguageEnum[keyof typeof MethodProjectManagementDeleteV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectManagementDeleteV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodProjectManagementDeleteV1VEnum = typeof MethodProjectManagementDeleteV1VEnum[keyof typeof MethodProjectManagementDeleteV1VEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectManagementUpdateV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodProjectManagementUpdateV1LanguageEnum = typeof MethodProjectManagementUpdateV1LanguageEnum[keyof typeof MethodProjectManagementUpdateV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodProjectManagementUpdateV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodProjectManagementUpdateV1VEnum = typeof MethodProjectManagementUpdateV1VEnum[keyof typeof MethodProjectManagementUpdateV1VEnum];
 /**
  * @export
  */
@@ -363,6 +636,38 @@ export declare const MethodProjectMeMeV1LanguageEnum: {
     readonly cn: "cn";
 };
 export type MethodProjectMeMeV1LanguageEnum = typeof MethodProjectMeMeV1LanguageEnum[keyof typeof MethodProjectMeMeV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodResolveProjectV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodResolveProjectV1LanguageEnum = typeof MethodResolveProjectV1LanguageEnum[keyof typeof MethodResolveProjectV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodResolveProjectV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodResolveProjectV1VEnum = typeof MethodResolveProjectV1VEnum[keyof typeof MethodResolveProjectV1VEnum];
+/**
+ * @export
+ */
+export declare const MethodResolveUserV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodResolveUserV1LanguageEnum = typeof MethodResolveUserV1LanguageEnum[keyof typeof MethodResolveUserV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodResolveUserV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodResolveUserV1VEnum = typeof MethodResolveUserV1VEnum[keyof typeof MethodResolveUserV1VEnum];
 /**
  * @export
  */

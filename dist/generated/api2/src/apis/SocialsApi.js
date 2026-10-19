@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class SocialsApi extends runtime.BaseAPI {
     /**
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * Social list for user
      */
     async socialsGetListV1Raw(requestParameters, initOverrides) {
@@ -61,9 +62,16 @@ class SocialsApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
         const response = await this.request({
             path: `/method/socials/list`,
@@ -74,6 +82,7 @@ class SocialsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteSocialListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * Social list for user
      */
     async socialsGetListV1(requestParameters, initOverrides) {

@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class StreamPullKeysApi extends runtime.BaseAPI {
     /**
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * Check key
      */
     async streamPullKeysSiteCheckV1Raw(requestParameters, initOverrides) {
@@ -73,9 +74,16 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
         const response = await this.request({
             path: `/method/stream-pull-keys/check`,
@@ -86,6 +94,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CheckPullKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * Check key
      */
     async streamPullKeysSiteCheckV1(requestParameters, initOverrides) {
@@ -93,6 +102,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * Create key
      */
     async streamPullKeysSiteCreateV1Raw(requestParameters, initOverrides) {
@@ -103,9 +113,16 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
@@ -117,6 +134,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreatePullKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * Create key
      */
     async streamPullKeysSiteCreateV1(requestParameters, initOverrides) {
@@ -124,6 +142,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * List keys
      */
     async streamPullKeysSiteGetV1Raw(requestParameters, initOverrides) {
@@ -147,9 +166,16 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
@@ -160,6 +186,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PullKeyListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * List keys
      */
     async streamPullKeysSiteGetV1(requestParameters, initOverrides) {
@@ -167,6 +194,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * Delete key
      */
     async streamPullKeysSiteRemoveV1Raw(requestParameters, initOverrides) {
@@ -196,9 +224,16 @@ class StreamPullKeysApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
@@ -209,6 +244,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * Delete key
      */
     async streamPullKeysSiteRemoveV1(requestParameters, initOverrides) {
@@ -216,6 +252,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * Update key
      */
     async streamPullKeysSiteUpdateV1Raw(requestParameters, initOverrides) {
@@ -226,9 +263,16 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-pull-keys`,
@@ -240,6 +284,7 @@ class StreamPullKeysApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * Update key
      */
     async streamPullKeysSiteUpdateV1(requestParameters, initOverrides) {

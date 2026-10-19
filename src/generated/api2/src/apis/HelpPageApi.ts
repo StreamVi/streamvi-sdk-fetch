@@ -35,19 +35,22 @@ export interface HelpPageGetV1Request {
     language: HelpPageGetV1LanguageEnum;
     url: string;
     v?: HelpPageGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface HelpPageListV1Request {
     language: HelpPageListV1LanguageEnum;
+    limit: number;
+    offset: number;
     v?: HelpPageListV1VEnum;
     s?: string;
-    limit?: number;
-    offset?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface HelpPageStructureV1Request {
     language: HelpPageStructureV1LanguageEnum;
     v?: HelpPageStructureV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -58,11 +61,12 @@ export interface HelpPageStructureV1Request {
  */
 export interface HelpPageApiInterface {
     /**
-     * 
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * @summary Get help page
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} url Url of page
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -70,18 +74,20 @@ export interface HelpPageApiInterface {
     helpPageGetV1Raw(requestParameters: HelpPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHelpPageResponse>>;
 
     /**
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * Get help page
      */
     helpPageGetV1(requestParameters: HelpPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHelpPageResponse>;
 
     /**
-     * 
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * @summary Get list of help pages
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} limit Number of results
+     * @param {number} offset Page offset number
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [s] String for search
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -89,15 +95,17 @@ export interface HelpPageApiInterface {
     helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>>;
 
     /**
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * Get list of help pages
      */
     helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse>;
 
     /**
-     * 
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * @summary Get structure of help pages
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HelpPageApiInterface
@@ -105,6 +113,7 @@ export interface HelpPageApiInterface {
     helpPageStructureV1Raw(requestParameters: HelpPageStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StructureHelpPageResponse>>;
 
     /**
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * Get structure of help pages
      */
     helpPageStructureV1(requestParameters: HelpPageStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StructureHelpPageResponse>;
@@ -117,6 +126,7 @@ export interface HelpPageApiInterface {
 export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface {
 
     /**
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * Get help page
      */
     async helpPageGetV1Raw(requestParameters: HelpPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHelpPageResponse>> {
@@ -152,6 +162,10 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         const response = await this.request({
             path: `/method/help/page/get`,
             method: 'GET',
@@ -163,6 +177,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     }
 
     /**
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * Get help page
      */
     async helpPageGetV1(requestParameters: HelpPageGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetHelpPageResponse> {
@@ -171,6 +186,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     }
 
     /**
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * Get list of help pages
      */
     async helpPageListV1Raw(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedHelpPageResponse>> {
@@ -178,6 +194,20 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
             throw new runtime.RequiredError(
                 'language',
                 'Required parameter "language" was null or undefined when calling helpPageListV1().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling helpPageListV1().'
+            );
+        }
+
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling helpPageListV1().'
             );
         }
 
@@ -207,6 +237,10 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         const response = await this.request({
             path: `/method/help/page/search`,
             method: 'GET',
@@ -218,6 +252,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     }
 
     /**
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * Get list of help pages
      */
     async helpPageListV1(requestParameters: HelpPageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedHelpPageResponse> {
@@ -226,6 +261,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     }
 
     /**
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * Get structure of help pages
      */
     async helpPageStructureV1Raw(requestParameters: HelpPageStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StructureHelpPageResponse>> {
@@ -250,6 +286,10 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         const response = await this.request({
             path: `/method/help/page/structure`,
             method: 'GET',
@@ -261,6 +301,7 @@ export class HelpPageApi extends runtime.BaseAPI implements HelpPageApiInterface
     }
 
     /**
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * Get structure of help pages
      */
     async helpPageStructureV1(requestParameters: HelpPageStructureV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StructureHelpPageResponse> {

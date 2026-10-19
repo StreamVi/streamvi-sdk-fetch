@@ -9,17 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PaymentCreateRequestRestreamBodyDto } from './PaymentCreateRequestRestreamBodyDto';
-import type { PaymentCreateRequestStorageBodyDto } from './PaymentCreateRequestStorageBodyDto';
-import type { PaymentCreateRequestTopUpBodyDto } from './PaymentCreateRequestTopUpBodyDto';
-import type { PaymentCreateRequestTranscoderBodyDto } from './PaymentCreateRequestTranscoderBodyDto';
-import type { PaymentCreateRequestWebinarBodyDto } from './PaymentCreateRequestWebinarBodyDto';
+import type { PaymentCreateV1RequestOneOf } from './PaymentCreateV1RequestOneOf';
+import type { PaymentCreateV1RequestOneOf1 } from './PaymentCreateV1RequestOneOf1';
+import type { PaymentCreateV1RequestOneOf2 } from './PaymentCreateV1RequestOneOf2';
+import type { PaymentCreateV1RequestOneOf3 } from './PaymentCreateV1RequestOneOf3';
+import type { PaymentCreateV1RequestOneOf4 } from './PaymentCreateV1RequestOneOf4';
 /**
  * @type PaymentCreateV1Request
  *
  * @export
  */
-export type PaymentCreateV1Request = PaymentCreateRequestRestreamBodyDto | PaymentCreateRequestStorageBodyDto | PaymentCreateRequestTopUpBodyDto | PaymentCreateRequestTranscoderBodyDto | PaymentCreateRequestWebinarBodyDto;
+export type PaymentCreateV1Request = PaymentCreateV1RequestOneOf | PaymentCreateV1RequestOneOf1 | PaymentCreateV1RequestOneOf2 | PaymentCreateV1RequestOneOf3 | PaymentCreateV1RequestOneOf4;
 export declare function PaymentCreateV1RequestFromJSON(json: any): PaymentCreateV1Request;
 export declare function PaymentCreateV1RequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaymentCreateV1Request;
 export declare function PaymentCreateV1RequestToJSON(json: any): any;

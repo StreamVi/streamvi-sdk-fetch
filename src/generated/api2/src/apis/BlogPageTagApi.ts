@@ -27,10 +27,11 @@ import {
 
 export interface BlogPageTagListV1Request {
     language: BlogPageTagListV1LanguageEnum;
+    limit: number;
+    offset: number;
     v?: BlogPageTagListV1VEnum;
     s?: string;
-    limit?: number;
-    offset?: number;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -41,13 +42,14 @@ export interface BlogPageTagListV1Request {
  */
 export interface BlogPageTagApiInterface {
     /**
-     * 
-     * @summary Get list of blog pages
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * @summary List blog tags
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} limit Number of results
+     * @param {number} offset Page offset number
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [s] String for search
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlogPageTagApiInterface
@@ -55,7 +57,8 @@ export interface BlogPageTagApiInterface {
     blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>>;
 
     /**
-     * Get list of blog pages
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * List blog tags
      */
     blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse>;
 
@@ -67,13 +70,28 @@ export interface BlogPageTagApiInterface {
 export class BlogPageTagApi extends runtime.BaseAPI implements BlogPageTagApiInterface {
 
     /**
-     * Get list of blog pages
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * List blog tags
      */
     async blogPageTagListV1Raw(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedBlogPageTagResponse>> {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError(
                 'language',
                 'Required parameter "language" was null or undefined when calling blogPageTagListV1().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling blogPageTagListV1().'
+            );
+        }
+
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling blogPageTagListV1().'
             );
         }
 
@@ -103,6 +121,10 @@ export class BlogPageTagApi extends runtime.BaseAPI implements BlogPageTagApiInt
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         const response = await this.request({
             path: `/method/blog/tag/list`,
             method: 'GET',
@@ -114,7 +136,8 @@ export class BlogPageTagApi extends runtime.BaseAPI implements BlogPageTagApiInt
     }
 
     /**
-     * Get list of blog pages
+     * Read the public blog tag list using request filters and pagination. Returns tags for filtering pages, not blog pages themselves.
+     * List blog tags
      */
     async blogPageTagListV1(requestParameters: BlogPageTagListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedBlogPageTagResponse> {
         const response = await this.blogPageTagListV1Raw(requestParameters, initOverrides);

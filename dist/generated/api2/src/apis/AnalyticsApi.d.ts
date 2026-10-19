@@ -25,24 +25,28 @@ export interface AnalyticsTsBroadcastMessagesV1Request {
     platform?: string;
     restream_id?: number;
     text?: string;
+    X_Client_Request_Id?: string;
 }
 export interface AnalyticsTsStreamBitrateV1Request {
     language: AnalyticsTsStreamBitrateV1LanguageEnum;
     project_id: number;
     stream_id: number;
     v?: AnalyticsTsStreamBitrateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AnalyticsTsStreamEventsV1Request {
     language: AnalyticsTsStreamEventsV1LanguageEnum;
     project_id: number;
     stream_id: number;
     v?: AnalyticsTsStreamEventsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AnalyticsTsStreamViewersV1Request {
     language: AnalyticsTsStreamViewersV1LanguageEnum;
     project_id: number;
     stream_id: number;
     v?: AnalyticsTsStreamViewersV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * AnalyticsApi - interface
@@ -52,14 +56,14 @@ export interface AnalyticsTsStreamViewersV1Request {
  */
 export interface AnalyticsApiInterface {
     /**
-     *
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * @summary Messages for broadcast
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [offset] Offset
-     * @param {number} [limit] Limit
+     * @param {number} [offset] Number of messages to skip. When omitted, the backend forwards the parameter\&#39;s absence to the metrics service.
+     * @param {number} [limit] Message result size. When omitted, the backend does not supply a fixed limit.
      * @param {Date} [date] Exact date filter
      * @param {Date} [date_start] Date range start
      * @param {Date} [date_end] Date range end
@@ -67,100 +71,116 @@ export interface AnalyticsApiInterface {
      * @param {string} [platform] Platform
      * @param {number} [restream_id] Restream id
      * @param {string} [text] Text search
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
      */
     analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>>;
     /**
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * Messages for broadcast
      */
     analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse>;
     /**
-     *
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * @summary Bitrate for stream
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
      */
-    analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * Bitrate for stream
      */
-    analyticsTsStreamBitrateV1(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamBitrateV1(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
     /**
-     *
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * @summary Events for stream
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
      */
-    analyticsTsStreamEventsV1Raw(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamEventsV1Raw(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * Events for stream
      */
-    analyticsTsStreamEventsV1(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamEventsV1(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
     /**
-     *
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * @summary Viewers for stream
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} stream_id stream id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnalyticsApiInterface
      */
-    analyticsTsStreamViewersV1Raw(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamViewersV1Raw(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * Viewers for stream
      */
-    analyticsTsStreamViewersV1(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamViewersV1(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 }
 /**
  *
  */
 export declare class AnalyticsApi extends runtime.BaseAPI implements AnalyticsApiInterface {
     /**
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * Messages for broadcast
      */
     analyticsTsBroadcastMessagesV1Raw(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastMessageListResponse>>;
     /**
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * Messages for broadcast
      */
     analyticsTsBroadcastMessagesV1(requestParameters: AnalyticsTsBroadcastMessagesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastMessageListResponse>;
     /**
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * Bitrate for stream
      */
-    analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamBitrateV1Raw(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * Bitrate for stream
      */
-    analyticsTsStreamBitrateV1(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamBitrateV1(requestParameters: AnalyticsTsStreamBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
     /**
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * Events for stream
      */
-    analyticsTsStreamEventsV1Raw(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamEventsV1Raw(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * Events for stream
      */
-    analyticsTsStreamEventsV1(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamEventsV1(requestParameters: AnalyticsTsStreamEventsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
     /**
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * Viewers for stream
      */
-    analyticsTsStreamViewersV1Raw(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    analyticsTsStreamViewersV1Raw(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<any>>;
     /**
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * Viewers for stream
      */
-    analyticsTsStreamViewersV1(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    analyticsTsStreamViewersV1(requestParameters: AnalyticsTsStreamViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<any>;
 }
 /**
  * @export

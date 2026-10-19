@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class AccountApi extends runtime.BaseAPI {
     /**
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * Get account profile
      */
     async accountGetProfileV1Raw(requestParameters, initOverrides) {
@@ -61,9 +62,16 @@ class AccountApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
         const response = await this.request({
             path: `/method/account/profile`,
@@ -74,6 +82,7 @@ class AccountApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProfileResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * Get account profile
      */
     async accountGetProfileV1(requestParameters, initOverrides) {
@@ -81,6 +90,7 @@ class AccountApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * Update account profile
      */
     async accountUpdateProfileV1Raw(requestParameters, initOverrides) {
@@ -104,9 +114,16 @@ class AccountApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
         const consumes = [
             { contentType: 'multipart/form-data' },
@@ -142,6 +159,7 @@ class AccountApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * Update account profile
      */
     async accountUpdateProfileV1(requestParameters, initOverrides) {

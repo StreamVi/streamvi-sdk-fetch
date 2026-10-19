@@ -70,7 +70,7 @@ export interface StructureHelpPageConnectionsItemFinal {
      */
     title: Array<StructureHelpPageConnectionsItemLang>;
     /**
-     * Page icon
+     * 
      * @type {object}
      * @memberof StructureHelpPageConnectionsItemFinal
      */

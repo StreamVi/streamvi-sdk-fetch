@@ -35,27 +35,32 @@ export interface NotifyUserDelMobileTokenV1Request {
     language: NotifyUserDelMobileTokenV1LanguageEnum;
     token: string;
     v?: NotifyUserDelMobileTokenV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface NotifyUserGetScreenV1Request {
     language: NotifyUserGetScreenV1LanguageEnum;
     project_id: number;
     v?: NotifyUserGetScreenV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface NotifyUserGetV1Request {
     project_id: number;
     v?: NotifyUserGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface NotifyUserRemoveScreenV1Request {
     project_id: number;
     v?: NotifyUserRemoveScreenV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface NotifyUserSetV1Request {
     SiteSetNotifyUserRequest: SiteSetNotifyUserRequest;
     v?: NotifyUserSetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -66,11 +71,12 @@ export interface NotifyUserSetV1Request {
  */
 export interface NotifyUserApiInterface {
     /**
-     * 
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * @summary Delete mobile token from user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} token Token in mobile app
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -78,16 +84,18 @@ export interface NotifyUserApiInterface {
     notifyUserDelMobileTokenV1Raw(requestParameters: NotifyUserDelMobileTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * Delete mobile token from user
      */
     notifyUserDelMobileTokenV1(requestParameters: NotifyUserDelMobileTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * @summary Get user screen notify
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -95,15 +103,17 @@ export interface NotifyUserApiInterface {
     notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
 
     /**
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * Get user screen notify
      */
     notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 
     /**
-     * 
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * @summary Get user notify settings
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -111,15 +121,17 @@ export interface NotifyUserApiInterface {
     notifyUserGetV1Raw(requestParameters: NotifyUserGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteNotifyUserResponse>>;
 
     /**
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * Get user notify settings
      */
     notifyUserGetV1(requestParameters: NotifyUserGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteNotifyUserResponse>;
 
     /**
-     * 
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * @summary Remove user screen notify
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -127,15 +139,17 @@ export interface NotifyUserApiInterface {
     notifyUserRemoveScreenV1Raw(requestParameters: NotifyUserRemoveScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * Remove user screen notify
      */
     notifyUserRemoveScreenV1(requestParameters: NotifyUserRemoveScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * @summary Set user notify settings
      * @param {SiteSetNotifyUserRequest} SiteSetNotifyUserRequest Set user notify settings
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyUserApiInterface
@@ -143,6 +157,7 @@ export interface NotifyUserApiInterface {
     notifyUserSetV1Raw(requestParameters: NotifyUserSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * Set user notify settings
      */
     notifyUserSetV1(requestParameters: NotifyUserSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -155,6 +170,7 @@ export interface NotifyUserApiInterface {
 export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInterface {
 
     /**
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * Delete mobile token from user
      */
     async notifyUserDelMobileTokenV1Raw(requestParameters: NotifyUserDelMobileTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -190,9 +206,13 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
 
         const response = await this.request({
@@ -206,6 +226,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * Delete mobile token from user
      */
     async notifyUserDelMobileTokenV1(requestParameters: NotifyUserDelMobileTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -214,6 +235,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * Get user screen notify
      */
     async notifyUserGetScreenV1Raw(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>> {
@@ -249,9 +271,18 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
 
         const response = await this.request({
@@ -265,6 +296,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * Get user screen notify
      */
     async notifyUserGetScreenV1(requestParameters: NotifyUserGetScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object> {
@@ -273,6 +305,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * Get user notify settings
      */
     async notifyUserGetV1Raw(requestParameters: NotifyUserGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteNotifyUserResponse>> {
@@ -297,9 +330,18 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
 
         const response = await this.request({
@@ -313,6 +355,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * Get user notify settings
      */
     async notifyUserGetV1(requestParameters: NotifyUserGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteNotifyUserResponse> {
@@ -321,6 +364,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * Remove user screen notify
      */
     async notifyUserRemoveScreenV1Raw(requestParameters: NotifyUserRemoveScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -345,9 +389,18 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
 
         const response = await this.request({
@@ -361,6 +414,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * Remove user screen notify
      */
     async notifyUserRemoveScreenV1(requestParameters: NotifyUserRemoveScreenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -369,6 +423,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * Set user notify settings
      */
     async notifyUserSetV1Raw(requestParameters: NotifyUserSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -391,9 +446,18 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
 
         const response = await this.request({
@@ -408,6 +472,7 @@ export class NotifyUserApi extends runtime.BaseAPI implements NotifyUserApiInter
     }
 
     /**
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * Set user notify settings
      */
     async notifyUserSetV1(requestParameters: NotifyUserSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

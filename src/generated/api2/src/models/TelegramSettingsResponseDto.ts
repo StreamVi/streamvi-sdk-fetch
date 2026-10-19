@@ -34,7 +34,7 @@ export interface TelegramSettingsResponseDto {
      */
     connected: boolean;
     /**
-     * Payload settings for telegram
+     * 
      * @type {TelegramSettingsDto}
      * @memberof TelegramSettingsResponseDto
      */

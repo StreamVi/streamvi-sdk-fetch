@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WalletConnectStatusV1VEnum = exports.WalletConnectStatusV1LanguageEnum = exports.TronPaymentSubmitV1VEnum = exports.TronPaymentSubmitV1LanguageEnum = exports.TronPaymentStatusV1VEnum = exports.TronPaymentStatusV1LanguageEnum = exports.TronPaymentIntentV1VEnum = exports.TronPaymentIntentV1LanguageEnum = exports.TonConnectStatusV1VEnum = exports.TonConnectStatusV1LanguageEnum = exports.PaySystemCreateUnitpayV1VEnum = exports.PaySystemCreateUnitpayV1LanguageEnum = exports.PaySystemCreateTBankV1VEnum = exports.PaySystemCreateTBankV1LanguageEnum = exports.PaySystemCreateChallengeV1VEnum = exports.PaySystemCreateChallengeV1LanguageEnum = exports.PaySystemApi = void 0;
+exports.WalletConnectStatusV1VEnum = exports.WalletConnectStatusV1LanguageEnum = exports.TronPaymentSubmitV1VEnum = exports.TronPaymentSubmitV1LanguageEnum = exports.TronPaymentStatusV1VEnum = exports.TronPaymentStatusV1LanguageEnum = exports.TronPaymentIntentV1VEnum = exports.TronPaymentIntentV1LanguageEnum = exports.TonConnectStatusV1VEnum = exports.TonConnectStatusV1LanguageEnum = exports.PaySystemListV1VEnum = exports.PaySystemListV1LanguageEnum = exports.PaySystemCreateUnitpayV1VEnum = exports.PaySystemCreateUnitpayV1LanguageEnum = exports.PaySystemCreateTBankV1VEnum = exports.PaySystemCreateTBankV1LanguageEnum = exports.PaySystemCreateChallengeV1VEnum = exports.PaySystemCreateChallengeV1LanguageEnum = exports.PaySystemApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PaySystemApi extends runtime.BaseAPI {
     /**
+     * Create a Payoneer payment challenge for an existing payment_id and return JSON with a redirect link. Despite using GET, this creates an external payment session; an already successful payment is rejected. Success does not confirm payment: the user completes the process with the provider, and status is read separately.
      * Create payoneer payment challenge redirect url
      */
     async paySystemCreateChallengeV1Raw(requestParameters, initOverrides) {
@@ -67,6 +68,9 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/pay-system/payoneer/create`,
             method: 'GET',
@@ -76,6 +80,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
     }
     /**
+     * Create a Payoneer payment challenge for an existing payment_id and return JSON with a redirect link. Despite using GET, this creates an external payment session; an already successful payment is rejected. Success does not confirm payment: the user completes the process with the provider, and status is read separately.
      * Create payoneer payment challenge redirect url
      */
     async paySystemCreateChallengeV1(requestParameters, initOverrides) {
@@ -83,6 +88,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Create a T-Bank payment challenge for an existing payment_id and return JSON with a redirect link. GET initiates an external payment session; an already successful payment is rejected. Payment completion and status checks happen separately.
      * Create t-bank payment challenge redirect url
      */
     async paySystemCreateTBankV1Raw(requestParameters, initOverrides) {
@@ -106,6 +112,9 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/pay-system/t-bank/create`,
             method: 'GET',
@@ -115,6 +124,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
     }
     /**
+     * Create a T-Bank payment challenge for an existing payment_id and return JSON with a redirect link. GET initiates an external payment session; an already successful payment is rejected. Payment completion and status checks happen separately.
      * Create t-bank payment challenge redirect url
      */
     async paySystemCreateTBankV1(requestParameters, initOverrides) {
@@ -122,6 +132,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Create a Unitpay payment challenge for an existing payment_id and return JSON with a redirect link. GET creates a payment session. An already successful payment is rejected. This is neither an HTTP redirect from the site nor payment confirmation.
      * Create unitpay payment challenge redirect url
      */
     async paySystemCreateUnitpayV1Raw(requestParameters, initOverrides) {
@@ -145,6 +156,9 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/pay-system/unitpay/create`,
             method: 'GET',
@@ -154,6 +168,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayRedirectUrlDtoFromJSON)(jsonValue));
     }
     /**
+     * Create a Unitpay payment challenge for an existing payment_id and return JSON with a redirect link. GET creates a payment session. An already successful payment is rejected. This is neither an HTTP redirect from the site nor payment confirmation.
      * Create unitpay payment challenge redirect url
      */
     async paySystemCreateUnitpayV1(requestParameters, initOverrides) {
@@ -161,14 +176,34 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read available payment systems for the current user. Returns results with provider parameters; this is a catalog, not payment creation or transaction signing.
      * Load available pay systems
      */
-    async paySystemListV1Raw(initOverrides) {
+    async paySystemListV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling paySystemListV1().');
+        }
         const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/list`,
@@ -179,13 +214,15 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaySystemsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read available payment systems for the current user. Returns results with provider parameters; this is a catalog, not payment creation or transaction signing.
      * Load available pay systems
      */
-    async paySystemListV1(initOverrides) {
-        const response = await this.paySystemListV1Raw(initOverrides);
+    async paySystemListV1(requestParameters, initOverrides) {
+        const response = await this.paySystemListV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create TonConnect payment intent
      */
     async tonConnectIntentV1Raw(requestParameters, initOverrides) {
@@ -203,9 +240,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payer_address'] = requestParameters['payer_address'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tonconnect/intent`,
@@ -216,6 +260,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TonConnectPaymentIntentDtoFromJSON)(jsonValue));
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create TonConnect payment intent
      */
     async tonConnectIntentV1(requestParameters, initOverrides) {
@@ -223,6 +268,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get TonConnect payment verification status
      */
     async tonConnectStatusV1Raw(requestParameters, initOverrides) {
@@ -246,9 +292,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tonconnect/status`,
@@ -259,6 +312,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TonConnectPaymentStatusDtoFromJSON)(jsonValue));
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get TonConnect payment verification status
      */
     async tonConnectStatusV1(requestParameters, initOverrides) {
@@ -266,6 +320,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Accepts externally signed transaction evidence for an owned payment challenge; never generates wallet keys or bypasses a signature. Returns the actual pending, success or error verification state.
      * Submit TonConnect payment transaction
      */
     async tonConnectSubmitV1Raw(requestParameters, initOverrides) {
@@ -275,9 +330,16 @@ class PaySystemApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tonconnect/submit`,
@@ -289,6 +351,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TonConnectPaymentStatusDtoFromJSON)(jsonValue));
     }
     /**
+     * Accepts externally signed transaction evidence for an owned payment challenge; never generates wallet keys or bypasses a signature. Returns the actual pending, success or error verification state.
      * Submit TonConnect payment transaction
      */
     async tonConnectSubmitV1(requestParameters, initOverrides) {
@@ -296,6 +359,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create TRON USDT deposit payment intent
      */
     async tronPaymentIntentV1Raw(requestParameters, initOverrides) {
@@ -319,9 +383,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tron/intent`,
@@ -332,6 +403,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TronPaymentIntentDtoFromJSON)(jsonValue));
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create TRON USDT deposit payment intent
      */
     async tronPaymentIntentV1(requestParameters, initOverrides) {
@@ -339,6 +411,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get TRON USDT payment status
      */
     async tronPaymentStatusV1Raw(requestParameters, initOverrides) {
@@ -362,9 +435,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tron/status`,
@@ -375,6 +455,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.TronPaymentStatusDtoFromJSON)(jsonValue));
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get TRON USDT payment status
      */
     async tronPaymentStatusV1(requestParameters, initOverrides) {
@@ -382,6 +463,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Disabled legacy endpoint for submitting a TRON tx_hash. The current implementation always returns HTTP 410 Gone with instructions to wait for the automatic deposit scanner. Available only to a project subject; do not use as a working payment tool.
      * Submit TRON USDT transaction hash (disabled)
      */
     async tronPaymentSubmitV1Raw(requestParameters, initOverrides) {
@@ -403,9 +485,12 @@ class PaySystemApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/pay-system/tron/submit`,
@@ -417,12 +502,14 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Disabled legacy endpoint for submitting a TRON tx_hash. The current implementation always returns HTTP 410 Gone with instructions to wait for the automatic deposit scanner. Available only to a project subject; do not use as a working payment tool.
      * Submit TRON USDT transaction hash (disabled)
      */
     async tronPaymentSubmitV1(requestParameters, initOverrides) {
         await this.tronPaymentSubmitV1Raw(requestParameters, initOverrides);
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create WalletConnect payment intent
      */
     async walletConnectIntentV1Raw(requestParameters, initOverrides) {
@@ -440,9 +527,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payer_address'] = requestParameters['payer_address'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/walletconnect/intent`,
@@ -453,6 +547,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.WalletConnectPaymentIntentDtoFromJSON)(jsonValue));
     }
     /**
+     * This GET creates or updates payment intent state for a challenge owned by the authenticated account. It is not read-only and does not confirm a payment. Wallet signing remains external.
      * Create WalletConnect payment intent
      */
     async walletConnectIntentV1(requestParameters, initOverrides) {
@@ -460,6 +555,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get WalletConnect payment verification status
      */
     async walletConnectStatusV1Raw(requestParameters, initOverrides) {
@@ -483,9 +579,16 @@ class PaySystemApi extends runtime.BaseAPI {
             queryParameters['payment_id'] = requestParameters['payment_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-system/walletconnect/status`,
@@ -496,6 +599,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.WalletConnectPaymentStatusDtoFromJSON)(jsonValue));
     }
     /**
+     * Reads the owned payment challenge and may perform provider verification, recover a transaction or complete payment state. Returns actual provider/domain status; a call does not guarantee payment success.
      * Get WalletConnect payment verification status
      */
     async walletConnectStatusV1(requestParameters, initOverrides) {
@@ -503,6 +607,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Accepts externally signed transaction evidence for an owned payment challenge; never generates wallet keys or bypasses a signature. Returns the actual pending, success or error verification state.
      * Submit WalletConnect payment transaction hash
      */
     async walletConnectSubmitV1Raw(requestParameters, initOverrides) {
@@ -512,9 +617,16 @@ class PaySystemApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/pay-system/walletconnect/submit`,
@@ -526,6 +638,7 @@ class PaySystemApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.WalletConnectPaymentStatusDtoFromJSON)(jsonValue));
     }
     /**
+     * Accepts externally signed transaction evidence for an owned payment challenge; never generates wallet keys or bypasses a signature. Returns the actual pending, success or error verification state.
      * Submit WalletConnect payment transaction hash
      */
     async walletConnectSubmitV1(requestParameters, initOverrides) {
@@ -574,6 +687,20 @@ exports.PaySystemCreateUnitpayV1LanguageEnum = {
  * @export
  */
 exports.PaySystemCreateUnitpayV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PaySystemListV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.PaySystemListV1VEnum = {
     _1: '1'
 };
 /**

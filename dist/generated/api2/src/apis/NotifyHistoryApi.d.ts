@@ -10,37 +10,49 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { NotifyHistory, NotifyHistoryStatusUserResponse, PaginatedResponseOfNotifyHistorySiteResponse, SiteMarkReadHistoryRequest, SiteMarkReadHistoryResponse, SuccessResponse } from '../models/index';
+import type { MethodExecuteNotifyActionRequest, NotifyHistory, NotifyHistoryStatusUserResponse, PaginatedResponseOfNotifyHistorySiteResponse, SiteMarkReadHistoryRequest, SiteMarkReadHistoryResponse, SuccessResponse } from '../models/index';
+export interface MethodExecuteNotifyActionExecuteV1Request {
+    MethodExecuteNotifyActionRequest: MethodExecuteNotifyActionRequest;
+    X_Client_Request_Id?: string;
+}
 export interface NotifyHistoryGetListMyV1Request {
     language: NotifyHistoryGetListMyV1LanguageEnum;
+    limit: number;
+    offset: number;
     v?: NotifyHistoryGetListMyV1VEnum;
-    limit?: number;
-    offset?: number;
     project_id?: number;
     name?: NotifyHistoryGetListMyV1NameEnum;
     channel?: NotifyHistoryGetListMyV1ChannelEnum;
     date_from?: Date;
     date_to?: Date;
     status_read?: NotifyHistoryGetListMyV1StatusReadEnum;
+    X_Client_Request_Id?: string;
 }
 export interface NotifyHistoryGetStatusMyV1Request {
     language: NotifyHistoryGetStatusMyV1LanguageEnum;
     v?: NotifyHistoryGetStatusMyV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface NotifyHistoryGetV1Request {
     _id: string;
     v?: NotifyHistoryGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface NotifyHistoryMarkOfReadV1Request {
     language: NotifyHistoryMarkOfReadV1LanguageEnum;
     SiteMarkReadHistoryRequest: SiteMarkReadHistoryRequest;
     v?: NotifyHistoryMarkOfReadV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface NotifyHistoryRunActionV1Request {
     notify_history_id: string;
     action_name: string;
     group_id: string;
     v?: NotifyHistoryRunActionV1VEnum;
+    X_Client_Request_Id?: string;
+}
+export interface NotifyHistorySetAllCabinetReadV1Request {
+    X_Client_Request_Id?: string;
 }
 /**
  * NotifyHistoryApi - interface
@@ -50,151 +62,200 @@ export interface NotifyHistoryRunActionV1Request {
  */
 export interface NotifyHistoryApiInterface {
     /**
-     *
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * @summary Execute an owned notification action
+     * @param {MethodExecuteNotifyActionRequest} MethodExecuteNotifyActionRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotifyHistoryApiInterface
+     */
+    methodExecuteNotifyActionExecuteV1Raw(requestParameters: MethodExecuteNotifyActionExecuteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * Execute an owned notification action
+     */
+    methodExecuteNotifyActionExecuteV1(requestParameters: MethodExecuteNotifyActionExecuteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * @summary Get list of my notifications
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} limit Number of results
+     * @param {number} offset Page offset number
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
      * @param {number} [project_id] Project id
      * @param {'high_bitrate' | 'request_access_channel' | 'request_access_project' | 'request_access_integration' | 'promocode_test' | 'stream_test' | 'plan_restream_expires' | 'plan_restream_expired' | 'plan_restream_renewed' | 'plan_transcoder_expires' | 'plan_transcoder_expired' | 'plan_transcoder_renewed' | 'plan_storage_expires' | 'plan_storage_expired' | 'plan_storage_renewed' | 'compensation_received' | 'broadcast_unsupported_codec' | 'broadcast_unsupported_codec_screen' | 'broadcast_bitrate_exceeded_screen' | 'rtmp_connect_old_server_screen' | 'broadcast_not_audio' | 'broadcast_bitrate_exceeded' | 'broadcast_started' | 'broadcast_stopped' | 'restream_check_twitch_bitrate_1' | 'api_pause_start' | 'api_pause_end' | 'api_wait_edit' | 'api_restream_start' | 'api_restream_stop' | 'api_drop_broadcast' | 'api_drop_broadcast_remove_company' | 'api_drop_broadcast_update_key' | 'publisher_disconnected' | 'publisher_connected' | 'publisher_initializing' | 'publisher_close' | 'publisher_connection_interrupted' | 'publisher_connection_timeout' | 'publisher_protocol_error' | 'publisher_start_failed' | 'publisher_reconnect_failed' | 'broadcast_connected_start' | 'broadcast_connected_end' | 'broadcast_connecting_stream' | 'broadcast_started_new_stream' | 'broadcast_connecting_lost' | 'broadcast_video_lost_start' | 'broadcast_video_lost_end' | 'broadcast_video_pause_start' | 'broadcast_video_pause_end' | 'broadcast_init_restream' | 'broadcast_placeholder_ready' | 'broadcast_placeholder_failed' | 'broadcast_placeholder_fallback_used' | 'start_stream' | 'create_reader' | 'start_channel' | 'stop_channel' | 'stop_stream_video_timeout' | 'stop_stream_no_start_video' | 'stop_stream' | 'delete_reader' | 'transcoder_start' | 'transcoder_stop' | 'start_channel_failed' | 'start_channel_success' | 'api_channel_initializing_start' | 'api_channel_initializing_failed' | 'api_channel_initializing_success' | 'channel_api_update_settings_success' | 'channel_api_update_settings_error' | 'channel_api_update_playlist_success' | 'channel_api_update_playlist_error' | 'channel_api_update_chat_error' | 'channel_api_stream_key_success' | 'channel_api_stream_key_error' | 'channel_api_auto_stop_disable_success' | 'channel_api_auto_stop_disable_error' | 'channel_api_unbinding_stream_key_error' | 'channel_api_create_broadcast_success' | 'channel_api_create_broadcast_error' | 'channel_api_set_planned_success' | 'channel_api_set_planned_error' | 'channel_api_set_thumbnail_success' | 'channel_api_set_thumbnail_error' | 'channel_token_error' | 'channel_api_group_failed' | 'no_audio_reader' | 'restream_check_twitch_bitrate_2' | 'transcoder_support_error_screen' | 'transcoder_tariff_end_screen' | 'transcoder_count_flow_screen' | 'transcoder_resolution_screen' | 'stream_key_banned' | 'broadcast_change_codec' | 'broadcast_change_region' | 'video_upload_error' | 'stop_channel_error' | 'broadcast_user_action_stop' | 'completed_api_channel_error' | 'transcoder_twitch_tracks' | 'plan_webinar_expired' | 'plan_webinar_renewed' | 'plan_webinar_expires' | 'payout_created' | 'payout_status_execution' | 'payout_status_success' | 'payout_status_canceled' | 'payout_status_error' | 'plan_trial_expires' | 'plan_trial_expired'} [name] Name
      * @param {'telegram' | 'cabinet' | 'mobile'} [channel] Channel
      * @param {Date} [date_from] Date from
      * @param {Date} [date_to] Date to
      * @param {'unread' | 'read'} [status_read] Status read
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
     notifyHistoryGetListMyV1Raw(requestParameters: NotifyHistoryGetListMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfNotifyHistorySiteResponse>>;
     /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * Get list of my notifications
      */
     notifyHistoryGetListMyV1(requestParameters: NotifyHistoryGetListMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfNotifyHistorySiteResponse>;
     /**
-     *
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * @summary Get my status unread message for user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
     notifyHistoryGetStatusMyV1Raw(requestParameters: NotifyHistoryGetStatusMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistoryStatusUserResponse>>;
     /**
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * Get my status unread message for user
      */
     notifyHistoryGetStatusMyV1(requestParameters: NotifyHistoryGetStatusMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistoryStatusUserResponse>;
     /**
-     *
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * @summary Get my NotifyHistory item by id
      * @param {string} _id Id of page in mongodb
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
     notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistory>>;
     /**
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * Get my NotifyHistory item by id
      */
     notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistory>;
     /**
-     *
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * @summary Set notification in cabinet as read
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {SiteMarkReadHistoryRequest} SiteMarkReadHistoryRequest
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
     notifyHistoryMarkOfReadV1Raw(requestParameters: NotifyHistoryMarkOfReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteMarkReadHistoryResponse>>;
     /**
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * Set notification in cabinet as read
      */
     notifyHistoryMarkOfReadV1(requestParameters: NotifyHistoryMarkOfReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteMarkReadHistoryResponse>;
     /**
-     *
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * @summary Run action in my notify item
      * @param {string} notify_history_id Id of page in mongodb
      * @param {string} action_name Action name
      * @param {string} group_id Group id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
     notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * Run action in my notify item
      */
     notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
     /**
-     *
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * @summary Set all notification in cabinet as read
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof NotifyHistoryApiInterface
      */
-    notifyHistorySetAllCabinetReadV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    notifyHistorySetAllCabinetReadV1Raw(requestParameters: NotifyHistorySetAllCabinetReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * Set all notification in cabinet as read
      */
-    notifyHistorySetAllCabinetReadV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    notifyHistorySetAllCabinetReadV1(requestParameters: NotifyHistorySetAllCabinetReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
 /**
  *
  */
 export declare class NotifyHistoryApi extends runtime.BaseAPI implements NotifyHistoryApiInterface {
     /**
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * Execute an owned notification action
+     */
+    methodExecuteNotifyActionExecuteV1Raw(requestParameters: MethodExecuteNotifyActionExecuteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    /**
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * Execute an owned notification action
+     */
+    methodExecuteNotifyActionExecuteV1(requestParameters: MethodExecuteNotifyActionExecuteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * Get list of my notifications
      */
     notifyHistoryGetListMyV1Raw(requestParameters: NotifyHistoryGetListMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedResponseOfNotifyHistorySiteResponse>>;
     /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * Get list of my notifications
      */
     notifyHistoryGetListMyV1(requestParameters: NotifyHistoryGetListMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedResponseOfNotifyHistorySiteResponse>;
     /**
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * Get my status unread message for user
      */
     notifyHistoryGetStatusMyV1Raw(requestParameters: NotifyHistoryGetStatusMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistoryStatusUserResponse>>;
     /**
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * Get my status unread message for user
      */
     notifyHistoryGetStatusMyV1(requestParameters: NotifyHistoryGetStatusMyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistoryStatusUserResponse>;
     /**
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * Get my NotifyHistory item by id
      */
     notifyHistoryGetV1Raw(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NotifyHistory>>;
     /**
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * Get my NotifyHistory item by id
      */
     notifyHistoryGetV1(requestParameters: NotifyHistoryGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NotifyHistory>;
     /**
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * Set notification in cabinet as read
      */
     notifyHistoryMarkOfReadV1Raw(requestParameters: NotifyHistoryMarkOfReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteMarkReadHistoryResponse>>;
     /**
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * Set notification in cabinet as read
      */
     notifyHistoryMarkOfReadV1(requestParameters: NotifyHistoryMarkOfReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteMarkReadHistoryResponse>;
     /**
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * Run action in my notify item
      */
     notifyHistoryRunActionV1Raw(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * Run action in my notify item
      */
     notifyHistoryRunActionV1(requestParameters: NotifyHistoryRunActionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
     /**
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * Set all notification in cabinet as read
      */
-    notifyHistorySetAllCabinetReadV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
+    notifyHistorySetAllCabinetReadV1Raw(requestParameters: NotifyHistorySetAllCabinetReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * Set all notification in cabinet as read
      */
-    notifyHistorySetAllCabinetReadV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
+    notifyHistorySetAllCabinetReadV1(requestParameters?: NotifyHistorySetAllCabinetReadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 }
 /**
  * @export

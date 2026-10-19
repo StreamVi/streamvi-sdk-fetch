@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class MediaServiceFilesApi extends runtime.BaseAPI {
     /**
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * Cancel service video
      */
     async mediaServiceFilesSiteCancelV1Raw(requestParameters, initOverrides) {
@@ -54,9 +55,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:write"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/cancel`,
@@ -68,6 +76,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * Cancel service video
      */
     async mediaServiceFilesSiteCancelV1(requestParameters, initOverrides) {
@@ -75,6 +84,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * Create service video
      */
     async mediaServiceFilesSiteCreateV1Raw(requestParameters, initOverrides) {
@@ -98,9 +108,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:write"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/add`,
@@ -111,6 +128,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * Create service video
      */
     async mediaServiceFilesSiteCreateV1(requestParameters, initOverrides) {
@@ -118,6 +136,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * Delete service video
      */
     async mediaServiceFilesSiteDeleteV1Raw(requestParameters, initOverrides) {
@@ -128,9 +147,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:write"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/delete`,
@@ -142,6 +168,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * Delete service video
      */
     async mediaServiceFilesSiteDeleteV1(requestParameters, initOverrides) {
@@ -149,6 +176,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * Get service video
      */
     async mediaServiceFilesSiteGetV1Raw(requestParameters, initOverrides) {
@@ -178,9 +206,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['media_id'] = requestParameters['media_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:read"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/get`,
@@ -191,6 +226,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetMediaServiceFileResponseFromJSON)(jsonValue));
     }
     /**
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * Get service video
      */
     async mediaServiceFilesSiteGetV1(requestParameters, initOverrides) {
@@ -198,6 +234,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * Get service video list
      */
     async mediaServiceFilesSiteListV1Raw(requestParameters, initOverrides) {
@@ -221,9 +258,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:read"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/list`,
@@ -234,6 +278,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListMediaServiceFilesResponseFromJSON)(jsonValue));
     }
     /**
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * Get service video list
      */
     async mediaServiceFilesSiteListV1(requestParameters, initOverrides) {
@@ -241,6 +286,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * Get session by media id
      */
     async mediaServiceFilesSiteSessionV1Raw(requestParameters, initOverrides) {
@@ -270,9 +316,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
             queryParameters['media_id'] = requestParameters['media_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["media-files:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:read"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/session`,
@@ -283,6 +336,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SessionMediaServiceFileResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * Get session by media id
      */
     async mediaServiceFilesSiteSessionV1(requestParameters, initOverrides) {
@@ -290,6 +344,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * Set service video
      */
     async mediaServiceFilesSiteSetV1Raw(requestParameters, initOverrides) {
@@ -300,9 +355,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:write"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/set`,
@@ -314,6 +376,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * Set service video
      */
     async mediaServiceFilesSiteSetV1(requestParameters, initOverrides) {
@@ -321,6 +384,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * Update service video
      */
     async mediaServiceFilesSiteUpdateV1Raw(requestParameters, initOverrides) {
@@ -331,9 +395,16 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["media-files:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["media-files:write"]);
         }
         const response = await this.request({
             path: `/method/media-service-files/update`,
@@ -345,6 +416,7 @@ class MediaServiceFilesApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * Update service video
      */
     async mediaServiceFilesSiteUpdateV1(requestParameters, initOverrides) {

@@ -16,37 +16,44 @@ export interface PlanStorageBuyV1Request {
     project_id: number;
     period: PlanStorageBuyV1PeriodEnum;
     plan_storage_id: number;
+    size: number;
     v?: PlanStorageBuyV1VEnum;
-    size?: number;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageCancelV1Request {
     language: PlanStorageCancelV1LanguageEnum;
     project_id: number;
     v?: PlanStorageCancelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageCheckV1Request {
     language: PlanStorageCheckV1LanguageEnum;
     project_id: number;
     v?: PlanStorageCheckV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageGetDiscountV1Request {
     language: PlanStorageGetDiscountV1LanguageEnum;
     v?: PlanStorageGetDiscountV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageListV1Request {
     language: PlanStorageListV1LanguageEnum;
     v?: PlanStorageListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageSetProlongationV1Request {
     language: PlanStorageSetProlongationV1LanguageEnum;
     project_id: number;
     enabled: boolean;
     v?: PlanStorageSetProlongationV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlanStorageTariffV1Request {
     language: PlanStorageTariffV1LanguageEnum;
     project_id: number;
     v?: PlanStorageTariffV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PlanStorageApi - interface
@@ -56,110 +63,124 @@ export interface PlanStorageTariffV1Request {
  */
 export interface PlanStorageApiInterface {
     /**
-     *
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * @summary Buy storage tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_storage_id Storage plan id
+     * @param {number} size Size
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [size] Size
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageBuyV1Raw(requestParameters: PlanStorageBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy storage tariff
      */
     planStorageBuyV1(requestParameters: PlanStorageBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * @summary Remove next tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageCancelV1Raw(requestParameters: PlanStorageCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * Remove next tariff
      */
     planStorageCancelV1(requestParameters: PlanStorageCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * @summary Check storage tariff before buy
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageCheckV1Raw(requestParameters: PlanStorageCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageCheckResponse>>;
     /**
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check storage tariff before buy
      */
     planStorageCheckV1(requestParameters: PlanStorageCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageCheckResponse>;
     /**
-     *
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * @summary Get discount of storage
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageGetDiscountV1Raw(requestParameters: PlanStorageGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageDiscountResponse>>;
     /**
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount of storage
      */
     planStorageGetDiscountV1(requestParameters: PlanStorageGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageDiscountResponse>;
     /**
-     *
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * @summary Get info for storage tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageListV1Raw(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageResponseDto>>;
     /**
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get info for storage tariff
      */
     planStorageListV1(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageResponseDto>;
     /**
-     *
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * @summary Set storage tariff auto prolongation
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageSetProlongationV1Raw(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set storage tariff auto prolongation
      */
     planStorageSetProlongationV1(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
-     * @summary Get tariff for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * @summary Get current and next project storage tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanStorageApiInterface
      */
     planStorageTariffV1Raw(requestParameters: PlanStorageTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageForProject>>;
     /**
-     * Get tariff for project
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project storage tariff
      */
     planStorageTariffV1(requestParameters: PlanStorageTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageForProject>;
 }
@@ -168,59 +189,73 @@ export interface PlanStorageApiInterface {
  */
 export declare class PlanStorageApi extends runtime.BaseAPI implements PlanStorageApiInterface {
     /**
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy storage tariff
      */
     planStorageBuyV1Raw(requestParameters: PlanStorageBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Buy a video storage tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy storage tariff
      */
     planStorageBuyV1(requestParameters: PlanStorageBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * Remove next tariff
      */
     planStorageCancelV1Raw(requestParameters: PlanStorageCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Cancel the next video storage plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
      * Remove next tariff
      */
     planStorageCancelV1(requestParameters: PlanStorageCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check storage tariff before buy
      */
     planStorageCheckV1Raw(requestParameters: PlanStorageCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageCheckResponse>>;
     /**
+     * Read preliminary data for purchasing a video storage plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check storage tariff before buy
      */
     planStorageCheckV1(requestParameters: PlanStorageCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageCheckResponse>;
     /**
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount of storage
      */
     planStorageGetDiscountV1Raw(requestParameters: PlanStorageGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageDiscountResponse>>;
     /**
+     * Read annual discount rules for video storage plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount of storage
      */
     planStorageGetDiscountV1(requestParameters: PlanStorageGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageDiscountResponse>;
     /**
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get info for storage tariff
      */
     planStorageListV1Raw(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageResponseDto>>;
     /**
+     * Read the public video storage plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get info for storage tariff
      */
     planStorageListV1(requestParameters: PlanStorageListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageResponseDto>;
     /**
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set storage tariff auto prolongation
      */
     planStorageSetProlongationV1Raw(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save automatic video storage plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set storage tariff auto prolongation
      */
     planStorageSetProlongationV1(requestParameters: PlanStorageSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     * Get tariff for project
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project storage tariff
      */
     planStorageTariffV1Raw(requestParameters: PlanStorageTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanStorageForProject>>;
     /**
-     * Get tariff for project
+     * Read the current and next video storage plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project storage tariff
      */
     planStorageTariffV1(requestParameters: PlanStorageTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanStorageForProject>;
 }

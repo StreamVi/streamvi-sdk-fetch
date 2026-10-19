@@ -26,11 +26,17 @@ export interface WebinarUpdateStreamSettingDto {
      */
     v?: WebinarUpdateStreamSettingDtoVEnum;
     /**
-     * Current language
+     * Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @type {string}
      * @memberof WebinarUpdateStreamSettingDto
      */
     language: WebinarUpdateStreamSettingDtoLanguageEnum;
+    /**
+     * Required selected project for account integration credentials; room prefix must match its external ID
+     * @type {number}
+     * @memberof WebinarUpdateStreamSettingDto
+     */
+    project_id?: number;
     /**
      * Client ID
      * @type {string}
@@ -44,25 +50,25 @@ export interface WebinarUpdateStreamSettingDto {
      */
     room_id: string;
     /**
-     * Width
+     * Video width in pixels
      * @type {number}
      * @memberof WebinarUpdateStreamSettingDto
      */
     width: number;
     /**
-     * Height
+     * Video height in pixels
      * @type {number}
      * @memberof WebinarUpdateStreamSettingDto
      */
     height: number;
     /**
-     * Fps
+     * Video frames per second
      * @type {number}
      * @memberof WebinarUpdateStreamSettingDto
      */
     fps: WebinarUpdateStreamSettingDtoFpsEnum;
     /**
-     * Bitrate
+     * Video bitrate in kbps
      * @type {number}
      * @memberof WebinarUpdateStreamSettingDto
      */
@@ -124,6 +130,7 @@ export function WebinarUpdateStreamSettingDtoFromJSONTyped(json: any, ignoreDisc
         
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'client_id': json['client_id'],
         'room_id': json['room_id'],
         'width': json['width'],
@@ -146,6 +153,7 @@ export function WebinarUpdateStreamSettingDtoToJSONTyped(value?: WebinarUpdateSt
         
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'client_id': value['client_id'],
         'room_id': value['room_id'],
         'width': value['width'],

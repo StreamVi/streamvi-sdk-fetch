@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PlatformsVkVideoLiveCategoryV1VEnum = exports.PlatformsVkVideoLiveCategoryV1TypeEnum = exports.PlatformsVkVideoLiveCategoryV1LanguageEnum = exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetChannelsV1SortEnum = exports.PlatformsGetChannelsV1VEnum = exports.PlatformsGetChannelsV1PlatformEnum = exports.PlatformsGetChannelsV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsGetAccountsV1VEnum = exports.PlatformsGetAccountsV1PlatformEnum = exports.PlatformsGetAccountsV1LanguageEnum = exports.PlatformsCallbackV1ProviderEnum = exports.PlatformsAddAccountVkCommunityV1VEnum = exports.PlatformsAddAccountVkCommunityV1LanguageEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1VEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = exports.PlatformsApi = void 0;
+exports.PlatformsVkVideoLiveCategoryV1VEnum = exports.PlatformsVkVideoLiveCategoryV1TypeEnum = exports.PlatformsVkVideoLiveCategoryV1LanguageEnum = exports.PlatformsPlatformListV1VEnum = exports.PlatformsPlatformListV1LanguageEnum = exports.PlatformsLogoutAccountV1VEnum = exports.PlatformsLogoutAccountV1PlatformEnum = exports.PlatformsLogoutAccountV1LanguageEnum = exports.PlatformsGetChannelsV1SortEnum = exports.PlatformsGetChannelsV1VEnum = exports.PlatformsGetChannelsV1PlatformEnum = exports.PlatformsGetChannelsV1LanguageEnum = exports.PlatformsGetCategoryV1VEnum = exports.PlatformsGetCategoryV1TypeEnum = exports.PlatformsGetCategoryV1LanguageEnum = exports.PlatformsGetAccountsV1VEnum = exports.PlatformsGetAccountsV1PlatformEnum = exports.PlatformsGetAccountsV1LanguageEnum = exports.PlatformsCallbackV1ProviderEnum = exports.PlatformsAddAccountVkCommunityV1VEnum = exports.PlatformsAddAccountVkCommunityV1LanguageEnum = exports.PlatformsAddAccountV1ConnectionModeEnum = exports.PlatformsAddAccountV1VEnum = exports.PlatformsAddAccountV1PlatformEnum = exports.PlatformsAddAccountV1LanguageEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1VEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1PlatformEnum = exports.PlatformCategoryDetailsGetCategoryDetailsV1LanguageEnum = exports.PlatformsApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PlatformsApi extends runtime.BaseAPI {
     /**
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * Get a saved platform category by its external identifier
      */
     async platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters, initOverrides) {
@@ -79,9 +80,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:read"]);
         }
         const response = await this.request({
             path: `/method/platforms/category/details`,
@@ -92,6 +100,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlatformCategoryDetailsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * Get a saved platform category by its external identifier
      */
     async platformCategoryDetailsGetCategoryDetailsV1(requestParameters, initOverrides) {
@@ -99,6 +108,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * Get url for start oauth
      */
     async platformsAddAccountV1Raw(requestParameters, initOverrides) {
@@ -130,10 +140,20 @@ class PlatformsApi extends runtime.BaseAPI {
         if (requestParameters['sub_id'] != null) {
             queryParameters['sub_id'] = requestParameters['sub_id'];
         }
+        if (requestParameters['connection_mode'] != null) {
+            queryParameters['connection_mode'] = requestParameters['connection_mode'];
+        }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:write"]);
         }
         const response = await this.request({
             path: `/method/platforms/connect`,
@@ -144,12 +164,14 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * Get url for start oauth
      */
     async platformsAddAccountV1(requestParameters, initOverrides) {
         await this.platformsAddAccountV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * Get url for start oauth
      */
     async platformsAddAccountVkCommunityV1Raw(requestParameters, initOverrides) {
@@ -188,9 +210,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['sub_id'] = requestParameters['sub_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:write"]);
         }
         const response = await this.request({
             path: `/method/platforms/connect/vk-community`,
@@ -201,12 +230,14 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.VoidApiResponse(response);
     }
     /**
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * Get url for start oauth
      */
     async platformsAddAccountVkCommunityV1(requestParameters, initOverrides) {
         await this.platformsAddAccountVkCommunityV1Raw(requestParameters, initOverrides);
     }
     /**
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * Internal request of auth
      */
     async platformsCallbackCommunityV1Raw(requestParameters, initOverrides) {
@@ -218,6 +249,9 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['state'] = requestParameters['state'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/platforms/vk/callback-community`,
             method: 'GET',
@@ -232,6 +266,7 @@ class PlatformsApi extends runtime.BaseAPI {
         }
     }
     /**
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * Internal request of auth
      */
     async platformsCallbackCommunityV1(requestParameters, initOverrides) {
@@ -239,6 +274,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * Internal request of auth
      */
     async platformsCallbackV1Raw(requestParameters, initOverrides) {
@@ -253,6 +289,9 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['state'] = requestParameters['state'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/platforms/{provider}/callback`.replace(`{${"provider"}}`, encodeURIComponent(String(requestParameters['provider']))),
             method: 'GET',
@@ -267,6 +306,7 @@ class PlatformsApi extends runtime.BaseAPI {
         }
     }
     /**
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * Internal request of auth
      */
     async platformsCallbackV1(requestParameters, initOverrides) {
@@ -274,6 +314,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * Internal request of auth vk-id
      */
     async platformsCallbackVkIdV1Raw(requestParameters, initOverrides) {
@@ -285,6 +326,9 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['state'] = requestParameters['state'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/platforms/vk-id/callback`,
             method: 'GET',
@@ -299,6 +343,7 @@ class PlatformsApi extends runtime.BaseAPI {
         }
     }
     /**
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * Internal request of auth vk-id
      */
     async platformsCallbackVkIdV1(requestParameters, initOverrides) {
@@ -306,6 +351,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * Get accounts
      */
     async platformsGetAccountsV1Raw(requestParameters, initOverrides) {
@@ -329,9 +375,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['platform'] = requestParameters['platform'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:read"]);
         }
         const response = await this.request({
             path: `/method/platforms/accounts`,
@@ -342,6 +395,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetAccountsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * Get accounts
      */
     async platformsGetAccountsV1(requestParameters, initOverrides) {
@@ -349,6 +403,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * Get category from the platform
      */
     async platformsGetCategoryV1Raw(requestParameters, initOverrides) {
@@ -375,9 +430,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['type'] = requestParameters['type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:read"]);
         }
         const response = await this.request({
             path: `/method/platforms/category`,
@@ -388,6 +450,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CategoryListResponseFromJSON)(jsonValue));
     }
     /**
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * Get category from the platform
      */
     async platformsGetCategoryV1(requestParameters, initOverrides) {
@@ -395,6 +458,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * Get channels with accounts
      */
     async platformsGetChannelsV1Raw(requestParameters, initOverrides) {
@@ -448,9 +512,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['page'] = requestParameters['page'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:read"]);
         }
         const response = await this.request({
             path: `/method/platforms/account/channels`,
@@ -461,6 +532,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetAccountChannelsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * Get channels with accounts
      */
     async platformsGetChannelsV1(requestParameters, initOverrides) {
@@ -468,7 +540,8 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get category from the platform
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * Unavailable platform logout (not implemented)
      */
     async platformsLogoutAccountV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -497,9 +570,12 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['platform'] = requestParameters['platform'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:write"]);
         }
         const response = await this.request({
             path: `/method/platforms/logout`,
@@ -510,13 +586,15 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListOfCategoryItemResponseFromJSON)(jsonValue));
     }
     /**
-     * Get category from the platform
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * Unavailable platform logout (not implemented)
      */
     async platformsLogoutAccountV1(requestParameters, initOverrides) {
         const response = await this.platformsLogoutAccountV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * Supported platforms
      */
     async platformsPlatformListV1Raw(requestParameters, initOverrides) {
@@ -534,6 +612,9 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/platforms/list`,
             method: 'GET',
@@ -543,6 +624,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SitePlatformsSupportedResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * Supported platforms
      */
     async platformsPlatformListV1(requestParameters, initOverrides) {
@@ -550,6 +632,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * Remove account
      */
     async platformsRemoveAccountV1Raw(requestParameters, initOverrides) {
@@ -560,9 +643,16 @@ class PlatformsApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:write"]);
         }
         const response = await this.request({
             path: `/method/platforms/account/remove`,
@@ -574,6 +664,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * Remove account
      */
     async platformsRemoveAccountV1(requestParameters, initOverrides) {
@@ -581,6 +672,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * Search VK Video Live categories in the saved catalog
      */
     async platformsVkVideoLiveCategoryV1Raw(requestParameters, initOverrides) {
@@ -610,9 +702,16 @@ class PlatformsApi extends runtime.BaseAPI {
             queryParameters['q'] = requestParameters['q'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["platform:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["platform:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["platform:read"]);
         }
         const response = await this.request({
             path: `/method/platforms/category/vkvideolive`,
@@ -623,6 +722,7 @@ class PlatformsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CategoryListResponseFromJSON)(jsonValue));
     }
     /**
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * Search VK Video Live categories in the saved catalog
      */
     async platformsVkVideoLiveCategoryV1(requestParameters, initOverrides) {
@@ -684,6 +784,12 @@ exports.PlatformsAddAccountV1PlatformEnum = {
  */
 exports.PlatformsAddAccountV1VEnum = {
     _1: '1'
+};
+/**
+ * @export
+ */
+exports.PlatformsAddAccountV1ConnectionModeEnum = {
+    select_channels: 'select_channels'
 };
 /**
  * @export
@@ -774,7 +880,8 @@ exports.PlatformsGetChannelsV1LanguageEnum = {
  */
 exports.PlatformsGetChannelsV1PlatformEnum = {
     vk: 'vk',
-    ok: 'ok'
+    ok: 'ok',
+    vkvideolive: 'vkvideolive'
 };
 /**
  * @export

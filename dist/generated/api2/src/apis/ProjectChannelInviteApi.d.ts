@@ -11,11 +11,18 @@
  */
 import * as runtime from '../runtime';
 import type { ProjectChannelInviteLinkResponse, ProjectChannelInviteListResponse, ProjectChannelInviteResponse, SuccessResponse } from '../models/index';
+export interface MethodChannelInviteDetailsDetailsV1Request {
+    language: MethodChannelInviteDetailsDetailsV1LanguageEnum;
+    id: number;
+    v?: MethodChannelInviteDetailsDetailsV1VEnum;
+    X_Client_Request_Id?: string;
+}
 export interface ProjectChannelInviteAcceptForProjectV1Request {
     language: ProjectChannelInviteAcceptForProjectV1LanguageEnum;
     project_id: number;
     channel_id: number;
     v?: ProjectChannelInviteAcceptForProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteAcceptForSecretV1Request {
     language: ProjectChannelInviteAcceptForSecretV1LanguageEnum;
@@ -23,6 +30,7 @@ export interface ProjectChannelInviteAcceptForSecretV1Request {
     channel_id: number;
     secret: string;
     v?: ProjectChannelInviteAcceptForSecretV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteAddByEmailV1Request {
     language: ProjectChannelInviteAddByEmailV1LanguageEnum;
@@ -31,6 +39,7 @@ export interface ProjectChannelInviteAddByEmailV1Request {
     email: string;
     access_type: ProjectChannelInviteAddByEmailV1AccessTypeEnum;
     v?: ProjectChannelInviteAddByEmailV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteAddByIdV1Request {
     language: ProjectChannelInviteAddByIdV1LanguageEnum;
@@ -39,12 +48,14 @@ export interface ProjectChannelInviteAddByIdV1Request {
     access_type: ProjectChannelInviteAddByIdV1AccessTypeEnum;
     to_project_external_id: string;
     v?: ProjectChannelInviteAddByIdV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteDeclineForProjectV1Request {
     language: ProjectChannelInviteDeclineForProjectV1LanguageEnum;
     project_id: number;
     channel_id: number;
     v?: ProjectChannelInviteDeclineForProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteDeclineForSecretV1Request {
     language: ProjectChannelInviteDeclineForSecretV1LanguageEnum;
@@ -52,34 +63,40 @@ export interface ProjectChannelInviteDeclineForSecretV1Request {
     channel_id: number;
     secret: string;
     v?: ProjectChannelInviteDeclineForSecretV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteDelV1Request {
     language: ProjectChannelInviteDelV1LanguageEnum;
     id: number;
     v?: ProjectChannelInviteDelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteGetForProjectV1Request {
     language: ProjectChannelInviteGetForProjectV1LanguageEnum;
     project_id: number;
     channel_id: number;
     v?: ProjectChannelInviteGetForProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteGetForSecretV1Request {
     language: ProjectChannelInviteGetForSecretV1LanguageEnum;
     channel_id: number;
     secret: string;
     v?: ProjectChannelInviteGetForSecretV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteGetV1Request {
     language: ProjectChannelInviteGetV1LanguageEnum;
     id: number;
     v?: ProjectChannelInviteGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface ProjectChannelInviteListV1Request {
     language: ProjectChannelInviteListV1LanguageEnum;
     project_id: number;
     channel_id: number;
     v?: ProjectChannelInviteListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * ProjectChannelInviteApi - interface
@@ -89,182 +106,221 @@ export interface ProjectChannelInviteListV1Request {
  */
 export interface ProjectChannelInviteApiInterface {
     /**
-     *
-     * @summary Accept channel invitation for selected project
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} project_id The project to which you want to add a channel
-     * @param {number} channel_id Channel id
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * @summary Get outgoing channel invitation details
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} id Outgoing channel invitation ID
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectChannelInviteApiInterface
+     */
+    methodChannelInviteDetailsDetailsV1Raw(requestParameters: MethodChannelInviteDetailsDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
+    /**
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * Get outgoing channel invitation details
+     */
+    methodChannelInviteDetailsDetailsV1(requestParameters: MethodChannelInviteDetailsDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
+    /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
+     * @summary Accept channel invitation for selected project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} project_id The project to which you want to add a channel
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteAcceptForProjectV1Raw(requestParameters: ProjectChannelInviteAcceptForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
      * Accept channel invitation for selected project
      */
     projectChannelInviteAcceptForProjectV1(requestParameters: ProjectChannelInviteAcceptForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * @summary Accept channel invitation using a secret link
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id The project to which you want to add a channel
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {string} secret Secret
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteAcceptForSecretV1Raw(requestParameters: ProjectChannelInviteAcceptForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * Accept channel invitation using a secret link
      */
     projectChannelInviteAcceptForSecretV1(requestParameters: ProjectChannelInviteAcceptForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * @summary Add channel invite item for another user by email
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {string} email Email
      * @param {1 | 2} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteAddByEmailV1Raw(requestParameters: ProjectChannelInviteAddByEmailV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
     /**
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * Add channel invite item for another user by email
      */
     projectChannelInviteAddByEmailV1(requestParameters: ProjectChannelInviteAddByEmailV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
     /**
-     *
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * @summary Add channel invite item for another user by id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {1 | 2} access_type Access type
      * @param {string} to_project_external_id Project for get access by external id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteAddByIdV1Raw(requestParameters: ProjectChannelInviteAddByIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
     /**
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * Add channel invite item for another user by id
      */
     projectChannelInviteAddByIdV1(requestParameters: ProjectChannelInviteAddByIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
     /**
-     *
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * @summary Decline channel invitation for selected project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Channel id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteDeclineForProjectV1Raw(requestParameters: ProjectChannelInviteDeclineForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * Decline channel invitation for selected project
      */
     projectChannelInviteDeclineForProjectV1(requestParameters: ProjectChannelInviteDeclineForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * @summary Decline channel invitation using a secret link
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id The project to which you want to add a channel
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {string} secret Secret
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteDeclineForSecretV1Raw(requestParameters: ProjectChannelInviteDeclineForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * Decline channel invitation using a secret link
      */
     projectChannelInviteDeclineForSecretV1(requestParameters: ProjectChannelInviteDeclineForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * @summary Del channel invite item for my channel for another user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} id Unique id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteDelV1Raw(requestParameters: ProjectChannelInviteDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * Del channel invite item for my channel for another user
      */
     projectChannelInviteDelV1(requestParameters: ProjectChannelInviteDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * @summary Get invitation for channel
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Current project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteGetForProjectV1Raw(requestParameters: ProjectChannelInviteGetForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteLinkResponse>>;
     /**
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * Get invitation for channel
      */
     projectChannelInviteGetForProjectV1(requestParameters: ProjectChannelInviteGetForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteLinkResponse>;
     /**
-     *
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * @summary Get channel invitation using a secret link
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} channel_id Channel id
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {string} secret Secret
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteGetForSecretV1Raw(requestParameters: ProjectChannelInviteGetForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteLinkResponse>>;
     /**
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * Get channel invitation using a secret link
      */
     projectChannelInviteGetForSecretV1(requestParameters: ProjectChannelInviteGetForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteLinkResponse>;
     /**
-     *
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * @summary Get channel invite item for my channel for another user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} id Channel request id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteGetV1Raw(requestParameters: ProjectChannelInviteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * Get channel invite item for my channel for another user
      */
     projectChannelInviteGetV1(requestParameters: ProjectChannelInviteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * @summary List of invites for channel in project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID: use channel_id from the invitation or group_id from channel search. Do not use the external/platform id or the invitation record ID.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelInviteApiInterface
      */
     projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteListResponse>>;
     /**
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * List of invites for channel in project
      */
     projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteListResponse>;
@@ -274,94 +330,142 @@ export interface ProjectChannelInviteApiInterface {
  */
 export declare class ProjectChannelInviteApi extends runtime.BaseAPI implements ProjectChannelInviteApiInterface {
     /**
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * Get outgoing channel invitation details
+     */
+    methodChannelInviteDetailsDetailsV1Raw(requestParameters: MethodChannelInviteDetailsDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
+    /**
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * Get outgoing channel invitation details
+     */
+    methodChannelInviteDetailsDetailsV1(requestParameters: MethodChannelInviteDetailsDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
+    /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
      * Accept channel invitation for selected project
      */
     projectChannelInviteAcceptForProjectV1Raw(requestParameters: ProjectChannelInviteAcceptForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
      * Accept channel invitation for selected project
      */
     projectChannelInviteAcceptForProjectV1(requestParameters: ProjectChannelInviteAcceptForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * Accept channel invitation using a secret link
      */
     projectChannelInviteAcceptForSecretV1Raw(requestParameters: ProjectChannelInviteAcceptForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * Accept channel invitation using a secret link
      */
     projectChannelInviteAcceptForSecretV1(requestParameters: ProjectChannelInviteAcceptForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * Add channel invite item for another user by email
      */
     projectChannelInviteAddByEmailV1Raw(requestParameters: ProjectChannelInviteAddByEmailV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
     /**
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * Add channel invite item for another user by email
      */
     projectChannelInviteAddByEmailV1(requestParameters: ProjectChannelInviteAddByEmailV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
     /**
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * Add channel invite item for another user by id
      */
     projectChannelInviteAddByIdV1Raw(requestParameters: ProjectChannelInviteAddByIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteResponse>>;
     /**
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * Add channel invite item for another user by id
      */
     projectChannelInviteAddByIdV1(requestParameters: ProjectChannelInviteAddByIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteResponse>;
     /**
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * Decline channel invitation for selected project
      */
     projectChannelInviteDeclineForProjectV1Raw(requestParameters: ProjectChannelInviteDeclineForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * Decline channel invitation for selected project
      */
     projectChannelInviteDeclineForProjectV1(requestParameters: ProjectChannelInviteDeclineForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * Decline channel invitation using a secret link
      */
     projectChannelInviteDeclineForSecretV1Raw(requestParameters: ProjectChannelInviteDeclineForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * Decline channel invitation using a secret link
      */
     projectChannelInviteDeclineForSecretV1(requestParameters: ProjectChannelInviteDeclineForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * Del channel invite item for my channel for another user
      */
     projectChannelInviteDelV1Raw(requestParameters: ProjectChannelInviteDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * Del channel invite item for my channel for another user
      */
     projectChannelInviteDelV1(requestParameters: ProjectChannelInviteDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * Get invitation for channel
      */
     projectChannelInviteGetForProjectV1Raw(requestParameters: ProjectChannelInviteGetForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteLinkResponse>>;
     /**
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * Get invitation for channel
      */
     projectChannelInviteGetForProjectV1(requestParameters: ProjectChannelInviteGetForProjectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteLinkResponse>;
     /**
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * Get channel invitation using a secret link
      */
     projectChannelInviteGetForSecretV1Raw(requestParameters: ProjectChannelInviteGetForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteLinkResponse>>;
     /**
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * Get channel invitation using a secret link
      */
     projectChannelInviteGetForSecretV1(requestParameters: ProjectChannelInviteGetForSecretV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteLinkResponse>;
     /**
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * Get channel invite item for my channel for another user
      */
     projectChannelInviteGetV1Raw(requestParameters: ProjectChannelInviteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * Get channel invite item for my channel for another user
      */
     projectChannelInviteGetV1(requestParameters: ProjectChannelInviteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * List of invites for channel in project
      */
     projectChannelInviteListV1Raw(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelInviteListResponse>>;
     /**
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * List of invites for channel in project
      */
     projectChannelInviteListV1(requestParameters: ProjectChannelInviteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelInviteListResponse>;
 }
+/**
+ * @export
+ */
+export declare const MethodChannelInviteDetailsDetailsV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+    readonly cn: "cn";
+};
+export type MethodChannelInviteDetailsDetailsV1LanguageEnum = typeof MethodChannelInviteDetailsDetailsV1LanguageEnum[keyof typeof MethodChannelInviteDetailsDetailsV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodChannelInviteDetailsDetailsV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodChannelInviteDetailsDetailsV1VEnum = typeof MethodChannelInviteDetailsDetailsV1VEnum[keyof typeof MethodChannelInviteDetailsDetailsV1VEnum];
 /**
  * @export
  */

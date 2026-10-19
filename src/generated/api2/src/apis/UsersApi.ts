@@ -28,11 +28,16 @@ import {
     UserProfileResponseToJSON,
 } from '../models/index';
 
+export interface UserGetProfileV1Request {
+    X_Client_Request_Id?: string;
+}
+
 export interface UserUpdateProfileV1Request {
     language: UserUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
     v?: UserUpdateProfileV1VEnum;
+    X_Client_Request_Id?: string;
     avatar?: Blob;
 }
 
@@ -46,27 +51,29 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Get user profile
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
 
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
 
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} first_name First name
      * @param {string} last_name Last name
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -94,14 +101,18 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
+    async userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
 
         const response = await this.request({
@@ -119,8 +130,8 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
      * Get user profile
      * @deprecated
      */
-    async userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
-        const response = await this.userGetProfileV1Raw(initOverrides);
+    async userGetProfileV1(requestParameters: UserGetProfileV1Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
+        const response = await this.userGetProfileV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -165,9 +176,13 @@ export class UsersApi extends runtime.BaseAPI implements UsersApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
 
         const consumes: runtime.Consume[] = [

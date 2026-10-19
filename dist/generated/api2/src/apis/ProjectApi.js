@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserProjectSelectProjectV1VEnum = exports.UserProjectSelectProjectV1LanguageEnum = exports.UserProjectListV1VEnum = exports.UserProjectListV1LanguageEnum = exports.UserProjectListAccessV1VEnum = exports.UserProjectListAccessV1LanguageEnum = exports.UserProjectLeaveV1VEnum = exports.UserProjectLeaveV1LanguageEnum = exports.UserProjectGetUserV1VEnum = exports.UserProjectGetUserV1LanguageEnum = exports.UserProjectGetProjectV1VEnum = exports.UserProjectGetProjectV1LanguageEnum = exports.UserProjectGetProjectInfoV1VEnum = exports.UserProjectGetProjectInfoV1LanguageEnum = exports.UserProjectDeleteMemberV1VEnum = exports.UserProjectDeleteMemberV1LanguageEnum = exports.UserProjectDelV1VEnum = exports.UserProjectDelV1LanguageEnum = exports.UserProjectChangeAccessV1VEnum = exports.UserProjectChangeAccessV1AccessTypeEnum = exports.UserProjectChangeAccessV1LanguageEnum = exports.MethodProjectMeMeV1LanguageEnum = exports.MethodProjectMeMeV1VEnum = exports.ProjectApi = void 0;
+exports.UserProjectSelectProjectV1VEnum = exports.UserProjectSelectProjectV1LanguageEnum = exports.UserProjectListV1VEnum = exports.UserProjectListV1LanguageEnum = exports.UserProjectListAccessV1VEnum = exports.UserProjectListAccessV1LanguageEnum = exports.UserProjectLeaveV1VEnum = exports.UserProjectLeaveV1LanguageEnum = exports.UserProjectGetUserV1VEnum = exports.UserProjectGetUserV1LanguageEnum = exports.UserProjectGetProjectV1VEnum = exports.UserProjectGetProjectV1LanguageEnum = exports.UserProjectGetProjectInfoV1VEnum = exports.UserProjectGetProjectInfoV1LanguageEnum = exports.UserProjectDeleteMemberV1VEnum = exports.UserProjectDeleteMemberV1LanguageEnum = exports.UserProjectDelV1VEnum = exports.UserProjectDelV1LanguageEnum = exports.UserProjectChangeAccessV1VEnum = exports.UserProjectChangeAccessV1AccessTypeEnum = exports.UserProjectChangeAccessV1LanguageEnum = exports.MethodResolveUserV1VEnum = exports.MethodResolveUserV1LanguageEnum = exports.MethodResolveProjectV1VEnum = exports.MethodResolveProjectV1LanguageEnum = exports.MethodProjectMeMeV1LanguageEnum = exports.MethodProjectMeMeV1VEnum = exports.MethodProjectManagementUpdateV1VEnum = exports.MethodProjectManagementUpdateV1LanguageEnum = exports.MethodProjectManagementDeleteV1VEnum = exports.MethodProjectManagementDeleteV1LanguageEnum = exports.MethodProjectManagementCreateV1VEnum = exports.MethodProjectManagementCreateV1LanguageEnum = exports.ProjectApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,192 @@ const index_1 = require("../models/index");
  */
 class ProjectApi extends runtime.BaseAPI {
     /**
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * Create project
+     */
+    async methodProjectManagementCreateV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodProjectManagementCreateV1().');
+        }
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError('name', 'Required parameter "name" was null or undefined when calling methodProjectManagementCreateV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:write"]);
+        }
+        const consumes = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+        let formParams;
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        }
+        else {
+            formParams = new URLSearchParams();
+        }
+        if (requestParameters['name'] != null) {
+            formParams.append('name', requestParameters['name']);
+        }
+        if (requestParameters['avatar'] != null) {
+            formParams.append('avatar', requestParameters['avatar']);
+        }
+        const response = await this.request({
+            path: `/method/project`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: formParams,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectMutationResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Create a new project for the current account user with name and optional avatar using multipart/form-data. Supply name and avatar in body, v/language in query. Returns the created project; it differs from the personal project and is not automatically selected in the cabinet.
+     * Create project
+     */
+    async methodProjectManagementCreateV1(requestParameters, initOverrides) {
+        const response = await this.methodProjectManagementCreateV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * Delete project
+     */
+    async methodProjectManagementDeleteV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodProjectManagementDeleteV1().');
+        }
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling methodProjectManagementDeleteV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:write"]);
+        }
+        const response = await this.request({
+            path: `/method/project`,
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Delete project_id after checking effective project owner permissions. Obtain the ID from the project list/resolve; this deletes the project resource rather than removing the current member or revoking another user\'s access. Returns success after the deletion use case.
+     * Delete project
+     */
+    async methodProjectManagementDeleteV1(requestParameters, initOverrides) {
+        const response = await this.methodProjectManagementDeleteV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * Update project
+     */
+    async methodProjectManagementUpdateV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodProjectManagementUpdateV1().');
+        }
+        if (requestParameters['name'] == null) {
+            throw new runtime.RequiredError('name', 'Required parameter "name" was null or undefined when calling methodProjectManagementUpdateV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:write"]);
+        }
+        const consumes = [
+            { contentType: 'multipart/form-data' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+        let formParams;
+        let useForm = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        }
+        else {
+            formParams = new URLSearchParams();
+        }
+        if (requestParameters['project_id'] != null) {
+            formParams.append('project_id', requestParameters['project_id']);
+        }
+        if (requestParameters['name'] != null) {
+            formParams.append('name', requestParameters['name']);
+        }
+        if (requestParameters['avatar'] != null) {
+            formParams.append('avatar', requestParameters['avatar']);
+        }
+        const response = await this.request({
+            path: `/method/project`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: formParams,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectMutationResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Change name and optional avatar of the selected project_id using multipart/form-data. Requires actual project administrator status; a scope alone does not replace it. If no target is supplied in any request source, the account user\'s personal project is used, so specify the target explicitly. Returns the project after saving; does not create a new project.
+     * Update project
+     */
+    async methodProjectManagementUpdateV1(requestParameters, initOverrides) {
+        const response = await this.methodProjectManagementUpdateV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * Get current user project
      */
     async methodProjectMeMeV1Raw(requestParameters, initOverrides) {
@@ -57,10 +243,20 @@ class ProjectApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/me`,
@@ -71,6 +267,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectMeResponseFromJSON)(jsonValue));
     }
     /**
+     * Read data for the current target project_id and the authenticated user\'s access. A project-token selects its own project; an account-token uses the personal project when no target is provided by any source. The open cabinet tab does not automatically supply the target. Find an accessible ID using GET /method/project/list or /method/project/resolve.
      * Get current user project
      */
     async methodProjectMeMeV1(requestParameters = {}, initOverrides) {
@@ -78,6 +275,103 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * Find a project by its text ID or short code
+     */
+    async methodResolveProjectV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodResolveProjectV1().');
+        }
+        if (requestParameters['project_external_id'] == null) {
+            throw new runtime.RequiredError('project_external_id', 'Required parameter "project_external_id" was null or undefined when calling methodResolveProjectV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['project_external_id'] != null) {
+            queryParameters['project_external_id'] = requestParameters['project_external_id'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        const response = await this.request({
+            path: `/method/project/resolve`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodResolveProjectResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Find or resolve a project by the text ID / short code shown in the StreamVi cabinet (external_id, also called ref_id). Pass this code unchanged as project_external_id. Returns name and numeric internal_id; use internal_id as project_id in later API calls. Verifies authenticated account access before returning details. Does not select or switch the project displayed in the cabinet.
+     * Find a project by its text ID or short code
+     */
+    async methodResolveProjectV1(requestParameters, initOverrides) {
+        const response = await this.methodResolveProjectV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * Resolve an invitation recipient external ID
+     */
+    async methodResolveUserV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodResolveUserV1().');
+        }
+        if (requestParameters['user_external_id'] == null) {
+            throw new runtime.RequiredError('user_external_id', 'Required parameter "user_external_id" was null or undefined when calling methodResolveUserV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['user_external_id'] != null) {
+            queryParameters['user_external_id'] = requestParameters['user_external_id'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:read"]);
+        }
+        const response = await this.request({
+            path: `/method/account/resolve-user`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodResolveUserResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Returns only identity and display fields of a personal account. Financial fields are never returned.
+     * Resolve an invitation recipient external ID
+     */
+    async methodResolveUserV1(requestParameters, initOverrides) {
+        const response = await this.methodResolveUserV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * Change access user from project
      */
     async userProjectChangeAccessV1Raw(requestParameters, initOverrides) {
@@ -113,9 +407,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project-access:write"]);
         }
         const response = await this.request({
             path: `/method/project/user/change_access`,
@@ -126,6 +427,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Change access_type for member user_id in project_id. Requires an actual administrator role; the existing owner cannot be demoted. Only the current owner can assign owner, which turns the previous owner into admin. Changes roles/transfers ownership, not OAuth scopes.
      * Change access user from project
      */
     async userProjectChangeAccessV1(requestParameters, initOverrides) {
@@ -164,9 +466,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['user_id'] = requestParameters['user_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project-access:delete"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project-access:delete"]);
         }
         const response = await this.request({
             path: `/method/project/user/del`,
@@ -186,6 +495,7 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * Remove member from project
      */
     async userProjectDeleteMemberV1Raw(requestParameters, initOverrides) {
@@ -215,9 +525,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['user_id'] = requestParameters['user_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project-access:delete"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project-access:delete"]);
         }
         const response = await this.request({
             path: `/method/project/user/delete`,
@@ -228,6 +545,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Revoke user_id membership in project_id. Requires an effective project administrator role; this method cannot remove the caller or the owner. To leave yourself, use POST /method/project/user/leave; the project is preserved.
      * Remove member from project
      */
     async userProjectDeleteMemberV1(requestParameters, initOverrides) {
@@ -235,6 +553,7 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * Get project full info
      */
     async userProjectGetProjectInfoV1Raw(requestParameters, initOverrides) {
@@ -258,9 +577,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/get_project_info`,
@@ -271,6 +597,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectInfoResponseFromJSON)(jsonValue));
     }
     /**
+     * Read full details of project_id after checking the current user\'s access. This does not change project settings or members; use PUT /method/project to change name/avatar.
      * Get project full info
      */
     async userProjectGetProjectInfoV1(requestParameters, initOverrides) {
@@ -278,7 +605,8 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get project by number id
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * Get a project by its external text code
      */
     async userProjectGetProjectV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -301,9 +629,12 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_external_id'] = requestParameters['project_external_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/get_project`,
@@ -314,14 +645,16 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
     }
     /**
-     * Get project by number id
+     * Find a project by string project_external_id (short code/ref_id), not numeric project_id. This is a legacy project-subject method; for the account API use GET /method/project/resolve with an access check. Returns the found project details.
+     * Get a project by its external text code
      */
     async userProjectGetProjectV1(requestParameters, initOverrides) {
         const response = await this.userProjectGetProjectV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
-     * Get user by number id
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * Get a user by the external text code
      */
     async userProjectGetUserV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -344,9 +677,12 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['user_external_id'] = requestParameters['user_external_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/get_user`,
@@ -357,13 +693,15 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
     }
     /**
-     * Get user by number id
+     * Find a user by string user_external_id, not internal numeric user_id. This is a legacy project-subject method; for the account API use GET /method/account/resolve-user. Do not use this lookup to select target project_id without a separate access check.
+     * Get a user by the external text code
      */
     async userProjectGetUserV1(requestParameters, initOverrides) {
         const response = await this.userProjectGetUserV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * Leave project
      */
     async userProjectLeaveV1Raw(requestParameters, initOverrides) {
@@ -387,9 +725,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project-access:leave"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project-access:leave"]);
         }
         const response = await this.request({
             path: `/method/project/user/leave`,
@@ -400,6 +745,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Revoke the current user\'s own membership in project_id. Requires project access; the owner cannot leave this way (user_project.owner_is_king). Returns success. This leaves the project without deleting it.
      * Leave project
      */
     async userProjectLeaveV1(requestParameters, initOverrides) {
@@ -407,6 +753,7 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * List of user in project
      */
     async userProjectListAccessV1Raw(requestParameters, initOverrides) {
@@ -430,9 +777,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/user/list`,
@@ -443,6 +797,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProject2ProjectListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read members and their roles in project_id using request filters/pagination. user_id is the internal member ID for access management; project roles differ from application OAuth scopes. Reading does not change membership.
      * List of user in project
      */
     async userProjectListAccessV1(requestParameters, initOverrides) {
@@ -450,6 +805,7 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * List of project for current user
      */
     async userProjectListV1Raw(requestParameters, initOverrides) {
@@ -473,9 +829,16 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/list`,
@@ -486,6 +849,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedUserProjectResponseFromJSON)(jsonValue));
     }
     /**
+     * Read projects accessible to the current user using request filters and pagination. This is an account-context catalog: use the internal result ID as project_id in subsequent calls and the external code for resolve. This method does not select the open cabinet page.
      * List of project for current user
      */
     async userProjectListV1(requestParameters, initOverrides) {
@@ -493,6 +857,7 @@ class ProjectApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * Select user for project
      */
     async userProjectSelectProjectV1Raw(requestParameters, initOverrides) {
@@ -516,9 +881,12 @@ class ProjectApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project/select`,
@@ -529,6 +897,7 @@ class ProjectApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.UserProjectGetResponseFromJSON)(jsonValue));
     }
     /**
+     * Save the current user\'s selected cabinet project id after checking observer access and return project details. Despite using GET, this changes cabinet selection. Available only to a project subject; selection does not replace explicit project_id in subsequent account API requests.
      * Select user for project
      */
     async userProjectSelectProjectV1(requestParameters, initOverrides) {
@@ -537,6 +906,48 @@ class ProjectApi extends runtime.BaseAPI {
     }
 }
 exports.ProjectApi = ProjectApi;
+/**
+ * @export
+ */
+exports.MethodProjectManagementCreateV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodProjectManagementCreateV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.MethodProjectManagementDeleteV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodProjectManagementDeleteV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.MethodProjectManagementUpdateV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodProjectManagementUpdateV1VEnum = {
+    _1: '1'
+};
 /**
  * @export
  */
@@ -550,6 +961,34 @@ exports.MethodProjectMeMeV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
     cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodResolveProjectV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodResolveProjectV1VEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.MethodResolveUserV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodResolveUserV1VEnum = {
+    _1: '1'
 };
 /**
  * @export

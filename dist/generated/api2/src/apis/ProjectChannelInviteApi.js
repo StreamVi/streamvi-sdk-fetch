@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProjectChannelInviteListV1VEnum = exports.ProjectChannelInviteListV1LanguageEnum = exports.ProjectChannelInviteGetV1VEnum = exports.ProjectChannelInviteGetV1LanguageEnum = exports.ProjectChannelInviteGetForSecretV1VEnum = exports.ProjectChannelInviteGetForSecretV1LanguageEnum = exports.ProjectChannelInviteGetForProjectV1VEnum = exports.ProjectChannelInviteGetForProjectV1LanguageEnum = exports.ProjectChannelInviteDelV1VEnum = exports.ProjectChannelInviteDelV1LanguageEnum = exports.ProjectChannelInviteDeclineForSecretV1VEnum = exports.ProjectChannelInviteDeclineForSecretV1LanguageEnum = exports.ProjectChannelInviteDeclineForProjectV1VEnum = exports.ProjectChannelInviteDeclineForProjectV1LanguageEnum = exports.ProjectChannelInviteAddByIdV1VEnum = exports.ProjectChannelInviteAddByIdV1AccessTypeEnum = exports.ProjectChannelInviteAddByIdV1LanguageEnum = exports.ProjectChannelInviteAddByEmailV1VEnum = exports.ProjectChannelInviteAddByEmailV1AccessTypeEnum = exports.ProjectChannelInviteAddByEmailV1LanguageEnum = exports.ProjectChannelInviteAcceptForSecretV1VEnum = exports.ProjectChannelInviteAcceptForSecretV1LanguageEnum = exports.ProjectChannelInviteAcceptForProjectV1VEnum = exports.ProjectChannelInviteAcceptForProjectV1LanguageEnum = exports.ProjectChannelInviteApi = void 0;
+exports.ProjectChannelInviteListV1VEnum = exports.ProjectChannelInviteListV1LanguageEnum = exports.ProjectChannelInviteGetV1VEnum = exports.ProjectChannelInviteGetV1LanguageEnum = exports.ProjectChannelInviteGetForSecretV1VEnum = exports.ProjectChannelInviteGetForSecretV1LanguageEnum = exports.ProjectChannelInviteGetForProjectV1VEnum = exports.ProjectChannelInviteGetForProjectV1LanguageEnum = exports.ProjectChannelInviteDelV1VEnum = exports.ProjectChannelInviteDelV1LanguageEnum = exports.ProjectChannelInviteDeclineForSecretV1VEnum = exports.ProjectChannelInviteDeclineForSecretV1LanguageEnum = exports.ProjectChannelInviteDeclineForProjectV1VEnum = exports.ProjectChannelInviteDeclineForProjectV1LanguageEnum = exports.ProjectChannelInviteAddByIdV1VEnum = exports.ProjectChannelInviteAddByIdV1AccessTypeEnum = exports.ProjectChannelInviteAddByIdV1LanguageEnum = exports.ProjectChannelInviteAddByEmailV1VEnum = exports.ProjectChannelInviteAddByEmailV1AccessTypeEnum = exports.ProjectChannelInviteAddByEmailV1LanguageEnum = exports.ProjectChannelInviteAcceptForSecretV1VEnum = exports.ProjectChannelInviteAcceptForSecretV1LanguageEnum = exports.ProjectChannelInviteAcceptForProjectV1VEnum = exports.ProjectChannelInviteAcceptForProjectV1LanguageEnum = exports.MethodChannelInviteDetailsDetailsV1VEnum = exports.MethodChannelInviteDetailsDetailsV1LanguageEnum = exports.ProjectChannelInviteApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,55 @@ const index_1 = require("../models/index");
  */
 class ProjectChannelInviteApi extends runtime.BaseAPI {
     /**
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * Get outgoing channel invitation details
+     */
+    async methodChannelInviteDetailsDetailsV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodChannelInviteDetailsDetailsV1().');
+        }
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError('id', 'Required parameter "id" was null or undefined when calling methodChannelInviteDetailsDetailsV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+        const response = await this.request({
+            path: `/method/channel_invite/details`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Resolves the source project from the invitation. Requires actual source project and channel administrator access by the authenticated account.
+     * Get outgoing channel invitation details
+     */
+    async methodChannelInviteDetailsDetailsV1(requestParameters, initOverrides) {
+        const response = await this.methodChannelInviteDetailsDetailsV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
      * Accept channel invitation for selected project
      */
     async projectChannelInviteAcceptForProjectV1Raw(requestParameters, initOverrides) {
@@ -73,9 +122,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/accept_for_project`,
@@ -86,6 +142,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Accept an invitation to internal channel_id on behalf of recipient project_id. Requires an effective editor role in the recipient project; grants access according to the invitation. Returns success without transferring channel ownership.
      * Accept channel invitation for selected project
      */
     async projectChannelInviteAcceptForProjectV1(requestParameters, initOverrides) {
@@ -93,6 +150,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * Accept channel invitation using a secret link
      */
     async projectChannelInviteAcceptForSecretV1Raw(requestParameters, initOverrides) {
@@ -128,9 +186,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['secret'] = requestParameters['secret'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/accept_for_secret`,
@@ -141,6 +206,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Accept an invitation using secret/channel_id for recipient project_id. Requires an effective editor role in the selected project; secret does not replace the access check. Returns success after granting access; the channel ID differs from the invitation ID.
      * Accept channel invitation using a secret link
      */
     async projectChannelInviteAcceptForSecretV1(requestParameters, initOverrides) {
@@ -148,6 +214,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * Add channel invite item for another user by email
      */
     async projectChannelInviteAddByEmailV1Raw(requestParameters, initOverrides) {
@@ -189,9 +256,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/add_by_email`,
@@ -202,6 +276,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteResponseFromJSON)(jsonValue));
     }
     /**
+     * Create an access invitation to internal channel_id from project_id using the recipient\'s email and access_type. Requires project and channel administrator permissions; returns the invitation record. Email identifies the recipient, not the resource project_id.
      * Add channel invite item for another user by email
      */
     async projectChannelInviteAddByEmailV1(requestParameters, initOverrides) {
@@ -209,6 +284,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * Add channel invite item for another user by id
      */
     async projectChannelInviteAddByIdV1Raw(requestParameters, initOverrides) {
@@ -250,9 +326,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['to_project_external_id'] = requestParameters['to_project_external_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/add_by_id`,
@@ -263,6 +346,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteResponseFromJSON)(jsonValue));
     }
     /**
+     * Invite project to_project_external_id to internal channel_id from project_id with access_type. Requires project/channel administrator permissions. An eligible existing project relationship may grant access immediately: returns null instead of an invitation record. Otherwise returns the created invitation. This invites a project, not a user.
      * Add channel invite item for another user by id
      */
     async projectChannelInviteAddByIdV1(requestParameters, initOverrides) {
@@ -270,6 +354,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * Decline channel invitation for selected project
      */
     async projectChannelInviteDeclineForProjectV1Raw(requestParameters, initOverrides) {
@@ -299,9 +384,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/decline_for_project`,
@@ -312,6 +404,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Decline an access invitation for the internal channel_id on behalf of the recipient project_id. Requires an effective editor role. This changes the invitation without revoking existing channel access.
      * Decline channel invitation for selected project
      */
     async projectChannelInviteDeclineForProjectV1(requestParameters, initOverrides) {
@@ -319,6 +412,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * Decline channel invitation using a secret link
      */
     async projectChannelInviteDeclineForSecretV1Raw(requestParameters, initOverrides) {
@@ -354,9 +448,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['secret'] = requestParameters['secret'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/decline_for_secret`,
@@ -367,6 +468,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Decline an invitation using secret/channel_id for the recipient project_id after checking editor access. secret is sensitive; this method neither deletes the channel nor revokes existing access.
      * Decline channel invitation using a secret link
      */
     async projectChannelInviteDeclineForSecretV1(requestParameters, initOverrides) {
@@ -374,6 +476,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * Del channel invite item for my channel for another user
      */
     async projectChannelInviteDelV1Raw(requestParameters, initOverrides) {
@@ -397,9 +500,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/del`,
@@ -410,6 +520,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Cancel outgoing invitation id after identifying its source project and checking channel administrator permissions. This is an account-context operation; project_id does not override invitation ownership. Returns success; existing channel access is not revoked.
      * Del channel invite item for my channel for another user
      */
     async projectChannelInviteDelV1(requestParameters, initOverrides) {
@@ -417,6 +528,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * Get invitation for channel
      */
     async projectChannelInviteGetForProjectV1Raw(requestParameters, initOverrides) {
@@ -446,9 +558,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/get_for_project`,
@@ -459,6 +578,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteLinkResponseFromJSON)(jsonValue));
     }
     /**
+     * Read an invitation to internal channel_id addressed to project_id. Requires the user\'s observer access to the recipient project. channel_id identifies the invited channel, not the invitation record.
      * Get invitation for channel
      */
     async projectChannelInviteGetForProjectV1(requestParameters, initOverrides) {
@@ -466,6 +586,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * Get channel invitation using a secret link
      */
     async projectChannelInviteGetForSecretV1Raw(requestParameters, initOverrides) {
@@ -495,9 +616,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['secret'] = requestParameters['secret'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/get_for_secret`,
@@ -508,6 +636,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteLinkResponseFromJSON)(jsonValue));
     }
     /**
+     * Read an invitation to channel_id using secret from a secret link. This is an account-context lookup without selecting project_id; the channel/secret match is checked. secret is sensitive and must not appear in logs or the corpus.
      * Get channel invitation using a secret link
      */
     async projectChannelInviteGetForSecretV1(requestParameters, initOverrides) {
@@ -515,6 +644,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * Get channel invite item for my channel for another user
      */
     async projectChannelInviteGetV1Raw(requestParameters, initOverrides) {
@@ -538,9 +668,12 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/get`,
@@ -551,6 +684,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Check access to an outgoing invitation by record id. This legacy endpoint is available only to a project subject and actually returns success, not invitation details. For account API use GET /method/channel_invite/details.
      * Get channel invite item for my channel for another user
      */
     async projectChannelInviteGetV1(requestParameters, initOverrides) {
@@ -558,6 +692,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * List of invites for channel in project
      */
     async projectChannelInviteListV1Raw(requestParameters, initOverrides) {
@@ -587,9 +722,16 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel_invite/list`,
@@ -600,6 +742,7 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelInviteListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read outgoing access invitations for internal channel_id from project_id after checking channel read access. Returns invitations, not existing access relationships; read current relationships with GET /method/channel/access/list.
      * List of invites for channel in project
      */
     async projectChannelInviteListV1(requestParameters, initOverrides) {
@@ -608,6 +751,20 @@ class ProjectChannelInviteApi extends runtime.BaseAPI {
     }
 }
 exports.ProjectChannelInviteApi = ProjectChannelInviteApi;
+/**
+ * @export
+ */
+exports.MethodChannelInviteDetailsDetailsV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * @export
+ */
+exports.MethodChannelInviteDetailsDetailsV1VEnum = {
+    _1: '1'
+};
 /**
  * @export
  */

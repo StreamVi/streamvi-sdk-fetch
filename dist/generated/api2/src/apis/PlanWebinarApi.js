@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PlanWebinarApi extends runtime.BaseAPI {
     /**
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy webinar tariff
      */
     async siteBuyV1Raw(requestParameters, initOverrides) {
@@ -79,9 +80,16 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['plan_webinar_id'] = requestParameters['plan_webinar_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_webinar`,
@@ -92,6 +100,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy webinar tariff
      */
     async siteBuyV1(requestParameters, initOverrides) {
@@ -99,7 +108,8 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Remove after tariff
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project webinar tariff
      */
     async siteCancelV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -122,9 +132,16 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_webinar`,
@@ -135,13 +152,15 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Remove after tariff
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project webinar tariff
      */
     async siteCancelV1(requestParameters, initOverrides) {
         const response = await this.siteCancelV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * Check webinar tariff before buy
      */
     async siteCheckV1Raw(requestParameters, initOverrides) {
@@ -180,9 +199,16 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['use_balance'] = requestParameters['use_balance'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_webinar/check`,
@@ -193,6 +219,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanWebinarCheckV2ResponseFromJSON)(jsonValue));
     }
     /**
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * Check webinar tariff before buy
      */
     async siteCheckV1(requestParameters, initOverrides) {
@@ -200,6 +227,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount webinar
      */
     async siteGetDiscountV1Raw(requestParameters, initOverrides) {
@@ -217,9 +245,8 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_webinar/get_discount`,
@@ -230,6 +257,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanWebinarDiscountResponseFromJSON)(jsonValue));
     }
     /**
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount webinar
      */
     async siteGetDiscountV1(requestParameters, initOverrides) {
@@ -237,6 +265,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of webinar tariffs
      */
     async siteListV1Raw(requestParameters, initOverrides) {
@@ -254,9 +283,8 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_webinar/list`,
@@ -267,6 +295,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanWebinarResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of webinar tariffs
      */
     async siteListV1(requestParameters, initOverrides) {
@@ -274,6 +303,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set webinar tariff auto prolongation
      */
     async siteSetProlongationV1Raw(requestParameters, initOverrides) {
@@ -303,9 +333,16 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['enabled'] = requestParameters['enabled'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_webinar/prolongation`,
@@ -316,6 +353,7 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set webinar tariff auto prolongation
      */
     async siteSetProlongationV1(requestParameters, initOverrides) {
@@ -323,7 +361,8 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get tariff for project
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project webinar tariff
      */
     async siteTariffV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -346,9 +385,16 @@ class PlanWebinarApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_webinar`,
@@ -359,7 +405,8 @@ class PlanWebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanWebinarForProjectFromJSON)(jsonValue));
     }
     /**
-     * Get tariff for project
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project webinar tariff
      */
     async siteTariffV1(requestParameters, initOverrides) {
         const response = await this.siteTariffV1Raw(requestParameters, initOverrides);

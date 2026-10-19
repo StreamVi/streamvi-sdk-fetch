@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class TransactionsApi extends runtime.BaseAPI {
     /**
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * Transaction list for frontend
      */
     async transactionsListV1Raw(requestParameters, initOverrides) {
@@ -82,9 +83,16 @@ class TransactionsApi extends runtime.BaseAPI {
             queryParameters['code'] = requestParameters['code'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/transactions/list`,
@@ -95,6 +103,7 @@ class TransactionsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedTransactionResponseFromJSON)(jsonValue));
     }
     /**
+     * Read financial transactions of project_id for the current user using limit/offset, date_from/date_to, and code. offset is the number of records to skip; code filters transaction types. Monetary amounts are minor currency units; divide by 100 for display. This reads transaction history without creating a payment, topping up, or issuing a refund.
      * Transaction list for frontend
      */
     async transactionsListV1(requestParameters, initOverrides) {

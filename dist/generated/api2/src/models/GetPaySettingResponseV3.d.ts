@@ -17,7 +17,7 @@ import type { PaySettingResponseV3 } from './PaySettingResponseV3';
  */
 export interface GetPaySettingResponseV3 {
     /**
-     * Pay settings data data
+     *
      * @type {PaySettingResponseV3}
      * @memberof GetPaySettingResponseV3
      */

@@ -14,6 +14,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CentrifugoProjectEventResponseUnionEventToJSONTyped = exports.CentrifugoProjectEventResponseUnionEventToJSON = exports.CentrifugoProjectEventResponseUnionEventFromJSONTyped = exports.CentrifugoProjectEventResponseUnionEventFromJSON = void 0;
+const AccessChangedResponse_1 = require("./AccessChangedResponse");
+const ActivityChangedResponse_1 = require("./ActivityChangedResponse");
+const ActivityRecordedResponse_1 = require("./ActivityRecordedResponse");
 const CentrifugoPaymentUpdateResponse_1 = require("./CentrifugoPaymentUpdateResponse");
 const CentrifugoProjectImportantEventResponse_1 = require("./CentrifugoProjectImportantEventResponse");
 const CentrifugoProjectNotificationResponse_1 = require("./CentrifugoProjectNotificationResponse");
@@ -29,6 +32,12 @@ function CentrifugoProjectEventResponseUnionEventFromJSONTyped(json, ignoreDiscr
         return json;
     }
     switch (json['event']) {
+        case 'access.changed':
+            return Object.assign({}, (0, AccessChangedResponse_1.AccessChangedResponseFromJSONTyped)(json, true), { event: 'access.changed' });
+        case 'activity.changed':
+            return Object.assign({}, (0, ActivityChangedResponse_1.ActivityChangedResponseFromJSONTyped)(json, true), { event: 'activity.changed' });
+        case 'activity.recorded':
+            return Object.assign({}, (0, ActivityRecordedResponse_1.ActivityRecordedResponseFromJSONTyped)(json, true), { event: 'activity.recorded' });
         case 'important-event':
             return Object.assign({}, (0, CentrifugoProjectImportantEventResponse_1.CentrifugoProjectImportantEventResponseFromJSONTyped)(json, true), { event: 'important-event' });
         case 'notification':
@@ -55,6 +64,12 @@ function CentrifugoProjectEventResponseUnionEventToJSONTyped(value, ignoreDiscri
         return value;
     }
     switch (value['event']) {
+        case 'access.changed':
+            return Object.assign({}, (0, AccessChangedResponse_1.AccessChangedResponseToJSON)(value), { event: 'access.changed' });
+        case 'activity.changed':
+            return Object.assign({}, (0, ActivityChangedResponse_1.ActivityChangedResponseToJSON)(value), { event: 'activity.changed' });
+        case 'activity.recorded':
+            return Object.assign({}, (0, ActivityRecordedResponse_1.ActivityRecordedResponseToJSON)(value), { event: 'activity.recorded' });
         case 'important-event':
             return Object.assign({}, (0, CentrifugoProjectImportantEventResponse_1.CentrifugoProjectImportantEventResponseToJSON)(value), { event: 'important-event' });
         case 'notification':

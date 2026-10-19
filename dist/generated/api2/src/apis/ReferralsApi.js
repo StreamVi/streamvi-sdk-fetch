@@ -44,7 +44,8 @@ const index_1 = require("../models/index");
  */
 class ReferralsApi extends runtime.BaseAPI {
     /**
-     * Total info
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * Get project referral statistics
      */
     async referralsTotalInfoV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -67,9 +68,16 @@ class ReferralsApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/referrals/info`,
@@ -80,7 +88,8 @@ class ReferralsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteTotalInfoReferralsResponseFromJSON)(jsonValue));
     }
     /**
-     * Total info
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * Get project referral statistics
      */
     async referralsTotalInfoV1(requestParameters, initOverrides) {
         const response = await this.referralsTotalInfoV1Raw(requestParameters, initOverrides);

@@ -16,14 +16,17 @@ export interface PaySettingCheckCountryV1Request {
     project_id: number;
     country_id: number;
     v?: PaySettingCheckCountryV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PaySettingGetSettingV3Request {
     language: PaySettingGetSettingV3LanguageEnum;
     project_id: number;
     v?: PaySettingGetSettingV3VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PaySettingSetSettingV1OperationRequest {
     PaySettingSetSettingV1Request: PaySettingSetSettingV1Request;
+    X_Client_Request_Id?: string;
 }
 /**
  * PaySettingApi - interface
@@ -33,46 +36,52 @@ export interface PaySettingSetSettingV1OperationRequest {
  */
 export interface PaySettingApiInterface {
     /**
-     *
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * @summary Check country after update user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} country_id country id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
      */
     paySettingCheckCountryV1Raw(requestParameters: PaySettingCheckCountryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayCheckCountryResponse>>;
     /**
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * Check country after update user
      */
     paySettingCheckCountryV1(requestParameters: PaySettingCheckCountryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayCheckCountryResponse>;
     /**
-     *
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * @summary Get pay settings for profile v3
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
      */
     paySettingGetSettingV3Raw(requestParameters: PaySettingGetSettingV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaySettingResponseV3>>;
     /**
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * Get pay settings for profile v3
      */
     paySettingGetSettingV3(requestParameters: PaySettingGetSettingV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaySettingResponseV3>;
     /**
-     *
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * @summary Set pay settings for profile
      * @param {PaySettingSetSettingV1Request} PaySettingSetSettingV1Request
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaySettingApiInterface
      */
     paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * Set pay settings for profile
      */
     paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -82,26 +91,32 @@ export interface PaySettingApiInterface {
  */
 export declare class PaySettingApi extends runtime.BaseAPI implements PaySettingApiInterface {
     /**
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * Check country after update user
      */
     paySettingCheckCountryV1Raw(requestParameters: PaySettingCheckCountryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayCheckCountryResponse>>;
     /**
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * Check country after update user
      */
     paySettingCheckCountryV1(requestParameters: PaySettingCheckCountryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayCheckCountryResponse>;
     /**
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * Get pay settings for profile v3
      */
     paySettingGetSettingV3Raw(requestParameters: PaySettingGetSettingV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaySettingResponseV3>>;
     /**
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * Get pay settings for profile v3
      */
     paySettingGetSettingV3(requestParameters: PaySettingGetSettingV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaySettingResponseV3>;
     /**
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * Set pay settings for profile
      */
     paySettingSetSettingV1Raw(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * Set pay settings for profile
      */
     paySettingSetSettingV1(requestParameters: PaySettingSetSettingV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;

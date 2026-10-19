@@ -21,6 +21,7 @@ export interface MoneyFlowListV1Request {
     date_to?: string;
     type?: string;
     balance_type?: string;
+    X_Client_Request_Id?: string;
 }
 /**
  * MoneyFlowApi - interface
@@ -30,9 +31,9 @@ export interface MoneyFlowListV1Request {
  */
 export interface MoneyFlowApiInterface {
     /**
-     *
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * @summary Transaction list for frontend
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [limit] Number of results
@@ -41,12 +42,14 @@ export interface MoneyFlowApiInterface {
      * @param {string} [date_to] Date to
      * @param {string} [type] Filter code transaction. example: referral_profit or payment,referral_profit
      * @param {string} [balance_type] Filter code transaction. example 1 or 1,2,3
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MoneyFlowApiInterface
      */
     moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>>;
     /**
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * Transaction list for frontend
      */
     moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse>;
@@ -56,10 +59,12 @@ export interface MoneyFlowApiInterface {
  */
 export declare class MoneyFlowApi extends runtime.BaseAPI implements MoneyFlowApiInterface {
     /**
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * Transaction list for frontend
      */
     moneyFlowListV1Raw(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedMoneyFlowResponse>>;
     /**
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * Transaction list for frontend
      */
     moneyFlowListV1(requestParameters: MoneyFlowListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedMoneyFlowResponse>;

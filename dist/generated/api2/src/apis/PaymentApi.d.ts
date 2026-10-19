@@ -15,12 +15,14 @@ export interface PaymentCreateV1OperationRequest {
     language: PaymentCreateV1OperationLanguageEnum;
     PaymentCreateV1Request: PaymentCreateV1Request;
     v?: PaymentCreateV1OperationVEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PaymentGetStatusV1Request {
     language: PaymentGetStatusV1LanguageEnum;
     payId: number;
     project_id: number;
     v?: PaymentGetStatusV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PaymentApi - interface
@@ -30,32 +32,38 @@ export interface PaymentGetStatusV1Request {
  */
 export interface PaymentApiInterface {
     /**
-     *
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * @summary Create payment item for pay system
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {PaymentCreateV1Request} PaymentCreateV1Request
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
      */
     paymentCreateV1Raw(requestParameters: PaymentCreateV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCreateResponse>>;
     /**
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * Create payment item for pay system
      */
     paymentCreateV1(requestParameters: PaymentCreateV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCreateResponse>;
     /**
-     *
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * @summary Get payment status for a project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} payId Pay order id
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PaymentApiInterface
      */
     paymentGetStatusV1Raw(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentStatusResponse>>;
     /**
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * Get payment status for a project
      */
     paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse>;
 }
@@ -64,17 +72,23 @@ export interface PaymentApiInterface {
  */
 export declare class PaymentApi extends runtime.BaseAPI implements PaymentApiInterface {
     /**
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * Create payment item for pay system
      */
     paymentCreateV1Raw(requestParameters: PaymentCreateV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentCreateResponse>>;
     /**
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * Create payment item for pay system
      */
     paymentCreateV1(requestParameters: PaymentCreateV1OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentCreateResponse>;
     /**
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * Get payment status for a project
      */
     paymentGetStatusV1Raw(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaymentStatusResponse>>;
     /**
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * Get payment status for a project
      */
     paymentGetStatusV1(requestParameters: PaymentGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentStatusResponse>;
 }

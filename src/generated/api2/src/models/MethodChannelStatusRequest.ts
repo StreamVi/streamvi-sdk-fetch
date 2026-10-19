@@ -26,19 +26,25 @@ export interface MethodChannelStatusRequest {
      */
     v?: MethodChannelStatusRequestVEnum;
     /**
-     * Current language
+     * Language of localized messages and results; en is used when omitted. Allowed values are defined by enum.
      * @type {string}
      * @memberof MethodChannelStatusRequest
      */
     language?: MethodChannelStatusRequestLanguageEnum;
     /**
-     * Channel ID
+     * Target accessible project ID. Account tokens fall back to their personal project only when the target is omitted in every request source; pass the explicit project used for channel search. Project tokens determine their project automatically.
+     * @type {number}
+     * @memberof MethodChannelStatusRequest
+     */
+    project_id?: number;
+    /**
+     * Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @type {number}
      * @memberof MethodChannelStatusRequest
      */
     channel_id: number;
     /**
-     * Desired channel state
+     * Desired enabled state in the selected project: false disables the channel, true enables it.
      * @type {boolean}
      * @memberof MethodChannelStatusRequest
      */
@@ -86,6 +92,7 @@ export function MethodChannelStatusRequestFromJSONTyped(json: any, ignoreDiscrim
         
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'] == null ? undefined : json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'channel_id': json['channel_id'],
         'active': json['active'],
     };
@@ -104,6 +111,7 @@ export function MethodChannelStatusRequestToJSONTyped(value?: MethodChannelStatu
         
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'channel_id': value['channel_id'],
         'active': value['active'],
     };

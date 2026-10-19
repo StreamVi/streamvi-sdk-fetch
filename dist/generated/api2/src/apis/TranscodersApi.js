@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class TranscodersApi extends runtime.BaseAPI {
     /**
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * Transcoder create
      */
     async transcodersAddV1Raw(requestParameters, initOverrides) {
@@ -54,9 +55,16 @@ class TranscodersApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
         const response = await this.request({
             path: `/method/transcoder/add`,
@@ -73,6 +81,7 @@ class TranscodersApi extends runtime.BaseAPI {
         }
     }
     /**
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * Transcoder create
      */
     async transcodersAddV1(requestParameters, initOverrides) {
@@ -80,6 +89,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * Transcoder delete
      */
     async transcodersDeleteV1Raw(requestParameters, initOverrides) {
@@ -90,9 +100,16 @@ class TranscodersApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
         const response = await this.request({
             path: `/method/transcoder/delete`,
@@ -104,6 +121,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * Transcoder delete
      */
     async transcodersDeleteV1(requestParameters, initOverrides) {
@@ -111,6 +129,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * List of transcoder
      */
     async transcodersListV1Raw(requestParameters, initOverrides) {
@@ -134,9 +153,16 @@ class TranscodersApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:read"]);
         }
         const response = await this.request({
             path: `/method/transcoder/list`,
@@ -147,6 +173,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteTranscoderListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * List of transcoder
      */
     async transcodersListV1(requestParameters, initOverrides) {
@@ -154,6 +181,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * Reset delay
      */
     async transcodersResetDelayV1Raw(requestParameters, initOverrides) {
@@ -164,9 +192,16 @@ class TranscodersApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
         const response = await this.request({
             path: `/method/transcoder/reset-delay`,
@@ -178,6 +213,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * Reset delay
      */
     async transcodersResetDelayV1(requestParameters, initOverrides) {
@@ -185,6 +221,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * Transcoder stop
      */
     async transcodersStopV1Raw(requestParameters, initOverrides) {
@@ -195,9 +232,16 @@ class TranscodersApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
         const response = await this.request({
             path: `/method/transcoder/stop`,
@@ -209,6 +253,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * Transcoder stop
      */
     async transcodersStopV1(requestParameters, initOverrides) {
@@ -216,6 +261,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * Transcoder update
      */
     async transcodersUpdateV1Raw(requestParameters, initOverrides) {
@@ -226,9 +272,16 @@ class TranscodersApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
         const response = await this.request({
             path: `/method/transcoder/update`,
@@ -240,6 +293,7 @@ class TranscodersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * Transcoder update
      */
     async transcodersUpdateV1(requestParameters, initOverrides) {

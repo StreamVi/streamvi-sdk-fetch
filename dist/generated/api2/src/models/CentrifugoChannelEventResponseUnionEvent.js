@@ -14,6 +14,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CentrifugoChannelEventResponseUnionEventToJSONTyped = exports.CentrifugoChannelEventResponseUnionEventToJSON = exports.CentrifugoChannelEventResponseUnionEventFromJSONTyped = exports.CentrifugoChannelEventResponseUnionEventFromJSON = void 0;
+const CentrifugoChannelConnectionsResponse_1 = require("./CentrifugoChannelConnectionsResponse");
 const CentrifugoChannelStartedResponse_1 = require("./CentrifugoChannelStartedResponse");
 const CentrifugoChannelStatusResponse_1 = require("./CentrifugoChannelStatusResponse");
 const CentrifugoChannelStoppedResponse_1 = require("./CentrifugoChannelStoppedResponse");
@@ -26,6 +27,8 @@ function CentrifugoChannelEventResponseUnionEventFromJSONTyped(json, ignoreDiscr
         return json;
     }
     switch (json['event']) {
+        case 'channel-connections-changed':
+            return Object.assign({}, (0, CentrifugoChannelConnectionsResponse_1.CentrifugoChannelConnectionsResponseFromJSONTyped)(json, true), { event: 'channel-connections-changed' });
         case 'channel-started':
             return Object.assign({}, (0, CentrifugoChannelStartedResponse_1.CentrifugoChannelStartedResponseFromJSONTyped)(json, true), { event: 'channel-started' });
         case 'channel-status':
@@ -46,6 +49,8 @@ function CentrifugoChannelEventResponseUnionEventToJSONTyped(value, ignoreDiscri
         return value;
     }
     switch (value['event']) {
+        case 'channel-connections-changed':
+            return Object.assign({}, (0, CentrifugoChannelConnectionsResponse_1.CentrifugoChannelConnectionsResponseToJSON)(value), { event: 'channel-connections-changed' });
         case 'channel-started':
             return Object.assign({}, (0, CentrifugoChannelStartedResponse_1.CentrifugoChannelStartedResponseToJSON)(value), { event: 'channel-started' });
         case 'channel-status':

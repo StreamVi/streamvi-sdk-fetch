@@ -14,22 +14,26 @@ import type { RtmpServerGraphResponse, RtmpServerListResponseBase, RtmpServerLis
 export interface MethodRtmpServerListLocationsUnauthorizedV1Request {
     language: MethodRtmpServerListLocationsUnauthorizedV1LanguageEnum;
     v?: MethodRtmpServerListLocationsUnauthorizedV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface RtmpServerGraphV1Request {
     language: RtmpServerGraphV1LanguageEnum;
     interval: RtmpServerGraphV1IntervalEnum;
     type: RtmpServerGraphV1TypeEnum;
     v?: RtmpServerGraphV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface RtmpServerListBaseV1Request {
     language: RtmpServerListBaseV1LanguageEnum;
     project_id: number;
     v?: RtmpServerListBaseV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface RtmpServerListV3Request {
     language: RtmpServerListV3LanguageEnum;
     project_id: number;
     v?: RtmpServerListV3VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface RtmpServerSrtLatencyV1Request {
     language: RtmpServerSrtLatencyV1LanguageEnum;
@@ -37,11 +41,16 @@ export interface RtmpServerSrtLatencyV1Request {
     dst_ip: string;
     v?: RtmpServerSrtLatencyV1VEnum;
     profile?: string;
+    X_Client_Request_Id?: string;
 }
 export interface RtmpServerStateV1Request {
     language: RtmpServerStateV1LanguageEnum;
     interval: RtmpServerStateV1IntervalEnum;
     v?: RtmpServerStateV1VEnum;
+    X_Client_Request_Id?: string;
+}
+export interface RtmpServerUpV1Request {
+    X_Client_Request_Id?: string;
 }
 /**
  * RtmpServerApi - interface
@@ -51,170 +60,198 @@ export interface RtmpServerStateV1Request {
  */
 export interface RtmpServerApiInterface {
     /**
-     *
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * @summary Rtmp locations server list example for unauthorized
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>>;
     /**
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * Rtmp locations server list example for unauthorized
      */
     methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse>;
     /**
-     *
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * @summary Graph of rtmp servers
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
      * @param {'performance' | 'network' | 'cpu' | 'ram' | 'deliveredPackages'} type Type graph
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     rtmpServerGraphV1Raw(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerGraphResponse>>;
     /**
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * Graph of rtmp servers
      */
     rtmpServerGraphV1(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerGraphResponse>;
     /**
-     *
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * @summary List rtmp servers (base info)
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>>;
     /**
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * List rtmp servers (base info)
      */
     rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase>;
     /**
-     *
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * @summary List rtmp servers v3
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>>;
     /**
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * List rtmp servers v3
      */
     rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response>;
     /**
-     *
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * @summary Get recommended SRT latency by source and destination ip
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} src_ip Source IPv4 address
      * @param {string} dst_ip Destination IPv4 address
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [profile] Recommendation profile
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>>;
     /**
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * Get recommended SRT latency by source and destination ip
      */
     rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse>;
     /**
-     *
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * @summary State of rtmp servers
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {1 | 3 | 6 | 12 | 24} interval Interval state in hours
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
     rtmpServerStateV1Raw(requestParameters: RtmpServerStateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerStateResponse>>;
     /**
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * State of rtmp servers
      */
     rtmpServerStateV1(requestParameters: RtmpServerStateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerStateResponse>;
     /**
-     *
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * @summary State of rtmp servers
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RtmpServerApiInterface
      */
-    rtmpServerUpV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    rtmpServerUpV1Raw(requestParameters: RtmpServerUpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * State of rtmp servers
      */
-    rtmpServerUpV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    rtmpServerUpV1(requestParameters: RtmpServerUpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 }
 /**
  *
  */
 export declare class RtmpServerApi extends runtime.BaseAPI implements RtmpServerApiInterface {
     /**
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * Rtmp locations server list example for unauthorized
      */
     methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerLocationsResponse>>;
     /**
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * Rtmp locations server list example for unauthorized
      */
     methodRtmpServerListLocationsUnauthorizedV1(requestParameters: MethodRtmpServerListLocationsUnauthorizedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerLocationsResponse>;
     /**
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * Graph of rtmp servers
      */
     rtmpServerGraphV1Raw(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerGraphResponse>>;
     /**
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * Graph of rtmp servers
      */
     rtmpServerGraphV1(requestParameters: RtmpServerGraphV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerGraphResponse>;
     /**
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * List rtmp servers (base info)
      */
     rtmpServerListBaseV1Raw(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListResponseBase>>;
     /**
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * List rtmp servers (base info)
      */
     rtmpServerListBaseV1(requestParameters: RtmpServerListBaseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListResponseBase>;
     /**
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * List rtmp servers v3
      */
     rtmpServerListV3Raw(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerListV3Response>>;
     /**
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * List rtmp servers v3
      */
     rtmpServerListV3(requestParameters: RtmpServerListV3Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerListV3Response>;
     /**
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * Get recommended SRT latency by source and destination ip
      */
     rtmpServerSrtLatencyV1Raw(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerSrtLatencyResponse>>;
     /**
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * Get recommended SRT latency by source and destination ip
      */
     rtmpServerSrtLatencyV1(requestParameters: RtmpServerSrtLatencyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerSrtLatencyResponse>;
     /**
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * State of rtmp servers
      */
     rtmpServerStateV1Raw(requestParameters: RtmpServerStateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RtmpServerStateResponse>>;
     /**
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * State of rtmp servers
      */
     rtmpServerStateV1(requestParameters: RtmpServerStateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RtmpServerStateResponse>;
     /**
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * State of rtmp servers
      */
-    rtmpServerUpV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
+    rtmpServerUpV1Raw(requestParameters: RtmpServerUpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<object>>;
     /**
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * State of rtmp servers
      */
-    rtmpServerUpV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
+    rtmpServerUpV1(requestParameters?: RtmpServerUpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<object>;
 }
 /**
  * @export

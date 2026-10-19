@@ -40,6 +40,8 @@ export interface MethodChatGatewayDeleteV1Request {
     broadcast_id: number;
     event_id: string;
     v?: MethodChatGatewayDeleteV1VEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodChatGatewayGetMessageV1Request {
@@ -48,6 +50,8 @@ export interface MethodChatGatewayGetMessageV1Request {
     broadcast_id: number;
     event_id: string;
     v?: MethodChatGatewayGetMessageV1VEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodChatGatewayHistoryV1Request {
@@ -55,6 +59,8 @@ export interface MethodChatGatewayHistoryV1Request {
     key: string;
     broadcast_id: number;
     v?: MethodChatGatewayHistoryV1VEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodChatGatewaySendV1Request {
@@ -63,6 +69,8 @@ export interface MethodChatGatewaySendV1Request {
     broadcast_id: number;
     MethodChatSendMessageRequestDto: MethodChatSendMessageRequestDto;
     v?: MethodChatGatewaySendV1VEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -73,13 +81,15 @@ export interface MethodChatGatewaySendV1Request {
  */
 export interface ChatGatewayApiInterface {
     /**
-     * 
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * @summary Remove message
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [project_id] Target project ID. Account tokens fall back to the personal project when omitted in every request source; pass the intended accessible project explicitly; project and chat keys determine the project automatically.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -87,18 +97,21 @@ export interface ChatGatewayApiInterface {
     methodChatGatewayDeleteV1Raw(requestParameters: MethodChatGatewayDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * Remove message
      */
     methodChatGatewayDeleteV1(requestParameters: MethodChatGatewayDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * @summary Get one message
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {string} event_id Event id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [project_id] Target project ID. Account tokens fall back to the personal project when omitted in every request source; pass the intended accessible project explicitly; project and chat keys determine the project automatically.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -106,17 +119,20 @@ export interface ChatGatewayApiInterface {
     methodChatGatewayGetMessageV1Raw(requestParameters: MethodChatGatewayGetMessageV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageResponseDto>>;
 
     /**
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * Get one message
      */
     methodChatGatewayGetMessageV1(requestParameters: MethodChatGatewayGetMessageV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MessageResponseDto>;
 
     /**
-     * 
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * @summary List history message
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} key Key
      * @param {number} broadcast_id broadcast id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [project_id] Target project ID. Account tokens fall back to the personal project when omitted in every request source; pass the intended accessible project explicitly; project and chat keys determine the project automatically.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -124,18 +140,21 @@ export interface ChatGatewayApiInterface {
     methodChatGatewayHistoryV1Raw(requestParameters: MethodChatGatewayHistoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodChatHistoryResponse>>;
 
     /**
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * List history message
      */
     methodChatGatewayHistoryV1(requestParameters: MethodChatGatewayHistoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodChatHistoryResponse>;
 
     /**
-     * 
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * @summary Send message
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} key Key
-     * @param {number} broadcast_id 
+     * @param {number} broadcast_id Internal project broadcast ID; not channel_id or a message event_id.
      * @param {MethodChatSendMessageRequestDto} MethodChatSendMessageRequestDto 
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [project_id] Target project ID. Account tokens fall back to the personal project when omitted in every request source; pass the intended accessible project explicitly; project and chat keys determine the project automatically.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatGatewayApiInterface
@@ -143,6 +162,7 @@ export interface ChatGatewayApiInterface {
     methodChatGatewaySendV1Raw(requestParameters: MethodChatGatewaySendV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageResponseDto>>;
 
     /**
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * Send message
      */
     methodChatGatewaySendV1(requestParameters: MethodChatGatewaySendV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MessageResponseDto>;
@@ -155,6 +175,7 @@ export interface ChatGatewayApiInterface {
 export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInterface {
 
     /**
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * Remove message
      */
     async methodChatGatewayDeleteV1Raw(requestParameters: MethodChatGatewayDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -198,6 +219,10 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -212,9 +237,18 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -228,6 +262,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * Remove message
      */
     async methodChatGatewayDeleteV1(requestParameters: MethodChatGatewayDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -236,6 +271,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * Get one message
      */
     async methodChatGatewayGetMessageV1Raw(requestParameters: MethodChatGatewayGetMessageV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageResponseDto>> {
@@ -279,6 +315,10 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -293,9 +333,18 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -309,6 +358,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * Get one message
      */
     async methodChatGatewayGetMessageV1(requestParameters: MethodChatGatewayGetMessageV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MessageResponseDto> {
@@ -317,6 +367,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * List history message
      */
     async methodChatGatewayHistoryV1Raw(requestParameters: MethodChatGatewayHistoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodChatHistoryResponse>> {
@@ -353,6 +404,10 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -363,9 +418,18 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -379,6 +443,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * List history message
      */
     async methodChatGatewayHistoryV1(requestParameters: MethodChatGatewayHistoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodChatHistoryResponse> {
@@ -387,6 +452,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * Send message
      */
     async methodChatGatewaySendV1Raw(requestParameters: MethodChatGatewaySendV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MessageResponseDto>> {
@@ -430,6 +496,10 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -442,9 +512,18 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -459,6 +538,7 @@ export class ChatGatewayApi extends runtime.BaseAPI implements ChatGatewayApiInt
     }
 
     /**
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * Send message
      */
     async methodChatGatewaySendV1(requestParameters: MethodChatGatewaySendV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MessageResponseDto> {

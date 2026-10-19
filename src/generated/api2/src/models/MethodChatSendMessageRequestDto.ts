@@ -20,23 +20,23 @@ import { mapValues } from '../runtime';
  */
 export interface MethodChatSendMessageRequestDto {
     /**
-     * 
+     * Client-assigned UUID v4 of the message to send. Not a stream/channel ID or X-Client-Request-Id.
      * @type {string}
      * @memberof MethodChatSendMessageRequestDto
      */
     id: string;
     /**
-     * 
+     * Outgoing chat message text, 1–300 characters.
      * @type {string}
      * @memberof MethodChatSendMessageRequestDto
      */
     text: string;
     /**
-     * 
+     * Optional list of internal broadcast destination restream_id values; obtain them from /method/broadcast/restreams-chat, not platform channel_id.
      * @type {Array<number>}
      * @memberof MethodChatSendMessageRequestDto
      */
-    restreams: Array<number>;
+    restreams?: Array<number>;
 }
 
 /**
@@ -45,7 +45,6 @@ export interface MethodChatSendMessageRequestDto {
 export function instanceOfMethodChatSendMessageRequestDto(value: object): value is MethodChatSendMessageRequestDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('text' in value) || value['text'] === undefined) return false;
-    if (!('restreams' in value) || value['restreams'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +60,7 @@ export function MethodChatSendMessageRequestDtoFromJSONTyped(json: any, ignoreDi
         
         'id': json['id'],
         'text': json['text'],
-        'restreams': json['restreams'],
+        'restreams': json['restreams'] == null ? undefined : json['restreams'],
     };
 }
 

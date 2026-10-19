@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class RtmpServerApi extends runtime.BaseAPI {
     /**
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * Rtmp locations server list example for unauthorized
      */
     async methodRtmpServerListLocationsUnauthorizedV1Raw(requestParameters, initOverrides) {
@@ -61,6 +62,9 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/list_locations_unauthorized`,
             method: 'GET',
@@ -70,6 +74,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerLocationsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the public RTMP server location list to choose a connection in advance. The response contains no project credentials and neither creates a dedicated server nor starts a broadcast.
      * Rtmp locations server list example for unauthorized
      */
     async methodRtmpServerListLocationsUnauthorizedV1(requestParameters, initOverrides) {
@@ -77,6 +82,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * Graph of rtmp servers
      */
     async rtmpServerGraphV1Raw(requestParameters, initOverrides) {
@@ -106,6 +112,9 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['type'] = requestParameters['type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/graph`,
             method: 'GET',
@@ -115,6 +124,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerGraphResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a public RTMP server state chart by interval/type/language. This reads statistics history without changing server parameters; the request type field selects the chart type.
      * Graph of rtmp servers
      */
     async rtmpServerGraphV1(requestParameters, initOverrides) {
@@ -122,6 +132,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * List rtmp servers (base info)
      */
     async rtmpServerListBaseV1Raw(requestParameters, initOverrides) {
@@ -145,9 +156,16 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:read"]);
         }
         const response = await this.request({
             path: `/method/rtmp_server/base-list`,
@@ -158,6 +176,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListResponseBaseFromJSON)(jsonValue));
     }
     /**
+     * Read basic details of available RTMP servers for project_id. This lists source connection options without changing the current server or starting a broadcast. Detailed data is available through GET /method/rtmp_server/list.
      * List rtmp servers (base info)
      */
     async rtmpServerListBaseV1(requestParameters, initOverrides) {
@@ -165,6 +184,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * List rtmp servers v3
      */
     async rtmpServerListV3Raw(requestParameters, initOverrides) {
@@ -188,9 +208,16 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:read"]);
         }
         const response = await this.request({
             path: `/method/rtmp_server/list`,
@@ -201,6 +228,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerListV3ResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the RTMP server catalog for project_id localized using language, version v=3. Returns ingress selection data; read source credentials separately with GET /method/broadcast/credentials. This method does not start a broadcast.
      * List rtmp servers v3
      */
     async rtmpServerListV3(requestParameters, initOverrides) {
@@ -208,6 +236,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * Get recommended SRT latency by source and destination ip
      */
     async rtmpServerSrtLatencyV1Raw(requestParameters, initOverrides) {
@@ -240,6 +269,9 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['profile'] = requestParameters['profile'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/srt-latency`,
             method: 'GET',
@@ -249,6 +281,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerSrtLatencyResponseFromJSON)(jsonValue));
     }
     /**
+     * Get recommended SRT latency in milliseconds for the src_ip/dst_ip IPv4 pair and profile (balanced by default). found/stale/generated_at indicate availability and freshness. This method does not change the SRT URL or current connection latency.
      * Get recommended SRT latency by source and destination ip
      */
     async rtmpServerSrtLatencyV1(requestParameters, initOverrides) {
@@ -256,6 +289,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * State of rtmp servers
      */
     async rtmpServerStateV1Raw(requestParameters, initOverrides) {
@@ -279,6 +313,9 @@ class RtmpServerApi extends runtime.BaseAPI {
             queryParameters['interval'] = requestParameters['interval'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/state`,
             method: 'GET',
@@ -288,6 +325,7 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RtmpServerStateResponseFromJSON)(jsonValue));
     }
     /**
+     * Read public RTMP server state by interval and language. This is a monitoring read; this endpoint does not enable servers.
      * State of rtmp servers
      */
     async rtmpServerStateV1(requestParameters, initOverrides) {
@@ -295,11 +333,15 @@ class RtmpServerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * State of rtmp servers
      */
-    async rtmpServerUpV1Raw(initOverrides) {
+    async rtmpServerUpV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/rtmp_server/up`,
             method: 'GET',
@@ -309,10 +351,11 @@ class RtmpServerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response);
     }
     /**
+     * Read public RTMP server availability data. Despite the name up, this method neither starts servers nor creates an environment; it returns the actual monitoring service response.
      * State of rtmp servers
      */
-    async rtmpServerUpV1(initOverrides) {
-        const response = await this.rtmpServerUpV1Raw(initOverrides);
+    async rtmpServerUpV1(requestParameters = {}, initOverrides) {
+        const response = await this.rtmpServerUpV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 }

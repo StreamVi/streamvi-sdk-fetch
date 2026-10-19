@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class ChatGatewayApi extends runtime.BaseAPI {
     /**
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * Remove message
      */
     async methodChatGatewayDeleteV1Raw(requestParameters, initOverrides) {
@@ -69,6 +70,9 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -79,9 +83,16 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
         const response = await this.request({
             path: `/method/chat/messages/delete`,
@@ -92,6 +103,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Send a request to delete message event_id for broadcast_id after checking access to the broadcast in the selected project. Input is supplied in query for this POST. Success confirms the chat gateway request completed; this neither deletes the broadcast nor the channel.
      * Remove message
      */
     async methodChatGatewayDeleteV1(requestParameters, initOverrides) {
@@ -99,6 +111,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * Get one message
      */
     async methodChatGatewayGetMessageV1Raw(requestParameters, initOverrides) {
@@ -124,6 +137,9 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -134,9 +150,16 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['event_id'] = requestParameters['event_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
         const response = await this.request({
             path: `/method/chat/messages/message`,
@@ -147,6 +170,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MessageResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Read a single message by event_id and broadcast_id after checking broadcast ownership by the selected project. event_id is a message event ID from history, not a platform channel ID. The response is forwarded from the chat gateway.
      * Get one message
      */
     async methodChatGatewayGetMessageV1(requestParameters, initOverrides) {
@@ -154,6 +178,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * List history message
      */
     async methodChatGatewayHistoryV1Raw(requestParameters, initOverrides) {
@@ -176,6 +201,9 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -183,9 +211,16 @@ class ChatGatewayApi extends runtime.BaseAPI {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
         const response = await this.request({
             path: `/method/chat/messages`,
@@ -196,6 +231,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodChatHistoryResponseFromJSON)(jsonValue));
     }
     /**
+     * Read message history for broadcast_id in the project determined by the token/explicit project_id. Broadcast ownership is checked, then the response is forwarded from the chat gateway. This reads data without connecting to WebSocket or sending a message.
      * List history message
      */
     async methodChatGatewayHistoryV1(requestParameters, initOverrides) {
@@ -203,6 +239,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * Send message
      */
     async methodChatGatewaySendV1Raw(requestParameters, initOverrides) {
@@ -228,6 +265,9 @@ class ChatGatewayApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['key'] != null) {
             queryParameters['key'] = requestParameters['key'];
         }
@@ -236,9 +276,16 @@ class ChatGatewayApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
         const response = await this.request({
             path: `/method/chat/messages`,
@@ -250,6 +297,7 @@ class ChatGatewayApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MessageResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Send a chat message for broadcast_id in the selected project. broadcast_id is supplied in query, the message payload in body; project_id comes from the request context. Broadcast ownership is checked; no restream destinations produces broadcast.no_restreams. Returns the chat gateway response without guaranteeing message delivery by every platform.
      * Send message
      */
     async methodChatGatewaySendV1(requestParameters, initOverrides) {

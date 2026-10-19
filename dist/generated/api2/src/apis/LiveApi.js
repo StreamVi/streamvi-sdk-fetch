@@ -75,9 +75,16 @@ class LiveApi extends runtime.BaseAPI {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/live/restreams`,

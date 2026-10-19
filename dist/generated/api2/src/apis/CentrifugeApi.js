@@ -63,9 +63,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge`,
@@ -85,7 +92,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1Raw(requestParameters, initOverrides) {
@@ -115,9 +122,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['channel_name'] = requestParameters['channel_name'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge/auth/channel`,
@@ -128,7 +142,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AuthCentrifugoChannelResponseFromJSON)(jsonValue));
     }
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1(requestParameters, initOverrides) {
@@ -154,9 +168,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge/channels`,
@@ -175,7 +196,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * Get token for connect to centrifuge for project
      */
     async centrifugeConnectionTokenV1Raw(requestParameters, initOverrides) {
@@ -199,9 +220,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge/auth/connect`,
@@ -212,7 +240,7 @@ class CentrifugeApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.AuthCentrifugoConnectResponseFromJSON)(jsonValue));
     }
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * Get token for connect to centrifuge for project
      */
     async centrifugeConnectionTokenV1(requestParameters, initOverrides) {
@@ -245,9 +273,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge/auth/project`,
@@ -298,9 +333,16 @@ class CentrifugeApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
         const response = await this.request({
             path: `/method/centrifuge/token/broadcast`,

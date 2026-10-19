@@ -36,7 +36,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReleaseAppCabinetV1VEnum = exports.ReleaseAppCabinetV1AppEnum = exports.ReleaseAppCabinetV1LanguageEnum = exports.ReleaseApi = void 0;
+exports.ReleaseAppCabinetV1VEnum = exports.ReleaseAppCabinetV1AppEnum = exports.ReleaseAppCabinetV1LanguageEnum = exports.MethodDesktopAppReleasesV1VEnum = exports.MethodDesktopAppReleasesV1LanguageEnum = exports.ReleaseApi = void 0;
 const runtime = __importStar(require("../runtime"));
 const index_1 = require("../models/index");
 /**
@@ -44,6 +44,45 @@ const index_1 = require("../models/index");
  */
 class ReleaseApi extends runtime.BaseAPI {
     /**
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * Get stable desktop installers by platform
+     */
+    async methodDesktopAppReleasesV1Raw(requestParameters, initOverrides) {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling methodDesktopAppReleasesV1().');
+        }
+        const queryParameters = {};
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        }
+        else {
+            queryParameters['v'] = '1';
+        }
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+        const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        const response = await this.request({
+            path: `/method/desktop-app-releases`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.DesktopAppReleasesResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * Get stable desktop installers by platform
+     */
+    async methodDesktopAppReleasesV1(requestParameters, initOverrides) {
+        const response = await this.methodDesktopAppReleasesV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * Get current version app
      */
     async releaseAppCabinetV1Raw(requestParameters, initOverrides) {
@@ -67,6 +106,9 @@ class ReleaseApi extends runtime.BaseAPI {
             queryParameters['app'] = requestParameters['app'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/release-app`,
             method: 'GET',
@@ -76,6 +118,7 @@ class ReleaseApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetVersionAppResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * Get current version app
      */
     async releaseAppCabinetV1(requestParameters, initOverrides) {
@@ -84,6 +127,19 @@ class ReleaseApi extends runtime.BaseAPI {
     }
 }
 exports.ReleaseApi = ReleaseApi;
+/**
+ * @export
+ */
+exports.MethodDesktopAppReleasesV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en'
+};
+/**
+ * @export
+ */
+exports.MethodDesktopAppReleasesV1VEnum = {
+    _1: '1'
+};
 /**
  * @export
  */

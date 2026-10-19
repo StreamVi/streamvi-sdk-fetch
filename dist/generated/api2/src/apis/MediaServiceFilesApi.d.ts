@@ -13,37 +13,45 @@ import * as runtime from '../runtime';
 import type { CancelMediaServiceFileRequest, DeleteMediaServiceFileRequest, GetMediaServiceFileResponse, ListMediaServiceFilesResponse, SessionMediaServiceFileResponse, SetMediaServiceFileRequest, SuccessResponse, UpdateMediaServiceFileRequest } from '../models/index';
 export interface MediaServiceFilesSiteCancelV1Request {
     CancelMediaServiceFileRequest: CancelMediaServiceFileRequest;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteCreateV1Request {
     language: MediaServiceFilesSiteCreateV1LanguageEnum;
     project_id: number;
     v?: MediaServiceFilesSiteCreateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteDeleteV1Request {
     DeleteMediaServiceFileRequest: DeleteMediaServiceFileRequest;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteGetV1Request {
     language: MediaServiceFilesSiteGetV1LanguageEnum;
     project_id: number;
     media_id: number;
     v?: MediaServiceFilesSiteGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteListV1Request {
     language: MediaServiceFilesSiteListV1LanguageEnum;
     project_id: number;
     v?: MediaServiceFilesSiteListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteSessionV1Request {
     language: MediaServiceFilesSiteSessionV1LanguageEnum;
     project_id: number;
     media_id: number;
     v?: MediaServiceFilesSiteSessionV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteSetV1Request {
     SetMediaServiceFileRequest: SetMediaServiceFileRequest;
+    X_Client_Request_Id?: string;
 }
 export interface MediaServiceFilesSiteUpdateV1Request {
     UpdateMediaServiceFileRequest: UpdateMediaServiceFileRequest;
+    X_Client_Request_Id?: string;
 }
 /**
  * MediaServiceFilesApi - interface
@@ -53,116 +61,132 @@ export interface MediaServiceFilesSiteUpdateV1Request {
  */
 export interface MediaServiceFilesApiInterface {
     /**
-     *
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * @summary Cancel service video
      * @param {CancelMediaServiceFileRequest} CancelMediaServiceFileRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteCancelV1Raw(requestParameters: MediaServiceFilesSiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * Cancel service video
      */
     mediaServiceFilesSiteCancelV1(requestParameters: MediaServiceFilesSiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * @summary Create service video
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteCreateV1Raw(requestParameters: MediaServiceFilesSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * Create service video
      */
     mediaServiceFilesSiteCreateV1(requestParameters: MediaServiceFilesSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * @summary Delete service video
      * @param {DeleteMediaServiceFileRequest} DeleteMediaServiceFileRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteDeleteV1Raw(requestParameters: MediaServiceFilesSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * Delete service video
      */
     mediaServiceFilesSiteDeleteV1(requestParameters: MediaServiceFilesSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * @summary Get service video
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} media_id Media service file id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteGetV1Raw(requestParameters: MediaServiceFilesSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMediaServiceFileResponse>>;
     /**
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * Get service video
      */
     mediaServiceFilesSiteGetV1(requestParameters: MediaServiceFilesSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMediaServiceFileResponse>;
     /**
-     *
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * @summary Get service video list
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteListV1Raw(requestParameters: MediaServiceFilesSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMediaServiceFilesResponse>>;
     /**
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * Get service video list
      */
     mediaServiceFilesSiteListV1(requestParameters: MediaServiceFilesSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMediaServiceFilesResponse>;
     /**
-     *
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * @summary Get session by media id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} media_id Media service file id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteSessionV1Raw(requestParameters: MediaServiceFilesSiteSessionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionMediaServiceFileResponse>>;
     /**
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * Get session by media id
      */
     mediaServiceFilesSiteSessionV1(requestParameters: MediaServiceFilesSiteSessionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionMediaServiceFileResponse>;
     /**
-     *
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * @summary Set service video
      * @param {SetMediaServiceFileRequest} SetMediaServiceFileRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteSetV1Raw(requestParameters: MediaServiceFilesSiteSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * Set service video
      */
     mediaServiceFilesSiteSetV1(requestParameters: MediaServiceFilesSiteSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * @summary Update service video
      * @param {UpdateMediaServiceFileRequest} UpdateMediaServiceFileRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MediaServiceFilesApiInterface
      */
     mediaServiceFilesSiteUpdateV1Raw(requestParameters: MediaServiceFilesSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * Update service video
      */
     mediaServiceFilesSiteUpdateV1(requestParameters: MediaServiceFilesSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -172,66 +196,82 @@ export interface MediaServiceFilesApiInterface {
  */
 export declare class MediaServiceFilesApi extends runtime.BaseAPI implements MediaServiceFilesApiInterface {
     /**
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * Cancel service video
      */
     mediaServiceFilesSiteCancelV1Raw(requestParameters: MediaServiceFilesSiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Mark processing of the project\'s own service file media_id in project_id as cancelled and mark it deleted in storage metadata. Only status=processing is allowed; otherwise media_service.status_not_available. Use delete for a completed video; a successful command response is not a file conversion result.
      * Cancel service video
      */
     mediaServiceFilesSiteCancelV1(requestParameters: MediaServiceFilesSiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * Create service video
      */
     mediaServiceFilesSiteCreateV1Raw(requestParameters: MediaServiceFilesSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Upload a multipart/form-data file (field file) to create a service video for project_id supplied in query. The current pipe limits the file to 300 MiB; the listed media formats are allowed. Access and custom file count are tariff-limited. Success confirms temporary storage upload and creation of a processing session, not video readiness; check list/session.
      * Create service video
      */
     mediaServiceFilesSiteCreateV1(requestParameters: MediaServiceFilesSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * Delete service video
      */
     mediaServiceFilesSiteDeleteV1Raw(requestParameters: MediaServiceFilesSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete an owned service file media_id from project_id. A processing file or a file used as the selected standby media cannot be deleted; this differs from cancelling processing with POST /method/media-service-files/cancel.
      * Delete service video
      */
     mediaServiceFilesSiteDeleteV1(requestParameters: MediaServiceFilesSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * Get service video
      */
     mediaServiceFilesSiteGetV1Raw(requestParameters: MediaServiceFilesSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMediaServiceFileResponse>>;
     /**
+     * Read completed service file media_id in project_id. The file must have status=success and belong to the project or be shared; otherwise returns media_service.status_not_available/forbidden_get. Returns metadata and preview/video links, not binary content.
      * Get service video
      */
     mediaServiceFilesSiteGetV1(requestParameters: MediaServiceFilesSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMediaServiceFileResponse>;
     /**
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * Get service video list
      */
     mediaServiceFilesSiteListV1Raw(requestParameters: MediaServiceFilesSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListMediaServiceFilesResponse>>;
     /**
+     * Read available media-service-files for project_id: status readiness, isEditable editability, and isDisabled plan restriction. media_id identifies a service file, not video.id. For processing files, event_channel allows tracking progress.
      * Get service video list
      */
     mediaServiceFilesSiteListV1(requestParameters: MediaServiceFilesSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListMediaServiceFilesResponse>;
     /**
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * Get session by media id
      */
     mediaServiceFilesSiteSessionV1Raw(requestParameters: MediaServiceFilesSiteSessionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SessionMediaServiceFileResponse>>;
     /**
+     * Read the processing session of an owned media_id in project_id. Returns file_id, channel, and a secret Centrifugo subscription token. Available while the file is not success/cancel/error and not deleted; completed states produce media_service.not_ready.
      * Get session by media id
      */
     mediaServiceFilesSiteSessionV1(requestParameters: MediaServiceFilesSiteSessionV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SessionMediaServiceFileResponse>;
     /**
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * Set service video
      */
     mediaServiceFilesSiteSetV1Raw(requestParameters: MediaServiceFilesSiteSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Select a prepared service file media_id for project_id: type=pause is a pause placeholder, type=lost is a signal-loss placeholder. Obtain media_id from GET /method/media-service-files/list. Custom files are tariff-limited; base/shared files follow access rules. Success means the selection was saved, not that broadcasting started.
      * Set service video
      */
     mediaServiceFilesSiteSetV1(requestParameters: MediaServiceFilesSiteSetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * Update service video
      */
     mediaServiceFilesSiteUpdateV1Raw(requestParameters: MediaServiceFilesSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Rename completed service file media_id in project_id. Requires an owned file with status=success; another owner\'s shared file cannot be edited. Success confirms name was saved.
      * Update service video
      */
     mediaServiceFilesSiteUpdateV1(requestParameters: MediaServiceFilesSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;

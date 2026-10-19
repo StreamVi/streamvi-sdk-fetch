@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PlanRestreamApi extends runtime.BaseAPI {
     /**
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy restream tariff
      */
     async planRestreamBuyV1Raw(requestParameters, initOverrides) {
@@ -58,6 +59,12 @@ class PlanRestreamApi extends runtime.BaseAPI {
         }
         if (requestParameters['plan_restream_id'] == null) {
             throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamBuyV1().');
+        }
+        if (requestParameters['count_channel'] == null) {
+            throw new runtime.RequiredError('count_channel', 'Required parameter "count_channel" was null or undefined when calling planRestreamBuyV1().');
+        }
+        if (requestParameters['bitrate'] == null) {
+            throw new runtime.RequiredError('bitrate', 'Required parameter "bitrate" was null or undefined when calling planRestreamBuyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -85,9 +92,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['bitrate'] = requestParameters['bitrate'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_restream`,
@@ -98,6 +112,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Buy a restream tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy restream tariff
      */
     async planRestreamBuyV1(requestParameters, initOverrides) {
@@ -105,7 +120,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Load data for show card the tariffs v2
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * Preview project restream tariff purchase
      */
     async planRestreamCheck2V1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -119,6 +135,9 @@ class PlanRestreamApi extends runtime.BaseAPI {
         }
         if (requestParameters['plan_restream_id'] == null) {
             throw new runtime.RequiredError('plan_restream_id', 'Required parameter "plan_restream_id" was null or undefined when calling planRestreamCheck2V1().');
+        }
+        if (requestParameters['use_balance'] == null) {
+            throw new runtime.RequiredError('use_balance', 'Required parameter "use_balance" was null or undefined when calling planRestreamCheck2V1().');
         }
         const queryParameters = {};
         if (requestParameters['language'] != null) {
@@ -149,9 +168,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['bitrate'] = requestParameters['bitrate'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_restream/check`,
@@ -162,13 +188,15 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanRestreamCheckV2ResponseFromJSON)(jsonValue));
     }
     /**
-     * Load data for show card the tariffs v2
+     * Calculate a restream plan card/preview for project_id using selected query parameters and period. Returns monthly/annual prices, sum, currency, and switching conditions; monetary values are in minor units. This calculates a purchase preview without debiting funds. Maximum channels/bitrate/protection depend on the selected plan.
+     * Preview project restream tariff purchase
      */
     async planRestreamCheck2V1(requestParameters, initOverrides) {
         const response = await this.planRestreamCheck2V1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount restream
      */
     async planRestreamGetDiscountV1Raw(requestParameters, initOverrides) {
@@ -186,9 +214,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_restream/get_discount`,
@@ -199,6 +226,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanRestreamDiscountResponseFromJSON)(jsonValue));
     }
     /**
+     * Read annual discount rules for restream plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount restream
      */
     async planRestreamGetDiscountV1(requestParameters, initOverrides) {
@@ -206,6 +234,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * Get list of restream tariffs for project
      */
     async planRestreamListProjectV1Raw(requestParameters, initOverrides) {
@@ -229,9 +258,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_restream/list/project`,
@@ -242,6 +278,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanRestreamProjectResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Read the restream plan catalog for project_id with parameters/prices and purchase availability. This is project-specific catalog data, not the current subscription or a stream start command. Read dynamic restrictions from the result; prices are in minor units of the project currency.
      * Get list of restream tariffs for project
      */
     async planRestreamListProjectV1(requestParameters, initOverrides) {
@@ -249,6 +286,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of restream tariffs
      */
     async planRestreamListV1Raw(requestParameters, initOverrides) {
@@ -266,9 +304,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/plan_restream/list`,
@@ -279,6 +316,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanRestreamResponseDtoFromJSON)(jsonValue));
     }
     /**
+     * Read the public restream plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of restream tariffs
      */
     async planRestreamListV1(requestParameters, initOverrides) {
@@ -286,7 +324,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Remove after tariff
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project restream tariff
      */
     async planRestreamRemoveV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -315,9 +354,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['plan_restream_id'] = requestParameters['plan_restream_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_restream`,
@@ -328,13 +374,15 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Remove after tariff
+     * Cancel the next restream plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project restream tariff
      */
     async planRestreamRemoveV1(requestParameters, initOverrides) {
         const response = await this.planRestreamRemoveV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set restream tariff auto prolongation
      */
     async planRestreamSetProlongationV1Raw(requestParameters, initOverrides) {
@@ -364,9 +412,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['enabled'] = requestParameters['enabled'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/plan_restream/prolongation`,
@@ -377,6 +432,7 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save automatic restream plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set restream tariff auto prolongation
      */
     async planRestreamSetProlongationV1(requestParameters, initOverrides) {
@@ -384,7 +440,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Get tariff for project
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project restream tariff
      */
     async planRestreamTariffV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -407,9 +464,16 @@ class PlanRestreamApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/plan_restream`,
@@ -420,7 +484,8 @@ class PlanRestreamApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PlanRestreamForProjectFromJSON)(jsonValue));
     }
     /**
-     * Get tariff for project
+     * Read the current and next restream plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project restream tariff
      */
     async planRestreamTariffV1(requestParameters, initOverrides) {
         const response = await this.planRestreamTariffV1Raw(requestParameters, initOverrides);

@@ -32,10 +32,12 @@ export interface ChatGatewayKeyV1Request {
     language: ChatGatewayKeyV1LanguageEnum;
     project_id: number;
     v?: ChatGatewayKeyV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChatGatewayRotateKeyV1Request {
     SiteChatKeyRequest: SiteChatKeyRequest;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -46,11 +48,12 @@ export interface ChatGatewayRotateKeyV1Request {
  */
 export interface ChatApiInterface {
     /**
-     * 
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * @summary Get chat key
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatApiInterface
@@ -58,14 +61,16 @@ export interface ChatApiInterface {
     chatGatewayKeyV1Raw(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>>;
 
     /**
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * Get chat key
      */
     chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
 
     /**
-     * 
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * @summary Rotate chat key
      * @param {SiteChatKeyRequest} SiteChatKeyRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatApiInterface
@@ -73,6 +78,7 @@ export interface ChatApiInterface {
     chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>>;
 
     /**
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * Rotate chat key
      */
     chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse>;
@@ -85,6 +91,7 @@ export interface ChatApiInterface {
 export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
 
     /**
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * Get chat key
      */
     async chatGatewayKeyV1Raw(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>> {
@@ -120,9 +127,18 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -136,6 +152,7 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
     }
 
     /**
+     * Get the secret chat key for project_id. This is a connection credential, not a video publishing key or a widget actions list. The key is not intended for logs/examples; rotate it with PUT /method/chat/key.
      * Get chat key
      */
     async chatGatewayKeyV1(requestParameters: ChatGatewayKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse> {
@@ -144,6 +161,7 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
     }
 
     /**
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * Rotate chat key
      */
     async chatGatewayRotateKeyV1Raw(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChatKeyResponse>> {
@@ -160,9 +178,18 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -177,6 +204,7 @@ export class ChatApi extends runtime.BaseAPI implements ChatApiInterface {
     }
 
     /**
+     * Rotate the secret chat key of project_id and return a new credential. This changes chat access without changing the publishing stream key or sending messages. Consumers must use the new key after rotation.
      * Rotate chat key
      */
     async chatGatewayRotateKeyV1(requestParameters: ChatGatewayRotateKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChatKeyResponse> {

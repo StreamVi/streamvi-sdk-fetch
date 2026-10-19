@@ -44,11 +44,15 @@ const index_1 = require("../models/index");
  */
 class PullServersApi extends runtime.BaseAPI {
     /**
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * Get pull servers
      */
-    async pullServersGetPullServersV1Raw(initOverrides) {
+    async pullServersGetPullServersV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/pull-servers/list`,
             method: 'GET',
@@ -58,10 +62,11 @@ class PullServersApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PullServerListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * Get pull servers
      */
-    async pullServersGetPullServersV1(initOverrides) {
-        const response = await this.pullServersGetPullServersV1Raw(initOverrides);
+    async pullServersGetPullServersV1(requestParameters = {}, initOverrides) {
+        const response = await this.pullServersGetPullServersV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 }

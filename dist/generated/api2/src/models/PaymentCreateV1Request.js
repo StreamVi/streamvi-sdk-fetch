@@ -14,11 +14,11 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentCreateV1RequestToJSONTyped = exports.PaymentCreateV1RequestToJSON = exports.PaymentCreateV1RequestFromJSONTyped = exports.PaymentCreateV1RequestFromJSON = void 0;
-const PaymentCreateRequestRestreamBodyDto_1 = require("./PaymentCreateRequestRestreamBodyDto");
-const PaymentCreateRequestStorageBodyDto_1 = require("./PaymentCreateRequestStorageBodyDto");
-const PaymentCreateRequestTopUpBodyDto_1 = require("./PaymentCreateRequestTopUpBodyDto");
-const PaymentCreateRequestTranscoderBodyDto_1 = require("./PaymentCreateRequestTranscoderBodyDto");
-const PaymentCreateRequestWebinarBodyDto_1 = require("./PaymentCreateRequestWebinarBodyDto");
+const PaymentCreateV1RequestOneOf_1 = require("./PaymentCreateV1RequestOneOf");
+const PaymentCreateV1RequestOneOf1_1 = require("./PaymentCreateV1RequestOneOf1");
+const PaymentCreateV1RequestOneOf2_1 = require("./PaymentCreateV1RequestOneOf2");
+const PaymentCreateV1RequestOneOf3_1 = require("./PaymentCreateV1RequestOneOf3");
+const PaymentCreateV1RequestOneOf4_1 = require("./PaymentCreateV1RequestOneOf4");
 function PaymentCreateV1RequestFromJSON(json) {
     return PaymentCreateV1RequestFromJSONTyped(json, false);
 }
@@ -30,20 +30,20 @@ function PaymentCreateV1RequestFromJSONTyped(json, ignoreDiscriminator) {
     if (typeof json !== 'object') {
         return json;
     }
-    if ((0, PaymentCreateRequestRestreamBodyDto_1.instanceOfPaymentCreateRequestRestreamBodyDto)(json)) {
-        return (0, PaymentCreateRequestRestreamBodyDto_1.PaymentCreateRequestRestreamBodyDtoFromJSONTyped)(json, true);
+    if ((0, PaymentCreateV1RequestOneOf_1.instanceOfPaymentCreateV1RequestOneOf)(json)) {
+        return (0, PaymentCreateV1RequestOneOf_1.PaymentCreateV1RequestOneOfFromJSONTyped)(json, true);
     }
-    if ((0, PaymentCreateRequestStorageBodyDto_1.instanceOfPaymentCreateRequestStorageBodyDto)(json)) {
-        return (0, PaymentCreateRequestStorageBodyDto_1.PaymentCreateRequestStorageBodyDtoFromJSONTyped)(json, true);
+    if ((0, PaymentCreateV1RequestOneOf1_1.instanceOfPaymentCreateV1RequestOneOf1)(json)) {
+        return (0, PaymentCreateV1RequestOneOf1_1.PaymentCreateV1RequestOneOf1FromJSONTyped)(json, true);
     }
-    if ((0, PaymentCreateRequestTopUpBodyDto_1.instanceOfPaymentCreateRequestTopUpBodyDto)(json)) {
-        return (0, PaymentCreateRequestTopUpBodyDto_1.PaymentCreateRequestTopUpBodyDtoFromJSONTyped)(json, true);
+    if ((0, PaymentCreateV1RequestOneOf2_1.instanceOfPaymentCreateV1RequestOneOf2)(json)) {
+        return (0, PaymentCreateV1RequestOneOf2_1.PaymentCreateV1RequestOneOf2FromJSONTyped)(json, true);
     }
-    if ((0, PaymentCreateRequestTranscoderBodyDto_1.instanceOfPaymentCreateRequestTranscoderBodyDto)(json)) {
-        return (0, PaymentCreateRequestTranscoderBodyDto_1.PaymentCreateRequestTranscoderBodyDtoFromJSONTyped)(json, true);
+    if ((0, PaymentCreateV1RequestOneOf3_1.instanceOfPaymentCreateV1RequestOneOf3)(json)) {
+        return (0, PaymentCreateV1RequestOneOf3_1.PaymentCreateV1RequestOneOf3FromJSONTyped)(json, true);
     }
-    if ((0, PaymentCreateRequestWebinarBodyDto_1.instanceOfPaymentCreateRequestWebinarBodyDto)(json)) {
-        return (0, PaymentCreateRequestWebinarBodyDto_1.PaymentCreateRequestWebinarBodyDtoFromJSONTyped)(json, true);
+    if ((0, PaymentCreateV1RequestOneOf4_1.instanceOfPaymentCreateV1RequestOneOf4)(json)) {
+        return (0, PaymentCreateV1RequestOneOf4_1.PaymentCreateV1RequestOneOf4FromJSONTyped)(json, true);
     }
     return {};
 }
@@ -59,20 +59,20 @@ function PaymentCreateV1RequestToJSONTyped(value, ignoreDiscriminator = false) {
     if (typeof value !== 'object') {
         return value;
     }
-    if ((0, PaymentCreateRequestRestreamBodyDto_1.instanceOfPaymentCreateRequestRestreamBodyDto)(value)) {
-        return (0, PaymentCreateRequestRestreamBodyDto_1.PaymentCreateRequestRestreamBodyDtoToJSON)(value);
+    if ((0, PaymentCreateV1RequestOneOf_1.instanceOfPaymentCreateV1RequestOneOf)(value)) {
+        return (0, PaymentCreateV1RequestOneOf_1.PaymentCreateV1RequestOneOfToJSON)(value);
     }
-    if ((0, PaymentCreateRequestStorageBodyDto_1.instanceOfPaymentCreateRequestStorageBodyDto)(value)) {
-        return (0, PaymentCreateRequestStorageBodyDto_1.PaymentCreateRequestStorageBodyDtoToJSON)(value);
+    if ((0, PaymentCreateV1RequestOneOf1_1.instanceOfPaymentCreateV1RequestOneOf1)(value)) {
+        return (0, PaymentCreateV1RequestOneOf1_1.PaymentCreateV1RequestOneOf1ToJSON)(value);
     }
-    if ((0, PaymentCreateRequestTopUpBodyDto_1.instanceOfPaymentCreateRequestTopUpBodyDto)(value)) {
-        return (0, PaymentCreateRequestTopUpBodyDto_1.PaymentCreateRequestTopUpBodyDtoToJSON)(value);
+    if ((0, PaymentCreateV1RequestOneOf2_1.instanceOfPaymentCreateV1RequestOneOf2)(value)) {
+        return (0, PaymentCreateV1RequestOneOf2_1.PaymentCreateV1RequestOneOf2ToJSON)(value);
     }
-    if ((0, PaymentCreateRequestTranscoderBodyDto_1.instanceOfPaymentCreateRequestTranscoderBodyDto)(value)) {
-        return (0, PaymentCreateRequestTranscoderBodyDto_1.PaymentCreateRequestTranscoderBodyDtoToJSON)(value);
+    if ((0, PaymentCreateV1RequestOneOf3_1.instanceOfPaymentCreateV1RequestOneOf3)(value)) {
+        return (0, PaymentCreateV1RequestOneOf3_1.PaymentCreateV1RequestOneOf3ToJSON)(value);
     }
-    if ((0, PaymentCreateRequestWebinarBodyDto_1.instanceOfPaymentCreateRequestWebinarBodyDto)(value)) {
-        return (0, PaymentCreateRequestWebinarBodyDto_1.PaymentCreateRequestWebinarBodyDtoToJSON)(value);
+    if ((0, PaymentCreateV1RequestOneOf4_1.instanceOfPaymentCreateV1RequestOneOf4)(value)) {
+        return (0, PaymentCreateV1RequestOneOf4_1.PaymentCreateV1RequestOneOf4ToJSON)(value);
     }
     return {};
 }

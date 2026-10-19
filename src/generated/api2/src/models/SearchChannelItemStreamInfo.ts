@@ -78,7 +78,7 @@ import {
 } from './ChannelDefaultInfoDto';
 
 /**
- * streamInfo
+ * 
  * @export
  * @interface SearchChannelItemStreamInfo
  */

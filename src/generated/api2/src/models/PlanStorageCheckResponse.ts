@@ -35,7 +35,7 @@ import {
  */
 export interface PlanStorageCheckResponse {
     /**
-     * Amount
+     * Not calculated: tariff price calculation is not implemented. Always 0 (placeholder), not a free tariff or amount due. Do not use this field to create payments.
      * @type {number}
      * @memberof PlanStorageCheckResponse
      */

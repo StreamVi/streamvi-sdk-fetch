@@ -30,6 +30,7 @@ export interface MethodIntegrationTemplateGetTemplateWidgetDataV1Request {
     template_id: string;
     project_id: number;
     v?: MethodIntegrationTemplateGetTemplateWidgetDataV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -40,12 +41,13 @@ export interface MethodIntegrationTemplateGetTemplateWidgetDataV1Request {
  */
 export interface MethodIntegrationApiInterface {
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * @summary Get template widget data
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} template_id Integration project template ID
      * @param {number} project_id Project ID
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MethodIntegrationApiInterface
@@ -53,7 +55,7 @@ export interface MethodIntegrationApiInterface {
     methodIntegrationTemplateGetTemplateWidgetDataV1Raw(requestParameters: MethodIntegrationTemplateGetTemplateWidgetDataV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationTemplateWidgetGetResponse>>;
 
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * Get template widget data
      */
     methodIntegrationTemplateGetTemplateWidgetDataV1(requestParameters: MethodIntegrationTemplateGetTemplateWidgetDataV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationTemplateWidgetGetResponse>;
@@ -66,7 +68,7 @@ export interface MethodIntegrationApiInterface {
 export class MethodIntegrationApi extends runtime.BaseAPI implements MethodIntegrationApiInterface {
 
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * Get template widget data
      */
     async methodIntegrationTemplateGetTemplateWidgetDataV1Raw(requestParameters: MethodIntegrationTemplateGetTemplateWidgetDataV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IntegrationTemplateWidgetGetResponse>> {
@@ -113,9 +115,18 @@ export class MethodIntegrationApi extends runtime.BaseAPI implements MethodInteg
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["integration:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["integration:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["integration:read"]);
         }
 
         const response = await this.request({
@@ -129,7 +140,7 @@ export class MethodIntegrationApi extends runtime.BaseAPI implements MethodInteg
     }
 
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * Get template widget data
      */
     async methodIntegrationTemplateGetTemplateWidgetDataV1(requestParameters: MethodIntegrationTemplateGetTemplateWidgetDataV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IntegrationTemplateWidgetGetResponse> {

@@ -47,6 +47,7 @@ function GetAccountChannelsItemFromJSONTyped(json, ignoreDiscriminator) {
         'name': json['name'],
         'photo': json['photo'],
         'members': json['members'],
+        'isPrimary': json['isPrimary'] == null ? undefined : json['isPrimary'],
         'connectedId': json['connectedId'],
         'accounts': (json['accounts'].map(GetAccountChannelsAccountItem_1.GetAccountChannelsAccountItemFromJSON)),
     };
@@ -65,6 +66,7 @@ function GetAccountChannelsItemToJSONTyped(value, ignoreDiscriminator = false) {
         'name': value['name'],
         'photo': value['photo'],
         'members': value['members'],
+        'isPrimary': value['isPrimary'],
         'connectedId': value['connectedId'],
         'accounts': (value['accounts'].map(GetAccountChannelsAccountItem_1.GetAccountChannelsAccountItemToJSON)),
     };

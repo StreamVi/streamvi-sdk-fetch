@@ -1,5 +1,9 @@
 # StreamVi SDK (Fetch-based)
 
+## Version 3.0.0
+
+Regenerated from the production API schema: 354 operations, including 73 new operations. Before upgrading from 2.x, read the [changes and migration notes](CHANGELOG.md). Some method signatures have changed.
+
 Library for working with StreamVi API along with OAuth authorization example using [passport-streamvi](https://www.npmjs.com/package/passport-streamvi) library.
 
 This is a fetch-based version of the StreamVi SDK. The original axios-based version is available at: [https://github.com/StreamVi/streamvi-sdk](https://github.com/StreamVi/streamvi-sdk)
@@ -23,7 +27,7 @@ npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git
 ### Install specific version/tag
 
 ```bash
-npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git#v1.0.1
+npm install git+https://github.com/StreamVi/streamvi-sdk-fetch.git#v3.0.0
 ```
 
 ### Install for development (clone repository)
@@ -159,47 +163,7 @@ console.log(projectInfo.data);
 
 After generation, the following API clients are available:
 
-- [AccountApi](src/generated/api2/docs/AccountApi.md)
-- [AnalyticsApi](src/generated/api2/docs/AnalyticsApi.md)
-- [AuthApi](src/generated/api2/docs/AuthApi.md)
-- [BlogPageApi](src/generated/api2/docs/BlogPageApi.md)
-- [BlogPageTagApi](src/generated/api2/docs/BlogPageTagApi.md)
-- [BroadcastApi](src/generated/api2/docs/BroadcastApi.md)
-- [CentrifugeApi](src/generated/api2/docs/CentrifugeApi.md)
-- [ChannelApi](src/generated/api2/docs/ChannelApi.md)
-- [ChannelSettingsApi](src/generated/api2/docs/ChannelSettingsApi.md)
-- [ChatGatewayApi](src/generated/api2/docs/ChatGatewayApi.md)
-- [HelpPageApi](src/generated/api2/docs/HelpPageApi.md)
-- [LiveApi](src/generated/api2/docs/LiveApi.md)
-- [MoneyFlowApi](src/generated/api2/docs/MoneyFlowApi.md)
-- [NotifyHistoryApi](src/generated/api2/docs/NotifyHistoryApi.md)
-- [NotifyUserApi](src/generated/api2/docs/NotifyUserApi.md)
-- [PaySettingApi](src/generated/api2/docs/PaySettingApi.md)
-- [PaymentApi](src/generated/api2/docs/PaymentApi.md)
-- [PaySystemApi](src/generated/api2/docs/PaySystemApi.md)
-- [PayoutApi](src/generated/api2/docs/PayoutApi.md)
-- [PlanRestreamApi](src/generated/api2/docs/PlanRestreamApi.md)
-- [PlanStorageApi](src/generated/api2/docs/PlanStorageApi.md)
-- [PlanTranscodingApi](src/generated/api2/docs/PlanTranscodingApi.md)
-- [PlatformsApi](src/generated/api2/docs/PlatformsApi.md)
-- [PolicyPageApi](src/generated/api2/docs/PolicyPageApi.md)
-- [ProjectApi](src/generated/api2/docs/ProjectApi.md)
-- [ProjectChannelApi](src/generated/api2/docs/ProjectChannelApi.md)
-- [ProjectChannelInviteApi](src/generated/api2/docs/ProjectChannelInviteApi.md)
-- [ProjectHistoryApi](src/generated/api2/docs/ProjectHistoryApi.md)
-- [PromoApi](src/generated/api2/docs/PromoApi.md)
-- [PullServersApi](src/generated/api2/docs/PullServersApi.md)
-- [ReferralsApi](src/generated/api2/docs/ReferralsApi.md)
-- [ReleaseApi](src/generated/api2/docs/ReleaseApi.md)
-- [RtmpServerApi](src/generated/api2/docs/RtmpServerApi.md)
-- [SocialsApi](src/generated/api2/docs/SocialsApi.md)
-- [StreamKeyApi](src/generated/api2/docs/StreamKeyApi.md)
-- [StreamPullKeysApi](src/generated/api2/docs/StreamPullKeysApi.md)
-- [TranscodersApi](src/generated/api2/docs/TranscodersApi.md)
-- [TransactionsApi](src/generated/api2/docs/TransactionsApi.md)
-- [UsersApi](src/generated/api2/docs/UsersApi.md) 
-
-The full list is available in `src/generated/api2/api.ts`
+The full class list is available in the [generated client exports](src/generated/api2/src/apis/index.ts). Each class file contains method signatures, parameters and response types.
 
 ## Project Structure
 
@@ -268,32 +232,17 @@ The example includes comprehensive error handling:
 - **Session errors** - handles session destruction and recreation
 - **Network errors** - graceful handling of network issues
 
-## Migration from axios to fetch
+## Migration from Axios to Fetch
 
-Starting from version 2.0, the SDK uses native fetch API instead of axios. This change brings several benefits:
+`streamvi-sdk` and `streamvi-sdk-fetch` are separate packages. When switching transports, update imports, language constants and response/error handling:
 
-- **No external dependencies** - reduces bundle size
-- **Better browser compatibility** - fetch is natively supported in modern browsers
-- **Improved performance** - no additional HTTP client overhead
+- Axios returns an `AxiosResponse`; its `.data` is the HTTP response body. Fetch returns the parsed body directly. A `data` field defined by the API itself is still preserved.
+- An unsuccessful HTTP response throws `ResponseError` with `error.response.status`. Network errors and missing required parameters use different error types.
+- Language enum members are `ru` and `en` in Fetch, compared with `Ru` and `En` in Axios.
+- Transport options are `RequestInit` options, such as `signal`, instead of Axios options such as `timeout`.
+- The optional request ID property is `X_Client_Request_Id` in Fetch and `'X-Client-Request-Id'` in Axios.
 
-### Key changes:
-
-1. **Response structure remains the same** - API responses still contain the same data structure
-2. **Error handling** - errors are now native fetch errors instead of axios errors
-3. **Configuration** - same StreamViSdkConfig interface, but internally uses fetch
-
-### Code migration:
-
-No changes needed in your existing code! The API interface remains identical:
-
-```typescript
-// This code works the same way as before
-const response = await userProjectApi.userProjectGetProjectInfoV1({
-  language: language,
-  project_id: projectId
-});
-// Access data via response.data.name, response.data.photo_100, etc.
-```
+For changes from SDK 2.x to 3.0.0, see the [release notes](CHANGELOG.md).
 
 ## API Client Generation
 

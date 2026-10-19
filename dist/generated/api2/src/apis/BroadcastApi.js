@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class BroadcastApi extends runtime.BaseAPI {
     /**
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * Get credentials
      */
     async broadcastCredentialsV1Raw(requestParameters, initOverrides) {
@@ -67,9 +68,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/credentials`,
@@ -80,6 +88,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastCredentialsResponseFromJSON)(jsonValue));
     }
     /**
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * Get credentials
      */
     async broadcastCredentialsV1(requestParameters, initOverrides) {
@@ -87,6 +96,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * Broadcast event item
      */
     async broadcastEventItemV1Raw(requestParameters, initOverrides) {
@@ -103,6 +113,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['id'] != null) {
             queryParameters['id'] = requestParameters['id'];
         }
@@ -116,9 +129,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '1';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/events/item`,
@@ -129,6 +149,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteRestreamEventResponseFromJSON)(jsonValue));
     }
     /**
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * Broadcast event item
      */
     async broadcastEventItemV1(requestParameters, initOverrides) {
@@ -136,6 +157,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * Events from broadcast v4
      */
     async broadcastEventsV4Raw(requestParameters, initOverrides) {
@@ -201,9 +223,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '4';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/events`,
@@ -214,6 +243,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastEventsV4ResponseFromJSON)(jsonValue));
     }
     /**
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * Events from broadcast v4
      */
     async broadcastEventsV4(requestParameters, initOverrides) {
@@ -221,6 +251,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * Get one broadcast
      */
     async broadcastFindV1Raw(requestParameters, initOverrides) {
@@ -250,9 +281,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '3';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast`,
@@ -263,6 +301,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastFindResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * Get one broadcast
      */
     async broadcastFindV1(requestParameters, initOverrides) {
@@ -270,6 +309,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * Get broadcast title and description template
      */
     async broadcastGetTemplateV1Raw(requestParameters, initOverrides) {
@@ -293,9 +333,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/template`,
@@ -306,6 +353,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastTemplateResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * Get broadcast title and description template
      */
     async broadcastGetTemplateV1(requestParameters, initOverrides) {
@@ -313,6 +361,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * Bitrate from broadcast
      */
     async broadcastGraphBitrateV1Raw(requestParameters, initOverrides) {
@@ -342,9 +391,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '3';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/graph/bitrate`,
@@ -355,6 +411,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastGraphResponseFromJSON)(jsonValue));
     }
     /**
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * Bitrate from broadcast
      */
     async broadcastGraphBitrateV1(requestParameters, initOverrides) {
@@ -362,6 +419,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * Viewers from broadcast
      */
     async broadcastGraphViewersV1Raw(requestParameters, initOverrides) {
@@ -391,9 +449,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '3';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/graph/viewers`,
@@ -404,6 +469,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastGraphResponseFromJSON)(jsonValue));
     }
     /**
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * Viewers from broadcast
      */
     async broadcastGraphViewersV1(requestParameters, initOverrides) {
@@ -411,6 +477,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * List broadcast
      */
     async broadcastListV1Raw(requestParameters, initOverrides) {
@@ -443,9 +510,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '3';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/list`,
@@ -456,6 +530,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastListResponseFromJSON)(jsonValue));
     }
     /**
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * List broadcast
      */
     async broadcastListV1(requestParameters, initOverrides) {
@@ -463,7 +538,8 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * Pause an active live broadcast
      */
     async broadcastPauseV1Raw(requestParameters, initOverrides) {
         var _a;
@@ -473,9 +549,16 @@ class BroadcastApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/broadcast/pause`,
@@ -487,14 +570,16 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * Pause an active live broadcast
      */
     async broadcastPauseV1(requestParameters, initOverrides) {
         const response = await this.broadcastPauseV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
-     * Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * Resume an active live broadcast
      */
     async broadcastPlayV1Raw(requestParameters, initOverrides) {
         var _a;
@@ -504,9 +589,16 @@ class BroadcastApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/broadcast/play`,
@@ -518,13 +610,15 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * Resume an active live broadcast
      */
     async broadcastPlayV1(requestParameters, initOverrides) {
         const response = await this.broadcastPlayV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * Get restreams for chat
      */
     async broadcastRestreamChatV1Raw(requestParameters, initOverrides) {
@@ -547,6 +641,9 @@ class BroadcastApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['broadcast_id'] != null) {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
@@ -554,9 +651,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/restreams-chat`,
@@ -567,6 +671,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodBroadcastRestreamsResponseFromJSON)(jsonValue));
     }
     /**
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * Get restreams for chat
      */
     async broadcastRestreamChatV1(requestParameters, initOverrides) {
@@ -574,6 +679,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * View live info
      */
     async broadcastRestreamsV1Raw(requestParameters, initOverrides) {
@@ -603,9 +709,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['v'] = '1';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/restreams`,
@@ -616,6 +729,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteBroadcastRestreamsInfoResponseFromJSON)(jsonValue));
     }
     /**
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * View live info
      */
     async broadcastRestreamsV1(requestParameters, initOverrides) {
@@ -623,6 +737,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * Live status info by project id
      */
     async broadcastStatusV1Raw(requestParameters, initOverrides) {
@@ -646,9 +761,16 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/status`,
@@ -659,6 +781,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.BroadcastStatusV1200ResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * Live status info by project id
      */
     async broadcastStatusV1(requestParameters, initOverrides) {
@@ -666,7 +789,8 @@ class BroadcastApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * Request stopping an active live broadcast
      */
     async broadcastStopV1Raw(requestParameters, initOverrides) {
         var _a;
@@ -676,9 +800,16 @@ class BroadcastApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/broadcast/stop`,
@@ -690,13 +821,15 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * Request stopping an active live broadcast
      */
     async broadcastStopV1(requestParameters, initOverrides) {
         const response = await this.broadcastStopV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * Connect channel, long polling
      */
     async broadcastTokenChannelV1Raw(requestParameters, initOverrides) {
@@ -720,9 +853,12 @@ class BroadcastApi extends runtime.BaseAPI {
             queryParameters['key'] = requestParameters['key'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/broadcast/longpoll`,
@@ -733,6 +869,7 @@ class BroadcastApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.MethodCurrentBroadcastResponseFromJSON)(jsonValue));
     }
     /**
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * Connect channel, long polling
      */
     async broadcastTokenChannelV1(requestParameters, initOverrides) {

@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class WebinarApi extends runtime.BaseAPI {
     /**
+     * Create a webinar room for project_id with room_name and a room_id suffix. The full ID combines the lowercase external project code and suffix; returns invite_link. Requires a current webinar plan; maximum participants depend on the plan\'s participants_room and rooms. Success means the room was created, not that broadcasting started.
      * Create a new webinar room
      */
     async webinarRoomSiteCreateV1Raw(requestParameters, initOverrides) {
@@ -54,9 +55,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/create`,
@@ -68,6 +76,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomCreateResponseFromJSON)(jsonValue));
     }
     /**
+     * Create a webinar room for project_id with room_name and a room_id suffix. The full ID combines the lowercase external project code and suffix; returns invite_link. Requires a current webinar plan; maximum participants depend on the plan\'s participants_room and rooms. Success means the room was created, not that broadcasting started.
      * Create a new webinar room
      */
     async webinarRoomSiteCreateV1(requestParameters, initOverrides) {
@@ -75,6 +84,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete room_id in project_id through the LiveKit service. This deletes the room, not merely its stream; to stop the stream use POST /method/webinar/stream/stop.
      * Delete a webinar room
      */
     async webinarRoomSiteDeleteV1Raw(requestParameters, initOverrides) {
@@ -85,9 +95,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/delete`,
@@ -99,6 +116,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomDeleteResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete room_id in project_id through the LiveKit service. This deletes the room, not merely its stream; to stop the stream use POST /method/webinar/stream/stop.
      * Delete a webinar room
      */
     async webinarRoomSiteDeleteV1(requestParameters, initOverrides) {
@@ -106,6 +124,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read synchronization for room_id and client_id: tracks and optional focus_track with participant_sid/publication_sid. Public transport; an existing room context is required. This method neither issues RTC credentials nor connects a participant.
      * Get sync a webinar room
      */
     async webinarRoomSiteGetSyncV1Raw(requestParameters, initOverrides) {
@@ -135,9 +154,8 @@ class WebinarApi extends runtime.BaseAPI {
             queryParameters['client_id'] = requestParameters['client_id'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/webinar/room/sync`,
@@ -148,6 +166,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomSyncResponseFromJSON)(jsonValue));
     }
     /**
+     * Read synchronization for room_id and client_id: tracks and optional focus_track with participant_sid/publication_sid. Public transport; an existing room context is required. This method neither issues RTC credentials nor connects a participant.
      * Get sync a webinar room
      */
     async webinarRoomSiteGetSyncV1(requestParameters, initOverrides) {
@@ -155,6 +174,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Join room_id anonymously with client_id/participant_name/region. Public transport; returns a secret participant_token and RTC server_url, with is_stream=false. A full or missing room returns the corresponding webinar.join_room_error_* error; credentials are not stored in the corpus.
      * join in room anonymously
      */
     async webinarRoomSiteJoinAnonymousV1Raw(requestParameters, initOverrides) {
@@ -165,9 +185,8 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/webinar/room/join-anonymous`,
@@ -179,6 +198,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomJoinResponseFromJSON)(jsonValue));
     }
     /**
+     * Join room_id anonymously with client_id/participant_name/region. Public transport; returns a secret participant_token and RTC server_url, with is_stream=false. A full or missing room returns the corresponding webinar.join_room_error_* error; credentials are not stored in the corpus.
      * join in room anonymously
      */
     async webinarRoomSiteJoinAnonymousV1(requestParameters, initOverrides) {
@@ -186,6 +206,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Join room_id as the current authenticated user: participant_name/photo come from their profile. Returns server_url, secret participant_token and chat_token, room details and is_stream according to access. Available only to the project subject; issues RTC credentials rather than starting a broadcast.
      * join in room
      */
     async webinarRoomSiteJoinV1Raw(requestParameters, initOverrides) {
@@ -196,9 +217,12 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/join`,
@@ -210,6 +234,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomJoinResponseFromJSON)(jsonValue));
     }
     /**
+     * Join room_id as the current authenticated user: participant_name/photo come from their profile. Returns server_url, secret participant_token and chat_token, room details and is_stream according to access. Available only to the project subject; issues RTC credentials rather than starting a broadcast.
      * join in room
      */
     async webinarRoomSiteJoinV1(requestParameters, initOverrides) {
@@ -217,6 +242,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read webinar rooms of project_id with participants, limits, status/stream_status, and invite_link. Data comes from the LiveKit service; listing neither creates a room nor starts a stream.
      * List of webinar rooms
      */
     async webinarRoomSiteListV1Raw(requestParameters, initOverrides) {
@@ -240,9 +266,16 @@ class WebinarApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:read"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/list`,
@@ -253,6 +286,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read webinar rooms of project_id with participants, limits, status/stream_status, and invite_link. Data comes from the LiveKit service; listing neither creates a room nor starts a stream.
      * List of webinar rooms
      */
     async webinarRoomSiteListV1(requestParameters, initOverrides) {
@@ -260,6 +294,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get preliminary details for room_id: participants, owner, and client_id; if client_id is absent, a UUID is created. This prepares entry through the LiveKit service without obtaining participant_token. Do not treat this GET as an ordinary project catalog.
      * Pre-join in room
      */
     async webinarRoomSitePreJoinV1Raw(requestParameters, initOverrides) {
@@ -289,9 +324,8 @@ class WebinarApi extends runtime.BaseAPI {
             queryParameters['client_id'] = requestParameters['client_id'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/webinar/room/pre-join`,
@@ -302,6 +336,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomPreJoinResponseFromJSON)(jsonValue));
     }
     /**
+     * Get preliminary details for room_id: participants, owner, and client_id; if client_id is absent, a UUID is created. This prepares entry through the LiveKit service without obtaining participant_token. Do not treat this GET as an ordinary project catalog.
      * Pre-join in room
      */
     async webinarRoomSitePreJoinV1(requestParameters, initOverrides) {
@@ -309,6 +344,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Updates synchronization for a room belonging to the selected project. Requires the existing room/client context; participant_sid and publication_sid must refer to actual media context. This operation does not join the room or issue RTC credentials.
      * Sync a webinar room
      */
     async webinarRoomSiteSyncV1Raw(requestParameters, initOverrides) {
@@ -319,9 +355,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/sync`,
@@ -333,6 +376,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Updates synchronization for a room belonging to the selected project. Requires the existing room/client context; participant_sid and publication_sid must refer to actual media context. This operation does not join the room or issue RTC credentials.
      * Sync a webinar room
      */
     async webinarRoomSiteSyncV1(requestParameters, initOverrides) {
@@ -340,6 +384,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Update the name/settings of the existing room_id in project_id via LiveKit. The participant limit comes from the current webinar tariff, or 0 if absent. Returns the update result, not new participant credentials.
      * Update a webinar room
      */
     async webinarRoomSiteUpdateV1Raw(requestParameters, initOverrides) {
@@ -350,9 +395,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/room/update`,
@@ -364,6 +416,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomUpdateResponseFromJSON)(jsonValue));
     }
     /**
+     * Update the name/settings of the existing room_id in project_id via LiveKit. The participant limit comes from the current webinar tariff, or 0 if absent. Returns the update result, not new participant credentials.
      * Update a webinar room
      */
     async webinarRoomSiteUpdateV1(requestParameters, initOverrides) {
@@ -371,6 +424,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Start a stream for room_id through LiveKit egress using a source URL prepared for the room project. failed_to_start_stream becomes webinar.stream_start_error. Success confirms the start command response; verify actual status with GET /method/webinar/stream/last.
      * Start a webinar stream
      */
     async webinarStreamSiteCreateV1Raw(requestParameters, initOverrides) {
@@ -381,9 +435,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/start`,
@@ -395,6 +456,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Start a stream for room_id through LiveKit egress using a source URL prepared for the room project. failed_to_start_stream becomes webinar.stream_start_error. Success confirms the start command response; verify actual status with GET /method/webinar/stream/last.
      * Start a webinar stream
      */
     async webinarStreamSiteCreateV1(requestParameters, initOverrides) {
@@ -402,6 +464,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read saved width/height/fps/bitrate for the stream of room_id. Missing settings produce stream.not_found. This is the configuration of future/current output, not a start command; save it with POST /method/webinar/stream/setting.
      * Get setting a webinar stream
      */
     async webinarStreamSiteGetSettingStreamV1Raw(requestParameters, initOverrides) {
@@ -424,6 +487,9 @@ class WebinarApi extends runtime.BaseAPI {
         if (requestParameters['language'] != null) {
             queryParameters['language'] = requestParameters['language'];
         }
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
         if (requestParameters['client_id'] != null) {
             queryParameters['client_id'] = requestParameters['client_id'];
         }
@@ -431,9 +497,16 @@ class WebinarApi extends runtime.BaseAPI {
             queryParameters['room_id'] = requestParameters['room_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:read"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/setting`,
@@ -444,6 +517,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarGetSettingsStreamResponseFromJSON)(jsonValue));
     }
     /**
+     * Read saved width/height/fps/bitrate for the stream of room_id. Missing settings produce stream.not_found. This is the configuration of future/current output, not a start command; save it with POST /method/webinar/stream/setting.
      * Get setting a webinar stream
      */
     async webinarStreamSiteGetSettingStreamV1(requestParameters, initOverrides) {
@@ -451,6 +525,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the latest stream state for room_id, matched against the project\'s active stream and LiveKit data. is_current_room/is_webinar_room indicate ownership; start_at/end_at and status may be absent. Public reads neither start nor resume the stream.
      * Get last webinar stream
      */
     async webinarStreamSiteLastV1Raw(requestParameters, initOverrides) {
@@ -480,9 +555,8 @@ class WebinarApi extends runtime.BaseAPI {
             queryParameters['client_id'] = requestParameters['client_id'];
         }
         const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["webinar:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
         const response = await this.request({
             path: `/method/webinar/stream/last`,
@@ -493,6 +567,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteWebinarRoomStreamLastResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the latest stream state for room_id, matched against the project\'s active stream and LiveKit data. is_current_room/is_webinar_room indicate ownership; start_at/end_at and status may be absent. Public reads neither start nor resume the stream.
      * Get last webinar stream
      */
     async webinarStreamSiteLastV1(requestParameters, initOverrides) {
@@ -500,6 +575,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Send a pause command to the active live stream of room_id after checking the existing webinar stream. Errors in the current use case are reported as other.unknown. Success confirms the management command response, not completion of all external actions; read state using GET /method/webinar/stream/last.
      * Pause a webinar stream
      */
     async webinarStreamSitePauseV1Raw(requestParameters, initOverrides) {
@@ -510,9 +586,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/pause`,
@@ -524,6 +607,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Send a pause command to the active live stream of room_id after checking the existing webinar stream. Errors in the current use case are reported as other.unknown. Success confirms the management command response, not completion of all external actions; read state using GET /method/webinar/stream/last.
      * Pause a webinar stream
      */
     async webinarStreamSitePauseV1(requestParameters, initOverrides) {
@@ -531,7 +615,8 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Play after pause
+     * Resume the active live stream of room_id after a pause. Commands an existing stream, rather than starting a new broadcast; to start one, use POST /method/webinar/stream/start. Current workflow errors are represented as other.unknown.
+     * Resume an active webinar stream
      */
     async webinarStreamSitePlayV1Raw(requestParameters, initOverrides) {
         var _a;
@@ -541,9 +626,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/play`,
@@ -555,13 +647,15 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Play after pause
+     * Resume the active live stream of room_id after a pause. Commands an existing stream, rather than starting a new broadcast; to start one, use POST /method/webinar/stream/start. Current workflow errors are represented as other.unknown.
+     * Resume an active webinar stream
      */
     async webinarStreamSitePlayV1(requestParameters, initOverrides) {
         const response = await this.webinarStreamSitePlayV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
     /**
+     * Save stream width/height/fps/bitrate for room_id through the LiveKit service. Checks the current webinar plan, available resolution, and the restream plan\'s maximum bitrate; errors are webinar.stream_resolution_max_error/restream.bitrate_max_error. Supply all settings according to the DTO. Success confirms settings were saved, not that the stream started.
      * Setting a webinar stream
      */
     async webinarStreamSiteSettingStreamV1Raw(requestParameters, initOverrides) {
@@ -572,9 +666,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/setting`,
@@ -586,6 +687,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save stream width/height/fps/bitrate for room_id through the LiveKit service. Checks the current webinar plan, available resolution, and the restream plan\'s maximum bitrate; errors are webinar.stream_resolution_max_error/restream.bitrate_max_error. Supply all settings according to the DTO. Success confirms settings were saved, not that the stream started.
      * Setting a webinar stream
      */
     async webinarStreamSiteSettingStreamV1(requestParameters, initOverrides) {
@@ -593,6 +695,7 @@ class WebinarApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Stop the stream of room_id: the use case attempts to reset the active source wait to zero and stop LiveKit egress. Errors in the first stage are logged; success does not guarantee that stage completed. failed_to_stop_stream produces webinar.stream_stop_error. This stops the stream without deleting the room.
      * Stop a webinar stream
      */
     async webinarStreamSiteUpdateV1Raw(requestParameters, initOverrides) {
@@ -603,9 +706,16 @@ class WebinarApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["webinar:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["webinar:write"]);
         }
         const response = await this.request({
             path: `/method/webinar/stream/stop`,
@@ -617,6 +727,7 @@ class WebinarApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Stop the stream of room_id: the use case attempts to reset the active source wait to zero and stop LiveKit egress. Errors in the first stage are logged; success does not guarantee that stage completed. failed_to_stop_stream produces webinar.stream_stop_error. This stops the stream without deleting the room.
      * Stop a webinar stream
      */
     async webinarStreamSiteUpdateV1(requestParameters, initOverrides) {

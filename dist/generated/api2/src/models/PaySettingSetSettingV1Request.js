@@ -13,9 +13,48 @@
  * Do not edit the class manually.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaySettingSetSettingV1RequestToJSONTyped = exports.PaySettingSetSettingV1RequestToJSON = exports.PaySettingSetSettingV1RequestFromJSONTyped = exports.PaySettingSetSettingV1RequestFromJSON = void 0;
-const PaySettingEnBodyDto_1 = require("./PaySettingEnBodyDto");
-const PaySettingRuBodyDto_1 = require("./PaySettingRuBodyDto");
+exports.PaySettingSetSettingV1RequestToJSONTyped = exports.PaySettingSetSettingV1RequestToJSON = exports.PaySettingSetSettingV1RequestFromJSONTyped = exports.PaySettingSetSettingV1RequestFromJSON = exports.instanceOfPaySettingSetSettingV1Request = exports.PaySettingSetSettingV1RequestLanguageEnum = exports.PaySettingSetSettingV1RequestVEnum = void 0;
+/**
+ * @export
+ */
+exports.PaySettingSetSettingV1RequestVEnum = {
+    _1: '1'
+};
+/**
+ * @export
+ */
+exports.PaySettingSetSettingV1RequestLanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+};
+/**
+ * Check if a given object implements the PaySettingSetSettingV1Request interface.
+ */
+function instanceOfPaySettingSetSettingV1Request(value) {
+    if (!('language' in value) || value['language'] === undefined)
+        return false;
+    if (!('project_id' in value) || value['project_id'] === undefined)
+        return false;
+    if (!('countrie_id' in value) || value['countrie_id'] === undefined)
+        return false;
+    if (!('pay_system_id' in value) || value['pay_system_id'] === undefined)
+        return false;
+    if (!('email' in value) || value['email'] === undefined)
+        return false;
+    if (!('street' in value) || value['street'] === undefined)
+        return false;
+    if (!('house_number' in value) || value['house_number'] === undefined)
+        return false;
+    if (!('zip' in value) || value['zip'] === undefined)
+        return false;
+    if (!('city' in value) || value['city'] === undefined)
+        return false;
+    if (!('state' in value) || value['state'] === undefined)
+        return false;
+    return true;
+}
+exports.instanceOfPaySettingSetSettingV1Request = instanceOfPaySettingSetSettingV1Request;
 function PaySettingSetSettingV1RequestFromJSON(json) {
     return PaySettingSetSettingV1RequestFromJSONTyped(json, false);
 }
@@ -24,16 +63,22 @@ function PaySettingSetSettingV1RequestFromJSONTyped(json, ignoreDiscriminator) {
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
-    }
-    if ((0, PaySettingEnBodyDto_1.instanceOfPaySettingEnBodyDto)(json)) {
-        return (0, PaySettingEnBodyDto_1.PaySettingEnBodyDtoFromJSONTyped)(json, true);
-    }
-    if ((0, PaySettingRuBodyDto_1.instanceOfPaySettingRuBodyDto)(json)) {
-        return (0, PaySettingRuBodyDto_1.PaySettingRuBodyDtoFromJSONTyped)(json, true);
-    }
-    return {};
+    return {
+        'v': json['v'] == null ? undefined : json['v'],
+        'language': json['language'],
+        'project_id': json['project_id'],
+        'countrie_id': json['countrie_id'],
+        'organization_id': json['organization_id'] == null ? undefined : json['organization_id'],
+        'pay_system_id': json['pay_system_id'],
+        'email': json['email'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'street': json['street'],
+        'house_number': json['house_number'],
+        'zip': json['zip'],
+        'city': json['city'],
+        'state': json['state'],
+        'company_name': json['company_name'] == null ? undefined : json['company_name'],
+    };
 }
 exports.PaySettingSetSettingV1RequestFromJSONTyped = PaySettingSetSettingV1RequestFromJSONTyped;
 function PaySettingSetSettingV1RequestToJSON(json) {
@@ -44,15 +89,21 @@ function PaySettingSetSettingV1RequestToJSONTyped(value, ignoreDiscriminator = f
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
-    if ((0, PaySettingEnBodyDto_1.instanceOfPaySettingEnBodyDto)(value)) {
-        return (0, PaySettingEnBodyDto_1.PaySettingEnBodyDtoToJSON)(value);
-    }
-    if ((0, PaySettingRuBodyDto_1.instanceOfPaySettingRuBodyDto)(value)) {
-        return (0, PaySettingRuBodyDto_1.PaySettingRuBodyDtoToJSON)(value);
-    }
-    return {};
+    return {
+        'v': value['v'],
+        'language': value['language'],
+        'project_id': value['project_id'],
+        'countrie_id': value['countrie_id'],
+        'organization_id': value['organization_id'],
+        'pay_system_id': value['pay_system_id'],
+        'email': value['email'],
+        'description': value['description'],
+        'street': value['street'],
+        'house_number': value['house_number'],
+        'zip': value['zip'],
+        'city': value['city'],
+        'state': value['state'],
+        'company_name': value['company_name'],
+    };
 }
 exports.PaySettingSetSettingV1RequestToJSONTyped = PaySettingSetSettingV1RequestToJSONTyped;

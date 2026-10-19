@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class ProjectChannelApi extends runtime.BaseAPI {
     /**
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * Change access for project in channel
      */
     async projectChannelChangeAccessV1Raw(requestParameters, initOverrides) {
@@ -85,9 +86,16 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['access_type'] = requestParameters['access_type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel/access/change`,
@@ -98,6 +106,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * Change access for project in channel
      */
     async projectChannelChangeAccessV1(requestParameters, initOverrides) {
@@ -105,6 +114,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * Remove access for project in channel
      */
     async projectChannelDelV1Raw(requestParameters, initOverrides) {
@@ -140,9 +150,16 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['target_project_id'] = requestParameters['target_project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel/access/del`,
@@ -153,6 +170,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * Remove access for project in channel
      */
     async projectChannelDelV1(requestParameters, initOverrides) {
@@ -160,6 +178,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * Project channel list
      */
     async projectChannelListV1Raw(requestParameters, initOverrides) {
@@ -189,9 +208,16 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
         const response = await this.request({
             path: `/method/channel/access/list`,
@@ -202,6 +228,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ProjectChannelListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * Project channel list
      */
     async projectChannelListV1(requestParameters, initOverrides) {
@@ -209,6 +236,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * Transfer owner for project in channel
      */
     async projectChannelTransferOwnerV1Raw(requestParameters, initOverrides) {
@@ -244,9 +272,16 @@ class ProjectChannelApi extends runtime.BaseAPI {
             queryParameters['to_project_id'] = requestParameters['to_project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
         const response = await this.request({
             path: `/method/channel/access/transfer_owner`,
@@ -257,6 +292,7 @@ class ProjectChannelApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * Transfer owner for project in channel
      */
     async projectChannelTransferOwnerV1(requestParameters, initOverrides) {

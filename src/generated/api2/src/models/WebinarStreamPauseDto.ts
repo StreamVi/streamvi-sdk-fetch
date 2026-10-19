@@ -26,11 +26,17 @@ export interface WebinarStreamPauseDto {
      */
     v?: WebinarStreamPauseDtoVEnum;
     /**
-     * Current language
+     * Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @type {string}
      * @memberof WebinarStreamPauseDto
      */
     language: WebinarStreamPauseDtoLanguageEnum;
+    /**
+     * Required selected project for account integration credentials; room prefix must match its external ID
+     * @type {number}
+     * @memberof WebinarStreamPauseDto
+     */
+    project_id?: number;
     /**
      * Room id
      * @type {string}
@@ -87,6 +93,7 @@ export function WebinarStreamPauseDtoFromJSONTyped(json: any, ignoreDiscriminato
         
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],
     };
@@ -105,6 +112,7 @@ export function WebinarStreamPauseDtoToJSONTyped(value?: WebinarStreamPauseDto |
         
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'room_id': value['room_id'],
         'client_id': value['client_id'],
     };

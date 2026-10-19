@@ -13,23 +13,31 @@ import * as runtime from '../runtime';
 import type { CodeAppAuthResponse, RefreshAuthResponse, SiteAuthExchangeRequest, SuccessResponse } from '../models/index';
 export interface AuthCallbackGoogleV1Request {
     state: string;
+    X_Client_Request_Id?: string;
 }
 export interface AuthCallbackVkIdV1Request {
     state: string;
+    X_Client_Request_Id?: string;
+}
+export interface AuthCallbackVkV1Request {
+    X_Client_Request_Id?: string;
 }
 export interface AuthCodeV1Request {
     language: AuthCodeV1LanguageEnum;
     app: AuthCodeV1AppEnum;
     v?: AuthCodeV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AuthConnectResultV1Request {
     language: AuthConnectResultV1LanguageEnum;
     message: string;
     v?: AuthConnectResultV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AuthConnectTelegramV1Request {
     language: AuthConnectTelegramV1LanguageEnum;
     v?: AuthConnectTelegramV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AuthConnectV1Request {
     language: AuthConnectV1LanguageEnum;
@@ -37,14 +45,17 @@ export interface AuthConnectV1Request {
     v?: AuthConnectV1VEnum;
     app?: AuthConnectV1AppEnum;
     redirect?: string;
+    X_Client_Request_Id?: string;
 }
 export interface AuthDisconnectV1Request {
     language: AuthDisconnectV1LanguageEnum;
     social_id: number;
     v?: AuthDisconnectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface AuthExchangeV1Request {
     SiteAuthExchangeRequest: SiteAuthExchangeRequest;
+    X_Client_Request_Id?: string;
 }
 export interface AuthGetAuthUrlV1Request {
     language: AuthGetAuthUrlV1LanguageEnum;
@@ -55,6 +66,10 @@ export interface AuthGetAuthUrlV1Request {
     refId?: string;
     country?: string;
     visitorId?: string;
+    X_Client_Request_Id?: string;
+}
+export interface AuthGetClientConfigurationV1Request {
+    X_Client_Request_Id?: string;
 }
 /**
  * AuthApi - interface
@@ -64,136 +79,154 @@ export interface AuthGetAuthUrlV1Request {
  */
 export interface AuthApiInterface {
     /**
-     *
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * @summary Internal request of auth google
-     * @param {string} state
+     * @param {string} state Opaque provider OAuth state; callback-only input.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authCallbackGoogleV1Raw(requestParameters: AuthCallbackGoogleV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth google
      */
     authCallbackGoogleV1(requestParameters: AuthCallbackGoogleV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * @summary Internal request of auth new vk
-     * @param {string} state
+     * @param {string} state Opaque provider OAuth state; callback-only input.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authCallbackVkIdV1Raw(requestParameters: AuthCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * Internal request of auth new vk
      */
     authCallbackVkIdV1(requestParameters: AuthCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * @summary Internal request of auth old vk
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authCallbackVkV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    authCallbackVkV1Raw(requestParameters: AuthCallbackVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth old vk
      */
-    authCallbackVkV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    authCallbackVkV1(requestParameters: AuthCallbackVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * @summary Get code for auth
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} app Create auth code for app
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authCodeV1Raw(requestParameters: AuthCodeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CodeAppAuthResponse>>;
     /**
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * Get code for auth
      */
     authCodeV1(requestParameters: AuthCodeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CodeAppAuthResponse>;
     /**
-     *
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * @summary CallBack for connect social
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} message Result message for connect
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authConnectResultV1Raw(requestParameters: AuthConnectResultV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * CallBack for connect social
      */
     authConnectResultV1(requestParameters: AuthConnectResultV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * @summary Connect telegram in account
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authConnectTelegramV1Raw(requestParameters: AuthConnectTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * Connect telegram in account
      */
     authConnectTelegramV1(requestParameters: AuthConnectTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * @summary Connected social account
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
      * @param {string} [redirect] Redirect url
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authConnectV1Raw(requestParameters: AuthConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * Connected social account
      */
     authConnectV1(requestParameters: AuthConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * @summary Disconnected social account
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} social_id Social id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authDisconnectV1Raw(requestParameters: AuthDisconnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * Disconnected social account
      */
     authDisconnectV1(requestParameters: AuthDisconnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * @summary Code exchange
      * @param {SiteAuthExchangeRequest} SiteAuthExchangeRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authExchangeV1Raw(requestParameters: AuthExchangeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>>;
     /**
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * Code exchange
      */
     authExchangeV1(requestParameters: AuthExchangeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse>;
     /**
-     *
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * @summary Get url for start oauth
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'google' | 'vk' | 'vk-id' | 'telegram'} provider Provider oauth
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {'site' | 'admin' | 'mobile' | 'desktop'} [app] App oauth
@@ -201,120 +234,146 @@ export interface AuthApiInterface {
      * @param {string} [refId] Referal id
      * @param {string} [country] Country code
      * @param {string} [visitorId] Anonymous landing visitor UUID v4
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
     authGetAuthUrlV1Raw(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * @summary Get client configuration
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthApiInterface
      */
-    authGetClientConfigurationV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    authGetClientConfigurationV1Raw(requestParameters: AuthGetClientConfigurationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * Get client configuration
      */
-    authGetClientConfigurationV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    authGetClientConfigurationV1(requestParameters: AuthGetClientConfigurationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  *
  */
 export declare class AuthApi extends runtime.BaseAPI implements AuthApiInterface {
     /**
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth google
      */
     authCallbackGoogleV1Raw(requestParameters: AuthCallbackGoogleV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal Google OAuth callback that completes login and returns an HTTP 301 redirect. The provider creates authorization data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth google
      */
     authCallbackGoogleV1(requestParameters: AuthCallbackGoogleV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * Internal request of auth new vk
      */
     authCallbackVkIdV1Raw(requestParameters: AuthCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal VK ID callback to complete OAuth login and issue an HTTP 301 redirect. The OAuth guard supplies req.user, not an integration request; callback transport excludes this endpoint.
      * Internal request of auth new vk
      */
     authCallbackVkIdV1(requestParameters: AuthCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth old vk
      */
-    authCallbackVkV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    authCallbackVkV1Raw(requestParameters: AuthCallbackVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal legacy VK OAuth callback that redirects the browser with HTTP 301. The provider creates input data; callback transport excludes this endpoint from integration profiles.
      * Internal request of auth old vk
      */
-    authCallbackVkV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    authCallbackVkV1(requestParameters?: AuthCallbackVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * Get code for auth
      */
     authCodeV1Raw(requestParameters: AuthCodeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CodeAppAuthResponse>>;
     /**
+     * Get a one-time authorization code for app in the current cabinet session. Session transport is excluded from integration profiles. The code is sensitive and is used by /method/auth/app/exchange; it is not intended for logs or the corpus.
      * Get code for auth
      */
     authCodeV1(requestParameters: AuthCodeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CodeAppAuthResponse>;
     /**
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * CallBack for connect social
      */
     authConnectResultV1Raw(requestParameters: AuthConnectResultV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal social connection completion callback. Returns text/html with a script that sends message to the parent window and closes the window. Callback transport excludes it from integration profiles; this is neither JSON nor a server tool catalog.
      * CallBack for connect social
      */
     authConnectResultV1(requestParameters: AuthConnectResultV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * Connect telegram in account
      */
     authConnectTelegramV1Raw(requestParameters: AuthConnectTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Connect Telegram to the current user\'s account using signed Telegram data in body.data. The server verifies the signature. Available only to a project subject; does not extend account-token access. Success confirms the connection was processed.
      * Connect telegram in account
      */
     authConnectTelegramV1(requestParameters: AuthConnectTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * Connected social account
      */
     authConnectV1Raw(requestParameters: AuthConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start connecting a social provider to the current user account and redirect the browser to OAuth. GET starts the flow; completion depends on authorization and a callback. Available only to the project subject; list connections with GET /method/socials/list.
      * Connected social account
      */
     authConnectV1(requestParameters: AuthConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * Disconnected social account
      */
     authDisconnectV1Raw(requestParameters: AuthDisconnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Disconnect social connection social_id of the current user. Despite using GET, this changes the connection rather than reading a list. Available only to a project subject; use GET /method/socials/list to list connections.
      * Disconnected social account
      */
     authDisconnectV1(requestParameters: AuthDisconnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * Code exchange
      */
     authExchangeV1Raw(requestParameters: AuthExchangeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RefreshAuthResponse>>;
     /**
+     * Exchange a previously issued app authorization code for session data with userAgent/fingerprint. Callback transport is excluded from integration profiles. Returned credentials are sensitive; this endpoint is not for refreshing an external application\'s OAuth grant.
      * Code exchange
      */
     authExchangeV1(requestParameters: AuthExchangeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefreshAuthResponse>;
     /**
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * Get url for start oauth
      */
     authGetAuthUrlV1Raw(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start login through OAuth for the selected provider and redirect the browser to authorization. This callback transport is outside integration account/project profiles; the response is a redirect, not ready access-token JSON.
      * Get url for start oauth
      */
     authGetAuthUrlV1(requestParameters: AuthGetAuthUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * Get client configuration
      */
-    authGetClientConfigurationV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    authGetClientConfigurationV1Raw(requestParameters: AuthGetClientConfigurationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Internal callback/debug endpoint for client configuration: the current implementation always throws test and does not return a working configuration. Callback transport excludes it from account/project profiles.
      * Get client configuration
      */
-    authGetClientConfigurationV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    authGetClientConfigurationV1(requestParameters?: AuthGetClientConfigurationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 }
 /**
  * @export

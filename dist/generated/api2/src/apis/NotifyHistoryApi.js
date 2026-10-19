@@ -44,11 +44,54 @@ const index_1 = require("../models/index");
  */
 class NotifyHistoryApi extends runtime.BaseAPI {
     /**
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * Execute an owned notification action
+     */
+    async methodExecuteNotifyActionExecuteV1Raw(requestParameters, initOverrides) {
+        var _a;
+        if (requestParameters['MethodExecuteNotifyActionRequest'] == null) {
+            throw new runtime.RequiredError('MethodExecuteNotifyActionRequest', 'Required parameter "MethodExecuteNotifyActionRequest" was null or undefined when calling methodExecuteNotifyActionExecuteV1().');
+        }
+        const queryParameters = {};
+        const headerParameters = {};
+        headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+        const response = await this.request({
+            path: `/method/notify_history/execute_action`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: (0, index_1.MethodExecuteNotifyActionRequestToJSON)({ ...requestParameters['MethodExecuteNotifyActionRequest'], v: (_a = requestParameters['MethodExecuteNotifyActionRequest'].v) !== null && _a !== void 0 ? _a : '1' }),
+        }, initOverrides);
+        return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
+    }
+    /**
+     * Requires notification:write and the actual operation scope: channel:write, project-invite:write, integration:write or billing:write. Invitation recipient and project roles are checked. Only supported invitation accept/decline and tariff renewal accept actions execute. Links and test actions fail; purchase errors propagate and do not mark the action done.
+     * Execute an owned notification action
+     */
+    async methodExecuteNotifyActionExecuteV1(requestParameters, initOverrides) {
+        const response = await this.methodExecuteNotifyActionExecuteV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+    /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * Get list of my notifications
      */
     async notifyHistoryGetListMyV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling notifyHistoryGetListMyV1().');
+        }
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling notifyHistoryGetListMyV1().');
+        }
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling notifyHistoryGetListMyV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -85,9 +128,16 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['status_read'] = requestParameters['status_read'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
         const response = await this.request({
             path: `/method/notify_history/list`,
@@ -98,6 +148,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedResponseOfNotifyHistorySiteResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current user\'s notification history using request filters and pagination. Returns results and pagination metadata; notification actions are not executed. Use POST /method/notify_history/execute_action to execute a supported account API action.
      * Get list of my notifications
      */
     async notifyHistoryGetListMyV1(requestParameters, initOverrides) {
@@ -105,6 +156,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * Get my status unread message for user
      */
     async notifyHistoryGetStatusMyV1Raw(requestParameters, initOverrides) {
@@ -122,9 +174,16 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
         const response = await this.request({
             path: `/method/notify_history/get_status`,
@@ -135,6 +194,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.NotifyHistoryStatusUserResponseFromJSON)(jsonValue));
     }
     /**
+     * Read count_unread, the number of unread notifications for the current user. This does not mark them as read; use PUT /method/notify_history/read or POST /method/notify_history/set_all_cabinet_read for that.
      * Get my status unread message for user
      */
     async notifyHistoryGetStatusMyV1(requestParameters, initOverrides) {
@@ -142,6 +202,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * Get my NotifyHistory item by id
      */
     async notifyHistoryGetV1Raw(requestParameters, initOverrides) {
@@ -159,9 +220,16 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['_id'] = requestParameters['_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
         const response = await this.request({
             path: `/method/notify_history/get`,
@@ -172,6 +240,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.NotifyHistoryFromJSON)(jsonValue));
     }
     /**
+     * Read notification _id of the current user. _id is the MongoDB ID from the notification list; the service checks ownership. Reading is distinct from marking as read or executing an action.
      * Get my NotifyHistory item by id
      */
     async notifyHistoryGetV1(requestParameters, initOverrides) {
@@ -179,6 +248,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * Set notification in cabinet as read
      */
     async notifyHistoryMarkOfReadV1Raw(requestParameters, initOverrides) {
@@ -200,9 +270,16 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_history/read`,
@@ -214,6 +291,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteMarkReadHistoryResponseFromJSON)(jsonValue));
     }
     /**
+     * Mark the listed notify_history_ids of the current user as read and return the actual update result. This neither executes an action nor deletes a notification; IDs come from notification history.
      * Set notification in cabinet as read
      */
     async notifyHistoryMarkOfReadV1(requestParameters, initOverrides) {
@@ -221,6 +299,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * Run action in my notify item
      */
     async notifyHistoryRunActionV1Raw(requestParameters, initOverrides) {
@@ -250,9 +329,12 @@ class NotifyHistoryApi extends runtime.BaseAPI {
             queryParameters['group_id'] = requestParameters['group_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_history/run_action`,
@@ -263,6 +345,7 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response);
     }
     /**
+     * Execute a legacy action_name on the current user\'s notify_history_id, with group_id in query. Only the project subject is supported; this can change invitations/tariffs and is not a safe read. For the account API, use POST /method/notify_history/execute_action with a separate scope check for the specific action.
      * Run action in my notify item
      */
     async notifyHistoryRunActionV1(requestParameters, initOverrides) {
@@ -270,14 +353,22 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * Set all notification in cabinet as read
      */
-    async notifyHistorySetAllCabinetReadV1Raw(initOverrides) {
+    async notifyHistorySetAllCabinetReadV1Raw(requestParameters, initOverrides) {
         const queryParameters = {};
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_history/set_all_cabinet_read`,
@@ -288,10 +379,11 @@ class NotifyHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Mark all cabinet notifications of the current user as read. This changes read state without executing an invitation/payment action or deleting history. Returns success.
      * Set all notification in cabinet as read
      */
-    async notifyHistorySetAllCabinetReadV1(initOverrides) {
-        const response = await this.notifyHistorySetAllCabinetReadV1Raw(initOverrides);
+    async notifyHistorySetAllCabinetReadV1(requestParameters = {}, initOverrides) {
+        const response = await this.notifyHistorySetAllCabinetReadV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 }

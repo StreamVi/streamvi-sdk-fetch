@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PolicyPageApi extends runtime.BaseAPI {
     /**
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * Get policy page
      */
     async policyPageGetItemV1Raw(requestParameters, initOverrides) {
@@ -67,21 +68,32 @@ class PolicyPageApi extends runtime.BaseAPI {
             queryParameters['file_name'] = requestParameters['file_name'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/policy/get`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
     }
     /**
+     * Read policy source text file_name in language. Returns a text/plain stream: .mdx content, not a JSON DTO. Available document names come from GET /method/policy/structure. Reading does not constitute accepting the terms.
      * Get policy page
      */
     async policyPageGetItemV1(requestParameters, initOverrides) {
-        await this.policyPageGetItemV1Raw(requestParameters, initOverrides);
+        const response = await this.policyPageGetItemV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
     /**
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * Get policy structure
      */
     async policyPageGetStructureV1Raw(requestParameters, initOverrides) {
@@ -99,6 +111,9 @@ class PolicyPageApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/policy/structure`,
             method: 'GET',
@@ -108,6 +123,7 @@ class PolicyPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetPolicyStructureDtoFromJSON)(jsonValue));
     }
     /**
+     * Read the public list of policy file_name values: acceptable-use, terms-of-use, refund, privacy-notice, using-cookie. Use GET /method/policy/get for a document\'s text; listing does not change user consent.
      * Get policy structure
      */
     async policyPageGetStructureV1(requestParameters, initOverrides) {

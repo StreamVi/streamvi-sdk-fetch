@@ -50,6 +50,7 @@ function MethodChannelStatusRequestFromJSONTyped(json, ignoreDiscriminator) {
     return {
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'] == null ? undefined : json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'channel_id': json['channel_id'],
         'active': json['active'],
     };
@@ -66,6 +67,7 @@ function MethodChannelStatusRequestToJSONTyped(value, ignoreDiscriminator = fals
     return {
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'channel_id': value['channel_id'],
         'active': value['active'],
     };

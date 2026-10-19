@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class BlogPageApi extends runtime.BaseAPI {
     /**
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * Get blog page
      */
     async blogPageGetV1Raw(requestParameters, initOverrides) {
@@ -67,6 +68,9 @@ class BlogPageApi extends runtime.BaseAPI {
             queryParameters['url'] = requestParameters['url'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/blog/page/get`,
             method: 'GET',
@@ -76,6 +80,7 @@ class BlogPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetBlogPageResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a public blog page by the request identifier and language. Returns page content; this endpoint does not edit posts.
      * Get blog page
      */
     async blogPageGetV1(requestParameters, initOverrides) {
@@ -83,11 +88,18 @@ class BlogPageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * Get list of blog pages
      */
     async blogPageListV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling blogPageListV1().');
+        }
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling blogPageListV1().');
+        }
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling blogPageListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -109,6 +121,9 @@ class BlogPageApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/blog/page/list`,
             method: 'GET',
@@ -118,6 +133,7 @@ class BlogPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedBlogPageSiteResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the public blog page list using request filters and pagination. Returns results and pagination data; use GET /method/blog/page/get for a single page\'s content.
      * Get list of blog pages
      */
     async blogPageListV1(requestParameters, initOverrides) {

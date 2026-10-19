@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class NotifyUserApi extends runtime.BaseAPI {
     /**
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * Delete mobile token from user
      */
     async notifyUserDelMobileTokenV1Raw(requestParameters, initOverrides) {
@@ -67,9 +68,12 @@ class NotifyUserApi extends runtime.BaseAPI {
             queryParameters['token'] = requestParameters['token'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_user/del_mobile_token`,
@@ -80,6 +84,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete the current user\'s mobile notification token supplied in query. Returns success; available only to a project subject. Token is sensitive; this disables delivery to a device without deleting notification history.
      * Delete mobile token from user
      */
     async notifyUserDelMobileTokenV1(requestParameters, initOverrides) {
@@ -87,6 +92,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * Get user screen notify
      */
     async notifyUserGetScreenV1Raw(requestParameters, initOverrides) {
@@ -110,9 +116,16 @@ class NotifyUserApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
         const response = await this.request({
             path: `/method/notify_user/screen`,
@@ -123,6 +136,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response);
     }
     /**
+     * Get the screen notification for project_id localized using language, or null if absent. Reads the current notification; hide it with POST /method/notify_user/screen.
      * Get user screen notify
      */
     async notifyUserGetScreenV1(requestParameters, initOverrides) {
@@ -130,6 +144,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * Get user notify settings
      */
     async notifyUserGetV1Raw(requestParameters, initOverrides) {
@@ -147,9 +162,16 @@ class NotifyUserApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["notification:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:read"]);
         }
         const response = await this.request({
             path: `/method/notify_user/setting`,
@@ -160,6 +182,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SiteNotifyUserResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the current user\'s notification delivery settings for project_id. The token determines the user; the project is selected separately. Change a delivery channel/category with POST /method/notify_user/setting.
      * Get user notify settings
      */
     async notifyUserGetV1(requestParameters, initOverrides) {
@@ -167,6 +190,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * Remove user screen notify
      */
     async notifyUserRemoveScreenV1Raw(requestParameters, initOverrides) {
@@ -184,9 +208,16 @@ class NotifyUserApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_user/screen`,
@@ -197,6 +228,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Hide the screen notification for project_id. Input is supplied in query for this POST; returns success. This method neither deletes notification history nor executes related actions.
      * Remove user screen notify
      */
     async notifyUserRemoveScreenV1(requestParameters, initOverrides) {
@@ -204,6 +236,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * Set user notify settings
      */
     async notifyUserSetV1Raw(requestParameters, initOverrides) {
@@ -219,9 +252,16 @@ class NotifyUserApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["notification:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["notification:write"]);
         }
         const response = await this.request({
             path: `/method/notify_user/setting`,
@@ -233,6 +273,7 @@ class NotifyUserApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save status for the current user\'s notify_channel/notify_category pair in project_id. Returns success after saving; this changes delivery settings without sending a notification or marking history as read.
      * Set user notify settings
      */
     async notifyUserSetV1(requestParameters, initOverrides) {

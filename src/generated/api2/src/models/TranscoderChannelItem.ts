@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface TranscoderChannelItem {
     /**
-     * 
+     * Internal numeric StreamVi channel ID, also returned as group_id in channel search results. Do not use the external/platform id, even if it contains only digits.
      * @type {number}
      * @memberof TranscoderChannelItem
      */

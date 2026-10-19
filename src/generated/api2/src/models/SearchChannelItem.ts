@@ -34,6 +34,13 @@ import {
     SearchChannelCredentialsDtoToJSON,
     SearchChannelCredentialsDtoToJSONTyped,
 } from './SearchChannelCredentialsDto';
+import type { ChannelProviderConnectionDto } from './ChannelProviderConnectionDto';
+import {
+    ChannelProviderConnectionDtoFromJSON,
+    ChannelProviderConnectionDtoFromJSONTyped,
+    ChannelProviderConnectionDtoToJSON,
+    ChannelProviderConnectionDtoToJSONTyped,
+} from './ChannelProviderConnectionDto';
 import type { SearchChannelRtmpDto } from './SearchChannelRtmpDto';
 import {
     SearchChannelRtmpDtoFromJSON,
@@ -69,7 +76,7 @@ export interface SearchChannelItem {
      */
     name: string;
     /**
-     * name
+     * External/platform channel identifier or generated custom-channel code. Treat as an opaque string even when it contains only digits. For management use group_id as channel_id.
      * @type {string}
      * @memberof SearchChannelItem
      */
@@ -81,7 +88,7 @@ export interface SearchChannelItem {
      */
     transcoderId: number | null;
     /**
-     * group_id
+     * Internal numeric StreamVi channel ID. Pass this value as channel_id to channel status, settings and access methods, with the same project_id used for search.
      * @type {number}
      * @memberof SearchChannelItem
      */
@@ -129,7 +136,7 @@ export interface SearchChannelItem {
      */
     user_id: number | null;
     /**
-     * active
+     * Whether this channel is enabled in the project; distinct from broadcasting live. To disable, send active=false with channel_id=group_id and the same project_id.
      * @type {boolean}
      * @memberof SearchChannelItem
      */
@@ -171,7 +178,7 @@ export interface SearchChannelItem {
      */
     streamInfo: SearchChannelItemStreamInfo | null;
     /**
-     * rtmp
+     * 
      * @type {SearchChannelRtmpDto}
      * @memberof SearchChannelItem
      */
@@ -200,6 +207,12 @@ export interface SearchChannelItem {
      * @memberof SearchChannelItem
      */
     credentials: Array<SearchChannelCredentialsDto> | null;
+    /**
+     * 
+     * @type {Array<ChannelProviderConnectionDto>}
+     * @memberof SearchChannelItem
+     */
+    connections?: Array<ChannelProviderConnectionDto>;
     /**
      * Tokens
      * @type {SearchChannelCredentialDto}
@@ -312,6 +325,7 @@ export function SearchChannelItemFromJSONTyped(json: any, ignoreDiscriminator: b
         'ingress_protocol': json['ingress_protocol'] == null ? undefined : json['ingress_protocol'],
         'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
         'credentials': (json['credentials'] == null ? null : (json['credentials'] as Array<any>).map(SearchChannelCredentialsDtoFromJSON)),
+        'connections': json['connections'] == null ? undefined : ((json['connections'] as Array<any>).map(ChannelProviderConnectionDtoFromJSON)),
         'tokens': SearchChannelCredentialDtoFromJSON(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : ((json['live_users'] as Array<any>).map(SearchChannelLiveUserDtoFromJSON)),
         'platform': SearchChannelPlatformDtoFromJSON(json['platform']),
@@ -354,6 +368,7 @@ export function SearchChannelItemToJSONTyped(value?: SearchChannelItem | null, i
         'ingress_protocol': value['ingress_protocol'],
         'stream_key': value['stream_key'],
         'credentials': (value['credentials'] == null ? null : (value['credentials'] as Array<any>).map(SearchChannelCredentialsDtoToJSON)),
+        'connections': value['connections'] == null ? undefined : ((value['connections'] as Array<any>).map(ChannelProviderConnectionDtoToJSON)),
         'tokens': SearchChannelCredentialDtoToJSON(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : ((value['live_users'] as Array<any>).map(SearchChannelLiveUserDtoToJSON)),
         'platform': SearchChannelPlatformDtoToJSON(value['platform']),

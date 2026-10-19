@@ -31,6 +31,7 @@ import {
 export interface AccountGetProfileV1Request {
     language: AccountGetProfileV1LanguageEnum;
     v?: AccountGetProfileV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface AccountUpdateProfileV1Request {
@@ -38,6 +39,7 @@ export interface AccountUpdateProfileV1Request {
     first_name: string;
     last_name: string;
     v?: AccountUpdateProfileV1VEnum;
+    X_Client_Request_Id?: string;
     avatar?: Blob;
 }
 
@@ -49,10 +51,11 @@ export interface AccountUpdateProfileV1Request {
  */
 export interface AccountApiInterface {
     /**
-     * 
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * @summary Get account profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApiInterface
@@ -60,17 +63,19 @@ export interface AccountApiInterface {
     accountGetProfileV1Raw(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
 
     /**
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * Get account profile
      */
     accountGetProfileV1(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
 
     /**
-     * 
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * @summary Update account profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} first_name First name
      * @param {string} last_name Last name
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -79,6 +84,7 @@ export interface AccountApiInterface {
     accountUpdateProfileV1Raw(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * Update account profile
      */
     accountUpdateProfileV1(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -91,6 +97,7 @@ export interface AccountApiInterface {
 export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
     /**
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * Get account profile
      */
     async accountGetProfileV1Raw(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>> {
@@ -115,9 +122,18 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
 
         const response = await this.request({
@@ -131,6 +147,7 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
     }
 
     /**
+     * Read the current user\'s personal profile: account data belongs to the authenticated subject, not the selected cabinet project. The token determines the user ID; project_id does not select another user. Update the profile with POST /method/account/profile.
      * Get account profile
      */
     async accountGetProfileV1(requestParameters: AccountGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse> {
@@ -139,6 +156,7 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
     }
 
     /**
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * Update account profile
      */
     async accountUpdateProfileV1Raw(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -177,9 +195,18 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:write"]);
         }
 
         const consumes: runtime.Consume[] = [
@@ -222,6 +249,7 @@ export class AccountApi extends runtime.BaseAPI implements AccountApiInterface {
     }
 
     /**
+     * Save first_name/last_name and optional avatar of the current user\'s personal profile. Uses multipart/form-data; avatar is limited to 2 MiB and JPEG/PNG. The token determines the user, not project_id. Success confirms the profile was saved without changing the project name.
      * Update account profile
      */
     async accountUpdateProfileV1(requestParameters: AccountUpdateProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

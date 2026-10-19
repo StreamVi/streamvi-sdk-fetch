@@ -15,11 +15,13 @@ export interface PayoutCreateV1Request {
     language: PayoutCreateV1LanguageEnum;
     PayoutCreateRequestBodyDto: PayoutCreateRequestBodyDto;
     v?: PayoutCreateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PayoutPrepareV1Request {
     language: PayoutPrepareV1LanguageEnum;
     project_id: number;
     v?: PayoutPrepareV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PayoutApi - interface
@@ -29,32 +31,36 @@ export interface PayoutPrepareV1Request {
  */
 export interface PayoutApiInterface {
     /**
-     *
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * @summary Create payout
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {PayoutCreateRequestBodyDto} PayoutCreateRequestBodyDto
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
      */
     payoutCreateV1Raw(requestParameters: PayoutCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * Create payout
      */
     payoutCreateV1(requestParameters: PayoutCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * @summary Get payout data for create
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PayoutApiInterface
      */
     payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>>;
     /**
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * Get payout data for create
      */
     payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse>;
@@ -64,18 +70,22 @@ export interface PayoutApiInterface {
  */
 export declare class PayoutApi extends runtime.BaseAPI implements PayoutApiInterface {
     /**
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * Create payout
      */
     payoutCreateV1Raw(requestParameters: PayoutCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * Create payout
      */
     payoutCreateV1(requestParameters: PayoutCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * Get payout data for create
      */
     payoutPrepareV1Raw(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PayoutSystemAccountListResponse>>;
     /**
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * Get payout data for create
      */
     payoutPrepareV1(requestParameters: PayoutPrepareV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PayoutSystemAccountListResponse>;

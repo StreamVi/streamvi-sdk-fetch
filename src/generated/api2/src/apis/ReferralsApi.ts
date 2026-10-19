@@ -29,6 +29,7 @@ export interface ReferralsTotalInfoV1Request {
     language: ReferralsTotalInfoV1LanguageEnum;
     project_id: number;
     v?: ReferralsTotalInfoV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -39,11 +40,12 @@ export interface ReferralsTotalInfoV1Request {
  */
 export interface ReferralsApiInterface {
     /**
-     * 
-     * @summary Total info
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * @summary Get project referral statistics
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReferralsApiInterface
@@ -51,7 +53,8 @@ export interface ReferralsApiInterface {
     referralsTotalInfoV1Raw(requestParameters: ReferralsTotalInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteTotalInfoReferralsResponse>>;
 
     /**
-     * Total info
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * Get project referral statistics
      */
     referralsTotalInfoV1(requestParameters: ReferralsTotalInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteTotalInfoReferralsResponse>;
 
@@ -63,7 +66,8 @@ export interface ReferralsApiInterface {
 export class ReferralsApi extends runtime.BaseAPI implements ReferralsApiInterface {
 
     /**
-     * Total info
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * Get project referral statistics
      */
     async referralsTotalInfoV1Raw(requestParameters: ReferralsTotalInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteTotalInfoReferralsResponse>> {
         if (requestParameters['language'] == null) {
@@ -98,9 +102,18 @@ export class ReferralsApi extends runtime.BaseAPI implements ReferralsApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
 
         const response = await this.request({
@@ -114,7 +127,8 @@ export class ReferralsApi extends runtime.BaseAPI implements ReferralsApiInterfa
     }
 
     /**
-     * Total info
+     * Read aggregate referral data for project_id according to the response schema. Financial amounts use minor currency units of the response currency. This reads referral statistics without creating a project invitation, crediting a reward, or withdrawing funds.
+     * Get project referral statistics
      */
     async referralsTotalInfoV1(requestParameters: ReferralsTotalInfoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteTotalInfoReferralsResponse> {
         const response = await this.referralsTotalInfoV1Raw(requestParameters, initOverrides);

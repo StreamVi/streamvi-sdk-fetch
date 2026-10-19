@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class AnalyticsApi extends runtime.BaseAPI {
     /**
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * Messages for broadcast
      */
     async analyticsTsBroadcastMessagesV1Raw(requestParameters, initOverrides) {
@@ -100,9 +101,16 @@ class AnalyticsApi extends runtime.BaseAPI {
             queryParameters['text'] = requestParameters['text'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["analytics:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["analytics:read"]);
         }
         const response = await this.request({
             path: `/method/analytics/broadcast/messages`,
@@ -113,6 +121,7 @@ class AnalyticsApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.BroadcastMessageListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read message history for broadcast_id in project_id using date/date_start/date_end time filters, platform/restream_id/text, sort_by_date, and limit/offset. offset is the number of records to skip. Returns results and total; reading history neither sends nor deletes messages.
      * Messages for broadcast
      */
     async analyticsTsBroadcastMessagesV1(requestParameters, initOverrides) {
@@ -120,6 +129,7 @@ class AnalyticsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * Bitrate for stream
      */
     async analyticsTsStreamBitrateV1Raw(requestParameters, initOverrides) {
@@ -149,9 +159,16 @@ class AnalyticsApi extends runtime.BaseAPI {
             queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["analytics:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["analytics:read"]);
         }
         const response = await this.request({
             path: `/method/analytics/stream/graph/bitrate`,
@@ -159,9 +176,15 @@ class AnalyticsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
     }
     /**
+     * Read the bitrate chart for stream_id after checking it belongs to project_id; another project\'s stream produces broadcast.no_found. The response is proxied from the metrics service; the local contract does not specify an unverified point structure. This method does not change bitrate settings.
      * Bitrate for stream
      */
     async analyticsTsStreamBitrateV1(requestParameters, initOverrides) {
@@ -169,6 +192,7 @@ class AnalyticsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * Events for stream
      */
     async analyticsTsStreamEventsV1Raw(requestParameters, initOverrides) {
@@ -198,9 +222,16 @@ class AnalyticsApi extends runtime.BaseAPI {
             queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["analytics:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["analytics:read"]);
         }
         const response = await this.request({
             path: `/method/analytics/stream/events`,
@@ -208,9 +239,15 @@ class AnalyticsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
     }
     /**
+     * Read stream_id events in project_id after checking stream ownership. The response is forwarded from the metrics service; the external response structure is not extended with an invented DTO. This method does not send stream commands.
      * Events for stream
      */
     async analyticsTsStreamEventsV1(requestParameters, initOverrides) {
@@ -218,6 +255,7 @@ class AnalyticsApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * Viewers for stream
      */
     async analyticsTsStreamViewersV1Raw(requestParameters, initOverrides) {
@@ -247,9 +285,16 @@ class AnalyticsApi extends runtime.BaseAPI {
             queryParameters['stream_id'] = requestParameters['stream_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["analytics:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["analytics:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["analytics:read"]);
         }
         const response = await this.request({
             path: `/method/analytics/stream/graph/viewers`,
@@ -257,9 +302,15 @@ class AnalyticsApi extends runtime.BaseAPI {
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
-        return new runtime.JSONApiResponse(response);
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse(response);
+        }
+        else {
+            return new runtime.TextApiResponse(response);
+        }
     }
     /**
+     * Read viewer statistics for the broadcast linked to stream_id in project_id. Stream ownership is checked; the response is proxied from the metrics service. stream_id identifies a stream, not an internal channel_id; reading does not control the broadcast.
      * Viewers for stream
      */
     async analyticsTsStreamViewersV1(requestParameters, initOverrides) {

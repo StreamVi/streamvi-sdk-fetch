@@ -45,16 +45,19 @@ export interface StreamPullKeysSiteCheckV1Request {
     project_id: number;
     key: string;
     v?: StreamPullKeysSiteCheckV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamPullKeysSiteCreateV1Request {
     CreatePullKeyRequest: CreatePullKeyRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamPullKeysSiteGetV1Request {
     language: StreamPullKeysSiteGetV1LanguageEnum;
     project_id: number;
     v?: StreamPullKeysSiteGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamPullKeysSiteRemoveV1Request {
@@ -62,10 +65,12 @@ export interface StreamPullKeysSiteRemoveV1Request {
     project_id: number;
     key: string;
     v?: StreamPullKeysSiteRemoveV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamPullKeysSiteUpdateV1Request {
     UpdatePullKeyRequest: UpdatePullKeyRequest;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -76,12 +81,13 @@ export interface StreamPullKeysSiteUpdateV1Request {
  */
 export interface StreamPullKeysApiInterface {
     /**
-     * 
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * @summary Check key
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} key Key
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -89,14 +95,16 @@ export interface StreamPullKeysApiInterface {
     streamPullKeysSiteCheckV1Raw(requestParameters: StreamPullKeysSiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckPullKeyResponse>>;
 
     /**
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * Check key
      */
     streamPullKeysSiteCheckV1(requestParameters: StreamPullKeysSiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckPullKeyResponse>;
 
     /**
-     * 
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * @summary Create key
      * @param {CreatePullKeyRequest} CreatePullKeyRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -104,16 +112,18 @@ export interface StreamPullKeysApiInterface {
     streamPullKeysSiteCreateV1Raw(requestParameters: StreamPullKeysSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePullKeyResponse>>;
 
     /**
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * Create key
      */
     streamPullKeysSiteCreateV1(requestParameters: StreamPullKeysSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePullKeyResponse>;
 
     /**
-     * 
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * @summary List keys
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -121,17 +131,19 @@ export interface StreamPullKeysApiInterface {
     streamPullKeysSiteGetV1Raw(requestParameters: StreamPullKeysSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullKeyListResponse>>;
 
     /**
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * List keys
      */
     streamPullKeysSiteGetV1(requestParameters: StreamPullKeysSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullKeyListResponse>;
 
     /**
-     * 
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * @summary Delete key
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} key Key
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -139,14 +151,16 @@ export interface StreamPullKeysApiInterface {
     streamPullKeysSiteRemoveV1Raw(requestParameters: StreamPullKeysSiteRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * Delete key
      */
     streamPullKeysSiteRemoveV1(requestParameters: StreamPullKeysSiteRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * @summary Update key
      * @param {UpdatePullKeyRequest} UpdatePullKeyRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamPullKeysApiInterface
@@ -154,6 +168,7 @@ export interface StreamPullKeysApiInterface {
     streamPullKeysSiteUpdateV1Raw(requestParameters: StreamPullKeysSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * Update key
      */
     streamPullKeysSiteUpdateV1(requestParameters: StreamPullKeysSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -166,6 +181,7 @@ export interface StreamPullKeysApiInterface {
 export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeysApiInterface {
 
     /**
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * Check key
      */
     async streamPullKeysSiteCheckV1Raw(requestParameters: StreamPullKeysSiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckPullKeyResponse>> {
@@ -212,9 +228,18 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
 
         const response = await this.request({
@@ -228,6 +253,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Check an existing secret pull key and get transport/status. Missing keys produce stream_pull_keys.not_found; status shows the registered key state. This method does not create a pull link; key is sensitive and must not be logged.
      * Check key
      */
     async streamPullKeysSiteCheckV1(requestParameters: StreamPullKeysSiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckPullKeyResponse> {
@@ -236,6 +262,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * Create key
      */
     async streamPullKeysSiteCreateV1Raw(requestParameters: StreamPullKeysSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePullKeyResponse>> {
@@ -252,9 +279,18 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -269,6 +305,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Create a pull link for project_id and transport with name (Link by default). Checks the plan\'s pull_link_limit and pull server availability. Returns the new record\'s internal id, not a ready video stream; read uuid/shareUrl credentials from GET /method/stream-pull-keys.
      * Create key
      */
     async streamPullKeysSiteCreateV1(requestParameters: StreamPullKeysSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePullKeyResponse> {
@@ -277,6 +314,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * List keys
      */
     async streamPullKeysSiteGetV1Raw(requestParameters: StreamPullKeysSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullKeyListResponse>> {
@@ -312,9 +350,18 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
 
         const response = await this.request({
@@ -328,6 +375,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Read pull links for project_id: internal id, secret uuid, transport/status/name, and shareUrl. Use uuid as key in update/delete/check; the record id does not replace key. Do not include live links or keys in the corpus or logs.
      * List keys
      */
     async streamPullKeysSiteGetV1(requestParameters: StreamPullKeysSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullKeyListResponse> {
@@ -336,6 +384,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * Delete key
      */
     async streamPullKeysSiteRemoveV1Raw(requestParameters: StreamPullKeysSiteRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -382,9 +431,18 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -398,6 +456,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Delete a pull key of the selected project_id. key is the secret uuid from the list. This revokes a pull link without deleting an RTMP channel or stopping the entire broadcast; returns success.
      * Delete key
      */
     async streamPullKeysSiteRemoveV1(requestParameters: StreamPullKeysSiteRemoveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -406,6 +465,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * Update key
      */
     async streamPullKeysSiteUpdateV1Raw(requestParameters: StreamPullKeysSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -422,9 +482,18 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -439,6 +508,7 @@ export class StreamPullKeysApi extends runtime.BaseAPI implements StreamPullKeys
     }
 
     /**
+     * Change region for an existing pull key in project_id. key is the secret uuid from the list, not the internal record id. Success confirms the configuration workflow; does not create a new link or change the source stream key.
      * Update key
      */
     async streamPullKeysSiteUpdateV1(requestParameters: StreamPullKeysSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

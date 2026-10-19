@@ -16,12 +16,14 @@ export interface PromoApplyV1Request {
     project_id: number;
     code: string;
     v?: PromoApplyV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PromoCheckV1Request {
     language: PromoCheckV1LanguageEnum;
     project_id: number;
     code: string;
     v?: PromoCheckV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PromoApi - interface
@@ -31,34 +33,38 @@ export interface PromoCheckV1Request {
  */
 export interface PromoApiInterface {
     /**
-     *
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * @summary Apply code
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} code Code
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PromoApiInterface
      */
     promoApplyV1Raw(requestParameters: PromoApplyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePromoApplyResponse>>;
     /**
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * Apply code
      */
     promoApplyV1(requestParameters: PromoApplyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePromoApplyResponse>;
     /**
-     *
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * @summary Check code
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} code Code
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PromoApiInterface
      */
     promoCheckV1Raw(requestParameters: PromoCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePromoCheckResponse>>;
     /**
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * Check code
      */
     promoCheckV1(requestParameters: PromoCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePromoCheckResponse>;
@@ -68,18 +74,22 @@ export interface PromoApiInterface {
  */
 export declare class PromoApi extends runtime.BaseAPI implements PromoApiInterface {
     /**
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * Apply code
      */
     promoApplyV1Raw(requestParameters: PromoApplyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePromoApplyResponse>>;
     /**
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * Apply code
      */
     promoApplyV1(requestParameters: PromoApplyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePromoApplyResponse>;
     /**
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * Check code
      */
     promoCheckV1Raw(requestParameters: PromoCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePromoCheckResponse>>;
     /**
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * Check code
      */
     promoCheckV1(requestParameters: PromoCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePromoCheckResponse>;

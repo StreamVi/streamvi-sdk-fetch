@@ -17,6 +17,7 @@ exports.SearchChannelItemToJSONTyped = exports.SearchChannelItemToJSON = exports
 const SearchChannelCredentialDto_1 = require("./SearchChannelCredentialDto");
 const SearchChannelLiveUserDto_1 = require("./SearchChannelLiveUserDto");
 const SearchChannelCredentialsDto_1 = require("./SearchChannelCredentialsDto");
+const ChannelProviderConnectionDto_1 = require("./ChannelProviderConnectionDto");
 const SearchChannelRtmpDto_1 = require("./SearchChannelRtmpDto");
 const SearchChannelItemStreamInfo_1 = require("./SearchChannelItemStreamInfo");
 const SearchChannelPlatformDto_1 = require("./SearchChannelPlatformDto");
@@ -117,6 +118,7 @@ function SearchChannelItemFromJSONTyped(json, ignoreDiscriminator) {
         'ingress_protocol': json['ingress_protocol'] == null ? undefined : json['ingress_protocol'],
         'stream_key': json['stream_key'] == null ? undefined : json['stream_key'],
         'credentials': (json['credentials'] == null ? null : json['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoFromJSON)),
+        'connections': json['connections'] == null ? undefined : (json['connections'].map(ChannelProviderConnectionDto_1.ChannelProviderConnectionDtoFromJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoFromJSON)(json['tokens']),
         'live_users': json['live_users'] == null ? undefined : (json['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoFromJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoFromJSON)(json['platform']),
@@ -157,6 +159,7 @@ function SearchChannelItemToJSONTyped(value, ignoreDiscriminator = false) {
         'ingress_protocol': value['ingress_protocol'],
         'stream_key': value['stream_key'],
         'credentials': (value['credentials'] == null ? null : value['credentials'].map(SearchChannelCredentialsDto_1.SearchChannelCredentialsDtoToJSON)),
+        'connections': value['connections'] == null ? undefined : (value['connections'].map(ChannelProviderConnectionDto_1.ChannelProviderConnectionDtoToJSON)),
         'tokens': (0, SearchChannelCredentialDto_1.SearchChannelCredentialDtoToJSON)(value['tokens']),
         'live_users': value['live_users'] == null ? undefined : (value['live_users'].map(SearchChannelLiveUserDto_1.SearchChannelLiveUserDtoToJSON)),
         'platform': (0, SearchChannelPlatformDto_1.SearchChannelPlatformDtoToJSON)(value['platform']),

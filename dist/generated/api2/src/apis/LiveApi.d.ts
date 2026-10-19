@@ -16,6 +16,7 @@ export interface ControllersRestreamsV1Request {
     project_id: number;
     broadcast_id: number;
     v?: ControllersRestreamsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * LiveApi - interface
@@ -27,10 +28,11 @@ export interface LiveApiInterface {
     /**
      * Use /site/broadcast/restreams instead.
      * @summary View live info
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
      * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}

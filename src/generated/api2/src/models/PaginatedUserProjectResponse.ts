@@ -28,19 +28,19 @@ import {
  */
 export interface PaginatedUserProjectResponse {
     /**
-     * Общее количество элементов вообще
+     * Total number of all items
      * @type {number}
      * @memberof PaginatedUserProjectResponse
      */
     total: number;
     /**
-     * Размер запрашиваемой страницы
+     * Requested page size
      * @type {number}
      * @memberof PaginatedUserProjectResponse
      */
     limit: number;
     /**
-     * С какого элемента включительно делать запрос
+     * Element to start the request from, inclusive
      * @type {number}
      * @memberof PaginatedUserProjectResponse
      */

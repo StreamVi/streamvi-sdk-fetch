@@ -13,18 +13,21 @@ import * as runtime from '../runtime';
 import type { CreateSchedulerRequest, CreateSchedulerResponse, ListSchedulerResponse, SchedulerItemResponse, StopSchedulerRequest, SuccessResponse, UpdateSchedulerRequest } from '../models/index';
 export interface SchedulerCreateV1Request {
     CreateSchedulerRequest: CreateSchedulerRequest;
+    X_Client_Request_Id?: string;
 }
 export interface SchedulerDeleteV1Request {
     language: SchedulerDeleteV1LanguageEnum;
     id: number;
     project_id: number;
     v?: SchedulerDeleteV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SchedulerGetV1Request {
     language: SchedulerGetV1LanguageEnum;
     project_id: number;
     id: number;
     v?: SchedulerGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SchedulerListV1Request {
     language: SchedulerListV1LanguageEnum;
@@ -36,12 +39,15 @@ export interface SchedulerListV1Request {
     offset?: number;
     limit?: number;
     order?: SchedulerListV1OrderEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SchedulerStopV1Request {
     StopSchedulerRequest: StopSchedulerRequest;
+    X_Client_Request_Id?: string;
 }
 export interface SchedulerUpdateV1Request {
     UpdateSchedulerRequest: UpdateSchedulerRequest;
+    X_Client_Request_Id?: string;
 }
 /**
  * SchedulerApi - interface
@@ -51,94 +57,106 @@ export interface SchedulerUpdateV1Request {
  */
 export interface SchedulerApiInterface {
     /**
-     *
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * @summary Create a project video schedule
      * @param {CreateSchedulerRequest} CreateSchedulerRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerCreateV1Raw(requestParameters: SchedulerCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSchedulerResponse>>;
     /**
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * Create a project video schedule
      */
     schedulerCreateV1(requestParameters: SchedulerCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSchedulerResponse>;
     /**
-     *
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * @summary Delete a non-expired project video schedule
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} id Backend scheduler id
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerDeleteV1Raw(requestParameters: SchedulerDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * Delete a non-expired project video schedule
      */
     schedulerDeleteV1(requestParameters: SchedulerDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * @summary Get a project video schedule by id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} id Scheduler item id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerGetV1Raw(requestParameters: SchedulerGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchedulerItemResponse>>;
     /**
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * Get a project video schedule by id
      */
     schedulerGetV1(requestParameters: SchedulerGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchedulerItemResponse>;
     /**
-     *
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * @summary List non-expired project video schedules
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [channel_id] Filter by associated channel id
+     * @param {number} [channel_id] Filter by internal numeric StreamVi channel ID (group_id from channel search), not an external/platform ID.
      * @param {number} [date_from] Filter interval start in Unix seconds
      * @param {number} [date_to] Filter interval end in Unix seconds
      * @param {number} [offset] Result offset
      * @param {number} [limit] Page size
      * @param {'asc' | 'desc'} [order] Start-time order
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerListV1Raw(requestParameters: SchedulerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListSchedulerResponse>>;
     /**
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * List non-expired project video schedules
      */
     schedulerListV1(requestParameters: SchedulerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListSchedulerResponse>;
     /**
-     *
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * @summary Stop the active project video schedule
      * @param {StopSchedulerRequest} StopSchedulerRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerStopV1Raw(requestParameters: SchedulerStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * Stop the active project video schedule
      */
     schedulerStopV1(requestParameters: SchedulerStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * @summary Replace a future project video schedule
      * @param {UpdateSchedulerRequest} UpdateSchedulerRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SchedulerApiInterface
      */
     schedulerUpdateV1Raw(requestParameters: SchedulerUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * Replace a future project video schedule
      */
     schedulerUpdateV1(requestParameters: SchedulerUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -148,50 +166,62 @@ export interface SchedulerApiInterface {
  */
 export declare class SchedulerApi extends runtime.BaseAPI implements SchedulerApiInterface {
     /**
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * Create a project video schedule
      */
     schedulerCreateV1Raw(requestParameters: SchedulerCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSchedulerResponse>>;
     /**
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * Create a project video schedule
      */
     schedulerCreateV1(requestParameters: SchedulerCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSchedulerResponse>;
     /**
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * Delete a non-expired project video schedule
      */
     schedulerDeleteV1Raw(requestParameters: SchedulerDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * Delete a non-expired project video schedule
      */
     schedulerDeleteV1(requestParameters: SchedulerDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * Get a project video schedule by id
      */
     schedulerGetV1Raw(requestParameters: SchedulerGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SchedulerItemResponse>>;
     /**
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * Get a project video schedule by id
      */
     schedulerGetV1(requestParameters: SchedulerGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SchedulerItemResponse>;
     /**
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * List non-expired project video schedules
      */
     schedulerListV1Raw(requestParameters: SchedulerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListSchedulerResponse>>;
     /**
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * List non-expired project video schedules
      */
     schedulerListV1(requestParameters: SchedulerListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListSchedulerResponse>;
     /**
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * Stop the active project video schedule
      */
     schedulerStopV1Raw(requestParameters: SchedulerStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * Stop the active project video schedule
      */
     schedulerStopV1(requestParameters: SchedulerStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * Replace a future project video schedule
      */
     schedulerUpdateV1Raw(requestParameters: SchedulerUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * Replace a future project video schedule
      */
     schedulerUpdateV1(requestParameters: SchedulerUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;

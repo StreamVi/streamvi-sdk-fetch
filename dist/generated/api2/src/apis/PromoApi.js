@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PromoApi extends runtime.BaseAPI {
     /**
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * Apply code
      */
     async promoApplyV1Raw(requestParameters, initOverrides) {
@@ -73,9 +74,16 @@ class PromoApi extends runtime.BaseAPI {
             queryParameters['code'] = requestParameters['code'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/promo/apply`,
@@ -86,6 +94,7 @@ class PromoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SitePromoApplyResponseFromJSON)(jsonValue));
     }
     /**
+     * Apply promo code code to the selected project_id on behalf of the current user. Despite using GET, this changes promo code/project benefits state and is not a safe read. Returns the actual application result. Check first with GET /method/promo/check.
      * Apply code
      */
     async promoApplyV1(requestParameters, initOverrides) {
@@ -93,6 +102,7 @@ class PromoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * Check code
      */
     async promoCheckV1Raw(requestParameters, initOverrides) {
@@ -122,9 +132,16 @@ class PromoApi extends runtime.BaseAPI {
             queryParameters['code'] = requestParameters['code'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/promo/check`,
@@ -135,6 +152,7 @@ class PromoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SitePromoCheckResponseFromJSON)(jsonValue));
     }
     /**
+     * Check promo code code for the current user and return name/id/type. This checks eligibility without applying it to a project or crediting a bonus. To apply, use GET /method/promo/apply with an explicit project_id.
      * Check code
      */
     async promoCheckV1(requestParameters, initOverrides) {

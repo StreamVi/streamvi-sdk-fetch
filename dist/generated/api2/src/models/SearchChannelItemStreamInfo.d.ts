@@ -12,7 +12,7 @@
 import type { ChannelVkVideoLiveCategoryInfoDto } from './ChannelVkVideoLiveCategoryInfoDto';
 import type { ChannelPlayListInfoDto } from './ChannelPlayListInfoDto';
 /**
- * streamInfo
+ *
  * @export
  * @interface SearchChannelItemStreamInfo
  */

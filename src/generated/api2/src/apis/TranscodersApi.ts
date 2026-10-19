@@ -39,28 +39,34 @@ import {
 
 export interface TranscodersAddV1Request {
     TranscoderCreateDto: TranscoderCreateDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface TranscodersDeleteV1Request {
     TranscoderItemDto: TranscoderItemDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface TranscodersListV1Request {
     language: TranscodersListV1LanguageEnum;
     project_id: number;
     v?: TranscodersListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface TranscodersResetDelayV1Request {
     TranscoderItemDto: TranscoderItemDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface TranscodersStopV1Request {
     TranscoderItemDto: TranscoderItemDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface TranscodersUpdateV1Request {
     TranscoderUpdateDto: TranscoderUpdateDto;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -71,9 +77,10 @@ export interface TranscodersUpdateV1Request {
  */
 export interface TranscodersApiInterface {
     /**
-     * 
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * @summary Transcoder create
      * @param {TranscoderCreateDto} TranscoderCreateDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -81,14 +88,16 @@ export interface TranscodersApiInterface {
     transcodersAddV1Raw(requestParameters: TranscodersAddV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>>;
 
     /**
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * Transcoder create
      */
     transcodersAddV1(requestParameters: TranscodersAddV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number>;
 
     /**
-     * 
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * @summary Transcoder delete
      * @param {TranscoderItemDto} TranscoderItemDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -96,16 +105,18 @@ export interface TranscodersApiInterface {
     transcodersDeleteV1Raw(requestParameters: TranscodersDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * Transcoder delete
      */
     transcodersDeleteV1(requestParameters: TranscodersDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * @summary List of transcoder
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -113,14 +124,16 @@ export interface TranscodersApiInterface {
     transcodersListV1Raw(requestParameters: TranscodersListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteTranscoderListResponse>>;
 
     /**
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * List of transcoder
      */
     transcodersListV1(requestParameters: TranscodersListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteTranscoderListResponse>;
 
     /**
-     * 
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * @summary Reset delay
      * @param {TranscoderItemDto} TranscoderItemDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -128,14 +141,16 @@ export interface TranscodersApiInterface {
     transcodersResetDelayV1Raw(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * Reset delay
      */
     transcodersResetDelayV1(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * @summary Transcoder stop
      * @param {TranscoderItemDto} TranscoderItemDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -143,14 +158,16 @@ export interface TranscodersApiInterface {
     transcodersStopV1Raw(requestParameters: TranscodersStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * Transcoder stop
      */
     transcodersStopV1(requestParameters: TranscodersStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * @summary Transcoder update
      * @param {TranscoderUpdateDto} TranscoderUpdateDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TranscodersApiInterface
@@ -158,6 +175,7 @@ export interface TranscodersApiInterface {
     transcodersUpdateV1Raw(requestParameters: TranscodersUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * Transcoder update
      */
     transcodersUpdateV1(requestParameters: TranscodersUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -170,6 +188,7 @@ export interface TranscodersApiInterface {
 export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInterface {
 
     /**
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * Transcoder create
      */
     async transcodersAddV1Raw(requestParameters: TranscodersAddV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<number>> {
@@ -186,9 +205,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
 
         const response = await this.request({
@@ -207,6 +235,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Create a transcoder configuration for project_id from DTO parameters and return a numeric ID. Checks current plan and type restrictions. Creating settings does not confirm an external transcoding task has started; assign to a channel with POST /method/channel_settings/setTranscoder.
      * Transcoder create
      */
     async transcodersAddV1(requestParameters: TranscodersAddV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<number> {
@@ -215,6 +244,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * Transcoder delete
      */
     async transcodersDeleteV1Raw(requestParameters: TranscodersDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -231,9 +261,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
 
         const response = await this.request({
@@ -248,6 +287,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Delete transcoder_id configuration in project_id. If absent, returns Transcoder not found. This deletes settings; stop active external processing separately with POST /method/transcoder/stop.
      * Transcoder delete
      */
     async transcodersDeleteV1(requestParameters: TranscodersDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -256,6 +296,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * List of transcoder
      */
     async transcodersListV1Raw(requestParameters: TranscodersListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteTranscoderListResponse>> {
@@ -291,9 +332,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["transcoding:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:read"]);
         }
 
         const response = await this.request({
@@ -307,6 +357,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Read transcoder settings for project_id, including ID, type, parameters, and actual state according to the response schema. This reads configurations without starting transcoding; use IDs in update/delete/stop/reset-delay and channel assignment.
      * List of transcoder
      */
     async transcodersListV1(requestParameters: TranscodersListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteTranscoderListResponse> {
@@ -315,6 +366,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * Reset delay
      */
     async transcodersResetDelayV1Raw(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -331,9 +383,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
 
         const response = await this.request({
@@ -348,6 +409,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Send a delay reset command for transcoder_id in project_id. This controls an existing transcoder without changing protection duration or simulated /method/channel/set-delay. Success does not guarantee immediate completion of the external operation.
      * Reset delay
      */
     async transcodersResetDelayV1(requestParameters: TranscodersResetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -356,6 +418,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * Transcoder stop
      */
     async transcodersStopV1Raw(requestParameters: TranscodersStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -372,9 +435,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
 
         const response = await this.request({
@@ -389,6 +461,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Send a stop command for transcoder_id in project_id after checking access. Success confirms the management use case processed the command; check the actual state for completion of external processing. The configuration is not deleted.
      * Transcoder stop
      */
     async transcodersStopV1(requestParameters: TranscodersStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -397,6 +470,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * Transcoder update
      */
     async transcodersUpdateV1Raw(requestParameters: TranscodersUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -413,9 +487,18 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["transcoding:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["transcoding:write"]);
         }
 
         const response = await this.request({
@@ -430,6 +513,7 @@ export class TranscodersApi extends runtime.BaseAPI implements TranscodersApiInt
     }
 
     /**
+     * Change the transcoder configuration for the selected project_id using its ID and DTO fields. Success confirms the configuration workflow was saved; it is not a resume-broadcast command. Parameter types and constraints are defined by the request schema.
      * Transcoder update
      */
     async transcodersUpdateV1(requestParameters: TranscodersUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

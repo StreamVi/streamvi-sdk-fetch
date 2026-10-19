@@ -44,18 +44,22 @@ export interface StreamKeysKeyV1Request {
     language: StreamKeysKeyV1LanguageEnum;
     project_id: number;
     v?: StreamKeysKeyV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamKeysRotateV1Request {
     RotateStreamKeyRequest: RotateStreamKeyRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamKeysSetWaitV1Request {
     SetWaitStreamKeyRequest: SetWaitStreamKeyRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface StreamKeysUpdateRecordV1Request {
     SetRecordStreamRequest: SetRecordStreamRequest;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -66,11 +70,12 @@ export interface StreamKeysUpdateRecordV1Request {
  */
 export interface StreamKeyApiInterface {
     /**
-     * 
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * @summary Get stream credentials
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -78,14 +83,16 @@ export interface StreamKeyApiInterface {
     streamKeysKeyV1Raw(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetStreamKeyResponse>>;
 
     /**
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * Get stream credentials
      */
     streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse>;
 
     /**
-     * 
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * @summary Rotate stream key
      * @param {RotateStreamKeyRequest} RotateStreamKeyRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -93,14 +100,16 @@ export interface StreamKeyApiInterface {
     streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>>;
 
     /**
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * Rotate stream key
      */
     streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse>;
 
     /**
-     * 
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * @summary Update disconnect protection wait
      * @param {SetWaitStreamKeyRequest} SetWaitStreamKeyRequest 
+     * @param {string} [X_Client_Request_Id] Optional UUID v4 for realtime refresh coordination. Invalid values are ignored; not an idempotency key.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -108,14 +117,16 @@ export interface StreamKeyApiInterface {
     streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * Update disconnect protection wait
      */
     streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * @summary Update the stream recording preference (under development)
      * @param {SetRecordStreamRequest} SetRecordStreamRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StreamKeyApiInterface
@@ -123,7 +134,8 @@ export interface StreamKeyApiInterface {
     streamKeysUpdateRecordV1Raw(requestParameters: StreamKeysUpdateRecordV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * Update the stream recording preference (under development)
      */
     streamKeysUpdateRecordV1(requestParameters: StreamKeysUpdateRecordV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
@@ -135,6 +147,7 @@ export interface StreamKeyApiInterface {
 export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterface {
 
     /**
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * Get stream credentials
      */
     async streamKeysKeyV1Raw(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetStreamKeyResponse>> {
@@ -170,9 +183,18 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
 
         const response = await this.request({
@@ -186,6 +208,7 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * Get stream credentials
      */
     async streamKeysKeyV1(requestParameters: StreamKeysKeyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStreamKeyResponse> {
@@ -194,6 +217,7 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * Rotate stream key
      */
     async streamKeysRotateV1Raw(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateStreamKeyResponse>> {
@@ -210,9 +234,18 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -227,6 +260,7 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * Rotate stream key
      */
     async streamKeysRotateV1(requestParameters: StreamKeysRotateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateStreamKeyResponse> {
@@ -235,6 +269,7 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * Update disconnect protection wait
      */
     async streamKeysSetWaitV1Raw(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -251,9 +286,18 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -268,6 +312,7 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * Update disconnect protection wait
      */
     async streamKeysSetWaitV1(requestParameters: StreamKeysSetWaitV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -276,7 +321,8 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
-     * Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * Update the stream recording preference (under development)
      */
     async streamKeysUpdateRecordV1Raw(requestParameters: StreamKeysUpdateRecordV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['SetRecordStreamRequest'] == null) {
@@ -292,9 +338,18 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
 
         const response = await this.request({
@@ -309,7 +364,8 @@ export class StreamKeyApi extends runtime.BaseAPI implements StreamKeyApiInterfa
     }
 
     /**
-     * Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * Update the stream recording preference (under development)
      */
     async streamKeysUpdateRecordV1(requestParameters: StreamKeysUpdateRecordV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.streamKeysUpdateRecordV1Raw(requestParameters, initOverrides);

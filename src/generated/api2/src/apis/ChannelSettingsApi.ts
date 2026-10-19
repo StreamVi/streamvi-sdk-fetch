@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  DisconnectPlannedProviderRequest,
   ErrorResponse,
   PlannedListResponse,
   PlaylistResponse,
@@ -39,8 +40,12 @@ import type {
   TelegramInitConnectResponseDto,
   TelegramSetSettingsRequestDto,
   TelegramSettingsResponseDto,
+  VerifyPlannedAccessRequest,
+  VerifyPlannedAccessResponse,
 } from '../models/index';
 import {
+    DisconnectPlannedProviderRequestFromJSON,
+    DisconnectPlannedProviderRequestToJSON,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
     PlannedListResponseFromJSON,
@@ -89,6 +94,10 @@ import {
     TelegramSetSettingsRequestDtoToJSON,
     TelegramSettingsResponseDtoFromJSON,
     TelegramSettingsResponseDtoToJSON,
+    VerifyPlannedAccessRequestFromJSON,
+    VerifyPlannedAccessRequestToJSON,
+    VerifyPlannedAccessResponseFromJSON,
+    VerifyPlannedAccessResponseToJSON,
 } from '../models/index';
 
 export interface ChannelChatGetTelegramSettingV1Request {
@@ -96,6 +105,7 @@ export interface ChannelChatGetTelegramSettingV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelChatGetTelegramSettingV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelChatInitTelegramChatConnectV1Request {
@@ -103,6 +113,7 @@ export interface ChannelChatInitTelegramChatConnectV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelChatInitTelegramChatConnectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelChatRemoveTelegramChatV1Request {
@@ -110,6 +121,7 @@ export interface ChannelChatRemoveTelegramChatV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelChatRemoveTelegramChatV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelChatSetTelegramSettingV1Request {
@@ -118,6 +130,7 @@ export interface ChannelChatSetTelegramSettingV1Request {
     channel_id: number;
     TelegramSetSettingsRequestDto: TelegramSetSettingsRequestDto;
     v?: ChannelChatSetTelegramSettingV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelChatTelegramPostsV1Request {
@@ -125,10 +138,17 @@ export interface ChannelChatTelegramPostsV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelChatTelegramPostsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelChatUpdateOptionsTelegramV1Request {
     SiteUpdateChatTelegramRequest: SiteUpdateChatTelegramRequest;
+    X_Client_Request_Id?: string;
+}
+
+export interface ChannelOptionsDisconnectPlannedProviderV1Request {
+    DisconnectPlannedProviderRequest: DisconnectPlannedProviderRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsGetPlannedV1Request {
@@ -136,6 +156,7 @@ export interface ChannelOptionsGetPlannedV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelOptionsGetPlannedV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsGetPlayListV1Request {
@@ -143,38 +164,61 @@ export interface ChannelOptionsGetPlayListV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelOptionsGetPlayListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsOkV1Request {
     SiteUpdateOptionsOkRequest: SiteUpdateOptionsOkRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsTrovoV1Request {
     SiteUpdateOptionsTrovoRequest: SiteUpdateOptionsTrovoRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsTwitchV1Request {
     SiteUpdateOptionsTwitchRequest: SiteUpdateOptionsTwitchRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsVkV1Request {
     SiteUpdateOptionsVkRequest: SiteUpdateOptionsVkRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsVkVideoLiveV1Request {
     SiteUpdateOptionsVkVideoLiveRequest: SiteUpdateOptionsVkVideoLiveRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdateOptionsYoutubeV1Request {
     SiteUpdateOptionsYoutubeRequest: SiteUpdateOptionsYoutubeRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelOptionsUpdatePlannedV1Request {
     SiteSetPlannedRequest: SiteSetPlannedRequest;
+    X_Client_Request_Id?: string;
+}
+
+export interface ChannelOptionsVerifyPlannedAccessV1Request {
+    VerifyPlannedAccessRequest: VerifyPlannedAccessRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingBulkUpdateV1Request {
     SiteBulkUpdateChannelRequest: SiteBulkUpdateChannelRequest;
+    X_Client_Request_Id?: string;
+}
+
+export interface ChannelSettingConnectProviderV1Request {
+    language: ChannelSettingConnectProviderV1LanguageEnum;
+    project_id: number;
+    channel_id: number;
+    ids: Set<string>;
+    v?: ChannelSettingConnectProviderV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingGetStatusV1Request {
@@ -182,18 +226,22 @@ export interface ChannelSettingGetStatusV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelSettingGetStatusV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingSetNameV1Request {
     SiteSetNameRequest: SiteSetNameRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingUpdateRtmpV1Request {
     SiteSetUrlRequest: SiteSetUrlRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingUpdateSrtUrlV1Request {
     SiteSetSrtUrlRequest: SiteSetSrtUrlRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingUpdateTokenV1Request {
@@ -202,18 +250,22 @@ export interface ChannelSettingUpdateTokenV1Request {
     channel_id: number;
     role: ChannelSettingUpdateTokenV1RoleEnum;
     v?: ChannelSettingUpdateTokenV1VEnum;
+    token_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSettingUpdateTranscoderV1Request {
     SiteSetTranscoderRequest: SiteSetTranscoderRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface TelegramGetPostByFilterV1Request {
     language: TelegramGetPostByFilterV1LanguageEnum;
     project_id: number;
     channel_id: number;
-    filter_mode: number;
+    filter_mode: TelegramGetPostByFilterV1FilterModeEnum;
     v?: TelegramGetPostByFilterV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -224,12 +276,13 @@ export interface TelegramGetPostByFilterV1Request {
  */
 export interface ChannelSettingsApiInterface {
     /**
-     * 
+     * Read saved Telegram post/chat settings for the selected channel_id in project_id. This reads configuration; save filter_mode, message_id, and link using POST /method/channel_settings/chat/telegram/setting.
      * @summary Get telegram settings
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -237,17 +290,19 @@ export interface ChannelSettingsApiInterface {
     channelChatGetTelegramSettingV1Raw(requestParameters: ChannelChatGetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramSettingsResponseDto>>;
 
     /**
+     * Read saved Telegram post/chat settings for the selected channel_id in project_id. This reads configuration; save filter_mode, message_id, and link using POST /method/channel_settings/chat/telegram/setting.
      * Get telegram settings
      */
     channelChatGetTelegramSettingV1(requestParameters: ChannelChatGetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramSettingsResponseDto>;
 
     /**
-     * 
+     * Start Telegram chat connection for the selected internal channel_id in project_id and obtain code. Despite using GET, this creates a connection code; the response alone does not mean connection is complete.
      * @summary Get code for connected chat
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -255,17 +310,19 @@ export interface ChannelSettingsApiInterface {
     channelChatInitTelegramChatConnectV1Raw(requestParameters: ChannelChatInitTelegramChatConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramInitConnectResponseDto>>;
 
     /**
+     * Start Telegram chat connection for the selected internal channel_id in project_id and obtain code. Despite using GET, this creates a connection code; the response alone does not mean connection is complete.
      * Get code for connected chat
      */
     channelChatInitTelegramChatConnectV1(requestParameters: ChannelChatInitTelegramChatConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramInitConnectResponseDto>;
 
     /**
-     * 
+     * Disconnect the Telegram chat of the selected internal channel_id in project_id. Despite using GET, this changes the connection. The successful response has no body; this neither deletes the channel nor disables the streaming destination.
      * @summary Disconnect telegram chat
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -273,18 +330,20 @@ export interface ChannelSettingsApiInterface {
     channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
+     * Disconnect the Telegram chat of the selected internal channel_id in project_id. Despite using GET, this changes the connection. The successful response has no body; this neither deletes the channel nor disables the streaming destination.
      * Disconnect telegram chat
      */
     channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
+     * Save filter_mode, message_id, and link for the Telegram chat of the selected internal channel_id in project_id. message_id identifies a Telegram message, not a StreamVi channel. Success confirms settings were saved, not that a message was sent.
      * @summary Set telegram settings
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {TelegramSetSettingsRequestDto} TelegramSetSettingsRequestDto 
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -292,17 +351,19 @@ export interface ChannelSettingsApiInterface {
     channelChatSetTelegramSettingV1Raw(requestParameters: ChannelChatSetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save filter_mode, message_id, and link for the Telegram chat of the selected internal channel_id in project_id. message_id identifies a Telegram message, not a StreamVi channel. Success confirms settings were saved, not that a message was sent.
      * Set telegram settings
      */
     channelChatSetTelegramSettingV1(requestParameters: ChannelChatSetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Get Telegram posts for the selected channel with internal channel_id in project_id. Returns results; the external chat_id is resolved from the connected channel and does not replace channel_id.
      * @summary Get telegram post list
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -310,14 +371,16 @@ export interface ChannelSettingsApiInterface {
     channelChatTelegramPostsV1Raw(requestParameters: ChannelChatTelegramPostsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramChatPostsResponseDto>>;
 
     /**
+     * Get Telegram posts for the selected channel with internal channel_id in project_id. Returns results; the external chat_id is resolved from the connected channel and does not replace channel_id.
      * Get telegram post list
      */
     channelChatTelegramPostsV1(requestParameters: ChannelChatTelegramPostsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramChatPostsResponseDto>;
 
     /**
-     * 
+     * Change Telegram chat settings for the selected internal channel_id in project_id. Checks the Telegram chat/channel association and connection type; configures the chat rather than changing the broadcast destination\'s active state.
      * @summary Optional settings for telegram
      * @param {SiteUpdateChatTelegramRequest} SiteUpdateChatTelegramRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -325,17 +388,36 @@ export interface ChannelSettingsApiInterface {
     channelChatUpdateOptionsTelegramV1Raw(requestParameters: ChannelChatUpdateOptionsTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Change Telegram chat settings for the selected internal channel_id in project_id. Checks the Telegram chat/channel association and connection type; configures the chat rather than changing the broadcast destination\'s active state.
      * Optional settings for telegram
      */
     channelChatUpdateOptionsTelegramV1(requestParameters: ChannelChatUpdateOptionsTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Disconnect the VK Video Live connection identified by token_id for channel_id in project_id. The account token and selected planned broadcast are preserved.
+     * @summary Disconnect a VK Video Live account from this project channel
+     * @param {DisconnectPlannedProviderRequest} DisconnectPlannedProviderRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelOptionsDisconnectPlannedProviderV1Raw(requestParameters: ChannelOptionsDisconnectPlannedProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyPlannedAccessResponse>>;
+
+    /**
+     * Disconnect the VK Video Live connection identified by token_id for channel_id in project_id. The account token and selected planned broadcast are preserved.
+     * Disconnect a VK Video Live account from this project channel
+     */
+    channelOptionsDisconnectPlannedProviderV1(requestParameters: ChannelOptionsDisconnectPlannedProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VerifyPlannedAccessResponse>;
+
+    /**
+     * Read available platform scheduled broadcasts for the selected internal channel_id in project_id. Requires an active primary token. Pass a result ID to POST /method/channel_settings/options/setPlanned; this is not the /method/scheduler list.
      * @summary Get planned list
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -343,17 +425,19 @@ export interface ChannelSettingsApiInterface {
     channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlannedListResponse>>;
 
     /**
+     * Read available platform scheduled broadcasts for the selected internal channel_id in project_id. Requires an active primary token. Pass a result ID to POST /method/channel_settings/options/setPlanned; this is not the /method/scheduler list.
      * Get planned list
      */
     channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlannedListResponse>;
 
     /**
-     * 
+     * Read platform playlists of the connected internal channel_id in project_id. Requires an active primary token; otherwise token.no_found. Returns external playlist results, not StreamVi video schedules.
      * @summary Get playlists from the platform
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -361,14 +445,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaylistResponse>>;
 
     /**
+     * Read platform playlists of the connected internal channel_id in project_id. Requires an active primary token; otherwise token.no_found. Returns external playlist results, not StreamVi video schedules.
      * Get playlists from the platform
      */
     channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlaylistResponse>;
 
     /**
-     * 
+     * Save OK broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; individual fields define optional/default values. Saving settings does not start a broadcast.
      * @summary Optional settings for ok. Depends on the tariff.
      * @param {SiteUpdateOptionsOkRequest} SiteUpdateOptionsOkRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -376,14 +462,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsOkV1Raw(requestParameters: ChannelOptionsUpdateOptionsOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save OK broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; individual fields define optional/default values. Saving settings does not start a broadcast.
      * Optional settings for ok. Depends on the tariff.
      */
     channelOptionsUpdateOptionsOkV1(requestParameters: ChannelOptionsUpdateOptionsOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save Trovo broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; read optional/default values from the request schema. Updating settings does not start a broadcast.
      * @summary Optional settings for trovo. Depends on the tariff.
      * @param {SiteUpdateOptionsTrovoRequest} SiteUpdateOptionsTrovoRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -391,14 +479,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsTrovoV1Raw(requestParameters: ChannelOptionsUpdateOptionsTrovoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save Trovo broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; read optional/default values from the request schema. Updating settings does not start a broadcast.
      * Optional settings for trovo. Depends on the tariff.
      */
     channelOptionsUpdateOptionsTrovoV1(requestParameters: ChannelOptionsUpdateOptionsTrovoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save Twitch broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID is an external platform ID. Updating settings neither enables the destination nor starts a broadcast.
      * @summary Optional settings for twitch. Depends on the tariff.
      * @param {SiteUpdateOptionsTwitchRequest} SiteUpdateOptionsTwitchRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -406,14 +496,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsTwitchV1Raw(requestParameters: ChannelOptionsUpdateOptionsTwitchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save Twitch broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID is an external platform ID. Updating settings neither enables the destination nor starts a broadcast.
      * Optional settings for twitch. Depends on the tariff.
      */
     channelOptionsUpdateOptionsTwitchV1(requestParameters: ChannelOptionsUpdateOptionsTwitchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save VK broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo, so each DTO field determines defaults/empty values. wall=true records consent to publish on VK wall. Updates an active broadcast; success does not mean a broadcast was started.
      * @summary Optional settings for vk. Depends on the tariff.
      * @param {SiteUpdateOptionsVkRequest} SiteUpdateOptionsVkRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -421,14 +513,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsVkV1Raw(requestParameters: ChannelOptionsUpdateOptionsVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save VK broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo, so each DTO field determines defaults/empty values. wall=true records consent to publish on VK wall. Updates an active broadcast; success does not mean a broadcast was started.
      * Optional settings for vk. Depends on the tariff.
      */
     channelOptionsUpdateOptionsVkV1(requestParameters: ChannelOptionsUpdateOptionsVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save VK Video Live broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID belongs to the platform catalog. Saving settings does not start a broadcast.
      * @summary Optional settings for vk video live. Depends on the tariff.
      * @param {SiteUpdateOptionsVkVideoLiveRequest} SiteUpdateOptionsVkVideoLiveRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -436,14 +530,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsVkVideoLiveV1Raw(requestParameters: ChannelOptionsUpdateOptionsVkVideoLiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save VK Video Live broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID belongs to the platform catalog. Saving settings does not start a broadcast.
      * Optional settings for vk video live. Depends on the tariff.
      */
     channelOptionsUpdateOptionsVkVideoLiveV1(requestParameters: ChannelOptionsUpdateOptionsVkVideoLiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save YouTube broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo. The DTO determines defaults, empty tags, and image. Attempts to update an active broadcast if present; this method does not start a broadcast.
      * @summary Optional settings for youtube. Depends on the tariff.
      * @param {SiteUpdateOptionsYoutubeRequest} SiteUpdateOptionsYoutubeRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -451,14 +547,16 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdateOptionsYoutubeV1Raw(requestParameters: ChannelOptionsUpdateOptionsYoutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save YouTube broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo. The DTO determines defaults, empty tags, and image. Attempts to update an active broadcast if present; this method does not start a broadcast.
      * Optional settings for youtube. Depends on the tariff.
      */
     channelOptionsUpdateOptionsYoutubeV1(requestParameters: ChannelOptionsUpdateOptionsYoutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Select a scheduled platform broadcast for the internal channel_id in project_id. id is the string ID from GET /method/channel_settings/options/getPlanned; auto selects the automatic option, null/omission clears selection. An active primary token is required. Returns the selected planned value; does not create a StreamVi video schedule.
      * @summary Set planned id. Depends on the tariff.
      * @param {SiteSetPlannedRequest} SiteSetPlannedRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -466,14 +564,33 @@ export interface ChannelSettingsApiInterface {
     channelOptionsUpdatePlannedV1Raw(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePlannedResponse>>;
 
     /**
+     * Select a scheduled platform broadcast for the internal channel_id in project_id. id is the string ID from GET /method/channel_settings/options/getPlanned; auto selects the automatic option, null/omission clears selection. An active primary token is required. Returns the selected planned value; does not create a StreamVi video schedule.
      * Set planned id. Depends on the tariff.
      */
     channelOptionsUpdatePlannedV1(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlannedResponse>;
 
     /**
-     * 
+     * Read the VK Video Live connection state for channel_id in project_id. recheck repeats the check; connect explicitly links an accessible account. A regular read does not create a connection.
+     * @summary Confirm a VK channel connection using the first accessible planned broadcast
+     * @param {VerifyPlannedAccessRequest} VerifyPlannedAccessRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelOptionsVerifyPlannedAccessV1Raw(requestParameters: ChannelOptionsVerifyPlannedAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyPlannedAccessResponse>>;
+
+    /**
+     * Read the VK Video Live connection state for channel_id in project_id. recheck repeats the check; connect explicitly links an accessible account. A regular read does not create a connection.
+     * Confirm a VK channel connection using the first accessible planned broadcast
+     */
+    channelOptionsVerifyPlannedAccessV1(requestParameters: ChannelOptionsVerifyPlannedAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VerifyPlannedAccessResponse>;
+
+    /**
+     * Save shared default title/description for project_id and update these fields on supported project destinations. Requires a plan with change_subject; integration access checks channel editing permissions. Other streamInfo fields are preserved. Attempts to update active platform broadcasts; individual failures are logged, so success does not guarantee synchronous updates on every platform. Read the template with GET /method/broadcast/template.
      * @summary Bulk update channel title and description. Global settings.
      * @param {SiteBulkUpdateChannelRequest} SiteBulkUpdateChannelRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -481,17 +598,40 @@ export interface ChannelSettingsApiInterface {
     channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save shared default title/description for project_id and update these fields on supported project destinations. Requires a plan with change_subject; integration access checks channel editing permissions. Other streamInfo fields are preserved. Attempts to update active platform broadcasts; individual failures are logged, so success does not guarantee synchronous updates on every platform. Read the template with GET /method/broadcast/template.
      * Bulk update channel title and description. Global settings.
      */
     channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Get status platform
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Start the VK Video Live OAuth connection to an existing channel_id in project_id using the current planned broadcast ids. Returns an HTTP 302 redirect to provider authorization rather than JSON.
+     * @summary Connect VK Video Live to an existing VK channel
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
+     * @param {Set<string>} ids Planned VK video IDs of this channel
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelSettingsApiInterface
+     */
+    channelSettingConnectProviderV1Raw(requestParameters: ChannelSettingConnectProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Start the VK Video Live OAuth connection to an existing channel_id in project_id using the current planned broadcast ids. Returns an HTTP 302 redirect to provider authorization rather than JSON.
+     * Connect VK Video Live to an existing VK channel
+     */
+    channelSettingConnectProviderV1(requestParameters: ChannelSettingConnectProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Read platform channel status by internal channel_id in project_id. Requires an active primary platform token; otherwise token.no_found. This is platform status, not the project\'s desired active value; enable/disable with PUT /method/channel/status.
+     * @summary Get status platform
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} project_id Project id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -499,14 +639,16 @@ export interface ChannelSettingsApiInterface {
     channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>>;
 
     /**
+     * Read platform channel status by internal channel_id in project_id. Requires an active primary platform token; otherwise token.no_found. This is platform status, not the project\'s desired active value; enable/disable with PUT /method/channel/status.
      * Get status platform
      */
     channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse>;
 
     /**
-     * 
+     * Rename the channel with internal channel_id in project_id if the platform allows edit_name; otherwise channel.name_update. The name changes on the shared channel entity and is visible to projects using this channel. This is the channel display name, not the current broadcast title.
      * @summary Set name from custom channel. Global settings.
      * @param {SiteSetNameRequest} SiteSetNameRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -514,14 +656,16 @@ export interface ChannelSettingsApiInterface {
     channelSettingSetNameV1Raw(requestParameters: ChannelSettingSetNameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Rename the channel with internal channel_id in project_id if the platform allows edit_name; otherwise channel.name_update. The name changes on the shared channel entity and is visible to projects using this channel. This is the channel display name, not the current broadcast title.
      * Set name from custom channel. Global settings.
      */
     channelSettingSetNameV1(requestParameters: ChannelSettingSetNameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Save the shared RTMP/RTMPS publishing URL of the channel with internal channel_id in project_id. url with stream_key specifies credentials; without stream_key the URL must contain the stream path/name. Changes the shared channel entity, not only the project relationship. Success confirms ingress was saved, not that a connection was established. Do not log secret credentials.
      * @summary Set rtmp url from channel. Global settings.
      * @param {SiteSetUrlRequest} SiteSetUrlRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -529,14 +673,16 @@ export interface ChannelSettingsApiInterface {
     channelSettingUpdateRtmpV1Raw(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save the shared RTMP/RTMPS publishing URL of the channel with internal channel_id in project_id. url with stream_key specifies credentials; without stream_key the URL must contain the stream path/name. Changes the shared channel entity, not only the project relationship. Success confirms ingress was saved, not that a connection was established. Do not log secret credentials.
      * Set rtmp url from channel. Global settings.
      */
     channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Replace the complete SRT ingress_url of the internal channel_id in project_id. The URL includes port and streamid/latency parameters when needed and may contain secrets. Changes the shared channel entity and clears RTMP settings and the separate ingress_stream_key. Success does not confirm an active broadcast.
      * @summary Set srt url from channel. Global settings.
      * @param {SiteSetSrtUrlRequest} SiteSetSrtUrlRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -544,18 +690,21 @@ export interface ChannelSettingsApiInterface {
     channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Replace the complete SRT ingress_url of the internal channel_id in project_id. The URL includes port and streamid/latency parameters when needed and may contain secrets. Changes the shared channel entity and clears RTMP settings and the separate ingress_stream_key. Success does not confirm an active broadcast.
      * Set srt url from channel. Global settings.
      */
     channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Start platform token OAuth refresh for the internal channel_id in project_id and the selected role. Returns an HTTP redirect to platform authorization, not new-token JSON. User authorization and a callback are required to finish; GET initiates an OAuth flow.
      * @summary Redirect to OAuth for updating a channel token
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'account' | 'group'} role Token role
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [token_id] Local ID of a linked account token
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -563,14 +712,16 @@ export interface ChannelSettingsApiInterface {
     channelSettingUpdateTokenV1Raw(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
+     * Start platform token OAuth refresh for the internal channel_id in project_id and the selected role. Returns an HTTP redirect to platform authorization, not new-token JSON. User authorization and a callback are required to finish; GET initiates an OAuth flow.
      * Redirect to OAuth for updating a channel token
      */
     channelSettingUpdateTokenV1(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * 
+     * Assign transcoder_id to a channel in the selected project_id; omitting transcoder_id clears the assignment. Changes the project/channel link, not settings for all projects. Checks that the transcoder belongs to the project; Twitch mode allows only one Twitch channel. Create/change the transcoder itself through /method/transcoder/add and /method/transcoder/update.
      * @summary Set transcoder from channel. Personal settings.
      * @param {SiteSetTranscoderRequest} SiteSetTranscoderRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -578,18 +729,20 @@ export interface ChannelSettingsApiInterface {
     channelSettingUpdateTranscoderV1Raw(requestParameters: ChannelSettingUpdateTranscoderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Assign transcoder_id to a channel in the selected project_id; omitting transcoder_id clears the assignment. Changes the project/channel link, not settings for all projects. Checks that the transcoder belongs to the project; Twitch mode allows only one Twitch channel. Create/change the transcoder itself through /method/transcoder/add and /method/transcoder/update.
      * Set transcoder from channel. Personal settings.
      */
     channelSettingUpdateTranscoderV1(requestParameters: ChannelSettingUpdateTranscoderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Get a channel\'s Telegram post using filter_mode from the request enum. channel_id is the internal ID in the selected project_id; a Telegram message ID has a separate purpose. Returns a single post matching the selected filter, not a list.
      * @summary Get telegram post by filter
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
-     * @param {number} filter_mode 
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
+     * @param {0 | 1 | 2 | 3} filter_mode Telegram post selection rule from enum; not an OAuth scope.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelSettingsApiInterface
@@ -597,6 +750,7 @@ export interface ChannelSettingsApiInterface {
     telegramGetPostByFilterV1Raw(requestParameters: TelegramGetPostByFilterV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramChatPostsItem>>;
 
     /**
+     * Get a channel\'s Telegram post using filter_mode from the request enum. channel_id is the internal ID in the selected project_id; a Telegram message ID has a separate purpose. Returns a single post matching the selected filter, not a list.
      * Get telegram post by filter
      */
     telegramGetPostByFilterV1(requestParameters: TelegramGetPostByFilterV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramChatPostsItem>;
@@ -609,6 +763,7 @@ export interface ChannelSettingsApiInterface {
 export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettingsApiInterface {
 
     /**
+     * Read saved Telegram post/chat settings for the selected channel_id in project_id. This reads configuration; save filter_mode, message_id, and link using POST /method/channel_settings/chat/telegram/setting.
      * Get telegram settings
      */
     async channelChatGetTelegramSettingV1Raw(requestParameters: ChannelChatGetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramSettingsResponseDto>> {
@@ -655,9 +810,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -671,6 +835,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read saved Telegram post/chat settings for the selected channel_id in project_id. This reads configuration; save filter_mode, message_id, and link using POST /method/channel_settings/chat/telegram/setting.
      * Get telegram settings
      */
     async channelChatGetTelegramSettingV1(requestParameters: ChannelChatGetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramSettingsResponseDto> {
@@ -679,6 +844,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Start Telegram chat connection for the selected internal channel_id in project_id and obtain code. Despite using GET, this creates a connection code; the response alone does not mean connection is complete.
      * Get code for connected chat
      */
     async channelChatInitTelegramChatConnectV1Raw(requestParameters: ChannelChatInitTelegramChatConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramInitConnectResponseDto>> {
@@ -725,9 +891,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -741,6 +916,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Start Telegram chat connection for the selected internal channel_id in project_id and obtain code. Despite using GET, this creates a connection code; the response alone does not mean connection is complete.
      * Get code for connected chat
      */
     async channelChatInitTelegramChatConnectV1(requestParameters: ChannelChatInitTelegramChatConnectV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramInitConnectResponseDto> {
@@ -749,6 +925,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Disconnect the Telegram chat of the selected internal channel_id in project_id. Despite using GET, this changes the connection. The successful response has no body; this neither deletes the channel nor disables the streaming destination.
      * Disconnect telegram chat
      */
     async channelChatRemoveTelegramChatV1Raw(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -795,9 +972,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -811,6 +997,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Disconnect the Telegram chat of the selected internal channel_id in project_id. Despite using GET, this changes the connection. The successful response has no body; this neither deletes the channel nor disables the streaming destination.
      * Disconnect telegram chat
      */
     async channelChatRemoveTelegramChatV1(requestParameters: ChannelChatRemoveTelegramChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -818,6 +1005,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save filter_mode, message_id, and link for the Telegram chat of the selected internal channel_id in project_id. message_id identifies a Telegram message, not a StreamVi channel. Success confirms settings were saved, not that a message was sent.
      * Set telegram settings
      */
     async channelChatSetTelegramSettingV1Raw(requestParameters: ChannelChatSetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -873,9 +1061,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -890,6 +1087,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save filter_mode, message_id, and link for the Telegram chat of the selected internal channel_id in project_id. message_id identifies a Telegram message, not a StreamVi channel. Success confirms settings were saved, not that a message was sent.
      * Set telegram settings
      */
     async channelChatSetTelegramSettingV1(requestParameters: ChannelChatSetTelegramSettingV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -898,6 +1096,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Get Telegram posts for the selected channel with internal channel_id in project_id. Returns results; the external chat_id is resolved from the connected channel and does not replace channel_id.
      * Get telegram post list
      */
     async channelChatTelegramPostsV1Raw(requestParameters: ChannelChatTelegramPostsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramChatPostsResponseDto>> {
@@ -944,9 +1143,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -960,6 +1168,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Get Telegram posts for the selected channel with internal channel_id in project_id. Returns results; the external chat_id is resolved from the connected channel and does not replace channel_id.
      * Get telegram post list
      */
     async channelChatTelegramPostsV1(requestParameters: ChannelChatTelegramPostsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramChatPostsResponseDto> {
@@ -968,6 +1177,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Change Telegram chat settings for the selected internal channel_id in project_id. Checks the Telegram chat/channel association and connection type; configures the chat rather than changing the broadcast destination\'s active state.
      * Optional settings for telegram
      */
     async channelChatUpdateOptionsTelegramV1Raw(requestParameters: ChannelChatUpdateOptionsTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -984,9 +1194,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:write"]);
         }
 
         const response = await this.request({
@@ -1001,6 +1220,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Change Telegram chat settings for the selected internal channel_id in project_id. Checks the Telegram chat/channel association and connection type; configures the chat rather than changing the broadcast destination\'s active state.
      * Optional settings for telegram
      */
     async channelChatUpdateOptionsTelegramV1(requestParameters: ChannelChatUpdateOptionsTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1009,6 +1229,59 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Disconnect the VK Video Live connection identified by token_id for channel_id in project_id. The account token and selected planned broadcast are preserved.
+     * Disconnect a VK Video Live account from this project channel
+     */
+    async channelOptionsDisconnectPlannedProviderV1Raw(requestParameters: ChannelOptionsDisconnectPlannedProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyPlannedAccessResponse>> {
+        if (requestParameters['DisconnectPlannedProviderRequest'] == null) {
+            throw new runtime.RequiredError(
+                'DisconnectPlannedProviderRequest',
+                'Required parameter "DisconnectPlannedProviderRequest" was null or undefined when calling channelOptionsDisconnectPlannedProviderV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel_settings/options/disconnectPlannedProvider`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: DisconnectPlannedProviderRequestToJSON({ ...requestParameters['DisconnectPlannedProviderRequest'], v: requestParameters['DisconnectPlannedProviderRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => VerifyPlannedAccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Disconnect the VK Video Live connection identified by token_id for channel_id in project_id. The account token and selected planned broadcast are preserved.
+     * Disconnect a VK Video Live account from this project channel
+     */
+    async channelOptionsDisconnectPlannedProviderV1(requestParameters: ChannelOptionsDisconnectPlannedProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VerifyPlannedAccessResponse> {
+        const response = await this.channelOptionsDisconnectPlannedProviderV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Read available platform scheduled broadcasts for the selected internal channel_id in project_id. Requires an active primary token. Pass a result ID to POST /method/channel_settings/options/setPlanned; this is not the /method/scheduler list.
      * Get planned list
      */
     async channelOptionsGetPlannedV1Raw(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlannedListResponse>> {
@@ -1055,9 +1328,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -1071,6 +1353,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read available platform scheduled broadcasts for the selected internal channel_id in project_id. Requires an active primary token. Pass a result ID to POST /method/channel_settings/options/setPlanned; this is not the /method/scheduler list.
      * Get planned list
      */
     async channelOptionsGetPlannedV1(requestParameters: ChannelOptionsGetPlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlannedListResponse> {
@@ -1079,6 +1362,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read platform playlists of the connected internal channel_id in project_id. Requires an active primary token; otherwise token.no_found. Returns external playlist results, not StreamVi video schedules.
      * Get playlists from the platform
      */
     async channelOptionsGetPlayListV1Raw(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaylistResponse>> {
@@ -1125,9 +1409,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -1141,6 +1434,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read platform playlists of the connected internal channel_id in project_id. Requires an active primary token; otherwise token.no_found. Returns external playlist results, not StreamVi video schedules.
      * Get playlists from the platform
      */
     async channelOptionsGetPlayListV1(requestParameters: ChannelOptionsGetPlayListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlaylistResponse> {
@@ -1149,6 +1443,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save OK broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; individual fields define optional/default values. Saving settings does not start a broadcast.
      * Optional settings for ok. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsOkV1Raw(requestParameters: ChannelOptionsUpdateOptionsOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1165,9 +1460,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1182,6 +1486,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save OK broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; individual fields define optional/default values. Saving settings does not start a broadcast.
      * Optional settings for ok. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsOkV1(requestParameters: ChannelOptionsUpdateOptionsOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1190,6 +1495,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save Trovo broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; read optional/default values from the request schema. Updating settings does not start a broadcast.
      * Optional settings for trovo. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTrovoV1Raw(requestParameters: ChannelOptionsUpdateOptionsTrovoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1206,9 +1512,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1223,6 +1538,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save Trovo broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; read optional/default values from the request schema. Updating settings does not start a broadcast.
      * Optional settings for trovo. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTrovoV1(requestParameters: ChannelOptionsUpdateOptionsTrovoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1231,6 +1547,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save Twitch broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID is an external platform ID. Updating settings neither enables the destination nor starts a broadcast.
      * Optional settings for twitch. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTwitchV1Raw(requestParameters: ChannelOptionsUpdateOptionsTwitchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1247,9 +1564,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1264,6 +1590,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save Twitch broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID is an external platform ID. Updating settings neither enables the destination nor starts a broadcast.
      * Optional settings for twitch. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsTwitchV1(requestParameters: ChannelOptionsUpdateOptionsTwitchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1272,6 +1599,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save VK broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo, so each DTO field determines defaults/empty values. wall=true records consent to publish on VK wall. Updates an active broadcast; success does not mean a broadcast was started.
      * Optional settings for vk. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkV1Raw(requestParameters: ChannelOptionsUpdateOptionsVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1288,9 +1616,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1305,6 +1642,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save VK broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo, so each DTO field determines defaults/empty values. wall=true records consent to publish on VK wall. Updates an active broadcast; success does not mean a broadcast was started.
      * Optional settings for vk. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkV1(requestParameters: ChannelOptionsUpdateOptionsVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1313,6 +1651,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save VK Video Live broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID belongs to the platform catalog. Saving settings does not start a broadcast.
      * Optional settings for vk video live. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkVideoLiveV1Raw(requestParameters: ChannelOptionsUpdateOptionsVkVideoLiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1329,9 +1668,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1346,6 +1694,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save VK Video Live broadcast settings for the selected internal channel_id in project_id. Requires a plan with change_subject. Transformed DTO fields are merged into current streamInfo; category ID belongs to the platform catalog. Saving settings does not start a broadcast.
      * Optional settings for vk video live. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsVkVideoLiveV1(requestParameters: ChannelOptionsUpdateOptionsVkVideoLiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1354,6 +1703,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save YouTube broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo. The DTO determines defaults, empty tags, and image. Attempts to update an active broadcast if present; this method does not start a broadcast.
      * Optional settings for youtube. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsYoutubeV1Raw(requestParameters: ChannelOptionsUpdateOptionsYoutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1370,9 +1720,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1387,6 +1746,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save YouTube broadcast settings for the channel with internal channel_id in project_id. Requires a plan with change_subject; parameters pass through toFormatted DTO and merge into current streamInfo. The DTO determines defaults, empty tags, and image. Attempts to update an active broadcast if present; this method does not start a broadcast.
      * Optional settings for youtube. Depends on the tariff.
      */
     async channelOptionsUpdateOptionsYoutubeV1(requestParameters: ChannelOptionsUpdateOptionsYoutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1395,6 +1755,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Select a scheduled platform broadcast for the internal channel_id in project_id. id is the string ID from GET /method/channel_settings/options/getPlanned; auto selects the automatic option, null/omission clears selection. An active primary token is required. Returns the selected planned value; does not create a StreamVi video schedule.
      * Set planned id. Depends on the tariff.
      */
     async channelOptionsUpdatePlannedV1Raw(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePlannedResponse>> {
@@ -1411,9 +1772,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1428,6 +1798,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Select a scheduled platform broadcast for the internal channel_id in project_id. id is the string ID from GET /method/channel_settings/options/getPlanned; auto selects the automatic option, null/omission clears selection. An active primary token is required. Returns the selected planned value; does not create a StreamVi video schedule.
      * Set planned id. Depends on the tariff.
      */
     async channelOptionsUpdatePlannedV1(requestParameters: ChannelOptionsUpdatePlannedV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlannedResponse> {
@@ -1436,6 +1807,59 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read the VK Video Live connection state for channel_id in project_id. recheck repeats the check; connect explicitly links an accessible account. A regular read does not create a connection.
+     * Confirm a VK channel connection using the first accessible planned broadcast
+     */
+    async channelOptionsVerifyPlannedAccessV1Raw(requestParameters: ChannelOptionsVerifyPlannedAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyPlannedAccessResponse>> {
+        if (requestParameters['VerifyPlannedAccessRequest'] == null) {
+            throw new runtime.RequiredError(
+                'VerifyPlannedAccessRequest',
+                'Required parameter "VerifyPlannedAccessRequest" was null or undefined when calling channelOptionsVerifyPlannedAccessV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel_settings/options/verifyPlannedAccess`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: VerifyPlannedAccessRequestToJSON({ ...requestParameters['VerifyPlannedAccessRequest'], v: requestParameters['VerifyPlannedAccessRequest'].v ?? '1' }),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => VerifyPlannedAccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Read the VK Video Live connection state for channel_id in project_id. recheck repeats the check; connect explicitly links an accessible account. A regular read does not create a connection.
+     * Confirm a VK channel connection using the first accessible planned broadcast
+     */
+    async channelOptionsVerifyPlannedAccessV1(requestParameters: ChannelOptionsVerifyPlannedAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VerifyPlannedAccessResponse> {
+        const response = await this.channelOptionsVerifyPlannedAccessV1Raw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Save shared default title/description for project_id and update these fields on supported project destinations. Requires a plan with change_subject; integration access checks channel editing permissions. Other streamInfo fields are preserved. Attempts to update active platform broadcasts; individual failures are logged, so success does not guarantee synchronous updates on every platform. Read the template with GET /method/broadcast/template.
      * Bulk update channel title and description. Global settings.
      */
     async channelSettingBulkUpdateV1Raw(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1452,9 +1876,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1469,6 +1902,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save shared default title/description for project_id and update these fields on supported project destinations. Requires a plan with change_subject; integration access checks channel editing permissions. Other streamInfo fields are preserved. Attempts to update active platform broadcasts; individual failures are logged, so success does not guarantee synchronous updates on every platform. Read the template with GET /method/broadcast/template.
      * Bulk update channel title and description. Global settings.
      */
     async channelSettingBulkUpdateV1(requestParameters: ChannelSettingBulkUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1477,6 +1911,98 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Start the VK Video Live OAuth connection to an existing channel_id in project_id using the current planned broadcast ids. Returns an HTTP 302 redirect to provider authorization rather than JSON.
+     * Connect VK Video Live to an existing VK channel
+     */
+    async channelSettingConnectProviderV1Raw(requestParameters: ChannelSettingConnectProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['language'] == null) {
+            throw new runtime.RequiredError(
+                'language',
+                'Required parameter "language" was null or undefined when calling channelSettingConnectProviderV1().'
+            );
+        }
+
+        if (requestParameters['project_id'] == null) {
+            throw new runtime.RequiredError(
+                'project_id',
+                'Required parameter "project_id" was null or undefined when calling channelSettingConnectProviderV1().'
+            );
+        }
+
+        if (requestParameters['channel_id'] == null) {
+            throw new runtime.RequiredError(
+                'channel_id',
+                'Required parameter "channel_id" was null or undefined when calling channelSettingConnectProviderV1().'
+            );
+        }
+
+        if (requestParameters['ids'] == null) {
+            throw new runtime.RequiredError(
+                'ids',
+                'Required parameter "ids" was null or undefined when calling channelSettingConnectProviderV1().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['v'] != null) {
+            queryParameters['v'] = requestParameters['v'];
+        } else {
+            queryParameters['v'] = '1';
+        }
+
+        if (requestParameters['language'] != null) {
+            queryParameters['language'] = requestParameters['language'];
+        }
+
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
+        if (requestParameters['channel_id'] != null) {
+            queryParameters['channel_id'] = requestParameters['channel_id'];
+        }
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
+        }
+
+        const response = await this.request({
+            path: `/method/channel_settings/connect-provider`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Start the VK Video Live OAuth connection to an existing channel_id in project_id using the current planned broadcast ids. Returns an HTTP 302 redirect to provider authorization rather than JSON.
+     * Connect VK Video Live to an existing VK channel
+     */
+    async channelSettingConnectProviderV1(requestParameters: ChannelSettingConnectProviderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.channelSettingConnectProviderV1Raw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Read platform channel status by internal channel_id in project_id. Requires an active primary platform token; otherwise token.no_found. This is platform status, not the project\'s desired active value; enable/disable with PUT /method/channel/status.
      * Get status platform
      */
     async channelSettingGetStatusV1Raw(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteChannelStatusResponse>> {
@@ -1523,9 +2049,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -1539,6 +2074,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Read platform channel status by internal channel_id in project_id. Requires an active primary platform token; otherwise token.no_found. This is platform status, not the project\'s desired active value; enable/disable with PUT /method/channel/status.
      * Get status platform
      */
     async channelSettingGetStatusV1(requestParameters: ChannelSettingGetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteChannelStatusResponse> {
@@ -1547,6 +2083,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Rename the channel with internal channel_id in project_id if the platform allows edit_name; otherwise channel.name_update. The name changes on the shared channel entity and is visible to projects using this channel. This is the channel display name, not the current broadcast title.
      * Set name from custom channel. Global settings.
      */
     async channelSettingSetNameV1Raw(requestParameters: ChannelSettingSetNameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1563,9 +2100,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1580,6 +2126,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Rename the channel with internal channel_id in project_id if the platform allows edit_name; otherwise channel.name_update. The name changes on the shared channel entity and is visible to projects using this channel. This is the channel display name, not the current broadcast title.
      * Set name from custom channel. Global settings.
      */
     async channelSettingSetNameV1(requestParameters: ChannelSettingSetNameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1588,6 +2135,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save the shared RTMP/RTMPS publishing URL of the channel with internal channel_id in project_id. url with stream_key specifies credentials; without stream_key the URL must contain the stream path/name. Changes the shared channel entity, not only the project relationship. Success confirms ingress was saved, not that a connection was established. Do not log secret credentials.
      * Set rtmp url from channel. Global settings.
      */
     async channelSettingUpdateRtmpV1Raw(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1604,9 +2152,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1621,6 +2178,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Save the shared RTMP/RTMPS publishing URL of the channel with internal channel_id in project_id. url with stream_key specifies credentials; without stream_key the URL must contain the stream path/name. Changes the shared channel entity, not only the project relationship. Success confirms ingress was saved, not that a connection was established. Do not log secret credentials.
      * Set rtmp url from channel. Global settings.
      */
     async channelSettingUpdateRtmpV1(requestParameters: ChannelSettingUpdateRtmpV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1629,6 +2187,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Replace the complete SRT ingress_url of the internal channel_id in project_id. The URL includes port and streamid/latency parameters when needed and may contain secrets. Changes the shared channel entity and clears RTMP settings and the separate ingress_stream_key. Success does not confirm an active broadcast.
      * Set srt url from channel. Global settings.
      */
     async channelSettingUpdateSrtUrlV1Raw(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1645,9 +2204,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1662,6 +2230,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Replace the complete SRT ingress_url of the internal channel_id in project_id. The URL includes port and streamid/latency parameters when needed and may contain secrets. Changes the shared channel entity and clears RTMP settings and the separate ingress_stream_key. Success does not confirm an active broadcast.
      * Set srt url from channel. Global settings.
      */
     async channelSettingUpdateSrtUrlV1(requestParameters: ChannelSettingUpdateSrtUrlV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1670,6 +2239,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Start platform token OAuth refresh for the internal channel_id in project_id and the selected role. Returns an HTTP redirect to platform authorization, not new-token JSON. User authorization and a callback are required to finish; GET initiates an OAuth flow.
      * Redirect to OAuth for updating a channel token
      */
     async channelSettingUpdateTokenV1Raw(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -1721,15 +2291,28 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
             queryParameters['channel_id'] = requestParameters['channel_id'];
         }
 
+        if (requestParameters['token_id'] != null) {
+            queryParameters['token_id'] = requestParameters['token_id'];
+        }
+
         if (requestParameters['role'] != null) {
             queryParameters['role'] = requestParameters['role'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1743,6 +2326,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Start platform token OAuth refresh for the internal channel_id in project_id and the selected role. Returns an HTTP redirect to platform authorization, not new-token JSON. User authorization and a callback are required to finish; GET initiates an OAuth flow.
      * Redirect to OAuth for updating a channel token
      */
     async channelSettingUpdateTokenV1(requestParameters: ChannelSettingUpdateTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -1750,6 +2334,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Assign transcoder_id to a channel in the selected project_id; omitting transcoder_id clears the assignment. Changes the project/channel link, not settings for all projects. Checks that the transcoder belongs to the project; Twitch mode allows only one Twitch channel. Create/change the transcoder itself through /method/transcoder/add and /method/transcoder/update.
      * Set transcoder from channel. Personal settings.
      */
     async channelSettingUpdateTranscoderV1Raw(requestParameters: ChannelSettingUpdateTranscoderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1766,9 +2351,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read", "channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read", "channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read", "channel:write"]);
         }
 
         const response = await this.request({
@@ -1783,6 +2377,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Assign transcoder_id to a channel in the selected project_id; omitting transcoder_id clears the assignment. Changes the project/channel link, not settings for all projects. Checks that the transcoder belongs to the project; Twitch mode allows only one Twitch channel. Create/change the transcoder itself through /method/transcoder/add and /method/transcoder/update.
      * Set transcoder from channel. Personal settings.
      */
     async channelSettingUpdateTranscoderV1(requestParameters: ChannelSettingUpdateTranscoderV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1791,6 +2386,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Get a channel\'s Telegram post using filter_mode from the request enum. channel_id is the internal ID in the selected project_id; a Telegram message ID has a separate purpose. Returns a single post matching the selected filter, not a list.
      * Get telegram post by filter
      */
     async telegramGetPostByFilterV1Raw(requestParameters: TelegramGetPostByFilterV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TelegramChatPostsItem>> {
@@ -1848,9 +2444,18 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["chat:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["chat:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["chat:read"]);
         }
 
         const response = await this.request({
@@ -1864,6 +2469,7 @@ export class ChannelSettingsApi extends runtime.BaseAPI implements ChannelSettin
     }
 
     /**
+     * Get a channel\'s Telegram post using filter_mode from the request enum. channel_id is the internal ID in the selected project_id; a Telegram message ID has a separate purpose. Returns a single post matching the selected filter, not a list.
      * Get telegram post by filter
      */
     async telegramGetPostByFilterV1(requestParameters: TelegramGetPostByFilterV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TelegramChatPostsItem> {
@@ -1988,6 +2594,22 @@ export type ChannelOptionsGetPlayListV1VEnum = typeof ChannelOptionsGetPlayListV
 /**
  * @export
  */
+export const ChannelSettingConnectProviderV1LanguageEnum = {
+    ru: 'ru',
+    en: 'en',
+    cn: 'cn'
+} as const;
+export type ChannelSettingConnectProviderV1LanguageEnum = typeof ChannelSettingConnectProviderV1LanguageEnum[keyof typeof ChannelSettingConnectProviderV1LanguageEnum];
+/**
+ * @export
+ */
+export const ChannelSettingConnectProviderV1VEnum = {
+    _1: '1'
+} as const;
+export type ChannelSettingConnectProviderV1VEnum = typeof ChannelSettingConnectProviderV1VEnum[keyof typeof ChannelSettingConnectProviderV1VEnum];
+/**
+ * @export
+ */
 export const ChannelSettingGetStatusV1LanguageEnum = {
     ru: 'ru',
     en: 'en',
@@ -2034,6 +2656,16 @@ export const TelegramGetPostByFilterV1LanguageEnum = {
     cn: 'cn'
 } as const;
 export type TelegramGetPostByFilterV1LanguageEnum = typeof TelegramGetPostByFilterV1LanguageEnum[keyof typeof TelegramGetPostByFilterV1LanguageEnum];
+/**
+ * @export
+ */
+export const TelegramGetPostByFilterV1FilterModeEnum = {
+    NUMBER_0: 0,
+    NUMBER_1: 1,
+    NUMBER_2: 2,
+    NUMBER_3: 3
+} as const;
+export type TelegramGetPostByFilterV1FilterModeEnum = typeof TelegramGetPostByFilterV1FilterModeEnum[keyof typeof TelegramGetPostByFilterV1FilterModeEnum];
 /**
  * @export
  */

@@ -44,7 +44,7 @@ const index_1 = require("../models/index");
  */
 class MethodIntegrationApi extends runtime.BaseAPI {
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * Get template widget data
      */
     async methodIntegrationTemplateGetTemplateWidgetDataV1Raw(requestParameters, initOverrides) {
@@ -74,9 +74,16 @@ class MethodIntegrationApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["integration:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["integration:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["integration:read"]);
         }
         const response = await this.request({
             path: `/method/integration-template/widget/get`,
@@ -87,7 +94,7 @@ class MethodIntegrationApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.IntegrationTemplateWidgetGetResponseFromJSON)(jsonValue));
     }
     /**
-     * Rate limit: 10 requests per 1 second
+     * Read a template\'s JSON widget payload in the selected project_id after checking template/project installation ownership. This is widget data, not the full server tool catalog or a widget custom actions list. Write using POST /method/integration_project_template/widget/set. Rate limit: 10 requests per 1 second.
      * Get template widget data
      */
     async methodIntegrationTemplateGetTemplateWidgetDataV1(requestParameters, initOverrides) {

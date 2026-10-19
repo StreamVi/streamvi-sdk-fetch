@@ -11,11 +11,15 @@
  */
 import * as runtime from '../runtime';
 import type { SuccessResponse, UserProfileResponse } from '../models/index';
+export interface UserGetProfileV1Request {
+    X_Client_Request_Id?: string;
+}
 export interface UserUpdateProfileV1Request {
     language: UserUpdateProfileV1LanguageEnum;
     first_name: string;
     last_name: string;
     v?: UserUpdateProfileV1VEnum;
+    X_Client_Request_Id?: string;
     avatar?: Blob;
 }
 /**
@@ -28,25 +32,27 @@ export interface UsersApiInterface {
     /**
      * Use /method/account/profile instead.
      * @summary Get user profile
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
      * @memberof UsersApiInterface
      */
-    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
      * Use /method/account/profile instead.
      * @summary Update profile
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} first_name First name
      * @param {string} last_name Last name
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {Blob} [avatar] File for avatar upload max size 2MB, format: jpeg, jpg, png
      * @param {*} [options] Override http request option.
      * @deprecated
@@ -70,13 +76,13 @@ export declare class UsersApi extends runtime.BaseAPI implements UsersApiInterfa
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
+    userGetProfileV1Raw(requestParameters: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UserProfileResponse>>;
     /**
      * Use /method/account/profile instead.
      * Get user profile
      * @deprecated
      */
-    userGetProfileV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
+    userGetProfileV1(requestParameters?: UserGetProfileV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UserProfileResponse>;
     /**
      * Use /method/account/profile instead.
      * Update profile

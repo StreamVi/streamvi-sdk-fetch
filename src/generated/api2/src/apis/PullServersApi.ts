@@ -25,6 +25,10 @@ import {
     PullServerListResponseToJSON,
 } from '../models/index';
 
+export interface PullServersGetPullServersV1Request {
+    X_Client_Request_Id?: string;
+}
+
 /**
  * PullServersApi - interface
  * 
@@ -33,18 +37,20 @@ import {
  */
 export interface PullServersApiInterface {
     /**
-     * 
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * @summary Get pull servers
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PullServersApiInterface
      */
-    pullServersGetPullServersV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullServerListResponse>>;
+    pullServersGetPullServersV1Raw(requestParameters: PullServersGetPullServersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullServerListResponse>>;
 
     /**
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * Get pull servers
      */
-    pullServersGetPullServersV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullServerListResponse>;
+    pullServersGetPullServersV1(requestParameters: PullServersGetPullServersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullServerListResponse>;
 
 }
 
@@ -54,12 +60,17 @@ export interface PullServersApiInterface {
 export class PullServersApi extends runtime.BaseAPI implements PullServersApiInterface {
 
     /**
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * Get pull servers
      */
-    async pullServersGetPullServersV1Raw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullServerListResponse>> {
+    async pullServersGetPullServersV1Raw(requestParameters: PullServersGetPullServersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PullServerListResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
 
         const response = await this.request({
             path: `/method/pull-servers/list`,
@@ -72,10 +83,11 @@ export class PullServersApi extends runtime.BaseAPI implements PullServersApiInt
     }
 
     /**
+     * Read the public pull server list localized using lang. This lists available regions/servers for pull links without creating a link or connection.
      * Get pull servers
      */
-    async pullServersGetPullServersV1(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullServerListResponse> {
-        const response = await this.pullServersGetPullServersV1Raw(initOverrides);
+    async pullServersGetPullServersV1(requestParameters: PullServersGetPullServersV1Request = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PullServerListResponse> {
+        const response = await this.pullServersGetPullServersV1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -44,11 +44,18 @@ const index_1 = require("../models/index");
  */
 class ProjectHistoryApi extends runtime.BaseAPI {
     /**
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * Get project history of actions
      */
     async projectHistoryListV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling projectHistoryListV1().');
+        }
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling projectHistoryListV1().');
+        }
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling projectHistoryListV1().');
         }
         if (requestParameters['project_id'] == null) {
             throw new runtime.RequiredError('project_id', 'Required parameter "project_id" was null or undefined when calling projectHistoryListV1().');
@@ -85,9 +92,16 @@ class ProjectHistoryApi extends runtime.BaseAPI {
             queryParameters['group_id'] = requestParameters['group_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
         const response = await this.request({
             path: `/method/project_history/list`,
@@ -98,6 +112,7 @@ class ProjectHistoryApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedProjectHistoryResponseFromJSON)(jsonValue));
     }
     /**
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * Get project history of actions
      */
     async projectHistoryListV1(requestParameters, initOverrides) {

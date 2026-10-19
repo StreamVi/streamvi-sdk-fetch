@@ -35,6 +35,7 @@ export interface ProjectChannelChangeAccessV1Request {
     to_project_id: number;
     access_type: ProjectChannelChangeAccessV1AccessTypeEnum;
     v?: ProjectChannelChangeAccessV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ProjectChannelDelV1Request {
@@ -43,6 +44,7 @@ export interface ProjectChannelDelV1Request {
     channel_id: number;
     target_project_id: number;
     v?: ProjectChannelDelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ProjectChannelListV1Request {
@@ -50,6 +52,7 @@ export interface ProjectChannelListV1Request {
     project_id: number;
     channel_id: number;
     v?: ProjectChannelListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ProjectChannelTransferOwnerV1Request {
@@ -58,6 +61,7 @@ export interface ProjectChannelTransferOwnerV1Request {
     channel_id: number;
     to_project_id: number;
     v?: ProjectChannelTransferOwnerV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -68,14 +72,15 @@ export interface ProjectChannelTransferOwnerV1Request {
  */
 export interface ProjectChannelApiInterface {
     /**
-     * 
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * @summary Change access for project in channel
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {number} to_project_id Target project id
      * @param {1 | 2} access_type Access type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -83,18 +88,20 @@ export interface ProjectChannelApiInterface {
     projectChannelChangeAccessV1Raw(requestParameters: ProjectChannelChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * Change access for project in channel
      */
     projectChannelChangeAccessV1(requestParameters: ProjectChannelChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * @summary Remove access for project in channel
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {number} target_project_id Target project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -102,17 +109,19 @@ export interface ProjectChannelApiInterface {
     projectChannelDelV1Raw(requestParameters: ProjectChannelDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * Remove access for project in channel
      */
     projectChannelDelV1(requestParameters: ProjectChannelDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * @summary Project channel list
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -120,18 +129,20 @@ export interface ProjectChannelApiInterface {
     projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>>;
 
     /**
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * Project channel list
      */
     projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse>;
 
     /**
-     * 
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * @summary Transfer owner for project in channel
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {number} to_project_id Target project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectChannelApiInterface
@@ -139,6 +150,7 @@ export interface ProjectChannelApiInterface {
     projectChannelTransferOwnerV1Raw(requestParameters: ProjectChannelTransferOwnerV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * Transfer owner for project in channel
      */
     projectChannelTransferOwnerV1(requestParameters: ProjectChannelTransferOwnerV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -151,6 +163,7 @@ export interface ProjectChannelApiInterface {
 export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannelApiInterface {
 
     /**
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * Change access for project in channel
      */
     async projectChannelChangeAccessV1Raw(requestParameters: ProjectChannelChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -219,9 +232,18 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
 
         const response = await this.request({
@@ -235,6 +257,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Change access_type for to_project_id on the internal channel_id from project_id. Actual project and channel administrator permissions are required; the owner is protected from changes. Uses the assignable-role enum; an OAuth scope does not replace the resource role.
      * Change access for project in channel
      */
     async projectChannelChangeAccessV1(requestParameters: ProjectChannelChangeAccessV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -243,6 +266,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * Remove access for project in channel
      */
     async projectChannelDelV1Raw(requestParameters: ProjectChannelDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -300,9 +324,18 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
 
         const response = await this.request({
@@ -316,6 +349,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Revoke target_project_id access to the internal channel_id from project_id. Requires effective administrator permissions for both the project and channel; the owner project\'s access cannot be revoked. Returns success. This removes another project\'s access link without deleting the channel or disabling active.
      * Remove access for project in channel
      */
     async projectChannelDelV1(requestParameters: ProjectChannelDelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -324,6 +358,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * Project channel list
      */
     async projectChannelListV1Raw(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProjectChannelListResponse>> {
@@ -370,9 +405,18 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -386,6 +430,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Read project access to internal channel_id from the project_id context. Requires read access to the channel and project; returns relationships and access_type. This lists channel permissions, not project members.
      * Project channel list
      */
     async projectChannelListV1(requestParameters: ProjectChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProjectChannelListResponse> {
@@ -394,6 +439,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * Transfer owner for project in channel
      */
     async projectChannelTransferOwnerV1Raw(requestParameters: ProjectChannelTransferOwnerV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -451,9 +497,18 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel-access:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel-access:write"]);
         }
 
         const response = await this.request({
@@ -467,6 +522,7 @@ export class ProjectChannelApi extends runtime.BaseAPI implements ProjectChannel
     }
 
     /**
+     * Transfer ownership of internal channel_id from project_id to to_project_id with existing access. Requires effective current owner permissions and administration checks; updates owner_id and relationship roles. This transfers the resource without creating an invitation or merely increasing access_type.
      * Transfer owner for project in channel
      */
     async projectChannelTransferOwnerV1(requestParameters: ProjectChannelTransferOwnerV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

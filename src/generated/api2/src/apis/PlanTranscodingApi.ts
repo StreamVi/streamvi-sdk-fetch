@@ -42,30 +42,35 @@ export interface PlanTranscodingBuyV1Request {
     project_id: number;
     period: PlanTranscodingBuyV1PeriodEnum;
     plan_transcoding_id: number;
+    count: number;
     v?: PlanTranscodingBuyV1VEnum;
-    count?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingCancelV1Request {
     language: PlanTranscodingCancelV1LanguageEnum;
     project_id: number;
     v?: PlanTranscodingCancelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingCheckV1Request {
     language: PlanTranscodingCheckV1LanguageEnum;
     project_id: number;
     v?: PlanTranscodingCheckV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingGetDiscountV1Request {
     language: PlanTranscodingGetDiscountV1LanguageEnum;
     v?: PlanTranscodingGetDiscountV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingListV1Request {
     language: PlanTranscodingListV1LanguageEnum;
     v?: PlanTranscodingListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingSetProlongationV1Request {
@@ -73,12 +78,14 @@ export interface PlanTranscodingSetProlongationV1Request {
     project_id: number;
     enabled: boolean;
     v?: PlanTranscodingSetProlongationV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface PlanTranscodingTariffV1Request {
     language: PlanTranscodingTariffV1LanguageEnum;
     project_id: number;
     v?: PlanTranscodingTariffV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -89,14 +96,15 @@ export interface PlanTranscodingTariffV1Request {
  */
 export interface PlanTranscodingApiInterface {
     /**
-     * 
+     * Buy a transcoding tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * @summary Buy transcoder tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_transcoding_id Transcoding plan id
+     * @param {number} count Count flow
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [count] Count flow
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -104,16 +112,18 @@ export interface PlanTranscodingApiInterface {
     planTranscodingBuyV1Raw(requestParameters: PlanTranscodingBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Buy a transcoding tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy transcoder tariff
      */
     planTranscodingBuyV1(requestParameters: PlanTranscodingBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Remove after tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Cancel the next transcoding plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * @summary Cancel the next project transcoding tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -121,16 +131,18 @@ export interface PlanTranscodingApiInterface {
     planTranscodingCancelV1Raw(requestParameters: PlanTranscodingCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Remove after tariff
+     * Cancel the next transcoding plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project transcoding tariff
      */
     planTranscodingCancelV1(requestParameters: PlanTranscodingCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Read preliminary data for purchasing a transcoding plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * @summary Check transcoding tariff before buy
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -138,15 +150,17 @@ export interface PlanTranscodingApiInterface {
     planTranscodingCheckV1Raw(requestParameters: PlanTranscodingCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingCheckResponse>>;
 
     /**
+     * Read preliminary data for purchasing a transcoding plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check transcoding tariff before buy
      */
     planTranscodingCheckV1(requestParameters: PlanTranscodingCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingCheckResponse>;
 
     /**
-     * 
+     * Read annual discount rules for transcoding plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * @summary Get discount transcoding
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -154,15 +168,17 @@ export interface PlanTranscodingApiInterface {
     planTranscodingGetDiscountV1Raw(requestParameters: PlanTranscodingGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingDiscountResponse>>;
 
     /**
+     * Read annual discount rules for transcoding plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount transcoding
      */
     planTranscodingGetDiscountV1(requestParameters: PlanTranscodingGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingDiscountResponse>;
 
     /**
-     * 
+     * Read the public transcoding plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * @summary Get list of transcoding tariffs
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -170,17 +186,19 @@ export interface PlanTranscodingApiInterface {
     planTranscodingListV1Raw(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingResponseDto>>;
 
     /**
+     * Read the public transcoding plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of transcoding tariffs
      */
     planTranscodingListV1(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingResponseDto>;
 
     /**
-     * 
+     * Save automatic transcoding plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * @summary Set transcoding tariff auto prolongation
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -188,16 +206,18 @@ export interface PlanTranscodingApiInterface {
     planTranscodingSetProlongationV1Raw(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Save automatic transcoding plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set transcoding tariff auto prolongation
      */
     planTranscodingSetProlongationV1(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Get tariff for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the current and next transcoding plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * @summary Get current and next project transcoding tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanTranscodingApiInterface
@@ -205,7 +225,8 @@ export interface PlanTranscodingApiInterface {
     planTranscodingTariffV1Raw(requestParameters: PlanTranscodingTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingForProject>>;
 
     /**
-     * Get tariff for project
+     * Read the current and next transcoding plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project transcoding tariff
      */
     planTranscodingTariffV1(requestParameters: PlanTranscodingTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingForProject>;
 
@@ -217,6 +238,7 @@ export interface PlanTranscodingApiInterface {
 export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodingApiInterface {
 
     /**
+     * Buy a transcoding tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy transcoder tariff
      */
     async planTranscodingBuyV1Raw(requestParameters: PlanTranscodingBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -245,6 +267,13 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
             throw new runtime.RequiredError(
                 'plan_transcoding_id',
                 'Required parameter "plan_transcoding_id" was null or undefined when calling planTranscodingBuyV1().'
+            );
+        }
+
+        if (requestParameters['count'] == null) {
+            throw new runtime.RequiredError(
+                'count',
+                'Required parameter "count" was null or undefined when calling planTranscodingBuyV1().'
             );
         }
 
@@ -278,9 +307,18 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -294,6 +332,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Buy a transcoding tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy transcoder tariff
      */
     async planTranscodingBuyV1(requestParameters: PlanTranscodingBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -302,7 +341,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
-     * Remove after tariff
+     * Cancel the next transcoding plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project transcoding tariff
      */
     async planTranscodingCancelV1Raw(requestParameters: PlanTranscodingCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['language'] == null) {
@@ -337,9 +377,18 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -353,7 +402,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
-     * Remove after tariff
+     * Cancel the next transcoding plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project transcoding tariff
      */
     async planTranscodingCancelV1(requestParameters: PlanTranscodingCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.planTranscodingCancelV1Raw(requestParameters, initOverrides);
@@ -361,6 +411,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read preliminary data for purchasing a transcoding plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check transcoding tariff before buy
      */
     async planTranscodingCheckV1Raw(requestParameters: PlanTranscodingCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingCheckResponse>> {
@@ -396,9 +447,18 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -412,6 +472,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read preliminary data for purchasing a transcoding plan for project_id: subscription state, balance, and possible refund. This legacy check does not purchase a plan; the current implementation sets amount to 0, which is not a guaranteed price for the selected configuration. Monetary values are in minor units.
      * Check transcoding tariff before buy
      */
     async planTranscodingCheckV1(requestParameters: PlanTranscodingCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingCheckResponse> {
@@ -420,6 +481,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read annual discount rules for transcoding plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount transcoding
      */
     async planTranscodingGetDiscountV1Raw(requestParameters: PlanTranscodingGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingDiscountResponse>> {
@@ -444,9 +506,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         const response = await this.request({
@@ -460,6 +521,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read annual discount rules for transcoding plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount transcoding
      */
     async planTranscodingGetDiscountV1(requestParameters: PlanTranscodingGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingDiscountResponse> {
@@ -468,6 +530,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read the public transcoding plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of transcoding tariffs
      */
     async planTranscodingListV1Raw(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingResponseDto>> {
@@ -492,9 +555,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         const response = await this.request({
@@ -508,6 +570,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Read the public transcoding plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of transcoding tariffs
      */
     async planTranscodingListV1(requestParameters: PlanTranscodingListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingResponseDto> {
@@ -516,6 +579,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Save automatic transcoding plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set transcoding tariff auto prolongation
      */
     async planTranscodingSetProlongationV1Raw(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -562,9 +626,18 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
 
         const response = await this.request({
@@ -578,6 +651,7 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
+     * Save automatic transcoding plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set transcoding tariff auto prolongation
      */
     async planTranscodingSetProlongationV1(requestParameters: PlanTranscodingSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -586,7 +660,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
-     * Get tariff for project
+     * Read the current and next transcoding plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project transcoding tariff
      */
     async planTranscodingTariffV1Raw(requestParameters: PlanTranscodingTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanTranscodingForProject>> {
         if (requestParameters['language'] == null) {
@@ -621,9 +696,18 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
 
         const response = await this.request({
@@ -637,7 +721,8 @@ export class PlanTranscodingApi extends runtime.BaseAPI implements PlanTranscodi
     }
 
     /**
-     * Get tariff for project
+     * Read the current and next transcoding plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project transcoding tariff
      */
     async planTranscodingTariffV1(requestParameters: PlanTranscodingTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanTranscodingForProject> {
         const response = await this.planTranscodingTariffV1Raw(requestParameters, initOverrides);

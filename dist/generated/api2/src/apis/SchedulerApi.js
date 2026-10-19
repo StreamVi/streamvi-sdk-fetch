@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class SchedulerApi extends runtime.BaseAPI {
     /**
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * Create a project video schedule
      */
     async schedulerCreateV1Raw(requestParameters, initOverrides) {
@@ -54,9 +55,16 @@ class SchedulerApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/scheduler`,
@@ -68,6 +76,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.CreateSchedulerResponseFromJSON)(jsonValue));
     }
     /**
+     * Create a video schedule for project_id: channel_ids are internal channel group_id values from search in the same project; video.id is an accessible video. start_at/end_at are integer Unix seconds, with end_at>start_at. When start_now=false, the start must be in the future; when true, the end must be in the future. Checks channel editing permissions, plan limits, and absence of overlaps. Returns an internal id after creating the external task and saving the schedule; does not promise immediate broadcast start.
      * Create a project video schedule
      */
     async schedulerCreateV1(requestParameters, initOverrides) {
@@ -75,6 +84,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * Delete a non-expired project video schedule
      */
     async schedulerDeleteV1Raw(requestParameters, initOverrides) {
@@ -104,9 +114,16 @@ class SchedulerApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/scheduler`,
@@ -117,6 +134,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete unexpired schedule id in project_id and its associated external task. An expired schedule produces scheduler.expired. This deletes the schedule; stop the current active task separately with POST /method/scheduler/stop.
      * Delete a non-expired project video schedule
      */
     async schedulerDeleteV1(requestParameters, initOverrides) {
@@ -124,6 +142,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * Get a project video schedule by id
      */
     async schedulerGetV1Raw(requestParameters, initOverrides) {
@@ -153,9 +172,16 @@ class SchedulerApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/scheduler/get`,
@@ -166,6 +192,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SchedulerItemResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a schedule by internal id in project_id. Returns Unix seconds intervals, the complete internal channel_ids list, and video metadata or null. Obtain the ID from GET /method/scheduler; reading does not start the task.
      * Get a project video schedule by id
      */
     async schedulerGetV1(requestParameters, initOverrides) {
@@ -173,6 +200,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * List non-expired project video schedules
      */
     async schedulerListV1Raw(requestParameters, initOverrides) {
@@ -214,9 +242,16 @@ class SchedulerApi extends runtime.BaseAPI {
             queryParameters['order'] = requestParameters['order'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
         const response = await this.request({
             path: `/method/scheduler`,
@@ -227,6 +262,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListSchedulerResponseFromJSON)(jsonValue));
     }
     /**
+     * Read unexpired video schedules for project_id with channel_id/date_from/date_to filters, order, and limit/offset. Times are Unix seconds; offset is the number of records to skip. Returns results/total and may contain video=null. The schedule ID differs from the external scheduler taskId.
      * List non-expired project video schedules
      */
     async schedulerListV1(requestParameters, initOverrides) {
@@ -234,6 +270,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * Stop the active project video schedule
      */
     async schedulerStopV1Raw(requestParameters, initOverrides) {
@@ -244,9 +281,16 @@ class SchedulerApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/scheduler/stop`,
@@ -258,6 +302,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Send a stop request for the active video task in project_id. Requires an active scheduler/live stream and a task_id/video_id mapping consistent with the saved schedule; absence or mismatch produces scheduler.active_task_not_found/active_task_mismatch. Success means the external scheduler responded successfully, not that the schedule was deleted.
      * Stop the active project video schedule
      */
     async schedulerStopV1(requestParameters, initOverrides) {
@@ -265,6 +310,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * Replace a future project video schedule
      */
     async schedulerUpdateV1Raw(requestParameters, initOverrides) {
@@ -275,9 +321,16 @@ class SchedulerApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
         const response = await this.request({
             path: `/method/scheduler`,
@@ -289,6 +342,7 @@ class SchedulerApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Fully replace the video, time interval, and channel_ids list of future schedule id in project_id. All replacement fields are required; this is not a partial patch. A schedule that has already started produces scheduler.not_future; an overlap produces scheduler.time_overlap. Times are Unix seconds; end_at>start_at and start_at must be in the future. Success confirms the external task was updated if necessary and the schedule was saved.
      * Replace a future project video schedule
      */
     async schedulerUpdateV1(requestParameters, initOverrides) {

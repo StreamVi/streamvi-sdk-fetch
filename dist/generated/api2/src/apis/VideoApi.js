@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class VideoApi extends runtime.BaseAPI {
     /**
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * Create upload session
      */
     async videoSiteCreateV1Raw(requestParameters, initOverrides) {
@@ -67,9 +68,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:write"]);
         }
         const response = await this.request({
             path: `/method/video/create`,
@@ -80,6 +88,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoCreateSuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * Create upload session
      */
     async videoSiteCreateV1(requestParameters, initOverrides) {
@@ -87,6 +96,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * Delete video
      */
     async videoSiteDeleteV1Raw(requestParameters, initOverrides) {
@@ -116,9 +126,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:write"]);
         }
         const response = await this.request({
             path: `/method/video/delete`,
@@ -129,6 +146,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * Delete video
      */
     async videoSiteDeleteV1(requestParameters, initOverrides) {
@@ -136,6 +154,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * Get video download link
      */
     async videoSiteDownloadV1Raw(requestParameters, initOverrides) {
@@ -165,9 +184,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:read"]);
         }
         const response = await this.request({
             path: `/method/video/download`,
@@ -178,6 +204,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoDownloadResponseFromJSON)(jsonValue));
     }
     /**
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * Get video download link
      */
     async videoSiteDownloadV1(requestParameters, initOverrides) {
@@ -185,6 +212,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * Get video by id
      */
     async videoSiteGetV1Raw(requestParameters, initOverrides) {
@@ -214,9 +242,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['id'] = requestParameters['id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:read"]);
         }
         const response = await this.request({
             path: `/method/video/get`,
@@ -227,6 +262,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoItemResponseFromJSON)(jsonValue));
     }
     /**
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * Get video by id
      */
     async videoSiteGetV1(requestParameters, initOverrides) {
@@ -234,6 +270,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * Get video limits
      */
     async videoSiteLimitsV1Raw(requestParameters, initOverrides) {
@@ -257,9 +294,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:read"]);
         }
         const response = await this.request({
             path: `/method/video/limits`,
@@ -270,6 +314,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.VideoLimitsResponseFromJSON)(jsonValue));
     }
     /**
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * Get video limits
      */
     async videoSiteLimitsV1(requestParameters, initOverrides) {
@@ -277,6 +322,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * List videos
      */
     async videoSiteListV1Raw(requestParameters, initOverrides) {
@@ -306,9 +352,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['limit'] = requestParameters['limit'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:read"]);
         }
         const response = await this.request({
             path: `/method/video/list`,
@@ -319,6 +372,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.ListVideoResponseFromJSON)(jsonValue));
     }
     /**
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * List videos
      */
     async videoSiteListV1(requestParameters, initOverrides) {
@@ -326,6 +380,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * Get upload progress channels for centrifuge
      */
     async videoSiteProgressChannelV1Raw(requestParameters, initOverrides) {
@@ -349,9 +404,16 @@ class VideoApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:read"]);
         }
         const response = await this.request({
             path: `/method/video/progress-channel`,
@@ -362,6 +424,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(index_1.VideoProgressChannelResponseFromJSON));
     }
     /**
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * Get upload progress channels for centrifuge
      */
     async videoSiteProgressChannelV1(requestParameters, initOverrides) {
@@ -369,6 +432,7 @@ class VideoApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * Update video
      */
     async videoSiteUpdateV1Raw(requestParameters, initOverrides) {
@@ -379,9 +443,16 @@ class VideoApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["video:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["video:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["video:write"]);
         }
         const response = await this.request({
             path: `/method/video/update`,
@@ -393,6 +464,7 @@ class VideoApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * Update video
      */
     async videoSiteUpdateV1(requestParameters, initOverrides) {

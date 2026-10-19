@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  AddChannelResponse,
   BizonDto,
   BoostyDto,
   CustomDto,
@@ -52,6 +53,8 @@ import type {
   ZhanqitvDto,
 } from '../models/index';
 import {
+    AddChannelResponseFromJSON,
+    AddChannelResponseToJSON,
     BizonDtoFromJSON,
     BizonDtoToJSON,
     BoostyDtoFromJSON,
@@ -126,114 +129,142 @@ import {
 
 export interface AddChannelMethodAddBizonV1Request {
     BizonDto: BizonDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddBoostyV1Request {
     BoostyDto: BoostyDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddCustomV1Request {
     CustomDto: CustomDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddDouyuV1Request {
     DouyuDto: DouyuDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddFbV1Request {
     FbDto: FbDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddFc2LiveV1Request {
     Fc2liveDto: Fc2liveDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddGetcourseV1Request {
     GetcourseDto: GetcourseDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddGoodgameV1Request {
     GoodgameDto: GoodgameDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddHuyaV1Request {
     HuyaDto: HuyaDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddInstagramV1Request {
     InstagramDto: InstagramDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddKickV1Request {
     KickDto: KickDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddKinescopeV1Request {
     KinescopeDto: KinescopeDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddLinkedinV1Request {
     LinkedinDto: LinkedinDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddNavertvV1Request {
     NavertvDto: NavertvDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddNimotvV1Request {
     NimotvDto: NimotvDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddNonoliveV1Request {
     NonoliveDto: NonoliveDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddOkV1Request {
     OkDto: OkDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddPlvideoV1Request {
     PlvideoDto: PlvideoDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddRutubeV1Request {
     RutubeDto: RutubeDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddSrtV1Request {
     MethodSrtDto: MethodSrtDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddSteamV1Request {
     SteamDto: SteamDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddTachidV1Request {
     TachidDto: TachidDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddTelegramV1Request {
     TelegramDto: TelegramDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddTiktokV1Request {
     TiktokDto: TiktokDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddVkV1Request {
     VkDto: VkDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddVliveV1Request {
     VliveDto: VliveDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface AddChannelMethodAddZhanqiTvV1Request {
     ZhanqitvDto: ZhanqitvDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelDeleteChannelV1Request {
     DeleteChannelDto: DeleteChannelDto;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelGetChannelV1Request {
@@ -241,17 +272,20 @@ export interface ChannelGetChannelV1Request {
     project_id: number;
     channel_id: number;
     v?: ChannelGetChannelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelSetDelayV1Request {
     channel_id: number;
     project_id: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface ChannelShortChannelListV1Request {
     language: ChannelShortChannelListV1LanguageEnum;
     project_id: number;
     v?: ChannelShortChannelListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodSearchV1Request {
@@ -263,14 +297,17 @@ export interface MethodSearchV1Request {
     name?: string;
     limit?: number;
     offset?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodSetStatusLegacyV1Request {
     MethodSetStatusChannelRequest: MethodSetStatusChannelRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface MethodSetStatusV1Request {
     MethodChannelStatusRequest: MethodChannelStatusRequest;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -281,414 +318,469 @@ export interface MethodSetStatusV1Request {
  */
 export interface ChannelApiInterface {
     /**
-     * 
+     * Add a bizon destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add bizon channel
      * @param {BizonDto} BizonDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a bizon destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add bizon channel
      */
-    addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a boosty destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add boosty channel
      * @param {BoostyDto} BoostyDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a boosty destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add boosty channel
      */
-    addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a custom destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add custom channel
      * @param {CustomDto} CustomDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a custom destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add custom channel
      */
-    addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a douyu destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add douyu channel
      * @param {DouyuDto} DouyuDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a douyu destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add douyu channel
      */
-    addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a fb destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add fb channel
      * @param {FbDto} FbDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a fb destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fb channel
      */
-    addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a fc2live destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add fc2Live channel
      * @param {Fc2liveDto} Fc2liveDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a fc2live destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fc2Live channel
      */
-    addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a getcourse destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add getcourse channel
      * @param {GetcourseDto} GetcourseDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a getcourse destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add getcourse channel
      */
-    addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a goodgame destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add goodgame channel
      * @param {GoodgameDto} GoodgameDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a goodgame destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add goodgame channel
      */
-    addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a huya destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add huya channel
      * @param {HuyaDto} HuyaDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a huya destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add huya channel
      */
-    addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a instagram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add instagram channel
      * @param {InstagramDto} InstagramDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a instagram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add instagram channel
      */
-    addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a kick destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add kick channel
      * @param {KickDto} KickDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a kick destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kick channel
      */
-    addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a kinescope destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add kinescope channel
      * @param {KinescopeDto} KinescopeDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a kinescope destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kinescope channel
      */
-    addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a linkedin destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add linkedin channel
      * @param {LinkedinDto} LinkedinDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a linkedin destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add linkedin channel
      */
-    addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a navertv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add navertv channel
      * @param {NavertvDto} NavertvDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a navertv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add navertv channel
      */
-    addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a nimotv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add nimotv channel
      * @param {NimotvDto} NimotvDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a nimotv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nimotv channel
      */
-    addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a nonolive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add nonolive channel
      * @param {NonoliveDto} NonoliveDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a nonolive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nonolive channel
      */
-    addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a ok destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add ok channel
      * @param {OkDto} OkDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a ok destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add ok channel
      */
-    addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a plvideo destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add plvideo channel
      * @param {PlvideoDto} PlvideoDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a plvideo destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add plvideo channel
      */
-    addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a rutube destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add rutube channel
      * @param {RutubeDto} RutubeDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a rutube destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add rutube channel
      */
-    addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a srt destination to project_id. ingress_url is the complete SRT URL with port and publishing parameters; name is the display name. The URL may contain secrets. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add srt channel
      * @param {MethodSrtDto} MethodSrtDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a srt destination to project_id. ingress_url is the complete SRT URL with port and publishing parameters; name is the display name. The URL may contain secrets. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add srt channel
      */
-    addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a steam destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add steam channel
      * @param {SteamDto} SteamDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a steam destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add steam channel
      */
-    addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a tachid destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add tach channel
      * @param {TachidDto} TachidDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a tachid destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tach channel
      */
-    addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a telegram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add telegram channel
      * @param {TelegramDto} TelegramDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a telegram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add telegram channel
      */
-    addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a tiktok destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add tiktok channel
      * @param {TiktokDto} TiktokDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a tiktok destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tiktok channel
      */
-    addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a vk destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add vk channel
      * @param {VkDto} VkDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a vk destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vk channel
      */
-    addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a vlive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add vlive channel
      * @param {VliveDto} VliveDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a vlive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vlive channel
      */
-    addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Add a zhanqitv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * @summary Add zhanqitv channel
      * @param {ZhanqitvDto} ZhanqitvDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
      */
-    addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>>;
 
     /**
+     * Add a zhanqitv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add zhanqitv channel
      */
-    addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse>;
 
     /**
-     * 
+     * Delete a channel through the deletion use case for project_id and internal channel_id after checking user permissions. This deletes/revokes the relationship rather than temporarily disabling it. For \"disable the channel\", use PUT /method/channel/status with active=false; obtain the internal ID from search results[].group_id.
      * @summary Delete channel
      * @param {DeleteChannelDto} DeleteChannelDto 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -696,17 +788,19 @@ export interface ChannelApiInterface {
     channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Delete a channel through the deletion use case for project_id and internal channel_id after checking user permissions. This deletes/revokes the relationship rather than temporarily disabling it. For \"disable the channel\", use PUT /method/channel/status with active=false; obtain the internal ID from search results[].group_id.
      * Delete channel
      */
     channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Read the channel connected to project_id by internal numeric channel_id. Obtain it from results[].group_id in GET /method/channel/search; results[].id is the external platform identifier. Returns the channel object without changing active.
      * @summary Get channel by id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel id
+     * @param {number} channel_id Internal numeric StreamVi channel ID. Use results[].group_id from channel search in the same project_id; do not use results[].id (external/platform ID), even if it contains only digits.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -714,15 +808,17 @@ export interface ChannelApiInterface {
     channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>>;
 
     /**
+     * Read the channel connected to project_id by internal numeric channel_id. Obtain it from results[].group_id in GET /method/channel/search; results[].id is the external platform identifier. Returns the channel object without changing active.
      * Get channel by id
      */
     channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem>;
 
     /**
-     * 
-     * @summary Set delay - test point
-     * @param {number} channel_id 
-     * @param {number} project_id 
+     * Legacy manual-test endpoint. Emits simulated wait_transcoding, init, live and offline channel-status notifications through Centrifugo. Despite using GET, this triggers notifications; it does not configure a real broadcast delay or report the actual channel state. The response does not wait for the sequence to finish. Not intended for normal channel management or automated broadcast workflows.
+     * @summary Emit simulated channel statuses for manual testing
+     * @param {number} channel_id Internal channel ID for simulated notifications; not an external platform id.
+     * @param {number} project_id Project for simulated notifications; this method does not configure actual latency.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -730,16 +826,18 @@ export interface ChannelApiInterface {
     channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Set delay - test point
+     * Legacy manual-test endpoint. Emits simulated wait_transcoding, init, live and offline channel-status notifications through Centrifugo. Despite using GET, this triggers notifications; it does not configure a real broadcast delay or report the actual channel state. The response does not wait for the sequence to finish. Not intended for normal channel management or automated broadcast workflows.
+     * Emit simulated channel statuses for manual testing
      */
     channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Get a short channel list for the selected project_id. Intended for channel selection; use GET /method/channel/search for filtering and a full result. Listing neither enables nor disables channels.
      * @summary Minimal channel list
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -747,21 +845,23 @@ export interface ChannelApiInterface {
     channelShortChannelListV1Raw(requestParameters: ChannelShortChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteGetShortChannelResponse>>;
 
     /**
+     * Get a short channel list for the selected project_id. Intended for channel selection; use GET /method/channel/search for filtering and a full result. Listing neither enables nor disables channels.
      * Minimal channel list
      */
     channelShortChannelListV1(requestParameters: ChannelShortChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteGetShortChannelResponse>;
 
     /**
-     * 
-     * @summary Search channel list
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {number} project_id Project id
+     * Returns a paginated list of channels connected to project_id. Each result has group_id (internal numeric StreamVi channel ID, used as channel_id in management calls) and id (external/platform string ID, not for management). Keep the same project_id for later channel calls. The type, platform and name filters are combined. Results are ordered by channel ID; offset is the number of results to skip, not a page number. The active filter means enabled in the project, not necessarily broadcasting live.
+     * @summary Search channels connected to a project
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} project_id ID of the project whose connected channels are searched.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {'all' | 'my' | 'available' | 'active'} [type] 
-     * @param {string} [platform] platform type
-     * @param {string} [name] name
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
+     * @param {'all' | 'my' | 'available' | 'active'} [type] Channel selection within the project. all (also used when omitted): all connected channels; my: channels whose owner ID equals project_id; available: channels connected with guest usage; active: channels enabled in the project, regardless of whether they are currently broadcasting. Combined with the platform and name filters.
+     * @param {string} [platform] Comma-separated platform codes, for example youtube,vk,twitch, without spaces. Matches any listed platform; when omitted, does not filter by platform. Combined with the other filters.
+     * @param {string} [name] Channel name filter, up to 10 characters. Matches names using a contains pattern; percent (%) and underscore (_) act as SQL LIKE wildcards. When omitted or empty, does not filter by name.
+     * @param {number} [limit] Requested number of channels in the result page. Defaults to 30.
+     * @param {number} [offset] Number of matching channels to skip, not a page number. Defaults to 0. Results are ordered by channel ID.
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -769,7 +869,8 @@ export interface ChannelApiInterface {
     methodSearchV1Raw(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchChannelResponse>>;
 
     /**
-     * Search channel list
+     * Returns a paginated list of channels connected to project_id. Each result has group_id (internal numeric StreamVi channel ID, used as channel_id in management calls) and id (external/platform string ID, not for management). Keep the same project_id for later channel calls. The type, platform and name filters are combined. Results are ordered by channel ID; offset is the number of results to skip, not a page number. The active filter means enabled in the project, not necessarily broadcasting live.
+     * Search channels connected to a project
      */
     methodSearchV1(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchChannelResponse>;
 
@@ -777,6 +878,7 @@ export interface ChannelApiInterface {
      * Deprecated. Use PUT /method/channel/status with the active field instead of status.
      * @summary Set desired channel state
      * @param {MethodSetStatusChannelRequest} MethodSetStatusChannelRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -792,9 +894,10 @@ export interface ChannelApiInterface {
     methodSetStatusLegacyV1(requestParameters: MethodSetStatusLegacyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Enable or disable an existing channel in the selected project. Use channel_id=group_id from channel search results, not the external/platform id. Keep the same project_id used for search. Send active=false to disable and active=true to enable. Both \'turn off the channel\' and \'disable the channel\' mean active=false; \'enable the channel\' means active=true. Success confirms the desired state; verify actual broadcasting separately.
      * @summary Set desired channel state
      * @param {MethodChannelStatusRequest} MethodChannelStatusRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChannelApiInterface
@@ -802,6 +905,7 @@ export interface ChannelApiInterface {
     methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
+     * Enable or disable an existing channel in the selected project. Use channel_id=group_id from channel search results, not the external/platform id. Keep the same project_id used for search. Send active=false to disable and active=true to enable. Both \'turn off the channel\' and \'disable the channel\' mean active=false; \'enable the channel\' means active=true. Success confirms the desired state; verify actual broadcasting separately.
      * Set desired channel state
      */
     methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -814,9 +918,10 @@ export interface ChannelApiInterface {
 export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
     /**
+     * Add a bizon destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add bizon channel
      */
-    async addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddBizonV1Raw(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['BizonDto'] == null) {
             throw new runtime.RequiredError(
                 'BizonDto',
@@ -830,9 +935,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -843,20 +957,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: BizonDtoToJSON({ ...requestParameters['BizonDto'], v: requestParameters['BizonDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a bizon destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add bizon channel
      */
-    async addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddBizonV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddBizonV1(requestParameters: AddChannelMethodAddBizonV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddBizonV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a boosty destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add boosty channel
      */
-    async addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddBoostyV1Raw(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['BoostyDto'] == null) {
             throw new runtime.RequiredError(
                 'BoostyDto',
@@ -870,9 +987,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -883,20 +1009,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: BoostyDtoToJSON({ ...requestParameters['BoostyDto'], v: requestParameters['BoostyDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a boosty destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add boosty channel
      */
-    async addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddBoostyV1(requestParameters: AddChannelMethodAddBoostyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddBoostyV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a custom destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add custom channel
      */
-    async addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddCustomV1Raw(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['CustomDto'] == null) {
             throw new runtime.RequiredError(
                 'CustomDto',
@@ -910,9 +1039,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -923,20 +1061,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: CustomDtoToJSON({ ...requestParameters['CustomDto'], v: requestParameters['CustomDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a custom destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add custom channel
      */
-    async addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddCustomV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddCustomV1(requestParameters: AddChannelMethodAddCustomV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddCustomV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a douyu destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add douyu channel
      */
-    async addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddDouyuV1Raw(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['DouyuDto'] == null) {
             throw new runtime.RequiredError(
                 'DouyuDto',
@@ -950,9 +1091,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -963,20 +1113,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: DouyuDtoToJSON({ ...requestParameters['DouyuDto'], v: requestParameters['DouyuDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a douyu destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add douyu channel
      */
-    async addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddDouyuV1(requestParameters: AddChannelMethodAddDouyuV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddDouyuV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a fb destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fb channel
      */
-    async addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddFbV1Raw(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['FbDto'] == null) {
             throw new runtime.RequiredError(
                 'FbDto',
@@ -990,9 +1143,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1003,20 +1165,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: FbDtoToJSON({ ...requestParameters['FbDto'], v: requestParameters['FbDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a fb destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fb channel
      */
-    async addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddFbV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddFbV1(requestParameters: AddChannelMethodAddFbV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddFbV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a fc2live destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fc2Live channel
      */
-    async addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddFc2LiveV1Raw(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['Fc2liveDto'] == null) {
             throw new runtime.RequiredError(
                 'Fc2liveDto',
@@ -1030,9 +1195,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1043,20 +1217,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: Fc2liveDtoToJSON({ ...requestParameters['Fc2liveDto'], v: requestParameters['Fc2liveDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a fc2live destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add fc2Live channel
      */
-    async addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddFc2LiveV1(requestParameters: AddChannelMethodAddFc2LiveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddFc2LiveV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a getcourse destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add getcourse channel
      */
-    async addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddGetcourseV1Raw(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['GetcourseDto'] == null) {
             throw new runtime.RequiredError(
                 'GetcourseDto',
@@ -1070,9 +1247,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1083,20 +1269,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: GetcourseDtoToJSON({ ...requestParameters['GetcourseDto'], v: requestParameters['GetcourseDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a getcourse destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add getcourse channel
      */
-    async addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddGetcourseV1(requestParameters: AddChannelMethodAddGetcourseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddGetcourseV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a goodgame destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add goodgame channel
      */
-    async addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddGoodgameV1Raw(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['GoodgameDto'] == null) {
             throw new runtime.RequiredError(
                 'GoodgameDto',
@@ -1110,9 +1299,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1123,20 +1321,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: GoodgameDtoToJSON({ ...requestParameters['GoodgameDto'], v: requestParameters['GoodgameDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a goodgame destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add goodgame channel
      */
-    async addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddGoodgameV1(requestParameters: AddChannelMethodAddGoodgameV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddGoodgameV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a huya destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add huya channel
      */
-    async addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddHuyaV1Raw(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['HuyaDto'] == null) {
             throw new runtime.RequiredError(
                 'HuyaDto',
@@ -1150,9 +1351,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1163,20 +1373,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: HuyaDtoToJSON({ ...requestParameters['HuyaDto'], v: requestParameters['HuyaDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a huya destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add huya channel
      */
-    async addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddHuyaV1(requestParameters: AddChannelMethodAddHuyaV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddHuyaV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a instagram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add instagram channel
      */
-    async addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddInstagramV1Raw(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['InstagramDto'] == null) {
             throw new runtime.RequiredError(
                 'InstagramDto',
@@ -1190,9 +1403,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1203,20 +1425,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: InstagramDtoToJSON({ ...requestParameters['InstagramDto'], v: requestParameters['InstagramDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a instagram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add instagram channel
      */
-    async addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddInstagramV1(requestParameters: AddChannelMethodAddInstagramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddInstagramV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a kick destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kick channel
      */
-    async addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddKickV1Raw(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['KickDto'] == null) {
             throw new runtime.RequiredError(
                 'KickDto',
@@ -1230,9 +1455,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1243,20 +1477,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: KickDtoToJSON({ ...requestParameters['KickDto'], v: requestParameters['KickDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a kick destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kick channel
      */
-    async addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddKickV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddKickV1(requestParameters: AddChannelMethodAddKickV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddKickV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a kinescope destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kinescope channel
      */
-    async addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddKinescopeV1Raw(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['KinescopeDto'] == null) {
             throw new runtime.RequiredError(
                 'KinescopeDto',
@@ -1270,9 +1507,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1283,20 +1529,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: KinescopeDtoToJSON({ ...requestParameters['KinescopeDto'], v: requestParameters['KinescopeDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a kinescope destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add kinescope channel
      */
-    async addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddKinescopeV1(requestParameters: AddChannelMethodAddKinescopeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddKinescopeV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a linkedin destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add linkedin channel
      */
-    async addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddLinkedinV1Raw(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['LinkedinDto'] == null) {
             throw new runtime.RequiredError(
                 'LinkedinDto',
@@ -1310,9 +1559,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1323,20 +1581,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: LinkedinDtoToJSON({ ...requestParameters['LinkedinDto'], v: requestParameters['LinkedinDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a linkedin destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add linkedin channel
      */
-    async addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddLinkedinV1(requestParameters: AddChannelMethodAddLinkedinV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddLinkedinV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a navertv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add navertv channel
      */
-    async addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddNavertvV1Raw(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['NavertvDto'] == null) {
             throw new runtime.RequiredError(
                 'NavertvDto',
@@ -1350,9 +1611,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1363,20 +1633,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: NavertvDtoToJSON({ ...requestParameters['NavertvDto'], v: requestParameters['NavertvDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a navertv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add navertv channel
      */
-    async addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddNavertvV1(requestParameters: AddChannelMethodAddNavertvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddNavertvV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a nimotv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nimotv channel
      */
-    async addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddNimotvV1Raw(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['NimotvDto'] == null) {
             throw new runtime.RequiredError(
                 'NimotvDto',
@@ -1390,9 +1663,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1403,20 +1685,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: NimotvDtoToJSON({ ...requestParameters['NimotvDto'], v: requestParameters['NimotvDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a nimotv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nimotv channel
      */
-    async addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddNimotvV1(requestParameters: AddChannelMethodAddNimotvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddNimotvV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a nonolive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nonolive channel
      */
-    async addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddNonoliveV1Raw(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['NonoliveDto'] == null) {
             throw new runtime.RequiredError(
                 'NonoliveDto',
@@ -1430,9 +1715,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1443,20 +1737,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: NonoliveDtoToJSON({ ...requestParameters['NonoliveDto'], v: requestParameters['NonoliveDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a nonolive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add nonolive channel
      */
-    async addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddNonoliveV1(requestParameters: AddChannelMethodAddNonoliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddNonoliveV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a ok destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add ok channel
      */
-    async addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddOkV1Raw(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['OkDto'] == null) {
             throw new runtime.RequiredError(
                 'OkDto',
@@ -1470,9 +1767,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1483,20 +1789,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: OkDtoToJSON({ ...requestParameters['OkDto'], v: requestParameters['OkDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a ok destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add ok channel
      */
-    async addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddOkV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddOkV1(requestParameters: AddChannelMethodAddOkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddOkV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a plvideo destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add plvideo channel
      */
-    async addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddPlvideoV1Raw(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['PlvideoDto'] == null) {
             throw new runtime.RequiredError(
                 'PlvideoDto',
@@ -1510,9 +1819,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1523,20 +1841,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: PlvideoDtoToJSON({ ...requestParameters['PlvideoDto'], v: requestParameters['PlvideoDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a plvideo destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add plvideo channel
      */
-    async addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddPlvideoV1(requestParameters: AddChannelMethodAddPlvideoV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddPlvideoV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a rutube destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add rutube channel
      */
-    async addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddRutubeV1Raw(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['RutubeDto'] == null) {
             throw new runtime.RequiredError(
                 'RutubeDto',
@@ -1550,9 +1871,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1563,20 +1893,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: RutubeDtoToJSON({ ...requestParameters['RutubeDto'], v: requestParameters['RutubeDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a rutube destination to project_id. channel_url is the platform channel URL; rtmp_url and stream_key are publishing credentials. Channel details are checked on the platform. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add rutube channel
      */
-    async addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddRutubeV1(requestParameters: AddChannelMethodAddRutubeV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddRutubeV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a srt destination to project_id. ingress_url is the complete SRT URL with port and publishing parameters; name is the display name. The URL may contain secrets. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add srt channel
      */
-    async addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddSrtV1Raw(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['MethodSrtDto'] == null) {
             throw new runtime.RequiredError(
                 'MethodSrtDto',
@@ -1590,9 +1923,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1603,20 +1945,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: MethodSrtDtoToJSON({ ...requestParameters['MethodSrtDto'], v: requestParameters['MethodSrtDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a srt destination to project_id. ingress_url is the complete SRT URL with port and publishing parameters; name is the display name. The URL may contain secrets. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add srt channel
      */
-    async addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddSrtV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddSrtV1(requestParameters: AddChannelMethodAddSrtV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddSrtV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a steam destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add steam channel
      */
-    async addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddSteamV1Raw(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['SteamDto'] == null) {
             throw new runtime.RequiredError(
                 'SteamDto',
@@ -1630,9 +1975,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1643,20 +1997,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: SteamDtoToJSON({ ...requestParameters['SteamDto'], v: requestParameters['SteamDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a steam destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add steam channel
      */
-    async addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddSteamV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddSteamV1(requestParameters: AddChannelMethodAddSteamV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddSteamV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a tachid destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tach channel
      */
-    async addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddTachidV1Raw(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['TachidDto'] == null) {
             throw new runtime.RequiredError(
                 'TachidDto',
@@ -1670,9 +2027,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1683,20 +2049,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: TachidDtoToJSON({ ...requestParameters['TachidDto'], v: requestParameters['TachidDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a tachid destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tach channel
      */
-    async addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddTachidV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddTachidV1(requestParameters: AddChannelMethodAddTachidV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddTachidV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a telegram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add telegram channel
      */
-    async addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddTelegramV1Raw(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['TelegramDto'] == null) {
             throw new runtime.RequiredError(
                 'TelegramDto',
@@ -1710,9 +2079,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1723,20 +2101,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: TelegramDtoToJSON({ ...requestParameters['TelegramDto'], v: requestParameters['TelegramDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a telegram destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add telegram channel
      */
-    async addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddTelegramV1(requestParameters: AddChannelMethodAddTelegramV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddTelegramV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a tiktok destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tiktok channel
      */
-    async addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddTiktokV1Raw(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['TiktokDto'] == null) {
             throw new runtime.RequiredError(
                 'TiktokDto',
@@ -1750,9 +2131,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1763,20 +2153,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: TiktokDtoToJSON({ ...requestParameters['TiktokDto'], v: requestParameters['TiktokDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a tiktok destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add tiktok channel
      */
-    async addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddTiktokV1(requestParameters: AddChannelMethodAddTiktokV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddTiktokV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a vk destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vk channel
      */
-    async addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddVkV1Raw(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['VkDto'] == null) {
             throw new runtime.RequiredError(
                 'VkDto',
@@ -1790,9 +2183,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1803,20 +2205,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: VkDtoToJSON({ ...requestParameters['VkDto'], v: requestParameters['VkDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a vk destination to project_id. account_id is the connected platform account; channel_id is the external string ID from GET /method/platforms/account/channels, not the internal group_id. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vk channel
      */
-    async addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddVkV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddVkV1(requestParameters: AddChannelMethodAddVkV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddVkV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a vlive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vlive channel
      */
-    async addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddVliveV1Raw(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['VliveDto'] == null) {
             throw new runtime.RequiredError(
                 'VliveDto',
@@ -1830,9 +2235,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1843,20 +2257,23 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: VliveDtoToJSON({ ...requestParameters['VliveDto'], v: requestParameters['VliveDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a vlive destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add vlive channel
      */
-    async addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddVliveV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddVliveV1(requestParameters: AddChannelMethodAddVliveV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddVliveV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Add a zhanqitv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add zhanqitv channel
      */
-    async addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async addChannelMethodAddZhanqiTvV1Raw(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddChannelResponse>> {
         if (requestParameters['ZhanqitvDto'] == null) {
             throw new runtime.RequiredError(
                 'ZhanqitvDto',
@@ -1870,9 +2287,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -1883,17 +2309,20 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
             body: ZhanqitvDtoToJSON({ ...requestParameters['ZhanqitvDto'], v: requestParameters['ZhanqitvDto'].v ?? '1' }),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddChannelResponseFromJSON(jsonValue));
     }
 
     /**
+     * Add a zhanqitv destination to project_id. name is the display name; rtmp_url and stream_key are platform publishing credentials, not the StreamVi input source key. Returns an internal numeric channel_id corresponding to results[].group_id in GET /method/channel/search. Creation depends on platform availability and project/tariff restrictions; it does not confirm a running broadcast. Credentials must not be included in logs or examples.
      * Add zhanqitv channel
      */
-    async addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides);
+    async addChannelMethodAddZhanqiTvV1(requestParameters: AddChannelMethodAddZhanqiTvV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddChannelResponse> {
+        const response = await this.addChannelMethodAddZhanqiTvV1Raw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
+     * Delete a channel through the deletion use case for project_id and internal channel_id after checking user permissions. This deletes/revokes the relationship rather than temporarily disabling it. For \"disable the channel\", use PUT /method/channel/status with active=false; obtain the internal ID from search results[].group_id.
      * Delete channel
      */
     async channelDeleteChannelV1Raw(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -1910,9 +2339,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:delete"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:delete"]);
         }
 
         const response = await this.request({
@@ -1927,6 +2365,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Delete a channel through the deletion use case for project_id and internal channel_id after checking user permissions. This deletes/revokes the relationship rather than temporarily disabling it. For \"disable the channel\", use PUT /method/channel/status with active=false; obtain the internal ID from search results[].group_id.
      * Delete channel
      */
     async channelDeleteChannelV1(requestParameters: ChannelDeleteChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
@@ -1935,6 +2374,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Read the channel connected to project_id by internal numeric channel_id. Obtain it from results[].group_id in GET /method/channel/search; results[].id is the external platform identifier. Returns the channel object without changing active.
      * Get channel by id
      */
     async channelGetChannelV1Raw(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchChannelItem>> {
@@ -1981,9 +2421,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -1997,6 +2446,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Read the channel connected to project_id by internal numeric channel_id. Obtain it from results[].group_id in GET /method/channel/search; results[].id is the external platform identifier. Returns the channel object without changing active.
      * Get channel by id
      */
     async channelGetChannelV1(requestParameters: ChannelGetChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SearchChannelItem> {
@@ -2005,7 +2455,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Set delay - test point
+     * Legacy manual-test endpoint. Emits simulated wait_transcoding, init, live and offline channel-status notifications through Centrifugo. Despite using GET, this triggers notifications; it does not configure a real broadcast delay or report the actual channel state. The response does not wait for the sequence to finish. Not intended for normal channel management or automated broadcast workflows.
+     * Emit simulated channel statuses for manual testing
      */
     async channelSetDelayV1Raw(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['channel_id'] == null) {
@@ -2034,9 +2485,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -2050,7 +2510,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Set delay - test point
+     * Legacy manual-test endpoint. Emits simulated wait_transcoding, init, live and offline channel-status notifications through Centrifugo. Despite using GET, this triggers notifications; it does not configure a real broadcast delay or report the actual channel state. The response does not wait for the sequence to finish. Not intended for normal channel management or automated broadcast workflows.
+     * Emit simulated channel statuses for manual testing
      */
     async channelSetDelayV1(requestParameters: ChannelSetDelayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.channelSetDelayV1Raw(requestParameters, initOverrides);
@@ -2058,6 +2519,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Get a short channel list for the selected project_id. Intended for channel selection; use GET /method/channel/search for filtering and a full result. Listing neither enables nor disables channels.
      * Minimal channel list
      */
     async channelShortChannelListV1Raw(requestParameters: ChannelShortChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteGetShortChannelResponse>> {
@@ -2093,9 +2555,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -2109,6 +2580,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Get a short channel list for the selected project_id. Intended for channel selection; use GET /method/channel/search for filtering and a full result. Listing neither enables nor disables channels.
      * Minimal channel list
      */
     async channelShortChannelListV1(requestParameters: ChannelShortChannelListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteGetShortChannelResponse> {
@@ -2117,7 +2589,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Search channel list
+     * Returns a paginated list of channels connected to project_id. Each result has group_id (internal numeric StreamVi channel ID, used as channel_id in management calls) and id (external/platform string ID, not for management). Keep the same project_id for later channel calls. The type, platform and name filters are combined. Results are ordered by channel ID; offset is the number of results to skip, not a page number. The active filter means enabled in the project, not necessarily broadcasting live.
+     * Search channels connected to a project
      */
     async methodSearchV1Raw(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSearchChannelResponse>> {
         if (requestParameters['language'] == null) {
@@ -2172,13 +2645,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["channel:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:read"]);
         }
 
         const response = await this.request({
@@ -2192,7 +2670,8 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
-     * Search channel list
+     * Returns a paginated list of channels connected to project_id. Each result has group_id (internal numeric StreamVi channel ID, used as channel_id in management calls) and id (external/platform string ID, not for management). Keep the same project_id for later channel calls. The type, platform and name filters are combined. Results are ordered by channel ID; offset is the number of results to skip, not a page number. The active filter means enabled in the project, not necessarily broadcasting live.
+     * Search channels connected to a project
      */
     async methodSearchV1(requestParameters: MethodSearchV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSearchChannelResponse> {
         const response = await this.methodSearchV1Raw(requestParameters, initOverrides);
@@ -2218,13 +2697,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -2249,6 +2733,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Enable or disable an existing channel in the selected project. Use channel_id=group_id from channel search results, not the external/platform id. Keep the same project_id used for search. Send active=false to disable and active=true to enable. Both \'turn off the channel\' and \'disable the channel\' mean active=false; \'enable the channel\' means active=true. Success confirms the desired state; verify actual broadcasting separately.
      * Set desired channel state
      */
     async methodSetStatusV1Raw(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
@@ -2265,13 +2750,18 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // X-API-KEY authentication
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
         }
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["channel:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["channel:write"]);
         }
 
         const response = await this.request({
@@ -2286,6 +2776,7 @@ export class ChannelApi extends runtime.BaseAPI implements ChannelApiInterface {
     }
 
     /**
+     * Enable or disable an existing channel in the selected project. Use channel_id=group_id from channel search results, not the external/platform id. Keep the same project_id used for search. Send active=false to disable and active=true to enable. Both \'turn off the channel\' and \'disable the channel\' mean active=false; \'enable the channel\' means active=true. Success confirms the desired state; verify actual broadcasting separately.
      * Set desired channel state
      */
     async methodSetStatusV1(requestParameters: MethodSetStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {

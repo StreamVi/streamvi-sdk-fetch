@@ -27,14 +27,15 @@ import {
 
 export interface ProjectHistoryListV1Request {
     language: ProjectHistoryListV1LanguageEnum;
+    limit: number;
+    offset: number;
     project_id: number;
     v?: ProjectHistoryListV1VEnum;
-    limit?: number;
-    offset?: number;
     date_from?: Date;
     date_to?: Date;
     action?: ProjectHistoryListV1ActionEnum;
     group_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -45,17 +46,18 @@ export interface ProjectHistoryListV1Request {
  */
 export interface ProjectHistoryApiInterface {
     /**
-     * 
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * @summary Get project history of actions
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {number} limit Number of results
+     * @param {number} offset Page offset number
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
-     * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
      * @param {Date} [date_from] Date from
      * @param {Date} [date_to] Date to
      * @param {'project_channel_invite_add' | 'project_channel_invite_del' | 'project_channel_invite_accept' | 'project_channel_invite_decline' | 'user_project_invite_add' | 'user_project_invite_del' | 'user_project_invite_accept' | 'user_project_invite_decline' | 'user_project_add' | 'user_project_del' | 'user_project_change' | 'project_channel_add' | 'project_channel_del' | 'project_channel_change'} [action] Action
      * @param {number} [group_id] Group id
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ProjectHistoryApiInterface
@@ -63,6 +65,7 @@ export interface ProjectHistoryApiInterface {
     projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>>;
 
     /**
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * Get project history of actions
      */
     projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse>;
@@ -75,6 +78,7 @@ export interface ProjectHistoryApiInterface {
 export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistoryApiInterface {
 
     /**
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * Get project history of actions
      */
     async projectHistoryListV1Raw(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginatedProjectHistoryResponse>> {
@@ -82,6 +86,20 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
             throw new runtime.RequiredError(
                 'language',
                 'Required parameter "language" was null or undefined when calling projectHistoryListV1().'
+            );
+        }
+
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling projectHistoryListV1().'
+            );
+        }
+
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError(
+                'offset',
+                'Required parameter "offset" was null or undefined when calling projectHistoryListV1().'
             );
         }
 
@@ -134,9 +152,18 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["project:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["project:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["project:read"]);
         }
 
         const response = await this.request({
@@ -150,6 +177,7 @@ export class ProjectHistoryApi extends runtime.BaseAPI implements ProjectHistory
     }
 
     /**
+     * Read legacy action history of project_id by action/group_id and date_from/date_to range with limit/offset. offset is the number of records to skip; ordering and results follow the current history service. This reads saved actions without executing them and differs from the new /method/project_activity/list feed.
      * Get project history of actions
      */
     async projectHistoryListV1(requestParameters: ProjectHistoryListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginatedProjectHistoryResponse> {

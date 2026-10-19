@@ -125,7 +125,7 @@ export interface TranscoderListItem {
      */
     preset?: string;
     /**
-     * State
+     * 
      * @type {TranscoderState}
      * @memberof TranscoderListItem
      */

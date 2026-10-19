@@ -163,7 +163,7 @@ export interface NotifyHistory {
      */
     message?: string | null;
     /**
-     * Error
+     * 
      * @type {object}
      * @memberof NotifyHistory
      */
@@ -181,19 +181,19 @@ export interface NotifyHistory {
      */
     language_iso: NotifyHistoryLanguageIsoEnum;
     /**
-     * Channel telegram
+     * 
      * @type {NotifyHistoryChannelTelegram}
      * @memberof NotifyHistory
      */
     telegram?: NotifyHistoryChannelTelegram | null;
     /**
-     * Channel mobile
+     * 
      * @type {NotifyHistoryChannelMobile}
      * @memberof NotifyHistory
      */
     mobile?: NotifyHistoryChannelMobile | null;
     /**
-     * Channel cabinet
+     * 
      * @type {object}
      * @memberof NotifyHistory
      */

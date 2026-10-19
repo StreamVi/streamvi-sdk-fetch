@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PaySettingApi extends runtime.BaseAPI {
     /**
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * Check country after update user
      */
     async paySettingCheckCountryV1Raw(requestParameters, initOverrides) {
@@ -73,9 +74,16 @@ class PaySettingApi extends runtime.BaseAPI {
             queryParameters['country_id'] = requestParameters['country_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-setting/check-country`,
@@ -86,6 +94,7 @@ class PaySettingApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayCheckCountryResponseFromJSON)(jsonValue));
     }
     /**
+     * Check whether the country of project_id can change to country_id and return the check result. This previews restrictions without saving a new country; POST /method/pay-setting performs the change.
      * Check country after update user
      */
     async paySettingCheckCountryV1(requestParameters, initOverrides) {
@@ -93,6 +102,7 @@ class PaySettingApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * Get pay settings for profile v3
      */
     async paySettingGetSettingV3Raw(requestParameters, initOverrides) {
@@ -116,9 +126,16 @@ class PaySettingApi extends runtime.BaseAPI {
             queryParameters['v'] = '3';
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/pay-setting`,
@@ -129,6 +146,7 @@ class PaySettingApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetPaySettingResponseV3FromJSON)(jsonValue));
     }
     /**
+     * Read payment settings of project_id for the current user, version v=3: country, payment system, and saved payment details according to the response schema. These are personal/billing data, unsuitable for the corpus. Update with POST /method/pay-setting.
      * Get pay settings for profile v3
      */
     async paySettingGetSettingV3(requestParameters, initOverrides) {
@@ -136,6 +154,7 @@ class PaySettingApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * Set pay settings for profile
      */
     async paySettingSetSettingV1Raw(requestParameters, initOverrides) {
@@ -146,9 +165,16 @@ class PaySettingApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/pay-setting`,
@@ -160,6 +186,7 @@ class PaySettingApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Save payment details for project_id: countrie_id, pay_system_id, email, and selected form fields. Non-Russian forms use address fields; the DTO and service rules determine exact requirements. Success confirms details were saved without topping up balance or paying for a plan.
      * Set pay settings for profile
      */
     async paySettingSetSettingV1(requestParameters, initOverrides) {

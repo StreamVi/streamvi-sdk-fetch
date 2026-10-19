@@ -37,6 +37,7 @@ import {
 export interface CentrifugeAuthV2Request {
     project_id: number;
     v?: CentrifugeAuthV2VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface CentrifugeChannelTokenV1Request {
@@ -44,23 +45,27 @@ export interface CentrifugeChannelTokenV1Request {
     project_id: number;
     channel_name: string;
     v?: CentrifugeChannelTokenV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface CentrifugeChannelsCatalogV1Request {
     language: CentrifugeChannelsCatalogV1LanguageEnum;
     v?: CentrifugeChannelsCatalogV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface CentrifugeConnectionTokenV1Request {
     language: CentrifugeConnectionTokenV1LanguageEnum;
     project_id: number;
     v?: CentrifugeConnectionTokenV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface CentrifugeProjectV1Request {
     language: CentrifugeProjectV1LanguageEnum;
     project_id: number;
     v?: CentrifugeProjectV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface GetTokenBroadcastV1Request {
@@ -68,6 +73,7 @@ export interface GetTokenBroadcastV1Request {
     language: GetTokenBroadcastV1LanguageEnum;
     project_id: number;
     v?: GetTokenBroadcastV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -82,6 +88,7 @@ export interface CentrifugeApiInterface {
      * @summary Auth centrifuge for project
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -97,12 +104,13 @@ export interface CentrifugeApiInterface {
     centrifugeAuthV2(requestParameters: CentrifugeAuthV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteAuthCentrifugeResponse>;
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * @summary Get token for connect to centrifuge for channel
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} channel_name Channel name
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -110,7 +118,7 @@ export interface CentrifugeApiInterface {
     centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>>;
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * Get token for connect to centrifuge for channel
      */
     centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse>;
@@ -118,8 +126,9 @@ export interface CentrifugeApiInterface {
     /**
      * Returns supported channel_type values, required params, events, and response schema names.
      * @summary List available Method API Centrifuge channels
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -133,11 +142,12 @@ export interface CentrifugeApiInterface {
     centrifugeChannelsCatalogV1(requestParameters: CentrifugeChannelsCatalogV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CentrifugoChannelsCatalogResponse>;
 
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * @summary Get token for connect to centrifuge for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CentrifugeApiInterface
@@ -145,7 +155,7 @@ export interface CentrifugeApiInterface {
     centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>>;
 
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * Get token for connect to centrifuge for project
      */
     centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse>;
@@ -153,9 +163,10 @@ export interface CentrifugeApiInterface {
     /**
      * Use /method/centrifuge/auth/channel instead.
      * @summary Auth token for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -173,10 +184,11 @@ export interface CentrifugeApiInterface {
     /**
      * Use /method/centrifuge/auth/channel instead.
      * @summary Auth token for broadcast
-     * @param {number} broadcast_id 
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {number} broadcast_id Internal broadcast ID in project_id for a legacy subscription token.
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'2'} [v] Version (automatically defaults to 2 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @deprecated
      * @throws {RequiredError}
@@ -225,9 +237,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({
@@ -251,7 +272,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1Raw(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoChannelResponse>> {
@@ -298,9 +319,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({
@@ -314,7 +344,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     *        Get token for specific channel name:       - channel_name: \"channel_name\" - channel name        Examples:       - $broadcast:123 - broadcast       - $widget_template:507f1f77bcf86cd799439011 - integration template widget data     
+     * Get a secret subscription token for an allowed channel_name in project_id. expires_in is the lifetime in seconds (currently 30 minutes); channel is the subscription name. Obtain a connection token separately from /method/centrifuge/auth/connect. Supported channels and access are checked; this is neither the OpenAPI tool catalog nor widget custom actions. channel_name is the requested channel name. Examples: $broadcast:123 — broadcast; $widget_template:507f1f77bcf86cd799439011 — integration template widget data.
      * Get token for connect to centrifuge for channel
      */
     async centrifugeChannelTokenV1(requestParameters: CentrifugeChannelTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoChannelResponse> {
@@ -348,9 +378,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({
@@ -373,7 +412,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * Get token for connect to centrifuge for project
      */
     async centrifugeConnectionTokenV1Raw(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthCentrifugoConnectResponse>> {
@@ -409,9 +448,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({
@@ -425,7 +473,7 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
     }
 
     /**
-     * Get token for connect to centrifuge for project
+     * Get the secret Centrifugo connection token for the selected project_id, with expires_in in seconds (currently 5 minutes). This is a connection credential, not permission to subscribe to any channel. Obtain a subscription token separately through /method/centrifuge/auth/channel; read channel types from /method/centrifuge/channels. Do not save the token in the corpus.
      * Get token for connect to centrifuge for project
      */
     async centrifugeConnectionTokenV1(requestParameters: CentrifugeConnectionTokenV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthCentrifugoConnectResponse> {
@@ -471,9 +519,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({
@@ -545,9 +602,18 @@ export class CentrifugeApi extends runtime.BaseAPI implements CentrifugeApiInter
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["centrifuge:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["centrifuge:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["centrifuge:read"]);
         }
 
         const response = await this.request({

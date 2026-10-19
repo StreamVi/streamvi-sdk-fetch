@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class StreamKeyApi extends runtime.BaseAPI {
     /**
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * Get stream credentials
      */
     async streamKeysKeyV1Raw(requestParameters, initOverrides) {
@@ -67,9 +68,16 @@ class StreamKeyApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:read"]);
         }
         const response = await this.request({
             path: `/method/stream-keys`,
@@ -80,6 +88,7 @@ class StreamKeyApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetStreamKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Read disconnect protection settings and credentials for the selected project_id. wait is the saved waiting time in minutes; wait_max_minutes is the current plan maximum for PUT /method/stream-keys/wait. The response contains secret publishing key: do not include it in logs or examples. record is a saved preference, not confirmation that recording is available. Supply the account request target explicitly; the selected cabinet tab does not change project_id.
      * Get stream credentials
      */
     async streamKeysKeyV1(requestParameters, initOverrides) {
@@ -87,6 +96,7 @@ class StreamKeyApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * Rotate stream key
      */
     async streamKeysRotateV1Raw(requestParameters, initOverrides) {
@@ -97,9 +107,16 @@ class StreamKeyApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-keys/rotate`,
@@ -111,6 +128,7 @@ class StreamKeyApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.RotateStreamKeyResponseFromJSON)(jsonValue));
     }
     /**
+     * Rotate the secret publishing key of the selected project_id. Returns a new key and sends disconnect commands to active publishers using the old key. Success confirms the key was saved; individual server disconnect errors are logged without rolling back. Update the key in the streaming source. This does not change protection duration; use PUT /method/stream-keys/wait for that.
      * Rotate stream key
      */
     async streamKeysRotateV1(requestParameters, initOverrides) {
@@ -118,6 +136,7 @@ class StreamKeyApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * Update disconnect protection wait
      */
     async streamKeysSetWaitV1Raw(requestParameters, initOverrides) {
@@ -128,9 +147,16 @@ class StreamKeyApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-keys/wait`,
@@ -142,6 +168,7 @@ class StreamKeyApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Enable broadcast disconnect protection, change the wait time, or disable protection for the selected project_id. For example, \'enable protection for 15 minutes\' means wait_minutes=15; \'disable protection\' means wait_minutes=0. Accepts an integer number of minutes >= 0. Positive values are limited by the current tariff: first read wait_max_minutes via GET /method/stream-keys. Exceeding the limit returns error.name=stream_key.wait_exceeds_tariff_limit and error.data.max_minutes. Success confirms saving the setting and attempting to update active streams; completion of all external actions is not guaranteed. Pass an explicit project_id: the account fallback is the personal project, not the open tab. X-Client-Request-Id coordinates realtime refresh and is not an idempotency key.
      * Update disconnect protection wait
      */
     async streamKeysSetWaitV1(requestParameters, initOverrides) {
@@ -149,7 +176,8 @@ class StreamKeyApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
-     * Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * Update the stream recording preference (under development)
      */
     async streamKeysUpdateRecordV1Raw(requestParameters, initOverrides) {
         var _a;
@@ -159,9 +187,16 @@ class StreamKeyApi extends runtime.BaseAPI {
         const queryParameters = {};
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["stream-keys:write"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["stream-keys:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["stream-keys:write"]);
         }
         const response = await this.request({
             path: `/method/stream-keys/record`,
@@ -173,7 +208,8 @@ class StreamKeyApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
-     * Update record
+     * Recording is under development and is not implemented as an available recording feature. This endpoint only saves the requested project recording flag: true to enable, false to disable. The current implementation requires a tariff with recording enabled. A successful response confirms that the preference was saved; it does not mean recording has started or a video was created.
+     * Update the stream recording preference (under development)
      */
     async streamKeysUpdateRecordV1(requestParameters, initOverrides) {
         const response = await this.streamKeysUpdateRecordV1Raw(requestParameters, initOverrides);

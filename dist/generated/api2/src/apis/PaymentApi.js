@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PaymentApi extends runtime.BaseAPI {
     /**
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * Create payment item for pay system
      */
     async paymentCreateV1Raw(requestParameters, initOverrides) {
@@ -66,9 +67,16 @@ class PaymentApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:write"]);
         }
         const response = await this.request({
             path: `/method/payment`,
@@ -80,6 +88,7 @@ class PaymentApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaymentCreateResponseFromJSON)(jsonValue));
     }
     /**
+     * Create a pending payment for project_id and type (topup/restream/transcoding/storage/webinar) without completing payment. amount uses minor currency units (10000 = 100 major units); the project\'s billing payment system determines currency. Plan purchases require the fields for the corresponding type and plan_period. Returns payment_id and provider details; use its challenge/intent next. Returned payment provider credentials must not be logged.
      * Create payment item for pay system
      */
     async paymentCreateV1(requestParameters, initOverrides) {
@@ -87,6 +96,8 @@ class PaymentApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * Get payment status for a project
      */
     async paymentGetStatusV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
@@ -115,9 +126,16 @@ class PaymentApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/payment`,
@@ -128,6 +146,8 @@ class PaymentApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaymentStatusResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the saved status of payment payId in project_id. payId is payment_id from payment creation; amount is in minor currency units of currency. Reading status neither creates a payment challenge nor confirms a new payment; returns the current pending/success/cancel/error state.
+     * Get payment status for a project
      */
     async paymentGetStatusV1(requestParameters, initOverrides) {
         const response = await this.paymentGetStatusV1Raw(requestParameters, initOverrides);

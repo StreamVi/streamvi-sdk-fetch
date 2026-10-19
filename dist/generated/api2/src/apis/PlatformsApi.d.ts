@@ -17,6 +17,7 @@ export interface PlatformCategoryDetailsGetCategoryDetailsV1Request {
     scope: PlatformCategoryDetailsGetCategoryDetailsV1ScopeEnum;
     id: string;
     v?: PlatformCategoryDetailsGetCategoryDetailsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsAddAccountV1Request {
     language: PlatformsAddAccountV1LanguageEnum;
@@ -24,6 +25,8 @@ export interface PlatformsAddAccountV1Request {
     platform: PlatformsAddAccountV1PlatformEnum;
     v?: PlatformsAddAccountV1VEnum;
     sub_id?: string;
+    connection_mode?: PlatformsAddAccountV1ConnectionModeEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsAddAccountVkCommunityV1Request {
     language: PlatformsAddAccountVkCommunityV1LanguageEnum;
@@ -32,27 +35,33 @@ export interface PlatformsAddAccountVkCommunityV1Request {
     account_id: string;
     v?: PlatformsAddAccountVkCommunityV1VEnum;
     sub_id?: string;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsCallbackCommunityV1Request {
     state: string;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsCallbackV1Request {
     provider: PlatformsCallbackV1ProviderEnum;
     state: string;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsCallbackVkIdV1Request {
     state: string;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsGetAccountsV1Request {
     language: PlatformsGetAccountsV1LanguageEnum;
     platform: PlatformsGetAccountsV1PlatformEnum;
     v?: PlatformsGetAccountsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsGetCategoryV1Request {
     language: PlatformsGetCategoryV1LanguageEnum;
     type: PlatformsGetCategoryV1TypeEnum;
     v?: PlatformsGetCategoryV1VEnum;
     q?: string;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsGetChannelsV1Request {
     language: PlatformsGetChannelsV1LanguageEnum;
@@ -65,19 +74,23 @@ export interface PlatformsGetChannelsV1Request {
     sort?: PlatformsGetChannelsV1SortEnum;
     limit?: number;
     page?: number;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsLogoutAccountV1Request {
     language: PlatformsLogoutAccountV1LanguageEnum;
     id: string;
     platform: PlatformsLogoutAccountV1PlatformEnum;
     v?: PlatformsLogoutAccountV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsPlatformListV1Request {
     language: PlatformsPlatformListV1LanguageEnum;
     v?: PlatformsPlatformListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsRemoveAccountV1Request {
     RemoveAccountQuery: RemoveAccountQuery;
+    X_Client_Request_Id?: string;
 }
 export interface PlatformsVkVideoLiveCategoryV1Request {
     language: PlatformsVkVideoLiveCategoryV1LanguageEnum;
@@ -85,6 +98,7 @@ export interface PlatformsVkVideoLiveCategoryV1Request {
     v?: PlatformsVkVideoLiveCategoryV1VEnum;
     offset?: number;
     q?: string;
+    X_Client_Request_Id?: string;
 }
 /**
  * PlatformsApi - interface
@@ -94,133 +108,150 @@ export interface PlatformsVkVideoLiveCategoryV1Request {
  */
 export interface PlatformsApiInterface {
     /**
-     *
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * @summary Get a saved platform category by its external identifier
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'vkvideolive'} platform
-     * @param {'game' | 'irl' | 'sport'} scope
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {'vkvideolive'} platform Platform of the saved category catalog; allowed values are defined by enum.
+     * @param {'game' | 'irl' | 'sport'} scope Platform category catalog section; allowed values are defined by enum, not the token\&#39;s OAuth scope.
      * @param {string} id Opaque external category identifier; passed through unchanged
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlatformCategoryDetailsResponse>>;
     /**
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * Get a saved platform category by its external identifier
      */
     platformCategoryDetailsGetCategoryDetailsV1(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlatformCategoryDetailsResponse>;
     /**
-     *
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * @summary Get url for start oauth
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [sub_id] Sub id
+     * @param {'select_channels'} [connection_mode] Channel selection after OAuth (VK Video Live only)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsAddAccountV1Raw(requestParameters: PlatformsAddAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * Get url for start oauth
      */
     platformsAddAccountV1(requestParameters: PlatformsAddAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * @summary Get url for start oauth
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
-     * @param {number} channel_id Channel external id
+     * @param {number} channel_id External numeric VK community ID from the platform channel list. This connect method does not take the internal StreamVi channel_id/group_id.
      * @param {string} account_id Id account on platform
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [sub_id] Sub id
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsAddAccountVkCommunityV1Raw(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * Get url for start oauth
      */
     platformsAddAccountVkCommunityV1(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
-     *
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * @summary Internal request of auth
      * @param {string} state State
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsCallbackCommunityV1Raw(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * Internal request of auth
      */
     platformsCallbackCommunityV1(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
-     *
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * @summary Internal request of auth
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} provider Provider oauth
      * @param {string} state State
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsCallbackV1Raw(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * Internal request of auth
      */
     platformsCallbackV1(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
-     *
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * @summary Internal request of auth vk-id
      * @param {string} state State
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsCallbackVkIdV1Raw(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * Internal request of auth vk-id
      */
     platformsCallbackVkIdV1(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
-     *
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * @summary Get accounts
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsGetAccountsV1Raw(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountsResponse>>;
     /**
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * Get accounts
      */
     platformsGetAccountsV1(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountsResponse>;
     /**
-     *
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * @summary Get category from the platform
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'vk' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} type Category search bar
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {string} [q] Category search bar
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
     /**
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * Get category from the platform
      */
     platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
     /**
-     *
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * @summary Get channels with accounts
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {'vk' | 'ok'} platform Platform (vk, ok)
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {'vk' | 'ok' | 'vkvideolive'} platform Platform (vk, ok, vkvideolive)
      * @param {Array<number>} ids Id accounts
      * @param {number} project_id Project id
      * @param {string} request_id Request id (for cache)
@@ -229,72 +260,82 @@ export interface PlatformsApiInterface {
      * @param {'asc' | 'desc'} [sort] Sort by asc or desc (default asc)
      * @param {number} [limit] Limit
      * @param {number} [page] Page
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsGetChannelsV1Raw(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountChannelsResponse>>;
     /**
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * Get channels with accounts
      */
     platformsGetChannelsV1(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountChannelsResponse>;
     /**
-     *
-     * @summary Get category from the platform
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * @summary Unavailable platform logout (not implemented)
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} id Category search bar
      * @param {'vk' | 'vk-id' | 'ok' | 'youtube' | 'trovo' | 'twitch' | 'vkvideolive'} platform Provider oauth
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsLogoutAccountV1Raw(requestParameters: PlatformsLogoutAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfCategoryItemResponse>>;
     /**
-     * Get category from the platform
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * Unavailable platform logout (not implemented)
      */
     platformsLogoutAccountV1(requestParameters: PlatformsLogoutAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfCategoryItemResponse>;
     /**
-     *
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * @summary Supported platforms
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsPlatformListV1Raw(requestParameters: PlatformsPlatformListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePlatformsSupportedResponse>>;
     /**
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * Supported platforms
      */
     platformsPlatformListV1(requestParameters: PlatformsPlatformListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlatformsSupportedResponse>;
     /**
-     *
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * @summary Remove account
      * @param {RemoveAccountQuery} RemoveAccountQuery
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsRemoveAccountV1Raw(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * Remove account
      */
     platformsRemoveAccountV1(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * @summary Search VK Video Live categories in the saved catalog
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'irl' | 'game' | 'sport'} type Category type
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [offset] Category offset (for pagination)
      * @param {string} [q] Category name prefix
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlatformsApiInterface
      */
     platformsVkVideoLiveCategoryV1Raw(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
     /**
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * Search VK Video Live categories in the saved catalog
      */
     platformsVkVideoLiveCategoryV1(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
@@ -304,106 +345,132 @@ export interface PlatformsApiInterface {
  */
 export declare class PlatformsApi extends runtime.BaseAPI implements PlatformsApiInterface {
     /**
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * Get a saved platform category by its external identifier
      */
     platformCategoryDetailsGetCategoryDetailsV1Raw(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlatformCategoryDetailsResponse>>;
     /**
+     * Read a saved platform category by its external id, platform, and catalog scope. Returns category metadata; missing categories produce the documented 404. This is a platform catalog ID for broadcast settings, not an internal StreamVi channel_id.
      * Get a saved platform category by its external identifier
      */
     platformCategoryDetailsGetCategoryDetailsV1(requestParameters: PlatformCategoryDetailsGetCategoryDetailsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlatformCategoryDetailsResponse>;
     /**
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * Get url for start oauth
      */
     platformsAddAccountV1Raw(requestParameters: PlatformsAddAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start connecting a platform account for project_id with connection_mode and sub_id from the request. Redirects to the platform page; user authorization and a callback must finish. GET starts a connection flow, not a ready account list or new token.
      * Get url for start oauth
      */
     platformsAddAccountV1(requestParameters: PlatformsAddAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * Get url for start oauth
      */
     platformsAddAccountVkCommunityV1Raw(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
     /**
+     * Start VK community OAuth connection for project_id, account_id and external channel_id. Returns an authorization redirect; user completion and a callback are required. These input platform identifiers differ from the internal group_id of an already added channel.
      * Get url for start oauth
      */
     platformsAddAccountVkCommunityV1(requestParameters: PlatformsAddAccountVkCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
     /**
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * Internal request of auth
      */
     platformsCallbackCommunityV1Raw(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal VK-community OAuth callback. Processes the platform authorization result and builds the UI callback response. Callback transport excludes it from account/project integration profiles; do not call it manually as an add-channel tool.
      * Internal request of auth
      */
     platformsCallbackCommunityV1(requestParameters: PlatformsCallbackCommunityV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * Internal request of auth
      */
     platformsCallbackV1Raw(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal OAuth callback for the selected provider to finish connecting a platform. Returns a UI result; callback transport excludes it from integration profiles. The platform creates authorization data, not the assistant.
      * Internal request of auth
      */
     platformsCallbackV1(requestParameters: PlatformsCallbackV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * Internal request of auth vk-id
      */
     platformsCallbackVkIdV1Raw(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<string>>;
     /**
+     * Internal VK ID OAuth callback to finish connecting an account. Returns a UI callback response; callback transport excludes it from integration profiles. This is not an ordinary data read.
      * Internal request of auth vk-id
      */
     platformsCallbackVkIdV1(requestParameters: PlatformsCallbackVkIdV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<string>;
     /**
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * Get accounts
      */
     platformsGetAccountsV1Raw(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountsResponse>>;
     /**
+     * Read the current user\'s connected accounts for platform. These are personal platform accounts, not StreamVi projects. Use result IDs for /method/platforms/account/channels and the corresponding add-channel operation.
      * Get accounts
      */
     platformsGetAccountsV1(requestParameters: PlatformsGetAccountsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountsResponse>;
     /**
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * Get category from the platform
      */
     platformsGetCategoryV1Raw(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
     /**
+     * Find broadcast categories for platform type using q and language. Returns category results for channel settings; their external IDs are not StreamVi channel_id. Reads the account-context catalog without changing the project.
      * Get category from the platform
      */
     platformsGetCategoryV1(requestParameters: PlatformsGetCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
     /**
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * Get channels with accounts
      */
     platformsGetChannelsV1Raw(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountChannelsResponse>>;
     /**
+     * Read external channels of the selected platform account ids in project_id. request_id is a UUID for caching this result; page is a page number, and q/sort/limit configure search. Returns results and page metadata; external string IDs are used when adding a channel and do not replace results[].group_id from StreamVi search.
      * Get channels with accounts
      */
     platformsGetChannelsV1(requestParameters: PlatformsGetChannelsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAccountChannelsResponse>;
     /**
-     * Get category from the platform
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * Unavailable platform logout (not implemented)
      */
     platformsLogoutAccountV1Raw(requestParameters: PlatformsLogoutAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListOfCategoryItemResponse>>;
     /**
-     * Get category from the platform
+     * Incomplete internal platform logout method: the current implementation always throws Not implemented. Do not use for category search or as an available account disconnection; use POST /method/platforms/account/remove to remove a connection.
+     * Unavailable platform logout (not implemented)
      */
     platformsLogoutAccountV1(requestParameters: PlatformsLogoutAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListOfCategoryItemResponse>;
     /**
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * Supported platforms
      */
     platformsPlatformListV1Raw(requestParameters: PlatformsPlatformListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SitePlatformsSupportedResponse>>;
     /**
+     * Read the public catalog of supported platforms and their capabilities. Describes available connection methods without confirming that a specific account or project channel is connected.
      * Supported platforms
      */
     platformsPlatformListV1(requestParameters: PlatformsPlatformListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SitePlatformsSupportedResponse>;
     /**
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * Remove account
      */
     platformsRemoveAccountV1Raw(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete the current user\'s platform account connection id/platform. Returns success after the deletion use case. This disconnects a platform account rather than disabling one project destination using active=false.
      * Remove account
      */
     platformsRemoveAccountV1(requestParameters: PlatformsRemoveAccountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * Search VK Video Live categories in the saved catalog
      */
     platformsVkVideoLiveCategoryV1Raw(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoryListResponse>>;
     /**
+     * Search the saved VK Video Live category catalog using the search parameters. Returns category results whose identifiers are used in platform settings, not StreamVi channel management. No live OAuth connection is required for searching.
      * Search VK Video Live categories in the saved catalog
      */
     platformsVkVideoLiveCategoryV1(requestParameters: PlatformsVkVideoLiveCategoryV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoryListResponse>;
@@ -469,6 +536,13 @@ export declare const PlatformsAddAccountV1VEnum: {
     readonly _1: "1";
 };
 export type PlatformsAddAccountV1VEnum = typeof PlatformsAddAccountV1VEnum[keyof typeof PlatformsAddAccountV1VEnum];
+/**
+ * @export
+ */
+export declare const PlatformsAddAccountV1ConnectionModeEnum: {
+    readonly select_channels: "select_channels";
+};
+export type PlatformsAddAccountV1ConnectionModeEnum = typeof PlatformsAddAccountV1ConnectionModeEnum[keyof typeof PlatformsAddAccountV1ConnectionModeEnum];
 /**
  * @export
  */
@@ -569,6 +643,7 @@ export type PlatformsGetChannelsV1LanguageEnum = typeof PlatformsGetChannelsV1La
 export declare const PlatformsGetChannelsV1PlatformEnum: {
     readonly vk: "vk";
     readonly ok: "ok";
+    readonly vkvideolive: "vkvideolive";
 };
 export type PlatformsGetChannelsV1PlatformEnum = typeof PlatformsGetChannelsV1PlatformEnum[keyof typeof PlatformsGetChannelsV1PlatformEnum];
 /**

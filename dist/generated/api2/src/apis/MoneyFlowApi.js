@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class MoneyFlowApi extends runtime.BaseAPI {
     /**
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * Transaction list for frontend
      */
     async moneyFlowListV1Raw(requestParameters, initOverrides) {
@@ -85,9 +86,16 @@ class MoneyFlowApi extends runtime.BaseAPI {
             queryParameters['balance_type'] = requestParameters['balance_type'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["billing:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["billing:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["billing:read"]);
         }
         const response = await this.request({
             path: `/method/money_flow/list`,
@@ -98,6 +106,7 @@ class MoneyFlowApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedMoneyFlowResponseFromJSON)(jsonValue));
     }
     /**
+     * Read fund movements for project_id with limit/offset, date_from/date_to, and type/balance_type filters. offset is the number of records to skip; filters are comma-separated strings transformed according to allowed codes. Monetary values are minor currency units: divide by 100 for display in the response currency. This reads history without topping up or making a payment.
      * Transaction list for frontend
      */
     async moneyFlowListV1(requestParameters, initOverrides) {

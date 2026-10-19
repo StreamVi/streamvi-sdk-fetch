@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class HelpPageApi extends runtime.BaseAPI {
     /**
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * Get help page
      */
     async helpPageGetV1Raw(requestParameters, initOverrides) {
@@ -67,6 +68,9 @@ class HelpPageApi extends runtime.BaseAPI {
             queryParameters['url'] = requestParameters['url'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/help/page/get`,
             method: 'GET',
@@ -76,6 +80,7 @@ class HelpPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.GetHelpPageResponseFromJSON)(jsonValue));
     }
     /**
+     * Read public help page content using request parameters and language. Returns the page without executing the action it describes.
      * Get help page
      */
     async helpPageGetV1(requestParameters, initOverrides) {
@@ -83,11 +88,18 @@ class HelpPageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * Get list of help pages
      */
     async helpPageListV1Raw(requestParameters, initOverrides) {
         if (requestParameters['language'] == null) {
             throw new runtime.RequiredError('language', 'Required parameter "language" was null or undefined when calling helpPageListV1().');
+        }
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling helpPageListV1().');
+        }
+        if (requestParameters['offset'] == null) {
+            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling helpPageListV1().');
         }
         const queryParameters = {};
         if (requestParameters['v'] != null) {
@@ -109,6 +121,9 @@ class HelpPageApi extends runtime.BaseAPI {
             queryParameters['offset'] = requestParameters['offset'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/help/page/search`,
             method: 'GET',
@@ -118,6 +133,7 @@ class HelpPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PaginatedHelpPageResponseFromJSON)(jsonValue));
     }
     /**
+     * Search public help pages using request filters and pagination, including language. Returns search results; read the selected page using GET /method/help/page/get.
      * Get list of help pages
      */
     async helpPageListV1(requestParameters, initOverrides) {
@@ -125,6 +141,7 @@ class HelpPageApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * Get structure of help pages
      */
     async helpPageStructureV1Raw(requestParameters, initOverrides) {
@@ -142,6 +159,9 @@ class HelpPageApi extends runtime.BaseAPI {
             queryParameters['language'] = requestParameters['language'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         const response = await this.request({
             path: `/method/help/page/structure`,
             method: 'GET',
@@ -151,6 +171,7 @@ class HelpPageApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.StructureHelpPageResponseFromJSON)(jsonValue));
     }
     /**
+     * Read the public help section structure for language. Returns a navigation tree/sections; this method does not change the structure.
      * Get structure of help pages
      */
     async helpPageStructureV1(requestParameters, initOverrides) {

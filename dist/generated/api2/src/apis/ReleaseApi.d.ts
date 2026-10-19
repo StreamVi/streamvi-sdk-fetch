@@ -10,11 +10,17 @@
  * Do not edit the class manually.
  */
 import * as runtime from '../runtime';
-import type { GetVersionAppResponse } from '../models/index';
+import type { DesktopAppReleasesResponse, GetVersionAppResponse } from '../models/index';
+export interface MethodDesktopAppReleasesV1Request {
+    language: MethodDesktopAppReleasesV1LanguageEnum;
+    v?: MethodDesktopAppReleasesV1VEnum;
+    X_Client_Request_Id?: string;
+}
 export interface ReleaseAppCabinetV1Request {
     language: ReleaseAppCabinetV1LanguageEnum;
     app: ReleaseAppCabinetV1AppEnum;
     v?: ReleaseAppCabinetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * ReleaseApi - interface
@@ -24,17 +30,35 @@ export interface ReleaseAppCabinetV1Request {
  */
 export interface ReleaseApiInterface {
     /**
-     *
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * @summary Get stable desktop installers by platform
+     * @param {'ru' | 'en'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ReleaseApiInterface
+     */
+    methodDesktopAppReleasesV1Raw(requestParameters: MethodDesktopAppReleasesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DesktopAppReleasesResponse>>;
+    /**
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * Get stable desktop installers by platform
+     */
+    methodDesktopAppReleasesV1(requestParameters: MethodDesktopAppReleasesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DesktopAppReleasesResponse>;
+    /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * @summary Get current version app
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'cabinet'} app Apps
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ReleaseApiInterface
      */
     releaseAppCabinetV1Raw(requestParameters: ReleaseAppCabinetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVersionAppResponse>>;
     /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * Get current version app
      */
     releaseAppCabinetV1(requestParameters: ReleaseAppCabinetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVersionAppResponse>;
@@ -44,14 +68,41 @@ export interface ReleaseApiInterface {
  */
 export declare class ReleaseApi extends runtime.BaseAPI implements ReleaseApiInterface {
     /**
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * Get stable desktop installers by platform
+     */
+    methodDesktopAppReleasesV1Raw(requestParameters: MethodDesktopAppReleasesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DesktopAppReleasesResponse>>;
+    /**
+     * Read the public catalog of stable desktop app installers by platform. Returns versions and links; an unavailable source produces the documented 503 response. This method neither downloads nor installs updates.
+     * Get stable desktop installers by platform
+     */
+    methodDesktopAppReleasesV1(requestParameters: MethodDesktopAppReleasesV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DesktopAppReleasesResponse>;
+    /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * Get current version app
      */
     releaseAppCabinetV1Raw(requestParameters: ReleaseAppCabinetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetVersionAppResponse>>;
     /**
+     * Read the currently published version and release details for app. This is a public version check without installing an update; the request\'s app enum/field selects the application.
      * Get current version app
      */
     releaseAppCabinetV1(requestParameters: ReleaseAppCabinetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetVersionAppResponse>;
 }
+/**
+ * @export
+ */
+export declare const MethodDesktopAppReleasesV1LanguageEnum: {
+    readonly ru: "ru";
+    readonly en: "en";
+};
+export type MethodDesktopAppReleasesV1LanguageEnum = typeof MethodDesktopAppReleasesV1LanguageEnum[keyof typeof MethodDesktopAppReleasesV1LanguageEnum];
+/**
+ * @export
+ */
+export declare const MethodDesktopAppReleasesV1VEnum: {
+    readonly _1: "1";
+};
+export type MethodDesktopAppReleasesV1VEnum = typeof MethodDesktopAppReleasesV1VEnum[keyof typeof MethodDesktopAppReleasesV1VEnum];
 /**
  * @export
  */

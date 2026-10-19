@@ -71,13 +71,16 @@ export interface BroadcastCredentialsV1Request {
     language: BroadcastCredentialsV1LanguageEnum;
     project_id: number;
     v?: BroadcastCredentialsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastEventItemV1Request {
     language: BroadcastEventItemV1LanguageEnum;
     id: string;
     date: Date;
+    project_id?: number;
     v?: BroadcastEventItemV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastEventsV4Request {
@@ -97,6 +100,7 @@ export interface BroadcastEventsV4Request {
     cursor_id?: string;
     cursor_datetime?: Date;
     v?: BroadcastEventsV4VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastFindV1Request {
@@ -104,12 +108,14 @@ export interface BroadcastFindV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastFindV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastGetTemplateV1Request {
     language: BroadcastGetTemplateV1LanguageEnum;
     project_id: number;
     v?: BroadcastGetTemplateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastGraphBitrateV1Request {
@@ -117,6 +123,7 @@ export interface BroadcastGraphBitrateV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastGraphBitrateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastGraphViewersV1Request {
@@ -124,6 +131,7 @@ export interface BroadcastGraphViewersV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastGraphViewersV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastListV1Request {
@@ -133,14 +141,17 @@ export interface BroadcastListV1Request {
     offset?: number;
     order?: BroadcastListV1OrderEnum;
     v?: BroadcastListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastPauseV1Request {
     SiteBroadcastPauseRequest: SiteBroadcastPauseRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastPlayV1Request {
     SiteBroadcastPlayRequest: SiteBroadcastPlayRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastRestreamChatV1Request {
@@ -148,6 +159,8 @@ export interface BroadcastRestreamChatV1Request {
     broadcast_id: number;
     key: string;
     v?: BroadcastRestreamChatV1VEnum;
+    project_id?: number;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastRestreamsV1Request {
@@ -155,22 +168,26 @@ export interface BroadcastRestreamsV1Request {
     project_id: number;
     broadcast_id: number;
     v?: BroadcastRestreamsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastStatusV1Request {
     language: BroadcastStatusV1LanguageEnum;
     project_id: number;
     v?: BroadcastStatusV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastStopV1Request {
     SiteBroadcastStopRequest: SiteBroadcastStopRequest;
+    X_Client_Request_Id?: string;
 }
 
 export interface BroadcastTokenChannelV1Request {
     language: BroadcastTokenChannelV1LanguageEnum;
     key: string;
     v?: BroadcastTokenChannelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -181,11 +198,12 @@ export interface BroadcastTokenChannelV1Request {
  */
 export interface BroadcastApiInterface {
     /**
-     * 
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * @summary Get credentials
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -193,17 +211,20 @@ export interface BroadcastApiInterface {
     broadcastCredentialsV1Raw(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastCredentialsResponse>>;
 
     /**
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * Get credentials
      */
     broadcastCredentialsV1(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastCredentialsResponse>;
 
     /**
-     * 
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * @summary Broadcast event item
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {string} id Event id
      * @param {Date} date Event date
+     * @param {number} [project_id] Target project ID. Required for site requests; account tokens fall back to their personal project when omitted in every request source; project tokens determine the project automatically.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -211,14 +232,15 @@ export interface BroadcastApiInterface {
     broadcastEventItemV1Raw(requestParameters: BroadcastEventItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteRestreamEventResponse>>;
 
     /**
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * Broadcast event item
      */
     broadcastEventItemV1(requestParameters: BroadcastEventItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteRestreamEventResponse>;
 
     /**
-     * 
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * @summary Events from broadcast v4
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
      * @param {Array<number>} [channels] Channels id
@@ -234,6 +256,7 @@ export interface BroadcastApiInterface {
      * @param {string} [cursor_id] Cursor event id
      * @param {Date} [cursor_datetime] Cursor event datetime
      * @param {'4'} [v] Version (automatically defaults to 4 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -241,17 +264,19 @@ export interface BroadcastApiInterface {
     broadcastEventsV4Raw(requestParameters: BroadcastEventsV4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastEventsV4Response>>;
 
     /**
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * Events from broadcast v4
      */
     broadcastEventsV4(requestParameters: BroadcastEventsV4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastEventsV4Response>;
 
     /**
-     * 
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * @summary Get one broadcast
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -259,16 +284,18 @@ export interface BroadcastApiInterface {
     broadcastFindV1Raw(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastFindResponse>>;
 
     /**
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * Get one broadcast
      */
     broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse>;
 
     /**
-     * 
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * @summary Get broadcast title and description template
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -276,17 +303,19 @@ export interface BroadcastApiInterface {
     broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>>;
 
     /**
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * Get broadcast title and description template
      */
     broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse>;
 
     /**
-     * 
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * @summary Bitrate from broadcast
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -294,17 +323,19 @@ export interface BroadcastApiInterface {
     broadcastGraphBitrateV1Raw(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
 
     /**
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * Bitrate from broadcast
      */
     broadcastGraphBitrateV1(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
 
     /**
-     * 
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * @summary Viewers from broadcast
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id broadcast id
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -312,19 +343,21 @@ export interface BroadcastApiInterface {
     broadcastGraphViewersV1Raw(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>>;
 
     /**
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * Viewers from broadcast
      */
     broadcastGraphViewersV1(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse>;
 
     /**
-     * 
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * @summary List broadcast
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} [limit] Number of results
-     * @param {number} [offset] Page offset number
+     * @param {number} [offset] Number of records to skip; not a page number.
      * @param {'asc' | 'desc'} [order] order
      * @param {'3'} [v] Version (automatically defaults to 3 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -332,14 +365,16 @@ export interface BroadcastApiInterface {
     broadcastListV1Raw(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastListResponse>>;
 
     /**
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * List broadcast
      */
     broadcastListV1(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastListResponse>;
 
     /**
-     * 
-     * @summary Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * @summary Pause an active live broadcast
      * @param {SiteBroadcastPauseRequest} SiteBroadcastPauseRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -347,14 +382,16 @@ export interface BroadcastApiInterface {
     broadcastPauseV1Raw(requestParameters: BroadcastPauseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * Pause an active live broadcast
      */
     broadcastPauseV1(requestParameters: BroadcastPauseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
-     * @summary Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * @summary Resume an active live broadcast
      * @param {SiteBroadcastPlayRequest} SiteBroadcastPlayRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -362,17 +399,20 @@ export interface BroadcastApiInterface {
     broadcastPlayV1Raw(requestParameters: BroadcastPlayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * Resume an active live broadcast
      */
     broadcastPlayV1(requestParameters: BroadcastPlayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * @summary Get restreams for chat
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} broadcast_id broadcast id
      * @param {string} key Chat token
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {number} [project_id] Required selected project for account integration credentials
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -380,17 +420,19 @@ export interface BroadcastApiInterface {
     broadcastRestreamChatV1Raw(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>>;
 
     /**
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * Get restreams for chat
      */
     broadcastRestreamChatV1(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse>;
 
     /**
-     * 
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * @summary View live info
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} broadcast_id Broadcast id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -398,16 +440,18 @@ export interface BroadcastApiInterface {
     broadcastRestreamsV1Raw(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastRestreamsInfoResponse>>;
 
     /**
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * View live info
      */
     broadcastRestreamsV1(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastRestreamsInfoResponse>;
 
     /**
-     * 
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * @summary Live status info by project id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -415,14 +459,16 @@ export interface BroadcastApiInterface {
     broadcastStatusV1Raw(requestParameters: BroadcastStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastStatusV1200Response>>;
 
     /**
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * Live status info by project id
      */
     broadcastStatusV1(requestParameters: BroadcastStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastStatusV1200Response>;
 
     /**
-     * 
-     * @summary Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * @summary Request stopping an active live broadcast
      * @param {SiteBroadcastStopRequest} SiteBroadcastStopRequest 
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -430,16 +476,18 @@ export interface BroadcastApiInterface {
     broadcastStopV1Raw(requestParameters: BroadcastStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
 
     /**
-     * Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * Request stopping an active live broadcast
      */
     broadcastStopV1(requestParameters: BroadcastStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
 
     /**
-     * 
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * @summary Connect channel, long polling
-     * @param {'ru' | 'en' | 'cn'} language Current language
-     * @param {string} key 
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
+     * @param {string} key Project/chat connection key credential for legacy long polling. Sensitive value; do not include in logs or examples.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BroadcastApiInterface
@@ -447,6 +495,7 @@ export interface BroadcastApiInterface {
     broadcastTokenChannelV1Raw(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>>;
 
     /**
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * Connect channel, long polling
      */
     broadcastTokenChannelV1(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined >;
@@ -459,6 +508,7 @@ export interface BroadcastApiInterface {
 export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterface {
 
     /**
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * Get credentials
      */
     async broadcastCredentialsV1Raw(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastCredentialsResponse>> {
@@ -494,9 +544,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -510,6 +569,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get ingress addresses and the secret publishing key for project_id. Missing credentials produces credentials.no_found. This reads source connection details without creating a broadcast. Do not save key in examples, logs, or the corpus.
      * Get credentials
      */
     async broadcastCredentialsV1(requestParameters: BroadcastCredentialsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastCredentialsResponse> {
@@ -518,6 +578,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * Broadcast event item
      */
     async broadcastEventItemV1Raw(requestParameters: BroadcastEventItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteRestreamEventResponse>> {
@@ -548,6 +609,10 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['id'] != null) {
             queryParameters['id'] = requestParameters['id'];
         }
@@ -564,9 +629,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -580,6 +654,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read restream event details using id (event UUID) and date (event date). Obtain the event ID from broadcast events; the response is localized using language. Reading an event does not change stream state.
      * Broadcast event item
      */
     async broadcastEventItemV1(requestParameters: BroadcastEventItemV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteRestreamEventResponse> {
@@ -588,6 +663,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * Events from broadcast v4
      */
     async broadcastEventsV4Raw(requestParameters: BroadcastEventsV4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastEventsV4Response>> {
@@ -682,9 +758,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -698,6 +783,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get broadcast_id events in project_id with filters and v=4 pagination; the response contains total, limit, offset, sort_by_date; supply cursor_id and cursor_datetime together. This reads event history without starting or stopping a broadcast. For one event use GET /method/broadcast/events/item.
      * Events from broadcast v4
      */
     async broadcastEventsV4(requestParameters: BroadcastEventsV4Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastEventsV4Response> {
@@ -706,6 +792,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * Get one broadcast
      */
     async broadcastFindV1Raw(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastFindResponse>> {
@@ -752,9 +839,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -768,6 +864,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read a single broadcast by broadcast_id in project_id, including its saved parameters and statistics. broadcast_id comes from GET /method/broadcast/list or project state; it identifies a broadcast, not a channel. Use GET /method/broadcast/status for current state.
      * Get one broadcast
      */
     async broadcastFindV1(requestParameters: BroadcastFindV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastFindResponse> {
@@ -776,6 +873,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * Get broadcast title and description template
      */
     async broadcastGetTemplateV1Raw(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastTemplateResponse>> {
@@ -811,9 +909,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -827,6 +934,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read the saved default broadcast title and description for project_id. POST /method/channel_settings/bulkUpdate updates the template and supported channels; this method neither publishes anything nor starts a stream.
      * Get broadcast title and description template
      */
     async broadcastGetTemplateV1(requestParameters: BroadcastGetTemplateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastTemplateResponse> {
@@ -835,6 +943,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * Bitrate from broadcast
      */
     async broadcastGraphBitrateV1Raw(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>> {
@@ -881,9 +990,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -897,6 +1015,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get the input bitrate chart for broadcast_id in project_id. Statistics points use the response schema; this method does not change bitrate or source settings.
      * Bitrate from broadcast
      */
     async broadcastGraphBitrateV1(requestParameters: BroadcastGraphBitrateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse> {
@@ -905,6 +1024,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * Viewers from broadcast
      */
     async broadcastGraphViewersV1Raw(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastGraphResponse>> {
@@ -951,9 +1071,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -967,6 +1096,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get the viewer chart for broadcast_id in project_id. This is saved broadcast statistics; the method neither controls channels nor starts a stream.
      * Viewers from broadcast
      */
     async broadcastGraphViewersV1(requestParameters: BroadcastGraphViewersV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastGraphResponse> {
@@ -975,6 +1105,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * List broadcast
      */
     async broadcastListV1Raw(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastListResponse>> {
@@ -1022,9 +1153,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -1038,6 +1178,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get broadcast history for project_id with limit/offset and order. offset is the number of records to skip, not a page number. Returns results and pagination data; use broadcast_id from the list to read a specific broadcast, its events, and charts.
      * List broadcast
      */
     async broadcastListV1(requestParameters: BroadcastListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastListResponse> {
@@ -1046,7 +1187,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * Pause an active live broadcast
      */
     async broadcastPauseV1Raw(requestParameters: BroadcastPauseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['SiteBroadcastPauseRequest'] == null) {
@@ -1062,9 +1204,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
 
         const response = await this.request({
@@ -1079,7 +1230,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Pause stream
+     * Requests a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not create or finish a broadcast.
+     * Pause an active live broadcast
      */
     async broadcastPauseV1(requestParameters: BroadcastPauseV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.broadcastPauseV1Raw(requestParameters, initOverrides);
@@ -1087,7 +1239,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * Resume an active live broadcast
      */
     async broadcastPlayV1Raw(requestParameters: BroadcastPlayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['SiteBroadcastPlayRequest'] == null) {
@@ -1103,9 +1256,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
 
         const response = await this.request({
@@ -1120,7 +1282,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Play stream
+     * Requests playback after a user pause for the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. This does not start a new broadcast or restart a finished one.
+     * Resume an active live broadcast
      */
     async broadcastPlayV1(requestParameters: BroadcastPlayV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.broadcastPlayV1Raw(requestParameters, initOverrides);
@@ -1128,6 +1291,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * Get restreams for chat
      */
     async broadcastRestreamChatV1Raw(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodBroadcastRestreamsResponse>> {
@@ -1164,6 +1328,10 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
             queryParameters['language'] = requestParameters['language'];
         }
 
+        if (requestParameters['project_id'] != null) {
+            queryParameters['project_id'] = requestParameters['project_id'];
+        }
+
         if (requestParameters['broadcast_id'] != null) {
             queryParameters['broadcast_id'] = requestParameters['broadcast_id'];
         }
@@ -1174,9 +1342,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -1190,6 +1367,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Get restream_id, internal channel_id, platform, and viewer count for destinations of broadcast_id after checking project ownership. The response is intended for selecting chat destinations, not sending messages; unavailable viewers statistics may be null.
      * Get restreams for chat
      */
     async broadcastRestreamChatV1(requestParameters: BroadcastRestreamChatV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodBroadcastRestreamsResponse> {
@@ -1198,6 +1376,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * View live info
      */
     async broadcastRestreamsV1Raw(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteBroadcastRestreamsInfoResponse>> {
@@ -1244,9 +1423,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -1260,6 +1448,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read restream destinations for broadcast_id in project_id and obtain Centrifugo subscription tokens for URL and statistics updates, version v=1. This reads destination state without starting a stream. Subscription tokens are credentials and must not be logged.
      * View live info
      */
     async broadcastRestreamsV1(requestParameters: BroadcastRestreamsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteBroadcastRestreamsInfoResponse> {
@@ -1268,6 +1457,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * Live status info by project id
      */
     async broadcastStatusV1Raw(requestParameters: BroadcastStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BroadcastStatusV1200Response>> {
@@ -1303,9 +1493,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -1319,6 +1518,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Read the current broadcast state of project_id: kind determines inactive, live, transcoding, or scheduler. Use this response to verify state after pause/play/stop commands; reading does not start a broadcast. Supply the target project explicitly in account API.
      * Live status info by project id
      */
     async broadcastStatusV1(requestParameters: BroadcastStatusV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BroadcastStatusV1200Response> {
@@ -1327,7 +1527,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * Request stopping an active live broadcast
      */
     async broadcastStopV1Raw(requestParameters: BroadcastStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>> {
         if (requestParameters['SiteBroadcastStopRequest'] == null) {
@@ -1343,9 +1544,18 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["broadcast:write"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:write"]);
         }
 
         const response = await this.request({
@@ -1360,7 +1570,8 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
-     * Stop stream
+     * Requests stopping the active broadcast identified by broadcast_id in project_id. Only unfinished broadcasts with app=live are supported; scheduler and transcoder broadcasts are rejected. The broadcast must belong to the specified project. Clears its disconnect-protection wait and marks it as stopped. Check broadcast status to confirm completion; a successful response does not guarantee all shutdown work has finished.
+     * Request stopping an active live broadcast
      */
     async broadcastStopV1(requestParameters: BroadcastStopV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse> {
         const response = await this.broadcastStopV1Raw(requestParameters, initOverrides);
@@ -1368,6 +1579,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * Connect channel, long polling
      */
     async broadcastTokenChannelV1Raw(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MethodCurrentBroadcastResponse>> {
@@ -1403,9 +1615,13 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["broadcast:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["broadcast:read"]);
         }
 
         const response = await this.request({
@@ -1419,6 +1635,7 @@ export class BroadcastApi extends runtime.BaseAPI implements BroadcastApiInterfa
     }
 
     /**
+     * Wait for active broadcast information via HTTP long polling using a project token. Waits for an event for at most 30 seconds: returns active broadcast JSON or HTTP 204 on timeout. This is neither a WebSocket nor a start-broadcast command; the account profile excludes this method.
      * Connect channel, long polling
      */
     async broadcastTokenChannelV1(requestParameters: BroadcastTokenChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MethodCurrentBroadcastResponse | null | undefined > {

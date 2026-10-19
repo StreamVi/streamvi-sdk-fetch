@@ -52,6 +52,7 @@ function SiteWebinarRoomSetSyncBodyRequestFromJSONTyped(json, ignoreDiscriminato
     return {
         'v': json['v'] == null ? undefined : json['v'],
         'language': json['language'],
+        'project_id': json['project_id'] == null ? undefined : json['project_id'],
         'room_id': json['room_id'],
         'client_id': json['client_id'],
         'publication_sid': json['publication_sid'] == null ? undefined : json['publication_sid'],
@@ -71,6 +72,7 @@ function SiteWebinarRoomSetSyncBodyRequestToJSONTyped(value, ignoreDiscriminator
     return {
         'v': value['v'],
         'language': value['language'],
+        'project_id': value['project_id'],
         'room_id': value['room_id'],
         'client_id': value['client_id'],
         'publication_sid': value['publication_sid'],

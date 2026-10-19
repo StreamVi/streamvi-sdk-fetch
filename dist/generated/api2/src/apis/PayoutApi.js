@@ -44,6 +44,7 @@ const index_1 = require("../models/index");
  */
 class PayoutApi extends runtime.BaseAPI {
     /**
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * Create payout
      */
     async payoutCreateV1Raw(requestParameters, initOverrides) {
@@ -66,9 +67,16 @@ class PayoutApi extends runtime.BaseAPI {
         }
         const headerParameters = {};
         headerParameters['Content-Type'] = 'application/json';
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", []);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["payout:write"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["payout:write"]);
         }
         const response = await this.request({
             path: `/method/payout/create`,
@@ -80,6 +88,7 @@ class PayoutApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.SuccessResponseFromJSON)(jsonValue));
     }
     /**
+     * Create a payout request for project_id to wallet_value through payout_system_account_id. amount uses minor units of the project currency, which must match the payout account currency (10000 = 100 major units). Success confirms the request, not a completed provider transfer; read available systems and restrictions with GET /method/payout/prepare.
      * Create payout
      */
     async payoutCreateV1(requestParameters, initOverrides) {
@@ -87,6 +96,7 @@ class PayoutApi extends runtime.BaseAPI {
         return await response.value();
     }
     /**
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * Get payout data for create
      */
     async payoutPrepareV1Raw(requestParameters, initOverrides) {
@@ -110,9 +120,16 @@ class PayoutApi extends runtime.BaseAPI {
             queryParameters['project_id'] = requestParameters['project_id'];
         }
         const headerParameters = {};
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["payout:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["payout:read"]);
+        }
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["payout:read"]);
         }
         const response = await this.request({
             path: `/method/payout/prepare`,
@@ -123,6 +140,7 @@ class PayoutApi extends runtime.BaseAPI {
         return new runtime.JSONApiResponse(response, (jsonValue) => (0, index_1.PayoutSystemAccountListResponseFromJSON)(jsonValue));
     }
     /**
+     * Read payout systems/accounts available to the current user for project_id and data needed to prepare a request. This is a preview without creating a payout or debiting funds. Use the returned payout_system_account_id in POST /method/payout/create.
      * Get payout data for create
      */
     async payoutPrepareV1(requestParameters, initOverrides) {

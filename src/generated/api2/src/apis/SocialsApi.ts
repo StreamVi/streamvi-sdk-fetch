@@ -28,6 +28,7 @@ import {
 export interface SocialsGetListV1Request {
     language: SocialsGetListV1LanguageEnum;
     v?: SocialsGetListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 
 /**
@@ -38,10 +39,11 @@ export interface SocialsGetListV1Request {
  */
 export interface SocialsApiInterface {
     /**
-     * 
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * @summary Social list for user
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SocialsApiInterface
@@ -49,6 +51,7 @@ export interface SocialsApiInterface {
     socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>>;
 
     /**
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * Social list for user
      */
     socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse>;
@@ -61,6 +64,7 @@ export interface SocialsApiInterface {
 export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
 
     /**
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * Social list for user
      */
     async socialsGetListV1Raw(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiteSocialListResponse>> {
@@ -85,9 +89,18 @@ export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (requestParameters['X_Client_Request_Id'] != null) {
+            headerParameters['X-Client-Request-Id'] = String(requestParameters['X_Client_Request_Id']);
+        }
+
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2", ["profile:read"]);
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Account", ["profile:read"]);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("oauth2Project", ["profile:read"]);
         }
 
         const response = await this.request({
@@ -101,6 +114,7 @@ export class SocialsApi extends runtime.BaseAPI implements SocialsApiInterface {
     }
 
     /**
+     * Read the current user\'s social connections. Returns results of connected identities; these are personal account data, not selected project channels. Reading neither starts OAuth nor disconnects accounts.
      * Social list for user
      */
     async socialsGetListV1(requestParameters: SocialsGetListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiteSocialListResponse> {

@@ -52,6 +52,12 @@ export interface GetAccountChannelsItem {
      */
     members: number;
     /**
+     * Main channel of the selected VK Video Live account
+     * @type {boolean}
+     * @memberof GetAccountChannelsItem
+     */
+    isPrimary?: boolean;
+    /**
      * Connected id
      * @type {number}
      * @memberof GetAccountChannelsItem
@@ -92,6 +98,7 @@ export function GetAccountChannelsItemFromJSONTyped(json: any, ignoreDiscriminat
         'name': json['name'],
         'photo': json['photo'],
         'members': json['members'],
+        'isPrimary': json['isPrimary'] == null ? undefined : json['isPrimary'],
         'connectedId': json['connectedId'],
         'accounts': ((json['accounts'] as Array<any>).map(GetAccountChannelsAccountItemFromJSON)),
     };
@@ -112,6 +119,7 @@ export function GetAccountChannelsItemToJSONTyped(value?: GetAccountChannelsItem
         'name': value['name'],
         'photo': value['photo'],
         'members': value['members'],
+        'isPrimary': value['isPrimary'],
         'connectedId': value['connectedId'],
         'accounts': ((value['accounts'] as Array<any>).map(GetAccountChannelsAccountItemToJSON)),
     };

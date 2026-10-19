@@ -15,29 +15,34 @@ export interface VideoSiteCreateV1Request {
     language: VideoSiteCreateV1LanguageEnum;
     project_id: number;
     v?: VideoSiteCreateV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteDeleteV1Request {
     language: VideoSiteDeleteV1LanguageEnum;
     project_id: number;
     id: number;
     v?: VideoSiteDeleteV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteDownloadV1Request {
     language: VideoSiteDownloadV1LanguageEnum;
     project_id: number;
     id: string;
     v?: VideoSiteDownloadV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteGetV1Request {
     language: VideoSiteGetV1LanguageEnum;
     project_id: number;
     id: number;
     v?: VideoSiteGetV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteLimitsV1Request {
     language: VideoSiteLimitsV1LanguageEnum;
     project_id: number;
     v?: VideoSiteLimitsV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteListV1Request {
     language: VideoSiteListV1LanguageEnum;
@@ -45,14 +50,17 @@ export interface VideoSiteListV1Request {
     v?: VideoSiteListV1VEnum;
     offset?: number;
     limit?: number;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteProgressChannelV1Request {
     language: VideoSiteProgressChannelV1LanguageEnum;
     project_id: number;
     v?: VideoSiteProgressChannelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface VideoSiteUpdateV1Request {
     UpdateVideoRequest: UpdateVideoRequest;
+    X_Client_Request_Id?: string;
 }
 /**
  * VideoApi - interface
@@ -62,125 +70,141 @@ export interface VideoSiteUpdateV1Request {
  */
 export interface VideoApiInterface {
     /**
-     *
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * @summary Create upload session
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>>;
     /**
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * Create upload session
      */
     videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse>;
     /**
-     *
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * @summary Delete video
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} id Video id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteDeleteV1Raw(requestParameters: VideoSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * Delete video
      */
     videoSiteDeleteV1(requestParameters: VideoSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * @summary Get video download link
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {string} id Download link id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteDownloadV1Raw(requestParameters: VideoSiteDownloadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoDownloadResponse>>;
     /**
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * Get video download link
      */
     videoSiteDownloadV1(requestParameters: VideoSiteDownloadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoDownloadResponse>;
     /**
-     *
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * @summary Get video by id
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {number} id Video id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteGetV1Raw(requestParameters: VideoSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoItemResponse>>;
     /**
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * Get video by id
      */
     videoSiteGetV1(requestParameters: VideoSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoItemResponse>;
     /**
-     *
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * @summary Get video limits
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteLimitsV1Raw(requestParameters: VideoSiteLimitsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoLimitsResponse>>;
     /**
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * Get video limits
      */
     videoSiteLimitsV1(requestParameters: VideoSiteLimitsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoLimitsResponse>;
     /**
-     *
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * @summary List videos
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [offset] Offset for v2 list endpoint
      * @param {number} [limit] Limit for v2 list endpoint
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteListV1Raw(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVideoResponse>>;
     /**
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * List videos
      */
     videoSiteListV1(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListVideoResponse>;
     /**
-     *
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * @summary Get upload progress channels for centrifuge
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>>;
     /**
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * Get upload progress channels for centrifuge
      */
     videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>>;
     /**
-     *
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * @summary Update video
      * @param {UpdateVideoRequest} UpdateVideoRequest
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VideoApiInterface
      */
     videoSiteUpdateV1Raw(requestParameters: VideoSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * Update video
      */
     videoSiteUpdateV1(requestParameters: VideoSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
@@ -190,66 +214,82 @@ export interface VideoApiInterface {
  */
 export declare class VideoApi extends runtime.BaseAPI implements VideoApiInterface {
     /**
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * Create upload session
      */
     videoSiteCreateV1Raw(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoCreateSuccessResponse>>;
     /**
+     * Create an upload session for project_id. Despite using GET, this creates a session in the external video service. Returns the upload URL, progress subscription token/channel, and space in bytes; success does not mean the file has been uploaded or processed. Session credentials must not be logged. Storage limits: GET /method/video/limits.
      * Create upload session
      */
     videoSiteCreateV1(requestParameters: VideoSiteCreateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoCreateSuccessResponse>;
     /**
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * Delete video
      */
     videoSiteDeleteV1Raw(requestParameters: VideoSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Delete video id in project_id through the video service after reading its current details. Input is supplied in query for this POST. This deletes the video without cancelling an upload session or stopping a schedule.
      * Delete video
      */
     videoSiteDeleteV1(requestParameters: VideoSiteDeleteV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * Get video download link
      */
     videoSiteDownloadV1Raw(requestParameters: VideoSiteDownloadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoDownloadResponse>>;
     /**
+     * Get the video download URL for id in project_id, with name/size in bytes. Returns JSON containing a link, not a file stream; a link does not confirm download completion.
      * Get video download link
      */
     videoSiteDownloadV1(requestParameters: VideoSiteDownloadV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoDownloadResponse>;
     /**
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * Get video by id
      */
     videoSiteGetV1Raw(requestParameters: VideoSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoItemResponse>>;
     /**
+     * Read a video by numeric id in project_id through the video service. Returns video properties and state; use GET /method/video/list to find IDs. Reading neither uploads a file nor starts a schedule.
      * Get video by id
      */
     videoSiteGetV1(requestParameters: VideoSiteGetV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoItemResponse>;
     /**
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * Get video limits
      */
     videoSiteLimitsV1Raw(requestParameters: VideoSiteLimitsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VideoLimitsResponse>>;
     /**
+     * Read video storage limits for project_id: video_limit and video_current in bytes; removing_at may be absent. Limits are returned by the video service and depend on project/plan state; clients must not hardcode them.
      * Get video limits
      */
     videoSiteLimitsV1(requestParameters: VideoSiteLimitsV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VideoLimitsResponse>;
     /**
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * List videos
      */
     videoSiteListV1Raw(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListVideoResponse>>;
     /**
+     * Read videos of project_id with limit/offset (the number of records to skip). Returns results, total, and actual video service pagination. Use the video ID for get/update/delete and scheduler video.id; this method does not create an upload session.
      * List videos
      */
     videoSiteListV1(requestParameters: VideoSiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListVideoResponse>;
     /**
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * Get upload progress channels for centrifuge
      */
     videoSiteProgressChannelV1Raw(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VideoProgressChannelResponse>>>;
     /**
+     * Get the list of Centrifugo upload progress channels for project_id. These are subscription details, not an upload command; use GET /method/video/create to create an upload session.
      * Get upload progress channels for centrifuge
      */
     videoSiteProgressChannelV1(requestParameters: VideoSiteProgressChannelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VideoProgressChannelResponse>>;
     /**
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * Update video
      */
     videoSiteUpdateV1Raw(requestParameters: VideoSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Rename video id in project_id by saving name through the video service. Success confirms the name change; this method does not replace the file, content, or schedule.
      * Update video
      */
     videoSiteUpdateV1(requestParameters: VideoSiteUpdateV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;

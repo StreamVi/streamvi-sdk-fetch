@@ -28,7 +28,7 @@ import {
  */
 export interface GetPaySettingResponseV3 {
     /**
-     * Pay settings data data
+     * 
      * @type {PaySettingResponseV3}
      * @memberof GetPaySettingResponseV3
      */

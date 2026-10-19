@@ -17,11 +17,13 @@ export interface SiteBuyV1Request {
     period: SiteBuyV1PeriodEnum;
     plan_webinar_id: number;
     v?: SiteBuyV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SiteCancelV1Request {
     language: SiteCancelV1LanguageEnum;
     project_id: number;
     v?: SiteCancelV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SiteCheckV1Request {
     language: SiteCheckV1LanguageEnum;
@@ -30,25 +32,30 @@ export interface SiteCheckV1Request {
     plan_webinar_id: number;
     v?: SiteCheckV1VEnum;
     use_balance?: number;
+    X_Client_Request_Id?: string;
 }
 export interface SiteGetDiscountV1Request {
     language: SiteGetDiscountV1LanguageEnum;
     v?: SiteGetDiscountV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SiteListV1Request {
     language: SiteListV1LanguageEnum;
     v?: SiteListV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SiteSetProlongationV1Request {
     language: SiteSetProlongationV1LanguageEnum;
     project_id: number;
     enabled: boolean;
     v?: SiteSetProlongationV1VEnum;
+    X_Client_Request_Id?: string;
 }
 export interface SiteTariffV1Request {
     language: SiteTariffV1LanguageEnum;
     project_id: number;
     v?: SiteTariffV1VEnum;
+    X_Client_Request_Id?: string;
 }
 /**
  * PlanWebinarApi - interface
@@ -58,112 +65,126 @@ export interface SiteTariffV1Request {
  */
 export interface PlanWebinarApiInterface {
     /**
-     *
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * @summary Buy webinar tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_webinar_id Webinar plan id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteBuyV1Raw(requestParameters: SiteBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy webinar tariff
      */
     siteBuyV1(requestParameters: SiteBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
-     * @summary Remove after tariff
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * @summary Cancel the next project webinar tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteCancelV1Raw(requestParameters: SiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
-     * Remove after tariff
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project webinar tariff
      */
     siteCancelV1(requestParameters: SiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * @summary Check webinar tariff before buy
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'month' | 'year'} period Period
      * @param {number} plan_webinar_id Webinar plan id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
      * @param {number} [use_balance] Is select balance
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteCheckV1Raw(requestParameters: SiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarCheckV2Response>>;
     /**
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * Check webinar tariff before buy
      */
     siteCheckV1(requestParameters: SiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarCheckV2Response>;
     /**
-     *
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * @summary Get discount webinar
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteGetDiscountV1Raw(requestParameters: SiteGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarDiscountResponse>>;
     /**
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount webinar
      */
     siteGetDiscountV1(requestParameters: SiteGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarDiscountResponse>;
     /**
-     *
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * @summary Get list of webinar tariffs
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteListV1Raw(requestParameters: SiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarResponseDto>>;
     /**
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of webinar tariffs
      */
     siteListV1(requestParameters: SiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarResponseDto>;
     /**
-     *
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * @summary Set webinar tariff auto prolongation
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {boolean} enabled Auto prolongation enabled
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteSetProlongationV1Raw(requestParameters: SiteSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set webinar tariff auto prolongation
      */
     siteSetProlongationV1(requestParameters: SiteSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     *
-     * @summary Get tariff for project
-     * @param {'ru' | 'en' | 'cn'} language Current language
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * @summary Get current and next project webinar tariff
+     * @param {'ru' | 'en' | 'cn'} language Language of localized messages and results. When omitted, the DTO uses en; supported values are defined by enum.
      * @param {number} project_id Project id
      * @param {'1'} [v] Version (automatically defaults to 1 based on the API contract, can be overridden)
+     * @param {string} [X_Client_Request_Id] UUID v4 correlating the request, logs, and events. If absent or invalid, the server generates an ID and returns it in the response header with the same name.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PlanWebinarApiInterface
      */
     siteTariffV1Raw(requestParameters: SiteTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarForProject>>;
     /**
-     * Get tariff for project
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project webinar tariff
      */
     siteTariffV1(requestParameters: SiteTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarForProject>;
 }
@@ -172,59 +193,73 @@ export interface PlanWebinarApiInterface {
  */
 export declare class PlanWebinarApi extends runtime.BaseAPI implements PlanWebinarApiInterface {
     /**
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy webinar tariff
      */
     siteBuyV1Raw(requestParameters: SiteBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Buy a webinar tariff for project_id using configuration and period from query. Performs tariff/financial checks and purchase from balance; changes the subscription rather than previewing the price. Success confirms the purchase workflow, not an external card payment. Use check before purchasing.
      * Buy webinar tariff
      */
     siteBuyV1(requestParameters: SiteBuyV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     * Remove after tariff
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project webinar tariff
      */
     siteCancelV1Raw(requestParameters: SiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
-     * Remove after tariff
+     * Cancel the next webinar plan for project_id according to current service rules. Returns success after cancellation; the current period is not described as stopping immediately. This cancels a scheduled subscription without stopping the broadcast.
+     * Cancel the next project webinar tariff
      */
     siteCancelV1(requestParameters: SiteCancelV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * Check webinar tariff before buy
      */
     siteCheckV1Raw(requestParameters: SiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarCheckV2Response>>;
     /**
+     * Calculate a webinar plan card/preview for project_id using the selected configuration and period. Returns plan prices, sum, currency, and switching conditions; amounts are in minor units. This calculates a purchase preview without debiting funds or creating a room.
      * Check webinar tariff before buy
      */
     siteCheckV1(requestParameters: SiteCheckV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarCheckV2Response>;
     /**
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount webinar
      */
     siteGetDiscountV1Raw(requestParameters: SiteGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarDiscountResponse>>;
     /**
+     * Read annual discount rules for webinar plans. These are calculation reference data, not promo code application or a purchase; check the final amount for the selected project using check.
      * Get discount webinar
      */
     siteGetDiscountV1(requestParameters: SiteGetDiscountV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarDiscountResponse>;
     /**
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of webinar tariffs
      */
     siteListV1Raw(requestParameters: SiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarResponseDto>>;
     /**
+     * Read the public webinar plan catalog with parameters and prices by currency. Amounts are minor currency units (kopecks/cents), not major units; the purchase period uses the month/year enum. The catalog does not confirm that every configuration is available to a specific project.
      * Get list of webinar tariffs
      */
     siteListV1(requestParameters: SiteListV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarResponseDto>;
     /**
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set webinar tariff auto prolongation
      */
     siteSetProlongationV1Raw(requestParameters: SiteSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SuccessResponse>>;
     /**
+     * Save automatic webinar plan renewal enabled for project_id. true enables and false disables future renewals according to service rules. Parameters are supplied in query for this POST. Success confirms the setting, not a current purchase or cancellation of the active period.
      * Set webinar tariff auto prolongation
      */
     siteSetProlongationV1(requestParameters: SiteSetProlongationV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SuccessResponse>;
     /**
-     * Get tariff for project
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project webinar tariff
      */
     siteTariffV1Raw(requestParameters: SiteTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlanWebinarForProject>>;
     /**
-     * Get tariff for project
+     * Read the current and next webinar plans of project_id with period and renewal parameters. This is subscription state, not the available purchase catalog. Prices/amounts use minor units of the response currency; obtain dynamic limits from the current plan.
+     * Get current and next project webinar tariff
      */
     siteTariffV1(requestParameters: SiteTariffV1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PlanWebinarForProject>;
 }
